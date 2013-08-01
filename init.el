@@ -1221,7 +1221,7 @@ In case the execution fails, return an error."
 (require 'smartchr)
 ;; http://ratememo.blog17.fc2.com/blog-entry-937.html
 (defun my-ess-smartchr-setting ()
-  (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
+  (local-set-key (kbd "=") (smartchr '(" = " "=" " == ")))
   (local-set-key (kbd "+") (smartchr '(" + " "+")))
   (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
   (local-set-key (kbd "#") (smartchr '("#" "##" "###" "################################################################################"))) ; test
