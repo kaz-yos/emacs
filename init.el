@@ -1223,11 +1223,11 @@ In case the execution fails, return an error."
 (defun my-ess-smartchr-setting ()
   (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
   (local-set-key (kbd "+") (smartchr '(" + " "+")))
-  (local-set-key (kbd "-") (smartchr '(" - " "-" "--------------------------------------------------------------------------------"))) ; test
+  (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
   (local-set-key (kbd "#") (smartchr '("#" "##" "###" "################################################################################"))) ; test
   (local-set-key (kbd "~") (smartchr '(" ~ " "~")))
   (local-set-key (kbd "$") (smartchr '("$" "$`!!'$")))
-  (local-set-key (kbd "%") (smartchr '("%" "%`!!'%")))
+  (local-set-key (kbd "%") (smartchr '("%" " %`!!'% ")))
 ;;  (local-set-key (kbd "[") (smartchr '("[`!!']" "[[`!!']]" "["))) ; not very useful
   ) 
 (add-hook 'ess-mode-hook	  'my-ess-smartchr-setting)
