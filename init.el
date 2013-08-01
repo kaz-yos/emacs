@@ -1224,7 +1224,7 @@ In case the execution fails, return an error."
   (local-set-key (kbd "=") (smartchr '(" = " "=" " == ")))
   (local-set-key (kbd "+") (smartchr '(" + " "+")))
   (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
-  (local-set-key (kbd "#") (smartchr '("#" "##" "###" "################################################################################"))) ; test
+  (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))) ; test
   (local-set-key (kbd "~") (smartchr '(" ~ " "~")))
   (local-set-key (kbd "$") (smartchr '("$" "$`!!'$")))
   (local-set-key (kbd "%") (smartchr '("%" " %`!!'% ")))
