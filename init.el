@@ -433,7 +433,7 @@
         (setq w1 (selected-window))
         (setq w1name (buffer-name))
         (setq w2 (split-window w1 nil t))
-        (R)
+        (shell)					; activate shell
         (set-window-buffer w1 "*shell*")	; shell on the left
         (set-window-buffer w2 w1name))))
 ;;
