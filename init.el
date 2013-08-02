@@ -774,7 +774,7 @@ In case the execution fails, return an error."
         (set-window-buffer w2 w1name)
 	;; (set-window-buffer w2 "*R*")
 	;; (set-window-buffer w1 w1name)
-	(select-window w2)		; Select script (2)
+	(select-window w2)		; Select script (w2)
 	)))
 ;;
 (defun my-ess-eval ()
@@ -870,7 +870,8 @@ In case the execution fails, return an error."
         (setq w2 (split-window w1 nil t))
         (shell)					; activate shell
         (set-window-buffer w1 "*shell*")	; shell on the left
-        (set-window-buffer w2 w1name))))
+        (set-window-buffer w2 w1name)
+	(select-window w2))))			; select script
 ;;
 (defun my-essh-eval ()
   (interactive)
