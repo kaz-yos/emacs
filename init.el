@@ -359,50 +359,100 @@
 ;;   (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
 
 
-;; Shell script send
-;; http://stackoverflow.com/questions/6286579/emacs-shell-mode-how-to-send-region-to-shell
-(defun sh-send-line-or-region (&optional step)
-  (interactive ())
-  (let ((proc (get-process "shell"))
-        pbuf min max command)
-    (unless proc
-      (let ((currbuff (current-buffer)))
-        (shell)
-        (switch-to-buffer currbuff)
-        (setq proc (get-process "shell"))
-        ))
-    (setq pbuff (process-buffer proc))
-    (if (use-region-p)
-        (setq min (region-beginning)
-              max (region-end))
-      (setq min (point-at-bol)
-            max (point-at-eol)))
-    (setq command (concat (buffer-substring min max) "\n"))
-    (with-current-buffer pbuff
-      (goto-char (process-mark proc))
-      (insert command)
-      (move-marker (process-mark proc) (point))
-      ) ;;pop-to-buffer does not work with save-current-buffer -- bug?
-    (process-send-string  proc command)
-    (display-buffer (process-buffer proc) t)
-    (when step 
-      (goto-char max)
-      (next-line))
-    ))
+
+;; ;; Shell script send		; Deactivated in favor of essh.el
+;; ;; http://stackoverflow.com/questions/6286579/emacs-shell-mode-how-to-send-region-to-shell
+;; (defun sh-send-line-or-region (&optional step)
+;;   (interactive ())
+;;   (let ((proc (get-process "shell"))
+;;         pbuf min max command)
+;;     (unless proc
+;;       (let ((currbuff (current-buffer)))
+;;         (shell)
+;;         (switch-to-buffer currbuff)
+;;         (setq proc (get-process "shell"))
+;;         ))
+;;     (setq pbuff (process-buffer proc))
+;;     (if (use-region-p)
+;;         (setq min (region-beginning)
+;;               max (region-end))
+;;       (setq min (point-at-bol)
+;;             max (point-at-eol)))
+;;     (setq command (concat (buffer-substring min max) "\n"))
+;;     (with-current-buffer pbuff
+;;       (goto-char (process-mark proc))
+;;       (insert command)
+;;       (move-marker (process-mark proc) (point))
+;;       ) ;;pop-to-buffer does not work with save-current-buffer -- bug?
+;;     (process-send-string  proc command)
+;;     (display-buffer (process-buffer proc) t)
+;;     (when step 
+;;       (goto-char max)
+;;       (next-line))
+;;     ))
+;; ;;
+;; (defun sh-send-line-or-region-and-step ()
+;;   (interactive)
+;;   (sh-send-line-or-region t))
+;; (defun sh-switch-to-process-buffer ()
+;;   (interactive)
+;;   (pop-to-buffer (process-buffer (get-process "shell")) t))
+;; ;;
+;; ;; Below modified from original
+;; (require 'sh-script)	; sh-mode-map is defined by sh-script.el included in default install
+;; (define-key sh-mode-map "\C-j"      'sh-send-line-or-region-and-step)
+;; (define-key sh-mode-map "\C-c \C-z" 'sh-switch-to-process-buffer)	
+;; ;; Scrolling is defined in ESS configuration
+;; ;; (setq comint-scroll-to-bottom-on-output t) 
+;; ;;
+
+
+
+;; essh.el for shell (like ESS for R
+;; http://www.emacswiki.org/emacs/essh.el
+(require 'essh)                                                    
+(defun essh-sh-hook ()                                             
+  (define-key sh-mode-map "\C-c\C-r" 'pipe-region-to-shell)        
+  (define-key sh-mode-map "\C-c\C-b" 'pipe-buffer-to-shell)        
+  (define-key sh-mode-map "\C-c\C-j" 'pipe-line-to-shell)          
+  (define-key sh-mode-map "\C-c\C-n" 'pipe-line-to-shell-and-step) 
+  (define-key sh-mode-map "\C-c\C-f" 'pipe-function-to-shell)      
+  (define-key sh-mode-map "\C-c\C-d" 'shell-cd-current-directory)) 
+(add-hook 'sh-mode-hook 'essh-sh-hook)                             
 ;;
-(defun sh-send-line-or-region-and-step ()
+;; Changed from ESS
+;; Auto-scrolling of R console to bottom and Shift key extension
+;; http://www.kieranhealy.org/blog/archives/2009/10/12/make-shift-enter-do-a-lot-in-ess/
+;; Adapted with one minor change from Felipe Salazar at
+;; http://www.emacswiki.org/emacs/ESSShiftEnter
+(defun my-essh-start-shell ()
   (interactive)
-  (sh-send-line-or-region t))
-(defun sh-switch-to-process-buffer ()
-  (interactive)
-  (pop-to-buffer (process-buffer (get-process "shell")) t))
+  (if (not (member "*shell*" (mapcar (function buffer-name) (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))
+        (R)
+        (set-window-buffer w1 "*shell*")	; shell on the left
+        (set-window-buffer w2 w1name))))
 ;;
-;; Below modified from original
-(require 'sh-script)	; sh-mode-map is defined by sh-script.el included in default install
-(define-key sh-mode-map "\C-j"      'sh-send-line-or-region-and-step)
-(define-key sh-mode-map "\C-c \C-z" 'sh-switch-to-process-buffer)
-;; Scrolling is defined in ESS configuration
-;; (setq comint-scroll-to-bottom-on-output t) 
+(defun my-essh-eval ()
+  (interactive)
+  (my-essh-start-shell)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'pipe-region-to-shell)
+    (call-interactively 'pipe-line-to-shell-and-step)))
+;;
+(add-hook 'sh-mode-hook		; For shell script mode
+          '(lambda()
+             (local-set-key [(shift return)] 'my-essh-eval)))
+;; (add-hook 'inferior-ess-mode-hook	; For iESS mode
+;;           '(lambda()
+;; 	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
+;;              (local-set-key [C-up] 'comint-previous-input)
+;;              (local-set-key [C-down] 'comint-next-input)))
+
 
 
 ;; Automatically close brackets and parentheses
