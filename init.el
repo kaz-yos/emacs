@@ -1446,6 +1446,11 @@ In case the execution fails, return an error."
 ;; If you find the (Python Elpy yas AC ElDoc Fill) mode line annoying, also add:
 (elpy-clean-modeline)
 ;;
+;; Fix yas-snippet-dirs (elpy breaks configuration)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"
+	"/Users/kazuki/.emacs.d/elpa/yasnippet-20130722.1832/snippets"
+	))
 
 ;; Auto-completion addtional setting
 ;; Looks like this has to come after ESS configuration
