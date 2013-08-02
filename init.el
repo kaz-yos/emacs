@@ -830,6 +830,10 @@ In case the execution fails, return an error."
         (other      . "str")))
 ;;
 ;;
+;; ess-R-data-view.el
+;; https://github.com/myuhe/ess-R-data-view.el/blob/master/README.org
+(define-key ess-mode-map "\C-c\C-d\C-e" 'ess-R-dv-pprint)
+;;
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
 ;; excecutable file
