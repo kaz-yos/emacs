@@ -771,7 +771,7 @@ In case the execution fails, return an error."
         (setq w2 (split-window w1 nil t))
         (R)
         (set-window-buffer w1 "*R*")	; R on the left (w1)
-        (set-window-buffer w2 w1name)
+        (set-window-buffer w2 w1name)	; script on the right (w2)
 	;; (set-window-buffer w2 "*R*")
 	;; (set-window-buffer w1 w1name)
 	(select-window w2)		; Select script (w2)
