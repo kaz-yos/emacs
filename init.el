@@ -408,53 +408,6 @@
 
 
 
-;; essh.el for shell (like ESS for R
-;; http://www.emacswiki.org/emacs/essh.el
-(require 'essh)                                                    
-(defun essh-sh-hook ()                                             
-  (define-key sh-mode-map "\C-c\C-r" 'pipe-region-to-shell)        
-  (define-key sh-mode-map "\C-c\C-b" 'pipe-buffer-to-shell)        
-  (define-key sh-mode-map "\C-c\C-j" 'pipe-line-to-shell)          
-  (define-key sh-mode-map "\C-c\C-n" 'pipe-line-to-shell-and-step) 
-  (define-key sh-mode-map "\C-c\C-f" 'pipe-function-to-shell)      
-  (define-key sh-mode-map "\C-c\C-d" 'shell-cd-current-directory)) 
-(add-hook 'sh-mode-hook 'essh-sh-hook)                             
-;;
-;; Changed from ESS
-;; Auto-scrolling of R console to bottom and Shift key extension
-;; http://www.kieranhealy.org/blog/archives/2009/10/12/make-shift-enter-do-a-lot-in-ess/
-;; Adapted with one minor change from Felipe Salazar at
-;; http://www.emacswiki.org/emacs/ESSShiftEnter
-(defun my-essh-start-shell ()
-  (interactive)
-  (if (not (member "*shell*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-        (delete-other-windows)
-        (setq w1 (selected-window))
-        (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))
-        (shell)					; activate shell
-        (set-window-buffer w1 "*shell*")	; shell on the left
-        (set-window-buffer w2 w1name))))
-;;
-(defun my-essh-eval ()
-  (interactive)
-  (my-essh-start-shell)
-  (if (and transient-mark-mode mark-active)
-      (call-interactively 'pipe-region-to-shell)
-    (call-interactively 'pipe-line-to-shell-and-step)))
-;;
-(add-hook 'sh-mode-hook		; For shell script mode
-          '(lambda()
-             (local-set-key [(shift return)] 'my-essh-eval)))
-;; (add-hook 'inferior-ess-mode-hook	; For iESS mode
-;;           '(lambda()
-;; 	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
-;;              (local-set-key [C-up] 'comint-previous-input)
-;;              (local-set-key [C-down] 'comint-next-input)))
-
-
-
 ;; Automatically close brackets and parentheses
 ;; http://www.emacswiki.org/emacs/ESSAutoParens
 ;; http://www.emacswiki.org/emacs/SkeletonPair
@@ -813,7 +766,8 @@ In case the execution fails, return an error."
   (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
       (progn
         (delete-other-windows)
-        (setq w1 (selected-window))
+        ;; (setq w1 (selected-window))
+        (setq w2 (selected-window))	; Select script
         (setq w1name (buffer-name))
         (setq w2 (split-window w1 nil t))
         (R)
@@ -884,6 +838,54 @@ In case the execution fails, return an error."
 ;;           '(lambda()
 ;;              (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab
 ;;
+
+
+
+;; essh.el for shell (like ESS for R
+;; http://www.emacswiki.org/emacs/essh.el
+(require 'essh)
+(defun essh-sh-hook ()                                             
+  (define-key sh-mode-map "\C-c\C-r" 'pipe-region-to-shell)        
+  (define-key sh-mode-map "\C-c\C-b" 'pipe-buffer-to-shell)        
+  (define-key sh-mode-map "\C-c\C-j" 'pipe-line-to-shell)          
+  (define-key sh-mode-map "\C-c\C-n" 'pipe-line-to-shell-and-step) 
+  (define-key sh-mode-map "\C-c\C-f" 'pipe-function-to-shell)      
+  (define-key sh-mode-map "\C-c\C-d" 'shell-cd-current-directory)) 
+(add-hook 'sh-mode-hook 'essh-sh-hook)                             
+;;
+;; Changed from ESS
+;; Auto-scrolling of R console to bottom and Shift key extension
+;; http://www.kieranhealy.org/blog/archives/2009/10/12/make-shift-enter-do-a-lot-in-ess/
+;; Adapted with one minor change from Felipe Salazar at
+;; http://www.emacswiki.org/emacs/ESSShiftEnter
+(defun my-essh-start-shell ()
+  (interactive)
+  (if (not (member "*shell*" (mapcar (function buffer-name) (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))
+        (shell)					; activate shell
+        (set-window-buffer w1 "*shell*")	; shell on the left
+        (set-window-buffer w2 w1name))))
+;;
+(defun my-essh-eval ()
+  (interactive)
+  (my-essh-start-shell)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'pipe-region-to-shell)
+    (call-interactively 'pipe-line-to-shell-and-step)))
+;;
+(add-hook 'sh-mode-hook		; For shell script mode
+          '(lambda()
+             (local-set-key [(shift return)] 'my-essh-eval)))
+;; (add-hook 'inferior-ess-mode-hook	; For iESS mode
+;;           '(lambda()
+;; 	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
+;;              (local-set-key [C-up] 'comint-previous-input)
+;;              (local-set-key [C-down] 'comint-next-input)))
+
 
 
 ;; TeX environments
