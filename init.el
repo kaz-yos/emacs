@@ -1,5 +1,5 @@
 ;;
-;; ~/.emacs.d/init.el for cocoa emacs 24.2.1 (source with inline patch) on Mac OS X 10.8.2
+;; ~/.emacs.d/init.el for cocoa emacs 24.3.1 (source with inline patch) on Mac OS X 10.8.4
 ;; Reference: http://sakito.jp/emacs/emacs24.html#ime
 ;;
 
@@ -774,7 +774,8 @@ In case the execution fails, return an error."
         (set-window-buffer w2 w1name)	; script on the right (w2)
 	;; (set-window-buffer w2 "*R*")
 	;; (set-window-buffer w1 w1name)
-	(select-window w2)		; Select script (w2)
+	;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Selecting-Windows.html
+	(select-window w2)		; Select script (w2) 
 	)))
 ;;
 (defun my-ess-eval ()
