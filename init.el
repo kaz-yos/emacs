@@ -1204,8 +1204,10 @@ In case the execution fails, return an error."
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (require 'highlight-symbol)
 (global-set-key [(control .)] 'highlight-symbol-at-point)
-(global-set-key [(control \$)] 'highlight-symbol-next)
-(global-set-key [(control \#)] 'highlight-symbol-prev)
+(global-set-key [(control \})] 'highlight-symbol-next)
+(global-set-key [(control \{)] 'highlight-symbol-prev)
+;; (global-set-key [(control \$)] 'highlight-symbol-next)
+;; (global-set-key [(control \#)] 'highlight-symbol-prev)
 
 
 ;; multiple-cursors for simultaneous editing multiple occurrences
