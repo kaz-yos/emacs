@@ -1211,6 +1211,16 @@ In case the execution fails, return an error."
 ;; (global-set-key [(control \#)] 'highlight-symbol-prev)
 
 
+;; This does not look useful 2013-08-05
+;; auto-highlight-symbol.el for highlighting multiple occurences
+;; https://github.com/emacsmirror/auto-highlight-symbol
+;;
+;; (require 'auto-highlight-symbol)
+;; (global-auto-highlight-symbol-mode t)
+
+
+
+
 ;; multiple-cursors for simultaneous editing multiple occurrences
 ;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
 ;; http://emacsrocks.com/e13.html (video)
