@@ -1190,7 +1190,8 @@ In case the execution fails, return an error."
 ;; hl-line+.el: highlight current line only (no column)
 ;; http://www.emacswiki.org/emacs/HighlightCurrentLine#toc3
 ;; (require 'hl-line+)		; required by crosshairs already
-(toggle-hl-line-when-idle t)	; turned on line highlight when idle
+;; (toggle-hl-line-when-idle t)	; turned on line highlight when idle
+(toggle-hl-line-when-idle nil)	; turned off line highlight when idle
 ;;
 ;; To customize the background color
 (set-face-background 'hl-line	    "light goldenrod yellow")   ; Line color
