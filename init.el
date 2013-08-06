@@ -251,6 +251,7 @@
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
 (cua-mode t)
 (setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
+(setq cua-keep-region-after-copy t)		; Keep selection after copying (Mac/Win-like)
 ;; Rectangule select with C-return is disabled to allow use in ESS 2013-08-06
 ;; (global-unset-key [(control return)])	; This does not work????
 
