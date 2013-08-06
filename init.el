@@ -792,6 +792,15 @@ In case the execution fails, return an error."
       (call-interactively 'ess-eval-region)
     (call-interactively 'ess-eval-line-and-step)))
 ;;
+;; Function to toggle $ in syntax table 2013-08-06
+(defun toggle-dollar ()
+  "Toggle status of $ in the syntax table"
+  (interactive)
+  (if (equal " " (char-to-string (char-syntax ?$)))
+      (modify-syntax-entry ?$ "_")
+    (modify-syntax-entry ?$ " ")
+    ))
+;;
 (add-hook 'ess-mode-hook		; For ESS mode
           '(lambda()
 	     ;; (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)	; Does not work with the one below??
@@ -861,13 +870,6 @@ In case the execution fails, return an error."
 ;; http://stackoverflow.com/questions/1771102/changing-emacs-forward-word-behaviour
 ;; (modify-syntax-entry ?$ " " ess-mode-syntax-table)	; This is overriden. does not work.
 ;;
-;; Function to toggle $ in syntax table 2013-08-06
-(defun toggle-dollar ()
-  "Toggle status of $ in the syntax table"
-  (if (equal " " (char-to-string (char-syntax ?$)))
-      (modify-syntax-entry ?$ "_")
-    (modify-syntax-entry ?$ " ")
-    ))
 
 
 
