@@ -848,7 +848,7 @@ In case the execution fails, return an error."
 ;; Regard dollar signs as a white space to change syntax highlighting with highlight-symbol.el
 ;; http://www.emacswiki.org/emacs/EmacsSyntaxTable
 ;; http://stackoverflow.com/questions/1771102/changing-emacs-forward-word-behaviour
-(modify-syntax-entry ?$ " " ess-mode-syntax-table)
+(modify-syntax-entry ?$ " " ess-mode-syntax-table)	; This is overriden. does not work.
 
 
 
