@@ -859,6 +859,14 @@ In case the execution fails, return an error."
 ;; http://www.emacswiki.org/emacs/EmacsSyntaxTable
 ;; http://stackoverflow.com/questions/1771102/changing-emacs-forward-word-behaviour
 ;; (modify-syntax-entry ?$ " " ess-mode-syntax-table)	; This is overriden. does not work.
+;;
+;; Function to toggle $ in syntax table 2013-08-06
+(defun toggle-dollar ()
+  "Toggle status of $ in the syntax table"
+  (if (equal " " (char-to-string (char-syntax ?$)))
+      (modify-syntax-entry ?$ "_")
+    (modify-syntax-entry ?$ " ")
+    ))
 
 
 
@@ -1556,4 +1564,3 @@ In case the execution fails, return an error."
 ;; This is placed at the end as it freezes if EmacsWIki is not responding.
 (auto-install-update-emacswiki-package-name t) ; THIS FREEZES EMACS IF EMACSWIKI IS DONW!!!!!!
 ;;; end of configuration
-
