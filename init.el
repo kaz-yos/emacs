@@ -789,7 +789,8 @@ In case the execution fails, return an error."
           '(lambda()
 	     ;; (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)	; Does not work with the one below??
 	     (local-set-key [(control return)] 'my-ess-eval)
-             (local-set-key [(shift return)] 'my-ess-eval)))
+             ;; (local-set-key [(shift return)] 'my-ess-eval)
+	     ))
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
           '(lambda()
 	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
