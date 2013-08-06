@@ -798,6 +798,7 @@ In case the execution fails, return an error."
 	     (local-set-key [(control return)] 'my-ess-eval)
              (local-set-key [(shift return)] 'my-ess-eval)
 	     (cua-mode nil)					; disable CUA C-RET
+	     (local-set-key [C-4] 'toggle-dollar)
 	     ))
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
           '(lambda()
