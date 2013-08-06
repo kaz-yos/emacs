@@ -250,6 +250,7 @@
 ;; Common User Access mode for column editing: Activated by C-RET while selecting text
 ;; http://tech.kayac.com/archive/emacs-rectangle.html
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
+(cua-mode nil)
 ;; (cua-mode t)
 ;; (setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
 ;; (setq cua-keep-region-after-copy t)		; Keep selection after copying (Mac/Win-like)
@@ -806,7 +807,7 @@ In case the execution fails, return an error."
 	     ;; (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)	; Does not work with the one below??
 	     (local-set-key [(control return)] 'my-ess-eval)
              (local-set-key [(shift return)] 'my-ess-eval)
-	     (cua-mode nil)					; disable CUA C-RET
+	     ;; (cua-mode nil)					; disable CUA C-RET (not working)
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)
 	     ))
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
