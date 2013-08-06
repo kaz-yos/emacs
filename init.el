@@ -252,7 +252,7 @@
 (cua-mode t)
 (setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
 ;; Rectangule select with C-return is disabled to allow use in ESS 2013-08-06
-(global-unset-key [(control return)])
+;; (global-unset-key [(control return)])	; This does not work????
 
 
 
@@ -791,8 +791,8 @@ In case the execution fails, return an error."
 (add-hook 'ess-mode-hook		; For ESS mode
           '(lambda()
 	     ;; (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)	; Does not work with the one below??
-	     (local-set-key [(control return)] 'my-ess-eval)
-             ;; (local-set-key [(shift return)] 'my-ess-eval)
+	     ;; (local-set-key [(control return)] 'my-ess-eval)
+             (local-set-key [(shift return)] 'my-ess-eval)
 	     ))
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
           '(lambda()
