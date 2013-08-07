@@ -825,6 +825,7 @@ In case the execution fails, return an error."
 	     ;; (modify-syntax-entry ?$  " "  S-syntax-table)	; does not work
 	     ;; (cua-mode)					; does not work
 	     ))
+;; (add-hook 'ess-mode-hook (modify-syntax-entry ?$  "."  S-syntax-table)) ; does not work either
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
           '(lambda()
 	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
