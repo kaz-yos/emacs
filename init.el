@@ -1230,22 +1230,24 @@ In case the execution fails, return an error."
 (define-key view-mode-map (kbd "K") 'View-scroll-line-backward)
 
 
-;; crosshairs.el: highlight current line/column using hl-line(+).el/col-highlight.el
-;; http://www.emacswiki.org/emacs/CrosshairHighlighting
-(require 'crosshairs)
-;; (toggle-crosshairs-when-idle t) ; No need for crosshairs when idle
-;;
-;; hl-line+.el: highlight current line only (no column)
-;; http://www.emacswiki.org/emacs/HighlightCurrentLine#toc3
-;; (require 'hl-line+)		; required by crosshairs already
-;; (toggle-hl-line-when-idle t)	; turned on line highlight when idle
-(toggle-hl-line-when-idle nil)	; turned off line highlight when idle
-;;
-;; To customize the background color
-(set-face-background 'hl-line	    "light goldenrod yellow")   ; Line color
-(set-face-background 'col-highlight "light goldenrod yellow")	; Column color
-;; (set-face-background 'hl-line "lemon chiffon")		; Line color
-;; (set-face-background 'col-highlight "lemon chiffon")		; Column color
+;; Annoying turned off
+;; ;; crosshairs.el: highlight current line/column using hl-line(+).el/col-highlight.el
+;; ;; http://www.emacswiki.org/emacs/CrosshairHighlighting
+;; (require 'crosshairs)
+;; ;; (toggle-crosshairs-when-idle t) ; No need for crosshairs when idle
+;; ;;
+;; ;; hl-line+.el: highlight current line only (no column)
+;; ;; http://www.emacswiki.org/emacs/HighlightCurrentLine#toc3
+;; ;; (require 'hl-line+)		; required by crosshairs already
+;; ;; (toggle-hl-line-when-idle t)	; turned on line highlight when idle
+;; ;; (toggle-hl-line-when-idle nil)	; turned off line highlight when idle
+;; (hl-line-when-idle-interval 60)
+;; ;;
+;; ;; To customize the background color
+;; (set-face-background 'hl-line	    "light goldenrod yellow")   ; Line color
+;; (set-face-background 'col-highlight "light goldenrod yellow")	; Column color
+;; ;; (set-face-background 'hl-line "lemon chiffon")		; Line color
+;; ;; (set-face-background 'col-highlight "lemon chiffon")		; Column color
 
 
 ;; highligh-symbol for highlighting multiple occurences
