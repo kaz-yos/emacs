@@ -1233,8 +1233,8 @@ In case the execution fails, return an error."
 ;; crosshairs.el: highlight current line/column using hl-line(+).el/col-highlight.el
 ;; http://www.emacswiki.org/emacs/CrosshairHighlighting
 (require 'crosshairs)
-(toggle-crosshairs-when-idle t) ; No need for crosshairs when idle
-(col-highlight-set-interval 60)
+;; (toggle-crosshairs-when-idle t) ; No need for crosshairs when idle
+;; (col-highlight-set-interval 60)
 ;;
 ;; hl-line+.el: highlight current line only (no column)
 ;; http://www.emacswiki.org/emacs/HighlightCurrentLine#toc3
