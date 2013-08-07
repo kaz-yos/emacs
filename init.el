@@ -669,7 +669,7 @@ In case the execution fails, return an error."
 (define-key ac-completing-map (kbd "TAB") 'ac-complete)
 ;; (define-key ac-completing-map [tab] nil)
 ;; (define-key ac-completing-map [return] 'ac-complete)	; configured again at end
-(define-key ac-completing-map (kbd "<return>") 'ac-complete) ; configured again at end
+(define-key ac-completing-map (kbd "RET") 'ac-complete) ; configured again at end
 ;;
 ;; Trigger key
 ;; http://cx4a.org/software/auto-complete/manual.html#Trigger_Key
@@ -852,7 +852,8 @@ In case the execution fails, return an error."
 ;; ess-R-object-popup.el
 ;; https://github.com/myuhe/ess-R-object-popup.el
 (require 'ess-R-object-popup)
-(define-key ess-mode-map "\C-c\C-g" 'ess-R-object-popup)
+;; (define-key ess-mode-map "\C-c\C-g" 'ess-R-object-popup)
+(define-key ess-mode-map (kbd "C-c C-g") 'ess-R-object-popup)
 ;; Configuration for different objects
 (setq ess-R-object-popup-alist
       '((numeric    . "summary")
@@ -870,7 +871,8 @@ In case the execution fails, return an error."
 ;;
 ;; ess-R-data-view.el
 ;; https://github.com/myuhe/ess-R-data-view.el/blob/master/README.org
-(define-key ess-mode-map "\C-c\C-d\C-e" 'ess-R-dv-pprint)
+;; (define-key ess-mode-map "\C-c\C-d\C-e" 'ess-R-dv-pprint)
+(define-key ess-mode-map (kbd "C-c C-d C-e") 'ess-R-dv-pprint)
 ;;
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
@@ -895,12 +897,12 @@ In case the execution fails, return an error."
 ;; http://www.emacswiki.org/emacs/essh.el
 (require 'essh)
 (defun essh-sh-hook ()                                             
-  (define-key sh-mode-map "\C-c\C-r" 'pipe-region-to-shell)        
-  (define-key sh-mode-map "\C-c\C-b" 'pipe-buffer-to-shell)        
-  (define-key sh-mode-map "\C-c\C-j" 'pipe-line-to-shell)          
-  (define-key sh-mode-map "\C-c\C-n" 'pipe-line-to-shell-and-step) 
-  (define-key sh-mode-map "\C-c\C-f" 'pipe-function-to-shell)      
-  (define-key sh-mode-map "\C-c\C-d" 'shell-cd-current-directory)) 
+  (define-key sh-mode-map (kbd "C-c C-r") 'pipe-region-to-shell)        
+  (define-key sh-mode-map (kbd "C-c C-b") 'pipe-buffer-to-shell)        
+  (define-key sh-mode-map (kbd "C-c C-j") 'pipe-line-to-shell)          
+  (define-key sh-mode-map (kbd "C-c C-n") 'pipe-line-to-shell-and-step) 
+  (define-key sh-mode-map (kbd "C-c C-f") 'pipe-function-to-shell)      
+  (define-key sh-mode-map (kbd "C-c C-d") 'shell-cd-current-directory)) 
 (add-hook 'sh-mode-hook 'essh-sh-hook)                             
 ;;
 ;; Changed from ESS
@@ -930,12 +932,7 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'sh-mode-hook		; For shell script mode
           '(lambda()
-             (local-set-key [(shift return)] 'my-essh-eval)))
-;; (add-hook 'inferior-ess-mode-hook	; For iESS mode
-;;           '(lambda()
-;; 	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
-;;              (local-set-key [C-up] 'comint-previous-input)
-;;              (local-set-key [C-down] 'comint-next-input)))
+             (local-set-key (kbd "S-RET") 'my-essh-eval)))
 
 
 
@@ -1247,9 +1244,13 @@ In case the execution fails, return an error."
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (require 'highlight-symbol)
-(global-set-key [(control .)] 'highlight-symbol-at-point)
-(global-set-key [(control \})] 'highlight-symbol-next)
-(global-set-key [(control \{)] 'highlight-symbol-prev)
+;; (global-set-key [(control .)] 'highlight-symbol-at-point)
+;; (global-set-key [(control \})] 'highlight-symbol-next)
+;; (global-set-key [(control \{)] 'highlight-symbol-prev)
+(require 'highlight-symbol)
+(global-set-key (kbd "C-.") 'highlight-symbol-at-point)
+(global-set-key (kbd "C-\}") 'highlight-symbol-next)
+(global-set-key (kbd "C-\{") 'highlight-symbol-prev)
 ;; (global-set-key [(control \$)] 'highlight-symbol-next)
 ;; (global-set-key [(control \#)] 'highlight-symbol-prev)
 
@@ -1310,15 +1311,18 @@ In case the execution fails, return an error."
 ;; point-undo
 ;; http://d.hatena.ne.jp/rubikitch/20081230/pointundo
 (require 'point-undo)
-(define-key global-map [f7] 'point-undo)
-(define-key global-map [S-f7] 'point-redo)
+;; (define-key global-map [f7] 'point-undo)
+;; (define-key global-map [S-f7] 'point-redo)
+(define-key global-map (kbd "<f7>") 'point-undo)
+(define-key global-map (kbd "S-<f7>") 'point-redo)
+
 
 
 ;; go to last change
 ;; http://www.emacswiki.org/emacs/GotoChg
 (require 'goto-chg)
-(global-set-key [f8] 'goto-last-change)
-(global-set-key [S-f8] 'goto-last-change-reverse)
+(global-set-key (kbd "<f8>") 'goto-last-change)
+(global-set-key (kbd "S-<f8>") 'goto-last-change-reverse)
 
 
 ;; sequential-command.el
@@ -1326,11 +1330,11 @@ In case the execution fails, return an error."
 ;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
 (require 'sequential-command-config)	; config file
 (sequential-command-setup-keys)		; Rebind C-a, C-e, M-u, M-c, and M-l to seq-* commands.
-(global-set-key "\C-a" 'seq-home)
-(global-set-key "\C-e" 'seq-end)
-(global-set-key "\M-u" 'seq-upcase-backward-word)
-(global-set-key "\M-c" 'seq-capitalize-backward-word)
-(global-set-key "\M-l" 'seq-downcase-backward-word)
+(global-set-key (kbd "C-a") 'seq-home)
+(global-set-key (kbd "C-e") 'seq-end)
+(global-set-key (kbd "M-u") 'seq-upcase-backward-word)
+(global-set-key (kbd "M-c") 'seq-capitalize-backward-word)
+(global-set-key (kbd "M-l") 'seq-downcase-backward-word)
 ;;
 ;; smartchr.el
 ;; Similar elips: http://tech.kayac.com/archive/emacs-tips-smartchr.html
@@ -1579,7 +1583,7 @@ In case the execution fails, return an error."
 
 ;; Auto-completion addtional setting
 ;; Looks like this has to come after ESS configuration
-(define-key ac-completing-map [return] 'ac-complete)
+(define-key ac-completing-map (kbd "RET") 'ac-complete)
 
 
 ;; This is placed at the end as it freezes if EmacsWIki is not responding.
