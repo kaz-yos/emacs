@@ -822,7 +822,7 @@ In case the execution fails, return an error."
 	     ;; (cua-mode nil)					; disable CUA C-RET (not working)
 	     ;; (local-set-key (kbd "C-c 4") 'toggle-dollar)
 	     ;; (modify-syntax-entry ?$ " ")			; $ as whitespace
-	     (modify-syntax-entry ?$  " "  S-syntax-table)	; Change to white space
+	     ;; (modify-syntax-entry ?$  " "  S-syntax-table)	; does not work
 	     ;; (cua-mode)					; does not work
 	     ))
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
@@ -892,6 +892,7 @@ In case the execution fails, return an error."
 ;; http://www.emacswiki.org/emacs/EmacsSyntaxTable
 ;; http://stackoverflow.com/questions/1771102/changing-emacs-forward-word-behaviour
 ;; (modify-syntax-entry ?$ " " ess-mode-syntax-table)	; This is overriden. does not work.
+(modify-syntax-entry ?$  " "  S-syntax-table)
 ;;
 
 
