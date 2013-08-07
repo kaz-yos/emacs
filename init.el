@@ -135,13 +135,16 @@
   (interactive)
   (when (one-window-p) (split-window-horizontally)) ; When there's only one window, split horizontally.
   (other-window 1))
-(global-set-key [C-tab] 'other-window-or-split)
+;; (global-set-key [C-tab] 'other-window-or-split)
+(global-set-key (kbd "C-TAB") 'other-window-or-split)
 ;; Reversal
 ;; http://stackoverflow.com/questions/143072/in-emacs-what-is-the-opposite-function-of-other-window-c-x-o
-(global-set-key [C-S-tab] 'previous-multiframe-window)	;; Added by K
+;; (global-set-key [C-S-tab] 'previous-multiframe-window)	;; Added by K
+(global-set-key (kbd "C-S-TAB") 'previous-multiframe-window)	;; Added by K
 ;;
 ;; Control and up/down arrow keys to search history with matching what you've already typed:
 ;; (define-key comint-mode-map [C-up] 'comint-previous-matching-input-from-input)	; Overlap with Auto-scroll
+;; (define-key comint-mode-map (kbd "C-<up>") 'comint-previous-matching-input-from-input)	; Overlap with Auto-scroll
 ;; (define-key comint-mode-map [C-down] 'comint-next-matching-input-from-input)
 ;;
 ;; other-frame with C-x o, instead of other-window
@@ -173,8 +176,10 @@
 ;;(setq scroll-step 1)					; keyboard scroll one line at a time
 ;;
 ;; Scroll other window with M-up/M-down	; Conflict with paredit. Use C-M-(S)-v
-(global-set-key [M-up]		'scroll-other-window-down)
-(global-set-key [M-down]	'scroll-other-window)
+;; (global-set-key [M-up]		'scroll-other-window-down)
+;; (global-set-key [M-down]	'scroll-other-window)
+(global-set-key (kbd "M-<up>")		'scroll-other-window-down)
+(global-set-key (kbd "M-<down>")	'scroll-other-window)
 
 
 ;; History retained between sessions
@@ -256,7 +261,7 @@
 ;; (setq cua-keep-region-after-copy t)		; Keep selection after copying (Mac/Win-like)
 ;; Rectangule select with C-return is disabled to allow use in ESS 2013-08-06
 ;; (global-unset-key [(control return)])	; This does not work????
-
+;; (global-unset-key (kbd "C-RET"))
 
 
 ;; No auto filling in text mode
@@ -660,13 +665,16 @@ In case the execution fails, return an error."
 (define-key ac-menu-map "\C-p" 'ac-previous)
 ;;
 ;; http://www.emacswiki.org/emacs/ESSAuto-complete
-(define-key ac-completing-map [tab] 'ac-complete)
+;; (define-key ac-completing-map [tab] 'ac-complete)
+(define-key ac-completing-map (kbd "TAB") 'ac-complete)
 ;; (define-key ac-completing-map [tab] nil)
-(define-key ac-completing-map [return] 'ac-complete)	; configured again at end
+;; (define-key ac-completing-map [return] 'ac-complete)	; configured again at end
+(define-key ac-completing-map (kbd "<return>") 'ac-complete) ; configured again at end
 ;;
 ;; Trigger key
 ;; http://cx4a.org/software/auto-complete/manual.html#Trigger_Key
 (ac-set-trigger-key "TAB")
+;; (ac-set-trigger-key (kbd "TAB")) ; This does not work
 
 
 ;; YAsnippet ; Automatic template inserting system.
@@ -805,19 +813,28 @@ In case the execution fails, return an error."
 (add-hook 'ess-mode-hook		; For ESS mode
           '(lambda()
 	     ;; (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)	; Does not work with the one below??
-	     (local-set-key [(control return)] 'my-ess-eval)
-             (local-set-key [(shift return)] 'my-ess-eval)
+	     ;; (local-set-key [(control return)] 'my-ess-eval)
+             ;; (local-set-key [(shift return)] 'my-ess-eval)
+	     ;; (local-set-key (kbd "S-<return>" 'my-ess-eval))
+	     (local-set-key (kbd "S-RET" 'my-ess-eval))
 	     ;; (cua-mode nil)					; disable CUA C-RET (not working)
-	     (local-set-key (kbd "C-c 4") 'toggle-dollar)
+	     ;; (local-set-key (kbd "C-c 4") 'toggle-dollar)
+	     (modify-syntax-entry ?$ " ")			; $ as whitespace
+	     ;; (cua-mode)					; does not work
 	     ))
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
           '(lambda()
 	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
-             (local-set-key [C-up] 'comint-previous-input)
-             (local-set-key [C-down] 'comint-next-input)))
+             ;; (local-set-key [C-up] 'comint-previous-input)
+             ;; (local-set-key [C-down] 'comint-next-input)
+             (local-set-key (kbd "C-<up>") 'comint-previous-input)
+             (local-set-key (kbd "C-<down>") 'comint-next-input)
+	     ))
 (add-hook 'Rnw-mode-hook		; For Rnw mode
           '(lambda()
-             (local-set-key [(shift return)] 'my-ess-eval)))
+             (local-set-key [(shift return)] 'my-ess-eval)
+             (local-set-key (kbd "S-RET") 'my-ess-eval)
+	     ))
 ;;
 ;; ess-trace-bug.el		; filtering ++++ > ??? Not working
 ;; http://code.google.com/p/ess-tracebug/
