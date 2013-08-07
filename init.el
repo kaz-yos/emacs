@@ -806,8 +806,10 @@ In case the execution fails, return an error."
   "Toggle status of $ in the syntax table"
   (interactive)
   (if (equal " " (char-to-string (char-syntax ?$)))
-      (modify-syntax-entry ?$ "_")
-    (modify-syntax-entry ?$ " ")
+      (modify-syntax-entry ?$  "_"  S-syntax-table)
+      ;; (modify-syntax-entry ?$ "_")
+    (modify-syntax-entry ?$  " "  S-syntax-table)
+    ;; (modify-syntax-entry ?$ " ")
     ))
 ;;
 (add-hook 'ess-mode-hook		; For ESS mode
@@ -819,7 +821,8 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "S-RET" 'my-ess-eval))
 	     ;; (cua-mode nil)					; disable CUA C-RET (not working)
 	     ;; (local-set-key (kbd "C-c 4") 'toggle-dollar)
-	     (modify-syntax-entry ?$ " ")			; $ as whitespace
+	     ;; (modify-syntax-entry ?$ " ")			; $ as whitespace
+	     (modify-syntax-entry ?$  " "  S-syntax-table)	; Change to white space
 	     ;; (cua-mode)					; does not work
 	     ))
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
