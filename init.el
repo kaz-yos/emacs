@@ -1468,7 +1468,8 @@ In case the execution fails, return an error."
 ;; http://www.emacswiki.org/emacs/auto-async-byte-compile.el
 ;; http://d.hatena.ne.jp/rubikitch/20100423/bytecomp
 (require 'auto-async-byte-compile)
-(setq auto-async-byte-compile-exclude-files-regexp "/junk/")
+;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
+(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
 
