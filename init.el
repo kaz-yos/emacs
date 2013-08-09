@@ -261,10 +261,9 @@
 ;; http://tech.kayac.com/archive/emacs-rectangle.html
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
 ;; http://stackoverflow.com/questions/3750332/how-do-i-force-a-binding-in-emacs
-;; (cua-mode nil)
+(setq cua-rectangle-mark-key (kbd "<C-S-return>")) ; <C-S-return> for rectangle
 (cua-mode t)
 (setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
-(setq cua-rectangle-mark-key (kbd "<C-S-return>")) ; <C-S-return> for rectangle
 ;; (setq cua-keep-region-after-copy t)		; Keep selection after copying (Mac/Win-like)
 
 
@@ -824,7 +823,7 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval)
 	     ;; (local-unset-key (kbd "<C-return>"))		; Unset cua. Does not work
 	     (local-set-key (kbd "<C-return>") 'my-ess-eval)	; Change to my-ess-eval
-	     (cua-mode -1)					; disable CUA
+	     ;; (cua-mode -1)					; disable CUA
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ;; (cua-mode)					; does not work
