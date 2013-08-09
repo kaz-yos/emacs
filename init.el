@@ -868,7 +868,8 @@ In case the execution fails, return an error."
 	(gls        . "summary")			; added
 	(lme        . "summary")			; added
 	(glht	    . "summary")			; added	
-	(survfit    . "survival:::print.survfit")	; added	
+	(survfit    . "survival:::print.survfit")	; added
+	(survdiff   . "survival:::print.survdiff")	; added	
 	(coxph	    . "survival:::print.coxph")		; added
         (other      . "str")))
 ;;
