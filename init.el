@@ -260,10 +260,11 @@
 ;; Common User Access mode for column editing: Activated by C-RET while selecting text
 ;; http://tech.kayac.com/archive/emacs-rectangle.html
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
+;; http://stackoverflow.com/questions/3750332/how-do-i-force-a-binding-in-emacs
 ;; (cua-mode nil)
 (cua-mode t)
 (setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
-(setq cua-rectangle-mark-key (kbd "C-S-<return>")) ; C-S-<return> for rectangle
+(setq cua-rectangle-mark-key (kbd "<C-S-return>")) ; <C-S-return> for rectangle
 ;; (setq cua-keep-region-after-copy t)		; Keep selection after copying (Mac/Win-like)
 
 
