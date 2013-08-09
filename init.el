@@ -809,7 +809,7 @@ In case the execution fails, return an error."
 ;; Function to toggle $ in syntax table 2013-08-06
 (defun toggle-dollar ()
   "Toggle status of $ in the syntax table"
-  ;; (interactive)
+  (interactive)
   (if (equal " " (char-to-string (char-syntax ?$)))
       (modify-syntax-entry ?$  "_"  S-syntax-table)
       ;; (modify-syntax-entry ?$ "_")
@@ -825,7 +825,7 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval)
 	     ;; (local-set-key (kbd "S-RET") 'my-ess-eval)	; does not work
 	     ;; (cua-mode nil)					; disable CUA C-RET (not working)
-	     ;; (local-set-key (kbd "C-c 4") 'toggle-dollar)
+	     (local-set-key (kbd "C-c 4") 'toggle-dollar)
 	     ;; (modify-syntax-entry ?$ " ")			; $ as whitespace
 	     ;; (modify-syntax-entry ?$  " "  S-syntax-table)	; does not work
 	     ;; (cua-mode)					; does not work
