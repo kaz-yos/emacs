@@ -1004,6 +1004,8 @@ In case the execution fails, return an error."
 ;;
 ;; http://ergoemacs.org/emacs/emacs_buffer_management.html
 (defalias 'list-buffers 'ibuffer)
+;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
+(setq ibuffer-default-sorting-mode 'major-mode)
 ;;
 ;; ;; buffer-menu+.el		; Does not work with 24.3
 ;; ;; http://www.emacswiki.org/emacs/BufferMenuPlus#BufferMenu
