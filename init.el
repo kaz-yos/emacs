@@ -680,6 +680,13 @@ In case the execution fails, return an error."
 ;; (ac-set-trigger-key (kbd "TAB")) ; This does not work
 
 
+;; icicles.el
+;; http://www.emacswiki.org/emacs/Icicles
+;; http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
+(require 'icicles)
+(icy-mode 1)
+
+
 ;; YAsnippet ; Automatic template inserting system.
 ;;
 ;; https://github.com/capitaomorte/yasnippet
@@ -1488,8 +1495,10 @@ In case the execution fails, return an error."
 
 ;; Python support				; external dependency
 ;; Wiki: http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs
-;; Ref
+;; python.el vs python-mode.el: http://stackoverflow.com/questions/15670505/comparison-of-python-modes-for-emacs
+;; as Python IDE: http://www.jesshamrick.com/2012/09/18/emacs-as-a-python-ide/
 ;; Jedi completion: http://www.masteringemacs.org/articles/2013/01/10/jedi-completion-library-python/
+;; EIN: 
 ;; Python emacs endevavour: http://www.johndcook.com/blog/2013/01/29/python-emacs-setup/
 ;; emacs configuration (Japanese): http://zaikeyuki.blog96.fc2.com/blog-category-8.html
 ;;
@@ -1498,12 +1507,12 @@ In case the execution fails, return an error."
 ;; http://d.hatena.ne.jp/cou929_la/20110525/1306321857
 ;; $pip install pyflakes pep8 # This does not work
 ;;
-;; python-mode.el (version 6.1.1 latest as of 2013-02-25)
+;; python-mode.el (version 6.1.1 latest as of 2013-02-25)	; Obsolete. Use python.el (default)
 ;; https://launchpad.net/python-mode
 ;; http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
 ;; http://tech.lampetty.net/tech/index.php/archives/380
-(add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.1.1/") 
-(setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.1.1/")
+;; (add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.1.1/") 
+;; (setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.1.1/")
 ;;
 ;; (setq py-shell-name "ipython")
 (setq py-shell-name "/usr/local/bin/ipython")			; external dependency!!
@@ -1591,13 +1600,18 @@ In case the execution fails, return an error."
       '("~/.emacs.d/snippets"
 	"/Users/kazuki/.emacs.d/elpa/yasnippet-20130722.1832/snippets"
 	))
+;;
+;;
+;;   (require 'flymake-python-pyflakes)
+;;   (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+;; To use "flake8" instead of "pyflakes", add this line:
+;;   (setq flymake-python-pyflakes-executable "flake8")
+;; You can pass extra arguments to the checker program by customizing
+;; the variable `flymake-python-pyflakes-extra-arguments', or setting it
+;; directly, e.g.
+;;   (setq flymake-python-pyflakes-extra-arguments '("--ignore=W806"))
+;; Uses flymake-easy, from https://github.com/purcell/flymake-easy
 
-
-;; icicles.el		; 2013-08-09 Turned off more problems than solutions
-;; http://www.emacswiki.org/emacs/Icicles
-;; http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
-(require 'icicles)
-(icy-mode 1)
 
 
 
