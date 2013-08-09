@@ -822,10 +822,10 @@ In case the execution fails, return an error."
 	     ;; (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)	; Does not work with the one below??
 	     ;; (local-set-key [(control return)] 'my-ess-eval)
              ;; (local-set-key [(shift return)] 'my-ess-eval)
-	     ;; (local-set-key (kbd "S-<return>" 'my-ess-eval))
-	     (local-set-key (kbd "S-RET" 'my-ess-eval))
+	     (local-set-key (kbd "S-<return>") 'my-ess-eval)
+	     ;; (local-set-key (kbd "S-RET") 'my-ess-eval)	; does not work
 	     ;; (cua-mode nil)					; disable CUA C-RET (not working)
-	     ;; (local-set-key (kbd "C-c 4") 'toggle-dollar)
+	     (local-set-key (kbd "C-c 4") 'toggle-dollar)
 	     ;; (modify-syntax-entry ?$ " ")			; $ as whitespace
 	     ;; (modify-syntax-entry ?$  " "  S-syntax-table)	; does not work
 	     ;; (cua-mode)					; does not work
