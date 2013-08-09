@@ -1505,7 +1505,8 @@ In case the execution fails, return an error."
 ;; python.el (comes with emacs)	; not as functional, use python-mode.el
 ;; http://jesselegg.com/archives/2010/02/25/emacs-python-programmers-part-1/
 ;; http://d.hatena.ne.jp/cou929_la/20110525/1306321857
-;; $pip install pyflakes pep8 # This does not work
+;; $ pip install pyflakes pep8 # This does not work
+(require 'python.el)
 ;;
 ;; python-mode.el (version 6.1.1 latest as of 2013-02-25)	; Obsolete. Use python.el (default)
 ;; https://launchpad.net/python-mode
