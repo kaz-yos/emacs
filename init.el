@@ -138,7 +138,8 @@
   (other-window 1))
 ;; (global-set-key [C-tab] 'other-window-or-split)
 ;; (global-set-key (kbd "C-TAB") 'other-window-or-split)
-(global-set-key (kbd "C-<tab>") 'other-window-or-split)
+;; (global-set-key (kbd "C-<tab>") 'other-window-or-split)
+(global-set-key (kbd "<C-tab>") 'other-window-or-split)
 ;; Reversal
 ;; http://stackoverflow.com/questions/143072/in-emacs-what-is-the-opposite-function-of-other-window-c-x-o
 ;; (global-set-key [C-S-tab] 'previous-multiframe-window)	;; Added by K
