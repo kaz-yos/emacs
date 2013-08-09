@@ -623,7 +623,7 @@ In case the execution fails, return an error."
                               (bm-buffer-save-all)
                               (bm-repository-save)))
 ;; Keyboard
-(global-set-key (kbd "M-SPC")	'bm-toggle)	; Conflict with IM. Use ESC-SPC
+;; (global-set-key (kbd "M-SPC")	'bm-toggle)	; Conflict with IM. Use ESC-SPC
 (global-set-key (kbd "M-]")	'bm-next)
 (global-set-key (kbd "M-[")	'bm-previous)
 
