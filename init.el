@@ -255,9 +255,9 @@
 ;; Common User Access mode for column editing: Activated by C-RET while selecting text
 ;; http://tech.kayac.com/archive/emacs-rectangle.html
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
-(cua-mode nil)
-;; (cua-mode t)
-;; (setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
+;; (cua-mode nil)
+(cua-mode t)
+(setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
 ;; (setq cua-keep-region-after-copy t)		; Keep selection after copying (Mac/Win-like)
 ;; Rectangule select with C-return is disabled to allow use in ESS 2013-08-06
 ;; (global-unset-key [(control return)])	; This does not work????
@@ -1480,118 +1480,118 @@ In case the execution fails, return an error."
 (setq eldoc-minor-mode-string "")		; No need for ElDoc in modeline (rubikitch book p231)
 
 
-;; Python support				; external dependency
-;; Wiki: http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs
-;; Ref
-;; Jedi completion: http://www.masteringemacs.org/articles/2013/01/10/jedi-completion-library-python/
-;; Python emacs endevavour: http://www.johndcook.com/blog/2013/01/29/python-emacs-setup/
-;; emacs configuration (Japanese): http://zaikeyuki.blog96.fc2.com/blog-category-8.html
-;;
-;; python.el (comes with emacs)	; not as functional, use python-mode.el
-;; http://jesselegg.com/archives/2010/02/25/emacs-python-programmers-part-1/
-;; http://d.hatena.ne.jp/cou929_la/20110525/1306321857
-;; $pip install pyflakes pep8 # This does not work
-;;
-;; python-mode.el (version 6.1.1 latest as of 2013-02-25)
-;; https://launchpad.net/python-mode
-;; http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
-;; http://tech.lampetty.net/tech/index.php/archives/380
-(add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.1.1/") 
-(setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.1.1/")
-;;
-;; (setq py-shell-name "ipython")
-(setq py-shell-name "/usr/local/bin/ipython")			; external dependency!!
-(require 'python-mode)
-;; http://stackoverflow.com/questions/8226493/ipython-emacs-integration
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-;;
-;; Vertical split on execution
-;; (setq py-split-windows-on-execute-function (quote split-window-horizontally))
-(setq py-split-windows-on-execute-function (quote split-window-vertically))
-(setq py-split-windows-on-execute-p t)
-;;
-;; IPython.el	; Required for completion?
-;; http://ipython.org/ipython-doc/stable/config/editors.html
-;; https://github.com/ipython/ipython/download
-;; Downloaded source and installed in plugins folder
-(setq ipython-command "/usr/local/bin/ipython")
-(setq-default py-python-command-args '("--pylab" "--colors=LightBG"))
-(require 'ipython)
-;;
-;; IPython completion
-;; http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs#toc13
-(setq ipython-completion-command-string
-      "print(';'.join(get_ipython().Completer.complete('%s')[1])) #PYTHON-MODE SILENT\n")
-;;
-;; ;; PyFlakes syntax checking	; Does not work 2013-02-26 (external command not recognized?)
+;; ;; Python support				; external dependency
+;; ;; Wiki: http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs
+;; ;; Ref
+;; ;; Jedi completion: http://www.masteringemacs.org/articles/2013/01/10/jedi-completion-library-python/
+;; ;; Python emacs endevavour: http://www.johndcook.com/blog/2013/01/29/python-emacs-setup/
+;; ;; emacs configuration (Japanese): http://zaikeyuki.blog96.fc2.com/blog-category-8.html
 ;; ;;
-;; (require 'flymake)	; This is necessary first? http://d.hatena.ne.jp/yascentur/20130114/1358143181
-;; ;; (set flymake-gui-warnings-enabled nil)	; http://stackoverflow.com/questions/2571436/emacs-annoying-flymake-dialog-box
-;; (defun flymake-python-init ()
-;;   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                      'flymake-create-temp-inplace))
-;;          (local-file (file-relative-name
-;;                       temp-file
-;;                       (file-name-directory buffer-file-name))))
-;;     (list "pyflakes" (list local-file))))
- 
-;; (defconst flymake-allowed-python-file-name-masks '(("\\.py$" flymake-python-init)))
-;; (defvar flymake-python-err-line-patterns '(("\\(.*\\):\\([0-9]+\\):\\(.*\\)" 1 2 nil 3)))
-;;  ;;
-;; (defun flymake-python-load ()
-;;   (interactive)
-;;   (defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
-;;     (setq flymake-check-was-interrupted t))
-;;   (ad-activate 'flymake-post-syntax-check)
-;;   (setq flymake-allowed-file-name-masks (append flymake-allowed-file-name-masks flymake-allowed-python-file-name-masks))
-;;   (setq flymake-err-line-patterns flymake-python-err-line-patterns)
-;;   (flymake-mode t))
-;; (add-hook 'python-mode-hook '(lambda () (flymake-python-load)))
-;;
-;; Jedi for auto-completion	; 2013-02-26
-;; http://tkf.github.com/emacs-jedi/
-;; https://jedi.readthedocs.org/en/latest/docs/installation.html ; sudo easy_install virtualenv jedi epc needed
-;; (add-hook 'python-mode-hook 'jedi:setup)	; Turned off 2013-08-09
-;;
-;; ein.el	; Emacs IPython Notebook
-;; http://tkf.github.com/emacs-ipython-notebook/
-;; (require 'ein)
-;; Usage
-;; Start IPython notebook server.
-;; Hit M-x ein:notebooklist-open to open notebook list. This will open notebook list buffer.
-;; In the notebook list buffer, you can open notebooks by hitting [Open] buttons. See notebook section for what you can do in the notebook buffer.
-;;
-;; elpy.el
-;; https://github.com/jorgenschaefer/elpy/wiki
-;; Python side installation for elpy.el
-;; First, you need the elpy package itself:
-;; pip install elpy
-;; Then you need to decide on whether you want to use rope or jedi, and install either one:
-;; pip install rope
-;; pip install jedi
-;; To use the syntax highlighting capabilities, install two more packages:
-;; pip install pyflakes pep8
-;;
-;; To use elpy, just add the following to your .emacs:
-(package-initialize)
-(elpy-enable)
-;; If you want to use IPython (make sure it's installed), add:
-(elpy-use-ipython)
-;; If you find the (Python Elpy yas AC ElDoc Fill) mode line annoying, also add:
-(elpy-clean-modeline)
-;;
-;; Fix yas-snippet-dirs (elpy breaks configuration)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"
-	"/Users/kazuki/.emacs.d/elpa/yasnippet-20130722.1832/snippets"
-	))
+;; ;; python.el (comes with emacs)	; not as functional, use python-mode.el
+;; ;; http://jesselegg.com/archives/2010/02/25/emacs-python-programmers-part-1/
+;; ;; http://d.hatena.ne.jp/cou929_la/20110525/1306321857
+;; ;; $pip install pyflakes pep8 # This does not work
+;; ;;
+;; ;; python-mode.el (version 6.1.1 latest as of 2013-02-25)
+;; ;; https://launchpad.net/python-mode
+;; ;; http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
+;; ;; http://tech.lampetty.net/tech/index.php/archives/380
+;; (add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.1.1/") 
+;; (setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.1.1/")
+;; ;;
+;; ;; (setq py-shell-name "ipython")
+;; (setq py-shell-name "/usr/local/bin/ipython")			; external dependency!!
+;; (require 'python-mode)
+;; ;; http://stackoverflow.com/questions/8226493/ipython-emacs-integration
+;; (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;; ;;
+;; ;; Vertical split on execution
+;; ;; (setq py-split-windows-on-execute-function (quote split-window-horizontally))
+;; (setq py-split-windows-on-execute-function (quote split-window-vertically))
+;; (setq py-split-windows-on-execute-p t)
+;; ;;
+;; ;; IPython.el	; Required for completion?
+;; ;; http://ipython.org/ipython-doc/stable/config/editors.html
+;; ;; https://github.com/ipython/ipython/download
+;; ;; Downloaded source and installed in plugins folder
+;; (setq ipython-command "/usr/local/bin/ipython")
+;; (setq-default py-python-command-args '("--pylab" "--colors=LightBG"))
+;; (require 'ipython)
+;; ;;
+;; ;; IPython completion
+;; ;; http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs#toc13
+;; (setq ipython-completion-command-string
+;;       "print(';'.join(get_ipython().Completer.complete('%s')[1])) #PYTHON-MODE SILENT\n")
+;; ;;
+;; ;; ;; PyFlakes syntax checking	; Does not work 2013-02-26 (external command not recognized?)
+;; ;; ;;
+;; ;; (require 'flymake)	; This is necessary first? http://d.hatena.ne.jp/yascentur/20130114/1358143181
+;; ;; ;; (set flymake-gui-warnings-enabled nil)	; http://stackoverflow.com/questions/2571436/emacs-annoying-flymake-dialog-box
+;; ;; (defun flymake-python-init ()
+;; ;;   (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;; ;;                      'flymake-create-temp-inplace))
+;; ;;          (local-file (file-relative-name
+;; ;;                       temp-file
+;; ;;                       (file-name-directory buffer-file-name))))
+;; ;;     (list "pyflakes" (list local-file))))
+;; ;;
+;; ;; (defconst flymake-allowed-python-file-name-masks '(("\\.py$" flymake-python-init)))
+;; ;; (defvar flymake-python-err-line-patterns '(("\\(.*\\):\\([0-9]+\\):\\(.*\\)" 1 2 nil 3)))
+;; ;;  ;;
+;; ;; (defun flymake-python-load ()
+;; ;;   (interactive)
+;; ;;   (defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
+;; ;;     (setq flymake-check-was-interrupted t))
+;; ;;   (ad-activate 'flymake-post-syntax-check)
+;; ;;   (setq flymake-allowed-file-name-masks (append flymake-allowed-file-name-masks flymake-allowed-python-file-name-masks))
+;; ;;   (setq flymake-err-line-patterns flymake-python-err-line-patterns)
+;; ;;   (flymake-mode t))
+;; ;; (add-hook 'python-mode-hook '(lambda () (flymake-python-load)))
+;; ;;
+;; ;; Jedi for auto-completion	; 2013-02-26
+;; ;; http://tkf.github.com/emacs-jedi/
+;; ;; https://jedi.readthedocs.org/en/latest/docs/installation.html ; sudo easy_install virtualenv jedi epc needed
+;; ;; (add-hook 'python-mode-hook 'jedi:setup)	; Turned off 2013-08-09
+;; ;;
+;; ;; ein.el	; Emacs IPython Notebook
+;; ;; http://tkf.github.com/emacs-ipython-notebook/
+;; ;; (require 'ein)
+;; ;; Usage
+;; ;; Start IPython notebook server.
+;; ;; Hit M-x ein:notebooklist-open to open notebook list. This will open notebook list buffer.
+;; ;; In the notebook list buffer, you can open notebooks by hitting [Open] buttons. See notebook section for what you can do in the notebook buffer.
+;; ;;
+;; ;; elpy.el
+;; ;; https://github.com/jorgenschaefer/elpy/wiki
+;; ;; Python side installation for elpy.el
+;; ;; First, you need the elpy package itself:
+;; ;; pip install elpy
+;; ;; Then you need to decide on whether you want to use rope or jedi, and install either one:
+;; ;; pip install rope
+;; ;; pip install jedi
+;; ;; To use the syntax highlighting capabilities, install two more packages:
+;; ;; pip install pyflakes pep8
+;; ;;
+;; ;; To use elpy, just add the following to your .emacs:
+;; (package-initialize)
+;; (elpy-enable)
+;; ;; If you want to use IPython (make sure it's installed), add:
+;; (elpy-use-ipython)
+;; ;; If you find the (Python Elpy yas AC ElDoc Fill) mode line annoying, also add:
+;; (elpy-clean-modeline)
+;; ;;
+;; ;; Fix yas-snippet-dirs (elpy breaks configuration)
+;; (setq yas-snippet-dirs
+;;       '("~/.emacs.d/snippets"
+;; 	"/Users/kazuki/.emacs.d/elpa/yasnippet-20130722.1832/snippets"
+;; 	))
 
 
 ;; icicles.el		; 2013-08-09 Turned off more problems than solutions
 ;; http://www.emacswiki.org/emacs/Icicles
 ;; http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
-;; (require 'icicles)
-;; (icy-mode 1)
+(require 'icicles)
+(icy-mode 1)
 
 
 
