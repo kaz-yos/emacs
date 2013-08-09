@@ -256,17 +256,15 @@
 (put 'downcase-region	'disabled nil)
 
 
-;; Rectangle is not used. Turned off. 2013-08-06
+;; Rectangle is not used. 
 ;; Common User Access mode for column editing: Activated by C-RET while selecting text
 ;; http://tech.kayac.com/archive/emacs-rectangle.html
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
 ;; (cua-mode nil)
 (cua-mode t)
 (setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
+(setq cua-rectangle-mark-key (kbd "C-S-<return>")) ; C-S-<return> for rectangle
 ;; (setq cua-keep-region-after-copy t)		; Keep selection after copying (Mac/Win-like)
-;; Rectangule select with C-return is disabled to allow use in ESS 2013-08-06
-;; (global-unset-key [(control return)])	; This does not work????
-;; (global-unset-key (kbd "C-RET"))
 
 
 ;; No auto filling in text mode
@@ -825,7 +823,7 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval)
 	     ;; (local-unset-key (kbd "<C-return>"))		; Unset cua. Does not work
 	     (local-set-key (kbd "<C-return>") 'my-ess-eval)	; Change to my-ess-eval
-	     (cua-mode nil)					; disable CUA C-RET (not working)
+	     (cua-mode -1)					; disable CUA
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ;; (cua-mode)					; does not work
