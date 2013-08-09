@@ -1587,11 +1587,11 @@ In case the execution fails, return an error."
 	))
 
 
-;; icicles.el
+;; icicles.el		; 2013-08-09 Turned off more problems than solutions
 ;; http://www.emacswiki.org/emacs/Icicles
 ;; http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
-(require 'icicles)
-(icy-mode 1)
+;; (require 'icicles)
+;; (icy-mode 1)
 
 
 
