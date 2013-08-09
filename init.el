@@ -823,10 +823,11 @@ In case the execution fails, return an error."
 	     ;; (local-set-key [(control return)] 'my-ess-eval)
              ;; (local-set-key [(shift return)] 'my-ess-eval)
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval)
-	     ;; (local-set-key (kbd "S-RET") 'my-ess-eval)	; does not work
-	     ;; (cua-mode nil)					; disable CUA C-RET (not working)
+	     ;; (local-unset-key (kbd "<C-return>"))		; Unset cua. Does not work
+	     (local-set-key (kbd "<C-return>") 'my-ess-eval)	; Change to my-ess-eval
+	     (cua-mode nil)					; disable CUA C-RET (not working)
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
-	     ;; (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
+	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ;; (cua-mode)					; does not work
 	     ))
 ;; (add-hook 'ess-mode-hook (modify-syntax-entry ?$  "."  S-syntax-table)) ; does not work either
