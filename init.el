@@ -1551,7 +1551,7 @@ In case the execution fails, return an error."
 ;; Jedi for auto-completion	; 2013-02-26
 ;; http://tkf.github.com/emacs-jedi/
 ;; https://jedi.readthedocs.org/en/latest/docs/installation.html ; sudo easy_install virtualenv jedi epc needed
-(add-hook 'python-mode-hook 'jedi:setup)
+;; (add-hook 'python-mode-hook 'jedi:setup)	; Turned off 2013-08-09
 ;;
 ;; ein.el	; Emacs IPython Notebook
 ;; http://tkf.github.com/emacs-ipython-notebook/
