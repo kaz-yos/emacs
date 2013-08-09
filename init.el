@@ -432,17 +432,17 @@
 ;; In other mode the default electric-pair-mode works good
 ;;
 ;; Define a function for local activation
-(defun my-skeleton-pair-enable ()
-  (setq skeleton-pair t)		; on 20130426
-  (setq skeleton-pair-on-word t)	; on 20130426
-  (local-set-key (kbd "(") 'skeleton-pair-insert-maybe)
-  (local-set-key (kbd "[") 'skeleton-pair-insert-maybe) ; NOT Better handled with smartchr.el
-  (local-set-key (kbd "\{") 'skeleton-pair-insert-maybe) ; This does not work? added \ 20130426
-  (local-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
-  (local-set-key (kbd "\'") 'skeleton-pair-insert-maybe)	; Not useful for R, or lisp
-  (local-set-key (kbd "\`") 'skeleton-pair-insert-maybe)	; Not useful for R
-  ;; (local-set-key (kbd "<") 'skeleton-pair-insert-maybe)	; Not useful for R
-  )
+;; (defun my-skeleton-pair-enable ()
+;;   (setq skeleton-pair t)		; on 20130426
+;;   (setq skeleton-pair-on-word t)	; on 20130426
+;;   (local-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+;;   (local-set-key (kbd "[") 'skeleton-pair-insert-maybe) ; NOT Better handled with smartchr.el
+;;   (local-set-key (kbd "\{") 'skeleton-pair-insert-maybe) ; This does not work? added \ 20130426
+;;   (local-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
+;;   (local-set-key (kbd "\'") 'skeleton-pair-insert-maybe)	; Not useful for R, or lisp
+;;   (local-set-key (kbd "\`") 'skeleton-pair-insert-maybe)	; Not useful for R
+;;   ;; (local-set-key (kbd "<") 'skeleton-pair-insert-maybe)	; Not useful for R
+;;   )
 ;; 
 ;; (add-hook 'ess-mode-hook 'my-skeleton-pair-enable)
 ;; (add-hook 'inferior-ess-mode-hook 'my-skeleton-pair-enable)
@@ -671,7 +671,7 @@ In case the execution fails, return an error."
 ;;
 ;; http://www.emacswiki.org/emacs/ESSAuto-complete
 ;; (define-key ac-completing-map [tab] 'ac-complete)
-(define-key ac-completing-map (kbd "TAB") 'ac-complete)
+(define-key ac-completing-map (kbd "<tab>") 'ac-complete)
 ;; (define-key ac-completing-map [tab] nil)
 ;; (define-key ac-completing-map [return] 'ac-complete)	; configured again at end
 (define-key ac-completing-map (kbd "RET") 'ac-complete) ; configured again at end
@@ -822,10 +822,10 @@ In case the execution fails, return an error."
 	     ;; (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)	; Does not work with the one below??
 	     ;; (local-set-key [(control return)] 'my-ess-eval)
              ;; (local-set-key [(shift return)] 'my-ess-eval)
-	     (local-set-key (kbd "S-<return>") 'my-ess-eval)
+	     (local-set-key (kbd "<S-return>") 'my-ess-eval)
 	     ;; (local-set-key (kbd "S-RET") 'my-ess-eval)	; does not work
 	     ;; (cua-mode nil)					; disable CUA C-RET (not working)
-	     (local-set-key (kbd "C-c 4") 'toggle-dollar)
+	     ;; (local-set-key (kbd "C-c 4") 'toggle-dollar)
 	     ;; (modify-syntax-entry ?$ " ")			; $ as whitespace
 	     ;; (modify-syntax-entry ?$  " "  S-syntax-table)	; does not work
 	     ;; (cua-mode)					; does not work
@@ -842,7 +842,7 @@ In case the execution fails, return an error."
 (add-hook 'Rnw-mode-hook		; For Rnw mode
           '(lambda()
              (local-set-key [(shift return)] 'my-ess-eval)
-             (local-set-key (kbd "S-RET") 'my-ess-eval)
+             ;; (local-set-key (kbd "S-RET") 'my-ess-eval)
 	     ))
 ;;
 ;; ess-trace-bug.el		; filtering ++++ > ??? Not working
@@ -946,7 +946,7 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'sh-mode-hook		; For shell script mode
           '(lambda()
-             (local-set-key (kbd "S-RET") 'my-essh-eval)))
+             (local-set-key (kbd "S-<return>") 'my-essh-eval)))
 
 
 
@@ -1111,7 +1111,7 @@ In case the execution fails, return an error."
       helm-M-x-always-save-history t)
 ;;
 (let ((key-and-func
-       `(;(,(kbd "C-r")   helm-for-files)
+       `(;(,(kbd "C-r")   helm-for-files)	; Not sure if backquote is right
 	 (,(kbd "C-z")   helm-for-files)	; Like recentf
          (,(kbd "C-^")   helm-c-apropos)
          (,(kbd "C-;")   helm-resume)
