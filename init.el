@@ -1606,15 +1606,16 @@ In case the execution fails, return an error."
                    ((region-active-p)
                     (copy-marker (region-end)))
                    (t (line-end-position)))))
-    (python-shell-send-region beg end)
+    (python-shell-send-region beg (+ end 1))
     (next-line)
     ))
 ;;
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-python-send-region)
+	     (local-set-key (kbd "<C-return>") 'my-python-send-region)
 	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
-	     (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
+	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
