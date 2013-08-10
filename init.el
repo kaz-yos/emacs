@@ -1494,6 +1494,139 @@ In case the execution fails, return an error."
 
 
 ;; Python support				; external dependency
+;; 2013-08-09 
+;; python.el:
+;; http://caisah.info/emacs-for-python/
+;;
+;; python-mode.el
+;; http://www.janteichmann.me/projects/emacs_as_python_editor
+;;
+;;
+;; python.el
+;;
+(require 'python)
+;;
+;; ipython setting
+(setq
+ ;; python-shell-interpreter "ipython"
+ python-shell-interpreter "/usr/local/bin/ipython"
+ python-shell-interpreter-args ""
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code
+ "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code
+ "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code
+ "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+;;
+;;
+;; elpy.el
+;; https://github.com/jorgenschaefer/elpy/wiki
+;; (package-initialize)	; To use
+;; (elpy-enable)
+;; (elpy-use-ipython)	; To use ipython
+;; (elpy-clean-modeline)	; Simplify modeline
+;; ;;
+;; ;; Fix yas-snippet-dirs (elpy breaks configuration)
+;; (setq yas-snippet-dirs
+;;       '("~/.emacs.d/snippets"
+;; 	"/Users/kazuki/.emacs.d/elpa/yasnippet-20130722.1832/snippets"
+;; 	))
+;;
+;;
+;; jedi.el	; Python auto-completion for Emacs
+;; http://tkf.github.io/emacs-jedi/
+;; (add-hook 'python-mode-hook 'jedi:ac-setup)	; auto-completion only
+(add-hook 'python-mode-hook 'jedi:ac-setup)
+(setq jedi:setup-keys t)                      ; optional
+(setq jedi:complete-on-dot t)                 ; optional
+;;
+;;
+;; ein.el	; Emacs IPython Notebook
+;; http://tkf.github.com/emacs-ipython-notebook/
+;; Usage
+;; Start IPython notebook server.
+;; Hit M-x ein:notebooklist-open to open notebook list. This will open notebook list buffer.
+;; In the notebook list buffer, you can open notebooks by hitting [Open] buttons. See notebook section for what you can do in the notebook buffer.
+(require 'ein)
+;;
+;;
+;; flycheck.el
+;;
+(add-hook 'after-init-hook #'global-flycheck-mode)
+;;
+;;
+(defun my-python-start ()
+  (interactive)
+  (if (not (member "*Python*" (mapcar (function buffer-name) (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))
+        (R)
+        (set-window-buffer w1 "*Python*")	; R on the left (w1)
+        (set-window-buffer w2 w1name)	; script on the right (w2)
+	;; (set-window-buffer w2 "*R*")
+	;; (set-window-buffer w1 w1name)
+	;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Selecting-Windows.html
+	(select-window w2)		; Select script (w2) Added
+	)))
+;;
+;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
+(defun python-shell-send-line ()
+  "Select the current line and send to Python"
+  (interactive)
+  (end-of-line)						; Move to end of line
+  (set-mark (line-beginning-position))			; Mark to beginning
+  (call-interactively 'python-shell-send-region)	; Send region
+  )
+;;
+(defun my-python-eval ()
+  (interactive)
+  (my-python-start)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'python-shell-send-region)	; if selected, region
+    (call-interactively 'python-shell-send-line)	; if not selected, current line
+    ))
+;;
+;;
+;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
+(defun my-python-send-region (&optional beg end)
+  (interactive)
+  (let ((beg (cond (beg beg)
+                   ((region-active-p)
+                    (region-beginning))
+                   (t (line-beginning-position))))
+        (end (cond (end end)
+                   ((region-active-p)
+                    (copy-marker (region-end)))
+                   (t (line-end-position)))))
+    (python-send-region beg end)))
+;;
+(add-hook 'python-mode-hook		; For Python mode
+          '(lambda()
+	     (local-set-key (kbd "<S-return>") 'my-python-eval)
+	     (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
+	     ))
+;; (add-hook 'ess-mode-hook (modify-syntax-entry ?$  "."  S-syntax-table)) ; does not work either
+(add-hook 'inferior-ess-mode-hook	; For iESS mode
+          '(lambda()
+	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
+             ;; (local-set-key [C-up] 'comint-previous-input)
+             ;; (local-set-key [C-down] 'comint-next-input)
+             (local-set-key (kbd "C-<up>") 'comint-previous-input)
+             (local-set-key (kbd "C-<down>") 'comint-next-input)
+	     ))
+(add-hook 'Rnw-mode-hook		; For Rnw mode
+          '(lambda()
+             (local-set-key [(shift return)] 'my-python-eval)
+             ;; (local-set-key (kbd "S-RET") 'my-python-eval)
+	     ))
+;;
+;;
+;; ----------------------------------- OLD ---------------------------------------------
 ;; Wiki: http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs
 ;; python.el vs python-mode.el: http://stackoverflow.com/questions/15670505/comparison-of-python-modes-for-emacs
 ;; as Python IDE: http://www.jesshamrick.com/2012/09/18/emacs-as-a-python-ide/
@@ -1506,7 +1639,7 @@ In case the execution fails, return an error."
 ;; http://jesselegg.com/archives/2010/02/25/emacs-python-programmers-part-1/
 ;; http://d.hatena.ne.jp/cou929_la/20110525/1306321857
 ;; $ pip install pyflakes pep8 # This does not work
-(require 'python.el)
+;; (require 'python)
 ;;
 ;; python-mode.el (version 6.1.1 latest as of 2013-02-25)	; Obsolete. Use python.el (default)
 ;; https://launchpad.net/python-mode
@@ -1516,28 +1649,29 @@ In case the execution fails, return an error."
 ;; (setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.1.1/")
 ;;
 ;; (setq py-shell-name "ipython")
-(setq py-shell-name "/usr/local/bin/ipython")			; external dependency!!
-(require 'python-mode)
+;; (setq py-shell-name "/usr/local/bin/ipython")			; external dependency!!
+;;
+;; (require 'python-mode)
 ;; http://stackoverflow.com/questions/8226493/ipython-emacs-integration
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;; (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;;
 ;; Vertical split on execution
 ;; (setq py-split-windows-on-execute-function (quote split-window-horizontally))
-(setq py-split-windows-on-execute-function (quote split-window-vertically))
-(setq py-split-windows-on-execute-p t)
+;; (setq py-split-windows-on-execute-function (quote split-window-vertically))
+;; (setq py-split-windows-on-execute-p t)
 ;;
 ;; IPython.el	; Required for completion?
 ;; http://ipython.org/ipython-doc/stable/config/editors.html
 ;; https://github.com/ipython/ipython/download
 ;; Downloaded source and installed in plugins folder
-(setq ipython-command "/usr/local/bin/ipython")
-(setq-default py-python-command-args '("--pylab" "--colors=LightBG"))
-(require 'ipython)
-;;
-;; IPython completion
-;; http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs#toc13
-(setq ipython-completion-command-string
-      "print(';'.join(get_ipython().Completer.complete('%s')[1])) #PYTHON-MODE SILENT\n")
+;; (setq ipython-command "/usr/local/bin/ipython")
+;; (setq-default py-python-command-args '("--pylab" "--colors=LightBG"))
+;; (require 'ipython)
+;; ;;
+;; ;; IPython completion
+;; ;; http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs#toc13
+;; (setq ipython-completion-command-string
+;;       "print(';'.join(get_ipython().Completer.complete('%s')[1])) #PYTHON-MODE SILENT\n")
 ;;
 ;; ;; PyFlakes syntax checking	; Does not work 2013-02-26 (external command not recognized?)
 ;; ;;
@@ -1569,13 +1703,6 @@ In case the execution fails, return an error."
 ;; https://jedi.readthedocs.org/en/latest/docs/installation.html ; sudo easy_install virtualenv jedi epc needed
 ;; (add-hook 'python-mode-hook 'jedi:setup)	; Turned off 2013-08-09
 ;;
-;; ein.el	; Emacs IPython Notebook
-;; http://tkf.github.com/emacs-ipython-notebook/
-;; (require 'ein)
-;; Usage
-;; Start IPython notebook server.
-;; Hit M-x ein:notebooklist-open to open notebook list. This will open notebook list buffer.
-;; In the notebook list buffer, you can open notebooks by hitting [Open] buttons. See notebook section for what you can do in the notebook buffer.
 ;;
 ;; elpy.el
 ;; https://github.com/jorgenschaefer/elpy/wiki
@@ -1588,19 +1715,14 @@ In case the execution fails, return an error."
 ;; To use the syntax highlighting capabilities, install two more packages:
 ;; pip install pyflakes pep8
 ;;
-;; To use elpy, just add the following to your .emacs:
-(package-initialize)
-(elpy-enable)
-;; If you want to use IPython (make sure it's installed), add:
-(elpy-use-ipython)
-;; If you find the (Python Elpy yas AC ElDoc Fill) mode line annoying, also add:
-(elpy-clean-modeline)
-;;
-;; Fix yas-snippet-dirs (elpy breaks configuration)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"
-	"/Users/kazuki/.emacs.d/elpa/yasnippet-20130722.1832/snippets"
-	))
+;; ;; To use elpy, just add the following to your .emacs:
+;; (package-initialize)
+;; (elpy-enable)
+;; ;; If you want to use IPython (make sure it's installed), add:
+;; (elpy-use-ipython)
+;; ;; If you find the (Python Elpy yas AC ElDoc Fill) mode line annoying, also add:
+;; (elpy-clean-modeline)
+;; ;;
 ;;
 ;;
 ;;   (require 'flymake-python-pyflakes)
