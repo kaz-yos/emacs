@@ -1598,6 +1598,7 @@ In case the execution fails, return an error."
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
 (defun my-python-send-region (&optional beg end)
   (interactive)
+  (my-python-start)
   (let ((beg (cond (beg beg)
                    ((region-active-p)
                     (region-beginning))
