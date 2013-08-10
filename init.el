@@ -1495,10 +1495,12 @@ In case the execution fails, return an error."
 
 ;; Python support				; external dependency
 ;; 2013-08-09 
+;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs
+;;
 ;; python.el:
 ;; http://caisah.info/emacs-for-python/
 ;;
-;; python-mode.el
+;; python-mode.el:
 ;; http://www.janteichmann.me/projects/emacs_as_python_editor
 ;;
 ;;
@@ -1565,7 +1567,8 @@ In case the execution fails, return an error."
         (setq w1 (selected-window))
         (setq w1name (buffer-name))
         (setq w2 (split-window w1 nil t))
-        (run-python)
+        ;; (run-python)				; Does not work non-interactively
+	(call-interactively 'run-python)
         (set-window-buffer w1 "*Python*")	; Python on the left (w1)
         (set-window-buffer w2 w1name)		; script on the right (w2)
 	;; (set-window-buffer w2 "*R*")
