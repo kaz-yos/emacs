@@ -1565,9 +1565,9 @@ In case the execution fails, return an error."
         (setq w1 (selected-window))
         (setq w1name (buffer-name))
         (setq w2 (split-window w1 nil t))
-        (R)
-        (set-window-buffer w1 "*Python*")	; R on the left (w1)
-        (set-window-buffer w2 w1name)	; script on the right (w2)
+        (run-python)
+        (set-window-buffer w1 "*Python*")	; Python on the left (w1)
+        (set-window-buffer w2 w1name)		; script on the right (w2)
 	;; (set-window-buffer w2 "*R*")
 	;; (set-window-buffer w1 w1name)
 	;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Selecting-Windows.html
@@ -1575,54 +1575,34 @@ In case the execution fails, return an error."
 	)))
 ;;
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
+;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
 (defun python-shell-send-line ()
   "Select the current line and send to Python"
   (interactive)
   (end-of-line)						; Move to end of line
   (set-mark (line-beginning-position))			; Mark to beginning
   (call-interactively 'python-shell-send-region)	; Send region
+  (next-line)
   )
 ;;
 (defun my-python-eval ()
   (interactive)
   (my-python-start)
   (if (and transient-mark-mode mark-active)
-      (call-interactively 'python-shell-send-region)	; if selected, region
-    (call-interactively 'python-shell-send-line)	; if not selected, current line
+      (call-interactively 'python-shell-send-region)	; if selected, send region
+    (call-interactively 'python-shell-send-line)	; if not selected, send current line
     ))
 ;;
-;;
-;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
-(defun my-python-send-region (&optional beg end)
-  (interactive)
-  (let ((beg (cond (beg beg)
-                   ((region-active-p)
-                    (region-beginning))
-                   (t (line-beginning-position))))
-        (end (cond (end end)
-                   ((region-active-p)
-                    (copy-marker (region-end)))
-                   (t (line-end-position)))))
-    (python-send-region beg end)))
-;;
-(add-hook 'python-mode-hook		; For Python mode
+(add-hook 'python-mode-hook		; For Python script
           '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
 	     ))
-;; (add-hook 'ess-mode-hook (modify-syntax-entry ?$  "."  S-syntax-table)) ; does not work either
-(add-hook 'inferior-ess-mode-hook	; For iESS mode
+;;
+(add-hook 'inferior-python-mode-hook	; For Python process
           '(lambda()
-	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
-             ;; (local-set-key [C-up] 'comint-previous-input)
-             ;; (local-set-key [C-down] 'comint-next-input)
-             (local-set-key (kbd "C-<up>") 'comint-previous-input)
-             (local-set-key (kbd "C-<down>") 'comint-next-input)
-	     ))
-(add-hook 'Rnw-mode-hook		; For Rnw mode
-          '(lambda()
-             (local-set-key [(shift return)] 'my-python-eval)
-             ;; (local-set-key (kbd "S-RET") 'my-python-eval)
+             ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
+             ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
 	     ))
 ;;
 ;;
