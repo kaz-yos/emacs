@@ -1578,7 +1578,6 @@ In case the execution fails, return an error."
 	)))
 ;;
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
-;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
 (defun python-shell-send-line ()
   "Select the current line and send to Python"
   (interactive)
@@ -1596,9 +1595,25 @@ In case the execution fails, return an error."
     (call-interactively 'python-shell-send-line)	; if not selected, send current line
     ))
 ;;
+;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
+(defun my-python-send-region (&optional beg end)
+  (interactive)
+  (let ((beg (cond (beg beg)
+                   ((region-active-p)
+                    (region-beginning))
+                   (t (line-beginning-position))))
+        (end (cond (end end)
+                   ((region-active-p)
+                    (copy-marker (region-end)))
+                   (t (line-end-position)))))
+    (python-shell-send-region beg end)
+    (next-line)
+    ))
+;;
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
-	     (local-set-key (kbd "<S-return>") 'my-python-eval)
+	     (local-set-key (kbd "<S-return>") 'my-python-send-region)
+	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
 	     ))
 ;;
