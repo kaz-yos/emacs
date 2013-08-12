@@ -1007,7 +1007,10 @@ In case the execution fails, return an error."
 ;; http://ergoemacs.org/emacs/emacs_buffer_management.html
 (defalias 'list-buffers 'ibuffer)
 ;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
-(setq ibuffer-default-sorting-mode 'major-mode)
+;; (setq ibuffer-default-sorting-mode 'major-mode)
+;; https://github.com/pd/dotfiles/blob/master/emacs.d/pd/core.el
+(setq ibuffer-default-sorting-mode 'filename/process
+      ibuffer-show-empty-filter-groups nil)
 ;; http://www.emacswiki.org/emacs/IbufferMode#toc6
 (setq ibuffer-saved-filter-groups
       (quote (("default"
