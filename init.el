@@ -1038,17 +1038,17 @@ In case the execution fails, return an error."
 
 ;; tempbuf.el	Auto-delete unused idle buffers such as dired
 ;; http://www.emacswiki.org/emacs/tempbuf.el
-(require 'tempbuf)
-(add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
-(add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; Idle unedited files closed
-(add-hook 'dired-mode-hook		'turn-on-tempbuf-mode)	; Idle dired closed
-(add-hook 'ess-help-mode-hook		'turn-on-tempbuf-mode)	; Idle ESS help closed
-(add-hook 'completion-list-mode-hook	'turn-on-tempbuf-mode)	; Idle completion closed
-(add-hook 'vc-annotate-mode-hook	'turn-on-tempbuf-mode)	; Idle VC annotate closed
-(add-hook 'log-view-mode-hook		'turn-on-tempbuf-mode)	; Idle VC change log closed
-(add-hook 'diff-mode-hook		'turn-on-tempbuf-mode)	; Idle VC diff closed
-(add-hook 'Snippet-mode-hook		'turn-on-tempbuf-mode)  ; Idle Snippets closed
-;; (add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode)	; Idle auto-install closed. Not working
+;; (require 'tempbuf)
+;; (add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
+;; (add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; Idle unedited files closed
+;; (add-hook 'dired-mode-hook		'turn-on-tempbuf-mode)	; Idle dired closed
+;; (add-hook 'ess-help-mode-hook		'turn-on-tempbuf-mode)	; Idle ESS help closed
+;; (add-hook 'completion-list-mode-hook	'turn-on-tempbuf-mode)	; Idle completion closed
+;; (add-hook 'vc-annotate-mode-hook	'turn-on-tempbuf-mode)	; Idle VC annotate closed
+;; (add-hook 'log-view-mode-hook		'turn-on-tempbuf-mode)	; Idle VC change log closed
+;; (add-hook 'diff-mode-hook		'turn-on-tempbuf-mode)	; Idle VC diff closed
+;; (add-hook 'Snippet-mode-hook		'turn-on-tempbuf-mode)  ; Idle Snippets closed
+;;;; (add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode)	; Idle auto-install closed. Not working
 
 
 ;; Recent files extended
@@ -1611,18 +1611,24 @@ In case the execution fails, return an error."
     (next-line)
     ))
 ;;
+;;
+;; (add-hook 'ess-mode-hook	  'my-ess-smartchr-setting)
+;; (add-hook 'inferior-ess-mode-hook 'my-ess-smartchr-setting)	; 20130426 off did not solve ( issue
+;;
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-python-send-region)
 	     (local-set-key (kbd "<C-return>") 'my-python-send-region)
 	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
+	     (my-ess-smartchr-setting)
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
           '(lambda()
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
+	     (my-ess-smartchr-setting)
 	     ))
 ;;
 ;;
