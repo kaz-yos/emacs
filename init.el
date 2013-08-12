@@ -824,16 +824,12 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'ess-mode-hook		; For ESS mode
           '(lambda()
-	     ;; (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)	; Does not work with the one below??
-	     ;; (local-set-key [(control return)] 'my-ess-eval)
-             ;; (local-set-key [(shift return)] 'my-ess-eval)
+	     (local-set-key (kbd "<C-M-tab") 'ess-sas-backward-delete-tab)	; Does not work with the one below??
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval)
-	     ;; (local-unset-key (kbd "<C-return>"))		; Unset cua. Does not work
 	     (local-set-key (kbd "<C-return>") 'my-ess-eval)	; Change to my-ess-eval
-	     ;; (cua-mode -1)					; disable CUA
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
-	     ;; (cua-mode)					; does not work
+	     (turn-off-tempbuf-mode)
 	     ))
 ;; (add-hook 'ess-mode-hook (modify-syntax-entry ?$  "."  S-syntax-table)) ; does not work either
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
@@ -1039,16 +1035,16 @@ In case the execution fails, return an error."
 ;; tempbuf.el	Auto-delete unused idle buffers such as dired
 ;; http://www.emacswiki.org/emacs/tempbuf.el
 (require 'tempbuf)
-;; (add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
-;; (add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; Idle unedited files closed
+(add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
+(add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; All idle unedited files closed
 (add-hook 'dired-mode-hook		'turn-on-tempbuf-mode)	; Idle dired closed
-;; (add-hook 'ess-help-mode-hook		'turn-on-tempbuf-mode)	; Idle ESS help closed
-;; (add-hook 'completion-list-mode-hook	'turn-on-tempbuf-mode)	; Idle completion closed
-;; (add-hook 'vc-annotate-mode-hook	'turn-on-tempbuf-mode)	; Idle VC annotate closed
-;; (add-hook 'log-view-mode-hook		'turn-on-tempbuf-mode)	; Idle VC change log closed
-;; (add-hook 'diff-mode-hook		'turn-on-tempbuf-mode)	; Idle VC diff closed
-;; (add-hook 'Snippet-mode-hook		'turn-on-tempbuf-mode)  ; Idle Snippets closed
-;;;; (add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode)	; Idle auto-install closed. Not working
+(add-hook 'ess-help-mode-hook		'turn-on-tempbuf-mode)	; Idle ESS help closed
+(add-hook 'completion-list-mode-hook	'turn-on-tempbuf-mode)	; Idle completion closed
+(add-hook 'vc-annotate-mode-hook	'turn-on-tempbuf-mode)	; Idle VC annotate closed
+(add-hook 'log-view-mode-hook		'turn-on-tempbuf-mode)	; Idle VC change log closed
+(add-hook 'diff-mode-hook		'turn-on-tempbuf-mode)	; Idle VC diff closed
+(add-hook 'Snippet-mode-hook		'turn-on-tempbuf-mode)  ; Idle Snippets closed
+(add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode)	; Idle auto-install closed. Not working
 
 
 ;; Recent files extended
