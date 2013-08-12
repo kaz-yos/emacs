@@ -1008,6 +1008,31 @@ In case the execution fails, return an error."
 (defalias 'list-buffers 'ibuffer)
 ;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
 (setq ibuffer-default-sorting-mode 'major-mode)
+;; http://www.emacswiki.org/emacs/IbufferMode#toc6
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+	       ("dired" (mode . dired-mode))
+	       ("perl" (mode . cperl-mode))
+	       ("erc" (mode . erc-mode))
+	       ("planner" (or
+			   (name . "^\\*Calendar\\*$")
+			   (name . "^diary$")
+			   (mode . muse-mode)))
+	       ("emacs" (or
+			 (name . "^\\*scratch\\*$")
+			 (name . "^\\*Messages\\*$")))
+	       ("gnus" (or
+			(mode . message-mode)
+			(mode . bbdb-mode)
+			(mode . mail-mode)
+			(mode . gnus-group-mode)
+			(mode . gnus-summary-mode)
+			(mode . gnus-article-mode)
+			(name . "^\\.bbdb$")
+			(name . "^\\.newsrc-dribble")))))))
+(add-hook 'ibuffer-mode-hook
+	  (lambda ()
+	    (ibuffer-switch-to-saved-filter-groups "default")))
 ;;
 ;; ;; buffer-menu+.el		; Does not work with 24.3
 ;; ;; http://www.emacswiki.org/emacs/BufferMenuPlus#BufferMenu
