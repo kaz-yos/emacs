@@ -1036,7 +1036,7 @@ In case the execution fails, return an error."
 ;; http://www.emacswiki.org/emacs/tempbuf.el
 (require 'tempbuf)
 (add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
-(add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; All idle unedited files closed
+;; (add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; All idle unedited files closed
 (add-hook 'dired-mode-hook		'turn-on-tempbuf-mode)	; Idle dired closed
 (add-hook 'ess-help-mode-hook		'turn-on-tempbuf-mode)	; Idle ESS help closed
 (add-hook 'completion-list-mode-hook	'turn-on-tempbuf-mode)	; Idle completion closed
@@ -1196,8 +1196,8 @@ In case the execution fails, return an error."
 ;; highlight-sexp-mode.el
 (key-chord-define-global "sx" 'highlight-sexp-mode)		; (highlight-sexp-mode)
 ;;
-;; tempbuf.el
-(key-chord-define-global "sx" 'tempbuf-mode)		; (tempbuf-mode)
+;; ;; tempbuf.el					; does not work
+;; (key-chord-define-global "tb" 'tempbuf-mode)		; (tempbuf-mode)
 
 
 
