@@ -1038,10 +1038,10 @@ In case the execution fails, return an error."
 
 ;; tempbuf.el	Auto-delete unused idle buffers such as dired
 ;; http://www.emacswiki.org/emacs/tempbuf.el
-;; (require 'tempbuf)
+(require 'tempbuf)
 ;; (add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
 ;; (add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; Idle unedited files closed
-;; (add-hook 'dired-mode-hook		'turn-on-tempbuf-mode)	; Idle dired closed
+(add-hook 'dired-mode-hook		'turn-on-tempbuf-mode)	; Idle dired closed
 ;; (add-hook 'ess-help-mode-hook		'turn-on-tempbuf-mode)	; Idle ESS help closed
 ;; (add-hook 'completion-list-mode-hook	'turn-on-tempbuf-mode)	; Idle completion closed
 ;; (add-hook 'vc-annotate-mode-hook	'turn-on-tempbuf-mode)	; Idle VC annotate closed
