@@ -787,6 +787,13 @@ In case the execution fails, return an error."
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
 ;;
+;; R buffer name manipulation
+;; https://stat.ethz.ch/pipermail/ess-help/2012-December/008426.html
+;; http://t7331.codeinpro.us/q/51502552e8432c0426273040
+;; (setq ess-gen-proc-buffer-name-function (lambda (proc) (concatenate 'proc "R")))
+;; (setq ess-gen-proc-buffer-name-function (lambda (proc) "nameR"))
+;;
+;; Starting R
 (defun my-ess-start-R ()
   (interactive)
   (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
