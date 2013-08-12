@@ -824,12 +824,11 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'ess-mode-hook		; For ESS mode
           '(lambda()
-	     (local-set-key (kbd "<C-M-tab") 'ess-sas-backward-delete-tab)	; Does not work with the one below??
+	     ;; (local-set-key (kbd "<C-M-tab") 'ess-sas-backward-delete-tab)	; Does not work with the one below??
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval)
 	     (local-set-key (kbd "<C-return>") 'my-ess-eval)	; Change to my-ess-eval
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
-	     (turn-off-tempbuf-mode)
 	     ))
 ;; (add-hook 'ess-mode-hook (modify-syntax-entry ?$  "."  S-syntax-table)) ; does not work either
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
