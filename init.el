@@ -1189,7 +1189,7 @@ In case the execution fails, return an error."
 (key-chord-define-global "nr" 'align-regexp)		; M-x align-regexp.
 ;;
 ;; Show in finder
-(key-chord-define-global "zx" 'show-in-finder)		; M-x show-in-finder
+;; (key-chord-define-global "zx" 'show-in-finder)		; M-x show-in-finder
 ;;
 ;; bm.el for bookmarking by highlighting
 ;; (key-chord-define-global "bm" 'bm-toggle)		; ESC-SPC is good enough
@@ -1199,6 +1199,10 @@ In case the execution fails, return an error."
 ;;
 ;; highlight-sexp-mode.el
 (key-chord-define-global "sx" 'highlight-sexp-mode)		; (highlight-sexp-mode)
+;;
+;; tempbuf.el
+(key-chord-define-global "sx" 'tempbuf-mode)		; (tempbuf-mode)
+
 
 
 ;; One-key
