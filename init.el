@@ -1380,6 +1380,12 @@ In case the execution fails, return an error."
 ;; (set-face-background 'col-highlight "lemon chiffon")		; Column color
 
 
+;; auto-highlight-symbol.el to highlight
+(require 'auto-highlight-symbol)
+(global-auto-highlight-symbol-mode t)
+
+
+
 ;; highligh-symbol for highlighting multiple occurences
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
