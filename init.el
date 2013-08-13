@@ -862,7 +862,7 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ))
-;; (add-hook 'ess-mode-hook (modify-syntax-entry ?$  "."  S-syntax-table)) ; does not work either
+;;
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
           '(lambda()
 	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
@@ -870,6 +870,8 @@ In case the execution fails, return an error."
              ;; (local-set-key [C-down] 'comint-next-input)
              (local-set-key (kbd "C-<up>") 'comint-previous-input)
              (local-set-key (kbd "C-<down>") 'comint-next-input)
+	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
+	     (modify-syntax-entry ?$  "_"  S-syntax-table)	; $ as symbol in iESS
 	     ))
 (add-hook 'Rnw-mode-hook		; For Rnw mode
           '(lambda()
