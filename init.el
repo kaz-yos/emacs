@@ -1380,9 +1380,11 @@ In case the execution fails, return an error."
 ;; (set-face-background 'col-highlight "lemon chiffon")		; Column color
 
 
-;; auto-highlight-symbol.el to highlight
-(require 'auto-highlight-symbol)
-(global-auto-highlight-symbol-mode t)
+
+;; auto-highlight-symbol.el for highlighting multiple occurences
+;; https://github.com/emacsmirror/auto-highlight-symbol
+;; (require 'auto-highlight-symbol)			; Not good with highlight-symbol.el
+;; (global-auto-highlight-symbol-mode t)
 
 
 
@@ -1406,17 +1408,6 @@ In case the execution fails, return an error."
 ;;
 (global-set-key (kbd "C-\}") 'my-highlight-symbol-next)
 (global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
-
-
-
-;; This does not look useful 2013-08-05
-;; auto-highlight-symbol.el for highlighting multiple occurences
-;; https://github.com/emacsmirror/auto-highlight-symbol
-;;
-;; (require 'auto-highlight-symbol)
-;; (global-auto-highlight-symbol-mode t)
-
-
 
 
 ;; multiple-cursors for simultaneous editing multiple occurrences
