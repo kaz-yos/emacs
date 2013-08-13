@@ -1669,10 +1669,13 @@ In case the execution fails, return an error."
 ;; ein.el	; Emacs IPython Notebook
 ;; http://tkf.github.com/emacs-ipython-notebook/
 ;; Usage
-;; Start IPython notebook server.
+;; Start IPython notebook server before ein.
 ;; Hit M-x ein:notebooklist-open to open notebook list. This will open notebook list buffer.
-;; In the notebook list buffer, you can open notebooks by hitting [Open] buttons. See notebook section for what you can do in the notebook buffer.
 (require 'ein)
+;; Auto complete for ein
+(setq ein:use-auto-complete t)
+;; Or, to enable "superpack" (a little bit hacky improvements):
+;; (setq ein:use-auto-complete-superpack t)
 ;;
 ;;
 ;; flycheck.el
@@ -1680,6 +1683,7 @@ In case the execution fails, return an error."
 (add-hook 'after-init-hook #'global-flycheck-mode)
 ;;
 ;;
+;; My dirty hack to emulate ESS/R behavior
 (defun my-python-start ()
   (interactive)
   (if (not (member "*Python*" (mapcar (function buffer-name) (buffer-list))))
