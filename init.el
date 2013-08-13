@@ -926,16 +926,6 @@ In case the execution fails, return an error."
 ;; (add-hook 'ess-mode-hook	; For SAS mode
 ;;           '(lambda()
 ;;              (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab
-;;
-;; Regard dollar signs as a white space to change syntax highlighting with highlight-symbol.el
-;; http://www.emacswiki.org/emacs/EmacsSyntaxTable
-;; http://stackoverflow.com/questions/1771102/changing-emacs-forward-word-behaviour
-;; (modify-syntax-entry ?$ " " ess-mode-syntax-table)	; This is overriden. does not work.
-;; (modify-syntax-entry ?$  " "  S-syntax-table)	; Overriend by ESS upon loading
-;;
-;; edited ess-s-l.el directly
-;; (modify-syntax-entry ?$  " "  S-syntax-table); foo$comp = 1 symbol(completion)
-;; ;; (modify-syntax-entry ?$  "_"  S-syntax-table); foo$comp = 1 symbol(completion)
 
 
 
