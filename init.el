@@ -620,10 +620,25 @@ In case the execution fails, return an error."
 (add-hook 'kill-emacs-hook '(lambda nil
                               (bm-buffer-save-all)
                               (bm-repository-save)))
+;;
+;; Define function to do bm-previous/next and recenter
+(defun my-bm-next ()
+  (interactive)
+  (bm-next)
+  (recenter-top-bottom))
+(defun my-bm-previous ()
+  (interactive)
+  (bm-previous)
+  (recenter-top-bottom))
+;;
 ;; Keyboard
 (global-set-key (kbd "M-SPC")	'bm-toggle)	; Conflict with IM. Use ESC-SPC, which is the same
-(global-set-key (kbd "M-]")	'bm-next)
-(global-set-key (kbd "M-[")	'bm-previous)
+;; (global-set-key (kbd "M-]")	'bm-next)
+;; (global-set-key (kbd "M-[")	'bm-previous)
+(global-set-key (kbd "M-]")	'my-bm-next)
+(global-set-key (kbd "M-[")	'my-bm-previous)
+
+
 
 
 ;; Templates
