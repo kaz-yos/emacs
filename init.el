@@ -1308,8 +1308,11 @@ In case the execution fails, return an error."
 (define-key view-mode-map (kbd ".") 'bm-toggle)
 ;; (define-key view-mode-map (kbd "[") 'bm-previous)
 ;; (define-key view-mode-map (kbd "]") 'bm-next)
-(define-key view-mode-map (kbd "[") 'my-bm-previous)
-(define-key view-mode-map (kbd "]") 'my-bm-next)
+;; (define-key view-mode-map (kbd "[") 'my-bm-previous)
+;; (define-key view-mode-map (kbd "]") 'my-bm-next)
+;; for highlight-symbol.el
+(define-key view-mode-map (kbd "[") 'highlight-symbol-prev)
+(define-key view-mode-map (kbd "]") 'highlight-symbol-next)
 ;;
 ;; Open non-writable files in view-mode
 (defadvice find-file
