@@ -445,15 +445,15 @@
 ;; (add-hook 'ess-mode-hook 'my-skeleton-pair-enable)
 ;; (add-hook 'inferior-ess-mode-hook 'my-skeleton-pair-enable)
 ;; Better to use them everywhere along with electric pair?? Started trying on 20130426
-  (setq skeleton-pair t)		; on 20130426
-  (setq skeleton-pair-on-word t)	; on 20130426
-  (global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
-  (global-set-key (kbd "[") 'skeleton-pair-insert-maybe) ; NOT Better handled with smartchr.el
-  (global-set-key (kbd "\{") 'skeleton-pair-insert-maybe) ; This does not work?  added \ 20130426
-  (global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
-  (global-set-key (kbd "\'") 'skeleton-pair-insert-maybe)	; Not useful for lisp
-  ;; (global-set-key (kbd "\`") 'skeleton-pair-insert-maybe)	; Not useful for R
-  ;; (local-set-key (kbd "<") 'skeleton-pair-insert-maybe)	; Not useful for R
+(setq skeleton-pair t)		; on 20130426
+(setq skeleton-pair-on-word t)	; on 20130426
+(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "[") 'skeleton-pair-insert-maybe) ; NOT Better handled with smartchr.el
+(global-set-key (kbd "\{") 'skeleton-pair-insert-maybe) ; This does not work?  added \ 20130426
+(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\'") 'skeleton-pair-insert-maybe)	; Not useful for lisp
+;; (global-set-key (kbd "\`") 'skeleton-pair-insert-maybe)	; Not useful for R
+;; (local-set-key (kbd "<") 'skeleton-pair-insert-maybe)	; Not useful for R
 ;;
 ;;
 ;; electric-pair-mode to automatically close brackets (New in emacs 24.1)
@@ -463,8 +463,18 @@
 (setq electric-pair-skip-self nil)	; Do not prevent overlapping ] before ]
 
 
-;; ;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Additional configurations
+;;
+;; Take current line to top
+(defun my-recenter-top ()
+  (interactive)
+  (recenter "Top")
+)
+(global-set-key (kbd "C-S-l") 'my-recenter-top)
 
+
+
+;;;;;;;;;;;;;;;;;;;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;
 ;; el-get.el package system 2013-02-26
 ;; https://github.com/dimitri/el-get
 ;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")	; This is configured at the top.
@@ -625,11 +635,11 @@ In case the execution fails, return an error."
 (defun my-bm-next ()
   (interactive)
   (bm-next)
-  (recenter-top-bottom))
+  (recenter "Top"))
 (defun my-bm-previous ()
   (interactive)
   (bm-previous)
-  (recenter-top-bottom))
+  (recenter "Top"))
 ;;
 ;; Keyboard
 (global-set-key (kbd "M-SPC")	'bm-toggle)	; Conflict with IM. Use ESC-SPC, which is the same
@@ -1296,8 +1306,10 @@ In case the execution fails, return an error."
 (define-key view-mode-map (kbd "S-SPC") 'scroll-down)
 ;; for bm.el
 (define-key view-mode-map (kbd ".") 'bm-toggle)
-(define-key view-mode-map (kbd "[") 'bm-previous)
-(define-key view-mode-map (kbd "]") 'bm-next)
+;; (define-key view-mode-map (kbd "[") 'bm-previous)
+;; (define-key view-mode-map (kbd "]") 'bm-next)
+(define-key view-mode-map (kbd "[") 'my-bm-previous)
+(define-key view-mode-map (kbd "]") 'my-bm-next)
 ;;
 ;; Open non-writable files in view-mode
 (defadvice find-file
