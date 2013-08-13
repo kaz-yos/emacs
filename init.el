@@ -1275,6 +1275,10 @@ In case the execution fails, return an error."
 (define-key view-mode-map (kbd "l") 'forward-char)
 (define-key view-mode-map (kbd "J") 'View-scroll-line-forward)
 (define-key view-mode-map (kbd "K") 'View-scroll-line-backward)
+;;
+;; Activate view-mode for these major modes
+(add-hook 'emacs-lisp-mode-hook 'view-mode)
+(add-hook 'ess-mode-hook 'view-mode)
 
 
 ;; crosshairs.el: highlight current line/column using hl-line(+).el/col-highlight.el
