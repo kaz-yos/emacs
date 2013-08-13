@@ -1278,8 +1278,9 @@ In case the execution fails, return an error."
 (define-key view-mode-map (kbd "K") 'View-scroll-line-backward)
 ;;
 ;; Activate view-mode for these major modes by activating read-only-mode
-;; (add-hook 'emacs-lisp-mode-hook 'read-only-mode)
-;; (add-hook 'ess-mode-hook 'read-only-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'read-only-mode)	; This breaks start up screen
+(add-hook 'ess-mode-hook 'read-only-mode)		; To protect R SAS codes
+
 
 
 ;; Highlighting
