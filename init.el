@@ -474,7 +474,7 @@
 
 
 
-;;;;;;;;;;;;;;;;;;;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;
+;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; el-get.el package system 2013-02-26
 ;; https://github.com/dimitri/el-get
 ;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")	; This is configured at the top.
@@ -1301,6 +1301,7 @@ In case the execution fails, return an error."
 (define-key view-mode-map (kbd "l") 'forward-char)
 (define-key view-mode-map (kbd "J") 'View-scroll-line-forward)
 (define-key view-mode-map (kbd "K") 'View-scroll-line-backward)
+(define-key view-mode-map (kbd "i") 'read-only-mode)
 ;; Space bar use
 (define-key view-mode-map (kbd " ") 'scroll-up)
 (define-key view-mode-map (kbd "S-SPC") 'scroll-down)
