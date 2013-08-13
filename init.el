@@ -1311,8 +1311,8 @@ In case the execution fails, return an error."
 ;; (define-key view-mode-map (kbd "[") 'my-bm-previous)
 ;; (define-key view-mode-map (kbd "]") 'my-bm-next)
 ;; for highlight-symbol.el
-(define-key view-mode-map (kbd "[") 'highlight-symbol-prev)
-(define-key view-mode-map (kbd "]") 'highlight-symbol-next)
+(define-key view-mode-map (kbd "[") 'my-highlight-symbol-prev)
+(define-key view-mode-map (kbd "]") 'my-highlight-symbol-next)
 ;;
 ;; Open non-writable files in view-mode
 (defadvice find-file
@@ -1368,15 +1368,23 @@ In case the execution fails, return an error."
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (require 'highlight-symbol)
-;; (global-set-key [(control .)] 'highlight-symbol-at-point)
-;; (global-set-key [(control \})] 'highlight-symbol-next)
-;; (global-set-key [(control \{)] 'highlight-symbol-prev)
-(require 'highlight-symbol)
 (global-set-key (kbd "C-.") 'highlight-symbol-at-point)
-(global-set-key (kbd "C-\}") 'highlight-symbol-next)
-(global-set-key (kbd "C-\{") 'highlight-symbol-prev)
-;; (global-set-key [(control \$)] 'highlight-symbol-next)
-;; (global-set-key [(control \#)] 'highlight-symbol-prev)
+;; (global-set-key (kbd "C-\}") 'highlight-symbol-next)
+;; (global-set-key (kbd "C-\{") 'highlight-symbol-prev)
+;;
+;; Define highlight-symbol-prev/next and recenter
+(defun my-highlight-symbol-prev ()
+  (interactive)
+  (highlight-symbol-prev)
+  (recenter))
+(defun my-highlight-symbol-next ()
+  (interactive)
+  (highlight-symbol-next)
+  (recenter))
+;;
+(global-set-key (kbd "C-\}") 'my-highlight-symbol-next)
+(global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
+
 
 
 ;; This does not look useful 2013-08-05
