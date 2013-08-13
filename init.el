@@ -1204,7 +1204,8 @@ In case the execution fails, return an error."
 (key-chord-define-global "rs" 'replace-string)
 ;;
 ;; view-mode
-(key-chord-define-global "jk" 'view-mode)		; Enter read-only mode
+;; (key-chord-define-global "jk" 'view-mode)		; Enter read-only mode
+(key-chord-define-global "jk" 'read-only-mode)		; Enter read-only mode
 ;;
 ;; crosshairs.el
 ;; (key-chord-define-global "ch" 'crosshairs-mode)		; Activate continuous crosshairing
@@ -1277,8 +1278,8 @@ In case the execution fails, return an error."
 (define-key view-mode-map (kbd "K") 'View-scroll-line-backward)
 ;;
 ;; Activate view-mode for these major modes by activating read-only-mode
-(add-hook 'emacs-lisp-mode-hook 'read-only-mode)
-(add-hook 'ess-mode-hook 'read-only-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'read-only-mode)
+;; (add-hook 'ess-mode-hook 'read-only-mode)
 
 
 ;; Highlighting
