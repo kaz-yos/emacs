@@ -920,6 +920,30 @@ In case the execution fails, return an error."
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
 ;; excecutable file
 (setq inferior-julia-program-name "/Applications/Julia.app/Contents/Resources/julia/bin/julia-release-basic")
+;; ;; Starting R
+;; (defun my-ess-start-R ()
+;;   (interactive)
+;;   (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
+;;       (progn
+;;         (delete-other-windows)
+;;         (setq w1 (selected-window))
+;;         (setq w1name (buffer-name))
+;;         (setq w2 (split-window w1 nil t))
+;;         (R)
+;;         (set-window-buffer w1 "*R*")	; R on the left (w1)
+;;         (set-window-buffer w2 w1name)	; script on the right (w2)
+;; 	;; (set-window-buffer w2 "*R*")
+;; 	;; (set-window-buffer w1 w1name)
+;; 	;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Selecting-Windows.html
+;; 	(select-window w2)		; Select script (w2) Added
+;; 	)))
+;; ;;
+;; (defun my-ess-eval ()
+;;   (interactive)
+;;   (my-ess-start-R)
+;;   (if (and transient-mark-mode mark-active)
+;;       (call-interactively 'ess-eval-region)
+;;     (call-interactively 'ess-eval-line-and-step)))
 ;;
 ;; ESS SAS configuration
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
@@ -1296,12 +1320,13 @@ In case the execution fails, return an error."
 (define-key view-mode-map (kbd " ") 'scroll-up)
 (define-key view-mode-map (kbd "S-SPC") 'scroll-down)
 ;; for bm.el
-(define-key view-mode-map (kbd ".") 'bm-toggle)
+;; (define-key view-mode-map (kbd ".") 'bm-toggle)
 ;; (define-key view-mode-map (kbd "[") 'bm-previous)
 ;; (define-key view-mode-map (kbd "]") 'bm-next)
 ;; (define-key view-mode-map (kbd "[") 'my-bm-previous)
 ;; (define-key view-mode-map (kbd "]") 'my-bm-next)
 ;; for highlight-symbol.el
+(define-key view-mode-map (kbd ".") 'highlight-symbol-at-point)
 (define-key view-mode-map (kbd "[") 'my-highlight-symbol-prev)
 (define-key view-mode-map (kbd "]") 'my-highlight-symbol-next)
 ;;
