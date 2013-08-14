@@ -872,7 +872,7 @@ In case the execution fails, return an error."
              (local-set-key (kbd "C-<up>") 'comint-previous-input)
              (local-set-key (kbd "C-<down>") 'comint-next-input)
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
-	     (modify-syntax-entry ?$  "_"  S-syntax-table)	; $ as symbol in iESS
+	     ;; (modify-syntax-entry ?$  "_"  S-syntax-table)	; $ as symbol in iESS. not working
 	     ))
 (add-hook 'Rnw-mode-hook		; For Rnw mode
           '(lambda()
@@ -1436,7 +1436,7 @@ In case the execution fails, return an error."
   (after save-after-moccur-edit-buffer activate)
   (save-buffer))
 ;;; Usage:
-;; M-x moccur-grep-find to enter Moccur-grep
+;; M-x moccur-grep-find to enter Moccur-grep, then objectName .R$
 ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
 
 
