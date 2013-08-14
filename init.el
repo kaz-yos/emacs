@@ -1425,7 +1425,8 @@ In case the execution fails, return an error."
 ;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 
-;; moccur-edit.el
+;; moccur-edit.el (el-get)
+;; Requires color-moccur.el (elpa)
 ;; http://www.bookshelf.jp/elc/moccur-edit.el
 ;; http://d.hatena.ne.jp/higepon/20061226/1167098839
 (require 'moccur-edit)
