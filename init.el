@@ -1429,18 +1429,15 @@ In case the execution fails, return an error."
 ;; Requires color-moccur.el (elpa)
 ;; http://www.bookshelf.jp/elc/moccur-edit.el
 ;; http://d.hatena.ne.jp/higepon/20061226/1167098839
+;; http://d.hatena.ne.jp/sandai/20120304/p2
 (require 'moccur-edit)
-;;; Hint (.emacs)
 ;; Modified buffers are saved automatically.
-;; Thanks request!
-;; (defadvice moccur-edit-change-file
-;;  (after save-after-moccur-edit-buffer activate)
-;;  (save-buffer))
+(defadvice moccur-edit-change-file
+  (after save-after-moccur-edit-buffer activate)
+  (save-buffer))
 ;;; Usage:
-;; You can start editing the names of the files by typing "C-c C-i" or
-;; "C-x C-q".
-;; Use C-c C-f when finished or C-c C-k to abort or C-c C-r to remove
-;; the changes in the region.
+;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
+
 
 
 
