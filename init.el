@@ -1426,12 +1426,9 @@ In case the execution fails, return an error."
 
 
 ;; moccur-edit.el
-;; Put this file into load-path'ed directory, and byte compile it if
-;; desired.  And put the following expression into your ~/.emacs.
-;;
-;;     (require 'moccur-edit)
-;; The latest version of this program can be downloaded from
 ;; http://www.bookshelf.jp/elc/moccur-edit.el
+;; http://d.hatena.ne.jp/higepon/20061226/1167098839
+(require 'moccur-edit)
 ;;; Hint (.emacs)
 ;; Modified buffers are saved automatically.
 ;; Thanks request!
@@ -1444,18 +1441,6 @@ In case the execution fails, return an error."
 ;; Use C-c C-f when finished or C-c C-k to abort or C-c C-r to remove
 ;; the changes in the region.
 
-
-;; word-count.el						; Does not work in emacs 24. use count-word
-;; http://taiyaki.org/elisp/word-count/src/word-count.el
-;; (setq load-path (cons (expand-file-name "~/elisp") load-path))
-;; (autoload 'word-count-mode "word-count"
-;;   "Minor mode to count words." t nil)
-;; (global-set-key "\M-+" 'word-count-mode)	;; Turned by K. Conflict with other functions.
-;; How to use:
-;; 1). M-+ (word-count-mode) toggles word-count mode.
-;; 2). M-[space] (word-count-set-area) sets area for counting words.
-;; 3). M-x word-count-set-region sets region or paragraph for counting words.
-;; 4). M-x word-count-set-marker sets marker for counting words.
 
 
 ;; e2wn		; Window management system
