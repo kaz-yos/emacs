@@ -1436,6 +1436,7 @@ In case the execution fails, return an error."
   (after save-after-moccur-edit-buffer activate)
   (save-buffer))
 ;;; Usage:
+;; M-x moccur-grep-find to enter Moccur-grep
 ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
 
 
