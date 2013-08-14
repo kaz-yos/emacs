@@ -1387,7 +1387,7 @@ In case the execution fails, return an error."
 
 ;; auto-highlight-symbol.el for highlighting multiple occurences
 ;; https://github.com/emacsmirror/auto-highlight-symbol
-;; (require 'auto-highlight-symbol)			; Not good with highlight-symbol.el
+(require 'auto-highlight-symbol)			; Not good with highlight-symbol.el
 ;; (global-auto-highlight-symbol-mode t)
 
 
@@ -1423,6 +1423,26 @@ In case the execution fails, return an error."
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-*") 'mc/mark-all-like-this)
 ;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+
+;; moccur-edit.el
+;; Put this file into load-path'ed directory, and byte compile it if
+;; desired.  And put the following expression into your ~/.emacs.
+;;
+;;     (require 'moccur-edit)
+;; The latest version of this program can be downloaded from
+;; http://www.bookshelf.jp/elc/moccur-edit.el
+;;; Hint (.emacs)
+;; Modified buffers are saved automatically.
+;; Thanks request!
+;; (defadvice moccur-edit-change-file
+;;  (after save-after-moccur-edit-buffer activate)
+;;  (save-buffer))
+;;; Usage:
+;; You can start editing the names of the files by typing "C-c C-i" or
+;; "C-x C-q".
+;; Use C-c C-f when finished or C-c C-k to abort or C-c C-r to remove
+;; the changes in the region.
 
 
 ;; word-count.el						; Does not work in emacs 24. use count-word
