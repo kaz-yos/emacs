@@ -1704,6 +1704,21 @@ In case the execution fails, return an error."
 	(select-window w2)		; Select script (w2) Added
 	)))
 ;;
+;; http://emacs.1067599.n5.nabble.com/Evaluate-current-line-in-Python-mode-td97763.html
+;; (defun my-python-next-statement () 
+;;   (interactive) 
+;;   (local-set-key (kbd "<f7>") 'my-python-next-statement) 
+;;   (if (string= mode-name "Python") 
+;;       (progn 
+;; 	(python-next-statement)		; This is not present in python.el
+;; 	(beginning-of-line) 
+;; 	(setq lineStart (point)) 
+;; 	(end-of-line) 
+;; 	(setq lineEnd (point)) 
+;; 	(python-send-region lineStart lineEnd) ) 
+;;     (message "function only applies to Python mode") 
+;;     (beep) ) ) 
+;;
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
 (defun python-shell-send-line ()
   "Select the current line and send to Python"
@@ -1746,129 +1761,16 @@ In case the execution fails, return an error."
           '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-python-send-region)
 	     (local-set-key (kbd "<C-return>") 'my-python-send-region)
+	     ;; (local-set-key (kbd "<C-c C-n") 'my-python-next-statement)
 	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
-	     (my-ess-smartchr-setting)
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
           '(lambda()
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
-	     (my-ess-smartchr-setting)
 	     ))
-;;
-;;
-;; ----------------------------------- OLD ---------------------------------------------
-;; Wiki: http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs
-;; python.el vs python-mode.el: http://stackoverflow.com/questions/15670505/comparison-of-python-modes-for-emacs
-;; as Python IDE: http://www.jesshamrick.com/2012/09/18/emacs-as-a-python-ide/
-;; Jedi completion: http://www.masteringemacs.org/articles/2013/01/10/jedi-completion-library-python/
-;; EIN: 
-;; Python emacs endevavour: http://www.johndcook.com/blog/2013/01/29/python-emacs-setup/
-;; emacs configuration (Japanese): http://zaikeyuki.blog96.fc2.com/blog-category-8.html
-;;
-;; python.el (comes with emacs)	; not as functional, use python-mode.el
-;; http://jesselegg.com/archives/2010/02/25/emacs-python-programmers-part-1/
-;; http://d.hatena.ne.jp/cou929_la/20110525/1306321857
-;; $ pip install pyflakes pep8 # This does not work
-;; (require 'python)
-;;
-;; python-mode.el (version 6.1.1 latest as of 2013-02-25)	; Obsolete. Use python.el (default)
-;; https://launchpad.net/python-mode
-;; http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
-;; http://tech.lampetty.net/tech/index.php/archives/380
-;; (add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.1.1/") 
-;; (setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.1.1/")
-;;
-;; (setq py-shell-name "ipython")
-;; (setq py-shell-name "/usr/local/bin/ipython")			; external dependency!!
-;;
-;; (require 'python-mode)
-;; http://stackoverflow.com/questions/8226493/ipython-emacs-integration
-;; (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-;;
-;; Vertical split on execution
-;; (setq py-split-windows-on-execute-function (quote split-window-horizontally))
-;; (setq py-split-windows-on-execute-function (quote split-window-vertically))
-;; (setq py-split-windows-on-execute-p t)
-;;
-;; IPython.el	; Required for completion?
-;; http://ipython.org/ipython-doc/stable/config/editors.html
-;; https://github.com/ipython/ipython/download
-;; Downloaded source and installed in plugins folder
-;; (setq ipython-command "/usr/local/bin/ipython")
-;; (setq-default py-python-command-args '("--pylab" "--colors=LightBG"))
-;; (require 'ipython)
-;; ;;
-;; ;; IPython completion
-;; ;; http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs#toc13
-;; (setq ipython-completion-command-string
-;;       "print(';'.join(get_ipython().Completer.complete('%s')[1])) #PYTHON-MODE SILENT\n")
-;;
-;; ;; PyFlakes syntax checking	; Does not work 2013-02-26 (external command not recognized?)
-;; ;;
-;; (require 'flymake)	; This is necessary first? http://d.hatena.ne.jp/yascentur/20130114/1358143181
-;; ;; (set flymake-gui-warnings-enabled nil)	; http://stackoverflow.com/questions/2571436/emacs-annoying-flymake-dialog-box
-;; (defun flymake-python-init ()
-;;   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                      'flymake-create-temp-inplace))
-;;          (local-file (file-relative-name
-;;                       temp-file
-;;                       (file-name-directory buffer-file-name))))
-;;     (list "pyflakes" (list local-file))))
-;;
-;; (defconst flymake-allowed-python-file-name-masks '(("\\.py$" flymake-python-init)))
-;; (defvar flymake-python-err-line-patterns '(("\\(.*\\):\\([0-9]+\\):\\(.*\\)" 1 2 nil 3)))
-;;  ;;
-;; (defun flymake-python-load ()
-;;   (interactive)
-;;   (defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
-;;     (setq flymake-check-was-interrupted t))
-;;   (ad-activate 'flymake-post-syntax-check)
-;;   (setq flymake-allowed-file-name-masks (append flymake-allowed-file-name-masks flymake-allowed-python-file-name-masks))
-;;   (setq flymake-err-line-patterns flymake-python-err-line-patterns)
-;;   (flymake-mode t))
-;; (add-hook 'python-mode-hook '(lambda () (flymake-python-load)))
-;;
-;; Jedi for auto-completion	; 2013-02-26
-;; http://tkf.github.com/emacs-jedi/
-;; https://jedi.readthedocs.org/en/latest/docs/installation.html ; sudo easy_install virtualenv jedi epc needed
-;; (add-hook 'python-mode-hook 'jedi:setup)	; Turned off 2013-08-09
-;;
-;;
-;; elpy.el
-;; https://github.com/jorgenschaefer/elpy/wiki
-;; Python side installation for elpy.el
-;; First, you need the elpy package itself:
-;; pip install elpy
-;; Then you need to decide on whether you want to use rope or jedi, and install either one:
-;; pip install rope
-;; pip install jedi
-;; To use the syntax highlighting capabilities, install two more packages:
-;; pip install pyflakes pep8
-;;
-;; ;; To use elpy, just add the following to your .emacs:
-;; (package-initialize)
-;; (elpy-enable)
-;; ;; If you want to use IPython (make sure it's installed), add:
-;; (elpy-use-ipython)
-;; ;; If you find the (Python Elpy yas AC ElDoc Fill) mode line annoying, also add:
-;; (elpy-clean-modeline)
-;; ;;
-;;
-;;
-;;   (require 'flymake-python-pyflakes)
-;;   (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
-;; To use "flake8" instead of "pyflakes", add this line:
-;;   (setq flymake-python-pyflakes-executable "flake8")
-;; You can pass extra arguments to the checker program by customizing
-;; the variable `flymake-python-pyflakes-extra-arguments', or setting it
-;; directly, e.g.
-;;   (setq flymake-python-pyflakes-extra-arguments '("--ignore=W806"))
-;; Uses flymake-easy, from https://github.com/purcell/flymake-easy
-
-
 
 
 ;; Auto-completion addtional setting
