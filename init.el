@@ -658,6 +658,7 @@ In case the execution fails, return an error."
 (setq auto-insert-directory "~/.emacs.d/autoinsert/")
 (define-auto-insert "\\.Rmd$" "knitr.Rmd")
 (define-auto-insert "\\.sas$" "SAS.sas")
+(define-auto-insert "\\.sh$" "shell.sh")
 
 
 ;; Auto-completion
@@ -994,7 +995,8 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'sh-mode-hook		; For shell script mode
           '(lambda()
-             (local-set-key (kbd "S-<return>") 'my-essh-eval)))
+             (local-set-key (kbd "S-<return>") 'my-essh-eval)
+	     (local-set-key (kbd "C-<return>") 'my-essh-eval)))
 
 
 
