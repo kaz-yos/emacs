@@ -1468,7 +1468,7 @@ In case the execution fails, return an error."
 (global-undo-tree-mode)
 
 
-;; point-undo
+;; point-undo.el
 ;; http://d.hatena.ne.jp/rubikitch/20081230/pointundo
 (require 'point-undo)
 ;; (define-key global-map [f7] 'point-undo)
@@ -1476,9 +1476,7 @@ In case the execution fails, return an error."
 (define-key global-map (kbd "<f7>") 'point-undo)
 (define-key global-map (kbd "S-<f7>") 'point-redo)
 
-
-
-;; go to last change
+;; goto-chg.el
 ;; http://www.emacswiki.org/emacs/GotoChg
 (require 'goto-chg)
 (global-set-key (kbd "<f8>") 'goto-last-change)
@@ -1488,7 +1486,7 @@ In case the execution fails, return an error."
 ;; sequential-command.el
 ;; Book by rubikitch p76. M-x auto-install-batch sequential-command (two files, one -config)
 ;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
-(require 'sequential-command-config)	; Define these seq-* commands
+(require 'sequential-command-config)	; Define these seq-* commands. Needs sequential-command.el
 (sequential-command-setup-keys)		; Rebind C-a, C-e, M-u, M-c, and M-l to seq-* commands.
 (global-set-key (kbd "C-a") 'seq-home)
 (global-set-key (kbd "C-e") 'seq-end)
