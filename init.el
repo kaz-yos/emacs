@@ -185,6 +185,8 @@
 ;; (global-set-key [M-down]	'scroll-other-window)
 (global-set-key (kbd "M-<up>")		'scroll-other-window-down)
 (global-set-key (kbd "M-<down>")	'scroll-other-window)
+(global-set-key (kbd "C-M-t")		'scroll-other-window-down)
+(global-set-key (kbd "C-M-v")		'scroll-other-window)
 
 
 ;; History retained between sessions
@@ -866,7 +868,7 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
           '(lambda()
-	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)
+	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)	; To adjust width
              ;; (local-set-key [C-up] 'comint-previous-input)
              ;; (local-set-key [C-down] 'comint-next-input)
              (local-set-key (kbd "C-<up>") 'comint-previous-input)
@@ -874,6 +876,11 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     ;; (modify-syntax-entry ?$  "_"  S-syntax-table)	; $ as symbol in iESS. not working
 	     ))
+;; https://stat.ethz.ch/pipermail/ess-help/2009-July/005455.html
+(add-hook 'ess-post-run-hook
+	  '(lambda ()
+	     (ess-execute-screen-options)))			; Reset screen width
+;;
 (add-hook 'Rnw-mode-hook		; For Rnw mode
           '(lambda()
              (local-set-key [(shift return)] 'my-ess-eval)
@@ -1481,14 +1488,16 @@ In case the execution fails, return an error."
 ;; sequential-command.el
 ;; Book by rubikitch p76. M-x auto-install-batch sequential-command (two files, one -config)
 ;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
-(require 'sequential-command-config)	; config file
+(require 'sequential-command-config)	; Define these seq-* commands
 (sequential-command-setup-keys)		; Rebind C-a, C-e, M-u, M-c, and M-l to seq-* commands.
 (global-set-key (kbd "C-a") 'seq-home)
 (global-set-key (kbd "C-e") 'seq-end)
 (global-set-key (kbd "M-u") 'seq-upcase-backward-word)
 (global-set-key (kbd "M-c") 'seq-capitalize-backward-word)
 (global-set-key (kbd "M-l") 'seq-downcase-backward-word)
-;;
+
+
+
 ;; smartchr.el
 ;; Similar elips: http://tech.kayac.com/archive/emacs-tips-smartchr.html
 (require 'smartchr)
