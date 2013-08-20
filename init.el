@@ -771,8 +771,8 @@ In case the execution fails, return an error."
 (require 'ess-eldoc)				; Slows cursor movements slightly?
 ;; (setq ess-eldoc-show-on-symbol t)		; Shows eldoc when cursor is on function name (Causes errors)
 ;;
-;; Installed via el-get. add functionalities to ESS.
-(require 'ess-edit)
+;; Installed via el-get. add functionalities to ESS. Error? 2013-08-20
+;; (require 'ess-edit)
 ;;
 ;; No history, no saving!
 (setq-default inferior-R-args "--no-restore-history --no-save ")
