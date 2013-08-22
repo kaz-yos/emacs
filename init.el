@@ -1308,7 +1308,7 @@ In case the execution fails, return an error."
 
 
 
-;; one-key.el (el-get)
+;; one-key.el (via el-get, required hexrgb.el via elpa)
 ;;
 ;; http://d.hatena.ne.jp/rubikitch/20090127/onekey
 ;; http://d.hatena.ne.jp/tomoya/20090415/1239809615
