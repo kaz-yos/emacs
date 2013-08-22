@@ -1171,6 +1171,14 @@ In case the execution fails, return an error."
 (run-with-idle-timer 1 t 'auto-save-buffers)	; auto-save if idle for 1 sec
 
 
+;; Version control
+;; Magit User Manual: http://magit.github.io/magit/magit.html
+;; emacs git: http://www.emacswiki.org/emacs/Git
+;; http://gom.hatenablog.com/entry/20090524/1243170341
+;; Meet Magit on Vimeo: http://vimeo.com/2871241
+(require 'magit)
+
+
 ;; Auto-intall	; This is causing problem !!! 2013-03-04
 ;; http://www.emacswiki.org/AutoInstall
 ;; http://www.emacswiki.org/emacs/auto-install.el
