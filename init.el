@@ -1308,7 +1308,7 @@ In case the execution fails, return an error."
 
 
 
-;; One-key
+;; one-key.el (el-get)
 ;;
 ;; http://d.hatena.ne.jp/rubikitch/20090127/onekey
 ;; http://d.hatena.ne.jp/tomoya/20090415/1239809615
