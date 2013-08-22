@@ -1171,11 +1171,14 @@ In case the execution fails, return an error."
 (run-with-idle-timer 1 t 'auto-save-buffers)	; auto-save if idle for 1 sec
 
 
-;; Version control
+;; Version control with magit.el
 ;; Magit User Manual: http://magit.github.io/magit/magit.html
-;; emacs git: http://www.emacswiki.org/emacs/Git
+;; emacs wiki magit: http://www.emacswiki.org/emacs/Magit
+;; emacs wiki git: http://www.emacswiki.org/emacs/Git
 ;; http://gom.hatenablog.com/entry/20090524/1243170341
 ;; Meet Magit on Vimeo: http://vimeo.com/2871241
+;; git real basics: http://xahlee.info/linux/git.html
+;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
 (require 'magit)
 
 
