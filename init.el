@@ -1105,11 +1105,11 @@ In case the execution fails, return an error."
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
 ;;
-;; ;; buffer-menu+.el		; Does not work with 24.3
-;; ;; http://www.emacswiki.org/emacs/BufferMenuPlus#BufferMenu
-;; (require 'buff-menu+)
-;; (add-to-list 'same-window-buffer-names "*Buffer List*")		;; Open in current window
-;; (global-set-key (kbd "C-x M-b") 'buffer-menu-other-window)	;; Open in other window
+;; buffer-menu+.el		; Does not work with 24.3
+;; http://www.emacswiki.org/emacs/BufferMenuPlus#BufferMenu
+(require 'buff-menu+)
+(add-to-list 'same-window-buffer-names "*Buffer List*")		;; Open in current window
+(global-set-key (kbd "C-x M-b") 'buffer-menu-other-window)	;; Open in other window
 ;;
 ;; Sort by mode name
 ;; Number corresponds to buffer-menu+ column number
