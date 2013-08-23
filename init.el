@@ -1703,17 +1703,21 @@ In case the execution fails, return an error."
 (setq jedi:complete-on-dot t)                 ; optional
 ;;
 ;;
-;; ein.el	; Emacs IPython Notebook
+;; ein.el	; Emacs IPython Notebook (EIN)
 ;; http://tkf.github.com/emacs-ipython-notebook/
 ;; Usage
-;; Start IPython notebook server before ein.
-;; Hit M-x ein:notebooklist-open to open notebook list. This will open notebook list buffer.
+;; Start IPython notebook server with $ ipython notebook --pylab inline
+;; Hit M-x ein:notebooklist-open to open notebook list.
 (require 'ein)
 ;; Auto complete for ein
 (setq ein:use-auto-complete t)
 ;; Or, to enable "superpack" (a little bit hacky improvements):
 ;; (setq ein:use-auto-complete-superpack t)
-;;
+(add-hook 'ein:notebook-multilang-mode-hook	; For EIN
+          '(lambda()
+             (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell)
+             (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
+	     ))
 ;;
 ;; flycheck.el
 ;;
