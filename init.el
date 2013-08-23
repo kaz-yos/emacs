@@ -1794,8 +1794,8 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
-	     (local-set-key (kbd "<S-return>") 'my-python-send-region)
-	     (local-set-key (kbd "<C-return>") 'my-python-send-region)
+	     ;; (local-set-key (kbd "<S-return>") 'my-python-send-region)
+	     ;; (local-set-key (kbd "<C-return>") 'my-python-send-region)
 	     ;; (local-set-key (kbd "<C-c C-n") 'my-python-next-statement)
 	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
