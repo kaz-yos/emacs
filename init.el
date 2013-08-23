@@ -1168,8 +1168,21 @@ In case the execution fails, return an error."
 ;; auto-save-buffers: Never lose your data
 ;; http://0xcc.net/misc/auto-save/
 ;; http://homepage3.nifty.com/oatu/emacs/archives/auto-save-buffers.el
-(require 'auto-save-buffers)
-(run-with-idle-timer 1 t 'auto-save-buffers)	; auto-save if idle for 1 sec
+;; (require 'auto-save-buffers)
+;; (run-with-idle-timer 1 t 'auto-save-buffers)	; auto-save if idle for 1 sec
+;;
+;; auto-save-buffers-enhanced.el
+;; http://qiita.com/ongaeshi/items/8cbd8d3c792476c59a11
+;; 
+(require 'auto-save-buffers-enhanced)
+;; Only in Git, CVS, or Subversion directories
+;; (auto-save-buffers-enhanced-include-only-checkout-path t)
+(setq auto-save-buffers-enhanced-interval 1)
+;; Activate
+(auto-save-buffers-enhanced t)
+;; (setq auto-save-buffers-enhanced-include-regexps '(".+"))
+;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
+
 
 
 ;; Version control with magit.el
