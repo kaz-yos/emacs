@@ -1173,11 +1173,11 @@ In case the execution fails, return an error."
 ;;
 ;; auto-save-buffers-enhanced.el
 ;; http://qiita.com/ongaeshi/items/8cbd8d3c792476c59a11
-;; 
+;; http://blog.sanojimaru.com/post/20090254216/emacs
 (require 'auto-save-buffers-enhanced)
 ;; Only in Git, CVS, or Subversion directories
 ;; (auto-save-buffers-enhanced-include-only-checkout-path t)
-(setq auto-save-buffers-enhanced-interval 1)
+;; (setq auto-save-buffers-enhanced-interval 1)	; 0.5 sec by default
 ;; Activate
 (auto-save-buffers-enhanced t)
 ;; (setq auto-save-buffers-enhanced-include-regexps '(".+"))
