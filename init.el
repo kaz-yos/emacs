@@ -1130,8 +1130,8 @@ In case the execution fails, return an error."
 ;; tempbuf.el	Auto-delete unused idle buffers such as dired
 ;; http://www.emacswiki.org/emacs/tempbuf.el
 (require 'tempbuf)
-(add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
 ;; (add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; All idle unedited files closed
+(add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
 (add-hook 'dired-mode-hook		'turn-on-tempbuf-mode)	; Idle dired closed
 (add-hook 'ess-help-mode-hook		'turn-on-tempbuf-mode)	; Idle ESS help closed
 (add-hook 'completion-list-mode-hook	'turn-on-tempbuf-mode)	; Idle completion closed
@@ -1139,6 +1139,7 @@ In case the execution fails, return an error."
 (add-hook 'log-view-mode-hook		'turn-on-tempbuf-mode)	; Idle VC change log closed
 (add-hook 'diff-mode-hook		'turn-on-tempbuf-mode)	; Idle VC diff closed
 (add-hook 'Snippet-mode-hook		'turn-on-tempbuf-mode)  ; Idle Snippets closed
+(add-hook 'Custom-mode-hook		'turn-on-tempbuf-mode)	; Idle M-x customize closed
 (add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode)	; Idle auto-install closed. Not working
 
 
@@ -1308,8 +1309,8 @@ In case the execution fails, return an error."
 
 
 
-;; one-key.el (via el-get, required hexrgb.el via elpa)
-;;
+;; one-key.el  (auto-install as of 2013-08-21)
+;; one-key.el via el-get requires hexrgb.el via elpa and does not work (void symbol)
 ;; http://d.hatena.ne.jp/rubikitch/20090127/onekey
 ;; http://d.hatena.ne.jp/tomoya/20090415/1239809615
 ;; http://www.emacswiki.org/emacs/OneKey
