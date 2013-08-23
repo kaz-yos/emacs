@@ -1720,6 +1720,8 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
 	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
 	     (local-set-key (kbd "C-c k")      'ein:worksheet-kill-cell)
+	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
+	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
 	     ))
 ;;
 ;; flycheck.el
