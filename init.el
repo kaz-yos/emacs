@@ -1534,7 +1534,15 @@ In case the execution fails, return an error."
 ;;  (local-set-key (kbd "[") (smartchr '("[`!!']" "[[`!!']]" "["))) ; not very useful
   ) 
 (add-hook 'ess-mode-hook	  'my-ess-smartchr-setting)
-(add-hook 'inferior-ess-mode-hook 'my-ess-smartchr-setting)	; 20130426 off did not solve ( issue
+(add-hook 'inferior-ess-mode-hook 'my-ess-smartchr-setting)
+;
+(defun my-ein-smartchr-setting ()
+  (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
+  (local-set-key (kbd "+") (smartchr '(" + " "+")))
+  (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
+  (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))) ; test
+  ) 
+(add-hook 'ein:notebook-multilang-mode-hook 'my-ein-smartchr-setting)
 ;; (global-set-key (kbd "=") (smartchr '(" = " " == " "=")))	; =
 ;; (global-set-key (kbd "(") (smartchr '("(`!!')" "(")))		; ()
 ;; (global-set-key (kbd "[") (smartchr '("[`!!']" "[")))		; []
