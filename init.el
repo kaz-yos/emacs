@@ -870,11 +870,14 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'ess-mode-hook		; For ESS mode
           '(lambda()
-	     ;; (local-set-key (kbd "<C-M-tab") 'ess-sas-backward-delete-tab)	; Does not work with the one below??
+	     ;; my-ess-eval
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval)
 	     (local-set-key (kbd "<C-return>") 'my-ess-eval)	; Change to my-ess-eval
+	     ;; Toggling $ in S-syntax-table
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
+	     ;; Additional keybinds
+	     ;; (local-set-key (kbd "C-c n") 'ess-next-code-line) ; Not useful?
 	     ))
 ;;
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
