@@ -1277,7 +1277,7 @@ In case the execution fails, return an error."
 (key-chord-define-global "sd" 'comint-dynamic-complete-filename)	; M-TAB emulation
 ;;
 ;; auto-complete.el
-(key-chord-define-global "ac" 'auto-complete-mode)	; Toggling auto-complete-mode
+;; (key-chord-define-global "ac" 'auto-complete-mode)	; Toggling auto-complete-mode
 ;;
 ;; eval-region
 ;; (key-chord-define-global "er" 'eval-region)		; Evaluate region for elisp. Not useful.
