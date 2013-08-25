@@ -687,15 +687,15 @@ In case the execution fails, return an error."
 ;; Auto-complete for ESS configuration
 ;; http://www.emacswiki.org/emacs/ESSAuto-complete 
 (setq 
- ;; ac-auto-show-menu 1
  ;; ac-candidate-limit nil
- ac-delay 0			; Faster than default 0.1
+ ac-delay 0			; Faster than default 0.1 before AC kicks in
+ ac-auto-show-menu 0.1		; 0.1 sec before menu appears
  ;; http://stackoverflow.com/questions/17309773/emacs-autocomplete-inside-python-string
  ;; ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
  ac-disable-faces nil		; auto-complete everywhere, even within quotes, comments
- ;; ac-ignore-case 'smart		; Treat them smartly
+ ;; ac-ignore-case 'smart	; Treat them smartly
  ac-ignore-case nil		; Treat them strictly
- ac-menu-height 20			; 20 candidates
+ ac-menu-height 20		; 20 candidates
  ac-use-quick-help nil		; No pop up help!
  ;; ac-quick-help-delay 1.5
  ;; ac-quick-help-prefer-pos-tip t
