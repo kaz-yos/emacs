@@ -1291,7 +1291,7 @@ In case the execution fails, return an error."
 ;; (key-chord-define-global "ur" 'uncomment-region)	; Dangerous if ur only
 ;;
 ;; replace-string
-(key-chord-define-global "rs" 'replace-string)
+;; (key-chord-define-global "rs" 'replace-string)
 ;;
 ;; view-mode
 ;; (key-chord-define-global "jk" 'view-mode)		; Enter read-only mode
