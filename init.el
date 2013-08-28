@@ -690,7 +690,7 @@ In case the execution fails, return an error."
  ;; ac-candidate-limit nil
  ac-delay 0			; Faster than default 0.1 before AC kicks in
  ac-auto-show-menu 0.1		; 0.1 sec before menu appears
- ac-candidate-menu-min 0	; Always show menu
+ ac-candidate-menu-min 1	; Show menu if 2+ candidates
  ac-menu-height 20		; 20 candidates
  ;; http://stackoverflow.com/questions/17309773/emacs-autocomplete-inside-python-string
  ;; ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
