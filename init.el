@@ -1181,13 +1181,14 @@ In case the execution fails, return an error."
 (require 'auto-save-buffers-enhanced)
 ;; Only in Git, CVS, or Subversion directories
 ;; (auto-save-buffers-enhanced-include-only-checkout-path t)
+;; Timing of save
 ;; (setq auto-save-buffers-enhanced-interval 1)	; 0.5 sec by default
+;; Quiet save
+(setq auto-save-buffers-enhanced-quiet-save-p t)
 ;; Activate
 (auto-save-buffers-enhanced t)
 ;; (setq auto-save-buffers-enhanced-include-regexps '(".+"))
 ;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
-
-
 
 ;; Version control with magit.el
 ;; Magit User Manual: http://magit.github.io/magit/magit.html
