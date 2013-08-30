@@ -1190,6 +1190,7 @@ In case the execution fails, return an error."
 ;; (setq auto-save-buffers-enhanced-include-regexps '(".+"))
 ;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
 
+
 ;; Version control with magit.el
 ;; Magit User Manual: http://magit.github.io/magit/magit.html
 ;; emacs wiki magit: http://www.emacswiki.org/emacs/Magit
