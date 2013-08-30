@@ -1846,7 +1846,7 @@ In case the execution fails, return an error."
 
 ;; Auto-completion addtional setting
 ;; Looks like this has to come after ESS configuration
-(define-key ac-completing-map (kbd "RET") 'ac-complete)
+;; (define-key ac-completing-map (kbd "RET") 'ac-complete)
 
 
 ;; This is placed at the end as it freezes if EmacsWIki is not responding.
