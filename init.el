@@ -1021,6 +1021,24 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "C-<return>") 'my-essh-eval)))
 
 
+;; bash-completion in emacs' shell (M-x shell)
+;; http://stackoverflow.com/questions/163591/bash-autocompletion-in-emacs-shell-mode
+;; https://github.com/szermatt/emacs-bash-completion
+;;
+;; http://www.namazu.org/~tsuchiya/elisp/shell-command.el
+(require 'shell-command)
+(shell-command-completion-mode)
+;;
+;; https://github.com/szermatt/emacs-bash-completion
+(autoload 'bash-completion-dynamic-complete
+  "bash-completion"
+  "BASH completion hook")
+(add-hook 'shell-dynamic-complete-functions
+	  'bash-completion-dynamic-complete)
+(add-hook 'shell-command-complete-functions
+	  'bash-completion-dynamic-complete)
+
+
 ;; multi.term.el
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
@@ -1574,23 +1592,6 @@ In case the execution fails, return an error."
 ;; (global-set-key (kbd "\"") (smartchr '("\"`!!'\"" "\"")))	; ""
 ;; (global-set-key (kbd "\'") (smartchr '("\'`!!'\'" "\'")))	; ''
 
-
-;; bash-completion in emacs' shell (M-x shell)
-;; http://stackoverflow.com/questions/163591/bash-autocompletion-in-emacs-shell-mode
-;; https://github.com/szermatt/emacs-bash-completion
-;;
-;; http://www.namazu.org/~tsuchiya/elisp/shell-command.el
-(require 'shell-command)
-(shell-command-completion-mode)
-;;
-;; https://github.com/szermatt/emacs-bash-completion
-(autoload 'bash-completion-dynamic-complete
-  "bash-completion"
-  "BASH completion hook")
-(add-hook 'shell-dynamic-complete-functions
-	  'bash-completion-dynamic-complete)
-(add-hook 'shell-command-complete-functions
-	  'bash-completion-dynamic-complete)
 
 
 ;; open-junk-file.el for creation of permanent test files
