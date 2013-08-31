@@ -1021,6 +1021,11 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "C-<return>") 'my-essh-eval)))
 
 
+;; multi.term.el
+(require 'multi-term)
+(setq multi-term-program "/bin/bash")
+
+
 
 ;; TeX environments
 ;;
@@ -1614,6 +1619,9 @@ In case the execution fails, return an error."
              (list ?\"  ;; REMOVED ?w ?_
                    (let ((matching (matching-paren delimiter)))
                      (and matching (char-syntax matching)))))))
+;; paredit-menu.el
+;; Adds a menu to paredit.el as memory aid
+(require 'paredit-menu)
 
 
 ;; rainbow-delimiters.el
