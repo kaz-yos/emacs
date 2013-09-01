@@ -206,7 +206,7 @@
 
 ;; Get file path or URL from current line
 ;; http://www.gnu.org/s/libtool/manual/emacs/FFAP.html
-(ffap-bindings)
+;; (ffap-bindings)
 
 
 ;; Bookmarks
