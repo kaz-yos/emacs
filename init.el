@@ -204,9 +204,10 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 
-;; Get file path or URL from current line
+;; ffap find-file-at-point
+;; Get file path or URL from current line 
 ;; http://www.gnu.org/s/libtool/manual/emacs/FFAP.html
-;; (ffap-bindings)
+(ffap-bindings)
 
 
 ;; Bookmarks
