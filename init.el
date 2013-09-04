@@ -1117,6 +1117,9 @@ In case the execution fails, return an error."
 			   (name . "^\\*Calendar\\*$")
 			   (name . "^diary$")
 			   (mode . muse-mode)))
+	       ("ess" (or
+			 (mode . ess-mode)
+			 (mode . inferior-ess-mode)))
 	       ("emacs" (or
 			 (name . "^\\*scratch\\*$")
 			 (name . "^\\*Messages\\*$")))
@@ -1129,6 +1132,7 @@ In case the execution fails, return an error."
 			(mode . gnus-article-mode)
 			(name . "^\\.bbdb$")
 			(name . "^\\.newsrc-dribble")))))))
+;;
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
