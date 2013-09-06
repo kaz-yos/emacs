@@ -1117,12 +1117,13 @@ In case the execution fails, return an error."
 			   (name . "^\\*Calendar\\*$")
 			   (name . "^diary$")
 			   (mode . muse-mode)))
-	       ("ess" (or
-			 (mode . ess-mode)
-			 (mode . inferior-ess-mode)))
 	       ("emacs" (or
 			 (name . "^\\*scratch\\*$")
 			 (name . "^\\*Messages\\*$")))
+	       ("ess" (or
+			 (mode . ess-mode)
+			 (mode . inferior-ess-mode)))
+	       ("shell" (mode . shell-mode))
 	       ("gnus" (or
 			(mode . message-mode)
 			(mode . bbdb-mode)
@@ -1131,7 +1132,8 @@ In case the execution fails, return an error."
 			(mode . gnus-summary-mode)
 			(mode . gnus-article-mode)
 			(name . "^\\.bbdb$")
-			(name . "^\\.newsrc-dribble")))))))
+			(name . "^\\.newsrc-dribble")))
+	       ))))
 ;;
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()
