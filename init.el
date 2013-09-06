@@ -1114,7 +1114,7 @@ In case the execution fails, return an error."
       '((mark modified read-only " "
               (name 18 18 :left :elide) " "
               (size 9 -1 :right) " "
-              (mode 16 16 :left :elide) " " filename-and-process)
+              (mode 10 10 :left :elide) " " filename-and-process)
         (mark " " (name 16 -1) " " filename)))
 ;; Classify
 ;; http://www.emacswiki.org/emacs/IbufferMode#toc6
