@@ -1100,6 +1100,7 @@ In case the execution fails, return an error."
 
 ;; Buffer Management
 ;;
+;; ibuffer
 ;; http://ergoemacs.org/emacs/emacs_buffer_management.html
 (defalias 'list-buffers 'ibuffer)
 ;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
@@ -1107,6 +1108,15 @@ In case the execution fails, return an error."
 ;; https://github.com/pd/dotfiles/blob/master/emacs.d/pd/core.el
 (setq ibuffer-default-sorting-mode 'filename/process
       ibuffer-show-empty-filter-groups nil)
+;; Column widths
+;; http://unix.stackexchange.com/questions/35830/change-column-width-in-an-emacs-ibuffer-on-the-fly
+(setq ibuffer-formats
+      '((mark modified read-only " "
+              (name 18 18 :left :elide) " "
+              (size 9 -1 :right) " "
+              (mode 16 16 :left :elide) " " filename-and-process)
+        (mark " " (name 16 -1) " " filename)))
+;; Classify
 ;; http://www.emacswiki.org/emacs/IbufferMode#toc6
 (setq ibuffer-saved-filter-groups
       (quote (("default"
