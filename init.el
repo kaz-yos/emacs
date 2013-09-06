@@ -1164,6 +1164,8 @@ In case the execution fails, return an error."
 ;; tempbuf.el	Auto-delete unused idle buffers such as dired
 ;; http://www.emacswiki.org/emacs/tempbuf.el
 (require 'tempbuf)
+;; No message
+(setq tempbuf-kill-message nil)
 ;; (add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; All idle unedited files closed
 (add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
 (add-hook 'dired-mode-hook		'turn-on-tempbuf-mode)	; Idle dired closed
