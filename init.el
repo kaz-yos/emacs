@@ -1064,6 +1064,9 @@ In case the execution fails, return an error."
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
 ;;
+;; http://emacsworld.blogspot.com/2011/05/auctex-tip-automatically-save-file.html
+(setq TeX-save-query nil) ;;autosave before compiling
+;;
 ;; Japanese setting etc
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
 ;; Hiragino font settings. Done in shell
