@@ -719,6 +719,11 @@ In case the execution fails, return an error."
 ;; http://cx4a.org/software/auto-complete/manual.html#Trigger_Key
 (ac-set-trigger-key "TAB")
 ;; (ac-set-trigger-key (kbd "TAB")) ; This does not work
+;;
+;; If you are using 'flyspell' you might want to activate the workaround
+;; http://www.emacswiki.org/emacs/AutoComplete#toc6
+(ac-flyspell-workaround)
+
 
 
 ;; icicles.el
@@ -1087,10 +1092,6 @@ In case the execution fails, return an error."
                 ac-sources))
   )
 (add-hook 'latex-mode-hook 'ac-latex-mode-setup)
-;;
-;; If you are using 'flyspell' you might want to activate the
-;; [workaround](http://www.emacswiki.org/emacs/AutoComplete#toc6):
-(ac-flyspell-workaround)
 
 
 ;; Markdown mode
