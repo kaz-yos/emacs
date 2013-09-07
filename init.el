@@ -1183,12 +1183,6 @@ In case the execution fails, return an error."
 (setq ibuffer-saved-filter-groups
       (quote (("default"
 	       ("dired" (mode . dired-mode))
-	       ("perl" (mode . cperl-mode))
-	       ("erc" (mode . erc-mode))
-	       ("planner" (or
-			   (name . "^\\*Calendar\\*$")
-			   (name . "^diary$")
-			   (mode . muse-mode)))
 	       ("emacs" (or
 			 (name . "^\\*scratch\\*$")
 			 (name . "^\\*Messages\\*$")
@@ -1197,7 +1191,14 @@ In case the execution fails, return an error."
 	       ("ess" (or
 			 (mode . ess-mode)
 			 (mode . inferior-ess-mode)))
-	       ("shell" (mode . shell-mode))
+	       ("shell"  (mode . shell-mode))
+	       ("TeX"    (mode . TeX-mode-hook))
+	       ("perl" (mode . cperl-mode))
+	       ("erc" (mode . erc-mode))
+	       ("planner" (or
+			   (name . "^\\*Calendar\\*$")
+			   (name . "^diary$")
+			   (mode . muse-mode)))
 	       ("gnus" (or
 			(mode . message-mode)
 			(mode . bbdb-mode)
