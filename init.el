@@ -1049,7 +1049,8 @@ In case the execution fails, return an error."
 ;; TeX environments
 ;;
 ;; AUCtex
-;; http://wikemacs.org/wiki/AUCTeX
+;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
+;; http://www.gnu.org/software/auctex/index.html
 ;; http://www.gnu.org/software/auctex/manual/auctex.html
 (require 'tex-site)
 (setq TeX-auto-save t)
@@ -1058,13 +1059,116 @@ In case the execution fails, return an error."
 ;;
 ;; Japanese setting
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
-(setq TeX-default-mode 'japanese-latex-mode)
-(setq japanese-LaTeX-default-style "jsarticle")
+;; (setq TeX-default-mode 'japanese-latex-mode)
+;; (setq japanese-LaTeX-default-style "jsarticle")
+;; ;;
+;; ;; Engines
+;; ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX#cd10b741
+;; (setq TeX-engine-alist '((ptex "pTeX" "eptex" "platex" "eptex")
+;;                          (uptex "upTeX" "euptex" "uplatex" "euptex")))
+;; (setq TeX-engine 'ptex)
 ;;
-;; Engines
-(setq TeX-engine-alist '((ptex "pTeX" "eptex" "platex" "eptex")
-                         (uptex "upTeX" "euptex" "uplatex" "euptex")))
+;; Japanese setting by Dr. Okumura
+;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX#h32722ec
+(setq japanese-LaTeX-default-style "jsarticle")
+(setq TeX-engine-alist '((ptex "pTeX" "/usr/texbin/ptex2pdf -e -ot '%S %(mode)'" "/usr/texbin/ptex2pdf -l -ot '%S %(mode)'" "eptex")
+                         (uptex "upTeX" "/usr/texbin/ptex2pdf -e -u -ot '%S %(mode)'" "/usr/texbin/ptex2pdf -l -u -ot '%S %(mode)'" "euptex")))
 (setq TeX-engine 'ptex)
+;(setq TeX-engine 'uptex)
+;(setq TeX-engine 'luatex)
+;(setq TeX-engine 'xetex)
+(setq TeX-view-program-selection '((output-pdf "Preview.app")))
+;(setq TeX-view-program-selection '((output-pdf "Skim")))
+;(setq TeX-view-program-selection '((output-pdf "displayline")))
+(setq preview-image-type 'dvipng)
+(setq TeX-source-correlate-method 'synctex)
+(setq TeX-source-correlate-start-server t)
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook
+          (function (lambda ()
+                      (add-to-list 'TeX-command-list
+                                   '("pdfpLaTeX" "/usr/texbin/platex %S %(mode) %t && /usr/texbin/dvipdfmx %d"
+                                     TeX-run-TeX nil (latex-mode) :help "Run pLaTeX and dvipdfmx"))
+                      (add-to-list 'TeX-command-list
+                                   '("pdfpLaTeX2" "/usr/texbin/platex %S %(mode) %t && /usr/texbin/dvips -Ppdf -z -f %d | /usr/texbin/convbkmk -g > %f && /usr/local/bin/ps2pdf %f"
+                                     TeX-run-TeX nil (latex-mode) :help "Run pLaTeX, dvips, and ps2pdf"))
+                      (add-to-list 'TeX-command-list
+                                   '("pdfupLaTeX" "/usr/texbin/uplatex %S %(mode) %t && /usr/texbin/dvipdfmx %d"
+                                     TeX-run-TeX nil (latex-mode) :help "Run upLaTeX and dvipdfmx"))
+                      (add-to-list 'TeX-command-list
+                                   '("pdfupLaTeX2" "/usr/texbin/uplatex %S %(mode) %t && /usr/texbin/dvips -Ppdf -z -f %d | /usr/texbin/convbkmk -u > %f && /usr/local/bin/ps2pdf %f"
+                                     TeX-run-TeX nil (latex-mode) :help "Run upLaTeX, dvips, and ps2pdf"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk" "/usr/texbin/latexmk %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-pdfpLaTeX" "/usr/texbin/latexmk -e '$latex=q/platex %%O %S %(mode) %%S/' -e '$bibtex=q/pbibtex %%O %%B/' -e '$makeindex=q/mendex %%O -o %%D %%S/' -e '$dvipdf=q/dvipdfmx %%O -o %%D %%S/' -norc -gg -pdfdvi %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-pdfpLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-pdfpLaTeX2" "/usr/texbin/latexmk -e '$latex=q/platex %%O %S %(mode) %%S/' -e '$bibtex=q/pbibtex %%O %%B/' -e '$makeindex=q/mendex %%O -o %%D %%S/' -e '$dvips=q/dvips %%O -z -f %%S | convbkmk -g > %%D/' -e '$ps2pdf=q/ps2pdf %%O %%S %%D/' -norc -gg -pdfps %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-pdfpLaTeX2"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-pdfupLaTeX" "/usr/texbin/latexmk -e '$latex=q/uplatex %%O %S %(mode) %%S/' -e '$bibtex=q/upbibtex %%O %%B/' -e '$makeindex=q/mendex %%O -o %%D %%S/' -e '$dvipdf=q/dvipdfmx %%O -o %%D %%S/' -norc -gg -pdfdvi %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-pdfupLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-pdfupLaTeX2" "/usr/texbin/latexmk -e '$latex=q/uplatex %%O %S %(mode) %%S/' -e '$bibtex=q/upbibtex %%O %%B/' -e '$makeindex=q/mendex %%O -o %%D %%S/' -e '$dvips=q/dvips %%O -z -f %%S | convbkmk -u > %%D/' -e '$ps2pdf=q/ps2pdf %%O %%S %%D/' -norc -gg -pdfps %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-pdfupLaTeX2"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-pdfLaTeX" "/usr/texbin/latexmk -e '$pdflatex=q/pdflatex %%O %S %(mode) %%S/' -e '$bibtex=q/bibtex %%O %%B/' -e '$makeindex=q/makeindex %%O -o %%D %%S/' -norc -gg -pdf %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-pdfLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-LuaLaTeX" "/usr/texbin/latexmk -e '$pdflatex=q/lualatex %%O %S %(mode) %%S/' -e '$bibtex=q/bibtexu %%O %%B/' -e '$makeindex=q/texindy %%O -o %%D %%S/' -norc -gg -lualatex %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-LuaLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-LuaJITLaTeX" "/usr/texbin/latexmk -e '$pdflatex=q/luajitlatex %%O %S %(mode) %%S/' -e '$bibtex=q/bibtexu %%O %%B/' -e '$makeindex=q/texindy %%O -o %%D %%S/' -norc -gg -lualatex %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-LuaJITLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-XeLaTeX" "/usr/texbin/latexmk -e '$pdflatex=q/xelatex %%O %S %(mode) %%S/' -e '$bibtex=q/bibtexu %%O %%B/' -e '$makeindex=q/texindy %%O -o %%D %%S/' -norc -gg -xelatex %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-XeLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("pBibTeX" "/usr/texbin/pbibtex %s"
+                                     TeX-run-BibTeX nil t :help "Run pBibTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("upBibTeX" "/usr/texbin/upbibtex %s"
+                                     TeX-run-BibTeX nil t :help "Run upBibTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("BibTeXu" "/usr/texbin/bibtexu %s"
+                                     TeX-run-BibTeX nil t :help "Run BibTeXu"))
+                      (add-to-list 'TeX-command-list
+                                   '("Mendex" "/usr/texbin/mendex %s"
+                                     TeX-run-command nil t :help "Create index file with mendex"))
+                      (add-to-list 'TeX-command-list
+                                   '("Preview" "/usr/bin/open -a Preview.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run Preview"))
+                      (add-to-list 'TeX-command-list
+                                   '("Skim" "/usr/bin/open -a Skim.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run Skim"))
+                      (add-to-list 'TeX-command-list
+                                   '("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %s.pdf \"%b\""
+                                     TeX-run-discard-or-function t t :help "Forward search with Skim"))
+                      (add-to-list 'TeX-command-list
+                                   '("TeXShop" "/usr/bin/open -a TeXShop.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run TeXShop"))
+                      (add-to-list 'TeX-command-list
+                                   '("TeXworks" "/usr/bin/open -a TeXworks.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run TeXworks"))
+                      (add-to-list 'TeX-command-list
+                                   '("Firefox" "/usr/bin/open -a Firefox.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run Mozilla Firefox"))
+                      (add-to-list 'TeX-command-list
+                                   '("AdobeReader" "/usr/bin/open -a \"Adobe Reader.app\" %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run Adobe Reader")))))
+;;
+;; RefTeX with AUCTeX
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+;;
+;; kinsoku.el
+(setq kinsoku-limit 10)
+;; Japanese setting ends here
+;;
 ;;
 ;; TeX-PDF mode (no DVI intermediate file)
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
@@ -1073,7 +1177,8 @@ In case the execution fails, return an error."
 (add-hook 'LaTeX-mode-hook 'TeX-interactive-mode)
 ;;
 ;;
-;; (See https://github.com/vitoshka/ac-math#readme for more)
+;; ac-math.el: auto-complete sources for input of mathematical symbols and latex tags
+;; https://github.com/vitoshka/ac-math#readme
 (require 'ac-math)
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 (defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
@@ -1081,7 +1186,6 @@ In case the execution fails, return an error."
         (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
                 ac-sources))
   )
-;;
 (add-hook 'latex-mode-hook 'ac-latex-mode-setup)
 ;;
 ;; If you are using 'flyspell' you might want to activate the
