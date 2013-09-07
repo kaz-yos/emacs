@@ -939,8 +939,11 @@ In case the execution fails, return an error."
 ;; (define-key ess-mode-map "\C-c\C-d\C-e" 'ess-R-dv-pprint)
 (define-key ess-mode-map (kbd "C-c C-d C-e") 'ess-R-dv-pprint)
 ;;
+;; Reproducible research
 ;; Use knitr for .Rnw document
 (setq ess-swv-processor 'knitr)
+;; Add commands to AUCTeX's M-x TeX-command-list
+(setq ess-swv-plug-into-AUCTeX-p t)
 ;;
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
