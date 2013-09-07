@@ -599,8 +599,8 @@ In case the execution fails, return an error."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- ;; '(cua-mode t nil (cua-base))	; turn off cua-mode
  '(custom-enabled-themes nil)
+ ;;'(ess-swv-processor (quote knitr))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(yas-trigger-key "TAB"))
@@ -763,14 +763,6 @@ In case the execution fails, return an error."
 ;;; Emacs Speaks Statistics (ESS) for emacs
 ;; http://www.emacswiki.org/emacs/EmacsSpeaksStatistics
 ;; Now installed via elpa
-;; 
-;; Note on version 12.09 (source install)
-;; From version 12.09 on, these files have been replaced with ess-noweb-*.
-;; These files must be deleted manually because make install do not replace them.
-;; Jun 17	2012 noweb-font-lock-mode.elc
-;; Jun 17	2012 noweb-mode.elc
-;; Jun  7	2012 noweb-font-lock-mode.el
-;; Jun  7	2012 noweb-mode.el
 ;;
 ;; Some condigurations were taken from vgoulet Emacs distribution configuration files
 ;; https://svn.fsg.ulaval.ca/svn-pub/vgoulet/emacs-modified/macos/tags/
@@ -946,6 +938,9 @@ In case the execution fails, return an error."
 ;; https://github.com/myuhe/ess-R-data-view.el/blob/master/README.org
 ;; (define-key ess-mode-map "\C-c\C-d\C-e" 'ess-R-dv-pprint)
 (define-key ess-mode-map (kbd "C-c C-d C-e") 'ess-R-dv-pprint)
+;;
+;; Use knitr for .Rnw document
+(setq ess-swv-processor 'knitr)
 ;;
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
