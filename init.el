@@ -944,6 +944,9 @@ In case the execution fails, return an error."
 (setq ess-swv-processor 'knitr)
 ;; Add commands to AUCTeX's M-x TeX-command-list
 (setq ess-swv-plug-into-AUCTeX-p t)
+;; Supress ess-swv-PDF from opening PDF by meaning less value
+;; http://tex.stackexchange.com/questions/69660/sweave-how-to-suppress-opening-new-instance-of-a-pdf-when-running-pdflatex
+(setq ess-pdf-viewer-pref "ls")
 ;;
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
