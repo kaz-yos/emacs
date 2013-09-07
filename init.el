@@ -1513,7 +1513,7 @@ In case the execution fails, return an error."
 ;;
 ;; Activate view-mode for these major modes by activating read-only-mode
 ;; (add-hook 'emacs-lisp-mode-hook 'read-only-mode)	; This breaks start up screen
-(add-hook 'ess-mode-hook 'read-only-mode)		; To protect R SAS codes
+;; (add-hook 'ess-mode-hook 'read-only-mode)		; To protect R SAS codes. Incompatible with .Rnw
 
 
 
