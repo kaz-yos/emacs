@@ -1054,32 +1054,81 @@ In case the execution fails, return an error."
 ;; TeX environments
 ;;
 ;; AUCtex
-;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
 ;; http://www.gnu.org/software/auctex/index.html
 ;; http://www.gnu.org/software/auctex/manual/auctex.html
+;;
+;; Bare minimum
+;; http://www.gnu.org/software/auctex/manual/auctex.html#Quick-Start
 (require 'tex-site)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
 ;;
-;; Japanese setting
+;; Japanese setting etc
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
+;; Hiragino font settings. Done in shell
+;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Mac#i9febc9b
+;;
+;; Preview.app for Viewing
+;; (setq TeX-view-program-selection '((output-pdf "Preview.app"))) ; Does not work?
+;;
+;; Add commands
+(add-hook 'LaTeX-mode-hook
+          (function (lambda ()
+                      (add-to-list 'TeX-command-list
+                                   '("Preview" "/usr/bin/open -a Preview.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run Preview"))
+                      (add-to-list 'TeX-command-list
+                                   '("Skim" "/usr/bin/open -a Skim.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run Skim"))
+                      (add-to-list 'TeX-command-list
+                                   '("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %s.pdf \"%b\""
+                                     TeX-run-discard-or-function t t :help "Forward search with Skim"))
+		      ;; TeXShop for PDF
+		      ;; Source - Configure for External Editor
+		      ;; Preview - Automatic Preview Update
+                      (add-to-list 'TeX-command-list
+                                   '("TeXShop" "/usr/bin/open -a TeXShop.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run TeXShop"))
+                      (add-to-list 'TeX-command-list
+                                   '("TeXworks" "/usr/bin/open -a TeXworks.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run TeXworks"))
+                      (add-to-list 'TeX-command-list
+                                   '("Firefox" "/usr/bin/open -a Firefox.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run Mozilla Firefox"))
+                      (add-to-list 'TeX-command-list
+                                   '("AdobeReader" "/usr/bin/open -a \"Adobe Reader.app\" %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run Adobe Reader"))
+		      )))
+;;
 ;; (setq TeX-default-mode 'japanese-latex-mode)
-;; (setq japanese-LaTeX-default-style "jsarticle")
+;; jsarticle as the default style
+(setq japanese-LaTeX-default-style "jsarticle")
+;; For Japanese documen
+(setq kinsoku-limit 10)
 ;;
 ;; Engines
-(setq TeX-engine-alist '((ptex "pTeX" "eptex" "platex" "eptex")
-                         (uptex "upTeX" "euptex" "uplatex" "euptex")))
-(setq TeX-engine 'ptex)
+;; (setq TeX-engine-alist '((ptex "pTeX" "eptex" "platex" "eptex")
+;;                          (uptex "upTeX" "euptex" "uplatex" "euptex")))
+;; Select TeX engine from default(pdfTeX) luatex omega ptex uptex xetex
+;; (setq TeX-engine 'ptex)
 ;;
 ;; Japanese setting by Dr. Okumura (not used for now
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX#h32722ec
 ;;
-;; TeX-PDF mode (no DVI intermediate file)
+;; TeX-PDF mode (no DVI intermediate file in pdfTeX, LuaTex, XeTeX)
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+;;
+;; auctex-latexmk.el for Japanese tex to PDF direct conversion: 
+;; http://qiita.com/tm_tn/items/cbc813028d7f5951b165
+;; https://github.com/tom-tan/auctex-latexmk/
+;; ln -sf ~/Documents/.latexmkrc ~/.latexmkrc
+(require 'auctex-latexmk)
+(auctex-latexmk-setup)
 ;;
 ;; Interactive mode for errors
 (add-hook 'LaTeX-mode-hook 'TeX-interactive-mode)
+;;
 ;;
 ;;
 ;; ac-math.el: auto-complete sources for input of mathematical symbols and latex tags
@@ -1092,6 +1141,11 @@ In case the execution fails, return an error."
                 ac-sources))
   )
 (add-hook 'latex-mode-hook 'ac-latex-mode-setup)
+;;
+;;
+;; YaTeX
+;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX
+
 
 
 ;; Markdown mode
@@ -1134,7 +1188,9 @@ In case the execution fails, return an error."
 			   (mode . muse-mode)))
 	       ("emacs" (or
 			 (name . "^\\*scratch\\*$")
-			 (name . "^\\*Messages\\*$")))
+			 (name . "^\\*Messages\\*$")
+			 (name . "^\\*Packages\\*$")
+			 ))
 	       ("ess" (or
 			 (mode . ess-mode)
 			 (mode . inferior-ess-mode)))
