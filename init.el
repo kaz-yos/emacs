@@ -908,9 +908,9 @@ In case the execution fails, return an error."
 ;; *.Rmd files invoke r-mode	; Temporary fix for R markdown files
 (setq auto-mode-alist
       (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
-;; *.R files invoke read-only-mode for protection
-(setq auto-mode-alist
-      (cons '("\\.Rmd$" . read-only-mode) auto-mode-alist))
+;; *.R files invoke read-only-mode for protection (This prevents ESS mode)
+;; (setq auto-mode-alist
+;;       (cons '("\\.R$" . read-only-mode) auto-mode-alist))
 ;;
 ;; Tooltip included in ESS
 ;; (define-key ess-mode-map "\C-c\C-g" 'ess-describe-object-at-point)	; Changed from C-c C-d C-e
@@ -1516,7 +1516,10 @@ In case the execution fails, return an error."
 ;;
 ;; Activate view-mode for these major modes by activating read-only-mode
 ;; (add-hook 'emacs-lisp-mode-hook 'read-only-mode)	; This breaks start up screen
-;; (add-hook 'ess-mode-hook 'read-only-mode)		; To protect R SAS codes. Incompatible with .Rnw
+;; 
+;; To protect R SAS codes. Incompatible with .Rnw
+;; http://emacs.1067599.n5.nabble.com/Strange-things-happening-with-rnw-files-in-AucTeX-mode-td288544.html
+;; (add-hook 'ess-mode-hook 'read-only-mode)	        
 
 
 
