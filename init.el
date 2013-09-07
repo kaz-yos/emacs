@@ -908,6 +908,9 @@ In case the execution fails, return an error."
 ;; *.Rmd files invoke r-mode	; Temporary fix for R markdown files
 (setq auto-mode-alist
       (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
+;; *.R files invoke read-only-mode for protection
+(setq auto-mode-alist
+      (cons '("\\.Rmd$" . read-only-mode) auto-mode-alist))
 ;;
 ;; Tooltip included in ESS
 ;; (define-key ess-mode-map "\C-c\C-g" 'ess-describe-object-at-point)	; Changed from C-c C-d C-e
