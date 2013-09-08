@@ -1255,7 +1255,7 @@ In case the execution fails, return an error."
         (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
                 ac-sources))
   )
-(add-hook 'latex-mode-hook 'ac-latex-mode-setup)
+(add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex
 ;;
 ;; bibretrieve.el
 ;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
