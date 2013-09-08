@@ -1037,7 +1037,12 @@ In case the execution fails, return an error."
 ;; http://sheephead.homelinux.org/2011/02/10/6602/
 ;; https://github.com/myuhe/inlineR.el
 (require 'inlineR)
-;; cacoo.el for additional functionalities
+;; (setq inlineR-re-funcname "plot\|image\|hogehoge\|my-func")	; recognize these plotting functions
+;; (setq inlineR-default-image "jpeg")				; jpeg
+;; (setq inlineR-default-dir "/tmp/")				; images in tmp dir
+;; (setq inlineR-cairo-p t)					; Use Cairo package
+;;
+;; cacoo.el for additional graphics functionalities (need account?)
 (require 'cacoo)
 (require 'cacoo-plugins)      ; option
 (setq cacoo:api-key "APIKEY") ; option
