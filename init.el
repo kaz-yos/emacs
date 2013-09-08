@@ -806,6 +806,10 @@ In case the execution fails, return an error."
 ;; If you are using 'flyspell' you might want to activate the workaround
 ;; http://www.emacswiki.org/emacs/AutoComplete#toc6
 (ac-flyspell-workaround)
+;;
+;; auto-complete-emacs-lisp.el 2013-09-08
+;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
+(require 'auto-complete-emacs-lisp)
 
 
 
