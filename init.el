@@ -1231,6 +1231,10 @@ In case the execution fails, return an error."
 ;; (require 'reftex)
 ;; (require 'bibretrieve)
 ;;
+;; zotelo (Zotero-Local)
+;; https://github.com/vitoshka/zotelo for more
+(add-hook 'TeX-mode-hook 'zotelo-minor-mode)
+;;
 ;;
 ;; YaTeX
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX
@@ -1247,7 +1251,7 @@ In case the execution fails, return an error."
 
 
 ;; Graphviz mode
-;;
+;; http://ppareit.github.io/graphviz-dot-mode/
 (require 'graphviz-dot-mode)
 ;; Font locking is automatic, indentation uses the same commands as
 ;; other modes, tab, M-j and C-M-q.  Insertion of comments uses the
