@@ -1033,6 +1033,11 @@ In case the execution fails, return an error."
 ;; http://tex.stackexchange.com/questions/69660/sweave-how-to-suppress-opening-new-instance-of-a-pdf-when-running-pdflatex
 (setq ess-pdf-viewer-pref "ls")
 ;;
+;; inlineR.el for graphics inside code
+;; http://sheephead.homelinux.org/2011/02/10/6602/
+;; https://github.com/myuhe/inlineR.el
+(require 'inlineR)
+;;
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
 ;; excecutable file
@@ -1067,6 +1072,18 @@ In case the execution fails, return an error."
 ;; (add-hook 'ess-mode-hook	; For SAS mode
 ;;           '(lambda()
 ;;              (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab
+
+
+;; e2wn		; Window management system
+;; e2wm minimal configuration (requires window-layout.el)
+;; http://d.hatena.ne.jp/kiwanami/20100528/1275038929
+(require 'e2wm)
+(global-set-key (kbd "M-+") 'e2wm:start-management)
+;;
+;; e2wn-R
+;; http://sheephead.homelinux.org/2011/03/15/6687/
+;;(require 'inlineR) automatically loaded
+(require 'e2wm-R)
 
 
 
@@ -1627,20 +1644,6 @@ In case the execution fails, return an error."
 ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
 
 
-
-
-;; e2wn		; Window management system
-;; e2wm minimal configuration (requires window-layout.el)
-;; http://d.hatena.ne.jp/kiwanami/20100528/1275038929
-(require 'e2wm)
-(global-set-key (kbd "M-+") 'e2wm:start-management)
-;;
-;; e2wn-R
-;; http://sheephead.homelinux.org/2011/03/15/6687/
-;;(require 'inlineR) automatically loaded
-(require 'e2wm-R)
-
-
 ;; Undo tree
 ;; http://www.emacswiki.org/emacs/UndoTree
 ;; C-/ for undo. C-? (C-S-/) for redo.
@@ -1648,6 +1651,7 @@ In case the execution fails, return an error."
 (global-undo-tree-mode)
 
 
+;; Cursor move undo
 ;; point-undo.el
 ;; http://d.hatena.ne.jp/rubikitch/20081230/pointundo
 (require 'point-undo)
@@ -1655,7 +1659,7 @@ In case the execution fails, return an error."
 ;; (define-key global-map [S-f7] 'point-redo)
 (define-key global-map (kbd "<f7>") 'point-undo)
 (define-key global-map (kbd "S-<f7>") 'point-redo)
-
+;;
 ;; goto-chg.el
 ;; http://www.emacswiki.org/emacs/GotoChg
 (require 'goto-chg)
