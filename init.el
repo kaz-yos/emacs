@@ -1037,6 +1037,11 @@ In case the execution fails, return an error."
 ;; http://sheephead.homelinux.org/2011/02/10/6602/
 ;; https://github.com/myuhe/inlineR.el
 (require 'inlineR)
+;; cacoo.el for additional functionalities
+(require 'cacoo)
+(require 'cacoo-plugins)      ; option
+(setq cacoo:api-key "APIKEY") ; option
+(global-set-key (kbd "M--") 'toggle-cacoo-minor-mode) ; key bind example
 ;;
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
