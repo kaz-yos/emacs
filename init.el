@@ -1262,6 +1262,13 @@ In case the execution fails, return an error."
   )
 (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex
 ;;
+;; latex-math-preview.el
+;; http://www.emacswiki.org/emacs/LaTeXMathPreview
+(autoload 'latex-math-preview-expression "latex-math-preview" nil t)
+(autoload 'latex-math-preview-insert-symbol "latex-math-preview" nil t)
+(autoload 'latex-math-preview-save-image-file "latex-math-preview" nil t)
+(autoload 'latex-math-preview-beamer-frame "latex-math-preview" nil t)
+;;
 ;; bibretrieve.el
 ;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
 ;; (require 'reftex)
@@ -1274,6 +1281,7 @@ In case the execution fails, return an error."
 ;;
 ;; YaTeX
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX
+
 
 
 
