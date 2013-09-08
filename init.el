@@ -741,6 +741,10 @@ In case the execution fails, return an error."
 (global-set-key (kbd "M-[")	'my-bm-previous)
 
 
+;; windresize for M-x windresize
+;; M-x windresize, arrows, C-g for cancel, RET to save
+(require 'windresize)
+
 
 
 ;; Templates
