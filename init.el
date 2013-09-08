@@ -755,6 +755,7 @@ In case the execution fails, return an error."
 (define-auto-insert "\\.Rmd$" "knitr.Rmd")
 (define-auto-insert "\\.sas$" "SAS.sas")
 (define-auto-insert "\\.sh$" "shell.sh")
+(define-auto-insert "\\.tex$" "LaTeX.tex")
 
 
 ;; Auto-completion
