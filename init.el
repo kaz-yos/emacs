@@ -259,7 +259,7 @@
 (put 'downcase-region	'disabled nil)
 
 
-;; Rectangle is not used. 
+;; CUA		Rectangle is not used. 
 ;; Common User Access mode for column editing: Activated by C-RET while selecting text
 ;; http://tech.kayac.com/archive/emacs-rectangle.html
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
@@ -485,6 +485,84 @@
   (insert (format-time-string "%Y-%m-%d"))
   )
 (global-set-key (kbd "C-c d") 'my-insert-date)
+
+
+
+;; Buffer Management
+;;
+;; ibuffer
+;; http://ergoemacs.org/emacs/emacs_buffer_management.html
+(defalias 'list-buffers 'ibuffer)
+;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
+;; (setq ibuffer-default-sorting-mode 'major-mode)
+;; https://github.com/pd/dotfiles/blob/master/emacs.d/pd/core.el
+(setq ibuffer-default-sorting-mode 'filename/process
+      ibuffer-show-empty-filter-groups nil)
+;; Column widths
+;; http://unix.stackexchange.com/questions/35830/change-column-width-in-an-emacs-ibuffer-on-the-fly
+(setq ibuffer-formats
+      '((mark modified read-only " "
+              (name 18 18 :left :elide) " "
+              (size 9 -1 :right) " "
+              (mode 10 10 :left :elide) " " filename-and-process)
+        (mark " " (name 16 -1) " " filename)))
+;; Classify
+;; http://www.emacswiki.org/emacs/IbufferMode#toc6
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+	       ("dired" (mode . dired-mode))
+	       ("emacs" (or
+			 (name . "^\\*scratch\\*$")
+			 (name . "^\\*Messages\\*$")
+			 (name . "^\\*Packages\\*$")
+			 ))
+	       ("ess" (or
+			 (mode . ess-mode)
+			 (mode . inferior-ess-mode)))
+	       ("shell"  (mode . shell-mode))
+	       ("TeX"    (mode . TeX-mode-hook))
+	       ("perl" (mode . cperl-mode))
+	       ("erc" (mode . erc-mode))
+	       ("planner" (or
+			   (name . "^\\*Calendar\\*$")
+			   (name . "^diary$")
+			   (mode . muse-mode)))
+	       ("gnus" (or
+			(mode . message-mode)
+			(mode . bbdb-mode)
+			(mode . mail-mode)
+			(mode . gnus-group-mode)
+			(mode . gnus-summary-mode)
+			(mode . gnus-article-mode)
+			(name . "^\\.bbdb$")
+			(name . "^\\.newsrc-dribble")))
+	       ))))
+;;
+(add-hook 'ibuffer-mode-hook
+	  (lambda ()
+	    (ibuffer-switch-to-saved-filter-groups "default")))
+;;
+;; Things below here has external dependencies
+;; ;; buff-menu+.el		; Does not work with 24.3 due to changes in buff-menu.el
+;; ;; http://www.emacswiki.org/emacs/BufferMenuPlus#BufferMenu
+;; (require 'buff-menu+)
+;; (add-to-list 'same-window-buffer-names "*Buffer List*")		;; Open in current window
+;; (global-set-key (kbd "C-x M-b") 'buffer-menu-other-window)	;; Open in other window
+;;
+;; Sort by mode name
+;; Number corresponds to buffer-menu+ column number
+;; (setq Buffer-menu-sort-column 5) ;; 1CRM, 2Buffer, 3Size, 4Time, 5Mode, 6File
+;;
+;; bs-show for buffer listing. Use c to make it more complete
+;; http://www.emacswiki.org/emacs/BufferSelection
+;; (global-set-key (kbd "C-x b") 'bs-show)
+;;
+;; iswitchb.el Strengthen swtich-to-buffer ; not useful
+;; http://www.emacswiki.org/emacs/IswitchBuffers
+;; (iswitchb-mode 1)
+;; (setq read-buffer-function 'iswitchb-read-buffer)
+;; (setq iswitchb-regexp nil)
+;; (setq iswitchb-prompt-newbuffer nil)
 
 
 
@@ -1137,7 +1215,6 @@ In case the execution fails, return an error."
 (add-hook 'LaTeX-mode-hook 'TeX-interactive-mode)
 ;;
 ;;
-;;
 ;; ac-math.el: auto-complete sources for input of mathematical symbols and latex tags
 ;; https://github.com/vitoshka/ac-math#readme
 (require 'ac-math)
@@ -1148,6 +1225,11 @@ In case the execution fails, return an error."
                 ac-sources))
   )
 (add-hook 'latex-mode-hook 'ac-latex-mode-setup)
+;;
+;; bibretrieve.el
+;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
+;; (require 'reftex)
+;; (require 'bibretrieve)
 ;;
 ;;
 ;; YaTeX
@@ -1164,80 +1246,14 @@ In case the execution fails, return an error."
       (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
 
-;; Buffer Management
+;; Graphviz mode
 ;;
-;; ibuffer
-;; http://ergoemacs.org/emacs/emacs_buffer_management.html
-(defalias 'list-buffers 'ibuffer)
-;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
-;; (setq ibuffer-default-sorting-mode 'major-mode)
-;; https://github.com/pd/dotfiles/blob/master/emacs.d/pd/core.el
-(setq ibuffer-default-sorting-mode 'filename/process
-      ibuffer-show-empty-filter-groups nil)
-;; Column widths
-;; http://unix.stackexchange.com/questions/35830/change-column-width-in-an-emacs-ibuffer-on-the-fly
-(setq ibuffer-formats
-      '((mark modified read-only " "
-              (name 18 18 :left :elide) " "
-              (size 9 -1 :right) " "
-              (mode 10 10 :left :elide) " " filename-and-process)
-        (mark " " (name 16 -1) " " filename)))
-;; Classify
-;; http://www.emacswiki.org/emacs/IbufferMode#toc6
-(setq ibuffer-saved-filter-groups
-      (quote (("default"
-	       ("dired" (mode . dired-mode))
-	       ("emacs" (or
-			 (name . "^\\*scratch\\*$")
-			 (name . "^\\*Messages\\*$")
-			 (name . "^\\*Packages\\*$")
-			 ))
-	       ("ess" (or
-			 (mode . ess-mode)
-			 (mode . inferior-ess-mode)))
-	       ("shell"  (mode . shell-mode))
-	       ("TeX"    (mode . TeX-mode-hook))
-	       ("perl" (mode . cperl-mode))
-	       ("erc" (mode . erc-mode))
-	       ("planner" (or
-			   (name . "^\\*Calendar\\*$")
-			   (name . "^diary$")
-			   (mode . muse-mode)))
-	       ("gnus" (or
-			(mode . message-mode)
-			(mode . bbdb-mode)
-			(mode . mail-mode)
-			(mode . gnus-group-mode)
-			(mode . gnus-summary-mode)
-			(mode . gnus-article-mode)
-			(name . "^\\.bbdb$")
-			(name . "^\\.newsrc-dribble")))
-	       ))))
-;;
-(add-hook 'ibuffer-mode-hook
-	  (lambda ()
-	    (ibuffer-switch-to-saved-filter-groups "default")))
-;;
-;; ;; buff-menu+.el		; Does not work with 24.3 due to changes in buff-menu.el
-;; ;; http://www.emacswiki.org/emacs/BufferMenuPlus#BufferMenu
-;; (require 'buff-menu+)
-;; (add-to-list 'same-window-buffer-names "*Buffer List*")		;; Open in current window
-;; (global-set-key (kbd "C-x M-b") 'buffer-menu-other-window)	;; Open in other window
-;;
-;; Sort by mode name
-;; Number corresponds to buffer-menu+ column number
-;; (setq Buffer-menu-sort-column 5) ;; 1CRM, 2Buffer, 3Size, 4Time, 5Mode, 6File
-;;
-;; bs-show for buffer listing. Use c to make it more complete
-;; http://www.emacswiki.org/emacs/BufferSelection
-;; (global-set-key (kbd "C-x b") 'bs-show)
-;;
-;; iswitchb.el Strengthen swtich-to-buffer ; not useful
-;; http://www.emacswiki.org/emacs/IswitchBuffers
-;; (iswitchb-mode 1)
-;; (setq read-buffer-function 'iswitchb-read-buffer)
-;; (setq iswitchb-regexp nil)
-;; (setq iswitchb-prompt-newbuffer nil)
+(require 'graphviz-dot-mode)
+;; Font locking is automatic, indentation uses the same commands as
+;; other modes, tab, M-j and C-M-q.  Insertion of comments uses the
+;; same commands as other modes, M-; .  You can compile a file using
+;; M-x compile or C-c c, after that M-x next-error will also work.
+;; There is support for viewing an generated image with C-c p.
 
 
 ;; tempbuf.el	Auto-delete unused idle buffers such as dired
