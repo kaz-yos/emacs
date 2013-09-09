@@ -816,13 +816,13 @@ In case the execution fails, return an error."
 ;; auto-complete-auctex.el 2013-09-09
 ;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
 ;; Directly installed
-(require 'auto-complete-auctex)
+;; (require 'auto-complete-auctex)
 ;;
 ;; auto-complete-latex.el 2013-09-09 (available on el-get but requires hg (mercurial)?)
 ;; https://bitbucket.org/tequilasunset/auto-complete-latex/src
 ;; http://d.hatena.ne.jp/tequilasunset/20100202/p1
 ;; http://d.hatena.ne.jp/tequilasunset/20100317/p1
-(require 'auto-complete-latex)
+;; (require 'auto-complete-latex)
 ;; (setq ac-l-dict-directory "~/.emacs.d/ac-l-dict/")
 ;; (add-to-list 'ac-modes 'foo-mode)
 ;; (add-hook 'foo-mode-hook 'ac-l-setup)
