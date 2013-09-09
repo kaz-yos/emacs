@@ -815,6 +815,7 @@ In case the execution fails, return an error."
 ;;
 ;; auto-complete-auctex.el 2013-09-09
 ;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
+;; Directly installed
 (require 'auto-complete-auctex)
 
 
