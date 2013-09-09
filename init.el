@@ -1327,6 +1327,7 @@ In case the execution fails, return an error."
 (add-hook 'Custom-mode-hook		'turn-on-tempbuf-mode)	; Idle M-x customize closed
 (add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode)	; Idle auto-install closed. Not working
 (add-hook 'comint-mode-hook		'turn-on-tempbuf-mode)  ; 2013-09-09 for LaTeX inf. process
+(add-hook 'latex-math-preview-expression-mode-hook 'turn-on-tempbuf-mode) ; 2013-09-09
 
 
 ;; Recent files extended
