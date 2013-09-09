@@ -1326,6 +1326,7 @@ In case the execution fails, return an error."
 (add-hook 'Snippet-mode-hook		'turn-on-tempbuf-mode)  ; Idle Snippets closed
 (add-hook 'Custom-mode-hook		'turn-on-tempbuf-mode)	; Idle M-x customize closed
 (add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode)	; Idle auto-install closed. Not working
+(add-hook 'comint-mode-hook		'turn-on-tempbuf-mode)  ; 2013-09-09 for LaTeX inf. process
 
 
 ;; Recent files extended
