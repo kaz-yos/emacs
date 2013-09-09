@@ -964,6 +964,7 @@ In case the execution fails, return an error."
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ;; Additional keybinds
 	     ;; (local-set-key (kbd "C-c n") 'ess-next-code-line) ; Not useful?
+	     (local-set-key (kbd "M-n-p") 'ess-swv-PDF)		; ess-swv-PS not used!
 	     ))
 ;;
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
@@ -1268,6 +1269,9 @@ In case the execution fails, return an error."
 (autoload 'latex-math-preview-insert-symbol "latex-math-preview" nil t)
 (autoload 'latex-math-preview-save-image-file "latex-math-preview" nil t)
 (autoload 'latex-math-preview-beamer-frame "latex-math-preview" nil t)
+;; Required software
+(setq latex-math-preview-command-path-alist
+      '((latex . "/usr/texbin/latex") (dvipng . "/usr/texbin/dvipng") (dvips . "/usr/texbin/dvips")))
 ;;
 ;; bibretrieve.el
 ;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
