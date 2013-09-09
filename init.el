@@ -964,7 +964,7 @@ In case the execution fails, return an error."
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ;; Additional keybinds
 	     ;; (local-set-key (kbd "C-c n") 'ess-next-code-line) ; Not useful?
-	     (local-set-key (kbd "M-n-p") 'ess-swv-PDF)		; ess-swv-PS not used!
+	     ;; (local-set-key (kbd "M-n p") 'ess-swv-PDF)	  ; Does not work. M-n is prefix. 2013-09-08
 	     ))
 ;;
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
