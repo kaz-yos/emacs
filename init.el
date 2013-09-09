@@ -813,19 +813,6 @@ In case the execution fails, return an error."
 ;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
 (require 'auto-complete-emacs-lisp)
 ;;
-;; auto-complete-auctex.el 2013-09-09
-;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
-;; Directly installed
-;; (require 'auto-complete-auctex)
-;;
-;; auto-complete-latex.el 2013-09-09 (available on el-get but requires hg (mercurial)?)
-;; https://bitbucket.org/tequilasunset/auto-complete-latex/src
-;; http://d.hatena.ne.jp/tequilasunset/20100202/p1
-;; http://d.hatena.ne.jp/tequilasunset/20100317/p1
-;; (require 'auto-complete-latex)
-;; (setq ac-l-dict-directory "~/.emacs.d/ac-l-dict/")
-;; (add-to-list 'ac-modes 'foo-mode)
-;; (add-hook 'foo-mode-hook 'ac-l-setup)
 
 
 ;; icicles.el
@@ -1267,6 +1254,8 @@ In case the execution fails, return an error."
 (add-hook 'LaTeX-mode-hook 'TeX-interactive-mode)
 ;;
 ;;
+;; Auto-complete for LaTeX
+;;
 ;; ac-math.el: auto-complete sources for input of mathematical symbols and latex tags
 ;; https://github.com/vitoshka/ac-math#readme
 (require 'ac-math)
@@ -1276,15 +1265,30 @@ In case the execution fails, return an error."
         (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
                 ac-sources))
   )
-(add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex
+(add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex as on website
 ;;
-;; latex-math-preview.el
+;; auto-complete-auctex.el 2013-09-09
+;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
+;; Directly installed
+;; (require 'auto-complete-auctex)
+;;
+;; auto-complete-latex.el 2013-09-09 (available on el-get but requires hg (mercurial)?)
+;; https://bitbucket.org/tequilasunset/auto-complete-latex/src
+;; http://d.hatena.ne.jp/tequilasunset/20100202/p1
+;; http://d.hatena.ne.jp/tequilasunset/20100317/p1
+;; (require 'auto-complete-latex)
+;; (setq ac-l-dict-directory "~/.emacs.d/ac-l-dict/")
+;; (add-to-list 'ac-modes 'foo-mode)
+;; (add-hook 'foo-mode-hook 'ac-l-setup)
+;;
+;;
+;; latex-math-preview.el 2013-09-08
 ;; http://www.emacswiki.org/emacs/LaTeXMathPreview
 (autoload 'latex-math-preview-expression "latex-math-preview" nil t)
 (autoload 'latex-math-preview-insert-symbol "latex-math-preview" nil t)
 (autoload 'latex-math-preview-save-image-file "latex-math-preview" nil t)
 (autoload 'latex-math-preview-beamer-frame "latex-math-preview" nil t)
-;; Required software
+;; Required software (specific to MacTeX)
 (setq latex-math-preview-command-path-alist
       '((latex . "/usr/texbin/latex") (dvipng . "/usr/texbin/dvipng") (dvips . "/usr/texbin/dvips")))
 ;;
