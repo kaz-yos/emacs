@@ -520,7 +520,9 @@
 			 (mode . ess-mode)
 			 (mode . inferior-ess-mode)))
 	       ("shell"  (mode . shell-mode))
-	       ("TeX"    (mode . TeX-mode-hook))
+	       ("TeX"    (or
+			  (mode . TeX-mode)
+			  (mode . LaTeX-mode)))
 	       ("perl" (mode . cperl-mode))
 	       ("erc" (mode . erc-mode))
 	       ("planner" (or
