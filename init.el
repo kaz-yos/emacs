@@ -812,6 +812,10 @@ In case the execution fails, return an error."
 ;; auto-complete-emacs-lisp.el 2013-09-08
 ;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
 (require 'auto-complete-emacs-lisp)
+;;
+;; auto-complete-auctex.el 2013-09-09
+;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
+(require 'auto-complete-auctex)
 
 
 
