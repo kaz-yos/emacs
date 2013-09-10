@@ -1280,6 +1280,8 @@ In case the execution fails, return an error."
 ;; https://bitbucket.org/tequilasunset/auto-complete-latex/src
 ;; http://d.hatena.ne.jp/tequilasunset/20100202/p1
 ;; http://d.hatena.ne.jp/tequilasunset/20100317/p1
+;; http://d.hatena.ne.jp/whitypig/20110908/1315477128
+;; http://keisanbutsuriya.blog.fc2.com/blog-entry-59.html
 ;; $ hg clone https://bitbucket.org/tequilasunset/auto-complete-latex # installed hg from brew
 (require 'auto-complete-latex)
 (setq ac-l-dict-directory "~/.emacs.d/auto-install/ac-l-dict/") ; Manually created here
@@ -1481,7 +1483,10 @@ In case the execution fails, return an error."
         do (global-set-key key func)))
 ;;
 ;; Optional helm packages
+;; helm-R.el
 (require 'helm-R)
+;;
+;; helm-migemo.el
 (when (eq system-type 'darwin)
     ;; Mac-only
     ;; http://sleepboy-zzz.blogspot.com/2012/09/anythinghelm.html
