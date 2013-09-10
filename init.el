@@ -1265,7 +1265,11 @@ In case the execution fails, return an error."
         (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
                 ac-sources))
   )
-(add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex as on website
+;; (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex as on website
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
+			     (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
+			     ))
 ;;
 ;; auto-complete-auctex.el 2013-09-09
 ;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
@@ -1280,7 +1284,7 @@ In case the execution fails, return an error."
 (require 'auto-complete-latex)
 (setq ac-l-dict-directory "~/.emacs.d/auto-install/ac-l-dict/") ; Manually created here
 ;; (add-to-list 'ac-modes 'foo-mode)
-;; (add-hook 'LaTeX-mode-hook 'ac-l-setup) ; 2013-09-10 turned off. Mess up ac-sources
+;; (add-hook 'LaTeX-mode-hook 'ac-l-setup) ; 2013-09-10 Configured in ac-math settings
 ;;
 ;; Make ac-sources variable the following
 ;; (ac-l-source-user-commands ac-l-source-user-arguments ac-source-filename ac-l-source-labels ac-l-source-bibitems ac-l-source-latex-commands ac-l-source-amsmath-commands ac-l-source-commands ac-source-files-in-current-dir ac-l-source-latex-arguments ac-l-source-amsmath-arguments ac-l-source-filenames ac-source-dictionary)
