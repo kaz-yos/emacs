@@ -1276,11 +1276,17 @@ In case the execution fails, return an error."
 ;; https://bitbucket.org/tequilasunset/auto-complete-latex/src
 ;; http://d.hatena.ne.jp/tequilasunset/20100202/p1
 ;; http://d.hatena.ne.jp/tequilasunset/20100317/p1
-;; hg clone https://bitbucket.org/tequilasunset/auto-complete-latex # installed hg from brew
+;; $ hg clone https://bitbucket.org/tequilasunset/auto-complete-latex # installed hg from brew
 (require 'auto-complete-latex)
 (setq ac-l-dict-directory "~/.emacs.d/auto-install/ac-l-dict/") ; Manually created here
 ;; (add-to-list 'ac-modes 'foo-mode)
-(add-hook 'LaTeX-mode-hook 'ac-l-setup)
+;; (add-hook 'LaTeX-mode-hook 'ac-l-setup) ; 2013-09-10 turned off. Mess up ac-sources
+;;
+;; Make ac-sources variable the following
+;; (ac-l-source-user-commands ac-l-source-user-arguments ac-source-filename ac-l-source-labels ac-l-source-bibitems ac-l-source-latex-commands ac-l-source-amsmath-commands ac-l-source-commands ac-source-files-in-current-dir ac-l-source-latex-arguments ac-l-source-amsmath-arguments ac-l-source-filenames ac-source-dictionary)
+;; Local in buffer 201130910PredictInGlmm.tex; global value is 
+;; (ac-source-words-in-same-mode-buffers)
+;;
 ;;
 ;;
 ;; latex-math-preview.el 2013-09-08
