@@ -1286,11 +1286,27 @@ In case the execution fails, return an error."
 ;; (add-to-list 'ac-modes 'foo-mode)
 ;; (add-hook 'LaTeX-mode-hook 'ac-l-setup) ; 2013-09-10 Configured in ac-math settings
 ;;
-;; Make ac-sources variable the following
+;;       SYMBOL |           MEANING
+;;      --------+----------------------------------
+;;         l    | LaTeX or pLaTeX
+;;         a    | AMS packages
+;;         b    | beamer
+;;         h    | hyperlinks
+;;         g    | graphics
+;;         m    | math sign or equations
+;;         c    | colors
+;;         t    | tables
+;;         f    | fonts
+;;         p    | unclassified external packages
+;;         F    | file names in a current directory
+;;         L    | label names
+;;         B    | bib keys
+;;         u    | user-commands or user-arguments
+;;
+;; 2013-09-10 Make ac-sources variable the following use (ac-latex-mode-setup) after.
 ;; (ac-l-source-user-commands ac-l-source-user-arguments ac-source-filename ac-l-source-labels ac-l-source-bibitems ac-l-source-latex-commands ac-l-source-amsmath-commands ac-l-source-commands ac-source-files-in-current-dir ac-l-source-latex-arguments ac-l-source-amsmath-arguments ac-l-source-filenames ac-source-dictionary)
 ;; Local in buffer 201130910PredictInGlmm.tex; global value is 
 ;; (ac-source-words-in-same-mode-buffers)
-;;
 ;;
 ;;
 ;; latex-math-preview.el 2013-09-08
