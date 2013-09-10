@@ -1841,6 +1841,10 @@ In case the execution fails, return an error."
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
 
+;; A simple Emacs interface for the Mercurial (Hg) Distributed SCM. 2013-09-09
+(require 'ahg)
+
+
 ;; ;; Use default eldoc (loaded automatically)
 ;; (require 'eldoc)
 ;; eldoc-extension
