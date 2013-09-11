@@ -73,7 +73,7 @@
 (setq show-paren-delay 0.125)			; Compatibility with Japanese
 
 
-;; Suppress all dialog box completely, even file open dialogue. No need for mouse!
+;; Suppress all dialog boxes completely, even file open dialogue. No need for mouse!
 ;; http://www.gnu.org/s/libtool/manual/emacs/Dialog-Boxes.html
 (setq use-dialog-box nil)
 
@@ -88,11 +88,12 @@
   )
 
 
-;; Bars: Menu bar & scroll bar only
+;; Bars: Menu bar only. No scroll bar or tool bar.
 ;; http://www.emacswiki.org/emacs/FullScreen#toc7
 (menu-bar-mode t)
 (tool-bar-mode -1)
-(scroll-bar-mode t)
+(scroll-bar-mode -1)
+;;(scroll-bar-mode t)
 
 
 ;; Show the current directory in the frame bar
@@ -681,8 +682,7 @@ In case the execution fails, return an error."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes nil)
- ;;'(ess-swv-processor (quote knitr))
+ '(custom-enabled-themes (quote (tsdh-dark)))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(yas-trigger-key "TAB"))
