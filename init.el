@@ -1042,11 +1042,11 @@ In case the execution fails, return an error."
 ;; Supress ess-swv-PDF from opening PDF by meaning less value
 ;; http://tex.stackexchange.com/questions/69660/sweave-how-to-suppress-opening-new-instance-of-a-pdf-when-running-pdflatex
 (setq ess-pdf-viewer-pref "ls")
-;; Define a one step function (This does not work) 2013-09-10
+;; Define a one step function 2013-09-10
 (defun ess-swv-weave-PDF()
   (interactive)
-  (ess-swv-weave)
-  (ess-swv-PDF)
+  (ess-swv-weave nil)	; nil to run with default processor
+  (ess-swv-PDF "texi2pdf")
   )
 ;;
 ;; inlineR.el for graphics inside code
