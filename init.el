@@ -485,6 +485,8 @@
   (insert (format-time-string "%Y-%m-%d"))
   )
 (global-set-key (kbd "C-c d") 'my-insert-date)
+;;
+(global-set-key (kbd "C-c r") 'replace-string)
 
 
 
