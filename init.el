@@ -1034,7 +1034,7 @@ In case the execution fails, return an error."
 ;; (define-key ess-mode-map "\C-c\C-d\C-e" 'ess-R-dv-pprint)
 (define-key ess-mode-map (kbd "C-c C-d C-e") 'ess-R-dv-pprint)
 ;;
-;; Reproducible research
+;; Reproducible research with knitr, etc
 ;; Use knitr for .Rnw document
 (setq ess-swv-processor 'knitr)
 ;; Add commands to AUCTeX's M-x TeX-command-list
@@ -1042,6 +1042,12 @@ In case the execution fails, return an error."
 ;; Supress ess-swv-PDF from opening PDF by meaning less value
 ;; http://tex.stackexchange.com/questions/69660/sweave-how-to-suppress-opening-new-instance-of-a-pdf-when-running-pdflatex
 (setq ess-pdf-viewer-pref "ls")
+;; Define a one step function (This does not work) 2013-09-10
+(defun ess-swv-weave-PDF()
+  (interactive)
+  (ess-swv-weave)
+  (ess-swv-PDF)
+  )
 ;;
 ;; inlineR.el for graphics inside code
 ;; http://sheephead.homelinux.org/2011/02/10/6602/
@@ -1271,6 +1277,8 @@ In case the execution fails, return an error."
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
+			     ;; Add back text completion.
+			     (setq ac-sources (append '(ac-source-words-in-same-mode-buffers) ac-sources))
 			     ))
 ;;
 ;; auto-complete-auctex.el 2013-09-09
