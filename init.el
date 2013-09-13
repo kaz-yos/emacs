@@ -1272,7 +1272,7 @@ In case the execution fails, return an error."
   (setq namestem (substring (buffer-name) 0 (search ".Rnw" (buffer-name))))
   (setq tex-filename (concat "\"" namestem "\".tex"))
   (setq my-command-string (concat "latexmk" tex-filename))
-  ;; (shell-command my-command-string)
+  (shell-command my-command-string)
   ;; (setq my-command-string (concat "/Applications/Skim.app/Contents/MacOS/Skim \"" namestem ".pdf\" &"))
   ;; (shell-command my-command-string)
   )
