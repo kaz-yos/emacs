@@ -1272,10 +1272,11 @@ In case the execution fails, return an error."
   (setq namestem (substring (buffer-name) 0 (search ".Rnw" (buffer-name))))
   (setq tex-filename (concat "\"" namestem "\".tex"))
   (setq my-command-string (concat "latexmk" tex-filename))
-  (shell-command my-command-string)
-  (setq my-command-string (concat "/Applications/Skim.app/Contents/MacOS/Skim \"" namestem ".pdf\" &"))
-  (shell-command my-command-string))
-(define-key ess-noweb-minor-mode-map "\M-n v" 'ess-makePDFandView)
+  ;; (shell-command my-command-string)
+  ;; (setq my-command-string (concat "/Applications/Skim.app/Contents/MacOS/Skim \"" namestem ".pdf\" &"))
+  ;; (shell-command my-command-string)
+  )
+(define-key ess-noweb-minor-mode-map (kbd "M-n v") 'ess-makePDFandView)
 ;;
 ;;
 ;; Auto-complete for LaTeX
