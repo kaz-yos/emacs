@@ -1200,6 +1200,12 @@ In case the execution fails, return an error."
 ;; http://emacsworld.blogspot.com/2011/05/auctex-tip-automatically-save-file.html
 (setq TeX-save-query nil) ;;autosave before compiling
 ;;
+;; TeX-fold-mode on by default (C-c C-b C-o to actually fold
+;; http://tex.stackexchange.com/questions/52179/what-is-your-favorite-emacs-and-or-auctex-command-trick
+(add-hook 'LaTeX-mode-hook
+	  (lambda ()
+	    (TeX-fold-mode 1)))
+;;
 ;; Japanese setting etc
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
 ;; Hiragino font settings. Done in shell
@@ -1240,7 +1246,7 @@ In case the execution fails, return an error."
 ;; (setq TeX-default-mode 'japanese-latex-mode)
 ;; jsarticle as the default style
 (setq japanese-LaTeX-default-style "jsarticle")
-;; For Japanese documen
+;; For Japanese document
 (setq kinsoku-limit 10)
 ;;
 ;; Engines
@@ -1271,7 +1277,7 @@ In case the execution fails, return an error."
   (interactive)
   (setq namestem (substring (buffer-name) 0 (search ".Rnw" (buffer-name))))
   (setq tex-filename (concat "\"" namestem "\".tex"))
-  (setq my-command-string (concat "latexmk" tex-filename))
+  (setq my-command-string (concat "latexmk " tex-filename))
   (shell-command my-command-string)
   ;; (setq my-command-string (concat "/Applications/Skim.app/Contents/MacOS/Skim \"" namestem ".pdf\" &"))
   ;; (shell-command my-command-string)
