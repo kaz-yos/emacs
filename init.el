@@ -1312,7 +1312,7 @@ In case the execution fails, return an error."
 			     (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
-			     (add-ac-source-words-in-same-mode-buffers)
+			     ;; (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15
 ;			     (setq ac-sources (append '(ac-source-words-in-same-mode-buffers) ac-sources))
 			     ))
 ;;
