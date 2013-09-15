@@ -1296,12 +1296,19 @@ In case the execution fails, return an error."
         (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
                 ac-sources))
   )
+(defun add-ac-source-words-in-same-mode-buffers () ; add back
+  (setq ac-sources
+        (append '(ac-source-words-in-same-mode-buffers)
+                ac-sources))
+  )
+
 ;; (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex as on website
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
-			     (setq ac-sources (append '(ac-source-words-in-same-mode-buffers) ac-sources))
+			     (add-ac-source-words-in-same-mode-buffers)
+;			     (setq ac-sources (append '(ac-source-words-in-same-mode-buffers) ac-sources))
 			     ))
 ;;
 ;; auto-complete-auctex.el 2013-09-09
