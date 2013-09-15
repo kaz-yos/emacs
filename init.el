@@ -761,6 +761,7 @@ In case the execution fails, return an error."
 (auto-insert-mode)
 (setq auto-insert-directory "~/.emacs.d/autoinsert/")
 (define-auto-insert "\\.Rmd$" "knitr.Rmd")
+(define-auto-insert "\\.Rnw$" "knitr.Rnw")
 (define-auto-insert "\\.sas$" "SAS.sas")
 (define-auto-insert "\\.sh$" "shell.sh")
 (define-auto-insert "\\.tex$" "LaTeX.tex")
