@@ -1824,6 +1824,12 @@ In case the execution fails, return an error."
   (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))) ; test
   ) 
 (add-hook 'ein:notebook-multilang-mode-hook 'my-ein-smartchr-setting)
+;;
+(defun my-LaTeX-smartchr-setting ()
+  (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
+  ) 
+(add-hook 'LaTeX-mode-hook 'my-LaTeX-smartchr-setting)
+;;
 ;; (global-set-key (kbd "=") (smartchr '(" = " " == " "=")))	; =
 ;; (global-set-key (kbd "(") (smartchr '("(`!!')" "(")))		; ()
 ;; (global-set-key (kbd "[") (smartchr '("[`!!']" "[")))		; []
