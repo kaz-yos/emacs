@@ -41,6 +41,10 @@
   (if (not (getenv "TERM_PROGRAM"))
       (setenv "PATH"
 	      (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
+
+  ;; Do not open a new frame opening a file from Finder
+  ;; http://stackoverflow.com/questions/6068819/alias-to-make-emacs-open-a-file-in-a-new-buffer-not-frame-and-be-activated-com
+  (setq ns-pop-up-frames nil)
   )
 ;
 ;; exec-path-from-shell.el
