@@ -1310,6 +1310,8 @@ In case the execution fails, return an error."
 ;; https://github.com/vitoshka/ac-math#readme
 (require 'ac-math)
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
+;;
+;; ac-latex-mode.el
 (defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
   (setq ac-sources
         (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
@@ -1320,7 +1322,6 @@ In case the execution fails, return an error."
         (append '(ac-source-words-in-same-mode-buffers)
                 ac-sources))
   )
-
 ;; (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex as on website
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
