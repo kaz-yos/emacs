@@ -264,6 +264,12 @@
 (put 'downcase-region	'disabled nil)
 
 
+;; Increase max values for number of variables that can be defined
+;; http://mikio.github.io/article/2012/06/26_variable-binding-depth-exceeds-max-specpdl-size.html
+(setq max-lisp-eval-depth 5000)
+(setq max-specpdl-size 6000)
+
+
 ;; CUA		Rectangle is not used. 
 ;; Common User Access mode for column editing: Activated by C-RET while selecting text
 ;; http://tech.kayac.com/archive/emacs-rectangle.html
