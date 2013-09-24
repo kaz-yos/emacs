@@ -264,7 +264,7 @@
 (put 'downcase-region	'disabled nil)
 
 
-;; Increase max values for number of variables that can be defined
+;; Increase max values for number of variables that can be defined 2013-09-19
 ;; http://mikio.github.io/article/2012/06/26_variable-binding-depth-exceeds-max-specpdl-size.html
 (setq max-lisp-eval-depth 5000)
 (setq max-specpdl-size 6000)
@@ -1333,8 +1333,7 @@ In case the execution fails, return an error."
 			     (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
-			     ;; (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15
-;			     (setq ac-sources (append '(ac-source-words-in-same-mode-buffers) ac-sources))
+			     (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15
 			     ))
 ;;
 ;; auto-complete-auctex.el 2013-09-09
@@ -1902,6 +1901,7 @@ In case the execution fails, return an error."
 ;;
 (defun my-LaTeX-smartchr-setting ()
   (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
+  (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")))
   ) 
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-smartchr-setting)
 ;;
