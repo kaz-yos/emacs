@@ -4,7 +4,7 @@
 ;;
 
 ;;
-;; Additional load-paths ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Additional load-paths ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; http://emacswiki.org/emacs/LoadPath	; Recursive for elpa directory
 (let ((default-directory "~/.emacs.d/elpa/"))
@@ -54,14 +54,14 @@
 
 
 ;;
-;; Configuration without external .el file dependencies comes first ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Configuration without external .el file dependencies comes first ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 
 
-;; default.el in Vincent Goulet's distribution
+;;; default.el in Vincent Goulet's distribution
 ;; https://svn.fsg.ulaval.ca/svn-pub/vgoulet/emacs-modified/macos/tags/Emacs-23.3-modified-3/default.el
 ;;
-;;; Nice options to have On by default
+;; Nice options to have On by default
 (mouse-wheel-mode t)				; activate mouse scrolling
 (global-font-lock-mode t)			; syntax highlighting
 (transient-mark-mode t)				; sane select (mark) mode
@@ -82,7 +82,7 @@
 (setq use-dialog-box nil)
 
 
-;; Use Mac OS X system trash
+;;; Use Mac OS X system trash
 ;; http://www.masteringemacs.org/articles/2010/12/30/making-deleted-files-trash-can/
 ;; http://www.reddit.com/r/emacs/comments/iuyef/emacs_on_mac/
 (when (eq system-type 'darwin)
@@ -92,7 +92,7 @@
   )
 
 
-;; Bars: Menu bar only. No scroll bar or tool bar.
+;;; Bars: Menu bar only. No scroll bar or tool bar.
 ;; http://www.emacswiki.org/emacs/FullScreen#toc7
 (menu-bar-mode t)
 (tool-bar-mode -1)
@@ -105,7 +105,7 @@
 (setq frame-title-format '(:eval (if (buffer-file-name) (abbreviate-file-name (buffer-file-name)) "%b")))
 
 
-;; winner-mode		; Obsolete Git does not mess with windows
+;; winner-mode	
 ;; http://www.emacswiki.org/emacs/WinnerMode
 ;; Default: C-c <left> to undo window rearragement. C-c <right> to redo.
 (winner-mode t)
@@ -127,7 +127,7 @@
 (global-set-key (kbd "C-x /") 'swap-buffer)		; Enabled for everywhere
 
 
-;; Window management
+;;; Window management
 ;;
 ;; Useful shortcuts
 ;; http://stackoverflow.com/questions/2901198/useful-keyboard-shortcuts-and-tips-for-ess-r
@@ -436,7 +436,7 @@
 
 
 
-;; Automatically close brackets and parentheses
+;;; Automatically close brackets and parentheses
 ;; http://www.emacswiki.org/emacs/ESSAutoParens
 ;; http://www.emacswiki.org/emacs/SkeletonPair
 ;; 20130426 enable skeleton-pair in iESS mode only.
@@ -477,6 +477,7 @@
 (setq electric-pair-skip-self nil)	; Do not prevent overlapping ] before ]
 
 
+
 ;; Additional configurations
 ;;
 ;; Take current line to top
@@ -500,7 +501,7 @@
 (global-set-key (kbd "C-c r") 'replace-string)
 
 
-;; Surround region
+;;; Surround region
 ;; http://www.emacswiki.org/emacs/SurroundRegion
 (defun surround (begin end open close)
   "Put OPEN at START and CLOSE at END of the region.
@@ -515,7 +516,7 @@ If you omit CLOSE, it will reuse OPEN."
     (insert open)))
 
 
-;; Buffer Management
+;;; Buffer Management
 ;;
 ;; ibuffer
 ;; http://ergoemacs.org/emacs/emacs_buffer_management.html
@@ -595,7 +596,7 @@ If you omit CLOSE, it will reuse OPEN."
 
 
 
-;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; el-get.el package system 2013-02-26
 ;; https://github.com/dimitri/el-get
 ;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")	; This is configured at the top.
@@ -608,7 +609,7 @@ If you omit CLOSE, it will reuse OPEN."
 (el-get 'sync)
 
 
-;; MELPA
+;;; MELPA
 ;; http://melpa.milkbox.net/#installing
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -621,7 +622,7 @@ If you omit CLOSE, it will reuse OPEN."
 (require 'melpa)
 
 
-;; Mac-only configuration
+;;; Mac-only configuration
 (when (eq system-type 'darwin)
   ;; Mac-only
   ;; Change to English in minibuffer (require inline patch. No .el dependency)
@@ -705,8 +706,24 @@ In case the execution fails, return an error."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(Linum-format "%7i ")
+ '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes (quote (tsdh-dark)))
+ '(background-color "#042028")
+ '(background-mode dark)
+ '(cursor-color "#708183")
+ '(custom-enabled-themes (quote (wheatgrass)))
+ '(custom-safe-themes (quote ("06f5145c01ec774a0abb49eeffa3980743ce2f997112b537effeb188b7c51caf" "5bff694d9bd3791807c205d8adf96817ee1e572654f6ddc5e1e58b0488369f9d" "f5db04080a5133bc99721d680a11cf974d60d1df347b08841b43c3e97f52d3bf" "fe0a47cc3952fede574527a1c28ddf3a1af381fc1fb5843ca60d22e4c841011a" "446c73cdfb49f1dab4c322e51ac00a536fb0e3cb7e6809b9f4616e0858012e92" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "d293542c9d4be8a9e9ec8afd6938c7304ac3d0d39110344908706614ed5861c9" "1a093e45e4c3e86fa5ad1f8003660e7cda4d961cd5d377cee3fee2dad2faf19b" "dc46381844ec8fcf9607a319aa6b442244d8c7a734a2625dac6a1f63e34bc4a6" "465be5317c7d95a84e376e095c21242f4f2ad75692ed806dcbb6fe27078260f1" "1278386c1d30fc24b4248ba69bc5b49d92981c3476de700a074697d777cb0752" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "60e70079a187df634db25db4bb778255eaace1ef4309e56389459fb9418b4840" "30f861ee9dc270afc2a9962c05e02d600c998905433c8b9211dc2b33caa97c51" "bad832ac33fcbce342b4d69431e7393701f0823a3820f6030ccc361edd2a4be4" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "b1e54397de2c207e550dc3a090844c4b52d1a2c4a48a17163cce577b09c28236" "d971315c813b0269a86e7c5e73858070063016d9585492bd8d0f27704d50fee7" "f89e21c3aef10d2825f2f079962c2237cd9a45f4dc1958091be8a6f5b69bb70c" "605080e40891cc991f53d3d9c79b427d18497d973a44fd12a86d2360429a6a3d" "865d6cb994f89c13b2d7e5961df4eabeea12494583c240c8fe9a788d0f4ee12c" "eacfc96fbe418c017f4a00fdde5d5029db8e2800a46251eb2174484fa431917e" "3bd9497fb8f39c28ab58a9e957152ba2dc41223c23c5520ef10fc7bd6b222384" "d7f1c86b425e148be505c689fc157d96323682c947b29ef00cf57b4e4e46e6c7" "f220c05492910a305f5d26414ad82bf25a321c35aa05b1565be12f253579dec6" "8d584fef1225d72bfd32d7677ac7f281208140a2535ef0e9f46f0e76343f8aca" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "246a51f19b632c27d7071877ea99805d4f8131b0ff7acb8a607d4fd1c101e163" "1affe85e8ae2667fb571fc8331e1e12840746dae5c46112d5abb0c3a973f5f5a" "9bac44c2b4dfbb723906b8c491ec06801feb57aa60448d047dbfdbd1a8650897" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "73b835431bdbc4e83a3b176a38ebb740fbac78aa2635e1d4827b3c8211e0bc99" "436dd3eb5ff5be80d2db88494b340fcf34dc70a715d19c5aa7b794b763ff0321" "e57e7b19da7b4cd0e5512d5e9bc20d31c9cf50112c462de15a76bce0ea3c5ef5" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "364a5e1aecdd0d24b70089050368851ea5ee593dc8cc6fb58cff1b8cfe88a264" default)))
+ '(fci-rule-character-color "#202020")
+ '(foreground-color "#708183")
+ '(frame-brackground-mode (quote dark))
+ '(fringe-mode 4 nil (fringe))
+ '(linum-format " %7i ")
+ '(main-line-color1 "#1E1E1E")
+ '(main-line-color2 "#111111")
+ '(main-line-separator-style (quote chamfer))
+ '(powerline-color1 "#1E1E1E")
+ '(powerline-color2 "#111111")
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(yas-trigger-key "TAB"))
@@ -723,7 +740,8 @@ In case the execution fails, return an error."
 (require 'minor-mode-hack)
 
 
-;; bm.el	Within-file bookmarking
+;;; bm.el	Within-file bookmarking
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; See ~/.emacs.d/elpa/bm-readme.txt
 ;; http://d.hatena.ne.jp/peccu/20100402
 ;; Saving bookmarks
@@ -775,7 +793,7 @@ In case the execution fails, return an error."
 
 
 
-;; Templates
+;;; Templates
 ;;
 ;; autoinsert.el
 (auto-insert-mode)
@@ -787,7 +805,7 @@ In case the execution fails, return an error."
 (define-auto-insert "\\.tex$" "LaTeX.tex")
 
 
-;; Auto-completion
+;;; Auto-completion
 ;;
 ;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
 ;; https://github.com/auto-complete/auto-complete
@@ -849,7 +867,7 @@ In case the execution fails, return an error."
 (icy-mode 1)
 
 
-;; YAsnippet ; Automatic template inserting system.
+;;; YAsnippet ; Automatic template inserting system.
 ;;
 ;; https://github.com/capitaomorte/yasnippet
 ;; $ git clone http://github.com/capitaomorte/yasnippet.git in plugins folder
@@ -1129,7 +1147,7 @@ In case the execution fails, return an error."
 ;;              (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab
 
 
-;; e2wn		; Window management system
+;;; e2wn		; Window management system
 ;; e2wm minimal configuration (requires window-layout.el)
 ;; http://d.hatena.ne.jp/kiwanami/20100528/1275038929
 (require 'e2wm)
@@ -1141,7 +1159,8 @@ In case the execution fails, return an error."
 (require 'e2wm-R)
 
 
-
+;;; shell environments
+;;
 ;; essh.el for shell (like ESS for R
 ;; http://www.emacswiki.org/emacs/essh.el
 (require 'essh)
@@ -1184,7 +1203,6 @@ In case the execution fails, return an error."
              (local-set-key (kbd "S-<return>") 'my-essh-eval)
 	     (local-set-key (kbd "C-<return>") 'my-essh-eval)))
 
-
 ;; bash-completion in emacs' shell (M-x shell)
 ;; http://stackoverflow.com/questions/163591/bash-autocompletion-in-emacs-shell-mode
 ;; https://github.com/szermatt/emacs-bash-completion
@@ -1202,14 +1220,13 @@ In case the execution fails, return an error."
 (add-hook 'shell-command-complete-functions
 	  'bash-completion-dynamic-complete)
 
-
 ;; multi.term.el
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
 
 
 
-;; TeX environments
+;;; TeX environments
 ;;
 ;; AUCtex
 ;; http://www.gnu.org/software/auctex/index.html
@@ -1411,7 +1428,7 @@ In case the execution fails, return an error."
       (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
 
-;; Graphviz mode
+;;; Graphviz mode
 ;; http://ppareit.github.io/graphviz-dot-mode/
 (require 'graphviz-dot-mode)
 ;; Font locking is automatic, indentation uses the same commands as
@@ -1421,7 +1438,7 @@ In case the execution fails, return an error."
 ;; There is support for viewing an generated image with C-c p.
 
 
-;; tempbuf.el	Auto-delete unused idle buffers such as dired
+;;; tempbuf.el	Auto-delete unused idle buffers such as dired
 ;; http://www.emacswiki.org/emacs/tempbuf.el
 (require 'tempbuf)
 ;; No message
@@ -1441,7 +1458,7 @@ In case the execution fails, return an error."
 (add-hook 'latex-math-preview-expression-mode-hook 'turn-on-tempbuf-mode) ; 2013-09-09
 
 
-;; Recent files extended
+;;; Recent files extended
 ;; Book by rubikitch p87
 ;; http://d.hatena.ne.jp/rubikitch/20091224/recentf
 ;; http://www.mygooglest.com/fni/dot-emacs.html
@@ -1460,58 +1477,58 @@ In case the execution fails, return an error."
   (setq recentf-auto-save-timer
         (run-with-idle-timer 30 t 'recentf-save-list))
   (recentf-mode 1))
+
+;; Supress annoying message in mini-buffer
+;; http://masutaka.net/chalow/2011-10-30-2.html
+;; https://gist.github.com/1325654/955277113028eb7b968453a5b7802b74b51b393d
+(defvar my-recentf-list-prev nil)
 ;;
-;; ;; Supress annoying message in mini-buffer
-;; ;; http://masutaka.net/chalow/2011-10-30-2.html
-;; ;; https://gist.github.com/1325654/955277113028eb7b968453a5b7802b74b51b393d
-;; (defvar my-recentf-list-prev nil)
-;; ;;
-;; (defun my-recentf-save-list ()
-;;   "If recentf-list and previous recentf-list is equal,
-;; do nothing"
-;;   (unless (equal recentf-list my-recentf-list-prev)
-;;     (recentf-save-list)
-;;     (setq my-recentf-list-prev recentf-list)))
-;; ;;
-;; (defadvice write-region
-;;   (around recentf-no-message)
-;;   (ad-set-arg 4 'nomsg)
-;;   ad-do-it
-;;   (set-buffer-modified-p nil))
-;; ;;
-;; (defadvice recentf-save-list
-;;   (around no-message activate)
-;;   "suppress the output from message() and write-region() to
-;; minibuffer"
-;;   (let ((activated (ad-is-active 'write-region)))
-;;     (ad-enable-advice 'write-region 'around 'recentf-no-message)
-;;     (ad-activate 'write-region)
-;;     (unwind-protect
-;; 	(flet ((message (format-string &rest args)
-;; 			(eval `(format ,format-string ,@args))))
-;; 	  ad-do-it)
-;;       (ad-disable-advice 'write-region 'around 'recentf-no-message)
-;;       (if activated
-;; 	  (ad-activate 'write-region)
-;; 	(ad-deactivate 'write-region)))))
-;; ;;
-;; (defadvice recentf-cleanup
-;;   (around no-message activate)
-;;   "suppress the output from message() to minibuffer"
-;;   (flet ((message (format-string &rest args)
-;; 		  (eval `(format ,format-string ,@args))))
-;;     ad-do-it))
-;; ;;
-;; ;; (setq recentf-save-file (expand-file-name ".recentf" user-emacs-directory))
-;; ;; (setq recentf-max-saved-items 2000)
-;; ;; (setq recentf-exclude '(".recentf"))
-;; ;; (setq recentf-auto-cleanup 10)
-;; ;; (run-with-idle-timer 30 t 'my-recentf-save-list)
-;; ;; (recentf-mode 1)
+(defun my-recentf-save-list ()
+  "If recentf-list and previous recentf-list is equal,
+do nothing"
+  (unless (equal recentf-list my-recentf-list-prev)
+    (recentf-save-list)
+    (setq my-recentf-list-prev recentf-list)))
+;;
+(defadvice write-region
+  (around recentf-no-message)
+  (ad-set-arg 4 'nomsg)
+  ad-do-it
+  (set-buffer-modified-p nil))
+;;
+(defadvice recentf-save-list
+  (around no-message activate)
+  "suppress the output from message() and write-region() to
+minibuffer"
+  (let ((activated (ad-is-active 'write-region)))
+    (ad-enable-advice 'write-region 'around 'recentf-no-message)
+    (ad-activate 'write-region)
+    (unwind-protect
+	(flet ((message (format-string &rest args)
+			(eval `(format ,format-string ,@args))))
+	  ad-do-it)
+      (ad-disable-advice 'write-region 'around 'recentf-no-message)
+      (if activated
+	  (ad-activate 'write-region)
+	(ad-deactivate 'write-region)))))
+;;
+(defadvice recentf-cleanup
+  (around no-message activate)
+  "suppress the output from message() to minibuffer"
+  (flet ((message (format-string &rest args)
+		  (eval `(format ,format-string ,@args))))
+    ad-do-it))
+;;
+;; (setq recentf-save-file (expand-file-name ".recentf" user-emacs-directory))
+;; (setq recentf-max-saved-items 2000)
+;; (setq recentf-exclude '(".recentf"))
+;; (setq recentf-auto-cleanup 10)
+;; (run-with-idle-timer 30 t 'my-recentf-save-list)
+;; (recentf-mode 1)
 
 
 
-;; Auto-saving buffers
+;;; Auto-saving buffers
 ;; auto-save-buffers: Never lose your data
 ;; http://0xcc.net/misc/auto-save/
 ;; http://homepage3.nifty.com/oatu/emacs/archives/auto-save-buffers.el
@@ -1534,7 +1551,7 @@ In case the execution fails, return an error."
 ;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
 
 
-;; Version control with magit.el
+;;; Version control with magit.el
 ;; Magit User Manual: http://magit.github.io/magit/magit.html
 ;; emacs wiki magit: http://www.emacswiki.org/emacs/Magit
 ;; emacs wiki git: http://www.emacswiki.org/emacs/Git
@@ -1545,7 +1562,7 @@ In case the execution fails, return an error."
 (require 'magit)
 
 
-;; Auto-intall	; This is causing problem !!! 2013-03-04
+;;; Auto-intall	; This is causing problem !!! 2013-03-04
 ;; http://www.emacswiki.org/AutoInstall
 ;; http://www.emacswiki.org/emacs/auto-install.el
 (require 'auto-install)
@@ -1569,7 +1586,7 @@ In case the execution fails, return an error."
 (setq ediff-windows-setup-function 'ediff-setup-windows-plain)
 
 
-;; Helm (Anything successor)
+;;; Helm (Anything successor)
 ;; http://sleepboy-zzz.blogspot.com/2012/09/anythinghelm.html	; in general
 ;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html	; helm-migemo
 ;; http://d.hatena.ne.jp/syohex/20121207/1354885367		; some useful tips
@@ -1609,7 +1626,7 @@ In case the execution fails, return an error."
 ;;
 
 
-;; Key-Chord
+;;; Key-Chord
 ;;
 ;; http://www.emacswiki.org/emacs/KeyChord
 ;; http://d.hatena.ne.jp/rubikitch/touch/20081104/1225745862
@@ -1674,7 +1691,7 @@ In case the execution fails, return an error."
 
 
 
-;; one-key.el  (auto-install as of 2013-08-21)
+;;; one-key.el  (auto-install as of 2013-08-21)
 ;; one-key.el via el-get requires hexrgb.el via elpa and does not work (void symbol)
 ;; http://d.hatena.ne.jp/rubikitch/20090127/onekey
 ;; http://d.hatena.ne.jp/tomoya/20090415/1239809615
@@ -1690,7 +1707,7 @@ In case the execution fails, return an error."
   )
 
 
-;; view-mode			; C-x C-r to open in view-mode. Requires viewer.el
+;;; view-mode			; C-x C-r to open in view-mode. Requires viewer.el
 ;; Book by rubikitch p214-
 ;; http://d.hatena.ne.jp/rubikitch/20081104/1225745862
 ;; http://d.hatena.ne.jp/syohex/20110114/1294958917
@@ -1758,7 +1775,8 @@ In case the execution fails, return an error."
 
 
 
-;; Highlighting
+;;; Highlighting
+;;
 ;; crosshairs.el: highlight current line/column using hl-line(+).el/col-highlight.el
 ;; http://www.emacswiki.org/emacs/CrosshairHighlighting
 (require 'crosshairs)
@@ -1782,12 +1800,10 @@ In case the execution fails, return an error."
 ;; (set-face-background 'col-highlight "lemon chiffon")		; Column color
 
 
-
 ;; auto-highlight-symbol.el for highlighting multiple occurences
 ;; https://github.com/emacsmirror/auto-highlight-symbol
 (require 'auto-highlight-symbol)			; Not good with highlight-symbol.el
 ;; (global-auto-highlight-symbol-mode t)
-
 
 
 ;; highligh-symbol for highlighting multiple occurences
@@ -1833,19 +1849,21 @@ In case the execution fails, return an error."
 (defadvice moccur-edit-change-file
   (after save-after-moccur-edit-buffer activate)
   (save-buffer))
-;;; Usage:
+;; Usage:
 ;; M-x moccur-grep-find to enter Moccur-grep, then objectName .R$
 ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
 
 
-;; Undo tree
+
+;;; Undo tree
 ;; http://www.emacswiki.org/emacs/UndoTree
 ;; C-/ for undo. C-? (C-S-/) for redo.
 (require 'undo-tree)
 (global-undo-tree-mode)
 
 
-;; Cursor move undo
+;;; Cursor move undo
+;;
 ;; point-undo.el
 ;; http://d.hatena.ne.jp/rubikitch/20081230/pointundo
 (require 'point-undo)
@@ -1861,7 +1879,7 @@ In case the execution fails, return an error."
 (global-set-key (kbd "S-<f8>") 'goto-last-change-reverse)
 
 
-;; sequential-command.el
+;;; sequential-command.el
 ;; Book by rubikitch p76. M-x auto-install-batch sequential-command (two files, one -config)
 ;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
 (require 'sequential-command-config)	; Define these seq-* commands. Needs sequential-command.el
@@ -1873,8 +1891,7 @@ In case the execution fails, return an error."
 (global-set-key (kbd "M-l") 'seq-downcase-backward-word)
 
 
-
-;; smartchr.el
+;;; smartchr.el
 ;; Similar elips: http://tech.kayac.com/archive/emacs-tips-smartchr.html
 (require 'smartchr)
 ;; http://ratememo.blog17.fc2.com/blog-entry-937.html
@@ -1914,7 +1931,7 @@ In case the execution fails, return an error."
 
 
 
-;; open-junk-file.el for creation of permanent test files
+;;; open-junk-file.el for creation of permanent test files
 (require 'open-junk-file)
 (global-set-key (kbd "C-x C-z") 'open-junk-file)
 
@@ -1924,7 +1941,7 @@ In case the execution fails, return an error."
 (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
 
 
-;; paredit.el
+;;; paredit.el
 ;; M-x install-elisp http://mumble.net/~campbell/emacs/paredit.el
 (require 'paredit)
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
