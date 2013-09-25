@@ -1791,8 +1791,9 @@ minibuffer"
 (hl-line-when-idle-interval 60)
 ;;
 ;; To customize the background color
-(setq my-highlight-color "light goldenrod yellow")
-(set-face-background 'hl-line	    my-highlight-color)   ; Line color
+;; (setq my-highlight-color "light goldenrod yellow")
+(setq my-highlight-color "dark red")
+(set-face-background 'hl-line	    my-highlight-color) ; Line color
 (set-face-background 'col-highlight my-highlight-color)	; Column color
 ;; (set-face-background 'hl-line	    "light goldenrod yellow")   ; Line color
 ;; (set-face-background 'col-highlight "light goldenrod yellow")	; Column color
