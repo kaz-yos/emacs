@@ -1854,6 +1854,19 @@ minibuffer"
 ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
 
 
+;; highlight-sexp.el
+;; http://www.emacswiki.org/emacs/HighlightSexp
+;; Color M-x list-colors-display  to check good colors
+(require 'highlight-sexp)
+;; (setq hl-sexp-background-color "thistle1")
+;; (setq hl-sexp-background-color "snow1")
+;; (setq hl-sexp-background-color "CadetBlue1") ; for light background
+(setq hl-sexp-background-color "dark red") ; for dark background
+;; (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
+;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
+
+
 
 ;;; Undo tree
 ;; http://www.emacswiki.org/emacs/UndoTree
@@ -1990,19 +2003,7 @@ minibuffer"
 
 
 
-;; highlight-sexp.el
-;; http://www.emacswiki.org/emacs/HighlightSexp
-;; Color M-x list-colors-display  to check good colors
-(require 'highlight-sexp)
-;; (setq hl-sexp-background-color "thistle1")
-;; (setq hl-sexp-background-color "snow1")
-(setq hl-sexp-background-color "CadetBlue1")
-;; (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
-;; (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
-;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
-
-
-;; Auto byte-compile .el files at saving
+;;; Auto byte-compile .el files at saving
 ;; http://www.emacswiki.org/emacs/auto-async-byte-compile.el
 ;; http://d.hatena.ne.jp/rubikitch/20100423/bytecomp
 (require 'auto-async-byte-compile)
@@ -2015,7 +2016,7 @@ minibuffer"
 (require 'ahg)
 
 
-;; ;; Use default eldoc (loaded automatically)
+;; Use default eldoc (loaded automatically)
 ;; (require 'eldoc)
 ;; eldoc-extension
 ;; http://d.hatena.ne.jp/rubikitch/20090207/1233936430
