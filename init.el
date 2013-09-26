@@ -1893,7 +1893,9 @@ minibuffer"
 (global-set-key (kbd "S-<f8>") 'goto-last-change-reverse)
 
 
-;;; sequential-command.el
+;;; Sequential keys
+
+;; sequential-command.el
 ;; Book by rubikitch p76. M-x auto-install-batch sequential-command (two files, one -config)
 ;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
 (require 'sequential-command-config)	; Define these seq-* commands. Needs sequential-command.el
@@ -1905,7 +1907,7 @@ minibuffer"
 (global-set-key (kbd "M-l") 'seq-downcase-backward-word)
 
 
-;;; smartchr.el
+;; smartchr.el
 ;; Similar elips: http://tech.kayac.com/archive/emacs-tips-smartchr.html
 (require 'smartchr)
 ;; http://ratememo.blog17.fc2.com/blog-entry-937.html
@@ -1935,6 +1937,11 @@ minibuffer"
   (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")))
   ) 
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-smartchr-setting)
+;;
+(defun my-elisp-smartchr-setting ()
+  (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")))
+  ) 
+(add-hook 'emacs-lisp-mode-hook 'my-elisp-smartchr-setting)
 ;;
 ;; (global-set-key (kbd "=") (smartchr '(" = " " == " "=")))	; =
 ;; (global-set-key (kbd "(") (smartchr '("(`!!')" "(")))		; ()
