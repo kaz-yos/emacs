@@ -1380,11 +1380,6 @@ In case the execution fails, return an error."
 ;;         B    | bib keys
 ;;         u    | user-commands or user-arguments
 ;;
-;; 2013-09-10 Make ac-sources variable the following use (ac-latex-mode-setup) after.
-;; (ac-l-source-user-commands ac-l-source-user-arguments ac-source-filename ac-l-source-labels ac-l-source-bibitems ac-l-source-latex-commands ac-l-source-amsmath-commands ac-l-source-commands ac-source-files-in-current-dir ac-l-source-latex-arguments ac-l-source-amsmath-arguments ac-l-source-filenames ac-source-dictionary)
-;; Local in buffer 201130910PredictInGlmm.tex; global value is 
-;; (ac-source-words-in-same-mode-buffers)
-;;
 ;;
 ;; latex-math-preview.el 2013-09-08
 ;; http://www.emacswiki.org/emacs/LaTeXMathPreview
@@ -1399,6 +1394,15 @@ In case the execution fails, return an error."
 (setq latex-math-preview-dvipng-color-option nil)
 (setq latex-math-preview-image-foreground-color "black")
 (setq latex-math-preview-image-background-color "white")
+;; Function to preview math expression and shift focus after preview
+(defun my-latex-math-preview ()
+  "Preview math expression and shift focus after preview"
+  (interactive)
+  (setq w1 (selected-window))
+  (latex-math-preview-expression)
+  (select-window w1)
+  )
+;;
 ;;
 ;; bibretrieve.el
 ;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
