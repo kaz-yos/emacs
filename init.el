@@ -1389,7 +1389,12 @@ In case the execution fails, return an error."
 (autoload 'latex-math-preview-beamer-frame "latex-math-preview" nil t)
 ;; Paths to required external software (specific to MacTeX)
 (setq latex-math-preview-command-path-alist
-      '((latex . "/usr/texbin/latex") (dvipng . "/usr/texbin/dvipng") (dvips . "/usr/texbin/dvips")))
+      '((latex . "/usr/texbin/latex")
+	(dvipng . "/usr/texbin/dvipng")
+	(dvips . "/usr/texbin/dvips")
+	(pdflatex . "/usr/texbin/pdflatex")	; for beamer preview
+	(gs . "/usr/local/bin/gs")		; for beamer preview
+	))
 ;; Colors for dark background 2013-09-28
 (setq latex-math-preview-dvipng-color-option nil)
 (setq latex-math-preview-image-foreground-color "black")
