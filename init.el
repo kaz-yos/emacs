@@ -1313,18 +1313,9 @@ In case the execution fails, return an error."
 ;; Interactive mode for errors
 (add-hook 'LaTeX-mode-hook 'TeX-interactive-mode)
 ;;
-;; Single-step compilation that works with Japanese
+;; Single-step compilation that works with Japanese	; 2013-09-28 removed
 ;; http://miyazakikenji.wordpress.com/2013/07/10/ess-で-sweave-出力/
-(defun ess-makePDFandView ()
-  (interactive)
-  (setq namestem (substring (buffer-name) 0 (search ".Rnw" (buffer-name))))
-  (setq tex-filename (concat "\"" namestem "\".tex"))
-  (setq my-command-string (concat "latexmk " tex-filename))
-  (shell-command my-command-string)
-  ;; (setq my-command-string (concat "/Applications/Skim.app/Contents/MacOS/Skim \"" namestem ".pdf\" &"))
-  ;; (shell-command my-command-string)
-  )
-(define-key ess-noweb-minor-mode-map (kbd "M-n v") 'ess-makePDFandView)
+;; http://stackoverflow.com/questions/11060023/ess-auctex-sweave-synctex-integration-from-rnw-pdfviewer
 ;;
 ;;
 ;; Auto-complete for LaTeX
