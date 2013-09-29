@@ -1253,8 +1253,19 @@ In case the execution fails, return an error."
 ;; Hiragino font settings. Done in shell
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Mac#i9febc9b
 ;;
-;; Preview.app for Viewing
-;; (setq TeX-view-program-selection '((output-pdf "Preview.app"))) ; Does not work?
+;; Apple Script to update PDF in Preview.app
+;; ~/scripts/refresh-preview.scpt
+;; tell application "Preview" to activate
+;; tell application "Emacs" to activate
+(add-hook 'LaTeX-mode-hook
+          (function
+           (lambda ()
+             (add-to-list 'TeX-command-list
+                          '("latexmk" "latexmk %t && osascript ~/Library/Scripts/refresh-preview.scpt"
+                            TeX-run-TeX nil (latex-mode) :help "Run ASCII pLaTeX"))
+             (add-to-list 'TeX-command-list
+                          '("Preview" "open -a Preview.app '%s.pdf' " TeX-run-command t nil))
+             ))
 ;;
 ;; Add commands
 (add-hook 'LaTeX-mode-hook
@@ -1393,6 +1404,10 @@ In case the execution fails, return an error."
 ;; Required software (specific to MacTeX)
 (setq latex-math-preview-command-path-alist
       '((latex . "/usr/texbin/latex") (dvipng . "/usr/texbin/dvipng") (dvips . "/usr/texbin/dvips")))
+;; Colors for dark background 2013-09-28
+(setq latex-math-preview-dvipng-color-option nil)
+(setq latex-math-preview-image-foreground-color "black")
+(setq latex-math-preview-image-background-color "white")
 ;;
 ;; bibretrieve.el
 ;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
