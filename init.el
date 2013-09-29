@@ -1387,7 +1387,7 @@ In case the execution fails, return an error."
 (autoload 'latex-math-preview-insert-symbol "latex-math-preview" nil t)
 (autoload 'latex-math-preview-save-image-file "latex-math-preview" nil t)
 (autoload 'latex-math-preview-beamer-frame "latex-math-preview" nil t)
-;; Required software (specific to MacTeX)
+;; Paths to required external software (specific to MacTeX)
 (setq latex-math-preview-command-path-alist
       '((latex . "/usr/texbin/latex") (dvipng . "/usr/texbin/dvipng") (dvips . "/usr/texbin/dvips")))
 ;; Colors for dark background 2013-09-28
@@ -1402,7 +1402,7 @@ In case the execution fails, return an error."
   (latex-math-preview-expression)
   (select-window w1)
   )
-(define-key LaTeX-mode-map (kbd "C-p") 'my-latex-math-preview)
+(define-key LaTeX-mode-map (kbd "C-c p") 'my-latex-math-preview)
 ;;
 ;;
 ;; bibretrieve.el
