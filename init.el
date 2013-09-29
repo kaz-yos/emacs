@@ -793,7 +793,7 @@ In case the execution fails, return an error."
 
 
 
-;;; Templates
+;;; Templates by autoinsert.el
 ;;
 ;; autoinsert.el
 (auto-insert-mode)
@@ -1402,6 +1402,7 @@ In case the execution fails, return an error."
   (latex-math-preview-expression)
   (select-window w1)
   )
+(define-key LaTeX-mode-map (kbd "C-p") 'my-latex-math-preview)
 ;;
 ;;
 ;; bibretrieve.el
