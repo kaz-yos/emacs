@@ -1253,19 +1253,10 @@ In case the execution fails, return an error."
 ;; Hiragino font settings. Done in shell
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Mac#i9febc9b
 ;;
-;; Apple Script to update PDF in Preview.app
+;; Apple Script to update PDF in Preview.app 2013-09-28 currently not active
 ;; ~/scripts/refresh-preview.scpt
 ;; tell application "Preview" to activate
 ;; tell application "Emacs" to activate
-(add-hook 'LaTeX-mode-hook
-          (function
-           (lambda ()
-             (add-to-list 'TeX-command-list
-                          '("latexmk" "latexmk %t && osascript ~/Library/Scripts/refresh-preview.scpt"
-                            TeX-run-TeX nil (latex-mode) :help "Run ASCII pLaTeX"))
-             (add-to-list 'TeX-command-list
-                          '("Preview" "open -a Preview.app '%s.pdf' " TeX-run-command t nil))
-             ))
 ;;
 ;; Add commands
 (add-hook 'LaTeX-mode-hook
