@@ -1401,13 +1401,22 @@ In case the execution fails, return an error."
 (setq latex-math-preview-image-background-color "white")
 ;; Function to preview math expression and shift focus after preview
 (defun my-latex-math-preview ()
-  "Preview math expression and shift focus after preview"
+  "Preview a math expression and shift focus after preview"
   (interactive)
   (setq w1 (selected-window))
   (latex-math-preview-expression)
   (select-window w1)
   )
-(define-key LaTeX-mode-map (kbd "C-c p") 'my-latex-math-preview)
+(define-key LaTeX-mode-map (kbd "C-c m") 'my-latex-math-preview)
+;; Function to preview Beamer slide and shift focus after preview
+(defun my-latex-beamer-preview ()
+  "Preview a Beamer slide and shift focus after preview"
+  (interactive)
+  (setq w1 (selected-window))
+  (latex-math-preview-beamer-frame)
+  (select-window w1)
+  )
+(define-key LaTeX-mode-map (kbd "C-c s") 'my-latex-beamer-preview)
 ;;
 ;;
 ;; bibretrieve.el
