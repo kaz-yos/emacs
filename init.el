@@ -1148,15 +1148,15 @@ In case the execution fails, return an error."
 
 
 ;;; e2wn		; Window management system
-;; e2wm minimal configuration (requires window-layout.el)
-;; http://d.hatena.ne.jp/kiwanami/20100528/1275038929
-(require 'e2wm)
-(global-set-key (kbd "M-+") 'e2wm:start-management)
-;;
-;; e2wn-R
-;; http://sheephead.homelinux.org/2011/03/15/6687/
-;;(require 'inlineR) automatically loaded
-(require 'e2wm-R)
+;; ;; e2wm minimal configuration (requires window-layout.el)
+;; ;; http://d.hatena.ne.jp/kiwanami/20100528/1275038929
+;; (require 'e2wm)
+;; (global-set-key (kbd "M-+") 'e2wm:start-management)
+;; ;;
+;; ;; e2wn-R
+;; ;; http://sheephead.homelinux.org/2011/03/15/6687/
+;; ;;(require 'inlineR) automatically loaded
+;; (require 'e2wm-R)
 
 
 ;;; shell environments
@@ -1882,6 +1882,14 @@ In case the execution fails, return an error."
 ;; (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
 ;; (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
 ;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
+
+
+
+;; expand-region.el
+;; https://github.com/magnars/expand-region.el
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-+") 'er/contract-region)
 
 
 
