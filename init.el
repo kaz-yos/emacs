@@ -1884,12 +1884,11 @@ In case the execution fails, return an error."
 ;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
 
 
-
 ;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
 (require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "C-+") 'er/contract-region)
+(global-set-key (kbd "C-,") 'er/expand-region)
+(global-set-key (kbd "C-M-,") 'er/contract-region)
 
 
 
