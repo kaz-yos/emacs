@@ -810,7 +810,6 @@ In case the execution fails, return an error."
 ;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
 ;; https://github.com/auto-complete/auto-complete
 ;; http://cx4a.org/software/auto-complete/manual.html
-;; (require 'popup)				; https://github.com/auto-complete/popup-el (called auto)
 (require 'auto-complete)
 (require 'auto-complete-config)
 (global-auto-complete-mode t)
@@ -858,6 +857,12 @@ In case the execution fails, return an error."
 ;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
 (require 'auto-complete-emacs-lisp)
 ;;
+;; popup.el
+;; https://github.com/auto-complete/popup-el (called automatically)
+;; (require 'popup)	
+;; Prevent broken popup
+;; http://stackoverflow.com/questions/13242165/emacs-auto-complete-popup-menu-broken
+(setq popup-use-optimized-column-computation nil)
 
 
 ;; icicles.el
