@@ -1687,13 +1687,13 @@ In case the execution fails, return an error."
 ;; (key-chord-define-global "ch" 'crosshairs-mode)		; Activate continuous crosshairing
 ;;
 ;; paredit.el
-(key-chord-define-global "pm" 'paredit-mode)		; Toggle paredit-mode
+;; (key-chord-define-global "pm" 'paredit-mode)		; Toggle paredit-mode
 ;;
 ;; flyspell-mode
 (key-chord-define-global "fs" 'flyspell-mode)		; Toggle flyspell-mode
 ;;
 ;; Align regexp
-(key-chord-define-global "nr" 'align-regexp)		; M-x align-regexp.
+;; (key-chord-define-global "nr" 'align-regexp)		; M-x align-regexp.
 ;;
 ;; Show in finder
 ;; (key-chord-define-global "zx" 'show-in-finder)		; M-x show-in-finder
