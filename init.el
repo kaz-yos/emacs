@@ -1670,10 +1670,10 @@ In case the execution fails, return an error."
 ;; (key-chord-define-global "er" 'eval-region)		; Evaluate region for elisp. Not useful.
 ;;
 ;; count-words
-(key-chord-define-global "wc" 'count-words)		; Choose region and activate for word count
+;; (key-chord-define-global "wc" 'count-words)		; Choose region and activate for word count
 ;;
 ;; Comment or Uncomment region
-(key-chord-define-global "cr" 'comment-region)
+;; (key-chord-define-global "cr" 'comment-region)
 ;; (key-chord-define-global "ur" 'uncomment-region)	; Dangerous if ur only
 ;;
 ;; replace-string
@@ -1690,7 +1690,7 @@ In case the execution fails, return an error."
 ;; (key-chord-define-global "pm" 'paredit-mode)		; Toggle paredit-mode
 ;;
 ;; flyspell-mode
-(key-chord-define-global "fs" 'flyspell-mode)		; Toggle flyspell-mode
+;; (key-chord-define-global "fs" 'flyspell-mode)		; Toggle flyspell-mode
 ;;
 ;; Align regexp
 ;; (key-chord-define-global "nr" 'align-regexp)		; M-x align-regexp.
