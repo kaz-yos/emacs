@@ -1353,11 +1353,11 @@ In case the execution fails, return an error."
 			     ;; (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15 2013-10-12 not helpful
 			     ))
 ;;
-;; ;; auto-complete-auctex.el 2013-09-09
-;; ;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
-;; ;; Directly installed
-;; ;; (require 'auto-complete-auctex)
-;; ;;
+;; auto-complete-auctex.el 2013-09-09
+;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
+;; Directly installed from github without packaging system
+;; (require 'auto-complete-auctex)
+;;
 ;; ;; auto-complete-latex.el 2013-09-09. Not useful turned off on 2013-10-12
 ;; ;; (available on el-get but requires hg (mercurial)?)
 ;; ;; https://bitbucket.org/tequilasunset/auto-complete-latex/src
