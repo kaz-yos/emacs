@@ -1345,7 +1345,7 @@ In case the execution fails, return an error."
   )
 ;; (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex as on website
 (add-hook 'LaTeX-mode-hook (lambda ()
-			     ;; Overwrite default in LaTeX mode
+			     ;; For ac-latex-mode.el Overwrite default in LaTeX mode
 			     (setq ac-sources '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands))
 			     ;; (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     ;; (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
@@ -1353,39 +1353,40 @@ In case the execution fails, return an error."
 			     ;; (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15 2013-10-12 not helpful
 			     ))
 ;;
-;; auto-complete-auctex.el 2013-09-09
-;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
-;; Directly installed
-;; (require 'auto-complete-auctex)
-;;
-;; auto-complete-latex.el 2013-09-09 (available on el-get but requires hg (mercurial)?)
-;; https://bitbucket.org/tequilasunset/auto-complete-latex/src
-;; http://d.hatena.ne.jp/tequilasunset/20100202/p1
-;; http://d.hatena.ne.jp/tequilasunset/20100317/p1
-;; http://d.hatena.ne.jp/whitypig/20110908/1315477128
-;; http://keisanbutsuriya.blog.fc2.com/blog-entry-59.html
-;; $ hg clone https://bitbucket.org/tequilasunset/auto-complete-latex # installed hg from brew
-(require 'auto-complete-latex)
-(setq ac-l-dict-directory "~/.emacs.d/auto-install/ac-l-dict/") ; Manually created here
-;; (add-to-list 'ac-modes 'foo-mode)
-;; (add-hook 'LaTeX-mode-hook 'ac-l-setup) ; 2013-09-10 Configured in ac-math settings
-;;
-;;       SYMBOL |           MEANING
-;;      --------+----------------------------------
-;;         l    | LaTeX or pLaTeX
-;;         a    | AMS packages
-;;         b    | beamer
-;;         h    | hyperlinks
-;;         g    | graphics
-;;         m    | math sign or equations
-;;         c    | colors
-;;         t    | tables
-;;         f    | fonts
-;;         p    | unclassified external packages
-;;         F    | file names in a current directory
-;;         L    | label names
-;;         B    | bib keys
-;;         u    | user-commands or user-arguments
+;; ;; auto-complete-auctex.el 2013-09-09
+;; ;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
+;; ;; Directly installed
+;; ;; (require 'auto-complete-auctex)
+;; ;;
+;; ;; auto-complete-latex.el 2013-09-09. Not useful turned off on 2013-10-12
+;; ;; (available on el-get but requires hg (mercurial)?)
+;; ;; https://bitbucket.org/tequilasunset/auto-complete-latex/src
+;; ;; http://d.hatena.ne.jp/tequilasunset/20100202/p1
+;; ;; http://d.hatena.ne.jp/tequilasunset/20100317/p1
+;; ;; http://d.hatena.ne.jp/whitypig/20110908/1315477128
+;; ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-59.html
+;; ;; $ hg clone https://bitbucket.org/tequilasunset/auto-complete-latex # installed hg from brew
+;; (require 'auto-complete-latex)
+;; (setq ac-l-dict-directory "~/.emacs.d/auto-install/ac-l-dict/") ; Manually created here
+;; ;; (add-to-list 'ac-modes 'foo-mode)
+;; ;; (add-hook 'LaTeX-mode-hook 'ac-l-setup) ; 2013-09-10 Configured in ac-math settings
+;; ;;
+;; ;;       SYMBOL |           MEANING
+;; ;;      --------+----------------------------------
+;; ;;         l    | LaTeX or pLaTeX
+;; ;;         a    | AMS packages
+;; ;;         b    | beamer
+;; ;;         h    | hyperlinks
+;; ;;         g    | graphics
+;; ;;         m    | math sign or equations
+;; ;;         c    | colors
+;; ;;         t    | tables
+;; ;;         f    | fonts
+;; ;;         p    | unclassified external packages
+;; ;;         F    | file names in a current directory
+;; ;;         L    | label names
+;; ;;         B    | bib keys
+;; ;;         u    | user-commands or user-arguments
 ;;
 ;;
 ;; latex-math-preview.el 2013-09-08
