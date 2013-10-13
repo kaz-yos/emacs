@@ -1345,8 +1345,10 @@ In case the execution fails, return an error."
   )
 ;; (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex as on website
 (add-hook 'LaTeX-mode-hook (lambda ()
+			     ;; Overwrite default in LaTeX mode
+			     (setq ac-sources '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands))
 			     ;; (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
-			     (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
+			     ;; (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
 			     ;; (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15 2013-10-12 not helpful
 			     ))
