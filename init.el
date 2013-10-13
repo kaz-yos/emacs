@@ -1348,7 +1348,7 @@ In case the execution fails, return an error."
 			     (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
-			     (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15
+			     ;; (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15 2013-10-12 not helpful
 			     ))
 ;;
 ;; auto-complete-auctex.el 2013-09-09
