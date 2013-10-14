@@ -1253,6 +1253,22 @@ In case the execution fails, return an error."
 	  (lambda ()
 	    (TeX-fold-mode 1)))
 ;;
+;; Avoid font size changes 2013-10-14
+;; http://stackoverflow.com/questions/9534239/emacs-auctex-latex-syntax-prevents-monospaced-font
+;; Only change sectioning colour
+(setq font-latex-fontify-sectioning 'color)
+;; super-/sub-script on baseline
+(setq font-latex-script-display (quote (nil)))
+;; Do not change super-/sub-script font
+(custom-set-faces
+ '(font-latex-subscript-face ((t nil)))
+ '(font-latex-superscript-face ((t nil)))
+ )
+;; Exclude bold/italic from keywords
+(setq font-latex-deactivated-keyword-classes
+    '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))
+;;
+;;
 ;; Japanese setting etc
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
 ;; Hiragino font settings. Done in shell
