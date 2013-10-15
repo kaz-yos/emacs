@@ -1666,68 +1666,68 @@ In case the execution fails, return an error."
 ;;
 
 
-;;; Key-Chord
-;;
-;; http://www.emacswiki.org/emacs/KeyChord
-;; http://d.hatena.ne.jp/rubikitch/touch/20081104/1225745862
-(require 'key-chord)
-(setq key-chord-two-keys-delay 0.04)
-(key-chord-mode 1)
-;;
-;; Viper mode activation/deactivation
-;; (key-chord-define-global "jk" 'toggle-viper-mode)		; view-mode used now
-;; (key-chord-define-global "kl" 'toggle-viper-mode)
-;;
-;; R object name completion in ESS
-(key-chord-define-global "df" 'ess-complete-object-name)		; C-c TAB emulation
-(key-chord-define-global "sd" 'comint-dynamic-complete-filename)	; M-TAB emulation
-;;
-;; auto-complete.el
-;; (key-chord-define-global "ac" 'auto-complete-mode)	; Toggling auto-complete-mode
-;;
-;; eval-region
-;; (key-chord-define-global "er" 'eval-region)		; Evaluate region for elisp. Not useful.
-;;
-;; count-words
-;; (key-chord-define-global "wc" 'count-words)		; Choose region and activate for word count
-;;
-;; Comment or Uncomment region
-;; (key-chord-define-global "cr" 'comment-region)
-;; (key-chord-define-global "ur" 'uncomment-region)	; Dangerous if ur only
-;;
-;; replace-string
-;; (key-chord-define-global "rs" 'replace-string)
-;;
-;; view-mode
-;; (key-chord-define-global "jk" 'view-mode)		; Enter read-only mode
-(key-chord-define-global "jk" 'read-only-mode)		; Enter read-only mode
-;;
-;; crosshairs.el
-;; (key-chord-define-global "ch" 'crosshairs-mode)		; Activate continuous crosshairing
-;;
-;; paredit.el
-;; (key-chord-define-global "pm" 'paredit-mode)		; Toggle paredit-mode
-;;
-;; flyspell-mode
-;; (key-chord-define-global "fs" 'flyspell-mode)		; Toggle flyspell-mode
-;;
-;; Align regexp
-;; (key-chord-define-global "nr" 'align-regexp)		; M-x align-regexp.
-;;
-;; Show in finder
-;; (key-chord-define-global "zx" 'show-in-finder)		; M-x show-in-finder
-;;
-;; bm.el for bookmarking by highlighting
-;; (key-chord-define-global "bm" 'bm-toggle)		; ESC-SPC is good enough
-;;
-;; show-paren-mode
-;; (key-chord-define-global "pm" 'show-paren-mode)		; (show-paren-mode)
-;;
-;; highlight-sexp-mode.el
-(key-chord-define-global "sx" 'highlight-sexp-mode)		; (highlight-sexp-mode)
-;;
-;; ;; tempbuf.el					; does not work
-;; (key-chord-define-global "tb" 'tempbuf-mode)		; (tempbuf-mode)
+;; ;;; Key-Chord 2013-10-15 disabled to check for speed problem
+;; ;;
+;; ;; http://www.emacswiki.org/emacs/KeyChord
+;; ;; http://d.hatena.ne.jp/rubikitch/touch/20081104/1225745862
+;; (require 'key-chord)
+;; (setq key-chord-two-keys-delay 0.04)
+;; (key-chord-mode 1)
+;; ;;
+;; ;; Viper mode activation/deactivation
+;; ;; (key-chord-define-global "jk" 'toggle-viper-mode)		; view-mode used now
+;; ;; (key-chord-define-global "kl" 'toggle-viper-mode)
+;; ;;
+;; ;; R object name completion in ESS
+;; (key-chord-define-global "df" 'ess-complete-object-name)		; C-c TAB emulation
+;; (key-chord-define-global "sd" 'comint-dynamic-complete-filename)	; M-TAB emulation
+;; ;;
+;; ;; auto-complete.el
+;; ;; (key-chord-define-global "ac" 'auto-complete-mode)	; Toggling auto-complete-mode
+;; ;;
+;; ;; eval-region
+;; ;; (key-chord-define-global "er" 'eval-region)		; Evaluate region for elisp. Not useful.
+;; ;;
+;; ;; count-words
+;; ;; (key-chord-define-global "wc" 'count-words)		; Choose region and activate for word count
+;; ;;
+;; ;; Comment or Uncomment region
+;; ;; (key-chord-define-global "cr" 'comment-region)
+;; ;; (key-chord-define-global "ur" 'uncomment-region)	; Dangerous if ur only
+;; ;;
+;; ;; replace-string
+;; ;; (key-chord-define-global "rs" 'replace-string)
+;; ;;
+;; ;; view-mode
+;; ;; (key-chord-define-global "jk" 'view-mode)		; Enter read-only mode
+;; (key-chord-define-global "jk" 'read-only-mode)		; Enter read-only mode
+;; ;;
+;; ;; crosshairs.el
+;; ;; (key-chord-define-global "ch" 'crosshairs-mode)		; Activate continuous crosshairing
+;; ;;
+;; ;; paredit.el
+;; ;; (key-chord-define-global "pm" 'paredit-mode)		; Toggle paredit-mode
+;; ;;
+;; ;; flyspell-mode
+;; ;; (key-chord-define-global "fs" 'flyspell-mode)		; Toggle flyspell-mode
+;; ;;
+;; ;; Align regexp
+;; ;; (key-chord-define-global "nr" 'align-regexp)		; M-x align-regexp.
+;; ;;
+;; ;; Show in finder
+;; ;; (key-chord-define-global "zx" 'show-in-finder)		; M-x show-in-finder
+;; ;;
+;; ;; bm.el for bookmarking by highlighting
+;; ;; (key-chord-define-global "bm" 'bm-toggle)		; ESC-SPC is good enough
+;; ;;
+;; ;; show-paren-mode
+;; ;; (key-chord-define-global "pm" 'show-paren-mode)		; (show-paren-mode)
+;; ;;
+;; ;; highlight-sexp-mode.el
+;; (key-chord-define-global "sx" 'highlight-sexp-mode)		; (highlight-sexp-mode)
+;; ;;
+;; ;; ;; tempbuf.el					; does not work
+;; ;; (key-chord-define-global "tb" 'tempbuf-mode)		; (tempbuf-mode)
 
 
 
