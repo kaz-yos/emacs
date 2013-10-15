@@ -1812,6 +1812,9 @@ In case the execution fails, return an error."
 ;; To protect R SAS codes. Incompatible with .Rnw
 ;; http://emacs.1067599.n5.nabble.com/Strange-things-happening-with-rnw-files-in-AucTeX-mode-td288544.html
 ;; (add-hook 'ess-mode-hook 'read-only-mode)	        
+;;
+;; Key-bind used instead of "jk"
+(global-set-key (kbd "C-c l") 'read-only-mode)
 
 
 
