@@ -499,6 +499,8 @@
 (global-set-key (kbd "C-c d") 'my-insert-date)
 ;;
 (global-set-key (kbd "C-c r") 'replace-string)
+;;
+(global-set-key (kbd "C-c m") 'comment-region)
 
 
 ;;; Surround region
