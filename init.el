@@ -503,6 +503,13 @@
 (global-set-key (kbd "C-c m") 'comment-region)
 
 
+;; delay linum for speed
+;; http://d.hatena.ne.jp/daimatz/20120215/1329248780
+(setq linum-delay t)
+(defadvice linum-schedule (around my-linum-schedule () activate)
+  (run-with-idle-timer 0.2 nil #'linum-update-current))
+
+
 ;;; Surround region
 ;; http://www.emacswiki.org/emacs/SurroundRegion
 (defun surround (begin end open close)
