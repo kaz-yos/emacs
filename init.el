@@ -1363,10 +1363,16 @@ In case the execution fails, return an error."
         (append '(ac-source-words-in-same-mode-buffers)
                 ac-sources))
   )
-;; (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup) ; LaTeX not latex as on website
+;;
+(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
+  (setq ac-sources
+	(append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
+		ac-sources))
+  )
+;; Load by hook
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     ;; For ac-latex-mode.el Overwrite default in LaTeX mode
-			     (setq ac-sources '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands))
+			     (setq ac-sources '(ac-source-math-latex ac-source-latex-commands))
 			     ;; (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     ;; (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
