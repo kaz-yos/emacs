@@ -1358,11 +1358,6 @@ In case the execution fails, return an error."
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 ;;
 ;; ac-latex-mode.el
-(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
-  (setq ac-sources
-        (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-                ac-sources))
-  )
 (defun add-ac-source-words-in-same-mode-buffers () ; add back
   (setq ac-sources
         (append '(ac-source-words-in-same-mode-buffers)
