@@ -1441,7 +1441,7 @@ In case the execution fails, return an error."
   (latex-math-preview-expression)
   (select-window w1)
   )
-(define-key LaTeX-mode-map (kbd "C-c m") 'my-latex-math-preview)
+;; (define-key LaTeX-mode-map (kbd "C-c m") 'my-latex-math-preview)
 ;; Function to preview Beamer slide and shift focus after preview
 (defun my-latex-beamer-preview ()
   "Preview a Beamer slide and shift focus after preview"
