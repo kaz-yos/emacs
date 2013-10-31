@@ -618,17 +618,21 @@ If you omit CLOSE, it will reuse OPEN."
 (el-get 'sync)
 
 
-;;; MELPA
-;; http://melpa.milkbox.net/#installing
+;;; Package system and MELPA
+;; http://www.emacswiki.org/emacs/ELPA
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;;
+;; http://melpa.milkbox.net/#installing
+;; http://melpa.milkbox.net/#/getting-started
+;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;; Marmalade
+;; http://www.emacswiki.org/emacs/Marmalade
 ;; http://qiita.com/items/e81fca7a9797fe203e9f
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-; Initialize
+;; Initialize
 (package-initialize)
-; melpa.el
-(require 'melpa)
+;; melpa.el
+;;(require 'melpa)
 
 
 ;;; Mac-only configuration
