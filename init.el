@@ -624,7 +624,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;;
 ;; http://melpa.milkbox.net/#installing
 ;; http://melpa.milkbox.net/#/getting-started
-;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;; Marmalade
 ;; http://www.emacswiki.org/emacs/Marmalade
 ;; http://qiita.com/items/e81fca7a9797fe203e9f
@@ -632,7 +632,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; Initialize
 (package-initialize)
 ;; melpa.el
-;;(require 'melpa)
+(require 'melpa)
 
 
 ;;; Mac-only configuration
