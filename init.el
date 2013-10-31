@@ -621,31 +621,31 @@ If you omit CLOSE, it will reuse OPEN."
 ;;; Package system and MELPA
 ;; http://www.emacswiki.org/emacs/ELPA
 (require 'package)
-
-
+;;
 ;; Initialize 2013-10-31 moved ahead of repositories
 (package-initialize)
-
 ;;
+;; MELPA
 ;; http://melpa.milkbox.net/#installing
 ;; http://melpa.milkbox.net/#/getting-started
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;;
 ;; Marmalade
 ;; http://www.emacswiki.org/emacs/Marmalade
 ;; http://qiita.com/items/e81fca7a9797fe203e9f
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-
-
-## For org mode
+;;
+;; org mode
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-
-## http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
+;;
+;; Refresh contents 2013-10-31 Manually running this fixed issue of not having available packages?
+;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
 (when (not package-archive-contents)
   (package-refresh-contents))
-
-
+;;
 ;; melpa.el 2013-10-31 it was at the end
 (require 'melpa)
+
 
 
 ;;; Mac-only configuration
