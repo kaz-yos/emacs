@@ -625,7 +625,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; Initialize 2013-10-31 moved ahead of repositories
 (package-initialize)
 ;;
-;; MELPA
+;; MELPA	; 2013-10-31 Manually running this line fixed it? corrupt temporary file??
 ;; http://melpa.milkbox.net/#installing
 ;; http://melpa.milkbox.net/#/getting-started
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
