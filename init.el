@@ -249,7 +249,7 @@
   ;; right option as meta
   (setq mac-right-option-modifier 'meta)
   ;; left option as super
-  (setq mac-right-option-modifier 'super)
+  (setq mac-left-option-modifier 'super)
   ;; command as meta
   (setq mac-command-modifier 'meta)
   ;;
