@@ -1674,8 +1674,8 @@ In case the execution fails, return an error."
       helm-candidate-number-limit 200
       helm-M-x-always-save-history t)
 ;;
-;; http://amitp.blogspot.com/2012/10/emacs-helm-for-finding-files.html
-(setq helm-c-locate-command "locate-with-mdfind %.0s %s")
+;; Disabled because it was giving an error 2013-11-22
+(setq helm-locate-command "")
 ;;
 (let ((key-and-func
        `(;(,(kbd "C-r")   helm-for-files)	; Not sure if backquote is right
