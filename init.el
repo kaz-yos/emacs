@@ -1674,6 +1674,9 @@ In case the execution fails, return an error."
       helm-candidate-number-limit 200
       helm-M-x-always-save-history t)
 ;;
+;; http://amitp.blogspot.com/2012/10/emacs-helm-for-finding-files.html
+(setq helm-c-locate-command "locate-with-mdfind %.0s %s")
+;;
 (let ((key-and-func
        `(;(,(kbd "C-r")   helm-for-files)	; Not sure if backquote is right
 	 (,(kbd "C-z")   helm-for-files)	; Like recentf
@@ -2120,7 +2123,7 @@ In case the execution fails, return an error."
 (setq eldoc-minor-mode-string "")		; No need for ElDoc in modeline (rubikitch book p231)
 
 
-;; Python support				; external dependency
+;;; Python support				; external dependency
 ;; 2013-08-09 
 ;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs
 ;;
