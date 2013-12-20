@@ -773,6 +773,12 @@ In case the execution fails, return an error."
 (require 'minor-mode-hack)
 
 
+;; show-keys.el
+;; http://www.youtube.com/watch?v=0cZ7szFuz18
+;; https://github.com/AndreaCrotti/minimal-emacs-configuration
+(require 'show-keys)
+
+
 ;;; bm.el	Within-file bookmarking
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; See ~/.emacs.d/elpa/bm-readme.txt
@@ -1151,21 +1157,21 @@ In case the execution fails, return an error."
 ;;
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
-;; excecutable file
-(setq inferior-julia-program-name "/Applications/Julia.app/Contents/Resources/julia/bin/julia-release-basic")
+;; excecutable file Changed as of 2013-12-20
+;; (setq inferior-julia-program-name "/Applications/Julia.app/Contents/Resources/julia/bin/julia-release-basic")
 ;; ;; Starting R
-;; (defun my-ess-start-R ()
+;; (defun my-ess-start-julia ()
 ;;   (interactive)
-;;   (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
+;;   (if (not (member "*julia*" (mapcar (function buffer-name) (buffer-list))))
 ;;       (progn
 ;;         (delete-other-windows)
 ;;         (setq w1 (selected-window))
 ;;         (setq w1name (buffer-name))
 ;;         (setq w2 (split-window w1 nil t))
-;;         (R)
-;;         (set-window-buffer w1 "*R*")	; R on the left (w1)
+;;         (julia)
+;;         (set-window-buffer w1 "*julia*")	; julia on the left (w1)
 ;;         (set-window-buffer w2 w1name)	; script on the right (w2)
-;; 	;; (set-window-buffer w2 "*R*")
+;; 	;; (set-window-buffer w2 "*julia*")
 ;; 	;; (set-window-buffer w1 w1name)
 ;; 	;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Selecting-Windows.html
 ;; 	(select-window w2)		; Select script (w2) Added
@@ -2291,8 +2297,8 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
-	     ;; (local-set-key (kbd "<S-return>") 'my-python-send-region)
-	     ;; (local-set-key (kbd "<C-return>") 'my-python-send-region)
+	     (local-set-key (kbd "<S-return>") 'my-python-send-region)
+	     (local-set-key (kbd "<C-return>") 'my-python-send-region)
 	     ;; (local-set-key (kbd "<C-c C-n") 'my-python-next-statement)
 	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
