@@ -2164,7 +2164,7 @@ In case the execution fails, return an error."
 ;;     sudo cp python.info /usr/share/info
 ;;     sudo install-info --info-dir=/usr/share/info python.info
 ;; Then add the following to your ~/.emacs.d/init.el:
-(add-to-list 'load-path "/usr/share/info/python.info")
+(add-to-list 'load-path "/usr/share/info/")
 (require 'pydoc-info)
 ;;
 ;; elpy.el
