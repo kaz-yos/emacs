@@ -2139,7 +2139,6 @@ In case the execution fails, return an error."
 ;;
 ;;
 ;; python.el
-;;
 (require 'python)
 ;;
 ;; ipython setting
@@ -2156,6 +2155,14 @@ In case the execution fails, return an error."
  python-shell-completion-string-code
  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 ;;
+;; Browse the Python Documentation using Info
+;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs#toc10
+(require 'info-look)
+(info-lookup-add-help
+ :mode 'python-mode
+ :regexp "[[:alnum:]_]+"
+ :doc-spec
+ '(("(python)Index" nil "")))
 ;;
 ;; elpy.el
 ;; https://github.com/jorgenschaefer/elpy/wiki
