@@ -2157,12 +2157,15 @@ In case the execution fails, return an error."
 ;;
 ;; Browse the Python Documentation using Info
 ;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs#toc10
-(require 'info-look)
-(info-lookup-add-help
- :mode 'python-mode
- :regexp "[[:alnum:]_]+"
- :doc-spec
- '(("(python)Index" nil "")))
+;; Before using this package, you may need to download and install the
+;; latest Python Info files:
+;;     wget https://bitbucket.org/jonwaltman/pydoc-info/downloads/python.info.gz
+;;     gunzip python.info
+;;     sudo cp python.info /usr/share/info
+;;     sudo install-info --info-dir=/usr/share/info python.info
+;; Then add the following to your ~/.emacs.d/init.el:
+(add-to-list 'load-path "/usr/share/info/python.info")
+(require 'pydoc-info)
 ;;
 ;; elpy.el
 ;; https://github.com/jorgenschaefer/elpy/wiki
