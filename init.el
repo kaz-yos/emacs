@@ -2155,7 +2155,7 @@ In case the execution fails, return an error."
  python-shell-completion-string-code
  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 ;;
-;; Browse the Python Documentation using Info
+;; Browse the Python Documentation using Info	; 2013-12-20 Did not work
 ;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs#toc10
 ;; Before using this package, you may need to download and install the
 ;; latest Python Info files:
@@ -2164,8 +2164,8 @@ In case the execution fails, return an error."
 ;;     sudo cp python.info /usr/share/info
 ;;     sudo install-info --info-dir=/usr/share/info python.info
 ;; Then add the following to your ~/.emacs.d/init.el:
-(add-to-list 'load-path "/usr/share/info/")
-(require 'pydoc-info)
+;; (add-to-list 'load-path "/usr/share/info/")
+;; (require 'pydoc-info)
 ;;
 ;; elpy.el
 ;; https://github.com/jorgenschaefer/elpy/wiki
