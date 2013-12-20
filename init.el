@@ -2147,7 +2147,7 @@ In case the execution fails, return an error."
 ;; python.el
 (require 'python)
 ;;
-;; ipython setting
+;; ipython setting for python.el
 (setq
  ;; python-shell-interpreter "ipython"
  python-shell-interpreter "/usr/local/bin/ipython"
@@ -2195,29 +2195,6 @@ In case the execution fails, return an error."
 (setq jedi:complete-on-dot t)                 ; optional
 ;;
 ;;
-;; ein.el	; Emacs IPython Notebook (EIN)
-;; http://tkf.github.com/emacs-ipython-notebook/
-;; Usage
-;; Start IPython notebook server with $ ipython notebook --pylab inline
-;; Hit M-x ein:notebooklist-open to open notebook list.
-(require 'ein)
-;; Auto complete for ein
-(setq ein:use-auto-complete t)
-;; Or, to enable "superpack" (a little bit hacky improvements):
-;; (setq ein:use-auto-complete-superpack t)
-(add-hook 'ein:notebook-multilang-mode-hook	; For EIN
-          '(lambda()
-             (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell)
-             (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
-	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
-	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
-	     (local-set-key (kbd "C-c k")      'ein:worksheet-kill-cell)
-	     (local-set-key (kbd "C-c w")      'ein:worksheet-copy-cell)
-	     (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
-	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
-	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
-	     ))
-;;
 ;; flycheck.el
 ;;
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -2236,10 +2213,7 @@ In case the execution fails, return an error."
 	(call-interactively 'run-python)
         (set-window-buffer w1 "*Python*")	; Python on the left (w1)
         (set-window-buffer w2 w1name)		; script on the right (w2)
-	;; (set-window-buffer w2 "*R*")
-	;; (set-window-buffer w1 w1name)
-	;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Selecting-Windows.html
-	(select-window w2)		; Select script (w2) Added
+	(select-window w2)			; Select script (w2) Added
 	)))
 ;;
 ;; http://emacs.1067599.n5.nabble.com/Evaluate-current-line-in-Python-mode-td97763.html
@@ -2309,7 +2283,30 @@ In case the execution fails, return an error."
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
 	     ))
-
+;;
+;;
+;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
+;; http://tkf.github.com/emacs-ipython-notebook/
+;; Usage
+;; Start IPython notebook server with $ ipython notebook --pylab inline
+;; Hit M-x ein:notebooklist-open to open notebook list.
+(require 'ein)
+;; Auto complete for ein
+(setq ein:use-auto-complete t)
+;; Or, to enable "superpack" (a little bit hacky improvements):
+;; (setq ein:use-auto-complete-superpack t)
+(add-hook 'ein:notebook-multilang-mode-hook	; For EIN
+          '(lambda()
+             (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell)
+             (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
+	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
+	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
+	     (local-set-key (kbd "C-c k")      'ein:worksheet-kill-cell)
+	     (local-set-key (kbd "C-c w")      'ein:worksheet-copy-cell)
+	     (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
+	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
+	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
+	     ))
 
 ;; Auto-completion addtional setting
 ;; Looks like this has to come after ESS configuration
