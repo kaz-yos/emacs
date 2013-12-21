@@ -2134,7 +2134,7 @@ In case the execution fails, return an error."
 ;;
 ;;
 ;; python.el
-(require 'python)
+;; (require 'python)
 ;;
 ;; ipython setting for python.el
 (setq
@@ -2151,10 +2151,10 @@ In case the execution fails, return an error."
  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 ;;
 ;; 
-;; ;; python-mode.el	; This causes strange frame split.
-;; (require 'python-mode)
-;; ;; Use ipython as the shell
-;; (setq py-shell-name "/usr/local/bin/ipython")
+;; python-mode.el	; This causes strange frame split.
+(require 'python-mode)
+;; Use ipython as the shell
+(setq py-shell-name "/usr/local/bin/ipython")
 ;;
 ;;
 ;; Browse the Python Documentation using Info	; 2013-12-20 Did not work
@@ -2282,6 +2282,14 @@ In case the execution fails, return an error."
       (python-shell-send-region (point-at-bol) (point-at-eol))
       (python-shell-send-region beg end)))
 ;;
+;; Sending without selecting
+;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
+(defun python-shell-send-region-or-line ()
+  "Call `python-shell-send-region' with selected region or current line (if none selected)."
+  (interactive)
+  (if (and transient-mark-mode mark-active)
+      (python-shell-send-region (point) (mark))
+    (python-shell-send-region (point-at-bol) (point-at-eol))))
 ;;
 ;;
 (add-hook 'python-mode-hook		; For Python script
