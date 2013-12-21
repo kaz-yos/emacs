@@ -134,15 +134,9 @@
   (interactive)
   (when (one-window-p) (split-window-horizontally)) ; When there's only one window, split horizontally.
   (other-window 1))
-;; (global-set-key [C-tab] 'other-window-or-split)
-;; (global-set-key (kbd "C-TAB") 'other-window-or-split)
-;; (global-set-key (kbd "C-<tab>") 'other-window-or-split)
 (global-set-key (kbd "<C-tab>") 'other-window-or-split)
 ;; Reversal
 ;; http://stackoverflow.com/questions/143072/in-emacs-what-is-the-opposite-function-of-other-window-c-x-o
-;; (global-set-key [C-S-tab] 'previous-multiframe-window)	;; Added by K
-;; (global-set-key (kbd "C-S-TAB") 'previous-multiframe-window)	;; Added by K
-;; (global-set-key (kbd "C-S-<tab>") 'previous-multiframe-window)	;; Added by K
 (global-set-key (kbd "<C-S-tab>") 'previous-multiframe-window)	;; Added by K
 ;;
 ;; Control and up/down arrow keys to search history with matching what you've already typed:
