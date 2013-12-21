@@ -752,7 +752,8 @@ In case the execution fails, return an error."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(font-latex-subscript-face ((t nil)))
+ '(font-latex-superscript-face ((t nil))))
 
 
 ;; minor-mode-hack.el
@@ -1286,10 +1287,7 @@ In case the execution fails, return an error."
 ;; super-/sub-script on baseline
 (setq font-latex-script-display (quote (nil)))
 ;; Do not change super-/sub-script font
-(custom-set-faces
- '(font-latex-subscript-face ((t nil)))
- '(font-latex-superscript-face ((t nil)))
- )
+
 ;; Exclude bold/italic from keywords
 (setq font-latex-deactivated-keyword-classes
     '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))
@@ -2151,10 +2149,21 @@ In case the execution fails, return an error."
 ;;  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 ;;
 ;; 
+
 ;; python-mode.el	; This causes strange frame split.
 (require 'python-mode)
+
 ;; Use ipython as the shell
-(setq py-shell-name "/usr/local/bin/ipython")
+(setq py-shell-name "/usr/local/bin/ipython")	; only locally active?
+(setq py-force-py-shell-name-p t)		; enforce py-shell-name settings
+(setq py-start-run-ipython-shell t)		; Start ipython shell whell python-mode.el is activated
+
+;; Don't split window on excecution
+(setq py-split-windows-on-execute-p nil)
+;; Don't switch to the output buffer
+(setq py-switch-buffers-on-execute-p nil)
+(setq py-keep-windows-configuration nil)
+
 ;;
 ;;
 
