@@ -2133,22 +2133,22 @@ In case the execution fails, return an error."
 ;; http://www.janteichmann.me/projects/emacs_as_python_editor
 ;;
 ;;
-;; python.el
+;; ;; python.el
 ;; (require 'python)
-;;
-;; ipython setting for python.el
-(setq
- ;; python-shell-interpreter "ipython"
- python-shell-interpreter "/usr/local/bin/ipython"
- python-shell-interpreter-args ""
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
- "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
- "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
- "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+;; ;;
+;; ;; ipython setting for python.el
+;; (setq
+;;  ;; python-shell-interpreter "ipython"
+;;  python-shell-interpreter "/usr/local/bin/ipython"
+;;  python-shell-interpreter-args ""
+;;  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+;;  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+;;  python-shell-completion-setup-code
+;;  "from IPython.core.completerlib import module_completion"
+;;  python-shell-completion-module-string-code
+;;  "';'.join(module_completion('''%s'''))\n"
+;;  python-shell-completion-string-code
+;;  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 ;;
 ;; 
 ;; python-mode.el	; This causes strange frame split.
@@ -2157,183 +2157,186 @@ In case the execution fails, return an error."
 (setq py-shell-name "/usr/local/bin/ipython")
 ;;
 ;;
-;; Browse the Python Documentation using Info	; 2013-12-20 Did not work
-;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs#toc10
-;; Before using this package, you may need to download and install the
-;; latest Python Info files:
-;;     wget https://bitbucket.org/jonwaltman/pydoc-info/downloads/python.info.gz
-;;     gunzip python.info
-;;     sudo cp python.info /usr/share/info
-;;     sudo install-info --info-dir=/usr/share/info python.info
-;; Then add the following to your ~/.emacs.d/init.el:
-;; (add-to-list 'load-path "/usr/share/info/")
-;; (require 'pydoc-info)
-;;
-;; elpy.el
-;; https://github.com/jorgenschaefer/elpy/wiki
-;; (package-initialize)	; To use
-;; (elpy-enable)
-;; (elpy-use-ipython)	; To use ipython
-;; (elpy-clean-modeline)	; Simplify modeline
+
+;; 2013-12-21 temporalily disabled all below to check the functionality of python-mode.el
+;; ;; Browse the Python Documentation using Info	; 2013-12-20 Did not work
+;; ;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs#toc10
+;; ;; Before using this package, you may need to download and install the
+;; ;; latest Python Info files:
+;; ;;     wget https://bitbucket.org/jonwaltman/pydoc-info/downloads/python.info.gz
+;; ;;     gunzip python.info
+;; ;;     sudo cp python.info /usr/share/info
+;; ;;     sudo install-info --info-dir=/usr/share/info python.info
+;; ;; Then add the following to your ~/.emacs.d/init.el:
+;; ;; (add-to-list 'load-path "/usr/share/info/")
+;; ;; (require 'pydoc-info)
 ;; ;;
-;; ;; Fix yas-snippet-dirs (elpy breaks configuration)
-;; (setq yas-snippet-dirs
-;;       '("~/.emacs.d/snippets"
-;; 	"/Users/kazuki/.emacs.d/elpa/yasnippet-20130722.1832/snippets"
-;; 	))
-;;
-;;
-;; jedi.el	; Python auto-completion for Emacs
-;; http://tkf.github.io/emacs-jedi/
-;; (add-hook 'python-mode-hook 'jedi:ac-setup)	; auto-completion only
-(add-hook 'python-mode-hook 'jedi:ac-setup)
-(add-hook 'inferior-python-mode-hook 'jedi:ac-setup)
-(setq jedi:setup-keys nil)                      ; optional Obsolete as of version 0.1.3
-(setq jedi:complete-on-dot t)                 ; optional
-;; ``<C-tab>`` : = `jedi:key-complete'
-;;     Complete code at point. (`jedi:complete')
-;; ``C-.`` : = `jedi:key-goto-definition'
-;;     Goto the definition of the object at point. (`jedi:goto-definition')
-;; ``C-c d`` : = `jedi:key-show-doc'
-;;     Goto the definition of the object at point. (`jedi:show-doc')
-;; ``C-c r`` : = `jedi:key-related-names'
-;;     Find related names of the object at point.
-;;
-;;
-;; flycheck.el
-;;
-(add-hook 'after-init-hook #'global-flycheck-mode)
-;;
-;;
-;; My dirty hack to emulate ESS/R behavior
-(defun my-python-start ()
-  (interactive)
-  (if (not (member "*Python*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-        (delete-other-windows)
-        (setq w1 (selected-window))
-        (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))	; Split into two windows
-	(call-interactively 'run-python)	; Activate Python if not running
-        (set-window-buffer w1 "*Python*")	; Python on the left (w1)
-        (set-window-buffer w2 w1name)		; Script on the right (w2)
-	(select-window w2)			; Select script (w2) Added
-	)))
-;;
-;; ;; http://emacs.1067599.n5.nabble.com/Evaluate-current-line-in-Python-mode-td97763.html
-;; (defun my-python-next-statement () 
-;;   (interactive) 
-;;   (if (string= mode-name "Python") 
-;;       (progn 
-;; 	(python-next-statement)		; This is not present in python.el. Only in python-mode.el
-;; 	(beginning-of-line) 
-;; 	(setq lineStart (point)) 
-;; 	(end-of-line) 
-;; 	(setq lineEnd (point)) 
-;; 	(python-send-region lineStart lineEnd) ) 
-;;     (message "function only applies to Python mode") 
-;;     (beep) ) ) 
-;;
-;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
-(defun select-current-line ()
-  "Select the current line"
-  (interactive)
-  (end-of-line) ; move to end of line
-  (set-mark (line-beginning-position)))
-;; 
-(defun my-python-shell-send-line ()
-  "Select the current line and send to Python"
-  (interactive)
-  (end-of-line)						; Move to end of line
-  (set-mark (line-beginning-position))			; Mark to beginning
-  (call-interactively 'python-shell-send-region)	; Send region
-  (next-line)						; Move to the next line
-  (beginning-of-line)					; Move to the beginning of line
-  )
-;;
-(defun my-python-eval ()
-  (interactive)
-  (my-python-start)
-  (if (and transient-mark-mode mark-active)
-      (call-interactively 'python-shell-send-region)	; if selected, send region
-    (call-interactively 'my-python-shell-send-line)	; if not selected, send current line
-    ))
-;;
-;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
-;; (defun my-python-send-region (&optional beg end)
+;; ;; elpy.el
+;; ;; https://github.com/jorgenschaefer/elpy/wiki
+;; ;; (package-initialize)	; To use
+;; ;; (elpy-enable)
+;; ;; (elpy-use-ipython)	; To use ipython
+;; ;; (elpy-clean-modeline)	; Simplify modeline
+;; ;; ;;
+;; ;; ;; Fix yas-snippet-dirs (elpy breaks configuration)
+;; ;; (setq yas-snippet-dirs
+;; ;;       '("~/.emacs.d/snippets"
+;; ;; 	"/Users/kazuki/.emacs.d/elpa/yasnippet-20130722.1832/snippets"
+;; ;; 	))
+;; ;;
+;; ;;
+;; ;; jedi.el	; Python auto-completion for Emacs
+;; ;; http://tkf.github.io/emacs-jedi/
+;; ;; (add-hook 'python-mode-hook 'jedi:ac-setup)	; auto-completion only
+;; (add-hook 'python-mode-hook 'jedi:ac-setup)
+;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)
+;; (setq jedi:setup-keys nil)                      ; optional Obsolete as of version 0.1.3
+;; (setq jedi:complete-on-dot t)                 ; optional
+;; ;; ``<C-tab>`` : = `jedi:key-complete'
+;; ;;     Complete code at point. (`jedi:complete')
+;; ;; ``C-.`` : = `jedi:key-goto-definition'
+;; ;;     Goto the definition of the object at point. (`jedi:goto-definition')
+;; ;; ``C-c d`` : = `jedi:key-show-doc'
+;; ;;     Goto the definition of the object at point. (`jedi:show-doc')
+;; ;; ``C-c r`` : = `jedi:key-related-names'
+;; ;;     Find related names of the object at point.
+;; ;;
+;; ;;
+;; ;; flycheck.el
+;; ;;
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+;; ;;
+;; ;;
+;; ;; My dirty hack to emulate ESS/R behavior
+;; (defun my-python-start ()
+;;   (interactive)
+;;   (if (not (member "*Python*" (mapcar (function buffer-name) (buffer-list))))
+;;       (progn
+;;         (delete-other-windows)
+;;         (setq w1 (selected-window))
+;;         (setq w1name (buffer-name))
+;;         (setq w2 (split-window w1 nil t))	; Split into two windows
+;; 	(call-interactively 'run-python)	; Activate Python if not running
+;;         (set-window-buffer w1 "*Python*")	; Python on the left (w1)
+;;         (set-window-buffer w2 w1name)		; Script on the right (w2)
+;; 	(select-window w2)			; Select script (w2) Added
+;; 	)))
+;; ;;
+;; ;; ;; http://emacs.1067599.n5.nabble.com/Evaluate-current-line-in-Python-mode-td97763.html
+;; ;; (defun my-python-next-statement () 
+;; ;;   (interactive) 
+;; ;;   (if (string= mode-name "Python") 
+;; ;;       (progn 
+;; ;; 	(python-next-statement)		; This is not present in python.el. Only in python-mode.el
+;; ;; 	(beginning-of-line) 
+;; ;; 	(setq lineStart (point)) 
+;; ;; 	(end-of-line) 
+;; ;; 	(setq lineEnd (point)) 
+;; ;; 	(python-send-region lineStart lineEnd) ) 
+;; ;;     (message "function only applies to Python mode") 
+;; ;;     (beep) ) ) 
+;; ;;
+;; ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
+;; (defun select-current-line ()
+;;   "Select the current line"
+;;   (interactive)
+;;   (end-of-line) ; move to end of line
+;;   (set-mark (line-beginning-position)))
+;; ;; 
+;; (defun my-python-shell-send-line ()
+;;   "Select the current line and send to Python"
+;;   (interactive)
+;;   (end-of-line)						; Move to end of line
+;;   (set-mark (line-beginning-position))			; Mark to beginning
+;;   (call-interactively 'python-shell-send-region)	; Send region
+;;   (next-line)						; Move to the next line
+;;   (beginning-of-line)					; Move to the beginning of line
+;;   )
+;; ;;
+;; (defun my-python-eval ()
 ;;   (interactive)
 ;;   (my-python-start)
-;;   (let ((beg (cond (beg beg)
-;;                    ((region-active-p)
-;;                     (region-beginning))
-;;                    (t (line-beginning-position))))
-;;         (end (cond (end end)
-;;                    ((region-active-p)
-;;                     (copy-marker (region-end)))
-;;                    (t (line-end-position)))))
-;;     (python-shell-send-region beg (+ end 1))
-;;     (next-line)
+;;   (if (and transient-mark-mode mark-active)
+;;       (call-interactively 'python-shell-send-region)	; if selected, send region
+;;     (call-interactively 'my-python-shell-send-line)	; if not selected, send current line
 ;;     ))
-;; 
-;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00430.html
-(defun my-python-send-region (beg end)
-  (interactive "r")
-  (if (eq beg end)
-      (python-shell-send-region (point-at-bol) (point-at-eol))
-      (python-shell-send-region beg end)))
-;;
-;; Sending without selecting
-;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
-(defun python-shell-send-region-or-line ()
-  "Call `python-shell-send-region' with selected region or current line (if none selected)."
-  (interactive)
-  (if (and transient-mark-mode mark-active)
-      (python-shell-send-region (point) (mark))
-    (python-shell-send-region (point-at-bol) (point-at-eol))))
-;;
-;;
-(add-hook 'python-mode-hook		; For Python script
-          '(lambda()
-	     ;; (local-set-key (kbd "<S-return>") 'my-python-send-region)
-	     ;; (local-set-key (kbd "<C-return>") 'my-python-send-region)
-	     ;; (local-set-key (kbd "<C-c C-n") 'my-python-next-statement)
-	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
-	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
-	     (local-set-key (kbd "<C-return>") 'python-shell-send-region)
-	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
-	     (setq jedi:key-complete (kbd "<C-M-tab>"))
-	     ))
-;;
-(add-hook 'inferior-python-mode-hook	; For Python process
-          '(lambda()
-             ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
-             ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
-	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
-	     ))
-;;
-;;
-;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
-;; http://tkf.github.com/emacs-ipython-notebook/
-;; Usage
-;; Start IPython notebook server with $ ipython notebook --pylab inline
-;; Hit M-x ein:notebooklist-open to open notebook list.
-(require 'ein)
-;; Auto complete for ein
-(setq ein:use-auto-complete t)
-;; Or, to enable "superpack" (a little bit hacky improvements):
-;; (setq ein:use-auto-complete-superpack t)
-(add-hook 'ein:notebook-multilang-mode-hook	; For EIN
-          '(lambda()
-             (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell)
-             (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
-	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
-	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
-	     (local-set-key (kbd "C-c k")      'ein:worksheet-kill-cell)
-	     (local-set-key (kbd "C-c w")      'ein:worksheet-copy-cell)
-	     (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
-	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
-	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
-	     ))
+;; ;;
+;; ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
+;; ;; (defun my-python-send-region (&optional beg end)
+;; ;;   (interactive)
+;; ;;   (my-python-start)
+;; ;;   (let ((beg (cond (beg beg)
+;; ;;                    ((region-active-p)
+;; ;;                     (region-beginning))
+;; ;;                    (t (line-beginning-position))))
+;; ;;         (end (cond (end end)
+;; ;;                    ((region-active-p)
+;; ;;                     (copy-marker (region-end)))
+;; ;;                    (t (line-end-position)))))
+;; ;;     (python-shell-send-region beg (+ end 1))
+;; ;;     (next-line)
+;; ;;     ))
+;; ;; 
+;; ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00430.html
+;; (defun my-python-send-region (beg end)
+;;   (interactive "r")
+;;   (if (eq beg end)
+;;       (python-shell-send-region (point-at-bol) (point-at-eol))
+;;       (python-shell-send-region beg end)))
+;; ;;
+;; ;; Sending without selecting
+;; ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
+;; (defun python-shell-send-region-or-line ()
+;;   "Call `python-shell-send-region' with selected region or current line (if none selected)."
+;;   (interactive)
+;;   (if (and transient-mark-mode mark-active)
+;;       (python-shell-send-region (point) (mark))
+;;     (python-shell-send-region (point-at-bol) (point-at-eol))))
+;; ;;
+;; ;;
+;; (add-hook 'python-mode-hook		; For Python script
+;;           '(lambda()
+;; 	     ;; (local-set-key (kbd "<S-return>") 'my-python-send-region)
+;; 	     ;; (local-set-key (kbd "<C-return>") 'my-python-send-region)
+;; 	     ;; (local-set-key (kbd "<C-c C-n") 'my-python-next-statement)
+;; 	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
+;; 	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
+;; 	     (local-set-key (kbd "<C-return>") 'python-shell-send-region)
+;; 	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+;; 	     (setq jedi:key-complete (kbd "<C-M-tab>"))
+;; 	     ))
+;; ;;
+;; (add-hook 'inferior-python-mode-hook	; For Python process
+;;           '(lambda()
+;;              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
+;;              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
+;; 	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+;; 	     ))
+;; ;;
+;; ;;
+;; ;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
+;; ;; http://tkf.github.com/emacs-ipython-notebook/
+;; ;; Usage
+;; ;; Start IPython notebook server with $ ipython notebook --pylab inline
+;; ;; Hit M-x ein:notebooklist-open to open notebook list.
+;; (require 'ein)
+;; ;; Auto complete for ein
+;; (setq ein:use-auto-complete t)
+;; ;; Or, to enable "superpack" (a little bit hacky improvements):
+;; ;; (setq ein:use-auto-complete-superpack t)
+;; (add-hook 'ein:notebook-multilang-mode-hook	; For EIN
+;;           '(lambda()
+;;              (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell)
+;;              (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
+;; 	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
+;; 	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
+;; 	     (local-set-key (kbd "C-c k")      'ein:worksheet-kill-cell)
+;; 	     (local-set-key (kbd "C-c w")      'ein:worksheet-copy-cell)
+;; 	     (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
+;; 	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
+;; 	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
+;; 	     ))
+
 
 ;; Auto-completion addtional setting
 ;; Looks like this has to come after ESS configuration
