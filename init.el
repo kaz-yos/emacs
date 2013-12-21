@@ -2020,13 +2020,15 @@ In case the execution fails, return an error."
 (add-hook 'ess-mode-hook	  'my-ess-smartchr-setting)
 (add-hook 'inferior-ess-mode-hook 'my-ess-smartchr-setting)
 ;
-(defun my-ein-smartchr-setting ()
+(defun my-python-smartchr-setting ()
   (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
   (local-set-key (kbd "+") (smartchr '(" + " "+")))
   (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
   (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))) ; test
   ) 
-(add-hook 'ein:notebook-multilang-mode-hook 'my-ein-smartchr-setting)
+(add-hook 'ein:notebook-multilang-mode-hook	'my-python-smartchr-setting)
+(add-hook 'python-mode-hook			'my-python-smartchr-setting)
+(add-hook 'inferior-python-mode-hook		'my-python-smartchr-setting)
 ;;
 (defun my-LaTeX-smartchr-setting ()
   (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
@@ -2295,12 +2297,14 @@ In case the execution fails, return an error."
 	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
 	     (local-set-key (kbd "<C-return>") 'python-shell-send-region)
+	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
           '(lambda()
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
+	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
 	     ))
 ;;
 ;;
