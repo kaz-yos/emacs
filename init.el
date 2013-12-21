@@ -2201,8 +2201,16 @@ In case the execution fails, return an error."
 ;; (add-hook 'python-mode-hook 'jedi:ac-setup)	; auto-completion only
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)
-;; (setq jedi:setup-keys t)                      ; optional Obsolete as of version 0.1.3
+(setq jedi:setup-keys nil)                      ; optional Obsolete as of version 0.1.3
 (setq jedi:complete-on-dot t)                 ; optional
+;; ``<C-tab>`` : = `jedi:key-complete'
+;;     Complete code at point. (`jedi:complete')
+;; ``C-.`` : = `jedi:key-goto-definition'
+;;     Goto the definition of the object at point. (`jedi:goto-definition')
+;; ``C-c d`` : = `jedi:key-show-doc'
+;;     Goto the definition of the object at point. (`jedi:show-doc')
+;; ``C-c r`` : = `jedi:key-related-names'
+;;     Find related names of the object at point.
 ;;
 ;;
 ;; flycheck.el
@@ -2298,6 +2306,7 @@ In case the execution fails, return an error."
 	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
 	     (local-set-key (kbd "<C-return>") 'python-shell-send-region)
 	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+	     (setq jedi:key-complete (kbd "<C-M-tab>"))
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
