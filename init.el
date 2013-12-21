@@ -2161,6 +2161,13 @@ In case the execution fails, return an error."
  python-shell-completion-string-code
  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 ;;
+;; 
+;; ;; python-mode.el	; This causes strange frame split.
+;; (require 'python-mode)
+;; ;; Use ipython as the shell
+;; (setq py-shell-name "/usr/local/bin/ipython")
+;;
+;;
 ;; Browse the Python Documentation using Info	; 2013-12-20 Did not work
 ;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs#toc10
 ;; Before using this package, you may need to download and install the
@@ -2191,7 +2198,8 @@ In case the execution fails, return an error."
 ;; http://tkf.github.io/emacs-jedi/
 ;; (add-hook 'python-mode-hook 'jedi:ac-setup)	; auto-completion only
 (add-hook 'python-mode-hook 'jedi:ac-setup)
-(setq jedi:setup-keys t)                      ; optional
+(add-hook 'inferior-python-mode-hook 'jedi:ac-setup)
+;; (setq jedi:setup-keys t)                      ; optional Obsolete as of version 0.1.3
 (setq jedi:complete-on-dot t)                 ; optional
 ;;
 ;;
@@ -2208,21 +2216,19 @@ In case the execution fails, return an error."
         (delete-other-windows)
         (setq w1 (selected-window))
         (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))
-        ;; (run-python)				; Does not work non-interactively
-	(call-interactively 'run-python)
+        (setq w2 (split-window w1 nil t))	; Split into two windows
+	(call-interactively 'run-python)	; Activate Python if not running
         (set-window-buffer w1 "*Python*")	; Python on the left (w1)
-        (set-window-buffer w2 w1name)		; script on the right (w2)
+        (set-window-buffer w2 w1name)		; Script on the right (w2)
 	(select-window w2)			; Select script (w2) Added
 	)))
 ;;
-;; http://emacs.1067599.n5.nabble.com/Evaluate-current-line-in-Python-mode-td97763.html
+;; ;; http://emacs.1067599.n5.nabble.com/Evaluate-current-line-in-Python-mode-td97763.html
 ;; (defun my-python-next-statement () 
 ;;   (interactive) 
-;;   (local-set-key (kbd "<f7>") 'my-python-next-statement) 
 ;;   (if (string= mode-name "Python") 
 ;;       (progn 
-;; 	(python-next-statement)		; This is not present in python.el
+;; 	(python-next-statement)		; This is not present in python.el. Only in python-mode.el
 ;; 	(beginning-of-line) 
 ;; 	(setq lineStart (point)) 
 ;; 	(end-of-line) 
@@ -2232,13 +2238,20 @@ In case the execution fails, return an error."
 ;;     (beep) ) ) 
 ;;
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
-(defun python-shell-send-line ()
+(defun select-current-line ()
+  "Select the current line"
+  (interactive)
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position)))
+;; 
+(defun my-python-shell-send-line ()
   "Select the current line and send to Python"
   (interactive)
   (end-of-line)						; Move to end of line
   (set-mark (line-beginning-position))			; Mark to beginning
   (call-interactively 'python-shell-send-region)	; Send region
-  (next-line)
+  (next-line)						; Move to the next line
+  (beginning-of-line)					; Move to the beginning of line
   )
 ;;
 (defun my-python-eval ()
@@ -2246,36 +2259,42 @@ In case the execution fails, return an error."
   (my-python-start)
   (if (and transient-mark-mode mark-active)
       (call-interactively 'python-shell-send-region)	; if selected, send region
-    (call-interactively 'python-shell-send-line)	; if not selected, send current line
+    (call-interactively 'my-python-shell-send-line)	; if not selected, send current line
     ))
 ;;
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
-(defun my-python-send-region (&optional beg end)
-  (interactive)
-  (my-python-start)
-  (let ((beg (cond (beg beg)
-                   ((region-active-p)
-                    (region-beginning))
-                   (t (line-beginning-position))))
-        (end (cond (end end)
-                   ((region-active-p)
-                    (copy-marker (region-end)))
-                   (t (line-end-position)))))
-    (python-shell-send-region beg (+ end 1))
-    (next-line)
-    ))
+;; (defun my-python-send-region (&optional beg end)
+;;   (interactive)
+;;   (my-python-start)
+;;   (let ((beg (cond (beg beg)
+;;                    ((region-active-p)
+;;                     (region-beginning))
+;;                    (t (line-beginning-position))))
+;;         (end (cond (end end)
+;;                    ((region-active-p)
+;;                     (copy-marker (region-end)))
+;;                    (t (line-end-position)))))
+;;     (python-shell-send-region beg (+ end 1))
+;;     (next-line)
+;;     ))
+;; 
+;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00430.html
+(defun my-python-send-region (beg end)
+  (interactive "r")
+  (if (eq beg end)
+      (python-shell-send-region (point-at-bol) (point-at-eol))
+      (python-shell-send-region beg end)))
 ;;
 ;;
-;; (add-hook 'ess-mode-hook	  'my-ess-smartchr-setting)
-;; (add-hook 'inferior-ess-mode-hook 'my-ess-smartchr-setting)	; 20130426 off did not solve ( issue
 ;;
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
-	     (local-set-key (kbd "<S-return>") 'my-python-send-region)
-	     (local-set-key (kbd "<C-return>") 'my-python-send-region)
+	     ;; (local-set-key (kbd "<S-return>") 'my-python-send-region)
+	     ;; (local-set-key (kbd "<C-return>") 'my-python-send-region)
 	     ;; (local-set-key (kbd "<C-c C-n") 'my-python-next-statement)
 	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
+	     (local-set-key (kbd "<C-return>") 'python-shell-send-region)
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
