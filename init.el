@@ -23,13 +23,6 @@
 ;; Packages added manually (intentionally not recursive)
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 ;;
-;;  For ess installed with DESTDIR=/usr/local	; obsolete now ess installed via package.el
-;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/ess/")	; 20130428 12.09 reinstalled
-;;
-;; For python-mode (configured further below)
-;; (add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.1.1/") 
-;;
-;;
 ;; System-specific configuration
 ;; http://stackoverflow.com/questions/1817257/how-to-determine-operating-system-in-elisp
 (when (eq system-type 'darwin)
