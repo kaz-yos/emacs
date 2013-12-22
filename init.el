@@ -2131,48 +2131,57 @@ In case the execution fails, return an error."
 ;; http://www.janteichmann.me/projects/emacs_as_python_editor
 ;;
 ;;
-;; ;; python.el
-;; (require 'python)
-;; ;;
-;; ;; ipython setting for python.el
-;; (setq
-;;  ;; python-shell-interpreter "ipython"
-;;  python-shell-interpreter "/usr/local/bin/ipython"
-;;  python-shell-interpreter-args ""
-;;  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-;;  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-;;  python-shell-completion-setup-code
-;;  "from IPython.core.completerlib import module_completion"
-;;  python-shell-completion-module-string-code
-;;  "';'.join(module_completion('''%s'''))\n"
-;;  python-shell-completion-string-code
-;;  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+;; python.el
+;; http://superuser.com/questions/345595/python-el-for-long-time-python-mode-el-user
+(require 'python)
 ;;
-;; 
+;; ipython setting for python.el
+(setq
+ ;; python-shell-interpreter "ipython"
+ python-shell-interpreter "/usr/local/bin/ipython"
+ python-shell-interpreter-args ""
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-Regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code
+ "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code
+ "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code
+ "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+
+
+;; Dirty fix to make ipython visible to emacs. Needed for python-mode.el
+;; $ sudo ln -s /usr/local/bin/ipython /usr/bin/ipython	# To make it visible to emacs. 2013-12-22
+
 
 
 ;; ;; python-mode.el	; This causes strange frame split.
 ;; (require 'python-mode)
-;;
+
+;; ;; ipython.el
 ;; ;; https://github.com/ipython/ipython/issues/853
-;; (setq ipython-command "/usr/local/bin/ipython")
-;; (setq py-python-command "/usr/local/bin/ipython")
-;; (require 'ipython)	; Obsolete?
-;;
+;; ;; (setq ipython-command "/usr/local/bin/ipython")
+;; ;; (setq py-python-command "/usr/local/bin/ipython")
+;; ;; (require 'ipython)	; Obsolete?
+
 ;; ;; http://stackoverflow.com/questions/10241279/how-do-i-run-a-python-interpreter-in-emacs
-;; (setq python-shell-interpreter "ipython")
-;;
+;; ;; (setq python-shell-interpreter "ipython")
+
 ;; ;; Use ipython as the shell
-;; (setq py-shell-name "/usr/local/bin/ipython")	; only locally active?
+;; ;; (setq py-shell-name "/usr/local/bin/ipython")	; only locally active?
 ;; (setq py-shell-name "ipython")	; only locally active?
 ;; (setq py-force-py-shell-name-p t)		; enforce py-shell-name settings
 ;; (setq py-start-run-ipython-shell t)		; Start ipython shell whell python-mode.el is activated
-;;
+
 ;; ;; Don't split window on excecution
 ;; (setq py-split-windows-on-execute-p nil)
 ;; (setq py-keep-windows-configuration nil)
 ;; ;; Don't switch to the output buffer upon execution
 ;; (setq py-switch-buffers-on-execute-p nil)
+
+;; ;; python-mode.el 
+;; ;; py-send-region-ipython starts *Ipython*
+
 
 
 ;;
@@ -2192,24 +2201,29 @@ In case the execution fails, return an error."
 ;; ;; (require 'pydoc-info)
 ;; ;;
 
-;; elpy.el
-;; https://github.com/jorgenschaefer/elpy/wiki
-;; (package-initialize)	
-;; To use elpy
-(elpy-enable)
-;; To use ipython	; 2013-12-22 broken? ipython not found
-;; $ sudo ln -s /usr/local/bin/ipython /usr/bin/ipython	# This was done to make ipython visible. 2013-12-22
-(elpy-use-ipython)
-;; Simplify modeline
-(elpy-clean-modeline)
-;; jedi as completion backend
-(setq elpy-rpc-backend "jedi")
-;;
-;; Fix yas-snippet-dirs (elpy breaks configuration)	; Not necessary as of 2013-12-22
-;; (setq yas-snippet-dirs
-;;       '("~/.emacs.d/snippets"
-;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
-;; 	))
+
+
+;; ;; elpy.el
+;; ;; https://github.com/jorgenschaefer/elpy/wiki
+;; ;; Need to install elpy/rope/jedi/flake8 via $ sudo pip install
+;; ;; $ sudo pip install --upgrade elpy # to upgrade to the latest elpy
+;; ;; $ sudo ln -s /usr/local/bin/flake8 /usr/bin/flake8 # To make it visible to emacs. 2013-12-22
+;; ;; 
+;; ;; (package-initialize)	
+;; ;; To use elpy
+;; (elpy-enable)
+;; ;; To use ipython	; 2013-12-22 broken? ipython not found
+;; (elpy-use-ipython)
+;; ;; Simplify modeline
+;; (elpy-clean-modeline)
+;; ;; jedi as completion backend
+;; (setq elpy-rpc-backend "jedi")
+;; ;;
+;; ;; Fix yas-snippet-dirs (elpy breaks configuration)	; Not necessary as of 2013-12-22
+;; ;; (setq yas-snippet-dirs
+;; ;;       '("~/.emacs.d/snippets"
+;; ;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
+;; ;; 	))
 
 
 ;; ;;
