@@ -2222,7 +2222,7 @@ In case the execution fails, return an error."
     (beginning-of-line)						; Move to beginning of line
     (if (looking-at "def")					; Check if the first word is def (function def)
 	(progn							; If it is def
-	  (python-shell-send-defun)				; Send whole def
+	  (python-shell-send-defun ())				; Send whole def
 	  (python-nav-end-of-defun)				; Move to end of def
 	  )
       ;; If it is not def, do all the following
@@ -2230,7 +2230,6 @@ In case the execution fails, return an error."
       (python-nav-forward-statement)				; Move to next statement
       )
     ))
-
 ;; 
 ;;
 ;; Define hooks 
