@@ -2173,110 +2173,75 @@ In case the execution fails, return an error."
    ;;  (buffer-substring start end))
    nil t))
 
+;; jedi.el	; Python auto-completion for Emacs
+;; http://tkf.github.io/emacs-jedi/
+;; (add-hook 'python-mode-hook 'jedi:ac-setup)	; auto-completion only
+(add-hook 'python-mode-hook	     'jedi:ac-setup)
+(add-hook 'inferior-python-mode-hook 'jedi:ac-setup)
+(setq jedi:setup-keys nil)                      ; optional Obsolete as of version 0.1.3
+(setq jedi:complete-on-dot t)                 ; optional
+;; ``<C-tab>`` : = `jedi:key-complete'
+;;     Complete code at point. (`jedi:complete')
+;; ``C-.`` : = `jedi:key-goto-definition'
+;;     Goto the definition of the object at point. (`jedi:goto-definition')
+;; ``C-c d`` : = `jedi:key-show-doc'
+;;     Goto the definition of the object at point. (`jedi:show-doc')
+;; ``C-c r`` : = `jedi:key-related-names'
+;;     Find related names of the object at point.
+
+;; Code to emulate ESS/R behavior 2013-12-22 version
+(defun my-python-start ()
+  (interactive)
+  (if (not (member "*Python*" (mapcar (function buffer-name) (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))	; Split into two windows
+	(call-interactively 'run-python)	; Activate Python if not running
+        (set-window-buffer w1 "*Python*")	; Python on the left (w1)
+        (set-window-buffer w2 w1name)		; Script on the right (w2)
+	(select-window w2)			; Select script (w2) Added
+	)))
+;; Start python if not started. Send region if selected, send line if not selected
+;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
+(defun my-python-eval ()
+  (interactive)
+  (my-python-start)
+  (if (and transient-mark-mode mark-active)
+      (python-shell-send-region (point) (mark))			; if selected, send region
+    (python-shell-send-region (point-at-bol) (point-at-eol))	; if not selected, send current line
+    ))
+;;
+;; Define hooks 
+(add-hook 'python-mode-hook		; For Python script
+          '(lambda()
+	     (local-set-key (kbd "<S-return>") 'my-python-eval)
+	     (local-set-key (kbd "<C-return>") 'my-python-eval)
+	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+	     ;; (setq jedi:key-complete (kbd "<C-M-tab>"))
+	     ))
+;;
+(add-hook 'inferior-python-mode-hook	; For Python process
+          '(lambda()
+             ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
+             ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
+	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+	     ))
 
 
-;; Dirty fix to make ipython visible to emacs. Needed for python-mode.el
-;; $ sudo ln -s /usr/local/bin/ipython /usr/bin/ipython	# To make it visible to emacs. 2013-12-22
-
-;; ;; python-mode.el	; This causes strange frame split.
-;; (require 'python-mode)
-;; ;; ipython.el
-;; ;; https://github.com/ipython/ipython/issues/853
-;; ;; (setq ipython-command "/usr/local/bin/ipython")
-;; ;; (setq py-python-command "/usr/local/bin/ipython")
-;; ;; (require 'ipython)	; Obsolete?
-;; ;; http://stackoverflow.com/questions/10241279/how-do-i-run-a-python-interpreter-in-emacs
-;; ;; (setq python-shell-interpreter "ipython")
-;; ;; Use ipython as the shell
-;; ;; (setq py-shell-name "/usr/local/bin/ipython")	; only locally active?
-;; (setq py-shell-name "ipython")	; only locally active?
-;; (setq py-force-py-shell-name-p t)		; enforce py-shell-name settings
-;; (setq py-start-run-ipython-shell t)		; Start ipython shell whell python-mode.el is activated
-;; ;; Don't split window on excecution
-;; (setq py-split-windows-on-execute-p nil)
-;; (setq py-keep-windows-configuration nil)
-;; ;; Don't switch to the output buffer upon execution
-;; (setq py-switch-buffers-on-execute-p nil)
-;; ;; python-mode.el 
-;; ;; py-send-region-ipython starts *Ipython*
 
 
-;; 2013-12-21 temporalily disabled all below to check the functionality of python-mode.el
-;; ;; Browse the Python Documentation using Info	; 2013-12-20 Did not work
-;; ;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs#toc10
-;; ;; Before using this package, you may need to download and install the
-;; ;; latest Python Info files:
-;; ;;     wget https://bitbucket.org/jonwaltman/pydoc-info/downloads/python.info.gz
-;; ;;     gunzip python.info
-;; ;;     sudo cp python.info /usr/share/info
-;; ;;     sudo install-info --info-dir=/usr/share/info python.info
-;; ;; Then add the following to your ~/.emacs.d/init.el:
-;; ;; (add-to-list 'load-path "/usr/share/info/")
-;; ;; (require 'pydoc-info)
-;; ;;
-
-;; ;; elpy.el
-;; ;; https://github.com/jorgenschaefer/elpy/wiki
-;; ;; Need to install elpy/rope/jedi/flake8 via $ sudo pip install
-;; ;; $ sudo pip install --upgrade elpy # to upgrade to the latest elpy
-;; ;; $ sudo ln -s /usr/local/bin/flake8 /usr/bin/flake8 # To make it visible to emacs. 2013-12-22
-;; ;; 
-;; ;; (package-initialize)	
-;; ;; To use elpy
-;; (elpy-enable)
-;; ;; To use ipython	; 2013-12-22 broken? ipython not found
-;; (elpy-use-ipython)
-;; ;; Simplify modeline
-;; (elpy-clean-modeline)
-;; ;; jedi as completion backend
-;; (setq elpy-rpc-backend "jedi")
-;; ;;
-;; ;; Fix yas-snippet-dirs (elpy breaks configuration)	; Not necessary as of 2013-12-22
-;; ;; (setq yas-snippet-dirs
-;; ;;       '("~/.emacs.d/snippets"
-;; ;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
-;; ;; 	))
-
-
-;; ;;
-;; ;;
-;; ;; jedi.el	; Python auto-completion for Emacs
-;; ;; http://tkf.github.io/emacs-jedi/
-;; ;; (add-hook 'python-mode-hook 'jedi:ac-setup)	; auto-completion only
-;; (add-hook 'python-mode-hook 'jedi:ac-setup)
-;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)
-;; (setq jedi:setup-keys nil)                      ; optional Obsolete as of version 0.1.3
-;; (setq jedi:complete-on-dot t)                 ; optional
-;; ;; ``<C-tab>`` : = `jedi:key-complete'
-;; ;;     Complete code at point. (`jedi:complete')
-;; ;; ``C-.`` : = `jedi:key-goto-definition'
-;; ;;     Goto the definition of the object at point. (`jedi:goto-definition')
-;; ;; ``C-c d`` : = `jedi:key-show-doc'
-;; ;;     Goto the definition of the object at point. (`jedi:show-doc')
-;; ;; ``C-c r`` : = `jedi:key-related-names'
-;; ;;     Find related names of the object at point.
-;; ;;
-;; ;;
-;; ;; flycheck.el
-;; ;;
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
-;; ;;
-;; ;;
-;; ;; My dirty hack to emulate ESS/R behavior
-;; (defun my-python-start ()
+;; ;; Sending without selecting
+;; ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
+;; (defun python-shell-send-region-or-line ()
+;;   "Call `python-shell-send-region' with selected region or current line (if none selected)."
 ;;   (interactive)
-;;   (if (not (member "*Python*" (mapcar (function buffer-name) (buffer-list))))
-;;       (progn
-;;         (delete-other-windows)
-;;         (setq w1 (selected-window))
-;;         (setq w1name (buffer-name))
-;;         (setq w2 (split-window w1 nil t))	; Split into two windows
-;; 	(call-interactively 'run-python)	; Activate Python if not running
-;;         (set-window-buffer w1 "*Python*")	; Python on the left (w1)
-;;         (set-window-buffer w2 w1name)		; Script on the right (w2)
-;; 	(select-window w2)			; Select script (w2) Added
-;; 	)))
-;; ;;
+;;   (if (and transient-mark-mode mark-active)
+;;       (python-shell-send-region (point) (mark))
+;;     (python-shell-send-region (point-at-bol) (point-at-eol))))
+
+
 ;; ;; ;; http://emacs.1067599.n5.nabble.com/Evaluate-current-line-in-Python-mode-td97763.html
 ;; ;; (defun my-python-next-statement () 
 ;; ;;   (interactive) 
@@ -2349,48 +2314,101 @@ In case the execution fails, return an error."
 ;;     (python-shell-send-region (point-at-bol) (point-at-eol))))
 ;; ;;
 ;; ;;
-;; (add-hook 'python-mode-hook		; For Python script
-;;           '(lambda()
-;; 	     ;; (local-set-key (kbd "<S-return>") 'my-python-send-region)
-;; 	     ;; (local-set-key (kbd "<C-return>") 'my-python-send-region)
-;; 	     ;; (local-set-key (kbd "<C-c C-n") 'my-python-next-statement)
-;; 	     ;; (local-set-key (kbd "<S-return>") 'my-python-eval)
-;; 	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)	; Change to my-python-eval
-;; 	     (local-set-key (kbd "<C-return>") 'python-shell-send-region)
-;; 	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
-;; 	     (setq jedi:key-complete (kbd "<C-M-tab>"))
-;; 	     ))
+
+
+
+;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
+;; This is fundamentally different from python.el and can coexist. 2013-12-22
+;; http://tkf.github.com/emacs-ipython-notebook/
+;; Usage
+;; Start IPython notebook server with $ ipython notebook --pylab inline
+;; Hit M-x ein:notebooklist-open to open notebook list.
+(require 'ein)
+;; Auto complete for ein
+(setq ein:use-auto-complete t)
+;; Or, to enable "superpack" (a little bit hacky improvements):
+;; (setq ein:use-auto-complete-superpack t)
+(add-hook 'ein:notebook-multilang-mode-hook	; For EIN
+          '(lambda()
+             (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell)
+             (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
+	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
+	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
+	     (local-set-key (kbd "C-c k")      'ein:worksheet-kill-cell)
+	     (local-set-key (kbd "C-c w")      'ein:worksheet-copy-cell)
+	     (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
+	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
+	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
+	     ))
+
+
+
+;; ;; elpy.el	; python.el replacement. No need for now. 2013-12-22
+;; ;; https://github.com/jorgenschaefer/elpy/wiki
+;; ;; Need to install elpy/rope/jedi/flake8 via $ sudo pip install
+;; ;; $ sudo pip install --upgrade elpy # to upgrade to the latest elpy
+;; ;; $ sudo ln -s /usr/local/bin/flake8 /usr/bin/flake8 # To make it visible to emacs. 2013-12-22
+;; ;; 
+;; ;; (package-initialize)	
+;; ;; To use elpy
+;; (elpy-enable)
+;; ;; To use ipython	; 2013-12-22 broken? ipython not found
+;; (elpy-use-ipython)
+;; ;; Simplify modeline
+;; (elpy-clean-modeline)
+;; ;; jedi as completion backend
+;; (setq elpy-rpc-backend "jedi")
 ;; ;;
-;; (add-hook 'inferior-python-mode-hook	; For Python process
-;;           '(lambda()
-;;              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
-;;              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
-;; 	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
-;; 	     ))
+;; ;; Fix yas-snippet-dirs (elpy breaks configuration)	; Not necessary as of 2013-12-22
+;; ;; (setq yas-snippet-dirs
+;; ;;       '("~/.emacs.d/snippets"
+;; ;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
+;; ;; 	))
+
+
+;; ;; python-mode.el	; This causes strange frame split.
+;; Dirty fix to make ipython visible to emacs. Needed for python-mode.el
+;; $ sudo ln -s /usr/local/bin/ipython /usr/bin/ipython	# To make it visible to emacs. 2013-12-22
+;; (require 'python-mode)
+;; ;; ipython.el
+;; ;; https://github.com/ipython/ipython/issues/853
+;; ;; (setq ipython-command "/usr/local/bin/ipython")
+;; ;; (setq py-python-command "/usr/local/bin/ipython")
+;; ;; (require 'ipython)	; Obsolete?
+;; ;; http://stackoverflow.com/questions/10241279/how-do-i-run-a-python-interpreter-in-emacs
+;; ;; (setq python-shell-interpreter "ipython")
+;; ;; Use ipython as the shell
+;; ;; (setq py-shell-name "/usr/local/bin/ipython")	; only locally active?
+;; (setq py-shell-name "ipython")	; only locally active?
+;; (setq py-force-py-shell-name-p t)		; enforce py-shell-name settings
+;; (setq py-start-run-ipython-shell t)		; Start ipython shell whell python-mode.el is activated
+;; ;; Don't split window on excecution
+;; (setq py-split-windows-on-execute-p nil)
+;; (setq py-keep-windows-configuration nil)
+;; ;; Don't switch to the output buffer upon execution
+;; (setq py-switch-buffers-on-execute-p nil)
+;; ;; python-mode.el 
+;; ;; py-send-region-ipython starts *Ipython*
+
+;; 2013-12-21 temporalily disabled all below to check the functionality of python-mode.el
+;; ;; Browse the Python Documentation using Info	; 2013-12-20 Did not work
+;; ;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs#toc10
+;; ;; Before using this package, you may need to download and install the
+;; ;; latest Python Info files:
+;; ;;     wget https://bitbucket.org/jonwaltman/pydoc-info/downloads/python.info.gz
+;; ;;     gunzip python.info
+;; ;;     sudo cp python.info /usr/share/info
+;; ;;     sudo install-info --info-dir=/usr/share/info python.info
+;; ;; Then add the following to your ~/.emacs.d/init.el:
+;; ;; (add-to-list 'load-path "/usr/share/info/")
+;; ;; (require 'pydoc-info)
+;; ;;
+
+;; ;; flycheck.el
+;; ;;
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 ;; ;;
 ;; ;;
-;; ;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
-;; ;; http://tkf.github.com/emacs-ipython-notebook/
-;; ;; Usage
-;; ;; Start IPython notebook server with $ ipython notebook --pylab inline
-;; ;; Hit M-x ein:notebooklist-open to open notebook list.
-;; (require 'ein)
-;; ;; Auto complete for ein
-;; (setq ein:use-auto-complete t)
-;; ;; Or, to enable "superpack" (a little bit hacky improvements):
-;; ;; (setq ein:use-auto-complete-superpack t)
-;; (add-hook 'ein:notebook-multilang-mode-hook	; For EIN
-;;           '(lambda()
-;;              (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell)
-;;              (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
-;; 	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
-;; 	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
-;; 	     (local-set-key (kbd "C-c k")      'ein:worksheet-kill-cell)
-;; 	     (local-set-key (kbd "C-c w")      'ein:worksheet-copy-cell)
-;; 	     (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
-;; 	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
-;; 	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
-;; 	     ))
 
 
 ;; Auto-completion addtional setting
