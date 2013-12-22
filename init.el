@@ -2194,12 +2194,18 @@ In case the execution fails, return an error."
 
 ;; elpy.el
 ;; https://github.com/jorgenschaefer/elpy/wiki
-;; (package-initialize)	; To use
+;; (package-initialize)	
+;; To use elpy
 (elpy-enable)
-(elpy-use-ipython)	; To use ipython
-(elpy-clean-modeline)	; Simplify modeline
+;; To use ipython	; 2013-12-22 broken? ipython not found
+;; $ sudo ln -s /usr/local/bin/ipython /usr/bin/ipython	# This was done to make ipython visible. 2013-12-22
+(elpy-use-ipython)
+;; Simplify modeline
+(elpy-clean-modeline)
+;; jedi as completion backend
+(setq elpy-rpc-backend "jedi")
 ;;
-;; Fix yas-snippet-dirs (elpy breaks configuration)
+;; Fix yas-snippet-dirs (elpy breaks configuration)	; Not necessary as of 2013-12-22
 ;; (setq yas-snippet-dirs
 ;;       '("~/.emacs.d/snippets"
 ;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
