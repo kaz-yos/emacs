@@ -2124,7 +2124,7 @@ In case the execution fails, return an error."
 ;; 2013-08-09 
 ;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs
 ;;
-;; python.el:
+;; python.el (in use:
 ;; http://caisah.info/emacs-for-python/
 ;;
 ;; python-mode.el:
@@ -2148,44 +2148,58 @@ In case the execution fails, return an error."
  "';'.join(module_completion('''%s'''))\n"
  python-shell-completion-string-code
  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+;;
+;; ;; Default shell interaction commands
+;; (define-key map "\C-c\C-p" 'run-python)
+;; (define-key map "\C-c\C-s" 'python-shell-send-string)
+;; (define-key map "\C-c\C-r" 'python-shell-send-region)
+;; (define-key map "\C-\M-x" 'python-shell-send-defun)
+;; (define-key map "\C-c\C-c" 'python-shell-send-buffer)
+;; (define-key map "\C-c\C-l" 'python-shell-send-file)
+;; (define-key map "\C-c\C-z" 'python-shell-switch-to-shell)
+;; 
+;; Redefine python-shell-send-region command to avoid sending blank line to ipython shell 2013-12-22
+(defun python-shell-send-region (start end)
+  "Send the region delimited by START and END to inferior Python process."
+  (interactive "r")
+  (python-shell-send-string
+   (buffer-substring start end)
+   ;; No need to send blank lines in ipython? 2013-12-22
+   ;; (concat
+   ;;  (let ((line-num (line-number-at-pos start)))
+   ;;    ;; When sending a region, add blank lines for non sent code so
+   ;;    ;; backtraces remain correct.
+   ;;    (make-string (1- line-num) ?\n))
+   ;;  (buffer-substring start end))
+   nil t))
+
 
 
 ;; Dirty fix to make ipython visible to emacs. Needed for python-mode.el
 ;; $ sudo ln -s /usr/local/bin/ipython /usr/bin/ipython	# To make it visible to emacs. 2013-12-22
 
-
-
 ;; ;; python-mode.el	; This causes strange frame split.
 ;; (require 'python-mode)
-
 ;; ;; ipython.el
 ;; ;; https://github.com/ipython/ipython/issues/853
 ;; ;; (setq ipython-command "/usr/local/bin/ipython")
 ;; ;; (setq py-python-command "/usr/local/bin/ipython")
 ;; ;; (require 'ipython)	; Obsolete?
-
 ;; ;; http://stackoverflow.com/questions/10241279/how-do-i-run-a-python-interpreter-in-emacs
 ;; ;; (setq python-shell-interpreter "ipython")
-
 ;; ;; Use ipython as the shell
 ;; ;; (setq py-shell-name "/usr/local/bin/ipython")	; only locally active?
 ;; (setq py-shell-name "ipython")	; only locally active?
 ;; (setq py-force-py-shell-name-p t)		; enforce py-shell-name settings
 ;; (setq py-start-run-ipython-shell t)		; Start ipython shell whell python-mode.el is activated
-
 ;; ;; Don't split window on excecution
 ;; (setq py-split-windows-on-execute-p nil)
 ;; (setq py-keep-windows-configuration nil)
 ;; ;; Don't switch to the output buffer upon execution
 ;; (setq py-switch-buffers-on-execute-p nil)
-
 ;; ;; python-mode.el 
 ;; ;; py-send-region-ipython starts *Ipython*
 
-
-
-;;
-;;
 
 ;; 2013-12-21 temporalily disabled all below to check the functionality of python-mode.el
 ;; ;; Browse the Python Documentation using Info	; 2013-12-20 Did not work
@@ -2200,8 +2214,6 @@ In case the execution fails, return an error."
 ;; ;; (add-to-list 'load-path "/usr/share/info/")
 ;; ;; (require 'pydoc-info)
 ;; ;;
-
-
 
 ;; ;; elpy.el
 ;; ;; https://github.com/jorgenschaefer/elpy/wiki
