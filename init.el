@@ -2203,16 +2203,8 @@ In case the execution fails, return an error."
         (set-window-buffer w2 w1name)		; Script on the right (w2)
 	(select-window w2)			; Select script (w2) Added
 	)))
-;; Start python if not started. Send region if selected, send line if not selected
+;; Start python if not started. Send region if selected, line if not selected (whole def if it is def)
 ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
-;; (defun my-python-eval ()
-;;   (interactive)
-;;   (my-python-start)
-;;   (if (and transient-mark-mode mark-active)
-;;       (python-shell-send-region (point) (mark))			; if selected, send region
-;;     (python-shell-send-region (point-at-bol) (point-at-eol))	; if not selected, send current line
-;;     (python-nav-forward-statement)				; if not selected, also move to next statement
-;;     ))
 (defun my-python-eval ()
   (interactive)
   (my-python-start)
