@@ -2150,19 +2150,30 @@ In case the execution fails, return an error."
 ;;
 ;; 
 
-;; python-mode.el	; This causes strange frame split.
-(require 'python-mode)
 
-;; Use ipython as the shell
-(setq py-shell-name "/usr/local/bin/ipython")	; only locally active?
-(setq py-force-py-shell-name-p t)		; enforce py-shell-name settings
-(setq py-start-run-ipython-shell t)		; Start ipython shell whell python-mode.el is activated
+;; ;; python-mode.el	; This causes strange frame split.
+;; (require 'python-mode)
+;;
+;; ;; https://github.com/ipython/ipython/issues/853
+;; (setq ipython-command "/usr/local/bin/ipython")
+;; (setq py-python-command "/usr/local/bin/ipython")
+;; (require 'ipython)	; Obsolete?
+;;
+;; ;; http://stackoverflow.com/questions/10241279/how-do-i-run-a-python-interpreter-in-emacs
+;; (setq python-shell-interpreter "ipython")
+;;
+;; ;; Use ipython as the shell
+;; (setq py-shell-name "/usr/local/bin/ipython")	; only locally active?
+;; (setq py-shell-name "ipython")	; only locally active?
+;; (setq py-force-py-shell-name-p t)		; enforce py-shell-name settings
+;; (setq py-start-run-ipython-shell t)		; Start ipython shell whell python-mode.el is activated
+;;
+;; ;; Don't split window on excecution
+;; (setq py-split-windows-on-execute-p nil)
+;; (setq py-keep-windows-configuration nil)
+;; ;; Don't switch to the output buffer upon execution
+;; (setq py-switch-buffers-on-execute-p nil)
 
-;; Don't split window on excecution
-(setq py-split-windows-on-execute-p nil)
-;; Don't switch to the output buffer
-(setq py-switch-buffers-on-execute-p nil)
-(setq py-keep-windows-configuration nil)
 
 ;;
 ;;
@@ -2180,18 +2191,21 @@ In case the execution fails, return an error."
 ;; ;; (add-to-list 'load-path "/usr/share/info/")
 ;; ;; (require 'pydoc-info)
 ;; ;;
-;; ;; elpy.el
-;; ;; https://github.com/jorgenschaefer/elpy/wiki
-;; ;; (package-initialize)	; To use
-;; ;; (elpy-enable)
-;; ;; (elpy-use-ipython)	; To use ipython
-;; ;; (elpy-clean-modeline)	; Simplify modeline
-;; ;; ;;
-;; ;; ;; Fix yas-snippet-dirs (elpy breaks configuration)
-;; ;; (setq yas-snippet-dirs
-;; ;;       '("~/.emacs.d/snippets"
-;; ;; 	"/Users/kazuki/.emacs.d/elpa/yasnippet-20130722.1832/snippets"
-;; ;; 	))
+
+;; elpy.el
+;; https://github.com/jorgenschaefer/elpy/wiki
+;; (package-initialize)	; To use
+(elpy-enable)
+(elpy-use-ipython)	; To use ipython
+(elpy-clean-modeline)	; Simplify modeline
+;;
+;; Fix yas-snippet-dirs (elpy breaks configuration)
+;; (setq yas-snippet-dirs
+;;       '("~/.emacs.d/snippets"
+;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
+;; 	))
+
+
 ;; ;;
 ;; ;;
 ;; ;; jedi.el	; Python auto-completion for Emacs
