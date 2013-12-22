@@ -2211,6 +2211,7 @@ In case the execution fails, return an error."
   (if (and transient-mark-mode mark-active)
       (python-shell-send-region (point) (mark))			; if selected, send region
     (python-shell-send-region (point-at-bol) (point-at-eol))	; if not selected, send current line
+    (python-nav-forward-statement)				; if not selected, also move to next statement
     ))
 ;;
 ;; Define hooks 
