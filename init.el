@@ -2205,14 +2205,33 @@ In case the execution fails, return an error."
 	)))
 ;; Start python if not started. Send region if selected, send line if not selected
 ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
+;; (defun my-python-eval ()
+;;   (interactive)
+;;   (my-python-start)
+;;   (if (and transient-mark-mode mark-active)
+;;       (python-shell-send-region (point) (mark))			; if selected, send region
+;;     (python-shell-send-region (point-at-bol) (point-at-eol))	; if not selected, send current line
+;;     (python-nav-forward-statement)				; if not selected, also move to next statement
+;;     ))
 (defun my-python-eval ()
   (interactive)
   (my-python-start)
-  (if (and transient-mark-mode mark-active)
-      (python-shell-send-region (point) (mark))			; if selected, send region
-    (python-shell-send-region (point-at-bol) (point-at-eol))	; if not selected, send current line
-    (python-nav-forward-statement)				; if not selected, also move to next statement
+  (if (and transient-mark-mode mark-active)			; Check if selection is present
+      (python-shell-send-region (point) (mark))			; If selected, send region
+    ;; If not selected, do all the following
+    (beginning-of-line)						; Move to beginning of line
+    (if (looking-at "def")					; Check if the first word is def (function def)
+	(progn							; If it is def
+	  (python-shell-send-defun)				; Send whole def
+	  (python-nav-end-of-defun)				; Move to end of def
+	  )
+      ;; If it is not def, do all the following
+      (python-shell-send-region (point-at-bol) (point-at-eol))	; Send current line
+      (python-nav-forward-statement)				; Move to next statement
+      )
     ))
+
+;; 
 ;;
 ;; Define hooks 
 (add-hook 'python-mode-hook		; For Python script
