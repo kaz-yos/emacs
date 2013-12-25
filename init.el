@@ -2137,24 +2137,28 @@ In case the execution fails, return an error."
 ;;
 ;; jedi.el	; Python auto-completion for Emacs
 ;; http://tkf.github.io/emacs-jedi/
-(setq jedi:key-complete (kbd "<C-M-tab>"))		; Define the key binding first
+(setq jedi:complete-on-dot t)				; binds . to jedi:dot-complete. Dot alone activates jedi
 (add-hook 'python-mode-hook	     'jedi:setup)	; for full setup
 (add-hook 'inferior-python-mode-hook 'jedi:setup)	; for full setup
-;; (add-hook 'python-mode-hook	     'jedi:ac-setup)	; for completion only?
-;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)	; for completion only?
+;; (add-hook 'python-mode-hook	     'jedi:ac-setup)	; for completion only. keys are not changed.
+;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)	; for completion only. keys are not changed.
 ;; (setq jedi:setup-keys nil)			; optional Obsolete as of version 0.1.3
-;; (setq jedi:complete-on-dot t)			; optional
+
+;; C-c		Prefix Command
+;; .		jedi:dot-complete
 ;; <C-tab>		jedi:complete
 ;; C-c ,		jedi:goto-definition-pop-marker
 ;; C-c .		jedi:goto-definition
 ;; C-c /		helm-jedi-related-names
 ;; C-c ?		jedi:show-doc
+;;
 (add-hook 'jedi-mode-hook
           '(lambda()
-	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
-	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
-	     ;; (setq jedi:key-complete (kbd "<C-M-tab>"))
+	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Python major mode
+	     (define-key jedi-mode-map (kbd "<C-tab>") 'other-window-or-split)	; Assigned to Jedi minor mode
+	     (define-key jedi-mode-map (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Jedi minor mode
 	     ))
+;;
 ;;
 ;; Code to emulate ESS/R behavior 2013-12-22 version
 (defun my-python-start ()
