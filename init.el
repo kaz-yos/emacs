@@ -2247,81 +2247,6 @@ In case the execution fails, return an error."
 ;;     (python-shell-send-region (point-at-bol) (point-at-eol))))
 
 
-;; ;; ;; http://emacs.1067599.n5.nabble.com/Evaluate-current-line-in-Python-mode-td97763.html
-;; ;; (defun my-python-next-statement () 
-;; ;;   (interactive) 
-;; ;;   (if (string= mode-name "Python") 
-;; ;;       (progn 
-;; ;; 	(python-next-statement)		; This is not present in python.el. Only in python-mode.el
-;; ;; 	(beginning-of-line) 
-;; ;; 	(setq lineStart (point)) 
-;; ;; 	(end-of-line) 
-;; ;; 	(setq lineEnd (point)) 
-;; ;; 	(python-send-region lineStart lineEnd) ) 
-;; ;;     (message "function only applies to Python mode") 
-;; ;;     (beep) ) ) 
-;; ;;
-;; ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
-;; (defun select-current-line ()
-;;   "Select the current line"
-;;   (interactive)
-;;   (end-of-line) ; move to end of line
-;;   (set-mark (line-beginning-position)))
-;; ;; 
-;; (defun my-python-shell-send-line ()
-;;   "Select the current line and send to Python"
-;;   (interactive)
-;;   (end-of-line)						; Move to end of line
-;;   (set-mark (line-beginning-position))			; Mark to beginning
-;;   (call-interactively 'python-shell-send-region)	; Send region
-;;   (next-line)						; Move to the next line
-;;   (beginning-of-line)					; Move to the beginning of line
-;;   )
-;; ;;
-;; (defun my-python-eval ()
-;;   (interactive)
-;;   (my-python-start)
-;;   (if (and transient-mark-mode mark-active)
-;;       (call-interactively 'python-shell-send-region)	; if selected, send region
-;;     (call-interactively 'my-python-shell-send-line)	; if not selected, send current line
-;;     ))
-;; ;;
-;; ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00429.html
-;; ;; (defun my-python-send-region (&optional beg end)
-;; ;;   (interactive)
-;; ;;   (my-python-start)
-;; ;;   (let ((beg (cond (beg beg)
-;; ;;                    ((region-active-p)
-;; ;;                     (region-beginning))
-;; ;;                    (t (line-beginning-position))))
-;; ;;         (end (cond (end end)
-;; ;;                    ((region-active-p)
-;; ;;                     (copy-marker (region-end)))
-;; ;;                    (t (line-end-position)))))
-;; ;;     (python-shell-send-region beg (+ end 1))
-;; ;;     (next-line)
-;; ;;     ))
-;; ;; 
-;; ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2010-08/msg00430.html
-;; (defun my-python-send-region (beg end)
-;;   (interactive "r")
-;;   (if (eq beg end)
-;;       (python-shell-send-region (point-at-bol) (point-at-eol))
-;;       (python-shell-send-region beg end)))
-;; ;;
-;; ;; Sending without selecting
-;; ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
-;; (defun python-shell-send-region-or-line ()
-;;   "Call `python-shell-send-region' with selected region or current line (if none selected)."
-;;   (interactive)
-;;   (if (and transient-mark-mode mark-active)
-;;       (python-shell-send-region (point) (mark))
-;;     (python-shell-send-region (point-at-bol) (point-at-eol))))
-;; ;;
-;; ;;
-
-
-
 ;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
 ;; This is fundamentally different from python.el and can coexist. 2013-12-22
 ;; http://tkf.github.com/emacs-ipython-notebook/
@@ -2345,9 +2270,7 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
 	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
 	     ))
-
-
-
+;;
 ;; ;; elpy.el	; python.el replacement. No need for now. 2013-12-22
 ;; ;; https://github.com/jorgenschaefer/elpy/wiki
 ;; ;; Need to install elpy/rope/jedi/flake8 via $ sudo pip install
