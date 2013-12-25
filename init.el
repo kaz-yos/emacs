@@ -2228,8 +2228,9 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "<C-return>") 'my-python-eval)	     
 	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
 	     (eldoc-mode 1)			; eldoc in the mode line
-	     (define-key python-mode-map (kbd "C-m") 'newline-and-indent)	; Indent after newline
-	     (define-key python-mode-map (kbd "M-p") 'ess-nuke-trailing-whitespace)
+	     (local-set-key (kbd "C-m") 'newline-and-indent)	; Indent after newline
+	     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)
+	     (local-set-key (kbd "C-c c") 'python-check)	; Check grammar
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
