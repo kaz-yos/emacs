@@ -1138,7 +1138,7 @@ In case the execution fails, return an error."
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
 (add-hook 'sas-mode-hook	; For SAS mode
           '(lambda()
-             (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab
+             (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab from ESS major mode
 
 
 ;;; e2wn		; Window management system
@@ -2158,7 +2158,6 @@ In case the execution fails, return an error."
 	     (define-key jedi-mode-map (kbd "<C-tab>") 'other-window-or-split)	; Assigned to Jedi minor mode
 	     (define-key jedi-mode-map (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Jedi minor mode
 	     ))
-;;
 ;;
 ;; Code to emulate ESS/R behavior 2013-12-22 version
 (defun my-python-start ()
