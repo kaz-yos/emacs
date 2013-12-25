@@ -386,54 +386,6 @@
 
 
 
-;; ;; Shell script send		; Deactivated in favor of essh.el
-;; ;; http://stackoverflow.com/questions/6286579/emacs-shell-mode-how-to-send-region-to-shell
-;; (defun sh-send-line-or-region (&optional step)
-;;   (interactive ())
-;;   (let ((proc (get-process "shell"))
-;;         pbuf min max command)
-;;     (unless proc
-;;       (let ((currbuff (current-buffer)))
-;;         (shell)
-;;         (switch-to-buffer currbuff)
-;;         (setq proc (get-process "shell"))
-;;         ))
-;;     (setq pbuff (process-buffer proc))
-;;     (if (use-region-p)
-;;         (setq min (region-beginning)
-;;               max (region-end))
-;;       (setq min (point-at-bol)
-;;             max (point-at-eol)))
-;;     (setq command (concat (buffer-substring min max) "\n"))
-;;     (with-current-buffer pbuff
-;;       (goto-char (process-mark proc))
-;;       (insert command)
-;;       (move-marker (process-mark proc) (point))
-;;       ) ;;pop-to-buffer does not work with save-current-buffer -- bug?
-;;     (process-send-string  proc command)
-;;     (display-buffer (process-buffer proc) t)
-;;     (when step 
-;;       (goto-char max)
-;;       (next-line))
-;;     ))
-;; ;;
-;; (defun sh-send-line-or-region-and-step ()
-;;   (interactive)
-;;   (sh-send-line-or-region t))
-;; (defun sh-switch-to-process-buffer ()
-;;   (interactive)
-;;   (pop-to-buffer (process-buffer (get-process "shell")) t))
-;; ;;
-;; ;; Below modified from original
-;; (require 'sh-script)	; sh-mode-map is defined by sh-script.el included in default install
-;; (define-key sh-mode-map "\C-j"      'sh-send-line-or-region-and-step)
-;; (define-key sh-mode-map "\C-c \C-z" 'sh-switch-to-process-buffer)	
-;; ;; Scrolling is defined in ESS configuration
-;; ;; (setq comint-scroll-to-bottom-on-output t) 
-;; ;;
-
-
-
 ;;; Automatically close brackets and parentheses
 ;; http://www.emacswiki.org/emacs/ESSAutoParens
 ;; http://www.emacswiki.org/emacs/SkeletonPair
@@ -2132,7 +2084,7 @@ In case the execution fails, return an error."
 ;; python.el (in use):
 ;; http://caisah.info/emacs-for-python/
 ;;
-;; python-mode.el:
+;; python-mode.el (more features, more configurations):
 ;; http://www.janteichmann.me/projects/emacs_as_python_editor
 ;;
 ;;
@@ -2180,11 +2132,12 @@ In case the execution fails, return an error."
 
 ;; jedi.el	; Python auto-completion for Emacs
 ;; http://tkf.github.io/emacs-jedi/
-;; (add-hook 'python-mode-hook 'jedi:ac-setup)	; auto-completion only
-(add-hook 'python-mode-hook	     'jedi:ac-setup)
-(add-hook 'inferior-python-mode-hook 'jedi:ac-setup)
-(setq jedi:setup-keys nil)                      ; optional Obsolete as of version 0.1.3
-(setq jedi:complete-on-dot t)                 ; optional
+(add-hook 'python-mode-hook	     'jedi:setup)
+(add-hook 'inferior-python-mode-hook 'jedi:setup)
+;; (add-hook 'python-mode-hook	     'jedi:ac-setup)
+;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)
+(setq jedi:setup-keys nil)			; optional Obsolete as of version 0.1.3
+(setq jedi:complete-on-dot t)			; optional
 ;; ``<C-tab>`` : = `jedi:key-complete'
 ;;     Complete code at point. (`jedi:complete')
 ;; ``C-.`` : = `jedi:key-goto-definition'
