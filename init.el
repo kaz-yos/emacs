@@ -2134,9 +2134,10 @@ In case the execution fails, return an error."
    ;;    (make-string (1- line-num) ?\n))
    ;;  (buffer-substring start end))
    nil t))
-
+;;
 ;; jedi.el	; Python auto-completion for Emacs
 ;; http://tkf.github.io/emacs-jedi/
+(setq jedi:key-complete (kbd "<C-M-tab>"))		; Define the key binding first
 (add-hook 'python-mode-hook	     'jedi:setup)	; for full setup
 (add-hook 'inferior-python-mode-hook 'jedi:setup)	; for full setup
 ;; (add-hook 'python-mode-hook	     'jedi:ac-setup)	; for completion only?
@@ -2148,7 +2149,13 @@ In case the execution fails, return an error."
 ;; C-c .		jedi:goto-definition
 ;; C-c /		helm-jedi-related-names
 ;; C-c ?		jedi:show-doc
-
+(add-hook 'jedi-mode-hook
+          '(lambda()
+	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
+	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+	     ;; (setq jedi:key-complete (kbd "<C-M-tab>"))
+	     ))
+;;
 ;; Code to emulate ESS/R behavior 2013-12-22 version
 (defun my-python-start ()
   (interactive)
@@ -2196,16 +2203,16 @@ In case the execution fails, return an error."
           '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     (local-set-key (kbd "<C-return>") 'my-python-eval)	     
-	     (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
-	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
+	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
           '(lambda()
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
-	     (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
-	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
+	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
 	     ))
 
 
