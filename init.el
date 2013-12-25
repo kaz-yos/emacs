@@ -2142,7 +2142,6 @@ In case the execution fails, return an error."
 (add-hook 'inferior-python-mode-hook 'jedi:setup)	; for full setup
 ;; (add-hook 'python-mode-hook	     'jedi:ac-setup)	; for completion only. keys are not changed.
 ;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)	; for completion only. keys are not changed.
-;; (setq jedi:setup-keys nil)			; optional Obsolete as of version 0.1.3
 ;;
 ;; C-c		Prefix Command
 ;; .		jedi:dot-complete
