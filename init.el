@@ -284,6 +284,10 @@
 (setq-default major-mode 'text-mode)
 
 
+;; C-RET for eval-region in elisp mode 2013-12-22
+(define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-region)
+
+
 ;;; Language settings
 ;;
 ;; Unicode use
@@ -1146,28 +1150,25 @@ In case the execution fails, return an error."
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
 ;; excecutable file Changed as of 2013-12-20
-;; (setq inferior-julia-program-name "/Applications/Julia.app/Contents/Resources/julia/bin/julia-release-basic")
-;; ;; Starting R
-;; (defun my-ess-start-julia ()
-;;   (interactive)
-;;   (if (not (member "*julia*" (mapcar (function buffer-name) (buffer-list))))
-;;       (progn
-;;         (delete-other-windows)
-;;         (setq w1 (selected-window))
-;;         (setq w1name (buffer-name))
-;;         (setq w2 (split-window w1 nil t))
-;;         (julia)
-;;         (set-window-buffer w1 "*julia*")	; julia on the left (w1)
-;;         (set-window-buffer w2 w1name)	; script on the right (w2)
-;; 	;; (set-window-buffer w2 "*julia*")
-;; 	;; (set-window-buffer w1 w1name)
-;; 	;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Selecting-Windows.html
-;; 	(select-window w2)		; Select script (w2) Added
-;; 	)))
+(setq inferior-julia-program-name "/Applications/Julia.app/Contents/Resources/julia/bin/julia-basic")
+;; Starting julia
+(defun my-ess-start-julia ()
+  (interactive)
+  (if (not (member "*julia*" (mapcar (function buffer-name) (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))
+        (julia)
+        (set-window-buffer w1 "*julia*")	; julia on the left (w1)
+        (set-window-buffer w2 w1name)	; script on the right (w2)
+	(select-window w2)		; Select script (w2) Added
+	)))
 ;; ;;
 ;; (defun my-ess-eval ()
 ;;   (interactive)
-;;   (my-ess-start-R)
+;;   (my-ess-start-julia)
 ;;   (if (and transient-mark-mode mark-active)
 ;;       (call-interactively 'ess-eval-region)
 ;;     (call-interactively 'ess-eval-line-and-step)))
@@ -2121,10 +2122,8 @@ In case the execution fails, return an error."
 
 
 ;;; Python support				; external dependency
-;; 2013-08-09 
-;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs
 ;;
-;; python.el (in use:
+;; python.el (in use):
 ;; http://caisah.info/emacs-for-python/
 ;;
 ;; python-mode.el:
@@ -2198,7 +2197,7 @@ In case the execution fails, return an error."
         (setq w1 (selected-window))
         (setq w1name (buffer-name))
         (setq w2 (split-window w1 nil t))	; Split into two windows
-	(call-interactively 'run-python)	; Activate Python if not running
+	(call-interactively 'run-python)	; Activate Python if not running (runs ipython)
         (set-window-buffer w1 "*Python*")	; Python on the left (w1)
         (set-window-buffer w2 w1name)		; Script on the right (w2)
 	(select-window w2)			; Select script (w2) Added
@@ -2211,15 +2210,22 @@ In case the execution fails, return an error."
   (if (and transient-mark-mode mark-active)			; Check if selection is present
       (python-shell-send-region (point) (mark))			; If selected, send region
     ;; If not selected, do all the following
-    (beginning-of-line)						; Move to beginning of line
+    (beginning-of-line)						; Move to the beginning of line
     (if (looking-at "def")					; Check if the first word is def (function def)
 	(progn							; If it is def
 	  (python-shell-send-defun ())				; Send whole def
-	  (python-nav-end-of-defun)				; Move to end of def
+	  (python-nav-end-of-defun)				; Move to the end of def
+	  (python-nav-forward-statement)			; Move to the next statement
 	  )
       ;; If it is not def, do all the following
-      (python-shell-send-region (point-at-bol) (point-at-eol))	; Send current line
-      (python-nav-forward-statement)				; Move to next statement
+      (python-shell-send-region (point-at-bol) (point-at-eol))	; Send the current line
+      (python-nav-forward-statement)				; Move to the next statement
+      )
+    ;; Activate shell window, and switch back
+    (progn
+      (setq w-script (selected-window))				; Remeber the script window
+      (python-shell-switch-to-shell)				; Switch to the shell
+      (select-window w-script)					; Switch back to the script window
       )
     ))
 ;; 
