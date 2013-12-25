@@ -506,6 +506,9 @@ If you omit CLOSE, it will reuse OPEN."
 	       ("ess" (or
 			 (mode . ess-mode)
 			 (mode . inferior-ess-mode)))
+	       ("python" (or
+			 (mode . python-mode)
+			 (mode . inferior-python-mode)))
 	       ("shell"  (mode . shell-mode))
 	       ("TeX"    (or
 			  (mode . TeX-mode)
@@ -1154,6 +1157,8 @@ In case the execution fails, return an error."
 ;;
 ;; essh.el for shell (like ESS for R
 ;; http://www.emacswiki.org/emacs/essh.el
+;; Obsolete
+;; http://stackoverflow.com/questions/6286579/emacs-shell-mode-how-to-send-region-to-shell
 (require 'essh)
 (defun essh-sh-hook ()                                             
   (define-key sh-mode-map (kbd "C-c C-r") 'pipe-region-to-shell)
@@ -2132,12 +2137,12 @@ In case the execution fails, return an error."
 
 ;; jedi.el	; Python auto-completion for Emacs
 ;; http://tkf.github.io/emacs-jedi/
-(add-hook 'python-mode-hook	     'jedi:setup)
-(add-hook 'inferior-python-mode-hook 'jedi:setup)
-;; (add-hook 'python-mode-hook	     'jedi:ac-setup)
-;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)
-(setq jedi:setup-keys nil)			; optional Obsolete as of version 0.1.3
-(setq jedi:complete-on-dot t)			; optional
+(add-hook 'python-mode-hook	     'jedi:setup)	; for full setup
+(add-hook 'inferior-python-mode-hook 'jedi:setup)	; for full setup
+;; (add-hook 'python-mode-hook	     'jedi:ac-setup)	; for completion only?
+;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)	; for completion only?
+;; (setq jedi:setup-keys nil)			; optional Obsolete as of version 0.1.3
+;; (setq jedi:complete-on-dot t)			; optional
 ;; ``<C-tab>`` : = `jedi:key-complete'
 ;;     Complete code at point. (`jedi:complete')
 ;; ``C-.`` : = `jedi:key-goto-definition'
