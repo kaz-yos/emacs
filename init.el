@@ -1067,8 +1067,7 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'Rnw-mode-hook		; For Rnw mode
           '(lambda()
-             (local-set-key [(shift return)] 'my-ess-eval-R)
-             ;; (local-set-key (kbd "S-RET") 'my-ess-eval-R)
+	     (local-set-key (kbd "<S-return>") 'my-ess-eval-R)
 	     ))
 ;;
 ;; ess-trace-bug.el		; filtering ++++ > ??? Not working
