@@ -1001,7 +1001,7 @@ In case the execution fails, return an error."
 ;; (setq ess-gen-proc-buffer-name-function (lambda (proc) (concatenate 'proc "R")))
 ;; (setq ess-gen-proc-buffer-name-function (lambda (proc) "nameR"))
 ;;
-;; Starting R
+;; Starting R on the left
 (defun my-ess-start-R ()
   (interactive)
   (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
@@ -1013,15 +1013,13 @@ In case the execution fails, return an error."
         (R)
         (set-window-buffer w1 "*R*")	; R on the left (w1)
         (set-window-buffer w2 w1name)	; script on the right (w2)
-	;; (set-window-buffer w2 "*R*")
-	;; (set-window-buffer w1 w1name)
 	;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Selecting-Windows.html
 	(select-window w2)		; Select script (w2) Added
 	)))
 ;;
 (defun my-ess-eval-R ()
   (interactive)
-  (my-ess-start-R)
+  (my-ess-start-R)			; R starts on the right if this is not used.
   (if (and transient-mark-mode mark-active)
       (call-interactively 'ess-eval-region)
     (call-interactively 'ess-eval-line-and-step)))
