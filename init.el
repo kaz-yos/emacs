@@ -1019,7 +1019,7 @@ In case the execution fails, return an error."
 	(select-window w2)		; Select script (w2) Added
 	)))
 ;;
-(defun my-ess-eval ()
+(defun my-ess-eval-R ()
   (interactive)
   (my-ess-start-R)
   (if (and transient-mark-mode mark-active)
@@ -1039,9 +1039,9 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'ess-mode-hook		; For ESS mode
           '(lambda()
-	     ;; my-ess-eval
-	     (local-set-key (kbd "<S-return>") 'my-ess-eval)
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval)	; Change to my-ess-eval
+	     ;; my-ess-eval-R
+	     (local-set-key (kbd "<S-return>") 'my-ess-eval-R)
+	     (local-set-key (kbd "<C-return>") 'my-ess-eval-R)	; Change to my-ess-eval-R
 	     ;; Toggling $ in S-syntax-table
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
@@ -1067,8 +1067,8 @@ In case the execution fails, return an error."
 ;;
 (add-hook 'Rnw-mode-hook		; For Rnw mode
           '(lambda()
-             (local-set-key [(shift return)] 'my-ess-eval)
-             ;; (local-set-key (kbd "S-RET") 'my-ess-eval)
+             (local-set-key [(shift return)] 'my-ess-eval-R)
+             ;; (local-set-key (kbd "S-RET") 'my-ess-eval-R)
 	     ))
 ;;
 ;; ess-trace-bug.el		; filtering ++++ > ??? Not working
