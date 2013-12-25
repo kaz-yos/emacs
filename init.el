@@ -2143,14 +2143,11 @@ In case the execution fails, return an error."
 ;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)	; for completion only?
 ;; (setq jedi:setup-keys nil)			; optional Obsolete as of version 0.1.3
 ;; (setq jedi:complete-on-dot t)			; optional
-;; ``<C-tab>`` : = `jedi:key-complete'
-;;     Complete code at point. (`jedi:complete')
-;; ``C-.`` : = `jedi:key-goto-definition'
-;;     Goto the definition of the object at point. (`jedi:goto-definition')
-;; ``C-c d`` : = `jedi:key-show-doc'
-;;     Goto the definition of the object at point. (`jedi:show-doc')
-;; ``C-c r`` : = `jedi:key-related-names'
-;;     Find related names of the object at point.
+;; <C-tab>		jedi:complete
+;; C-c ,		jedi:goto-definition-pop-marker
+;; C-c .		jedi:goto-definition
+;; C-c /		helm-jedi-related-names
+;; C-c ?		jedi:show-doc
 
 ;; Code to emulate ESS/R behavior 2013-12-22 version
 (defun my-python-start ()
@@ -2198,18 +2195,18 @@ In case the execution fails, return an error."
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-python-eval)
-	     (local-set-key (kbd "<C-return>") 'my-python-eval)
-	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
-	     ;; (setq jedi:key-complete (kbd "<C-M-tab>"))
+	     (local-set-key (kbd "<C-return>") 'my-python-eval)	     
+	     (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
+	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
           '(lambda()
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
-	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+	     (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
+	     (local-set-key (kbd "<C-tab>") 'other-window-or-split)
 	     ))
-
 
 
 
