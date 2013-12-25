@@ -2139,6 +2139,7 @@ In case the execution fails, return an error."
 ;; (define-key map "\C-c\C-z" 'python-shell-switch-to-shell)
 ;; 
 ;; Redefine python-shell-send-region command to avoid sending blank line to ipython shell 2013-12-22
+;; This, however, breaks the debugger. It will show the wrong lines in the beginning of the files. 2013-12-25
 (defun python-shell-send-region (start end)
   "Send the region delimited by START and END to inferior Python process."
   (interactive "r")
@@ -2226,7 +2227,7 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     (local-set-key (kbd "<C-return>") 'my-python-eval)	     
 	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
-	     (setq eldoc-mode t)		; eldoc in the mode line
+	     (eldoc-mode 1)			; eldoc in the mode line
 	     (define-key python-mode-map (kbd "C-m") 'newline-and-indent)	; Indent after newline
 	     (define-key python-mode-map (kbd "M-p") 'ess-nuke-trailing-whitespace)
 	     ))
