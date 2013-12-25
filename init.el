@@ -2220,7 +2220,6 @@ In case the execution fails, return an error."
       )
     ))
 ;; 
-;;
 ;; Define hooks 
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
@@ -2229,6 +2228,7 @@ In case the execution fails, return an error."
 	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
 	     (setq eldoc-mode t)		; eldoc in the mode line
 	     (define-key python-mode-map (kbd "C-m") 'newline-and-indent)	; Indent after newline
+	     (define-key python-mode-map (kbd "M-p") 'ess-nuke-trailing-whitespace)
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
@@ -2236,8 +2236,8 @@ In case the execution fails, return an error."
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
 	     ))
-
-
+;;
+;;
 ;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
 ;; This is fundamentally different from python.el and can coexist. 2013-12-22
 ;; http://tkf.github.com/emacs-ipython-notebook/
@@ -2284,55 +2284,6 @@ In case the execution fails, return an error."
 ;; ;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
 ;; ;; 	))
 
-
-;; ;; python-mode.el	; This causes strange frame split.
-;; Dirty fix to make ipython visible to emacs. Needed for python-mode.el
-;; $ sudo ln -s /usr/local/bin/ipython /usr/bin/ipython	# To make it visible to emacs. 2013-12-22
-;; (require 'python-mode)
-;; ;; ipython.el
-;; ;; https://github.com/ipython/ipython/issues/853
-;; ;; (setq ipython-command "/usr/local/bin/ipython")
-;; ;; (setq py-python-command "/usr/local/bin/ipython")
-;; ;; (require 'ipython)	; Obsolete?
-;; ;; http://stackoverflow.com/questions/10241279/how-do-i-run-a-python-interpreter-in-emacs
-;; ;; (setq python-shell-interpreter "ipython")
-;; ;; Use ipython as the shell
-;; ;; (setq py-shell-name "/usr/local/bin/ipython")	; only locally active?
-;; (setq py-shell-name "ipython")	; only locally active?
-;; (setq py-force-py-shell-name-p t)		; enforce py-shell-name settings
-;; (setq py-start-run-ipython-shell t)		; Start ipython shell whell python-mode.el is activated
-;; ;; Don't split window on excecution
-;; (setq py-split-windows-on-execute-p nil)
-;; (setq py-keep-windows-configuration nil)
-;; ;; Don't switch to the output buffer upon execution
-;; (setq py-switch-buffers-on-execute-p nil)
-;; ;; python-mode.el 
-;; ;; py-send-region-ipython starts *Ipython*
-
-;; 2013-12-21 temporalily disabled all below to check the functionality of python-mode.el
-;; ;; Browse the Python Documentation using Info	; 2013-12-20 Did not work
-;; ;; http://www.emacswiki.org/emacs/PythonProgrammingInEmacs#toc10
-;; ;; Before using this package, you may need to download and install the
-;; ;; latest Python Info files:
-;; ;;     wget https://bitbucket.org/jonwaltman/pydoc-info/downloads/python.info.gz
-;; ;;     gunzip python.info
-;; ;;     sudo cp python.info /usr/share/info
-;; ;;     sudo install-info --info-dir=/usr/share/info python.info
-;; ;; Then add the following to your ~/.emacs.d/init.el:
-;; ;; (add-to-list 'load-path "/usr/share/info/")
-;; ;; (require 'pydoc-info)
-;; ;;
-
-;; ;; flycheck.el
-;; ;;
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
-;; ;;
-;; ;;
-
-
-;; Auto-completion addtional setting
-;; Looks like this has to come after ESS configuration
-;; (define-key ac-completing-map (kbd "RET") 'ac-complete)
 
 
 ;; This is placed at the end as it freezes if EmacsWIki is not responding.
