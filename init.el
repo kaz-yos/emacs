@@ -2226,16 +2226,13 @@ In case the execution fails, return an error."
           '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     (local-set-key (kbd "<C-return>") 'my-python-eval)	     
-	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
-	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
+	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
           '(lambda()
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
-	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)
-	     ;; (local-set-key (kbd "<C-tab>") 'other-window-or-split)
 	     ))
 
 
