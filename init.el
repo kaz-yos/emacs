@@ -1147,11 +1147,12 @@ In case the execution fails, return an error."
 (setq cacoo:api-key "APIKEY") ; option
 (global-set-key (kbd "M--") 'toggle-cacoo-minor-mode) ; key bind example
 ;;
+;;
 ;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
 ;; excecutable file Changed as of 2013-12-20
 (setq inferior-julia-program-name "/Applications/Julia.app/Contents/Resources/julia/bin/julia-basic")
-;; Starting julia
+;; Define a function to starting julia
 (defun my-ess-start-julia ()
   (interactive)
   (if (not (member "*julia*" (mapcar (function buffer-name) (buffer-list))))
@@ -1165,19 +1166,27 @@ In case the execution fails, return an error."
         (set-window-buffer w2 w1name)	; script on the right (w2)
 	(select-window w2)		; Select script (w2) Added
 	)))
-;; ;;
-;; (defun my-ess-eval ()
-;;   (interactive)
-;;   (my-ess-start-julia)
-;;   (if (and transient-mark-mode mark-active)
-;;       (call-interactively 'ess-eval-region)
-;;     (call-interactively 'ess-eval-line-and-step)))
+;;
+(defun my-ess-eval-julia ()
+  (interactive)
+  (my-ess-start-julia)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'ess-eval-region)
+    (call-interactively 'ess-eval-line-and-step)))
+
+(add-hook 'julia-mode-hook 
+	  '(lambda()
+	     (local-set-key (kbd "<S-return>") 'my-ess-eval-julia)
+	     (local-set-key (kbd "<C-return>") 'my-ess-eval-julia)
+	     )
+	  )
+;;
 ;;
 ;; ESS SAS configuration
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
-;; (add-hook 'ess-mode-hook	; For SAS mode
-;;           '(lambda()
-;;              (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab
+(add-hook 'sas-mode-hook	; For SAS mode
+          '(lambda()
+             (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab
 
 
 ;;; e2wn		; Window management system
@@ -1198,9 +1207,9 @@ In case the execution fails, return an error."
 ;; http://www.emacswiki.org/emacs/essh.el
 (require 'essh)
 (defun essh-sh-hook ()                                             
-  (define-key sh-mode-map (kbd "C-c C-r") 'pipe-region-to-shell)        
-  (define-key sh-mode-map (kbd "C-c C-b") 'pipe-buffer-to-shell)        
-  (define-key sh-mode-map (kbd "C-c C-j") 'pipe-line-to-shell)          
+  (define-key sh-mode-map (kbd "C-c C-r") 'pipe-region-to-shell)
+  (define-key sh-mode-map (kbd "C-c C-b") 'pipe-buffer-to-shell)
+  (define-key sh-mode-map (kbd "C-c C-j") 'pipe-line-to-shell)
   (define-key sh-mode-map (kbd "C-c C-n") 'pipe-line-to-shell-and-step) 
   (define-key sh-mode-map (kbd "C-c C-f") 'pipe-function-to-shell)      
   (define-key sh-mode-map (kbd "C-c C-d") 'shell-cd-current-directory)) 
