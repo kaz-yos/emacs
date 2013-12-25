@@ -1070,7 +1070,7 @@ In case the execution fails, return an error."
 ;;
 ;; ess-trace-bug.el		; filtering ++++ > ??? Not working
 ;; http://code.google.com/p/ess-tracebug/
-(require 'ess-tracebug)
+;; (require 'ess-tracebug)	; Now included in ESS
 (setq ess-use-tracebug t)	; permanent activation
 ;;
 ;; *.Rmd files invoke r-mode	; Temporary fix for R markdown files
