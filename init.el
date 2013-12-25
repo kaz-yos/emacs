@@ -883,6 +883,24 @@ In case the execution fails, return an error."
 (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
 ;; View/edit snippets
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+;;
+;; Use Popup isearch For Yasnippet Prompt
+;; http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
+(defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
+  (when (featurep 'popup)
+    (popup-menu*
+     (mapcar
+      (lambda (choice)
+        (popup-make-item
+         (or (and display-fn (funcall display-fn choice))
+             choice)
+         :value choice))
+      choices)
+     :prompt prompt
+     ;; start isearch mode immediately
+     :isearch t
+     )))
+(setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
 
 
 ;;; Emacs Speaks Statistics (ESS) for emacs
