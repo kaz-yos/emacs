@@ -2227,6 +2227,7 @@ In case the execution fails, return an error."
 	     (local-set-key (kbd "<S-return>") 'my-python-eval)
 	     (local-set-key (kbd "<C-return>") 'my-python-eval)	     
 	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
+	     (setq eldoc-mode t)		; eldoc in the mode line
 	     ))
 ;;
 (add-hook 'inferior-python-mode-hook	; For Python process
@@ -2234,17 +2235,6 @@ In case the execution fails, return an error."
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
 	     ))
-
-
-
-;; ;; Sending without selecting
-;; ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
-;; (defun python-shell-send-region-or-line ()
-;;   "Call `python-shell-send-region' with selected region or current line (if none selected)."
-;;   (interactive)
-;;   (if (and transient-mark-mode mark-active)
-;;       (python-shell-send-region (point) (mark))
-;;     (python-shell-send-region (point-at-bol) (point-at-eol))))
 
 
 ;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
