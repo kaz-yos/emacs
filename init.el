@@ -1166,14 +1166,14 @@ In case the execution fails, return an error."
         (set-window-buffer w2 w1name)	; script on the right (w2)
 	(select-window w2)		; Select script (w2) Added
 	)))
-;;
+;; Define a function to eval julia code	; Actually the one for R works???
 (defun my-ess-eval-julia ()
   (interactive)
   (my-ess-start-julia)
   (if (and transient-mark-mode mark-active)
       (call-interactively 'ess-eval-region)
     (call-interactively 'ess-eval-line-and-step)))
-
+;; Hook for julia-mode
 (add-hook 'julia-mode-hook 
 	  '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval-julia)
