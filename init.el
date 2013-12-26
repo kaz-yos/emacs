@@ -2119,7 +2119,9 @@ In case the execution fails, return an error."
 (setq
  ;; python-shell-interpreter "ipython"
  python-shell-interpreter "/usr/local/bin/ipython"
- python-shell-interpreter-args ""
+ ;; "console --pylab" required for matplotlib? 2013-12-25
+ ;; http://stackoverflow.com/questions/17117074/python-shell-in-emacs-freezes-when-using-matplotlib
+ python-shell-interpreter-args "console --pylab"
  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
  python-shell-prompt-output-Regexp "Out\\[[0-9]+\\]: "
  python-shell-completion-setup-code
