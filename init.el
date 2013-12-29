@@ -2119,22 +2119,23 @@ In case the execution fails, return an error."
 ;; python.el
 ;; http://superuser.com/questions/345595/python-el-for-long-time-python-mode-el-user
 (require 'python)
+;; (setq python-shell-interpreter "/usr/local/bin/python")	; symlink to python3 does not work.
 ;;
-;; ipython setting for python.el
-;; (setq
-;;  ;; python-shell-interpreter "ipython"
-;;  python-shell-interpreter "/usr/local/bin/ipython"
-;;  ;; "console --pylab" required for matplotlib? 2013-12-25
-;;  ;; http://stackoverflow.com/questions/17117074/python-shell-in-emacs-freezes-when-using-matplotlib
-;;  python-shell-interpreter-args "console --pylab"
-;;  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-;;  python-shell-prompt-output-Regexp "Out\\[[0-9]+\\]: "
-;;  python-shell-completion-setup-code
-;;  "from IPython.core.completerlib import module_completion"
-;;  python-shell-completion-module-string-code
-;;  "';'.join(module_completion('''%s'''))\n"
-;;  python-shell-completion-string-code
-;;  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+;; ipython setting for python.el (not used as of 2013-12-28)
+(setq
+ ;; python-shell-interpreter "ipython"
+ python-shell-interpreter "/usr/local/bin/ipython"
+ ;; "console --pylab" required for matplotlib? 2013-12-25
+ ;; http://stackoverflow.com/questions/17117074/python-shell-in-emacs-freezes-when-using-matplotlib
+ python-shell-interpreter-args "console --pylab"
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-Regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code
+ "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code
+ "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code
+ "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 ;;
 ;; ;; Default shell interaction commands
 ;; (define-key map "\C-c\C-p" 'run-python)
