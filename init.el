@@ -2124,10 +2124,12 @@ In case the execution fails, return an error."
 ;; ipython setting for python.el (not used as of 2013-12-28)
 (setq
  ;; python-shell-interpreter "ipython"
- python-shell-interpreter "/usr/local/bin/ipython"
+ python-shell-interpreter "/usr/local/bin/ipython3"
+ ;; python-shell-interpreter "/usr/local/bin/ipython"
  ;; "console --pylab" required for matplotlib? 2013-12-25
  ;; http://stackoverflow.com/questions/17117074/python-shell-in-emacs-freezes-when-using-matplotlib
- python-shell-interpreter-args "console --pylab"
+ ;; python-shell-interpreter-args "console --pylab"
+ python-shell-interpreter-args "--pylab"	; console does not work with Python 3.3.3. 2013-12-31
  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
  python-shell-prompt-output-Regexp "Out\\[[0-9]+\\]: "
  python-shell-completion-setup-code
