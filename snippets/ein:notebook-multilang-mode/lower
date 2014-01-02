@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lower
+# key: xlower
+# --
+$1.columns = [x.lower() for x in $1.columns]$0

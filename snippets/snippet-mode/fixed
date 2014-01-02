@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fixed
+# key: xfixed
+# --
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))

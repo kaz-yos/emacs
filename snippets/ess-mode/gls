@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: gls
+# key: xgls
+# --
+res.$1 <- gls(model       = $2,
+              data        = $1,
+              ## Covariance structure
+              correlation = corSymm(form = ~ as.numeric(${3: time.cat}) | ${4: id}),
+              ## Variance structure
+              weights     = varIdent(form = ~ 1 | ${3: time.cat}),
+              method      = "REML"
+              )
+summary($1)
+intervals($1)
+getVarCov($1)

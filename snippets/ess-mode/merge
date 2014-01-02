@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: merge
+# key: xmerge
+# --
+df.merge <- merge(x = $1,
+                  y = $2,
+                  by = $0,
+                  by.x = , by.y = ,
+                  all.x = TRUE, all.y = TRUE # outer join
+                  )

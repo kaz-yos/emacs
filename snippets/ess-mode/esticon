@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: esticon
+# key: xesticon
+# --
+library(doBy)
+res. <- esticon(obj        = ,
+                cm         = rbind(
+                    "linear 1" = c(0, 0, 0, 0, 0, 0), 
+                    "linear 2" = c(0, 0, 0, 0, 0, 0)),
+                ## beta0   = ,
+                conf.int   = TRUE, level = 0.95,
+                joint.test = TRUE
+                )

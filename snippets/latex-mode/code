@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: code
+# key: xcode
+# binding: C-c c
+# --
+<<size = "small">>=
+$0
+@ 

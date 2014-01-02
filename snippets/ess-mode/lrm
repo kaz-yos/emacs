@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: lrm
+# key: xlrm
+# binding: direct-keybinding
+# --
+<- lrm(formula = ,
+       data = ,
+       model = TRUE, x = TRUE, y = TRUE, linear.predictors = TRUE, se.fit = TRUE
+       )

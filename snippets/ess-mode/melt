@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: melt
+# key: xmelt
+# --
+.melt <- melt(data          = $0,
+              id.vars       = c(),
+              measure.vars  = c(),
+              variable.name = "variable",
+              value.name    = "value"
+              )

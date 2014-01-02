@@ -1,0 +1,64 @@
+# -*- mode: snippet -*-
+# name: beamer
+# key: xbeamer
+# --
+% Beamer template
+\documentclass[10pt]{beamer}
+% \usetheme{umbc4}
+% \useinnertheme{umbcboxes}
+% \setbeamercolor{umbcboxes}{bg=violet!12,fg=black}
+
+\usepackage{rotating} % for defining \schwa
+\newcommand{\schwa}{\raisebox{1ex}{\begin{turn}{180}e\end{turn}}}
+
+\newcommand{\arcsinh}{\mathop\mathrm{arcsinh}\nolimits}
+\newcommand{\arccosh}{\mathop\mathrm{arccosh}\nolimits}
+\newcommand{\Pu}{P_{\mathrm{amb}}}
+
+\title{Main Title}
+\subtitle{Subtitle}
+\author[kaz_yos]{Kazuki Yoshida}
+\institute[BWH]{
+  Section of Clinical Sciences \\
+  Division of Rheumatology, Immunology and Allergy \\
+  Department of Medicine \\
+  Brigham and Women's Hospital \\
+  Boston, MA 02115, USA
+}
+\date{2013-09-09}
+\begin{document}
+
+%----------- titlepage ----------------------------------------------%
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}
+  \frametitle{Acknowledgment}
+
+Fred Gornik, Power+Energy, Inc.
+\medskip
+
+http://powerandenergy.com
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}
+  \frametitle{Overview of the talk}
+
+\begin{itemize}
+  \item The workings of a hydrogen fuel cell
+  \item A mathematical model for hydrogen-palladium interaction
+  \item Two mathematical problems:
+  \begin{itemize}
+    \item Solution and analysis of an ODE
+    \item Solution and analysis of a PDE
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\end{document}

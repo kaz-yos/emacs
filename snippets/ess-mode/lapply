@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: lapply
+# key: xlapply
+# --
+res.$1 <- sapply($1,
+                 FUN = function(i) {
+                    
+                    $0
+                },
+                 simplify = FALSE)

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: MCMCglmm
+# key: xMCMCglmm
+# --
+res. <- MCMCglmm(fixed = ,
+                 random = NULL,
+                 rcov = ~units,
+                 family = "gaussian",
+                 mev = NULL, 
+                 data = $0,
+                 start = NULL, prior = NULL, tune = NULL, pedigree = NULL, nodes = "ALL",
+                 scale = TRUE, nitt = 13000, thin = 10, burnin = 3000, pr = FALSE,
+                 pl = FALSE, verbose = TRUE, DIC = TRUE, singular.ok = FALSE, saveX = TRUE,
+                 saveZ = TRUE, saveXL = TRUE, slice = FALSE, ginverse = NULL)

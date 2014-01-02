@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: ggplot
+# key: xggplot
+# --
+ggplot(data = $1,
+       mapping = aes(x = $2, y = $3)) +
+    layer(geom = "$4") +
+    theme_bw() +
+    theme(legend.key = element_blank())
+$0

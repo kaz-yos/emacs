@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: sandwich
+# key: xsandwich
+# --
+## Load sandwich package for robust sandwich covariance matrix estimators
+library(sandwich)
+## Load lmtest package for coeftest
+library(lmtest)
+## Test using robust sandwich covariance matrix estimators
+coeftest($0, vcov = sandwich)

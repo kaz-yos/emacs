@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ddply-summarize
+# key: xddsum
+# --
+summary.$1 <- ddply(.data = $1,
+                    .variables = c($2),
+                    .fun = summarize,
+                    ${3: mean = mean(y)}$0)

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: item
+# key: xitem
+# binding: C-c i
+# --
+\item $0

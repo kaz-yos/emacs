@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: figure
+# key: xfigure
+# --
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=90mm]{tmp.png$0}
+  \caption{A simple caption}
+  \label{overflow}
+\end{figure}

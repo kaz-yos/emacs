@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: read.table
+# key: xread
+# --
+ <- read.table(header = TRUE, text = "
+$0
+")

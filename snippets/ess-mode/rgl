@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: rgl
+# key: xrgl
+# binding: direct-keybinding
+# expand-env: ((some-var some-value))
+# type: command
+# --
+## Load rgl for 3d
+library(rgl)
+
+## Simple scatter plot
+with(data = dat,
+     plot3d(x = ,
+            y = ,
+            z = ,
+            type = "s",  # s_phere
+            col = "red",
+            size = 2            
+            )
+     )
+
+## Add regression surface
+surface3d(x = ,
+          y = ,
+          z = ,
+          col = 3, alpha = 0.2)

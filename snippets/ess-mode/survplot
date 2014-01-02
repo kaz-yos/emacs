@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: survplot
+# key: xsurvplot
+# --
+survplot(fit             = $0,
+         conf            = c("none","bands","bars")[1],
+         xlab            = "", ylab = "Survival",
+         ## xlim         = c(0,100),
+         label.curves    = TRUE,                  # label curves directly
+         ## label.curves = list(keys = "lines"),  # legend instead of direct label
+         levels.only     = TRUE,                  # show only levels, no variable name
+         abbrev.label    = FALSE,                 # if label used, abbreviate
+         ## fun          = function(x) {1 - x},   # Cumulative probability plot         
+         loglog          = FALSE,                 # log(-log Survival) plot
+         logt            = FALSE,                 # log time
+         time.inc        = 100,                   # time increment
+         dots            = FALSE,                 # dot grid
+         n.risk          = TRUE,                  # show number at risk
+         ## srt.n.risk   = 0, sep.n.risk = 0.056, adj.n.risk = 1,
+         ## y.n.risk     = 0, cex.n.risk = 0.6
+         )

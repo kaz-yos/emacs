@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: glmer
+# key: xglmer
+# binding: direct-keybinding
+# --
+$0 <- glmer(formula =  ~  + (1 | level4/level3/level2),
+            data = ,
+            family = binomial(link = "logit")
+            )

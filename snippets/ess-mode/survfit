@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: survfit
+# key: xsurvfit
+# --
+ <- survfit(formula   = ,
+            data      = $0,
+	    type      = "kaplan-meier",
+            error     = "greenwood",
+            conf.type = "log-log")

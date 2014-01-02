@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: libname
+# key: xlibname
+# --
+libname dir1 '//psf/Home/Documents/statistics/';

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: gee
+# key: xgee
+# --
+res. <- gee(formula     = $0,
+            id          = id,
+            waves       = NULL,
+            data        = ,
+            family      = poisson(link = "log"),
+            corstr      = "exchangeable",
+            scale.fix   = FALSE
+            )

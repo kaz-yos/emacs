@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: sasstata
+# key: xsasstata
+# --
+/* Export data as stata */
+PROC EXPORT DATA= WORK.$0 
+            OUTFILE= "Z:\Documents\statistics\stata.dta" 
+            DBMS=STATA REPLACE;
+RUN;

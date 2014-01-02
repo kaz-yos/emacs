@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: ipwpoint
+# key: xipwpoint
+# --
+res.ipw <-
+    ipwpoint(exposure    = ,
+             family      = "binomial",
+             link        = "logit",
+             ## Model for numerator
+             numerator   = NULL, # Unstabilized weight (numerator 1 for every subject)
+             ## numerator   = ~ 1, # Stabilized weight with mean = 1 (prevalence of exposure status)
+             ## Model for denominator (probability of exposure status given covariates)
+             denominator = ~ ,
+             data        = 
+             )

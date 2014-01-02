@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: savexls
+# key: xsavexls
+# --
+## Load workbook (create if not existing)
+wb <- loadWorkbook(filename = "./file.xlsx", create = TRUE)
+## Create a worksheet
+createSheet(object = wb, name = "sheet1")
+## offset from the top left corner and with default header = TRUE
+writeWorksheet(object = wb, data = CO2, sheet = "sheet1", startRow = 4, startCol = 2)
+## Save workbook (this actually writes the file to disk)
+saveWorkbook(wb)

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: within
+# key: xwithin
+# --
+$1 <- within($1, {
+$0
+})

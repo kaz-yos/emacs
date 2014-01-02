@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: ldply
+# key: xldply
+# --
+res. <- ldply(.data = $0,
+              .variables = c(),                
+              .fun = function(DF) {                  
+
+                  
+              })

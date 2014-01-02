@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fig
+# key: xfig
+# --
+fig.width = $1, fig.height = $0

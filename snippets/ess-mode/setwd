@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: setwd
+# key: xsetwd
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# --
+setwd("`(abbreviate-file-name (file-name-directory (buffer-file-name)))`$0")

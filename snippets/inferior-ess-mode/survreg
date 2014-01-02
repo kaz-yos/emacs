@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: survreg
+# key: xsurvreg
+# --
+<- survreg(formula = ,
+         data      = $0,
+         dist      = "exponential")

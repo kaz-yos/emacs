@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: crr
+# key: xcrr
+# --
+<- crr(ftime    = , # vector of failure/censoring times
+       fstatus  = , # vector with a unique code for each failure type and censoring
+       cov1     = , #  matrix (nobs x ncovs) of fixed covariates
+       ## cov2     = , # matrix of covariates that will be multiplied by functions of time
+       tf       = , # functions of time
+       ## cengroup = , # vector with different values for each group with a distinct censoring distribution
+       failcode = 1, # code of fstatus that denotes the failure type of interest
+       cencode  = 0 # code of fstatus that denotes censored observations
+       )

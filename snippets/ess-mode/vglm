@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: vglm
+# key: xvglm
+# --
+resVglm <- vglm(formula = ,
+                data    = ,
+                family  = cumulative(link = "logit", parallel = FALSE, reverse = TRUE))

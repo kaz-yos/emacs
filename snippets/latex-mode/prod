@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: prod
+# key: xprod
+# --
+\\prod^n_{i=1}$0

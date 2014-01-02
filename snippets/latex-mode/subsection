@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: subsection
+# key: xss
+# --
+\subsection{$0}

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: cuminc
+# key: xcuminc
+# --
+fit <- cuminc(ftime   = ,  # failure time variable
+              fstatus = ,  # variable with distinct codes for different causes of failure
+              group   = ,  # estimates will calculated within groups
+              strata  = ,  # Tests will be stratified on this variable.
+              rho     = 0, # Power of the weight function used in the tests.
+              cencode = 0, # value of fstatus variable which indicates the failure time is censored.
+              ## subset = ,
+              ## na.action = na.omit
+              )

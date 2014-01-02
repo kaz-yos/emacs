@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: dcast
+# key: xdcast
+# binding: direct-keybinding
+# --
+$0 <- dcast(data          = ,
+            formula       = ,
+            ## value.var     = ,
+            fun.aggregate =
+            )

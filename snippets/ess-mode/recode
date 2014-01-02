@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: recode
+# key: xrecode
+# --
+car::recode(var = , recodes = '
+"1" = "a";
+else = "b"
+')

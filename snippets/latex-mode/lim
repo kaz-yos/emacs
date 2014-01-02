@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lim
+# key: xlim
+# --
+\lim_{n \to \infty}$0

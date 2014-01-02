@@ -1,0 +1,36 @@
+# -*- mode: snippet -*-
+# name: swig
+# key: xswig
+# --
+% Put this before \begin{document}
+% \usepackage{tikz}
+% \usetikzlibrary{shapes.geometric,positioning}
+% \tikzset{
+% semi/.style={
+%   semicircle,
+%   draw,
+%   minimum size=2em
+%   }
+% }
+
+\begin{tikzpicture}[line width=0.05cm]
+
+\node [circle,draw] (h) {$H$};
+\node [circle,draw,below left=1cm and 1.5cm of h] (l) {$L$};
+
+\node [ellipse,draw,below=3.5cm of h] (y) {$Y(x)$};
+
+\node[semi,left=2cm of y,shape border rotate=270] (x) {$x$};
+\node[semi,left=0.3cm of x,shape border rotate=90] (X) {$X$};
+
+\begin{scope}[line width=.125cm,shorten >= 5pt, shorten <= 5pt]
+
+\draw[->] (x) -- (y);
+\draw[->] (l) to [out=180,in=90]  (X);
+\draw[->] (l) -- (y);
+\draw[->] (h) -- (l);
+\draw[->] (h) -- (y);
+\end{scope}
+
+\draw[help lines] (0,0) grid (8,6) ;
+\end{tikzpicture}

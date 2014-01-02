@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: coxph
+# key: xcoxph
+# --
+<- coxph(formula = ,
+         data    = $0,
+         ties    = c("efron","breslow","exact")[1])

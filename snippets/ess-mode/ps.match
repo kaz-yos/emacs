@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: ps.match
+# key: xps.match
+# --
+res.ps.match <- ps.match(object             = $0,
+                         object.control     = NULL,
+                         matched.by         = NULL,
+                         control.matched.by = matched.by,
+                         who.treated        = 1,                # value 1 is treated
+                         treat              = NULL,
+                         name.match.index   = "match.index",
+                         ratio              = 1,                # default 1:1 match
+                         caliper            = "logit",
+                         x                  = 0.2,
+                         givenTmatchingC    = TRUE,
+                         bestmatch.first    = TRUE,
+                         setseed            = FALSE,
+                         combine.output     = TRUE)

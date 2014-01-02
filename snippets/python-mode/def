@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: def
+# key: xdef
+# --
+def func(${1:args}):
+    $0

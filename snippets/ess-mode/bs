@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bs
+# key: xbs
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# --
+bs($0, df = 5, knots = NULL, degree = 1)

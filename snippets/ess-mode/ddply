@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: ddply
+# key: xddply
+# --
+$1 <- ddply(.data = $1,
+            .variables = c($2),                
+            .drop = TRUE, .parallel = TRUE, # Turn off parallel for debugging
+            .fun = function(DF) {
+                
+                $0
+
+                ## Return DF
+                DF
+            })

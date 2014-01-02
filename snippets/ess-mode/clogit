@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: clogit
+# key: xclogit
+# --
+res. <- clogit(formula    = + strata(id),
+               data       = ,
+               ## weights = ,
+               ## subset  = ,
+               method     =c("exact", "approximate", "efron", "breslow")[1],
+               )

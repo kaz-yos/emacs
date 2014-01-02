@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: matchit
+# key: xmatchit
+# --
+out.matchit <- matchit(formula          = ,
+                       data             = ,
+                       method           = c("exact","full","genetic","nearest","optimal","subclass")[4],
+                       distance         = "logit",
+                       ## distance.options = list(),
+                       ## discard          = "none",
+                       ## reestimate       = FALSE
+                       )

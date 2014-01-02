@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: with
+# key: xwith
+# --
+$0 <- with($1, $2)

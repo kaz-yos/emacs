@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: acast
+# key: xacast
+# --
+<- acast(data =$0,
+         formula =  ~ ,
+         fun.aggregate = NULL,
+         value.var = "")

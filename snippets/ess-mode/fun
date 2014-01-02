@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: fun
+# key: xfun
+# --
+$1 <- function($2) {
+    $0
+}

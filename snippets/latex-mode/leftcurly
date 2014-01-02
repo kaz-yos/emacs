@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: leftcurly
+# key: xltc
+# --
+\\left\\{ $0 \\right\\}

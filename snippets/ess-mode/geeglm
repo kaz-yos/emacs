@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: geeglm
+# key: xgeeglm
+# --
+<- geeglm(formula   = $0,
+          family    = poisson(link = "log"),
+          id        = ,
+          data      = ,
+          weights   = ,
+          corstr    = "exchangeable",
+          scale.fix = FALSE
+          )

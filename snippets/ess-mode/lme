@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: lme
+# key: xlme
+# --
+res.$1 <- lme(fixed  = ,
+              data   = $1,
+              random = ~ | id,
+              method = "REML"
+              )
+
+summary(res.$1)
+intervals(res.$1)
+getVarCov(res.$1)

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: reshape
+# key: xreshape
+# --
+$1.long <- reshape(data      = $1,
+                   varying   = c($2), # Used in wide-to-long
+                   ## v.names   = "", # Used in long-to-wide
+                   timevar   = "time",
+                   idvar     = "id",
+                   direction = "long",
+                   sep       = ""
+                   )

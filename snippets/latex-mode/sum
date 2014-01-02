@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sum
+# key: xsum
+# --
+\\sum^n_{i=1}$0
