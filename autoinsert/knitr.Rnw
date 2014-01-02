@@ -10,6 +10,7 @@
 \usepackage{amsmath}
 % Allow new page within align
 \allowdisplaybreaks
+\usepackage{cancel}
 
 % Code
 \usepackage{listings}
@@ -37,6 +38,7 @@
 \usepackage{sectsty}
 \sectionfont{\small}
 \subsectionfont{\small}
+\subsubsectionfont{\small}
 
 % Section numbering
 % http://tex.stackexchange.com/questions/3177/how-to-change-the-numbering-of-part-chapter-section-to-alphabetical-r
