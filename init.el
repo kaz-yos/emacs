@@ -510,6 +510,7 @@ If you omit CLOSE, it will reuse OPEN."
 			 (mode . python-mode)
 			 (mode . inferior-python-mode)))
 	       ("shell"  (mode . shell-mode))
+	       ("magit"  (mode . magit-mode))
 	       ("TeX"    (or
 			  (mode . TeX-mode)
 			  (mode . LaTeX-mode)))
