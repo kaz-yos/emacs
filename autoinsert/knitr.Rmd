@@ -1,0 +1,45 @@
+
+==================
+<!--
+    ```
+-->
+```{r, message = FALSE, tidy = FALSE, echo = F}
+## knitr configuration: http://yihui.name/knitr/options#chunk_options
+warnMessage <- TRUE
+set_alias(w = "fig.width", h = "fig.height", res = "results")
+opts_chunk$set(comment = "##", error= TRUE, warning = warnMessage, message = warnMessage,
+               tidy = FALSE, cache = F, echo = T,
+               fig.width = 7, fig.height = 7, dev.args = list(family = "sans"))
+## for rgl
+knit_hooks$set(rgl = hook_rgl, webgl = hook_webgl)
+## for animation
+opts_knit$set(animation.fun = hook_ffmpeg_html)
+
+## R configuration
+options(width = 116, scipen = 5)
+```
+<!--
+    ``` ```
+-->
+
+References
+--------------------
+
+Load packages
+--------------------
+```{r}
+## 
+library(survival)
+```
+
+--------------------
+```{r}
+
+```
+
+
+--------------------
+- Table of Contents: http://rpubs.com/kaz_yos/toc
+- Table of Contents (Japanese): http://rpubs.com/kaz_yos/toc-j
+- Top Page: http://rpubs.com/kaz_yos/
+- SlideShare: http://www.slideshare.net/kaz_yos
