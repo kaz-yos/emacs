@@ -371,18 +371,19 @@
 
 
 ;; Use emacsclient
+;; ln -s /Applications/Emacs24.3.app/Contents/MacOS/bin/emacsclient /usr/local/bin/emacsclient
 ;; .profile: export EDITOR="emacsclient"
 ;; http://www.emacswiki.org/emacs/EmacsClient
-;; (require 'server)
-;; (unless (server-running-p)
-;;   (server-start))
-;; (server-start)		; Start server
-;; (defvar server-buffer-clients)
-;; (when (and (fboundp 'server-start) (string-equal (getenv "TERM") 'xterm))
-;;   (server-start)
-;;   (defun fp-kill-server-with-buffer-routine ()
-;;     (and server-buffer-clients (server-done)))
-;;   (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+(server-start)		; Start server
+(defvar server-buffer-clients)
+(when (and (fboundp 'server-start) (string-equal (getenv "TERM") 'xterm))
+  (server-start)
+  (defun fp-kill-server-with-buffer-routine ()
+    (and server-buffer-clients (server-done)))
+  (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
 
 
 
@@ -503,14 +504,19 @@ If you omit CLOSE, it will reuse OPEN."
 			 (name . "^\\*Messages\\*$")
 			 (name . "^\\*Packages\\*$")
 			 ))
-	       ("ess" (or
+	       ("ess"   (or
 			 (mode . ess-mode)
 			 (mode . inferior-ess-mode)))
 	       ("python" (or
-			 (mode . python-mode)
-			 (mode . inferior-python-mode)))
-	       ("shell"  (mode . shell-mode))
-	       ("magit"  (mode . magit-mode))
+			  (mode . python-mode)
+			  (mode . inferior-python-mode)))
+	       ("shell"  (or
+			  (mode . sh-mode)
+			  (mode . shell-mode)))
+	       ("magit"  (or 
+			  (mode . magit-mode)
+			  (mode . magit-status-mode)
+			  (mode . magit-process-mode)))
 	       ("TeX"    (or
 			  (mode . TeX-mode)
 			  (mode . LaTeX-mode)))
