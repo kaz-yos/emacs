@@ -85,6 +85,12 @@
   )
 
 
+;;; dired configuration
+;; Show sizes in KB/MB etc
+;; http://unix.stackexchange.com/questions/44858/change-view-in-emacs-dired-mode
+(setq dired-listing-switches "-ahl")
+
+
 ;;; Bars: Menu bar only. No scroll bar or tool bar.
 ;; http://www.emacswiki.org/emacs/FullScreen#toc7
 (menu-bar-mode t)
@@ -517,6 +523,8 @@ If you omit CLOSE, it will reuse OPEN."
 			  (mode . magit-mode)
 			  (mode . magit-status-mode)
 			  (mode . magit-process-mode)))
+	       ("lisp"	(or 
+			 (mode . emacs-lisp-mode)))
 	       ("TeX"    (or
 			  (mode . TeX-mode)
 			  (mode . LaTeX-mode)))
@@ -2157,6 +2165,7 @@ In case the execution fails, return an error."
 ;; 
 ;; Redefine python-shell-send-region command to avoid sending blank line to ipython shell 2013-12-22
 ;; This, however, breaks the debugger. It will show the wrong lines in the beginning of the files. 2013-12-25
+;; Python3's traceback is smarter and correctly shows the error with the simplified send-region. 2014-01-02
 (defun python-shell-send-region (start end)
   "Send the region delimited by START and END to inferior Python process."
   (interactive "r")
