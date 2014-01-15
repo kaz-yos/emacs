@@ -481,6 +481,50 @@ If you omit CLOSE, it will reuse OPEN."
     (insert open)))
 
 
+;;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; el-get.el package system 2013-02-26
+;; https://github.com/dimitri/el-get
+;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")	; This is configured at the top.
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+(el-get 'sync)
+
+
+;;; Package system and MELPA
+;; http://www.emacswiki.org/emacs/ELPA
+(require 'package)
+;;
+;; Initialize 2013-10-31 moved ahead of repositories
+(package-initialize)
+;;
+;; MELPA	; 2013-10-31 Manually running this line fixed it? corrupt temporary file??
+;; http://melpa.milkbox.net/#installing
+;; http://melpa.milkbox.net/#/getting-started
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;;
+;; Marmalade
+;; http://www.emacswiki.org/emacs/Marmalade
+;; http://qiita.com/items/e81fca7a9797fe203e9f
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;;
+;; org mode
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+;;
+;; Refresh contents 2013-10-31 Manually running this fixed issue of not having available packages?
+;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
+(when (not package-archive-contents)
+  (package-refresh-contents))
+;;
+;; melpa.el 2013-10-31 it was at the end
+(require 'melpa)
+
+
+
 ;;; Buffer Management
 ;;
 ;; ibuffer
@@ -511,12 +555,20 @@ If you omit CLOSE, it will reuse OPEN."
    ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
    ((> (buffer-size) 1000) (format "%7.1fK" (/ (buffer-size) 1000.0)))
    (t (format "%8d" (buffer-size)))))
+;;
+;; Add git support
+(require 'ibuffer-git)
+;; Choose the column width for the long status
+;; (setq ibuffer-git-column-length 8)	; default is 8.
+;; git-status-mini (git-status 8 8 :left) are defined. Add to ibuffer-formats
+
 ;; Modify the default ibuffer-formats
 ;; http://unix.stackexchange.com/questions/35830/change-column-width-in-an-emacs-ibuffer-on-the-fly
 (setq ibuffer-formats
       '((mark modified read-only	; Three flags without spaces in between.
 	      " "			; Space
 	      (name 18 18 :left :elide)	; Buffer name
+	      git-status-mini		; ibuffer-git short status
 	      " "
 	      (size-h 9 -1 :right)	; size-h defined above
 	      " "
@@ -572,7 +624,7 @@ If you omit CLOSE, it will reuse OPEN."
 			(name . "^\\.bbdb$")
 			(name . "^\\.newsrc-dribble")))
 	       ))))
-;;
+;; Group for the other buffers.
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
@@ -598,49 +650,6 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (setq read-buffer-function 'iswitchb-read-buffer)
 ;; (setq iswitchb-regexp nil)
 ;; (setq iswitchb-prompt-newbuffer nil)
-
-
-
-;;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; el-get.el package system 2013-02-26
-;; https://github.com/dimitri/el-get
-;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")	; This is configured at the top.
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-(el-get 'sync)
-
-
-;;; Package system and MELPA
-;; http://www.emacswiki.org/emacs/ELPA
-(require 'package)
-;;
-;; Initialize 2013-10-31 moved ahead of repositories
-(package-initialize)
-;;
-;; MELPA	; 2013-10-31 Manually running this line fixed it? corrupt temporary file??
-;; http://melpa.milkbox.net/#installing
-;; http://melpa.milkbox.net/#/getting-started
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;;
-;; Marmalade
-;; http://www.emacswiki.org/emacs/Marmalade
-;; http://qiita.com/items/e81fca7a9797fe203e9f
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;;
-;; org mode
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-;;
-;; Refresh contents 2013-10-31 Manually running this fixed issue of not having available packages?
-;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
-(when (not package-archive-contents)
-  (package-refresh-contents))
-;;
-;; melpa.el 2013-10-31 it was at the end
-(require 'melpa)
 
 
 
