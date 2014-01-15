@@ -528,6 +528,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;;; Buffer Management
 ;;
 ;; ibuffer
+;; http://www.emacswiki.org/emacs/IbufferMode
 ;; http://ergoemacs.org/emacs/emacs_buffer_management.html
 (defalias 'list-buffers 'ibuffer)
 ;;
@@ -547,22 +548,13 @@ If you omit CLOSE, it will reuse OPEN."
 (setq ibuffer-default-sorting-mode 'filename/process	; Sort by filename/process
       ibuffer-show-empty-filter-groups nil)		; Don't show empty groups
 ;;
-;; Use human readable Size column instead of original one 2014-01-15
-;; http://www.emacswiki.org/emacs/IbufferMode#toc12
-(define-ibuffer-column size-h
-  (:name "Size" :inline t)
-  (cond
-   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
-   ((> (buffer-size) 1000) (format "%7.1fK" (/ (buffer-size) 1000.0)))
-   (t (format "%8d" (buffer-size)))))
-;;
 ;; Add git support
 (require 'ibuffer-git)
 ;; Choose the column width for the long status
 ;; (setq ibuffer-git-column-length 8)	; default is 8.
 ;; git-status-mini (git-status 8 8 :left) are defined. Add to ibuffer-formats
-
-;; Modify the default ibuffer-formats
+;;
+;; Modify the default ibuffer-formats	; git support and size formatting
 ;; http://unix.stackexchange.com/questions/35830/change-column-width-in-an-emacs-ibuffer-on-the-fly
 (setq ibuffer-formats
       '((mark modified read-only	; Three flags without spaces in between.
@@ -570,7 +562,8 @@ If you omit CLOSE, it will reuse OPEN."
 	      (name 18 18 :left :elide)	; Buffer name
 	      git-status-mini		; ibuffer-git short status
 	      " "
-	      (size-h 9 -1 :right)	; size-h defined above
+	      (size-h 9 -1 :right)	; size-h defined at the end
+	      ;;(size 9 -1 :right)	; original size in bytes
 	      " "
 	      (mode 10 10 :left :elide)	; Mode
 	      " "
@@ -629,27 +622,15 @@ If you omit CLOSE, it will reuse OPEN."
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
 ;;
-;; Things below here has external dependencies
-;; ;; buff-menu+.el		; Does not work with 24.3 due to changes in buff-menu.el
-;; ;; http://www.emacswiki.org/emacs/BufferMenuPlus#BufferMenu
-;; (require 'buff-menu+)
-;; (add-to-list 'same-window-buffer-names "*Buffer List*")		;; Open in current window
-;; (global-set-key (kbd "C-x M-b") 'buffer-menu-other-window)	;; Open in other window
+;; Use human readable Size column instead of original one 2014-01-15
+;; http://www.emacswiki.org/emacs/IbufferMode#toc12
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+   ((> (buffer-size) 1000) (format "%7.1fK" (/ (buffer-size) 1000.0)))
+   (t (format "%8d" (buffer-size)))))
 ;;
-;; Sort by mode name
-;; Number corresponds to buffer-menu+ column number
-;; (setq Buffer-menu-sort-column 5) ;; 1CRM, 2Buffer, 3Size, 4Time, 5Mode, 6File
-;;
-;; bs-show for buffer listing. Use c to make it more complete
-;; http://www.emacswiki.org/emacs/BufferSelection
-;; (global-set-key (kbd "C-x b") 'bs-show)
-;;
-;; iswitchb.el Strengthen swtich-to-buffer ; not useful
-;; http://www.emacswiki.org/emacs/IswitchBuffers
-;; (iswitchb-mode 1)
-;; (setq read-buffer-function 'iswitchb-read-buffer)
-;; (setq iswitchb-regexp nil)
-;; (setq iswitchb-prompt-newbuffer nil)
 
 
 
