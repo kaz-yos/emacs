@@ -486,19 +486,44 @@ If you omit CLOSE, it will reuse OPEN."
 ;; ibuffer
 ;; http://ergoemacs.org/emacs/emacs_buffer_management.html
 (defalias 'list-buffers 'ibuffer)
+;;
+;; Switching to ibuffer puts the cursor on the most recent buffer
+;; http://www.emacswiki.org/emacs/IbufferMode#toc13
+(defadvice ibuffer (around ibuffer-point-to-most-recent) ()
+  "Open ibuffer with cursor pointed to most recent buffer name"
+  (let ((recent-buffer-name (buffer-name)))
+    ad-do-it
+    (ibuffer-jump-to-buffer recent-buffer-name)))
+(ad-activate 'ibuffer)
+;;
+;; Emacs Tip of the Day: Start Using IBuffer ASAP.
 ;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
 ;; (setq ibuffer-default-sorting-mode 'major-mode)
 ;; https://github.com/pd/dotfiles/blob/master/emacs.d/pd/core.el
-(setq ibuffer-default-sorting-mode 'filename/process
-      ibuffer-show-empty-filter-groups nil)
-;; Column widths
+(setq ibuffer-default-sorting-mode 'filename/process	; Sort by filename/process
+      ibuffer-show-empty-filter-groups nil)		; Don't show empty groups
+;;
+;; Use human readable Size column instead of original one 2014-01-15
+;; http://www.emacswiki.org/emacs/IbufferMode#toc12
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+   ((> (buffer-size) 1000) (format "%7.1fK" (/ (buffer-size) 1000.0)))
+   (t (format "%8d" (buffer-size)))))
+;; Modify the default ibuffer-formats
 ;; http://unix.stackexchange.com/questions/35830/change-column-width-in-an-emacs-ibuffer-on-the-fly
 (setq ibuffer-formats
-      '((mark modified read-only " "
-              (name 18 18 :left :elide) " "
-              (size 9 -1 :right) " "
-              (mode 10 10 :left :elide) " " filename-and-process)
-        (mark " " (name 16 -1) " " filename)))
+      '((mark modified read-only	; Three flags without spaces in between.
+	      " "			; Space
+	      (name 18 18 :left :elide)	; Buffer name
+	      " "
+	      (size-h 9 -1 :right)	; size-h defined above
+	      " "
+	      (mode 10 10 :left :elide)	; Mode
+	      " "
+	      filename-and-process)))
+;;
 ;; Classify
 ;; http://www.emacswiki.org/emacs/IbufferMode#toc6
 (setq ibuffer-saved-filter-groups
@@ -517,7 +542,8 @@ If you omit CLOSE, it will reuse OPEN."
 			  (mode . inferior-python-mode)))
 	       ("SHELL"  (or
 			  (mode . sh-mode)
-			  (mode . shell-mode)))
+			  (mode . shell-mode)
+			  (mode . ssh-mode)))
 	       ("SQL"  (or
 			  (mode . sql-mode)
 			  (mode . sql-interactive-mode)))
