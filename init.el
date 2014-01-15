@@ -228,9 +228,8 @@
 ;;
 ;; C-h for delete, C-? for help
 ;; http://www.emacswiki.org/emacs-en/BackspaceKey
-(keyboard-translate ?\C-h ?\C-?)
-;; (global-set-key [(control h)] 'delete-backward-char)
-;; (global-set-key [(control ?)] 'help-command)
+;; Use M-x help for help
+(define-key key-translation-map [?\C-h] [?\C-?])
 ;;
 (when (eq system-type 'darwin)
   ;; Mac-only
@@ -504,30 +503,33 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://www.emacswiki.org/emacs/IbufferMode#toc6
 (setq ibuffer-saved-filter-groups
       (quote (("default"
-	       ("dired" (mode . dired-mode))
-	       ("emacs" (or
+	       ("DIRED" (mode . dired-mode))
+	       ("EMACS" (or
 			 (name . "^\\*scratch\\*$")
 			 (name . "^\\*Messages\\*$")
 			 (name . "^\\*Packages\\*$")
 			 ))
-	       ("ess"   (or
+	       ("ESS"   (or
 			 (mode . ess-mode)
 			 (mode . inferior-ess-mode)))
-	       ("python" (or
+	       ("PYTHON" (or
 			  (mode . python-mode)
 			  (mode . inferior-python-mode)))
-	       ("shell"  (or
+	       ("SHELL"  (or
 			  (mode . sh-mode)
 			  (mode . shell-mode)))
-	       ("magit"  (or 
-			  (mode . magit-mode)
-			  (mode . magit-status-mode)
-			  (mode . magit-process-mode)))
-	       ("lisp"	(or 
+	       ("SQL"  (or
+			  (mode . sql-mode)
+			  (mode . sql-interactive-mode)))
+	       ("LISP"	(or 
 			 (mode . emacs-lisp-mode)))
 	       ("TeX"    (or
 			  (mode . TeX-mode)
 			  (mode . LaTeX-mode)))
+	       ("MAGIT"  (or 
+			  (mode . magit-mode)
+			  (mode . magit-status-mode)
+			  (mode . magit-process-mode)))
 	       ("perl" (mode . cperl-mode))
 	       ("erc" (mode . erc-mode))
 	       ("planner" (or
@@ -1174,6 +1176,15 @@ In case the execution fails, return an error."
              (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab from ESS major mode
 
 
+;; STAN support 2014-01-15
+(require 'stan-mode)
+;; stan-snippets.el
+;; (require 'stan-snippets)
+;; flymake-stan.el
+;; (require 'flymake-stan)
+
+
+
 ;;; e2wn		; Window management system
 ;; ;; e2wm minimal configuration (requires window-layout.el)
 ;; ;; http://d.hatena.ne.jp/kiwanami/20100528/1275038929
@@ -1257,6 +1268,19 @@ In case the execution fails, return an error."
 ;; https://github.com/purcell/flymake-easy
 (require 'flymake-shell)
 (add-hook 'sh-set-shell-hook 'flymake-shell-load)
+
+
+;; SSH support 2014-01-15
+;; Support for remote logins using `ssh'.
+;; This program is layered on top of shell.el; the code here only accounts
+;; for the variations needed to handle a remote process, e.g. directory
+;; tracking and the sending of some special characters.
+
+;; If you wish for ssh mode to prompt you in the minibuffer for
+;; passwords when a password prompt appears, just enter m-x send-invisible
+;; and type in your line, or add `comint-watch-for-password-prompt' to
+;; `comint-output-filter-functions'.
+(require 'ssh)
 
 
 
@@ -1695,6 +1719,10 @@ In case the execution fails, return an error."
     (require 'helm-migemo)	
   )
 ;;
+;; wgrep-helm.el  2014-01-14
+;; Writable helm-grep-mode buffer and apply the changes to files
+(require 'wgrep-helm)
+
 
 
 ;;; Key-Chord 2013-10-15 disabled to check for speed problem
@@ -1927,6 +1955,23 @@ In case the execution fails, return an error."
 ;; Usage:
 ;; M-x moccur-grep-find to enter Moccur-grep, then objectName .R$
 ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
+
+
+;; ag.el and wgrep-ag.el. Faster replacement for moccur-edit.el 2014-01-14
+;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
+;; ag.el
+(require 'ag)
+(setq ag-arguments '("--smart-case" "--group" "--column" "--"))	; grouping is better.
+(setq ag-highlight-search t)
+(setq ag-reuse-buffers t)
+(setq ag-reuse-window t)
+;;
+;; wgrep-ag.el
+(require 'wgrep-ag)
+(autoload 'wgrep-ag-setup "wgrep-ag")
+(add-hook 'ag-mode-hook 'wgrep-ag-setup)
+;; r in ag result buffer invokes edit mode. C-x C-s to save. C-x C-k to cancel.
+(define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
 
 
 ;; highlight-sexp.el
