@@ -1291,12 +1291,69 @@ In case the execution fails, return an error."
 ;; This program is layered on top of shell.el; the code here only accounts
 ;; for the variations needed to handle a remote process, e.g. directory
 ;; tracking and the sending of some special characters.
-
+;;
 ;; If you wish for ssh mode to prompt you in the minibuffer for
 ;; passwords when a password prompt appears, just enter m-x send-invisible
 ;; and type in your line, or add `comint-watch-for-password-prompt' to
 ;; `comint-output-filter-functions'.
 (require 'ssh)
+;;
+;; Completion. Not functional as of 2014-01-18.
+;; https://github.com/ieure/ssh-el
+(add-hook 'ssh-mode-hook
+	  (lambda ()
+	    (setq ssh-directory-tracking-mode 'ftp)	; Using the function with the same name is better?
+	    (shell-dirtrack-mode t)))
+
+
+;; Shell Dirtrack By Prompt 2014-01-17. Not functional yet
+;; http://www.emacswiki.org/emacs/ShellDirtrackByPrompt
+;; http://nflath.com/2009/09/dirtrack-mode/
+;; First, program your shell prompt to emit the PWD
+;; ~/.bashrc
+;; if [ $EMACS ]; then
+;;     # Emit the PWD in the prompt, taking care that it doesn't get truncated.
+;;     PS1='\n\u@\h:$(pwd) \n\$ '
+;; fi
+;; Capture 
+;;  
+(require 'dirtrack)
+(add-hook 'shell-mode-hook
+          (lambda ()
+	     ;; List for directory tracking.
+	     ;; First item is a regexp that describes where to find the path in a prompt.
+	     ;; Second is a number, the regexp group to match.
+	     ;; http://stackoverflow.com/questions/15812638/emacs-i-need-and-explanation-on-dirtrack-list-variable
+	     ;; (setq dirtrack-list '("^[^@]*@[^ ]*:\([^\]]*\) \$" 1))
+	     (setq dirtrack-list '("^[^@]*@\\([^:]*:[^$].*\\) \\$" 1))
+	     (dirtrack-mode 1)
+	     (shell-dirtrack-mode nil)
+	     ))
+;;
+;; This is probably about ssh'ing into a remote computer and using the emacs there.
+;; http://nflath.com/2009/09/dirtrack-mode/
+;; (add-hook 'dirtrack-directory-change-hook
+;;           (lambda ()
+;;             (let ((base-buffer-name (concat "shell-" default-directory "-shell"))
+;;                   (i 1)
+;;                   (full-buffer-name base-buffer-name))
+;;               (while (get-buffer full-buffer-name)
+;;                 (setq i (1+ i))
+;;                 (setq full-buffer-name (concat base-buffer-name "<" (number-to-string i) ">")))
+;;               (rename-buffer full-buffer-name))))
+;; (add-hook 'shell-mode-hook
+;;           (lambda ()
+;;             (shell-dirtrack-mode -1)
+;;             (insert "export PS1=\"nflath@/:\\w$ \"")
+;;             (comint-send-input)
+;;             (dirtrack-mode 1)
+;;             ))
+
+;; TRAMP (Transparent Remote Access, Multiple Protocols) 2014-01-17
+;; Access remote files like local files
+;; http://www.emacswiki.org/emacs/TrampMode
+(require 'tramp)
+(setq tramp-default-method "ssh")
 
 
 
