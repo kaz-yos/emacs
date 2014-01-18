@@ -1354,6 +1354,10 @@ In case the execution fails, return an error."
 ;; http://www.emacswiki.org/emacs/TrampMode
 (require 'tramp)
 (setq tramp-default-method "ssh")
+;; Handle Odyssey's two-step authentication. Password:, then, Verification code:   2014-01-18
+;; http://emacs.1067599.n5.nabble.com/emacs-hangs-when-connecting-from-windows-to-linux-with-tcsh-shell-td244075.html
+;; (setq tramp-password-prompt-regexp "^.*\\([pP]assword\\|[pP]assphrase\\).*: ? *")	; Original
+(setq tramp-password-prompt-regexp "^.*\\([pP]assword\\|[pP]assphrase\\|Verification code\\).*: ? *")
 
 
 
