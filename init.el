@@ -588,7 +588,8 @@ If you omit CLOSE, it will reuse OPEN."
 	       ("SHELL"  (or
 			  (mode . sh-mode)
 			  (mode . shell-mode)
-			  (mode . ssh-mode)))
+			  (mode . ssh-mode)
+			  (mode . eshell-mode)))
 	       ("SQL"  (or
 			  (mode . sql-mode)
 			  (mode . sql-interactive-mode)))
@@ -639,10 +640,14 @@ If you omit CLOSE, it will reuse OPEN."
   ;; Mac-only
   ;; Change to English in minibuffer (require inline patch. No .el dependency)
   ;; http://molekun.blogspot.com/2011/03/homebrewemacs233.html
-  (add-hook 'minibuffer-setup-hook 'mac-change-language-to-us)
+  ;; http://blog.n-z.jp/blog/2013-11-12-cocoa-emacs-ime.html
+  (when (fboundp 'mac-change-language-to-us)	; Only when inline patch is installed 2014-01-19
+    (add-hook 'minibuffer-setup-hook 'mac-change-language-to-us)
+    )
+
 
   ;; Spell checker (require aspell. No .el dependency)
-  ;; http://blog.bungu-do.jp/archives/2426	;; sudo port install aspell aspell-dict-en
+  ;; http://blog.bungu-do.jp/archives/2426
   (setq ispell-program-name "/usr/local/bin/aspell")
 
   ;; Mac AppleScrip compatibility
@@ -1317,18 +1322,18 @@ In case the execution fails, return an error."
 ;; fi
 ;; Capture 
 ;;  
-(require 'dirtrack)
-(add-hook 'shell-mode-hook
-          (lambda ()
-	     ;; List for directory tracking.
-	     ;; First item is a regexp that describes where to find the path in a prompt.
-	     ;; Second is a number, the regexp group to match.
-	     ;; http://stackoverflow.com/questions/15812638/emacs-i-need-and-explanation-on-dirtrack-list-variable
-	     ;; (setq dirtrack-list '("^[^@]*@[^ ]*:\([^\]]*\) \$" 1))
-	     (setq dirtrack-list '("^[^@]*@\\([^:]*:[^$].*\\) \\$" 1))
-	     (dirtrack-mode 1)
-	     (shell-dirtrack-mode nil)
-	     ))
+;; (require 'dirtrack)	; Check if this is necessary for eshell.
+;; (add-hook 'shell-mode-hook
+;;           (lambda ()
+;; 	     ;; List for directory tracking.
+;; 	     ;; First item is a regexp that describes where to find the path in a prompt.
+;; 	     ;; Second is a number, the regexp group to match.
+;; 	     ;; http://stackoverflow.com/questions/15812638/emacs-i-need-and-explanation-on-dirtrack-list-variable
+;; 	     ;; (setq dirtrack-list '("^[^@]*@[^ ]*:\([^\]]*\) \$" 1))
+;; 	     (setq dirtrack-list '("^[^@]*@\\([^:]*:[^$].*\\) \\$" 1))
+;; 	     (dirtrack-mode 1)
+;; 	     (shell-dirtrack-mode nil)
+;; 	     ))
 ;;
 ;; This is probably about ssh'ing into a remote computer and using the emacs there.
 ;; http://nflath.com/2009/09/dirtrack-mode/
@@ -1358,6 +1363,9 @@ In case the execution fails, return an error."
 ;; http://emacs.1067599.n5.nabble.com/emacs-hangs-when-connecting-from-windows-to-linux-with-tcsh-shell-td244075.html
 ;; (setq tramp-password-prompt-regexp "^.*\\([pP]assword\\|[pP]assphrase\\).*: ? *")	; Original
 (setq tramp-password-prompt-regexp "^.*\\([pP]assword\\|[pP]assphrase\\|Verification code\\).*: ? *")
+;;
+;; Completion works in the eshell open from within a tramp connection
+;; http://stackoverflow.com/questions/1346688/ssh-through-emacs-shell
 
 
 
