@@ -52,9 +52,10 @@
 \begin{document}
 <<message = FALSE, tidy = FALSE, echo = F>>=
 ## knitr configuration: http://yihui.name/knitr/options#chunk_options
-warnMessage <- TRUE
+showMessage <- FALSE
+showWarning <- TRUE
 set_alias(w = "fig.width", h = "fig.height", res = "results")
-opts_chunk$set(comment = "##", error= TRUE, warning = warnMessage, message = warnMessage,
+opts_chunk$set(comment = "##", error= TRUE, warning = showWarning, message = showMessage,
                tidy = FALSE, cache = F, echo = T,
                fig.width = 5, fig.height = 5, dev.args = list(family = "sans"))
 knit_hooks$set(rgl = hook_rgl)
