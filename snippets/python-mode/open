@@ -2,6 +2,6 @@
 # name: open
 # key: xopen
 # --
-f = open(name = "$0", mode = "${1:$$(yas-choose-value '("b" "r+" "a" "w" "r"))}")
+f = open(file = "$0", mode = "${1:$$(yas-choose-value '("b" "r+" "a" "w" "r"))}")
 
 

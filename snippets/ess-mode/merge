@@ -2,9 +2,9 @@
 # name: merge
 # key: xmerge
 # --
-df.merge <- merge(x = $1,
-                  y = $2,
-                  by = $0,
-                  by.x = , by.y = ,
-                  all.x = TRUE, all.y = TRUE # outer join
-                  )
+dfMerge <- merge(x = $2,
+                 y = $3,
+                 by = $0,
+                 by.x = , by.y = ,
+                 ${1:$$(yas-choose-value '("all.x = FALSE, all.y = TRUE  # right join"  "all.x = TRUE,  all.y = TRUE  # outer join" "all.x = FALSE, all.y = FALSE # inner join" "all.x = TRUE,  all.y = FALSE # left  join"))}
+                 )

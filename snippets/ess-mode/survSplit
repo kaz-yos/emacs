@@ -4,10 +4,10 @@
 # --
 .split <- survSplit(data    = $0,
                     cut     = c(0:50), # vector of timepoints to cut at
-                    end     = "time",  # character string with name of event time variable
-                    event   = "event", # character string with name of censoring indicator
-                    start   = "start", # character string with name of start time variable (created)
-                    id      = "id",    # character string with name of new id variable to create
+                    end     = "time",  # event time variable
+                    event   = "event", # censoring indicator
+                    start   = "start", # start time variable (created)
+                    id      = "id",    # new id variable to create
                     zero    = 0,       # If start doesn't already exist, used as start
                     episode = NULL     # character string with name of new episode variable (optional)
                     )
