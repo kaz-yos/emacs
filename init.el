@@ -640,58 +640,49 @@ If you omit CLOSE, it will reuse OPEN."
   ;; http://blog.bungu-do.jp/archives/2426
   (setq ispell-program-name "/usr/local/bin/aspell")
 
-  ;; Mac AppleScrip compatibility
+  ;; Mac AppleScrip compatibility 2014-02-02 Removed. This one crashed in 24.3
   ;; http://d.hatena.ne.jp/tequilasunset/touch/20110104/p2
   ;; https://gist.github.com/764745#file_my_mac_key_mode.el
-  (defun do-applescript+ (&rest scripts)
-    "Like `do-applescript', but execute concatenated SCRIPTS.
-In case the execution fails, return an error."
-    (condition-case err
-	(do-applescript
-	 (apply 'concat scripts))
-      (error err)))
-  ;;
-  (defun show-in-finder (&optional path behind)
-    "Display current file/directory in a Finder window"
-    (interactive)
-    (let ((item (or path
-		    buffer-file-name
-		    (and (eq major-mode 'dired-mode) default-directory))))
-      (cond
-       ((not (stringp item)))
-       ((file-remote-p item)
-	(error "This item is located on a remote system."))
-       (t
-	(setq item (expand-file-name item))
-	(do-applescript+
-	 "tell application \"Finder\" to select (\""
-	 item
-	 "\" as POSIX file)\n"
-	 (unless behind
-	   "tell application \"Finder\" to activate"))))))
-  ;;
-  (defun open-terminal (&optional path behind)
-    "Launch Terminal and go to the relevant directory"
-    (interactive)
-    (let ((item (or path default-directory)))
-      (cond
-       ((not (stringp item)))
-       ((file-remote-p item)
-	(error "This item is located on a remote system."))
-       ((file-directory-p item)
-	(setq item (expand-file-name item))
-	(do-applescript+
-	 "tell application \"Terminal\" to do script "
-	 "with command \"cd \" & quoted form of \""
-	 item
-	 "\"\n"
-	 (unless behind
-	   "tell application \"Terminal\" to activate")))
-       (t
-	(error "An error occured")))))
 
+  ;; reveal-in-finder	2014-02-02
+  ;; Original: http://stackoverflow.com/questions/20510333/in-emacs-how-to-show-current-file-in-finder
+  ;; Modified version
+  (defun reveal-in-finder ()
+    (interactive)
+    (let ((path (buffer-file-name))
+          dir file)
+      (if path
+	  ;; if path has been successfully obtained.
+	  (progn (setq dir (file-name-directory path))
+		 (setq file (file-name-nondirectory path)))
+	;; if path is empty, there is no file name. Use the default-directory variable
+	(setq dir (expand-file-name default-directory))
+	)
+      ;; (message (concat "Opening in Finder: " dir file))	; Show the file name
+      (reveal-in-finder-1 dir file)      
+      ))
+  ;;
+  (defun reveal-in-finder-1 (dir file)
+    (let ((script
+	   (if file
+	       (concat
+		"set thePath to POSIX file \"" (concat dir file) "\"\n"
+		"tell application \"Finder\"\n"
+		" set frontmost to true\n"
+		" reveal thePath \n"
+		"end tell\n"
+		)
+	     (concat
+	      "set thePath to POSIX file \"" (concat dir) "\"\n"
+	      "tell application \"Finder\"\n"
+	      " set frontmost to true\n"
+	      " reveal thePath \n"
+	      "end tell\n"))))
+      ;; (message script)	; Show the script in the mini-buffer
+      (start-process "osascript-getinfo" nil "osascript" "-e" script)
+      ))
 
-  ;; cmigemo (installed from brew)
+  ;; cmigemo (installed from Homebrew)
   ;; Used brew to install cmigemo
   ;; Used M-x list-package to install migemo.el (github)
   ;; Configured refering to: http://d.hatena.ne.jp/ground256/20111008/1318063872
@@ -731,8 +722,8 @@ In case the execution fails, return an error."
  '(main-line-color2 "#111111")
  '(main-line-separator-style (quote chamfer))
  '(powerline-color1 "#1E1E1E")
- '(powerline-color2 "#111111")
- '(yas-trigger-key "TAB"))
+ '(powerline-color2 "#111111"))
+;;  '(yas-trigger-key "TAB")	; deleted. obsolete variable? 2014-02-02
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -1807,6 +1798,8 @@ In case the execution fails, return an error."
 ;; git real basics: http://xahlee.info/linux/git.html
 ;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
 (require 'magit)
+;; keybinding for magit-status
+(global-set-key (kbd "C-c g") 'magit-status)
 
 ;; Configure fringe for git-gutter 2014-02-02
 ;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
