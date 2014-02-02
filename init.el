@@ -31,19 +31,22 @@
   ;; http://emacswiki.org/emacs/EmacsApp
   ;; http://rforge.org/2011/08/16/sane-path-variable-in-emacs-on-mac-os-x/
   ;; You can use them to have the same PATH as .bashrc sets
-  (if (not (getenv "TERM_PROGRAM"))
-      (setenv "PATH"
-	      (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
+  ;; (if (not (getenv "TERM_PROGRAM"))
+  ;;     (setenv "PATH"
+  ;; 	      (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
 
   ;; Do not open a new frame opening a file from Finder
   ;; http://stackoverflow.com/questions/6068819/alias-to-make-emacs-open-a-file-in-a-new-buffer-not-frame-and-be-activated-com
   (setq ns-pop-up-frames nil)
   )
 ;
-;; exec-path-from-shell.el
-;; This could be used instead of the code above 
-;; (when (memq window-system '(mac ns))
-;;   (exec-path-from-shell-initialize))
+;; exec-path-from-shell.el	; dependency!!!	2014-02-02
+;; http://d.hatena.ne.jp/syohex/20130718/1374154709
+;; check with (getenv "PATH")
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 
 
 ;;
