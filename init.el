@@ -1795,7 +1795,9 @@ In case the execution fails, return an error."
 ;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
 
 
-;;; Version control with magit.el
+;;; Version control
+
+;; magit.el
 ;; Magit User Manual: http://magit.github.io/magit/magit.html
 ;; emacs wiki magit: http://www.emacswiki.org/emacs/Magit
 ;; emacs wiki git: http://www.emacswiki.org/emacs/Git
@@ -1804,6 +1806,20 @@ In case the execution fails, return an error."
 ;; git real basics: http://xahlee.info/linux/git.html
 ;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
 (require 'magit)
+
+;; Configure fringe for git-gutter 2014-02-02
+;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fringes.html
+(set-fringe-mode '(0 . 1))
+
+;; git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
+;; https://github.com/nonsequitur/git-gutter-fringe-plus
+;; fringe-helper.el is required.
+(require 'git-gutter-fringe+)
+;; active everywhere
+(global-git-gutter+-mode)
+;; Show on the right side
+(setq git-gutter-fr+-side 'right-fringe)
 
 
 ;;; Auto-intall	; This is causing problem !!! 2013-03-04
@@ -1874,7 +1890,17 @@ In case the execution fails, return an error."
 ;; wgrep-helm.el  2014-01-14
 ;; Writable helm-grep-mode buffer and apply the changes to files
 (require 'wgrep-helm)
-
+;;
+;; helm for isearch 2014-02-01
+;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
+(define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
+;;
+;; helm-open-github 2014-02-01 OAutho required
+;; http://shibayu36.hatenablog.com/entry/2013/01/18/211428
+;; (require 'helm-open-github)
+;; (global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
+;; (global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
+;; (global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
 
 
 ;;; Key-Chord 2013-10-15 disabled to check for speed problem
@@ -2092,6 +2118,34 @@ In case the execution fails, return an error."
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-*") 'mc/mark-all-like-this)
 ;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+
+;; anzu.el 2014-02-01
+;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
+(require 'anzu)
+;;
+(global-anzu-mode +1)
+(setq anzu-use-migemo t)
+(setq anzu-search-threshold 1000)
+(setq anzu-minimum-input-length 3)
+;;
+;; (global-set-key (kbd "C-c r") 'anzu-query-replace)
+;; (global-set-key (kbd "C-c R") 'anzu-query-replace-regexp)
+
+
+;; isearch the selected word 2014-02-01
+;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
+(defadvice isearch-mode (around isearch-mode-default-string (forward &optional regexp op-fun recursive-edit word-p) activate)
+  (if (and transient-mark-mode mark-active (not (eq (mark) (point))))
+      (progn
+        (isearch-update-ring (buffer-substring-no-properties (mark) (point)))
+        (deactivate-mark)
+        ad-do-it
+        (if (not forward)
+            (isearch-repeat-backward)
+          (goto-char (mark))
+          (isearch-repeat-forward)))
+    ad-do-it))
 
 
 ;; moccur-edit.el (el-get)
