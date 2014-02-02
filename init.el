@@ -707,6 +707,7 @@ In case the execution fails, return an error."
   )
 
 
+;;; M x Customize
 ;; M-x customize
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -731,24 +732,24 @@ In case the execution fails, return an error."
  '(main-line-separator-style (quote chamfer))
  '(powerline-color1 "#1E1E1E")
  '(powerline-color2 "#111111")
- '(show-paren-mode t)
- '(tool-bar-mode nil)
  '(yas-trigger-key "TAB"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
  '(font-latex-subscript-face ((t nil)))
  '(font-latex-superscript-face ((t nil))))
 
+
+;;; helpers
 
 ;; minor-mode-hack.el
 ;; M-x show-minor-mode-map-priority to see minor mode priority
 (require 'minor-mode-hack)
 
-
-;; show-keys.el
+;; show-keys.el	; Show keys in a buffer as keys are typed.
 ;; http://www.youtube.com/watch?v=0cZ7szFuz18
 ;; https://github.com/AndreaCrotti/minimal-emacs-configuration
 (require 'show-keys)
@@ -1157,9 +1158,6 @@ In case the execution fails, return an error."
 ;; *.Rmd files invoke r-mode	; Temporary fix for R markdown files
 (setq auto-mode-alist
       (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
-;; *.R files invoke read-only-mode for protection (This prevents ESS mode)
-;; (setq auto-mode-alist
-;;       (cons '("\\.R$" . read-only-mode) auto-mode-alist))
 ;;
 ;; Tooltip included in ESS
 ;; (define-key ess-mode-map "\C-c\C-g" 'ess-describe-object-at-point)	; Changed from C-c C-d C-e
@@ -1906,7 +1904,7 @@ In case the execution fails, return an error."
 ;; (global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
 
 
-;;; Key-Chord 2013-10-15 disabled to check for speed problem
+;;; Key-Chord
 ;;
 ;; http://www.emacswiki.org/emacs/KeyChord
 ;; http://d.hatena.ne.jp/rubikitch/touch/20081104/1225745862
@@ -1995,7 +1993,8 @@ In case the execution fails, return an error."
 (require 'viewer)
 (viewer-stay-in-setup)
 (setq viewer-modeline-color-unwritable "tomato"
-      viewer-modeline-color-view "orange")
+      viewer-modeline-color-view "salmon")	; color changed from orange 2014-02-02
+      ;; viewer-modeline-color-view "pale green")	; color changed from orange 2014-02-02
 (viewer-change-modeline-color-setup)
 (require 'view)
 ;; less like
@@ -2112,17 +2111,6 @@ In case the execution fails, return an error."
 (global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
 
 
-;; multiple-cursors for simultaneous editing multiple occurrences
-;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
-;; http://emacsrocks.com/e13.html (video)
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-*") 'mc/mark-all-like-this)
-;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-
 ;; anzu.el 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 (require 'anzu)
@@ -2132,8 +2120,30 @@ In case the execution fails, return an error."
 (setq anzu-search-threshold 1000)
 (setq anzu-minimum-input-length 3)
 ;;
+;; Define a large face (also used for multiple-cursors.el)
+;; This was done in custom-set-faces.
+;;
 ;; (global-set-key (kbd "C-c r") 'anzu-query-replace)
 ;; (global-set-key (kbd "C-c R") 'anzu-query-replace-regexp)
+
+
+;; multiple-cursors for simultaneous editing multiple occurrences
+;; https://github.com/magnars/multiple-cursors.el
+;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
+;; http://emacsrocks.com/e13.html (video)
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-*") 'mc/mark-all-like-this)
+;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+;;
+;; What to display in the mode line while multiple-cursors-mode is active.
+(setq mc/mode-line
+      ;; `(" mc:" (:eval (format ,(propertize "%d" 'face 'font-lock-warning-face)
+      ;; `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
+      `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
+			      (mc/num-cursors)))))
 
 
 ;; isearch the selected word 2014-02-01
