@@ -1817,6 +1817,8 @@ In case the execution fails, return an error."
 ;; https://github.com/nonsequitur/git-gutter-fringe-plus
 ;; fringe-helper.el is required.
 (require 'git-gutter-fringe+)
+;; Mute the mode-line
+(setq git-gutter+-lighter "")
 ;; active everywhere
 (global-git-gutter+-mode)
 ;; Show on the right side
@@ -2116,6 +2118,7 @@ In case the execution fails, return an error."
 (require 'anzu)
 ;;
 (global-anzu-mode +1)
+(setq anzu-mode-lighter "")
 (setq anzu-use-migemo t)
 (setq anzu-search-threshold 1000)
 (setq anzu-minimum-input-length 3)
@@ -2218,6 +2221,9 @@ In case the execution fails, return an error."
 ;; http://www.emacswiki.org/emacs/UndoTree
 ;; C-/ for undo. C-? (C-S-/) for redo.
 (require 'undo-tree)
+;; Mute the mode-line 2014-02-02
+(setq undo-tree-mode-lighter "")
+;; Active everywhere
 (global-undo-tree-mode)
 
 
