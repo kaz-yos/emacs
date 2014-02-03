@@ -1,9 +1,10 @@
-;;
-;; ~/.emacs.d/init.el for cocoa emacs 24.3.1 (source with inline patch) on Mac OS X 10.8.4
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~/.emacs.d/init.el for cocoa emacs 24.3.1 (source with inline patch) on Mac OS X 10.8
 ;; Reference: http://sakito.jp/emacs/emacs24.html#ime
-;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;
+
+
 ;;; Additional load-paths ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; http://emacswiki.org/emacs/LoadPath	; Recursive for elpa directory
@@ -40,7 +41,7 @@
   (setq ns-pop-up-frames nil)
   )
 ;
-;; exec-path-from-shell.el	; dependency!!!	2014-02-02
+;; exec-path-from-shell.el					; DEPENDENCY!!!	2014-02-02
 ;; http://d.hatena.ne.jp/syohex/20130718/1374154709
 ;; check with (getenv "PATH")
 (require 'exec-path-from-shell)
@@ -49,9 +50,9 @@
 
 
 
-;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Configuration without external .el file dependencies comes first ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;;; default.el in Vincent Goulet's distribution
@@ -70,7 +71,7 @@
 ;;
 ;; Smooth Japanese input
 ;; http://suzukima.hatenablog.com/entry/2012/08/16/232210
-(setq show-paren-delay 0.125)			; Compatibility with Japanese
+(setq show-paren-delay 0.5)			; Compatibility with Japanese
 
 
 ;; Suppress all dialog boxes completely, even file open dialogue. No need for mouse!
@@ -86,6 +87,13 @@
   (setq delete-by-moving-to-trash t
 	trash-directory "~/.Trash/emacs")
   )
+
+
+;;; mini-buffer configuration 2014-02-03
+(add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
+(defun my-minibuffer-setup ()
+       (set (make-local-variable 'face-remapping-alist)
+          '((default :height 1.2))))
 
 
 ;;; dired configuration
@@ -804,6 +812,8 @@ If you omit CLOSE, it will reuse OPEN."
 ;; autoinsert.el
 (auto-insert-mode)
 (setq auto-insert-directory "~/.emacs.d/autoinsert/")
+;; Definitions by the file extensions
+(define-auto-insert "\\.R$" "Rscript.R")
 (define-auto-insert "\\.Rmd$" "knitr.Rmd")
 (define-auto-insert "\\.Rnw$" "knitr.Rnw")
 (define-auto-insert "\\.sas$" "SAS.sas")
@@ -877,6 +887,18 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
 (require 'icicles)
 (icy-mode 1)
+
+
+;; Handling of the tab completion buffer 2014-02-03
+;; http://stackoverflow.com/questions/6458220/automatically-close-emacs-shell-mode-tab-completion-buffer
+(defun delete-completion-window-buffer (&optional output)
+  (interactive)
+  (dolist (win (window-list))
+    (when (string= (buffer-name (window-buffer win)) "*Completions*")
+      (delete-window win)
+      (kill-buffer "*Completions*")))
+  output)
+(add-hook 'comint-preoutput-filter-functions 'delete-completion-window-buffer)
 
 
 ;;; flyspell-mode 2014-01-20
@@ -1972,19 +1994,22 @@ If you omit CLOSE, it will reuse OPEN."
 ;; Make sure that you also have Lisp:hexrgb.el in your load-path
 ;; (when (eq system-type 'darwin)
 ;;   ;; Mac-only (error on Win system)
-;;   ;; (require 'one-key)					; one-key.el
+;;   (require 'one-key)					; one-key.el
 ;;   (require 'one-key-default)				; one-key.el loaded together. need to come last
 ;;   (require 'one-key-config)				; many templates. active on 20130508
 ;;   (one-key-default-setup-keys)				; Enable one-key- menu
 ;;   ;; (define-key global-map "\C-x" 'one-key-menu-C-x)	; C-x assigned. breaks other C-x
 ;;   )
+;;
+;; one-key-local.el
+;; https://github.com/aki2o/one-key-local
 
 
 ;;; view-mode			; C-x C-r to open in view-mode. Requires viewer.el
 ;; Book by rubikitch p214-
 ;; http://d.hatena.ne.jp/rubikitch/20081104/1225745862
 ;; http://d.hatena.ne.jp/syohex/20110114/1294958917
-(setq view-read-only t)
+(setq view-read-only t)	; buffers visiting files read-only do so in view mode
 (require 'viewer)
 (viewer-stay-in-setup)
 (setq viewer-modeline-color-unwritable "tomato"
@@ -2019,13 +2044,13 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (define-key view-mode-map (kbd "[") 'my-highlight-symbol-prev)
 ;; (define-key view-mode-map (kbd "]") 'my-highlight-symbol-next)
 ;;
-;; Open non-writable files in view-mode
-(defadvice find-file
-  (around find-file-switch-to-view-file (file &optional wild) activate)
-  (if (and (not (file-writable-p file))
-           (not (file-directory-p file)))
-      (view-file file)
-    ad-do-it))
+;; Open non-writable files in view-mode	; (setq view-read-only t) sufficient? 2014-02-03
+;; (defadvice find-file
+;;   (around find-file-switch-to-view-file (file &optional wild) activate)
+;;   (if (and (not (file-writable-p file))
+;;            (not (file-directory-p file)))
+;;       (view-file file)
+;;     ad-do-it))
 ;; Do not exit view-mode if non-writable
 (defvar view-mode-force-exit nil)
 (defmacro do-not-exit-view-mode-unless-writable-advice (f)
