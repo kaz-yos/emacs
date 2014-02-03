@@ -1970,14 +1970,14 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://d.hatena.ne.jp/tomoya/20090415/1239809615
 ;; http://www.emacswiki.org/emacs/OneKey
 ;; Make sure that you also have Lisp:hexrgb.el in your load-path
-(when (eq system-type 'darwin)
-  ;; Mac-only (error on Win system)
-  ;; (require 'one-key)					; one-key.el
-  (require 'one-key-default)				; one-key.el loaded together. need to come last
-  (require 'one-key-config)				; many templates. active on 20130508
-  (one-key-default-setup-keys)				; Enable one-key- menu
-  ;; (define-key global-map "\C-x" 'one-key-menu-C-x)	; C-x assigned. breaks other C-x
-  )
+;; (when (eq system-type 'darwin)
+;;   ;; Mac-only (error on Win system)
+;;   ;; (require 'one-key)					; one-key.el
+;;   (require 'one-key-default)				; one-key.el loaded together. need to come last
+;;   (require 'one-key-config)				; many templates. active on 20130508
+;;   (one-key-default-setup-keys)				; Enable one-key- menu
+;;   ;; (define-key global-map "\C-x" 'one-key-menu-C-x)	; C-x assigned. breaks other C-x
+;;   )
 
 
 ;;; view-mode			; C-x C-r to open in view-mode. Requires viewer.el
@@ -1989,7 +1989,6 @@ If you omit CLOSE, it will reuse OPEN."
 (viewer-stay-in-setup)
 (setq viewer-modeline-color-unwritable "tomato"
       viewer-modeline-color-view "salmon")	; color changed from orange 2014-02-02
-      ;; viewer-modeline-color-view "pale green")	; color changed from orange 2014-02-02
 (viewer-change-modeline-color-setup)
 (require 'view)
 ;; less like
@@ -2003,9 +2002,9 @@ If you omit CLOSE, it will reuse OPEN."
 (define-key view-mode-map (kbd "j") 'next-line)
 (define-key view-mode-map (kbd "k") 'previous-line)
 (define-key view-mode-map (kbd "l") 'forward-char)
-(define-key view-mode-map (kbd "J") 'View-scroll-line-forward)
-(define-key view-mode-map (kbd "K") 'View-scroll-line-backward)
-(define-key view-mode-map (kbd "i") 'read-only-mode)
+(define-key view-mode-map (kbd "J") 'View-scroll-line-forward)	; no cursor move, screen one line up
+(define-key view-mode-map (kbd "K") 'View-scroll-line-backward)	; no cursor move, screen one line down
+;; (define-key view-mode-map (kbd "i") 'read-only-mode)		; Get out of read-only-mode
 ;; Space bar use
 (define-key view-mode-map (kbd " ") 'scroll-up)
 (define-key view-mode-map (kbd "S-SPC") 'scroll-down)
@@ -2016,9 +2015,9 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (define-key view-mode-map (kbd "[") 'my-bm-previous)
 ;; (define-key view-mode-map (kbd "]") 'my-bm-next)
 ;; for highlight-symbol.el
-(define-key view-mode-map (kbd ".") 'highlight-symbol-at-point)
-(define-key view-mode-map (kbd "[") 'my-highlight-symbol-prev)
-(define-key view-mode-map (kbd "]") 'my-highlight-symbol-next)
+;; (define-key view-mode-map (kbd ".") 'highlight-symbol-at-point)
+;; (define-key view-mode-map (kbd "[") 'my-highlight-symbol-prev)
+;; (define-key view-mode-map (kbd "]") 'my-highlight-symbol-next)
 ;;
 ;; Open non-writable files in view-mode
 (defadvice find-file
@@ -2040,15 +2039,25 @@ If you omit CLOSE, it will reuse OPEN."
 (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
 (do-not-exit-view-mode-unless-writable-advice view-mode-disable)
 ;;
-;; Activate view-mode for these major modes by activating read-only-mode
-;; (add-hook 'emacs-lisp-mode-hook 'read-only-mode)	; This breaks start up screen
-;; 
-;; To protect R SAS codes. Incompatible with .Rnw
-;; http://emacs.1067599.n5.nabble.com/Strange-things-happening-with-rnw-files-in-AucTeX-mode-td288544.html
-;; (add-hook 'ess-mode-hook 'read-only-mode)	        
-;;
 ;; Key-bind used instead of "jk"
 (global-set-key (kbd "C-c l") 'read-only-mode)
+
+
+;;; evil
+;; http://www.emacswiki.org/emacs/Evil
+;; Activate evil (2014-02-03 conflict with helm C-z)
+(require 'evil)
+;; (evil-mode 1)
+
+;; Making the most of RET and SPC
+;; Keep RET and SPC bindings.
+;; http://www.emacswiki.org/emacs/Evil
+(defun my-move-key (keymap-from keymap-to key)
+  "Moves key binding from one keymap to another, deleting from the old location. "
+  (define-key keymap-to key (lookup-key keymap-from key))
+  (define-key keymap-from key nil))
+(my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
+(my-move-key evil-motion-state-map evil-normal-state-map " ")
 
 
 
@@ -2108,6 +2117,7 @@ If you omit CLOSE, it will reuse OPEN."
 
 ;; anzu.el 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
+;; http://qiita.com/syohex/items/56cf3b7f7d9943f7a7ba
 (require 'anzu)
 ;;
 (global-anzu-mode +1)
