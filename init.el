@@ -983,19 +983,14 @@ If you omit CLOSE, it will reuse OPEN."
 ;;; YAsnippet ; Automatic template inserting system.
 ;;
 ;; https://github.com/capitaomorte/yasnippet
-;; $ git clone http://github.com/capitaomorte/yasnippet.git in plugins folder
-;; M-x install-elisp-from-emacswiki RET yasnippet-config.el RET
-(require 'yasnippet)		; not yasnippet-bundle
-;; (require 'yasnippet-config)	; Book by rubikitch p127 ; no need for elpa 2013-02-24
-;; (yas/initialize)		; No need now?
-;; (yas/load-directory "~/.emacs.d/plugins/yasnippet/snippets")
-(require 'auto-complete-yasnippet)
-;;
-;; http://fukuyama.co/yasnippet	; turned off after elpa installation 2013-02-24
-;; (setq yas-snippet-dirs
-;;       '("~/.emacs.d/plugins/snippets"		; Folder for my snippets
-;;         "~/.emacs.d/plugins/yasnippet/snippets" ; Folder for default snippets
-;;         ))
+;; http://fukuyama.co/yasnippet
+;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
+;; 
+(require 'yasnippet) ; elpa version active. el-get version required to suppress for some reason?
+;; 
+;; auto-complete-yasnippet	; not sure if this is necessary. Inactive 2014-02-03
+;; https://github.com/szunyog/.emacs.d/blob/master/auto-complete-yasnippet.el
+;; (require 'auto-complete-yasnippet)
 ;;
 (yas-global-mode 1)
 ;; Key-bind for expanding
@@ -1006,7 +1001,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; View/edit snippets
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 ;;
-;; Use Popup isearch For Yasnippet Prompt
+;; Use Popup isearch For Yasnippet Prompt 2014-01-??
 ;; http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
 (defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
   (when (featurep 'popup)
@@ -1023,6 +1018,7 @@ If you omit CLOSE, it will reuse OPEN."
      :isearch t
      )))
 (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
+
 
 
 ;;; Emacs Speaks Statistics (ESS) for emacs
@@ -1992,17 +1988,27 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://d.hatena.ne.jp/tomoya/20090415/1239809615
 ;; http://www.emacswiki.org/emacs/OneKey
 ;; Make sure that you also have Lisp:hexrgb.el in your load-path
-;; (when (eq system-type 'darwin)
-;;   ;; Mac-only (error on Win system)
-;;   (require 'one-key)					; one-key.el
-;;   (require 'one-key-default)				; one-key.el loaded together. need to come last
-;;   (require 'one-key-config)				; many templates. active on 20130508
-;;   (one-key-default-setup-keys)				; Enable one-key- menu
-;;   ;; (define-key global-map "\C-x" 'one-key-menu-C-x)	; C-x assigned. breaks other C-x
-;;   )
-;;
-;; one-key-local.el
-;; https://github.com/aki2o/one-key-local
+(when (eq system-type 'darwin)
+  ;; Mac-only (error on Win system)
+
+  ;; one-key.el
+  (require 'one-key)
+
+  ;; one-key-local.el
+  ;; This is a extension of Emacs that provides the menu of one-key.el for any major-mode and minor-mode.
+  ;; https://github.com/aki2o/one-key-local
+  ;; Usage eval: (describe-function 'one-key-local-create-menu)
+  (require 'one-key-local)
+  ;; Use hook when it is available
+  (one-key-local-create-menu :hook 'dired-mode-hook :key nil :bind "?")
+  ;; Use the function to activate the mode otherwise.
+  (one-key-local-create-menu :mode 'moccur-mode :key nil :bind "?")
+
+  ;; (require 'one-key-default)				; one-key.el loaded together. need to come last
+  ;; (require 'one-key-config)				; many templates. active on 20130508
+  ;; (one-key-default-setup-keys)				; Enable one-key- menu
+  ;; (define-key global-map "\C-x" 'one-key-menu-C-x)	; C-x assigned. breaks other C-x
+  )
 
 
 ;;; view-mode			; C-x C-r to open in view-mode. Requires viewer.el
