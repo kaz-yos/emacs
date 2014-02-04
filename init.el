@@ -97,9 +97,20 @@
 
 
 ;;; dired configuration
+;; http://qiita.com/l3msh0@github/items/8665122e01f6f5ef502f
+;; % m to choose by regexp; t to toggle selection; M-x find-name-dired wild card search result in dired
+;; 
 ;; Show sizes in KB/MB etc
 ;; http://unix.stackexchange.com/questions/44858/change-view-in-emacs-dired-mode
 (setq dired-listing-switches "-ahl")
+;;
+;; If there are two dired open side by side, copy destination is the other.
+(setq dired-dwim-target t)
+;; Recursively copy directories.
+(setq dired-recursive-copies 'always)
+;; C-s matches by file names only.
+(setq dired-isearch-filenames t)
+
 
 
 ;;; Bars: Menu bar only. No scroll bar or tool bar.
@@ -477,7 +488,16 @@
   (run-with-idle-timer 0.2 nil #'linum-update-current))
 
 
-;;; Surround region
+;;; Miscellaneous configurations without external dependencies
+
+
+;; ediff
+;; Show in the same frame
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+;; Show them side by side
+(setq ediff-split-window-function 'split-window-horizontally)
+
+;; Surround region
 ;; http://www.emacswiki.org/emacs/SurroundRegion
 (defun surround (begin end open close)
   "Put OPEN at START and CLOSE at END of the region.
@@ -1808,6 +1828,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;;; Version control
 
 ;; magit.el
+;; e for ediff!
 ;; Magit User Manual: http://magit.github.io/magit/magit.html
 ;; emacs wiki magit: http://www.emacswiki.org/emacs/Magit
 ;; emacs wiki git: http://www.emacswiki.org/emacs/Git
@@ -1815,6 +1836,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; Meet Magit on Vimeo: http://vimeo.com/2871241
 ;; git real basics: http://xahlee.info/linux/git.html
 ;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
+;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
 (require 'magit)
 ;; keybinding for magit-status
 (global-set-key (kbd "C-c g") 'magit-status)
@@ -1861,6 +1883,8 @@ If you omit CLOSE, it will reuse OPEN."
 
 
 ;;; Helm (Anything successor)
+;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688		; arabiki
+;; http://d.hatena.ne.jp/a_bicky/20140125/1390647299		; arabiki 2
 ;; http://sleepboy-zzz.blogspot.com/2012/09/anythinghelm.html	; in general
 ;; http://d.hatena.ne.jp/syohex/20121207/1354885367		; some useful tips
 ;; Activate
@@ -1916,6 +1940,14 @@ If you omit CLOSE, it will reuse OPEN."
 ;; helm for isearch 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
+;;
+;; helm-ag
+;; https://github.com/syohex/emacs-helm-ag
+;; http://qiita.com/l3msh0@github/items/97909d6e2c92af3acc00
+(require 'helm-ag)
+(setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
+(setq helm-ag-command-option "--all-text")
+(setq helm-ag-thing-at-point 'symbol)
 ;;
 ;; helm-open-github 2014-02-01 OAutho required
 ;; http://shibayu36.hatenablog.com/entry/2013/01/18/211428
@@ -1993,7 +2025,9 @@ If you omit CLOSE, it will reuse OPEN."
 ;;; Keybinding guides
 
 ;; guide-key.el	; ELPA 2014-02-03
-;; See elpa help file is very helpful
+;; See elpa help file. It is very helpful.
+;; https://github.com/kbkbkbkb1/guide-key
+;; http://www.kaichan.info/blog/2013-12-22-emacs-advent-calendar-2013-22.html
 ;; http://www.kaichan.info/blog/2012-12-03-emacs-advent-calendar-2012-03.html
 (require 'guide-key)
 ;; Guide everything
@@ -2003,8 +2037,19 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v"))
 ;; Specification by families
 ;; (setq guide-key/highlight-command-regexp "rectangle\\|register")
+;;
+;; Keychord integration
+;; (guide-key/key-chord-hack-on)
+;; (setq guide-key/guide-key-sequence '("<key-chord> : h" "<key-chord> h :"))
+;;
 ;; Set delay
 (setq guide-key/idle-delay 0.1)
+;; Set font size (negative for smaller)
+(setq guide-key/text-scale-amount 0.1)
+;; Show at the bottom
+;; http://shibayu36.hatenablog.com/entry/2013/08/05/214023
+(setq guide-key/popup-window-position 'bottom)
+;; Activate
 (guide-key-mode 1)  ; guide-key-mode on
 
 
@@ -2249,6 +2294,7 @@ If you omit CLOSE, it will reuse OPEN."
 
 ;; ag.el and wgrep-ag.el. Faster replacement for moccur-edit.el 2014-01-14
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
+;; https://github.com/Wilfred/ag.el
 ;; ag.el
 (require 'ag)
 (setq ag-arguments '("--smart-case" "--group" "--column" "--"))	; grouping is better.
@@ -2386,6 +2432,9 @@ If you omit CLOSE, it will reuse OPEN."
 
 
 ;;; paredit.el
+;; smartparens appears more modern. 2014-02-03
+;; https://github.com/Fuco1/smartparens
+
 ;; M-x install-elisp http://mumble.net/~campbell/emacs/paredit.el
 (require 'paredit)
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
