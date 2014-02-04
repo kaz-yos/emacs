@@ -1862,11 +1862,11 @@ If you omit CLOSE, it will reuse OPEN."
 
 ;;; Helm (Anything successor)
 ;; http://sleepboy-zzz.blogspot.com/2012/09/anythinghelm.html	; in general
-;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html	; helm-migemo
 ;; http://d.hatena.ne.jp/syohex/20121207/1354885367		; some useful tips
+;; Activate
 (require 'helm-config)
 (require 'helm-command)
-(require 'helm-descbinds)
+;;
 ;;
 (setq helm-idle-delay             0.3
       helm-input-idle-delay       0.3
@@ -1890,14 +1890,22 @@ If you omit CLOSE, it will reuse OPEN."
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 ;;
-;; Optional helm packages
+;; Optional helm packages	;;
+;;
+;; helm-descbinds.el
+;; Replace describe-bindings with helm interface
+;; http://emacs-jp.github.io/packages/helm/helm-descbinds.html
+;; http://d.hatena.ne.jp/buzztaiki/20081115/1226760184 (anything version)
+(require 'helm-descbinds)
+(helm-descbinds-mode)
+;;
 ;; helm-R.el
 (require 'helm-R)
 ;;
 ;; helm-migemo.el
+;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html	; helm-migemo
 (when (eq system-type 'darwin)
     ;; Mac-only
-    ;; http://sleepboy-zzz.blogspot.com/2012/09/anythinghelm.html
     (require 'helm-migemo)	
   )
 ;;
@@ -1982,33 +1990,59 @@ If you omit CLOSE, it will reuse OPEN."
 
 
 
-;;; one-key.el  (auto-install as of 2013-08-21)
-;; one-key.el via el-get requires hexrgb.el via elpa and does not work (void symbol)
-;; http://d.hatena.ne.jp/rubikitch/20090127/onekey
-;; http://d.hatena.ne.jp/tomoya/20090415/1239809615
-;; http://www.emacswiki.org/emacs/OneKey
-;; Make sure that you also have Lisp:hexrgb.el in your load-path
-(when (eq system-type 'darwin)
-  ;; Mac-only (error on Win system)
+;;; Keybinding guides
 
-  ;; one-key.el
-  (require 'one-key)
+;; guide-key.el	; ELPA 2014-02-03
+;; See elpa help file is very helpful
+;; http://www.kaichan.info/blog/2012-12-03-emacs-advent-calendar-2012-03.html
+(require 'guide-key)
+;; Guide everything
+(setq guide-key/guide-key-sequence '("C-x"))
+(setq guide-key/recursive-key-sequence-flag t)
+;; Configure key sequences to guide
+;; (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v"))
+;; Specification by families
+;; (setq guide-key/highlight-command-regexp "rectangle\\|register")
+;; Set delay
+(setq guide-key/idle-delay 0.1)
+(guide-key-mode 1)  ; guide-key-mode on
 
-  ;; one-key-local.el
-  ;; This is a extension of Emacs that provides the menu of one-key.el for any major-mode and minor-mode.
-  ;; https://github.com/aki2o/one-key-local
-  ;; Usage eval: (describe-function 'one-key-local-create-menu)
-  (require 'one-key-local)
-  ;; Use hook when it is available
-  (one-key-local-create-menu :hook 'dired-mode-hook :key nil :bind "?")
-  ;; Use the function to activate the mode otherwise.
-  (one-key-local-create-menu :mode 'moccur-mode :key nil :bind "?")
 
-  ;; (require 'one-key-default)				; one-key.el loaded together. need to come last
-  ;; (require 'one-key-config)				; many templates. active on 20130508
-  ;; (one-key-default-setup-keys)				; Enable one-key- menu
-  ;; (define-key global-map "\C-x" 'one-key-menu-C-x)	; C-x assigned. breaks other C-x
-  )
+;; ;; one-key.el	; obsolete as of 2014-02-03
+;; ;; one-key.el via el-get requires hexrgb.el via elpa and does not work (void symbol)
+;; ;; http://d.hatena.ne.jp/rubikitch/20090127/onekey
+;; ;; http://d.hatena.ne.jp/tomoya/20090415/1239809615
+;; ;; http://www.emacswiki.org/emacs/OneKey
+;; ;; Make sure that you also have Lisp:hexrgb.el in your load-path
+;; (when (eq system-type 'darwin)
+;;   ;; Mac-only (error on Win system)
+
+;;   ;; one-key.el
+;;   (require 'one-key)
+
+;;   ;; one-key-local.el
+;;   ;; This is a extension of Emacs that provides the menu of one-key.el for any major-mode and minor-mode.
+;;   ;; https://github.com/aki2o/one-key-local
+;;   ;; Usage eval: (describe-function 'one-key-local-create-menu)
+;;   (require 'one-key-local)
+;;   ;; Use hook when it is available
+;;   (one-key-local-create-menu :hook 'dired-mode-hook :key nil :bind "?")
+;;   ;; Use the function to activate the mode otherwise.
+;;   (one-key-local-create-menu :mode 'moccur-mode :key nil :bind "?")
+  
+;;   ;; one-key-config
+;;   ;; (require 'one-key-config)				; many templates. active on 20130508
+
+;;   ;; (define-key global-map "\C-x" 'one-key-menu-C-x)	; C-x assigned. breaks other C-x
+
+;;   ;; one-key-default.el
+;;   ;; (require 'one-key-default)				; one-key.el loaded together. need to come last
+;;   ;; Below has to come last. 2014-02-03 Actually this breaks one-key-menu-*?
+;;   ;; http://d.hatena.ne.jp/mizchi/mobile?date=20100807
+;;   ;; (one-key-default-setup-keys)				; Enable one-key-menu-* ??
+;;   ;; Results in one-key-menu-C-x-v void.
+
+;;   )
 
 
 ;;; view-mode			; C-x C-r to open in view-mode. Requires viewer.el
