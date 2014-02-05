@@ -555,6 +555,11 @@ If you omit CLOSE, it will reuse OPEN."
 (require 'melpa)
 
 
+;;; dired-plus 2014-02-04
+;; http://www.emacswiki.org/emacs/DiredPlus
+;; http://ergoemacs.org/emacs/emacs_diredplus_mode.html
+(require 'dired+)
+
 
 ;;; Buffer Management
 ;;
@@ -668,47 +673,13 @@ If you omit CLOSE, it will reuse OPEN."
   ;; http://blog.bungu-do.jp/archives/2426
   (setq ispell-program-name "/usr/local/bin/aspell")
 
-  ;; Mac AppleScrip compatibility 2014-02-02 Removed. This one crashed in 24.3
-  ;; http://d.hatena.ne.jp/tequilasunset/touch/20110104/p2
-  ;; https://gist.github.com/764745#file_my_mac_key_mode.el
 
-  ;; reveal-in-finder	2014-02-02
-  ;; Original: http://stackoverflow.com/questions/20510333/in-emacs-how-to-show-current-file-in-finder
-  ;; Modified version
-  (defun reveal-in-finder ()
-    (interactive)
-    (let ((path (buffer-file-name))
-          dir file)
-      (if path
-	  ;; if path has been successfully obtained.
-	  (progn (setq dir (file-name-directory path))
-		 (setq file (file-name-nondirectory path)))
-	;; if path is empty, there is no file name. Use the default-directory variable
-	(setq dir (expand-file-name default-directory))
-	)
-      ;; (message (concat "Opening in Finder: " dir file))	; Show the file name
-      (reveal-in-finder-1 dir file)      
-      ))
-  ;;
-  (defun reveal-in-finder-1 (dir file)
-    (let ((script
-	   (if file
-	       (concat
-		"set thePath to POSIX file \"" (concat dir file) "\"\n"
-		"tell application \"Finder\"\n"
-		" set frontmost to true\n"
-		" reveal thePath \n"
-		"end tell\n"
-		)
-	     (concat
-	      "set thePath to POSIX file \"" (concat dir) "\"\n"
-	      "tell application \"Finder\"\n"
-	      " set frontmost to true\n"
-	      " reveal thePath \n"
-	      "end tell\n"))))
-      ;; (message script)	; Show the script in the mini-buffer
-      (start-process "osascript-getinfo" nil "osascript" "-e" script)
-      ))
+  ;; reveal-in-finder.el 2014-02-05
+  ;; https://github.com/kaz-yos/elisp
+  (require 'reveal-in-finder)
+  ;; autoload test
+  ;; (autoload 'reveal-in-finder "reveal-in-finder")
+
 
   ;; cmigemo (installed from Homebrew)
   ;; Used brew to install cmigemo
@@ -2030,6 +2001,21 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://www.kaichan.info/blog/2013-12-22-emacs-advent-calendar-2013-22.html
 ;; http://www.kaichan.info/blog/2012-12-03-emacs-advent-calendar-2012-03.html
 (require 'guide-key)
+;;
+;; Redefine to erase the lighter
+(define-minor-mode guide-key-mode
+  "Toggle guide key mode.
+
+In guide key mode, Guide following keys to an input key sequence
+automatically and dynamically.
+With a prefix argument ARG, enable guide key mode if ARG is
+positive, otherwise disable."
+  :global t
+  :lighter ""
+  (funcall (if guide-key-mode
+               'guide-key/turn-on-timer
+             'guide-key/turn-off-timer)))
+;;
 ;; Guide everything
 (setq guide-key/guide-key-sequence '("C-x"))
 (setq guide-key/recursive-key-sequence-flag t)
@@ -2043,7 +2029,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (setq guide-key/guide-key-sequence '("<key-chord> : h" "<key-chord> h :"))
 ;;
 ;; Set delay
-(setq guide-key/idle-delay 0.1)
+(setq guide-key/idle-delay 0.7)
 ;; Set font size (negative for smaller)
 (setq guide-key/text-scale-amount 0.1)
 ;; Show at the bottom
@@ -2122,8 +2108,8 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (define-key view-mode-map (kbd ".") 'bm-toggle)
 ;; (define-key view-mode-map (kbd "[") 'bm-previous)
 ;; (define-key view-mode-map (kbd "]") 'bm-next)
-;; (define-key view-mode-map (kbd "[") 'my-bm-previous)
-;; (define-key view-mode-map (kbd "]") 'my-bm-next)
+(define-key view-mode-map (kbd "[") 'my-bm-previous)
+(define-key view-mode-map (kbd "]") 'my-bm-next)
 ;; for highlight-symbol.el
 ;; (define-key view-mode-map (kbd ".") 'highlight-symbol-at-point)
 ;; (define-key view-mode-map (kbd "[") 'my-highlight-symbol-prev)
