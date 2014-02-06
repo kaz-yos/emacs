@@ -490,7 +490,6 @@
 
 ;;; Miscellaneous configurations without external dependencies
 
-
 ;; ediff
 ;; Show in the same frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -511,10 +510,14 @@ If you omit CLOSE, it will reuse OPEN."
     (goto-char begin)
     (insert open)))
 
+;; Whether to add a newline automatically at the end of the file.
+;; A value of t means do this only when the file is about to be saved.
+(setq require-final-newline t)
+
 
 ;;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; el-get.el package system 2013-02-26
+;;; el-get.el package system 2013-02-26
 ;; https://github.com/dimitri/el-get
 ;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")	; This is configured at the top.
 (unless (require 'el-get nil 'noerror)
@@ -530,15 +533,15 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://www.emacswiki.org/emacs/ELPA
 (require 'package)
 ;;
-;; Initialize 2013-10-31 moved ahead of repositories
+;; Initialize 
 (package-initialize)
 ;;
-;; MELPA	; 2013-10-31 Manually running this line fixed it? corrupt temporary file??
+;; MELPA	; 
 ;; http://melpa.milkbox.net/#installing
 ;; http://melpa.milkbox.net/#/getting-started
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;;
-;; Marmalade
+;; Marmalade (not active
 ;; http://www.emacswiki.org/emacs/Marmalade
 ;; http://qiita.com/items/e81fca7a9797fe203e9f
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -2002,19 +2005,20 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://www.kaichan.info/blog/2012-12-03-emacs-advent-calendar-2012-03.html
 (require 'guide-key)
 ;;
-;; Redefine to erase the lighter
-(define-minor-mode guide-key-mode
-  "Toggle guide key mode.
-
-In guide key mode, Guide following keys to an input key sequence
-automatically and dynamically.
-With a prefix argument ARG, enable guide key mode if ARG is
-positive, otherwise disable."
-  :global t
-  :lighter ""
-  (funcall (if guide-key-mode
-               'guide-key/turn-on-timer
-             'guide-key/turn-off-timer)))
+;; Redefine to erase the lighter (2014-02-06 suggetion by author)
+(setcdr (assq 'guide-key-mode minor-mode-alist) (list "")) 
+;; Brute-force method by redefining the minor mode definition.
+;; (define-minor-mode guide-key-mode
+;;   "Toggle guide key mode.
+;; In guide key mode, Guide following keys to an input key sequence
+;; automatically and dynamically.
+;; With a prefix argument ARG, enable guide key mode if ARG is
+;; positive, otherwise disable."
+;;   :global t
+;;   :lighter ""
+;;   (funcall (if guide-key-mode
+;;                'guide-key/turn-on-timer
+;;              'guide-key/turn-off-timer)))
 ;;
 ;; Guide everything
 (setq guide-key/guide-key-sequence '("C-x"))
