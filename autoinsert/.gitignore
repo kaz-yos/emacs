@@ -1,7 +1,12 @@
+autoinsert/.gitignore
+.gitignore
 *~
 *.zip
 *.pdf
 *.png
+*.doc*
+*.ppt*
+*.xls*
+*.csv
 figure/
 cache/
-

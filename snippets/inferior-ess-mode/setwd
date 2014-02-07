@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: setwd
-# key: setwd
-# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
-# --
-setwd("`(file-name-directory (buffer-file-name))`$0")

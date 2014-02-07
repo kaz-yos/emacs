@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: lmer
-# key: xlmer
-# --
-res.$1 <- lmer(formula = ,
-               data    = ,
-               family  = NULL,
-               REML    = TRUE)

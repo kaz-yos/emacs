@@ -1120,7 +1120,7 @@ If you omit CLOSE, it will reuse OPEN."
 	(modify-syntax-entry ?@  "_"  S-syntax-table))
     (progn	; Change to white space (space between symbols)
       (modify-syntax-entry ?$  " "  S-syntax-table)
-      (modify-syntax-entry ?$  " "  S-syntax-table))
+      (modify-syntax-entry ?@  " "  S-syntax-table))
     ))
 ;;
 (add-hook 'ess-mode-hook		; For ESS mode
