@@ -682,6 +682,7 @@ If you omit CLOSE, it will reuse OPEN."
   (require 'reveal-in-finder)
   ;; autoload test
   ;; (autoload 'reveal-in-finder "reveal-in-finder")
+  (global-set-key (kbd "C-c z") 'reveal-in-finder)
 
 
   ;; cmigemo (installed from Homebrew)
@@ -1114,10 +1115,12 @@ If you omit CLOSE, it will reuse OPEN."
   "Toggle status of $ in the syntax table"
   (interactive)
   (if (equal " " (char-to-string (char-syntax ?$)))
-      (modify-syntax-entry ?$  "_"  S-syntax-table)
-      ;; (modify-syntax-entry ?$ "_")
-    (modify-syntax-entry ?$  " "  S-syntax-table)
-    ;; (modify-syntax-entry ?$ " ")
+      (progn	; Change to symbol
+	(modify-syntax-entry ?$  "_"  S-syntax-table)
+	(modify-syntax-entry ?@  "_"  S-syntax-table))
+    (progn	; Change to white space (space between symbols)
+      (modify-syntax-entry ?$  " "  S-syntax-table)
+      (modify-syntax-entry ?$  " "  S-syntax-table))
     ))
 ;;
 (add-hook 'ess-mode-hook		; For ESS mode
@@ -1352,9 +1355,29 @@ If you omit CLOSE, it will reuse OPEN."
 (add-hook 'shell-command-complete-functions
 	  'bash-completion-dynamic-complete)
 
-;; multi.term.el
+;; multi-term.el
+;; rubikitch book p199
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
+;; Key not used by term 
+(setq term-unbind-key-list '("C-x" "C-c" "<ESC>"))
+;; Assign these commands (part of what is in the definition file).
+(setq term-bind-key-alist
+      '(("C-c C-c" . term-interrupt-subjob)
+	("C-m" . term-send-raw)
+	("M-f" . term-send-forward-word)
+	("M-b" . term-send-backward-word)
+	("M-o" . term-send-backspace)
+	("M-p" . term-send-up)
+	("M-n" . term-send-down)
+	("M-M" . term-send-forward-kill-word)
+	("M-N" . term-send-backward-kill-word)
+	("M-r" . term-send-reverse-search-history)
+	("M-," . term-send-input)
+	("M-." . comint-dynamic-complete)
+	))
+
+
 
 ;; flymake-shell.el 2013-12-27
 ;; https://github.com/purcell/flymake-easy
