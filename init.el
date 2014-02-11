@@ -1154,7 +1154,18 @@ If you omit CLOSE, it will reuse OPEN."
 ;;
 (add-hook 'Rnw-mode-hook		; For Rnw mode
           '(lambda()
+	     (local-set-key (kbd "<C-return>") 'my-ess-eval-R)
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval-R)
+	     ))
+;;
+(add-hook 'Rd-mode-hook			; For .Rd files
+          '(lambda()
+	     ;; my-ess-eval-R
+	     (local-set-key (kbd "<S-return>") 'my-ess-eval-R)
+	     (local-set-key (kbd "<C-return>") 'my-ess-eval-R)	; Change to my-ess-eval-R
+	     ;; Toggling $ in S-syntax-table
+	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
+	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ))
 ;;
 ;; ess-trace-bug.el		; filtering ++++ > ??? Not working
