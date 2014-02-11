@@ -93,7 +93,7 @@
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
 (defun my-minibuffer-setup ()
        (set (make-local-variable 'face-remapping-alist)
-          '((default :height 1.2))))
+          '((default :height 1.2))))	; Larger font size
 
 
 ;;; dired configuration
@@ -621,7 +621,8 @@ If you omit CLOSE, it will reuse OPEN."
 			 ))
 	       ("ESS"   (or
 			 (mode . ess-mode)
-			 (mode . inferior-ess-mode)))
+			 (mode . inferior-ess-mode)
+			 (mode . Rd-mode)))
 	       ("PYTHON" (or
 			  (mode . python-mode)
 			  (mode . inferior-python-mode)))
