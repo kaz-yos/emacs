@@ -1960,10 +1960,11 @@ If you omit CLOSE, it will reuse OPEN."
 ;;
 ;; helm-open-github 2014-02-01 OAutho required
 ;; http://shibayu36.hatenablog.com/entry/2013/01/18/211428
-;; (require 'helm-open-github)
-;; (global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
-;; (global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
-;; (global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
+(require 'helm-open-github)
+(global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
+(global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
+(global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
+
 
 
 ;;; Key-Chord
