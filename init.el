@@ -1851,6 +1851,7 @@ If you omit CLOSE, it will reuse OPEN."
 (global-set-key (kbd "C-c g") 'magit-status)
 ;;
 ;; 2014-02-12 Add the --all switch by default to the logginb popup
+;; Shown below is how it is defined dynamically in magit-key-mode.el
 ;; (defun magit-key-mode-generate (group)
 ;;   "Generate the key-group menu for GROUP."
 ;;   (let ((opts (magit-key-mode-options-for-group group)))
@@ -1863,10 +1864,27 @@ If you omit CLOSE, it will reuse OPEN."
 ;;          ;; As a tempory kludge it is okay to do this here.
 ;;          ,(cl-case group
 ;;             (logging
-;;              '(list "--graph" "--all")) ; 2014-02-12 hacked
+;;              '(list "--graph" "--all")) ; 2014-02-12 Can be hacked like this
 ;;             (diff-options
 ;;              '(when (local-variable-p 'magit-diff-options)
 ;;                 magit-diff-options))))))))
+;;
+;; (symbol-function 'magit-key-mode-popup-logging) ; Shows the definition (below)
+;;
+;; (lambda nil "Key menu for logging"
+;;   (interactive)
+;;   (magit-key-mode 'logging
+;; 		  (list "--graph" "--all")))	; Resulting function changed
+;;
+;; Redefine this autoloaded function 2014-02-12
+;; This just replaces the dynamically created function with statically made one.
+(defun magit-key-mode-popup-logging ()
+  "Key menu for logging"
+  (interactive)
+  (magit-key-mode 'logging
+		  (list "--graph" "--all"))
+  )
+;;
 
 ;; Configure fringe for git-gutter 2014-02-02
 ;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
