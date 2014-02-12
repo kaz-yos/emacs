@@ -1849,6 +1849,24 @@ If you omit CLOSE, it will reuse OPEN."
 (require 'magit)
 ;; keybinding for magit-status
 (global-set-key (kbd "C-c g") 'magit-status)
+;;
+;; 2014-02-12 Add the --all switch by default to the logginb popup
+;; (defun magit-key-mode-generate (group)
+;;   "Generate the key-group menu for GROUP."
+;;   (let ((opts (magit-key-mode-options-for-group group)))
+;;     (eval
+;;      `(defun ,(intern (concat "magit-key-mode-popup-" (symbol-name group))) nil
+;;         ,(concat "Key menu for " (symbol-name group))
+;;         (interactive)
+;;         (magit-key-mode
+;;          (quote ,group)
+;;          ;; As a tempory kludge it is okay to do this here.
+;;          ,(cl-case group
+;;             (logging
+;;              '(list "--graph" "--all")) ; 2014-02-12 hacked
+;;             (diff-options
+;;              '(when (local-variable-p 'magit-diff-options)
+;;                 magit-diff-options))))))))
 
 ;; Configure fringe for git-gutter 2014-02-02
 ;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
