@@ -1836,6 +1836,18 @@ If you omit CLOSE, it will reuse OPEN."
 
 ;;; Version control
 
+;; Do not use the default vc-mode (mode-line cleaner) 2014-02-14
+;; http://qiita.com/acple@github/items/3709174ab24c5d82423a
+(custom-set-variables
+ '(vc-handled-backends nil))
+;; Turn off related hooks
+(remove-hook 'find-file-hook 'vc-find-file-hook)
+(remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook);;
+;;
+;; ;; modeline-git-branch.el (auto-install) 2014-02-14. Switch not fast enough.
+;; (require 'modeline-git-branch)
+;; (modeline-git-branch-mode 1)
+
 ;; magit.el
 ;; e for ediff!
 ;; Magit User Manual: http://magit.github.io/magit/magit.html
