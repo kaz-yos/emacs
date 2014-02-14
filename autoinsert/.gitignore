@@ -2,6 +2,8 @@ autoinsert/.gitignore
 .gitignore
 *~
 *.zip
+*.tar.gz
+*.RData
 *.pdf
 *.png
 *.doc*
