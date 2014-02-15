@@ -1863,7 +1863,7 @@ If you omit CLOSE, it will reuse OPEN."
 (global-set-key (kbd "C-c g") 'magit-status)
 ;;
 ;; 2014-02-12 Add the --all switch by default to the logginb popup
-;; Shown below is how it is defined dynamically in magit-key-mode.el
+;; Shown below is how magit-key-mode-popup-* is defined dynamically in magit-key-mode.el
 ;; (defun magit-key-mode-generate (group)
 ;;   "Generate the key-group menu for GROUP."
 ;;   (let ((opts (magit-key-mode-options-for-group group)))
@@ -1881,20 +1881,25 @@ If you omit CLOSE, it will reuse OPEN."
 ;;              '(when (local-variable-p 'magit-diff-options)
 ;;                 magit-diff-options))))))))
 ;;
-;; (symbol-function 'magit-key-mode-popup-logging) ; Shows the definition (below)
+;; To see the definition of the function defined here, do the following
+;; (symbol-function 'magit-key-mode-popup-logging)
 ;;
-;; (lambda nil "Key menu for logging"
-;;   (interactive)
-;;   (magit-key-mode 'logging
-;; 		  (list "--graph" "--all")))	; Resulting function changed
+;; These just replace the dynamically created functions with statically made ones.
 ;;
-;; Redefine this autoloaded function 2014-02-12
-;; This just replaces the dynamically created function with statically made one.
+;; Logging shows all branches by default (--all option added by default)
 (defun magit-key-mode-popup-logging ()
-  "Key menu for logging"
+  "Key menu for logging (--graph --all by default)"
   (interactive)
   (magit-key-mode 'logging
 		  (list "--graph" "--all"))
+  )
+;;
+;; Merging does not use fast-forward by default (--no-ff option added by default)
+(defun magit-key-mode-popup-merging ()
+  "Key menu for merging (--no-ff by default)"
+  (interactive)
+  (magit-key-mode 'merging 
+		  (list "--no-ff"))
   )
 ;;
 
