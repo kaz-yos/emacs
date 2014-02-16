@@ -1878,6 +1878,21 @@ If you omit CLOSE, it will reuse OPEN."
 ;; keybinding for magit-status
 (global-set-key (kbd "C-c g") 'magit-status)
 ;;
+;; change magit diff colors
+;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
+;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
+(eval-after-load 'magit
+  '(progn
+     (set-face-foreground 'magit-diff-add "green3")
+     (set-face-background 'magit-diff-add "black")
+     (set-face-foreground 'magit-diff-del "red3")
+     (set-face-background 'magit-diff-del "black")
+     (set-face-foreground 'magit-diff-file-header "blue")
+     ;; (set-face-background 'magit-diff-file-header "light yellow") ;Inherit: diff-file-header by default
+     ;;(set-face-foreground 'magit-item-highlight "black") ; Inherit: secondary-selection by default
+     (set-face-background 'magit-item-highlight "black") ; No highlight
+     ))
+;;
 ;; 2014-02-12 Add the --all switch by default to the logginb popup
 ;; Shown below is how magit-key-mode-popup-* is defined dynamically in magit-key-mode.el
 ;; (defun magit-key-mode-generate (group)
