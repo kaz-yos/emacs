@@ -727,6 +727,7 @@ If you omit CLOSE, it will reuse OPEN."
  '(frame-brackground-mode (quote dark))
  '(fringe-mode 4 nil (fringe))
  '(linum-format " %7i ")
+ '(magit-diff-options (quote ("--ignore-all-space")))
  '(main-line-color1 "#1E1E1E")
  '(main-line-color2 "#111111")
  '(main-line-separator-style (quote chamfer))
@@ -1854,8 +1855,7 @@ If you omit CLOSE, it will reuse OPEN."
 
 ;; Do not use the default vc-mode (mode-line cleaner) 2014-02-14
 ;; http://qiita.com/acple@github/items/3709174ab24c5d82423a
-(custom-set-variables
- '(vc-handled-backends nil))
+(setq vc-handled-backends nil)
 ;; Turn off related hooks
 (remove-hook 'find-file-hook 'vc-find-file-hook)
 (remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook);;
