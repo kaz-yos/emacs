@@ -1883,9 +1883,9 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
 (eval-after-load 'magit
   '(progn
-     (set-face-foreground 'magit-diff-add "green3")
+     (set-face-foreground 'magit-diff-add "SpringGreen3")
      (set-face-background 'magit-diff-add "black")
-     (set-face-foreground 'magit-diff-del "red3")
+     (set-face-foreground 'magit-diff-del "firebrick3")
      (set-face-background 'magit-diff-del "black")
      (set-face-foreground 'magit-diff-file-header "blue")
      ;; (set-face-background 'magit-diff-file-header "light yellow") ;Inherit: diff-file-header by default
