@@ -801,6 +801,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (global-set-key (kbd "M-[")	'bm-previous)
 (global-set-key (kbd "M-]")	'my-bm-next)
 (global-set-key (kbd "M-[")	'my-bm-previous)
+(global-set-key (kbd "C-c b")	'bm-show)
 
 
 ;; windresize for M-x windresize
