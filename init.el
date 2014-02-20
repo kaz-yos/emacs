@@ -515,6 +515,11 @@ If you omit CLOSE, it will reuse OPEN."
 (setq require-final-newline t)
 
 
+;; Show echo like C-x fast 2014-02-20
+(setq echo-keystrokes 0.1)
+
+
+
 ;;; External dependencies starting here. ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; el-get.el package system 2013-02-26
@@ -1196,7 +1201,8 @@ If you omit CLOSE, it will reuse OPEN."
 ;; Configuration for different objects
 (setq ess-R-object-popup-alist
       '((numeric    . "summary")
-        (factor     . "table")
+        (logical    . "summary")
+        (factor     . "summary")
         (integer    . "summary")
         (lm         . "summary")	
 	(glm        . "summary")			; added
