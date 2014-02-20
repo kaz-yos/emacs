@@ -727,7 +727,7 @@ If you omit CLOSE, it will reuse OPEN."
  '(frame-brackground-mode (quote dark))
  '(fringe-mode 4 nil (fringe))
  '(linum-format " %7i ")
- '(magit-diff-options (quote ("--ignore-all-space")))
+ '(magit-diff-options nil)
  '(main-line-color1 "#1E1E1E")
  '(main-line-color2 "#111111")
  '(main-line-separator-style (quote chamfer))
@@ -2862,6 +2862,24 @@ If you omit CLOSE, it will reuse OPEN."
 ;; ;;       '("~/.emacs.d/snippets"
 ;; ;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
 ;; ;; 	))
+
+
+
+;;; SLIME
+;; http://www.common-lisp.net/project/slime/
+;; http://dev.ariel-networks.com/wp/archives/462
+(require 'slime)
+(slime-setup '(slime-repl slime-fancy slime-banner))
+
+;; SLIME-like navigation 
+;; This package provides Slime's convenient "M-." and "M-," navigation
+;; in `emacs-lisp-mode', together with an elisp equivalent of
+;; `slime-describe-symbol', bound by default to `C-c C-d d`.
+;; Usage:
+;; Enable the package in elisp and ielm modes as follows:
+(require 'elisp-slime-nav) ;; optional if installed via package.el
+(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+  (add-hook hook 'turn-on-elisp-slime-nav-mode))
 
 
 
