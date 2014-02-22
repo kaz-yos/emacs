@@ -99,7 +99,7 @@
 ;;; dired configuration
 ;; http://qiita.com/l3msh0@github/items/8665122e01f6f5ef502f
 ;; % m to choose by regexp; t to toggle selection; M-x find-name-dired wild card search result in dired
-;; 
+;;
 ;; Show sizes in KB/MB etc
 ;; http://unix.stackexchange.com/questions/44858/change-view-in-emacs-dired-mode
 (setq dired-listing-switches "-ahl")
@@ -126,7 +126,7 @@
 (setq frame-title-format '(:eval (if (buffer-file-name) (abbreviate-file-name (buffer-file-name)) "%b")))
 
 
-;; winner-mode	
+;; winner-mode
 ;; http://www.emacswiki.org/emacs/WinnerMode
 ;; Default: C-c <left> to undo window rearragement. C-c <right> to redo.
 (winner-mode t)
@@ -225,7 +225,7 @@
 
 
 ;; ffap find-file-at-point
-;; Get file path or URL from current line 
+;; Get file path or URL from current line
 ;; http://www.gnu.org/s/libtool/manual/emacs/FFAP.html
 (ffap-bindings)
 
@@ -291,7 +291,7 @@
 (setq max-specpdl-size 6000)
 
 
-;; CUA		Rectangle is not used. 
+;; CUA		Rectangle is not used.
 ;; Common User Access mode for column editing: Activated by C-RET while selecting text
 ;; http://tech.kayac.com/archive/emacs-rectangle.html
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
@@ -393,7 +393,7 @@
   ;; 	       (".*courier-bold-.*-mac-roman" . 1.0)
   ;; 	       (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
   ;; 	       (".*monaco-bold-.*-mac-roman" . 0.9)))
-  ;;   (add-to-list 'face-font-rescale-alist elt))      
+  ;;   (add-to-list 'face-font-rescale-alist elt))
   )
 
 
@@ -433,7 +433,7 @@
 ;;   (local-set-key (kbd "\`") 'skeleton-pair-insert-maybe)	; Not useful for R
 ;;   ;; (local-set-key (kbd "<") 'skeleton-pair-insert-maybe)	; Not useful for R
 ;;   )
-;; 
+;;
 ;; (add-hook 'ess-mode-hook 'my-skeleton-pair-enable)
 ;; (add-hook 'inferior-ess-mode-hook 'my-skeleton-pair-enable)
 ;; Better to use them everywhere along with electric pair?? Started trying on 20130426
@@ -451,7 +451,7 @@
 ;; electric-pair-mode to automatically close brackets (New in emacs 24.1)
 ;; http://www.emacswiki.org/emacs/AutoPairs
 ;; These alone cannot place () around words? Use with skeleton-pair 20130426
-(electric-pair-mode t)			; 
+(electric-pair-mode t)			;
 (setq electric-pair-skip-self nil)	; Do not prevent overlapping ] before ]
 
 
@@ -538,10 +538,10 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://www.emacswiki.org/emacs/ELPA
 (require 'package)
 ;;
-;; Initialize 
+;; Initialize
 (package-initialize)
 ;;
-;; MELPA	; 
+;; MELPA	;
 ;; http://melpa.milkbox.net/#installing
 ;; http://melpa.milkbox.net/#/getting-started
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -639,12 +639,12 @@ If you omit CLOSE, it will reuse OPEN."
 	       ("SQL"  (or
 			  (mode . sql-mode)
 			  (mode . sql-interactive-mode)))
-	       ("LISP"	(or 
+	       ("LISP"	(or
 			 (mode . emacs-lisp-mode)))
 	       ("TeX"    (or
 			  (mode . TeX-mode)
 			  (mode . LaTeX-mode)))
-	       ("MAGIT"  (or 
+	       ("MAGIT"  (or
 			  (mode . magit-mode)
 			  (mode . magit-branch-manager-mode)
 			  (mode . magit-commit-mode)
@@ -840,8 +840,8 @@ If you omit CLOSE, it will reuse OPEN."
 (global-auto-complete-mode t)
 ;;
 ;; Auto-complete for ESS configuration
-;; http://www.emacswiki.org/emacs/ESSAuto-complete 
-(setq 
+;; http://www.emacswiki.org/emacs/ESSAuto-complete
+(setq
  ;; ac-candidate-limit nil
  ac-delay 0			; Faster than default 0.1 before AC kicks in
  ac-auto-show-menu 0.1		; 0.1 sec before menu appears
@@ -884,7 +884,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;;
 ;; popup.el
 ;; https://github.com/auto-complete/popup-el (called automatically)
-;; (require 'popup)	
+;; (require 'popup)
 ;; Prevent broken popup
 ;; http://stackoverflow.com/questions/13242165/emacs-auto-complete-popup-menu-broken
 (setq popup-use-optimized-column-computation nil)
@@ -993,9 +993,9 @@ If you omit CLOSE, it will reuse OPEN."
 ;; https://github.com/capitaomorte/yasnippet
 ;; http://fukuyama.co/yasnippet
 ;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
-;; 
+;;
 (require 'yasnippet) ; elpa version active. el-get version required to suppress for some reason?
-;; 
+;;
 ;; auto-complete-yasnippet	; not sure if this is necessary. Inactive 2014-02-03
 ;; https://github.com/szunyog/.emacs.d/blob/master/auto-complete-yasnippet.el
 ;; (require 'auto-complete-yasnippet)
@@ -1204,13 +1204,13 @@ If you omit CLOSE, it will reuse OPEN."
         (logical    . "summary")
         (factor     . "summary")
         (integer    . "summary")
-        (lm         . "summary")	
+        (lm         . "summary")
 	(glm        . "summary")			; added
 	(gls        . "summary")			; added
 	(lme        . "summary")			; added
-	(glht	    . "summary")			; added	
+	(glht	    . "summary")			; added
 	(survfit    . "survival:::print.survfit")	; added
-	(survdiff   . "survival:::print.survdiff")	; added	
+	(survdiff   . "survival:::print.survdiff")	; added
 	(coxph	    . "survival:::print.coxph")		; added
         (other      . "str")))
 ;;
@@ -1281,7 +1281,7 @@ If you omit CLOSE, it will reuse OPEN."
       (call-interactively 'ess-eval-region)
     (call-interactively 'ess-eval-line-and-step)))
 ;; Hook for julia-mode
-(add-hook 'julia-mode-hook 
+(add-hook 'julia-mode-hook
 	  '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-ess-eval-julia)
 	     (local-set-key (kbd "<C-return>") 'my-ess-eval-julia)
@@ -1337,14 +1337,14 @@ If you omit CLOSE, it will reuse OPEN."
 ;; Obsolete
 ;; http://stackoverflow.com/questions/6286579/emacs-shell-mode-how-to-send-region-to-shell
 (require 'essh)
-(defun essh-sh-hook ()                                             
+(defun essh-sh-hook ()
   (define-key sh-mode-map (kbd "C-c C-r") 'pipe-region-to-shell)
   (define-key sh-mode-map (kbd "C-c C-b") 'pipe-buffer-to-shell)
   (define-key sh-mode-map (kbd "C-c C-j") 'pipe-line-to-shell)
-  (define-key sh-mode-map (kbd "C-c C-n") 'pipe-line-to-shell-and-step) 
-  (define-key sh-mode-map (kbd "C-c C-f") 'pipe-function-to-shell)      
-  (define-key sh-mode-map (kbd "C-c C-d") 'shell-cd-current-directory)) 
-(add-hook 'sh-mode-hook 'essh-sh-hook)                             
+  (define-key sh-mode-map (kbd "C-c C-n") 'pipe-line-to-shell-and-step)
+  (define-key sh-mode-map (kbd "C-c C-f") 'pipe-function-to-shell)
+  (define-key sh-mode-map (kbd "C-c C-d") 'shell-cd-current-directory))
+(add-hook 'sh-mode-hook 'essh-sh-hook)
 ;;
 ;; Changed from ESS
 ;; Auto-scrolling of R console to bottom and Shift key extension
@@ -1397,7 +1397,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; rubikitch book p199
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
-;; Key not used by term 
+;; Key not used by term
 (setq term-unbind-key-list '("C-x" "C-c" "<ESC>"))
 ;; Assign these commands (part of what is in the definition file).
 (setq term-bind-key-alist
@@ -1452,8 +1452,8 @@ If you omit CLOSE, it will reuse OPEN."
 ;;     # Emit the PWD in the prompt, taking care that it doesn't get truncated.
 ;;     PS1='\n\u@\h:$(pwd) \n\$ '
 ;; fi
-;; Capture 
-;;  
+;; Capture
+;;
 ;; (require 'dirtrack)	; Check if this is necessary for eshell.
 ;; (add-hook 'shell-mode-hook
 ;;           (lambda ()
@@ -1593,7 +1593,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; TeX-PDF mode (no DVI intermediate file in pdfTeX, LuaTex, XeTeX)
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
 ;;
-;; auctex-latexmk.el for Japanese tex to PDF direct conversion: 
+;; auctex-latexmk.el for Japanese tex to PDF direct conversion:
 ;; http://qiita.com/tm_tn/items/cbc813028d7f5951b165
 ;; https://github.com/tom-tan/auctex-latexmk/
 ;; ln -sf ~/Documents/.latexmkrc ~/.latexmkrc
@@ -1949,7 +1949,7 @@ If you omit CLOSE, it will reuse OPEN."
 (defun magit-key-mode-popup-merging ()
   "Key menu for merging (--no-ff by default)"
   (interactive)
-  (magit-key-mode 'merging 
+  (magit-key-mode 'merging
 		  (list "--no-ff"))
   )
 ;;
@@ -2043,7 +2043,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html	; helm-migemo
 (when (eq system-type 'darwin)
     ;; Mac-only
-    (require 'helm-migemo)	
+    (require 'helm-migemo)
   )
 ;;
 ;; wgrep-helm.el  2014-01-14
@@ -2146,7 +2146,7 @@ If you omit CLOSE, it will reuse OPEN."
 (require 'guide-key)
 ;;
 ;; Redefine to erase the lighter (2014-02-06 suggetion by author)
-(setcdr (assq 'guide-key-mode minor-mode-alist) (list "")) 
+(setcdr (assq 'guide-key-mode minor-mode-alist) (list ""))
 ;; Brute-force method by redefining the minor mode definition.
 ;; (define-minor-mode guide-key-mode
 ;;   "Toggle guide key mode.
@@ -2204,7 +2204,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;;   (one-key-local-create-menu :hook 'dired-mode-hook :key nil :bind "?")
 ;;   ;; Use the function to activate the mode otherwise.
 ;;   (one-key-local-create-menu :mode 'moccur-mode :key nil :bind "?")
-  
+
 ;;   ;; one-key-config
 ;;   ;; (require 'one-key-config)				; many templates. active on 20130508
 
@@ -2517,7 +2517,7 @@ If you omit CLOSE, it will reuse OPEN."
   (local-set-key (kbd "$") (smartchr '("$" "$`!!'$")))
   (local-set-key (kbd "%") (smartchr '("%" " %`!!'% ")))
 ;;  (local-set-key (kbd "[") (smartchr '("[`!!']" "[[`!!']]" "["))) ; not very useful
-  ) 
+  )
 (add-hook 'ess-mode-hook	  'my-ess-smartchr-setting)
 (add-hook 'inferior-ess-mode-hook 'my-ess-smartchr-setting)
 ;
@@ -2526,7 +2526,7 @@ If you omit CLOSE, it will reuse OPEN."
   (local-set-key (kbd "+") (smartchr '(" + " "+")))
   (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
   (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))) ; test
-  ) 
+  )
 (add-hook 'ein:notebook-multilang-mode-hook	'my-python-smartchr-setting)
 (add-hook 'python-mode-hook			'my-python-smartchr-setting)
 (add-hook 'inferior-python-mode-hook		'my-python-smartchr-setting)
@@ -2534,12 +2534,12 @@ If you omit CLOSE, it will reuse OPEN."
 (defun my-LaTeX-smartchr-setting ()
   (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
   (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")))
-  ) 
+  )
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-smartchr-setting)
 ;;
 (defun my-elisp-smartchr-setting ()
   (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")))
-  ) 
+  )
 (add-hook 'emacs-lisp-mode-hook 'my-elisp-smartchr-setting)
 ;;
 ;; (global-set-key (kbd "=") (smartchr '(" = " " == " "=")))	; =
@@ -2678,13 +2678,13 @@ If you omit CLOSE, it will reuse OPEN."
     ))
 ;;
 ;; SQL mode hook
-(add-hook 'sql-mode-hook	   
+(add-hook 'sql-mode-hook
           '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-sql-eval)
 	     (local-set-key (kbd "<C-return>") 'my-sql-eval)
 	     ))
 ;; iSQL mode hook
-(add-hook 'sql-interactive-mode-hook	   
+(add-hook 'sql-interactive-mode-hook
           '(lambda()
 	     ;; (local-set-key (kbd "<S-return>") 'my-sql-eval)
 	     ;; (local-set-key (kbd "<C-return>") 'my-sql-eval)
@@ -2732,7 +2732,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (define-key map "\C-c\C-c" 'python-shell-send-buffer)
 ;; (define-key map "\C-c\C-l" 'python-shell-send-file)
 ;; (define-key map "\C-c\C-z" 'python-shell-switch-to-shell)
-;; 
+;;
 ;; Redefine python-shell-send-region command to avoid sending blank line to ipython shell 2013-12-22
 ;; This, however, breaks the debugger. It will show the wrong lines in the beginning of the files. 2013-12-25
 ;; Python3's traceback is smarter and correctly shows the error with the simplified send-region. 2014-01-02
@@ -2816,12 +2816,12 @@ If you omit CLOSE, it will reuse OPEN."
       (select-window w-script)					; Switch back to the script window
       )
     ))
-;; 
-;; Define hooks 
+;;
+;; Define hooks
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
 	     (local-set-key (kbd "<S-return>") 'my-python-eval)
-	     (local-set-key (kbd "<C-return>") 'my-python-eval)	     
+	     (local-set-key (kbd "<C-return>") 'my-python-eval)
 	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
 	     ;; (eldoc-mode 1)			; eldoc in the mode line. Slow? 2013-12-25
 	     (local-set-key (kbd "C-m") 'newline-and-indent)	; Indent after newline
@@ -2865,8 +2865,8 @@ If you omit CLOSE, it will reuse OPEN."
 ;; ;; Need to install elpy/rope/jedi/flake8 via $ sudo pip install
 ;; ;; $ sudo pip install --upgrade elpy # to upgrade to the latest elpy
 ;; ;; $ sudo ln -s /usr/local/bin/flake8 /usr/bin/flake8 # To make it visible to emacs. 2013-12-22
-;; ;; 
-;; ;; (package-initialize)	
+;; ;;
+;; ;; (package-initialize)
 ;; ;; To use elpy
 ;; (elpy-enable)
 ;; ;; To use ipython	; 2013-12-22 broken? ipython not found
