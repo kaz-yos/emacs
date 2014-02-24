@@ -2634,7 +2634,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://d.hatena.ne.jp/rubikitch/20100423/bytecomp
 (require 'auto-async-byte-compile)
 ;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
-(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el")
+(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/conf/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
 
