@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: join
+# key: xjoin
+# --
+CREATE TEMPORARY TABLE temp_itemid211 AS
+	SELECT chartevents.* 	        # Only from the table on the right
+	FROM temp_subject_id		# left table
+	INNER JOIN chartevents		# right table
+	ON temp_subject_id.SUBJECT_ID = chartevents.SUBJECT_ID
+	WHERE ITEMID = 211;

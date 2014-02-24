@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: code
+# key: xcode
+# binding: C-c c
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# --
+\`\`\`
+$0
+\`\`\`

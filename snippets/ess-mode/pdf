@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pdf
+# key: xpdf
+# --
+pdf(file = "$0", width = 7, height = 7, family = "sans")

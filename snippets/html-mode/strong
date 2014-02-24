@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: strong
+# key: xstrong
+# binding: C-c s
+# --
+<strong>$0</strong>

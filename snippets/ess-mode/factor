@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: factor
+# key: xfactor
+# --
+$1 <- factor($1, levels = c($0), labels = c())
