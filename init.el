@@ -1638,9 +1638,8 @@ If you omit CLOSE, it will reuse OPEN."
 			     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)
 			     ))
 ;;
-;; auto-complete-auctex.el 2013-09-09
-;; https://github.com/monsanto/auto-complete-auctex/blob/master/auto-complete-auctex.el
-;; Directly installed from github without packaging system
+;; auto-complete-auctex.el ; 2014-02-23 now via ELPA
+;; https://github.com/monsanto/auto-complete-auctex
 ;; (require 'auto-complete-auctex)
 ;;
 ;; ;; auto-complete-latex.el 2013-09-09. Not useful turned off on 2013-10-12
