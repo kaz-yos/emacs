@@ -2634,7 +2634,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;; http://d.hatena.ne.jp/rubikitch/20100423/bytecomp
 (require 'auto-async-byte-compile)
 ;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
-(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/conf/")
+(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
 
@@ -2655,84 +2655,55 @@ If you omit CLOSE, it will reuse OPEN."
 (setq eldoc-minor-mode-string "")		; No need for ElDoc in modeline (rubikitch book p231)
 
 
-;;; SQL support				; external dependency
-;; http://www.emacswiki.org/emacs/SqlMode
-;; http://www.acsu.buffalo.edu/~taowei/wiki/emacs_sql.html
-(setq sql-product "mysql")	; for coloring
-(setq sql-mysql-program "/usr/local/bin/mysql")
+;;; init-loader.el 
+;; https://github.com/emacs-jp/init-loader
+;; http://d.hatena.ne.jp/hiro_nemu/20140118/1390058851
+;; http://qiita.com/catatsuy/items/5f1cd86e2522fd3384a0
+;; http://shibayu36.hatenablog.com/entry/20101229/1293624201
+(require 'init-loader)
+;; Load appropriate files in this directory
+(init-loader-load "~/.emacs.d/init.d")
 ;;
-;; sql-indent via package.el
-(eval-after-load "sql"
-  '(load-library "sql-indent"))
+;; Note that not all files in the directory are loaded.  Each file is
+;; examined that if it is a .el or .elc file and, it has a valid name
+;; specified by `init-loader-default-regexp' or it is a platform
+;; specific configuration file.
 ;;
+;; By default, valid names of configuration files start with two
+;; digits.  For example, the following file names are all valid:
+;;     00_util.el
+;;     01_ik-cmd.el
+;;     21_javascript.el
+;;     99_global-keys.el
 ;;
-;; Define the MYSQL start up function
-(defun my-sql-start-mysql ()
-  (interactive)
-  (if (not (member "*SQL*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-        (delete-other-windows)
-        (setq w1 (selected-window))
-        (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))
-        (sql-mysql)			; Start MySQL
-        (set-window-buffer w1 "*SQL*")	; SQL on the left (w1)
-        (set-window-buffer w2 w1name)	; script on the right (w2)
-	(select-window w2)		; Select script (w2) Added
-	)))
+;; Files are loaded in the lexicographical order.  This helps you to
+;; resolve dependency of the configurations.
 ;;
-;; Define the mysql eval function
-(defun my-sql-eval ()
-  (interactive)
-  (my-sql-start-mysql)
-  (if (and transient-mark-mode mark-active)	; Check if selection is available
-      (sql-send-region (point) (mark))
-    (progn
-      ;; (beginning-of-line)
-      (sql-send-region (point-at-bol) (point-at-eol))
-      (next-line))
-    ))
+;; A platform specific configuration file has a prefix corresponds to
+;; the platform.  The following is the list of prefixes and platform
+;; specific configuration files are loaded in the listed order after
+;; non-platform specific configuration files.
 ;;
-;; SQL mode hook
-(add-hook 'sql-mode-hook
-          '(lambda()
-	     (local-set-key (kbd "<S-return>") 'my-sql-eval)
-	     (local-set-key (kbd "<C-return>") 'my-sql-eval)
-	     ))
-;; iSQL mode hook
-(add-hook 'sql-interactive-mode-hook
-          '(lambda()
-	     ;; (local-set-key (kbd "<S-return>") 'my-sql-eval)
-	     ;; (local-set-key (kbd "<C-return>") 'my-sql-eval)
-	     ))
-
-
-
-;;; SLIME
-;; http://www.common-lisp.net/project/slime/
-;; http://dev.ariel-networks.com/wp/archives/462
-(require 'slime)
-(slime-setup '(slime-repl slime-fancy slime-banner))
+;; Platform   Subplatform        Prefix         Example
+;; ------------------------------------------------------------------------
+;; Windows                       windows-       windows-fonts.el
+;;            Meadow             meadow-        meadow-commands.el
+;; ------------------------------------------------------------------------
+;; Mac OS X   Carbon Emacs       carbon-emacs-  carbon-emacs-applescript.el
+;;            Cocoa Emacs        cocoa-emacs-   cocoa-emacs-plist.el
+;; ------------------------------------------------------------------------
+;; GNU/Linux                     linux-         linux-commands.el
+;; ------------------------------------------------------------------------
+;; All        Non-window system  nw-            nw-key.el
 ;;
-;; elisp as inferior-lisp-program	; did not work
-;; http://stackoverflow.com/questions/6687721/repl-for-emacs-lisp
-;;(setq inferior-lisp-program "/usr/local/bin/emacs --batch --eval '(while t (print (eval (read))))'")
+;; If `init-loader-byte-compile' is non-nil, each configuration file
+;; is byte-compiled when it is loaded.  If you modify the .el file,
+;; then it is recompiled next time it is loaded.
 ;;
-;; Common lisp (installed via homebrew)
-(setq inferior-lisp-program "/usr/local/bin/clisp")
-
-
-
-
-;; SLIME-like navigation
-;; This package provides Slime's convenient "M-." and "M-," navigation
-;; in `emacs-lisp-mode', together with an elisp equivalent of
-;; `slime-describe-symbol', bound by default to `C-c C-d d`.
-;; Usage:
-;; Enable the package in elisp and ielm modes as follows:
-(require 'elisp-slime-nav) ;; optional if installed via package.el
-(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-  (add-hook hook 'turn-on-elisp-slime-nav-mode))
+;; Loaded files and errors during the loading process are recorded.
+;; If `init-loader-show-log-after-init' is non-nil, the record is
+;; shown after the overall loading process.  You can do this manually
+;; by M-x init-loader-show-log.
 
 
 
