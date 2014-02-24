@@ -478,7 +478,7 @@
 ;;
 (global-set-key (kbd "C-c r") 'replace-string)
 ;;
-(global-set-key (kbd "C-c m") 'comment-region)
+;; (global-set-key (kbd "C-c m") 'comment-region)	; use M-; (comment-dwim)
 
 
 ;; delay linum for speed
@@ -1400,6 +1400,10 @@ If you omit CLOSE, it will reuse OPEN."
 	  'bash-completion-dynamic-complete)
 (add-hook 'shell-command-complete-functions
 	  'bash-completion-dynamic-complete)
+
+;; shell scripts saved with chmod +x
+(add-hook 'after-save-hook
+	  'executable-make-buffer-file-executable-if-script-p)
 
 ;; multi-term.el
 ;; rubikitch book p199
