@@ -2290,6 +2290,11 @@ If you omit CLOSE, it will reuse OPEN."
 (global-set-key (kbd "C-c l") 'read-only-mode)
 
 
+;;; vlf: View Large Files
+;; https://github.com/m00natic/vlfi
+(require 'vlf-integrate)
+
+
 ;;; evil
 ;; http://www.emacswiki.org/emacs/Evil
 ;; Activate evil (2014-02-03 conflict with helm C-z)
