@@ -6,7 +6,6 @@ autoinsert/.gitignore
 .Rhistory
 .juliahistory
 .mc-lists.el
-README.md
 ac-comphist.dat
 auto-install/
 auto-save-list/
