@@ -1185,9 +1185,9 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (require 'ess-tracebug)	; Now included in ESS
 (setq ess-use-tracebug t)	; permanent activation
 ;;
-;; *.Rmd files invoke r-mode	; Temporary fix for R markdown files 2014-02-21 Use polymode
-;; (setq auto-mode-alist
-;;       (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
+;; *.Rmd files invoke r-mode	; Temporary fix for R markdown files 2014-02-22 polymode did not work
+(setq auto-mode-alist
+      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
 ;;
 ;; Tooltip included in ESS
 ;; (define-key ess-mode-map "\C-c\C-g" 'ess-describe-object-at-point)	; Changed from C-c C-d C-e
@@ -1320,14 +1320,22 @@ If you omit CLOSE, it will reuse OPEN."
 ;;; polymode (alpha) 2014-02-21
 ;; https://github.com/vitoshka/polymode
 ;; Set load path (forked and pulled from my repo)
-(setq load-path
-      (append '("~/.emacs.d/plugins/polymode/"  "~/.emacs.d/plugins/polymode/modes")
-              load-path))
-;;
-;; Activate necessary bundles
-(require 'poly-R)
-(require 'poly-markdown)
-
+;; (setq load-path
+;;       (append '("~/.emacs.d/plugins/polymode/"  "~/.emacs.d/plugins/polymode/modes")
+;;               load-path))
+;; ;;
+;; ;; Activate necessary bundles
+;; (require 'poly-R)
+;; (require 'poly-markdown)
+;; ;;
+;; ;; key config
+;; (defun polymode-key-hook ()
+;;   (define-key polymode-mode-map (kbd "C-c n") 'polymode-next-chunk-same-type)
+;;   (define-key polymode-mode-map (kbd "C-c p") 'polymode-previous-chunk-same-type)
+;;   )
+;; (add-hook 'polymode-key-hook 'poly-markdown+r-hook)	; undefined
+;; (add-hook 'polymode-key-hook 'polymode-select-mode-hook)	; not working
+;; (add-hook 'polymode-key-hook 'ess-mode-hook)	; not working
 
 
 ;;; shell environments
