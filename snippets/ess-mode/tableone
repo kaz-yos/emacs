@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: tableone
+# key: xtableone
+# binding: C-c t
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# --
+## Load tableone package from the local developmental repository
+source("~/statistics/_source_table_one.R")
+## Load tableone package from the local developmental repository
+## sourceDirectory(path         = "/Users/kazuki/statistics/package_development/tableone/R",
+##                 modifiedOnly = FALSE, recursive = FALSE)

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: subclass
+# key: xsubclass
+# --
+class Template(ParentClass):
+    def __init__(self):
+        super.__init__()        # set defaults
+        self.arg1 = arg1        # overwrite
+        self.arg2 = arg2
