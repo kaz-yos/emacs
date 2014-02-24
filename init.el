@@ -1,8 +1,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ~/.emacs.d/init.el for cocoa emacs 24.3.1 (source with inline patch) on Mac OS X 10.8
 ;; Reference: http://sakito.jp/emacs/emacs24.html#ime
+;; Now managed with init-loader.el: https://github.com/emacs-jp/init-loader
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
 
 ;;; Additional load-paths ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -828,164 +828,6 @@ If you omit CLOSE, it will reuse OPEN."
 (define-auto-insert "\\.sh$" "shell.sh")
 (define-auto-insert "\\.tex$" "LaTeX.tex")
 (define-auto-insert "\\.gitignore$" ".gitignore")
-
-
-;;; Auto-completion
-;;
-;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
-;; https://github.com/auto-complete/auto-complete
-;; http://cx4a.org/software/auto-complete/manual.html
-(require 'auto-complete)
-(require 'auto-complete-config)
-(global-auto-complete-mode t)
-;;
-;; Auto-complete for ESS configuration
-;; http://www.emacswiki.org/emacs/ESSAuto-complete
-(setq
- ;; ac-candidate-limit nil
- ac-delay 0			; Faster than default 0.1 before AC kicks in
- ac-auto-show-menu 0.1		; 0.1 sec before menu appears
- ac-candidate-menu-min 1	; Show menu if 2+ candidates
- ac-menu-height 20		; 20 candidates
- ;; http://stackoverflow.com/questions/17309773/emacs-autocomplete-inside-python-string
- ;; ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
- ac-disable-faces nil		; auto-complete everywhere, even within quotes, comments
- ;; ac-ignore-case 'smart	; Treat them smartly
- ac-ignore-case nil		; Treat them strictly
- ac-use-quick-help nil		; No pop up help!
- ;; ac-quick-help-delay 1.5
- ;; ac-quick-help-prefer-pos-tip t
- )
-;; Less anoying settings
-;; http://cx4a.org/software/auto-complete/manual.html#Not_to_complete_automatically
-(setq ac-use-menu-map t)
-(define-key ac-menu-map "\C-n" 'ac-next)
-(define-key ac-menu-map "\C-p" 'ac-previous)
-;;
-;; http://www.emacswiki.org/emacs/ESSAuto-complete
-;; (define-key ac-completing-map [tab] 'ac-complete)
-(define-key ac-completing-map (kbd "<tab>") 'ac-complete)
-;; (define-key ac-completing-map [tab] nil)
-;; (define-key ac-completing-map [return] 'ac-complete)	; configured again at end
-(define-key ac-completing-map (kbd "RET") 'ac-complete) ; configured again at end
-;;
-;; Trigger key
-;; http://cx4a.org/software/auto-complete/manual.html#Trigger_Key
-(ac-set-trigger-key "TAB")
-;; (ac-set-trigger-key (kbd "TAB")) ; This does not work
-;;
-;; If you are using 'flyspell' you might want to activate the workaround
-;; http://www.emacswiki.org/emacs/AutoComplete#toc6
-(ac-flyspell-workaround)
-;;
-;; auto-complete-emacs-lisp.el 2013-09-08
-;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
-(require 'auto-complete-emacs-lisp)
-;;
-;; popup.el
-;; https://github.com/auto-complete/popup-el (called automatically)
-;; (require 'popup)
-;; Prevent broken popup
-;; http://stackoverflow.com/questions/13242165/emacs-auto-complete-popup-menu-broken
-(setq popup-use-optimized-column-computation nil)
-
-
-;; icicles.el
-;; http://www.emacswiki.org/emacs/Icicles
-;; http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
-(require 'icicles)
-(icy-mode 1)
-
-
-;; Handling of the tab completion buffer 2014-02-03
-;; http://stackoverflow.com/questions/6458220/automatically-close-emacs-shell-mode-tab-completion-buffer
-(defun delete-completion-window-buffer (&optional output)
-  (interactive)
-  (dolist (win (window-list))
-    (when (string= (buffer-name (window-buffer win)) "*Completions*")
-      (delete-window win)
-      (kill-buffer "*Completions*")))
-  output)
-(add-hook 'comint-preoutput-filter-functions 'delete-completion-window-buffer)
-
-
-;;; flyspell-mode 2014-01-20
-;; Define a fuction to use the popup.el
-;; http://d.hatena.ne.jp/mooz/20100423/p1
-(defun flyspell-correct-word-popup-el ()
-  "Pop up a menu of possible corrections for misspelled word before point."
-  (interactive)
-  ;; use the correct dictionary
-  (flyspell-accept-buffer-local-defs)
-  (let ((cursor-location (point))
-	(word (flyspell-get-word nil)))
-    (if (consp word)
-	(let ((start (car (cdr word)))
-	      (end (car (cdr (cdr word))))
-	      (word (car word))
-	      poss ispell-filter)
-	  ;; now check spelling of word.
-	  (ispell-send-string "%\n")	;put in verbose mode
-	  (ispell-send-string (concat "^" word "\n"))
-	  ;; wait until ispell has processed word
-	  (while (progn
-		   (accept-process-output ispell-process)
-		   (not (string= "" (car ispell-filter)))))
-	  ;; Remove leading empty element
-	  (setq ispell-filter (cdr ispell-filter))
-	  ;; ispell process should return something after word is sent.
-	  ;; Tag word as valid (i.e., skip) otherwise
-	  (or ispell-filter
-	      (setq ispell-filter '(*)))
-	  (if (consp ispell-filter)
-	      (setq poss (ispell-parse-output (car ispell-filter))))
-	  (cond
-	   ((or (eq poss t) (stringp poss))
-	    ;; don't correct word
-	    t)
-	   ((null poss)
-	    ;; ispell error
-	    (error "Ispell: error in Ispell process"))
-	   (t
-	    ;; The word is incorrect, we have to propose a replacement.
-	    (flyspell-do-correct (popup-menu* (car (cddr poss)) :scroll-bar t :margin t)
-				 poss word cursor-location start end cursor-location)))
-	  (ispell-pdict-save t)))))
-
-;; C-M-return at the word to correct to activate
-(add-hook 'flyspell-mode-hook
-          (lambda ()
-            (define-key flyspell-mode-map (kbd "<C-M-return>") 'flyspell-correct-word-popup-el)
-            ))
-
-;; Auto-start flyspell-mode for these files
-;; (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
-;; (add-to-list 'auto-mode-alist '("\\.tex" . flyspell-mode))
-
-;; Save word without a mouse
-;; http://stackoverflow.com/questions/11070849/flyspell-without-a-mouse
-(defun save-ispell-word (word)
-  (interactive "sA word you want to add to dictionary ")
-  (ispell-send-string (concat "*" word "\n"))
-  (setq ispell-pdict-modified-p '(t)))
-
-
-;; ac-ispell	; 2014-01-20
-;; Auto-completion for English words
-;; (custom-set-variables
-;;   '(ac-ispell-requires 4))
-
-;; (eval-after-load "auto-complete"
-;;   '(progn
-;;       (ac-ispell-setup)))
-
-;; (defun my/enable-ac-ispell ()
-;;   (add-to-list 'ac-sources 'ac-source-ispell))
-
-;; (add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
-;; (add-hook 'mail-mode-hook 'my/enable-ac-ispell)
-
-
 
 
 ;;; YAsnippet ; Automatic template inserting system.
@@ -1882,129 +1724,6 @@ If you omit CLOSE, it will reuse OPEN."
 ;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
 
 
-;;; Version control
-
-;; Do not use the default vc-mode (mode-line cleaner) 2014-02-14
-;; http://qiita.com/acple@github/items/3709174ab24c5d82423a
-(setq vc-handled-backends nil)
-;; Turn off related hooks
-(remove-hook 'find-file-hook 'vc-find-file-hook)
-(remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook);;
-;;
-;; ;; modeline-git-branch.el (auto-install) 2014-02-14. Switch not fast enough.
-;; (require 'modeline-git-branch)
-;; (modeline-git-branch-mode 1)
-
-;; magit.el
-;; e for ediff!
-;; Magit User Manual: http://magit.github.io/magit/magit.html
-;; emacs wiki magit: http://www.emacswiki.org/emacs/Magit
-;; emacs wiki git: http://www.emacswiki.org/emacs/Git
-;; http://gom.hatenablog.com/entry/20090524/1243170341
-;; Meet Magit on Vimeo: http://vimeo.com/2871241
-;; git real basics: http://xahlee.info/linux/git.html
-;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
-;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
-(require 'magit)
-;; keybinding for magit-status
-(global-set-key (kbd "C-c g") 'magit-status)
-;;
-;; change magit diff colors
-;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
-;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
-(eval-after-load 'magit
-  '(progn
-     (set-face-foreground 'magit-diff-add "SpringGreen3")
-     (set-face-background 'magit-diff-add "black")
-     (set-face-foreground 'magit-diff-del "firebrick3")
-     (set-face-background 'magit-diff-del "black")
-     (set-face-foreground 'magit-diff-file-header "blue")
-     ;; (set-face-background 'magit-diff-file-header "light yellow") ;Inherit: diff-file-header by default
-     ;;(set-face-foreground 'magit-item-highlight "black") ; Inherit: secondary-selection by default
-     (set-face-background 'magit-item-highlight "black") ; No highlight
-     ))
-;;
-;; 2014-02-12 Add the --all switch by default to the logginb popup
-;; Shown below is how magit-key-mode-popup-* is defined dynamically in magit-key-mode.el
-;; (defun magit-key-mode-generate (group)
-;;   "Generate the key-group menu for GROUP."
-;;   (let ((opts (magit-key-mode-options-for-group group)))
-;;     (eval
-;;      `(defun ,(intern (concat "magit-key-mode-popup-" (symbol-name group))) nil
-;;         ,(concat "Key menu for " (symbol-name group))
-;;         (interactive)
-;;         (magit-key-mode
-;;          (quote ,group)
-;;          ;; As a tempory kludge it is okay to do this here.
-;;          ,(cl-case group
-;;             (logging
-;;              '(list "--graph" "--all")) ; 2014-02-12 Can be hacked like this
-;;             (diff-options
-;;              '(when (local-variable-p 'magit-diff-options)
-;;                 magit-diff-options))))))))
-;;
-;; To see the definition of the function defined here, do the following
-;; (symbol-function 'magit-key-mode-popup-logging)
-;;
-;; These just replace the dynamically created functions with statically made ones.
-;;
-;; Logging shows all branches by default (--all option added by default)
-(defun magit-key-mode-popup-logging ()
-  "Key menu for logging (--graph --all by default)"
-  (interactive)
-  (magit-key-mode 'logging
-		  (list "--graph" "--all"))
-  )
-;;
-;; Merging does not use fast-forward by default (--no-ff option added by default)
-(defun magit-key-mode-popup-merging ()
-  "Key menu for merging (--no-ff by default)"
-  (interactive)
-  (magit-key-mode 'merging
-		  (list "--no-ff"))
-  )
-;;
-
-;; Configure fringe for git-gutter 2014-02-02
-;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
-;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fringes.html
-(set-fringe-mode '(0 . 1))
-
-;; git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
-;; https://github.com/nonsequitur/git-gutter-fringe-plus
-;; fringe-helper.el is required.
-(require 'git-gutter-fringe+)
-;; Mute the mode-line
-(setq git-gutter+-lighter "")
-;; active everywhere
-(global-git-gutter+-mode)
-;; Show on the right side
-(setq git-gutter-fr+-side 'right-fringe)
-
-
-;;; Auto-intall	; This is causing problem !!! 2013-03-04
-;; http://www.emacswiki.org/AutoInstall
-;; http://www.emacswiki.org/emacs/auto-install.el
-(require 'auto-install)
-(setq auto-install-directory "~/.emacs.d/auto-install/")
-;;
-;; emacs customization book by rubikitch
-;; EmacsWiki added for auto-completion list at startup
-;; http://spiri-tua-lism.com/?p=451
-(when (eq system-type 'darwin)
-  ;; Mac-only
-  (setq auto-install-use-wget t)
-  )
-;; This has to be done??
-;; sudo ln -s `which wget` /usr/bin/wget
-;; ;;
-;; THIS FREEZES EMACS IF EMACSWIKI IS DONW!!!!!! Defined at the end of this file.
-;; (auto-install-update-emacswiki-package-name t)
-;; INSTALL-elisp.el compatilibity
-(auto-install-compatibility-setup)
-;; ediff associated buffers in one frame
-(setq ediff-windows-setup-function 'ediff-setup-windows-plain)
-
 
 ;;; Helm (Anything successor)
 ;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688		; arabiki
@@ -2638,10 +2357,6 @@ If you omit CLOSE, it will reuse OPEN."
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
 
-;; A simple Emacs interface for the Mercurial (Hg) Distributed SCM. 2013-09-09
-(require 'ahg)
-
-
 ;; Use default eldoc (loaded automatically)
 ;; (require 'eldoc)
 ;; eldoc-extension
@@ -2705,8 +2420,3 @@ If you omit CLOSE, it will reuse OPEN."
 ;; shown after the overall loading process.  You can do this manually
 ;; by M-x init-loader-show-log.
 
-
-
-;; This is placed at the end as it freezes if EmacsWIki is not responding.
-(auto-install-update-emacswiki-package-name t) ; THIS FREEZES EMACS IF EMACSWIKI IS DONW!!!!!!
-;;; end of configuration
