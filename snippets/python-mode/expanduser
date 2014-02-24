@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: expanduser
+# key: xuser
+# --
+os.path.expanduser("~/")

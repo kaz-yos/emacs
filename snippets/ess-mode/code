@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: code
+# key: xcode
+# --
+${1:$$(yas-choose-value '("\\\code{\\\link{}}" "\\\code{}"))}$0
