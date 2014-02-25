@@ -5,7 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;;; Configure load-path
+;;; Configure load-path (load-path should only be defined in init.el)
 ;;
 ;; http://emacswiki.org/emacs/LoadPath	; Recursive for elpa directory
 ;; This is NECESSARY if init-loader.el is required before package.el package-initialize.
@@ -16,17 +16,15 @@
 ;; https://github.com/dimitri/el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 ;;
-;; Packages added by auto-install (Book by rubikitch p49) (no subfolders)
+;; Packages added by auto-install (put no subfolders)
 (add-to-list 'load-path "~/.emacs.d/auto-install/")
 ;;
 ;; Packages added manually (intentionally not recursive)
 (add-to-list 'load-path "~/.emacs.d/plugins/")
-
-
-;;; M-x customize seperation
-;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
-(setq custom-file "~/.emacs.d/init.d/init-customize.el")
-(load custom-file)
+;;
+;; polymode.el (not used)
+;; (add-to-list 'load-path "~/.emacs.d/plugins/polymode/")
+;; (add-to-list 'load-path "~/.emacs.d/plugins/polymode/modes")
 
 
 ;;; init-loader.el
@@ -34,8 +32,12 @@
 ;; http://d.hatena.ne.jp/hiro_nemu/20140118/1390058851
 ;; http://qiita.com/catatsuy/items/5f1cd86e2522fd3384a0
 ;; http://shibayu36.hatenablog.com/entry/20101229/1293624201
+;;
+;; This configuration is highly dependent on init-loader.el!
+;;
+;; Load init-loader.el
 (require 'init-loader)
-;; Always report errors and logs
+;; Always report errors and logs (default t)
 (setq init-loader-show-log-after-init t)
 ;; Report errors after initialization only if there is any
 ;; (if (not (equal (init-loader-error-log) ""))

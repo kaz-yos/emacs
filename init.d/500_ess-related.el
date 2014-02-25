@@ -273,13 +273,9 @@
 ;; (require 'flymake-stan)
 
 
-
 ;;; polymode (alpha) 2014-02-21
 ;; https://github.com/vitoshka/polymode
 ;; Set load path (forked and pulled from my repo)
-;; (setq load-path
-;;       (append '("~/.emacs.d/plugins/polymode/"  "~/.emacs.d/plugins/polymode/modes")
-;;               load-path))
 ;; ;;
 ;; ;; Activate necessary bundles
 ;; (require 'poly-R)

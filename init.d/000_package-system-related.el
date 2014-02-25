@@ -36,7 +36,7 @@
 
 ;;; el-get.el package system 2013-02-26
 ;; https://github.com/dimitri/el-get
-;; The load-path is configured at the top.
+;; The load-path is configured at the top of init.el.
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
