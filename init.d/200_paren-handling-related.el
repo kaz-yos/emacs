@@ -5,6 +5,12 @@
 ;; Work around for problem with inserting before a parenthesis.
 ;; In other mode the default electric-pair-mode works good
 ;;
+
+;;; Show-Paren mode
+;; enable
+(show-paren-mode t)				
+
+
 ;; Define a function for local activation
 ;; (defun my-skeleton-pair-enable ()
 ;;   (setq skeleton-pair t)		; on 20130426

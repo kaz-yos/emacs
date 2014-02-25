@@ -24,59 +24,31 @@
 ;; Packages added manually (intentionally not recursive)
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 ;;
-;; System-specific configuration
-;; http://stackoverflow.com/questions/1817257/how-to-determine-operating-system-in-elisp
-(when (eq system-type 'darwin)
-  ;; Mac only
-  ;; $PATH for external commands		; Necessary for AUCtex platex coordination
-  ;; http://emacswiki.org/emacs/EmacsApp
-  ;; http://rforge.org/2011/08/16/sane-path-variable-in-emacs-on-mac-os-x/
-  ;; You can use them to have the same PATH as .bashrc sets
-  ;; (if (not (getenv "TERM_PROGRAM"))
-  ;;     (setenv "PATH"
-  ;; 	      (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
-
-  ;; Do not open a new frame opening a file from Finder
-  ;; http://stackoverflow.com/questions/6068819/alias-to-make-emacs-open-a-file-in-a-new-buffer-not-frame-and-be-activated-com
-  (setq ns-pop-up-frames nil)
-  )
-;
-;; exec-path-from-shell.el					; DEPENDENCY!!!	2014-02-02
+;; exec-path-from-shell.el to configure correct $PATH for external files
 ;; http://d.hatena.ne.jp/syohex/20130718/1374154709
 ;; check with (getenv "PATH")
 (require 'exec-path-from-shell)
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-
+;;
+;; OBSOLETE
+;; System-specific configuration
+;; http://stackoverflow.com/questions/1817257/how-to-determine-operating-system-in-elisp
+;; (when (eq system-type 'darwin)
+;;   Mac only
+;;   $PATH for external commands		; Necessary for AUCtex platex coordination
+;;   http://emacswiki.org/emacs/EmacsApp
+;;   http://rforge.org/2011/08/16/sane-path-variable-in-emacs-on-mac-os-x/
+;;   You can use them to have the same PATH as .bashrc sets
+;;   (if (not (getenv "TERM_PROGRAM"))
+;;       (setenv "PATH"
+;;   	      (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
+;;   )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Configuration without external .el file dependencies comes first ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;;; default.el in Vincent Goulet's distribution
-;; https://svn.fsg.ulaval.ca/svn-pub/vgoulet/emacs-modified/macos/tags/Emacs-23.3-modified-3/default.el
-;;
-;; Nice options to have On by default
-(mouse-wheel-mode t)				; activate mouse scrolling
-(global-font-lock-mode t)			; syntax highlighting
-(transient-mark-mode t)				; sane select (mark) mode
-(delete-selection-mode t)			; entry deletes marked text
-(show-paren-mode t)				; match parentheses
-;; http://ergoemacs.org/emacs/emacs_make_modern.html
-;; (setq show-paren-style 'expression)		; highlight entire bracket expression (annoying)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)	; wrap long lines in text mode
-(column-number-mode 1)				; show (row, col) number
-;;
-;; Smooth Japanese input
-;; http://suzukima.hatenablog.com/entry/2012/08/16/232210
-(setq show-paren-delay 0.5)			; Compatibility with Japanese
-
-
-;; Suppress all dialog boxes completely, even file open dialogue. No need for mouse!
-;; http://www.gnu.org/s/libtool/manual/emacs/Dialog-Boxes.html
-(setq use-dialog-box nil)
 
 
 ;;; Use Mac OS X system trash
@@ -87,109 +59,6 @@
   (setq delete-by-moving-to-trash t
 	trash-directory "~/.Trash/emacs")
   )
-
-
-;;; mini-buffer configuration 2014-02-03
-(add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
-(defun my-minibuffer-setup ()
-       (set (make-local-variable 'face-remapping-alist)
-          '((default :height 1.2))))	; Larger font size
-
-
-;;; Bars: Menu bar only. No scroll bar or tool bar.
-;; http://www.emacswiki.org/emacs/FullScreen#toc7
-(menu-bar-mode t)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-;;(scroll-bar-mode t)
-
-
-;; Show the current directory in the frame bar
-;; http://stackoverflow.com/questions/8945056/emacs-how-to-show-the-current-directory-in-the-frame-bar
-(setq frame-title-format '(:eval (if (buffer-file-name) (abbreviate-file-name (buffer-file-name)) "%b")))
-
-
-;; winner-mode
-;; http://www.emacswiki.org/emacs/WinnerMode
-;; Default: C-c <left> to undo window rearragement. C-c <right> to redo.
-(winner-mode t)
-(global-set-key (kbd "M-<left>")	'winner-undo)		; M-<left>  to undo
-(global-set-key (kbd "M-<right>")	'winner-redo)		; M-<right> to redo
-
-
-;; Swap buffers with C-x /
-;; http://stackoverflow.com/questions/1510091/with-emacs-how-do-you-swap-the-position-of-2-windows
-(defun swap-buffer ()
-  (interactive)
-  (cond ((one-window-p) (display-buffer (other-buffer)))
-        ((let* ((buffer-a (current-buffer))
-                (window-b (cadr (window-list)))
-                (buffer-b (window-buffer window-b)))
-           (set-window-buffer window-b buffer-a)
-           (switch-to-buffer buffer-b)
-           (other-window 1)))))
-(global-set-key (kbd "C-x /") 'swap-buffer)		; Enabled for everywhere
-
-
-;;; Window management
-;;
-;; Useful shortcuts
-;; http://stackoverflow.com/questions/2901198/useful-keyboard-shortcuts-and-tips-for-ess-r
-;; C-tab to switch to other window.
-;; (global-set-key [C-tab] 'other-window)
-;;
-;; C-tab to split or switch to other window. Book by rubikitch p74
-;; http://d.hatena.ne.jp/rubikitch/20100210/emacs
-;; http://stackoverflow.com/questions/916797/emacs-global-set-key-to-c-tab
-(defun other-window-or-split ()
-  (interactive)
-  (when (one-window-p) (split-window-horizontally)) ; When there's only one window, split horizontally.
-  (other-window 1))
-(global-set-key (kbd "<C-tab>") 'other-window-or-split)
-;; Reversal
-;; http://stackoverflow.com/questions/143072/in-emacs-what-is-the-opposite-function-of-other-window-c-x-o
-(global-set-key (kbd "<C-S-tab>") 'previous-multiframe-window)	;; Added by K
-;;
-;; Control and up/down arrow keys to search history with matching what you've already typed:
-;; (define-key comint-mode-map [C-up] 'comint-previous-matching-input-from-input)	; Overlap with Auto-scroll
-;; (define-key comint-mode-map (kbd "C-<up>") 'comint-previous-matching-input-from-input)	; Overlap with Auto-scroll
-;; (define-key comint-mode-map [C-down] 'comint-next-matching-input-from-input)
-;;
-;; other-frame with C-x o, instead of other-window
-(global-set-key (kbd "C-x o") 'other-frame)
-
-
-;; Unique buffer names
-;; rubikitch book p84
-;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
-(require 'uniquify)
-;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)	; rubikitch
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-ignore-buffers-re "*[^*]+*")
-
-
-;; Scroll window with C-t/C-v
-;; transpose-char changed to cua-scroll-down
-(global-set-key (kbd "C-t") 'cua-scroll-down)	; C-t to scroll down, C-v to scroll up
-;;
-;; Scroll just one line when hitting bottom of window
-;; http://www.emacswiki.org/emacs/SmoothScrolling
-(setq scroll-conservatively 10000)
-;;
-;; Scroll one line at a time (less "jumpy" than defaults)
-;; http://www.emacswiki.org/emacs/SmoothScrolling
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))	; one line at a time
-;;(setq mouse-wheel-progressive-speed nil)		; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't)			; scroll window under mouse
-;;(setq scroll-step 1)					; keyboard scroll one line at a time
-;;
-;; Scroll other window with M-up/M-down	; Conflict with paredit. Use C-M-(S)-v
-;; (global-set-key [M-up]		'scroll-other-window-down)
-;; (global-set-key [M-down]	'scroll-other-window)
-(global-set-key (kbd "M-<up>")		'scroll-other-window-down)
-(global-set-key (kbd "M-<down>")	'scroll-other-window)
-(global-set-key (kbd "C-M-t")		'scroll-other-window-down)
-(global-set-key (kbd "C-M-v")		'scroll-other-window)
 
 
 ;; History retained between sessions
@@ -205,12 +74,6 @@
 (require 'saveplace)
 ;; y or n for yes or no
 (defalias 'yes-or-no-p 'y-or-n-p)
-
-
-;; ffap find-file-at-point
-;; Get file path or URL from current line
-;; http://www.gnu.org/s/libtool/manual/emacs/FFAP.html
-(ffap-bindings)
 
 
 ;; Bookmarks
@@ -229,27 +92,6 @@
 ;; (global-set-key (kbd "C-x r l") 'list-bookmarks)
 
 
-;; Added automatically by emacs
-(put 'upcase-region	'disabled nil)
-(put 'downcase-region	'disabled nil)
-
-
-;; Increase max values for number of variables that can be defined 2013-09-19
-;; http://mikio.github.io/article/2012/06/26_variable-binding-depth-exceeds-max-specpdl-size.html
-(setq max-lisp-eval-depth 5000)
-(setq max-specpdl-size 6000)
-
-
-;; CUA		Rectangle is not used.
-;; Common User Access mode for column editing: Activated by C-RET while selecting text
-;; http://tech.kayac.com/archive/emacs-rectangle.html
-;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
-;; http://stackoverflow.com/questions/3750332/how-do-i-force-a-binding-in-emacs
-(setq cua-rectangle-mark-key (kbd "<C-S-return>")) ; <C-S-return> for rectangle
-(cua-mode t)
-(setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
-;; (setq cua-keep-region-after-copy t)		; Keep selection after copying (Mac/Win-like)
-
 
 ;; No auto filling in text mode
 ;; http://tomikura.s2.xrea.com/linux/install/emacs.html
@@ -258,35 +100,6 @@
 ;;(setq default-major-mode 'text-mode)	; Obsolete as of version 23.2
 ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Major-Modes.html
 (setq-default major-mode 'text-mode)
-
-
-;; C-RET for eval-region in elisp mode 2013-12-22
-(define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-region)
-
-
-;; Additional configurations
-;;
-;; Take current line to top
-(defun my-recenter-top ()
-  (interactive)
-  (recenter "Top")
-)
-(global-set-key (kbd "C-S-l") 'my-recenter-top)
-;;
-;; http://ergoemacs.org/emacs/elisp_datetime.html
-(defun my-insert-date ()
-  "Insert current date yyyy-mm-dd."
-  (interactive)
-  (when (region-active-p)
-    (delete-region (region-beginning) (region-end) )
-    )
-  (insert (format-time-string "%Y-%m-%d"))
-  )
-(global-set-key (kbd "C-c d") 'my-insert-date)
-;;
-(global-set-key (kbd "C-c r") 'replace-string)
-;;
-;; (global-set-key (kbd "C-c m") 'comment-region)	; use M-; (comment-dwim)
 
 
 ;; delay linum for speed
@@ -318,13 +131,6 @@ If you omit CLOSE, it will reuse OPEN."
     (goto-char begin)
     (insert open)))
 
-;; Whether to add a newline automatically at the end of the file.
-;; A value of t means do this only when the file is about to be saved.
-(setq require-final-newline t)
-
-
-;; Show echo like C-x fast 2014-02-20
-(setq echo-keystrokes 0.1)
 
 
 
@@ -371,115 +177,6 @@ If you omit CLOSE, it will reuse OPEN."
 (require 'melpa)
 
 
-;;; dired-plus 2014-02-04
-;; http://www.emacswiki.org/emacs/DiredPlus
-;; http://ergoemacs.org/emacs/emacs_diredplus_mode.html
-(require 'dired+)
-
-
-;;; Buffer Management
-;;
-;; ibuffer
-;; http://www.emacswiki.org/emacs/IbufferMode
-;; http://ergoemacs.org/emacs/emacs_buffer_management.html
-(defalias 'list-buffers 'ibuffer)
-;;
-;; Switching to ibuffer puts the cursor on the most recent buffer	; Not useful 2014-01-25
-;; http://www.emacswiki.org/emacs/IbufferMode#toc13
-;; (defadvice ibuffer (around ibuffer-point-to-most-recent) ()
-;;   "Open ibuffer with cursor pointed to most recent buffer name"
-;;   (let ((recent-buffer-name (buffer-name)))
-;;     ad-do-it
-;;     (ibuffer-jump-to-buffer recent-buffer-name)))
-;; (ad-activate 'ibuffer)
-;;
-;; Emacs Tip of the Day: Start Using IBuffer ASAP.
-;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
-;; (setq ibuffer-default-sorting-mode 'major-mode)
-;; https://github.com/pd/dotfiles/blob/master/emacs.d/pd/core.el
-(setq ibuffer-default-sorting-mode 'filename/process	; Sort by filename/process
-      ibuffer-show-empty-filter-groups nil)		; Don't show empty groups
-;;
-;; Add git support
-(require 'ibuffer-git)
-;; Choose the column width for the long status
-;; (setq ibuffer-git-column-length 8)	; default is 8.
-;; git-status-mini (git-status 8 8 :left) are defined. Add to ibuffer-formats
-;;
-;; Modify the default ibuffer-formats	; git support and size formatting
-;; http://unix.stackexchange.com/questions/35830/change-column-width-in-an-emacs-ibuffer-on-the-fly
-(setq ibuffer-formats
-      '((mark modified read-only	; Three flags without spaces in between.
-	      " "			;
-	      (name 18 18 :left :elide)	; Buffer name
-	      " "			;
-	      git-status-mini		; ibuffer-git short status
-	      " "			;
-	      (size-h 9 -1 :right)	; size-h defined at the end
-	      ;;(size 9 -1 :right)	; original size in bytes
-	      " "			;
-	      (mode 10 10 :left :elide)	; Mode
-	      " "
-	      filename-and-process)))
-;;
-;; Classify
-;; http://www.emacswiki.org/emacs/IbufferMode#toc6
-(setq ibuffer-saved-filter-groups
-      (quote (("default"
-	       ("DIRED" (mode . dired-mode))
-	       ("EMACS" (or
-			 (name . "^\\*scratch\\*$")
-			 (name . "^\\*Messages\\*$")
-			 (name . "^\\*Packages\\*$")
-			 ))
-	       ("ESS"   (or
-			 (mode . ess-mode)
-			 (mode . inferior-ess-mode)
-			 (mode . Rd-mode)))
-	       ("PYTHON" (or
-			  (mode . python-mode)
-			  (mode . inferior-python-mode)))
-	       ("SHELL"  (or
-			  (mode . sh-mode)
-			  (mode . shell-mode)
-			  (mode . ssh-mode)
-			  (mode . eshell-mode)))
-	       ("SQL"  (or
-			  (mode . sql-mode)
-			  (mode . sql-interactive-mode)))
-	       ("LISP"	(or
-			 (mode . emacs-lisp-mode)))
-	       ("TeX"    (or
-			  (mode . TeX-mode)
-			  (mode . LaTeX-mode)))
-	       ("MAGIT"  (or
-			  (mode . magit-mode)
-			  (mode . magit-branch-manager-mode)
-			  (mode . magit-commit-mode)
-			  (mode . magit-diff-mode)
-			  (mode . magit-log-mode)
-			  (mode . magit-process-mode)
-			  (mode . magit-status-mode)
-			  (mode . magit-wazzup-mode)
-			  (mode . git-commit-mode)))
-	       ))))
-;; Group for the other buffers.
-(add-hook 'ibuffer-mode-hook
-	  (lambda ()
-	    (ibuffer-switch-to-saved-filter-groups "default")))
-;;
-;; Use human readable Size column instead of original one 2014-01-15
-;; http://www.emacswiki.org/emacs/IbufferMode#toc12
-(define-ibuffer-column size-h
-  (:name "Size" :inline t)
-  (cond
-   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
-   ((> (buffer-size) 1000) (format "%7.1fK" (/ (buffer-size) 1000.0)))
-   (t (format "%8d" (buffer-size)))))
-;;
-
-
-
 ;;; Mac-only configuration
 (when (eq system-type 'darwin)
   ;; Mac-only
@@ -489,7 +186,6 @@ If you omit CLOSE, it will reuse OPEN."
   (when (fboundp 'mac-change-language-to-us)	; Only when inline patch is installed 2014-01-19
     (add-hook 'minibuffer-setup-hook 'mac-change-language-to-us)
     )
-
 
   ;; Spell checker (require aspell. No .el dependency)
   ;; http://blog.bungu-do.jp/archives/2426
@@ -568,55 +264,6 @@ If you omit CLOSE, it will reuse OPEN."
 ;; https://github.com/AndreaCrotti/minimal-emacs-configuration
 (require 'show-keys)
 
-
-;;; bm.el	Within-file bookmarking
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; See ~/.emacs.d/elpa/bm-readme.txt
-;; http://d.hatena.ne.jp/peccu/20100402
-;; Saving bookmarks
-(setq-default bm-buffer-persistence t)
-(setq bm-repository-file "~/.emacs.d/bm-el-repository")
-(setq bm-restore-repository-on-load t)	; bm-readme.txt
-;; Load
-(require 'bm)
-;; Load on startup
-(add-hook 'after-init-hook		'bm-repository-load)
-;; Restore when finding file
-(add-hook 'find-file-hooks		'bm-buffer-restore)
-;;
-;; Saving on killing and saving a buffer
-(add-hook 'kill-buffer-hook		'bm-buffer-save)
-(add-hook 'auto-save-hook		'bm-buffer-save)
-(add-hook 'after-save-hook		'bm-buffer-save)
-;; Version control (Rubikitch book p116)
-(add-hook 'after-revert-hook		'bm-buffer-restore)
-(add-hook 'vc-before-checkin-hook	'bm-buffer-save)
-;; Saving the repository to file when on exit.
-;; kill-buffer-hook is not called when emacs is killed, so we
-;; must save all bookmarks first.
-(add-hook 'kill-emacs-hook '(lambda nil
-                              (bm-buffer-save-all)
-                              (bm-repository-save)))
-;;
-;; Define function to do bm-previous/next and recenter
-(defun my-bm-next ()
-  (interactive)
-  (bm-next)
-  (recenter "Top"))
-(defun my-bm-previous ()
-  (interactive)
-  (bm-previous)
-  (recenter "Top"))
-;;
-;; Keyboard
-(global-set-key (kbd "M-SPC")	'bm-toggle)	; Conflict with IM. Use ESC-SPC, which is the same
-;; (global-set-key (kbd "M-]")	'bm-next)
-;; (global-set-key (kbd "M-[")	'bm-previous)
-(global-set-key (kbd "M-]")	'my-bm-next)
-(global-set-key (kbd "M-[")	'my-bm-previous)
-(global-set-key (kbd "C-c b")	'bm-show)
-
-
 ;; windresize for M-x windresize
 ;; M-x windresize, arrows, C-g for cancel, RET to save
 (require 'windresize)
@@ -636,47 +283,6 @@ If you omit CLOSE, it will reuse OPEN."
 (define-auto-insert "\\.sh$" "shell.sh")
 (define-auto-insert "\\.tex$" "LaTeX.tex")
 (define-auto-insert "\\.gitignore$" ".gitignore")
-
-
-;;; YAsnippet ; Automatic template inserting system.
-;;
-;; https://github.com/capitaomorte/yasnippet
-;; http://fukuyama.co/yasnippet
-;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
-;;
-(require 'yasnippet) ; elpa version active. el-get version required to suppress for some reason?
-;;
-;; auto-complete-yasnippet	; not sure if this is necessary. Inactive 2014-02-03
-;; https://github.com/szunyog/.emacs.d/blob/master/auto-complete-yasnippet.el
-;; (require 'auto-complete-yasnippet)
-;;
-(yas-global-mode 1)
-;; Key-bind for expanding
-;; Insert default snippet
-(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
-;; Open a buffer to create a new snippet
-(define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
-;; View/edit snippets
-(define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
-;;
-;; Use Popup isearch For Yasnippet Prompt 2014-01-??
-;; http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
-(defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
-  (when (featurep 'popup)
-    (popup-menu*
-     (mapcar
-      (lambda (choice)
-        (popup-make-item
-         (or (and display-fn (funcall display-fn choice))
-             choice)
-         :value choice))
-      choices)
-     :prompt prompt
-     ;; start isearch mode immediately
-     :isearch t
-     )))
-(setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
-
 
 
 ;;; Emacs Speaks Statistics (ESS) for emacs

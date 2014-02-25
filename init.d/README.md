@@ -3,6 +3,7 @@ init-loader directory
 
 Numbered files in this folder is loaded by init-loader.el from the main init.el file.
 
+- init.el: The main file should only configure the package systems and init-loader.el
 - 000:
 - 100: 
 - 200: Usual place for files without package dependencies (except special cases, marked with -extdep)
