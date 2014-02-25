@@ -23,9 +23,9 @@
 ;;
 ;; Packages added manually (intentionally not recursive)
 (add-to-list 'load-path "~/.emacs.d/plugins/")
-;;
 
-;;; Package system and MELPA
+
+;;; package.el and repositories
 ;; THIS HAS TO COME BOFORE init-loader.el (installed via package.el)
 ;; http://www.emacswiki.org/emacs/ELPA
 (require 'package)
@@ -38,7 +38,7 @@
 ;; http://melpa.milkbox.net/#/getting-started
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;;
-;; Marmalade (not active
+;; Marmalade (not active)
 ;; http://www.emacswiki.org/emacs/Marmalade
 ;; http://qiita.com/items/e81fca7a9797fe203e9f
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -46,12 +46,18 @@
 ;; org mode
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 ;;
-;; Refresh contents 2013-10-31 Manually running this fixed issue of not having available packages?
+;; Refresh contents  if no package-archive-contents available
 ;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
 (when (not package-archive-contents)
   (package-refresh-contents))
 ;;
-;; melpa.el 2013-10-31 it was at the end
+;; melpa.el
+;; Installation:
+;; (progn
+;;   (switch-to-buffer
+;;    (url-retrieve-synchronously
+;;     "https://raw.github.com/milkypostman/melpa/master/melpa.el"))
+;;   (package-install-from-buffer  (package-buffer-info) 'single))
 (require 'melpa)
 
 
