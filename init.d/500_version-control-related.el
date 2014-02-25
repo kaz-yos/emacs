@@ -1,5 +1,13 @@
 ;;; Version control configurations
 
+
+;; ediff for visual diff
+;; Show in the same frame
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+;; Show them side by side
+(setq ediff-split-window-function 'split-window-horizontally)
+
+
 ;;; Default VC system (turned off)
 ;; Do not use the default vc-mode (mode-line cleaner) 2014-02-14
 ;; http://qiita.com/acple@github/items/3709174ab24c5d82423a

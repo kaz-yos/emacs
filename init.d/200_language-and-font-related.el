@@ -84,4 +84,13 @@
   ;; 	       (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
   ;; 	       (".*monaco-bold-.*-mac-roman" . 0.9)))
   ;;   (add-to-list 'face-font-rescale-alist elt))
+
+
+
+  ;; inline patch for Japanese IME
+  ;; Change to English in minibuffer (require inline patch. No .el dependency)
+  ;; http://molekun.blogspot.com/2011/03/homebrewemacs233.html
+  ;; http://blog.n-z.jp/blog/2013-11-12-cocoa-emacs-ime.html
+  (when (fboundp 'mac-change-language-to-us)	; Only when inline patch is installed 2014-01-19
+    (add-hook 'minibuffer-setup-hook 'mac-change-language-to-us))
   )

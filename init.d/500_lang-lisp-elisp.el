@@ -12,3 +12,17 @@
 (require 'elisp-slime-nav) ;; optional if installed via package.el
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
+
+
+;;; Auto byte-compile .el files at saving
+;; http://www.emacswiki.org/emacs/auto-async-byte-compile.el
+;; http://d.hatena.ne.jp/rubikitch/20100423/bytecomp
+(require 'auto-async-byte-compile)
+;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
+(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/")
+(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+
+
+;;; lispxmp.el to evaluate sexp within .el
+(require 'lispxmp)
+(define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
