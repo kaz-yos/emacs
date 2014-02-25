@@ -3,18 +3,19 @@ init-loader directory
 
 Numbered files in this folder is loaded by init-loader.el from the main init.el file.
 
-- init.el: The main file should only configure the package systems and init-loader.el
-- 000:
+- ../init.el: The main file should only configure the package systems and init-loader.el
+- 000: Reserved for package systems and M-x customize system
+- 050: Reserved for decent defaults
 - 100: 
-- 200: Usual place for files without package dependencies (except special cases, marked with -extdep)
+- 200: Usual place for files without package dependencies
 - 300: 
 - 400: 
 - 500: Usual place for files with package dependencies
 - 600: 
 - 700: 
 - 800: 
-- 900: 
-
+- 900: Use for configurations that have to come last
+- init-customize.el: Actual configurations of M-x customize system go in this file
 
 ```
      Status: Installed in `/Users/kazuki/.emacs.d/elpa/init-loader-20140216.2240/'.
