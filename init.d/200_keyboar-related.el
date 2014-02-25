@@ -1,11 +1,17 @@
 ;;; Keyboard modification
-;;
-;; C-h for delete, C-? for help
+
+;;; C-h for delete (backspace)
 ;; http://www.emacswiki.org/emacs-en/BackspaceKey
-;; Use M-x help for help
 (define-key key-translation-map [?\C-h] [?\C-?])
-;;
-;; Mac-only
+;; C-x ? for help instead
+(define-key global-map (kbd "C-x ?") 'help-command)
+
+
+;;; C-m for newline-and-indent
+(global-set-key (kbd "C-m") 'newline-and-indent)
+
+
+;;; Mac-only configuration to use command and options keys
 (when (eq system-type 'darwin)
   ;; Mac-only
   ;; Command key as Meta key, Option key untouched
