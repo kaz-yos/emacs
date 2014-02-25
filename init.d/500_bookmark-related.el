@@ -43,3 +43,20 @@
 (global-set-key (kbd "M-]")	'my-bm-next)
 (global-set-key (kbd "M-[")	'my-bm-previous)
 (global-set-key (kbd "C-c b")	'bm-show)
+
+
+
+;;; Built-in bookmarks (not used)
+;; http://www.emacswiki.org/emacs/BookMarks#toc6
+(setq bookmark-save-flag 1)
+(setq bookmark-default-file "~/.emacs.d/bookmarks")		; save file within ~/.emacs.d
+(defadvice bookmark-jump (after bookmark-jump activate)
+  (let ((latest (bookmark-get-bookmark bookmark)))
+    (setq bookmark-alist (delq latest bookmark-alist))
+    (add-to-list 'bookmark-alist latest)))
+;;
+;; Key-bindings (not configured by default in 24.2) ; Does not work
+;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Bookmarks.html
+;; (global-set-key (kbd "C-x r m") 'bookmark-set)
+;; (global-set-key (kbd "C-x r b") 'bookmark-jump)
+;; (global-set-key (kbd "C-x r l") 'list-bookmarks)

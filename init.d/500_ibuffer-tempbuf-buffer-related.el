@@ -1,25 +1,3 @@
-;;; Swap buffers with C-x /
-;; http://stackoverflow.com/questions/1510091/with-emacs-how-do-you-swap-the-position-of-2-windows
-(defun swap-buffer ()
-  (interactive)
-  (cond ((one-window-p) (display-buffer (other-buffer)))
-        ((let* ((buffer-a (current-buffer))
-                (window-b (cadr (window-list)))
-                (buffer-b (window-buffer window-b)))
-           (set-window-buffer window-b buffer-a)
-           (switch-to-buffer buffer-b)
-           (other-window 1)))))
-(global-set-key (kbd "C-x /") 'swap-buffer)		; Enabled for everywhere
-
-;;; Unique buffer names
-;; rubikitch book p84
-;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
-(require 'uniquify)
-;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)	; rubikitch
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-ignore-buffers-re "*[^*]+*")
-
-
 ;;; ibuffer use by default
 ;; http://www.emacswiki.org/emacs/IbufferMode
 ;; http://ergoemacs.org/emacs/emacs_buffer_management.html
@@ -81,10 +59,11 @@
 			  (mode . magit-wazzup-mode)
 			  (mode . git-commit-mode)))
 	       ))))
-;; Group for the other buffers.
+;; Group for the remaning unclassified buffers.
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
+
 
 ;;; The following two need to travel together in this sequence 2014-02-24
 ;;
@@ -120,3 +99,46 @@
    ((> (buffer-size) 1000) (format "%7.1fK" (/ (buffer-size) 1000.0)))
    (t (format "%8d" (buffer-size)))))
 ;;
+
+
+;;; reveal-in-finder.el 2014-02-05
+;; Mac-only configuration
+(when (eq system-type 'darwin)
+  ;; https://github.com/kaz-yos/elisp
+  (require 'reveal-in-finder)
+  ;; autoload test
+  ;; (autoload 'reveal-in-finder "reveal-in-finder")
+  (global-set-key (kbd "C-c z") 'reveal-in-finder)
+  )
+
+
+
+;;; tempbuf.el	Auto-delete unused idle buffers such as dired
+;; http://www.emacswiki.org/emacs/tempbuf.el
+(require 'tempbuf)
+;; No message
+(setq tempbuf-kill-message nil)
+;; (add-hook 'find-file-hooks		'turn-on-tempbuf-mode)	; All idle unedited files closed
+(add-hook 'help-mode-hook		'turn-on-tempbuf-mode)	; Idle help closed
+(add-hook 'dired-mode-hook		'turn-on-tempbuf-mode)	; Idle dired closed
+;;(add-hook 'ess-help-mode-hook		'turn-on-tempbuf-mode)	; Idle ESS help closed
+(add-hook 'completion-list-mode-hook	'turn-on-tempbuf-mode)	; Idle completion closed
+(add-hook 'Snippet-mode-hook		'turn-on-tempbuf-mode)  ; Idle Snippets closed
+(add-hook 'Custom-mode-hook		'turn-on-tempbuf-mode)	; Idle M-x customize closed
+(add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode)	; Idle auto-install closed. Not working
+(add-hook 'comint-mode-hook		'turn-on-tempbuf-mode)  ; 2013-09-09 for LaTeX inf. process
+(add-hook 'latex-math-preview-expression-mode-hook 'turn-on-tempbuf-mode) ; 2013-09-09
+;;
+;; magit related modes
+(add-hook 'magit-branch-manager-mode-hook 'turn-on-tempbuf-mode)
+(add-hook 'magit-commit-mode-hook	'turn-on-tempbuf-mode)
+(add-hook 'magit-diff-mode-hook		'turn-on-tempbuf-mode)
+(add-hook 'magit-log-mode-hook		'turn-on-tempbuf-mode)
+(add-hook 'magit-process-mode-hook	'turn-on-tempbuf-mode)
+(add-hook 'magit-status-mode-hook	'turn-on-tempbuf-mode)
+(add-hook 'magit-wazzup-mode-hook	'turn-on-tempbuf-mode)
+;;
+;; VC related. VC is not used
+;; (add-hook 'vc-annotate-mode-hook	'turn-on-tempbuf-mode)	; Idle VC annotate closed
+;; (add-hook 'log-view-mode-hook		'turn-on-tempbuf-mode)	; Idle VC change log closed
+;; (add-hook 'diff-mode-hook		'turn-on-tempbuf-mode)	; Idle VC diff closed

@@ -63,3 +63,20 @@
   ;; http://stackoverflow.com/questions/6068819/alias-to-make-emacs-open-a-file-in-a-new-buffer-not-frame-and-be-activated-com
   (setq ns-pop-up-frames nil)
   )
+
+
+;;; e2wn		; Window management system
+;; ;; e2wm minimal configuration (requires window-layout.el)
+;; ;; http://d.hatena.ne.jp/kiwanami/20100528/1275038929
+;; (require 'e2wm)
+;; (global-set-key (kbd "M-+") 'e2wm:start-management)
+;; ;;
+;; ;; e2wn-R
+;; ;; http://sheephead.homelinux.org/2011/03/15/6687/
+;; ;;(require 'inlineR) automatically loaded
+;; (require 'e2wm-R)
+
+
+;;; windresize for M-x windresize
+;; M-x windresize, arrows, C-g for cancel, RET to save
+(require 'windresize)

@@ -51,12 +51,21 @@
 ;; (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.tex" . flyspell-mode))
 
-;; Save word without a mouse
+
+;;; Save word without a mouse
 ;; http://stackoverflow.com/questions/11070849/flyspell-without-a-mouse
 (defun save-ispell-word (word)
   (interactive "sA word you want to add to dictionary ")
   (ispell-send-string (concat "*" word "\n"))
   (setq ispell-pdict-modified-p '(t)))
+
+
+;;; Spell checker (require aspell. No .el dependency)
+;; Mac-only configuration
+(when (eq system-type 'darwin)
+  ;; http://blog.bungu-do.jp/archives/2426
+  (setq ispell-program-name "/usr/local/bin/aspell")
+  )
 
 
 ;; ac-ispell	; 2014-01-20

@@ -153,3 +153,21 @@
 (require 'expand-region)
 (global-set-key (kbd "C-,") 'er/expand-region)
 (global-set-key (kbd "C-M-,") 'er/contract-region)
+
+
+;;; cmigemo (installed from Homebrew)
+;; Mac-only configuration
+(when (eq system-type 'darwin)
+  ;; Used brew to install cmigemo
+  ;; Used M-x list-package to install migemo.el (github)
+  ;; Configured refering to: http://d.hatena.ne.jp/ground256/20111008/1318063872
+  (require 'migemo)
+  (setq migemo-command "/usr/local/bin/cmigemo")
+  (setq migemo-options '("-q" "--emacs"))
+  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+  (setq migemo-user-dictionary nil)
+  (setq migemo-coding-system 'utf-8-unix)
+  (setq migemo-regex-dictionary nil)
+  (load-library "migemo")
+  (migemo-init)
+  )

@@ -1,19 +1,31 @@
-;;; default.el in Vincent Goulet's distribution
-;; https://svn.fsg.ulaval.ca/svn-pub/vgoulet/emacs-modified/macos/tags/Emacs-24.3-modified-4/default.el
-;; https://svn.fsg.ulaval.ca/svn-pub/vgoulet/emacs-modified/macos/tags/Emacs-23.3-modified-3/default.el
+;;; Nice options to have On by default
+;; Activate mouse scrolling
+(mouse-wheel-mode t)				
+;; Syntax highlighting everywhere
+(global-font-lock-mode t)			
+;; When enabled, the region is highlighted whenever the mark is active
+(transient-mark-mode t)				
+;; Typed text replaces the selection if the selection is active
+(delete-selection-mode t)			
+
+
+;;; No start up message
+(setq inhibit-startup-message t)
+
+
+;;; Line number settings
 ;;
-;; Nice options to have On by default
-(mouse-wheel-mode t)				; activate mouse scrolling
-(global-font-lock-mode t)			; syntax highlighting
-(transient-mark-mode t)				; sane select (mark) mode
-(delete-selection-mode t)			; entry deletes marked text
-;; http://ergoemacs.org/emacs/emacs_make_modern.html
-;; (setq show-paren-style 'expression)		; highlight entire bracket expression (annoying)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)	; wrap long lines in text mode
-(column-number-mode 1)				; show (row, col) number
+;; Toggle column number display in the mode line (Column Number mode). (row, col)
+(column-number-mode 1)				
+;; 
+;; delay linum for speed (linum not used
+;; http://d.hatena.ne.jp/daimatz/20120215/1329248780
+(setq linum-delay t)
+(defadvice linum-schedule (around my-linum-schedule () activate)
+  (run-with-idle-timer 0.2 nil #'linum-update-current))
 
 
-;; Suppress all dialog boxes completely, even file open dialogue. No need for mouse!
+;;; Suppress all dialog boxes completely, even file open dialogue. No need for mouse!
 ;; http://www.gnu.org/s/libtool/manual/emacs/Dialog-Boxes.html
 (setq use-dialog-box nil)
 
@@ -57,3 +69,31 @@
 ;;; Faster echo in the echo area
 ;; Show echo like C-x fast 2014-02-20
 (setq echo-keystrokes 0.1)
+
+
+;;; Use Mac OS X system trash
+;; http://www.masteringemacs.org/articles/2010/12/30/making-deleted-files-trash-can/
+;; http://www.reddit.com/r/emacs/comments/iuyef/emacs_on_mac/
+(when (eq system-type 'darwin)
+  ;; Mac-only
+  (setq delete-by-moving-to-trash t
+	trash-directory "~/.Trash/emacs")
+  )
+
+
+;;; History retained between sessions
+;; Book by rubikitch p59
+;; http://www.emacswiki.org/emacs/SaveHist
+(savehist-mode 1)
+
+
+;;; Remeber the cursor position in a file
+;; http://www.emacswiki.org/emacs/SavePlace
+;; http://git.sysphere.org/dotfiles/tree/emacs
+(setq save-place-file "~/.emacs.d/emacs-places")		; save file within ~/.emacs.d
+(setq-default save-place t)
+(require 'saveplace)
+
+
+;;; y or n abbreviations for yes or no
+(defalias 'yes-or-no-p 'y-or-n-p)
