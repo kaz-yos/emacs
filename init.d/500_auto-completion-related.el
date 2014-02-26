@@ -1,13 +1,17 @@
 ;;; Auto-completion related configurations
-;; Depends on ess.el
+;; Configure ac-* in respective files. Keep this file minimum.
 
-;;
-;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
+
+;;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
 ;; https://github.com/auto-complete/auto-complete
 ;; http://cx4a.org/software/auto-complete/manual.html
 (require 'auto-complete)
-(require 'auto-complete-config)
+;; Activate ac everywhere
 (global-auto-complete-mode t)
+;;
+;; Activate ac in predefined modes
+(require 'auto-complete-config)
+(ac-config-default)
 ;;
 ;; Auto-complete for ESS configuration
 ;; http://www.emacswiki.org/emacs/ESSAuto-complete
@@ -47,10 +51,6 @@
 ;; If you are using 'flyspell' you might want to activate the workaround
 ;; http://www.emacswiki.org/emacs/AutoComplete#toc6
 (ac-flyspell-workaround)
-;;
-;; auto-complete-emacs-lisp.el 2013-09-08
-;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
-(require 'auto-complete-emacs-lisp)
 ;;
 ;; popup.el
 ;; https://github.com/auto-complete/popup-el (called automatically)
