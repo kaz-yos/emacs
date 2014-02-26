@@ -171,3 +171,25 @@
   (load-library "migemo")
   (migemo-init)
   )
+
+
+;;; rainbow-mode.el
+;; http://julien.danjou.info/projects/emacs-packages
+(require 'rainbow-mode)
+;;
+;; Colors in R
+;; use the following code to generate the list in R
+;; output_colors <- function(colors) {for(color in colors) {col <- col2rgb(color); cat(sprintf("(\"%s\" . \"#%02X%02X%02X\")\n",color,col[1],col[2],col[3]));}}
+;; output_colors(colors())
+;; See variable rainbow-r-colors-alist
+
+
+
+;;; rainbow-blocks.el
+;;
+;; Rainbow-blocks highlights blocks made of parentheses, brackets, and
+;; braces according to their depth. Each successive level is
+;; highlighted in a different color. This makes it easy to orient
+;; yourself in the code, and tell which statements are at a given
+;; level.
+(require 'rainbow-blocks)
