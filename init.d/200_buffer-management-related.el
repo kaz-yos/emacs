@@ -18,3 +18,12 @@
 ;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)	; rubikitch
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-ignore-buffers-re "*[^*]+*")
+
+
+;;; auto-revert buffers globally
+;; Active in all buffers
+(setq global-auto-revert-mode t)
+;; Even in non-file buffers
+(setq global-auto-revert-non-file-buffers t)
+;; VC status change is also captured
+(setq auto-revert-check-vc-info t)
