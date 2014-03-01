@@ -12,10 +12,7 @@
 (setq dired-recursive-copies 'always)
 ;; C-s matches by file names only.
 (setq dired-isearch-filenames t)
-
-
-
-
-
-
-
+;; Automatically revert dired buffer on revisiting.
+(setq dired-auto-revert-buffer t)
+;; Auto-revert on change.
+(add-hook 'dired-mode-hook 'turn-on-auto-revert-mode)

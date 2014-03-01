@@ -40,3 +40,16 @@
 ;;
 ;; Common lisp (installed via homebrew)
 (setq inferior-lisp-program "/usr/local/bin/clisp")
+;;
+;; auto-complete for SLIME 2014-02-25
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'slime-repl-mode))
+;;
+;; auto-complete-emacs-lisp.el 2013-09-08
+;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
+(require 'auto-complete-emacs-lisp)
+
+
