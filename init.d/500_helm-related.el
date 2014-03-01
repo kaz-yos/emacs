@@ -92,3 +92,7 @@
 ;;
 ;;; helm-package.el	; Listing ELPA packages with helm interface
 (require 'helm-package)
+;;
+;;
+;; helm-themes.el	; Color theme selection with helm interface
+(require 'helm-themes)
