@@ -24,7 +24,8 @@
  '(main-line-separator-style (quote chamfer))
  '(powerline-color1 "#1E1E1E")
  '(powerline-color2 "#111111"))
-;;  '(yas-trigger-key "TAB")	; deleted. obsolete variable? 2014-02-02
+;;
+;;
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -33,3 +34,26 @@
  '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
  '(font-latex-subscript-face ((t nil)))
  '(font-latex-superscript-face ((t nil))))
+
+
+;;; theme memo
+;; DEFAULT
+;;  adwaita -- Face colors similar to the default theme of Gnome 3 (Adwaita).
+;;  deeper-blue -- Face colors using a deep blue background.
+;;  dichromacy -- Face colors suitable for red/green color-blind users.
+;;  light-blue -- Face colors utilizing a light blue background.
+;;  manoj-dark -- Very high contrast faces with a black background.
+;;  misterioso -- Predominantly blue/cyan faces on a dark cyan background.
+;;  tango-dark -- Face colors using the Tango palette (dark background).
+;;  tango -- Face colors using the Tango palette (light background).
+;;  tsdh-dark -- Minor tweaks to the Emacs dark-background defaults.
+;;  tsdh-light -- Minor tweaks to the Emacs white-background defaults.
+;; *wheatgrass -- High-contrast green/blue/brown faces on a black background. (in use)
+;;  whiteboard -- Face colors similar to markers on a whiteboard.
+;;  wombat -- Medium-contrast faces with a dark gray background.
+;;
+;; 
+;; OPTIONAL
+;; soothe-theme: too dark, mode-line stoo small
+;; birds-of-paradise-plus: too low contrast
+;; 
