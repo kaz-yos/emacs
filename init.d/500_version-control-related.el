@@ -91,13 +91,14 @@
 		  (list "--no-ff"))
   )
 ;;
-
+;;
 ;; Configure fringe for git-gutter 2014-02-02
 ;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fringes.html
 (set-fringe-mode '(0 . 1))
-
-;; git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
+;;
+;;; git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
+;; Does not work in .emacs.d (not elisp in general) 2014-03-01
 ;; https://github.com/nonsequitur/git-gutter-fringe-plus
 ;; fringe-helper.el is required.
 (require 'git-gutter-fringe+)
@@ -112,3 +113,9 @@
 ;;; Mercurial
 ;; A simple Emacs interface for the Mercurial (Hg) Distributed SCM. 2013-09-09
 (require 'ahg)
+
+
+
+
+
+
