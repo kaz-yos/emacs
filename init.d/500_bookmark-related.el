@@ -43,6 +43,11 @@
 (global-set-key (kbd "M-]")	'my-bm-next)
 (global-set-key (kbd "M-[")	'my-bm-previous)
 (global-set-key (kbd "C-c b")	'bm-show)
+;;
+;; helm-bm.el		; helm sources for bm.el
+(require 'helm-bm) ;; Not necessary if using ELPA package
+;; (global-set-key (kbd "C-c b") 'helm-bm)
+
 
 
 
