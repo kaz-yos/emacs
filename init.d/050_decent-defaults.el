@@ -113,3 +113,9 @@
 
 ;;; C-k (kill-line) with no arg at start of line kills the whole line. (vi dd-like)
 (setq kill-whole-line t)
+
+
+;;; Screen maximization and full-screen
+;; http://www.emacswiki.org/emacs/FullScreen
+(setq initial-frame-alist
+      '((fullscreen . maximized)))
