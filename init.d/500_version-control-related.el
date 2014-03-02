@@ -1,7 +1,7 @@
 ;;; Version control configurations
 
 
-;; ediff for visual diff
+;;; ediff for visual diff
 ;; Show in the same frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 ;; Show them side by side

@@ -5,9 +5,8 @@
 (setq key-chord-two-keys-delay 0.04)
 (key-chord-mode 1)
 ;;
-;; view-mode
-;; (key-chord-define-global "jk" 'view-mode)		; Enter read-only mode
-(key-chord-define-global "jk" 'read-only-mode)		; Enter read-only mode
+;; Toggle read-only status
+(key-chord-define-global "jk" 'toggle-read-only)
 ;;
 ;; highlight-sexp-mode.el
 (key-chord-define-global "sx" 'highlight-sexp-mode)		; (highlight-sexp-mode)
