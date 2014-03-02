@@ -6,6 +6,8 @@
 (projectile-global-mode)
 ;; Simpler lighter
 (setq projectile-mode-line-lighter " Project")
+;; C-c p s should always work even before entering into a project
+(global-set-key (kbd "C-c p s") 'projectile-switch-project)
 ;; Indexing
 ;; https://github.com/bbatsov/projectile#indexing-method
 ;; (setq projectile-indexing-method 'native)
