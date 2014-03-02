@@ -25,3 +25,4 @@ tramp
 url/
 /projectile-bookmarks.eld
 /projectile.cache
+*.elc
