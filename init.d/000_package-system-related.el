@@ -26,6 +26,7 @@
 
 
 ;;; 24.4 work around
+;; https://github.com/LiaoPengyu/emacs.d/commit/fc7a6fedb5c496c613d6d19a4fcdab18b36a8d87
 ;; https://github.com/LiaoPengyu/emacs.d/blob/fc7a6fedb5c496c613d6d19a4fcdab18b36a8d87/init-elpa.el
 ;;; Add support to package.el for pre-filtering available packages
 (defvar package-filter-function nil
