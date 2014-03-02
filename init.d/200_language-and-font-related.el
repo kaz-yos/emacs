@@ -1,4 +1,4 @@
-;;; Language settings
+;;; Language and font settings
 
 
 ;;; Unicode use
@@ -12,9 +12,10 @@
 (prefer-coding-system 'utf-8)
 
 
-;;; Smooth Japanese input
+;;; Smooth Japanese input (mac only?)
 ;; http://suzukima.hatenablog.com/entry/2012/08/16/232210
-(setq show-paren-delay 0.5)			; Compatibility with Japanese
+(setq show-paren-delay 0.5)			; Compatibility with Japanese input
+
 
 ;;; Mac OS X font settings
 (when (eq system-type 'darwin)
@@ -26,8 +27,8 @@
   ;;
   ;; Cocoa Emacs Font Settings ; Best one so far. Good rescaling, and working with Greek letters φ phi
   ;; http://d.hatena.ne.jp/setoryohei/20110117
-  ;;
-  ;; Method 1			; This works with ESS(R). Fixed width ok with rescaling. Greek φ(phi) works.
+
+  ;;; Method 1			; This works with ESS(R). Fixed width ok with rescaling. Greek φ(phi) works.
   ;; default-frame font configured
   ;; New font set made, it is then chosen as default-frame-alist font.
   ;; Fontset made with crease-fontse-from-ascii-font
@@ -60,8 +61,8 @@
     (add-to-list 'face-font-rescale-alist elt))
   ;; Fontset configured to default face. Fixes default-frame-alist being ignored at startup.
   (set-face-font 'default "fontset-myfonts")
-  ;;
-  ;; ;; Method 2	;; Not tested yet. Same configuration with a different method.
+
+  ;;; Method 2	; Not tested yet. Same configuration with a different method.
   ;; ;; Font set for frame
   ;; (let* ((size 14)
   ;;        (asciifont "Menlo")
@@ -85,12 +86,18 @@
   ;; 	       (".*monaco-bold-.*-mac-roman" . 0.9)))
   ;;   (add-to-list 'face-font-rescale-alist elt))
 
-
-
-  ;; inline patch for Japanese IME
+  ;;; inline patch for Japanese IME
   ;; Change to English in minibuffer (require inline patch. No .el dependency)
   ;; http://molekun.blogspot.com/2011/03/homebrewemacs233.html
   ;; http://blog.n-z.jp/blog/2013-11-12-cocoa-emacs-ime.html
   (when (fboundp 'mac-change-language-to-us)	; Only when inline patch is installed 2014-01-19
     (add-hook 'minibuffer-setup-hook 'mac-change-language-to-us))
+  )
+
+
+
+;;; Windows font settings
+(when (eq system-type 'windows-nt)
+  ;; http://d.hatena.ne.jp/eggtoothcroc/20130102/p1
+  (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 105)
   )
