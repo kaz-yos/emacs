@@ -26,28 +26,31 @@
 
 
 ;;; 24.4 work around
-;; https://github.com/LiaoPengyu/emacs.d/commit/fc7a6fedb5c496c613d6d19a4fcdab18b36a8d87
-;; https://github.com/LiaoPengyu/emacs.d/blob/fc7a6fedb5c496c613d6d19a4fcdab18b36a8d87/init-elpa.el
+(when (not (equal emacs-version "24.3.1"))
+  ;; https://github.com/LiaoPengyu/emacs.d/commit/fc7a6fedb5c496c613d6d19a4fcdab18b36a8d87
+  ;; https://github.com/LiaoPengyu/emacs.d/blob/fc7a6fedb5c496c613d6d19a4fcdab18b36a8d87/init-elpa.el
 ;;; Add support to package.el for pre-filtering available packages
-(defvar package-filter-function nil
-  "Optional predicate function used to internally filter packages used by package.el.
+  (defvar package-filter-function nil
+    "Optional predicate function used to internally filter packages used by package.el.
 
 The function is called with the arguments PACKAGE VERSION ARCHIVE, where
 PACKAGE is a symbol, VERSION is a vector as produced by `version-to-list', and
 ARCHIVE is the string name of the package archive.")
 
-(defadvice package--add-to-archive-contents
+  (defadvice package--add-to-archive-contents
     (around filter-packages (package archive) activate)
-  "Add filtering of available packages using `package-filter-function', if non-nil."
-  (when (or (null package-filter-function)
-	    (funcall package-filter-function
-		     (car package)
-		     (funcall (if (fboundp 'package-desc-version)
-				  'package--ac-desc-version
-				'package-desc-vers)
-			      (cdr package))
-		     archive))
-    ad-do-it))
+    "Add filtering of available packages using `package-filter-function', if non-nil."
+    (when (or (null package-filter-function)
+	      (funcall package-filter-function
+		       (car package)
+		       (funcall (if (fboundp 'package-desc-version)
+				    'package--ac-desc-version
+				  'package-desc-vers)
+				(cdr package))
+		       archive))
+      ad-do-it))
+  )
+;;
 ;;
 ;; Need to be initialized here after work around.
 (package-initialize)
