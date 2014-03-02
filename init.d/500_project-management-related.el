@@ -1,5 +1,6 @@
 ;;; projectile.el		; Project Interaction Library for Emacs
 ;; https://github.com/bbatsov/projectile
+;; https://github.com/bbatsov/projectile#interactive-commands
 (require 'projectile)
 ;; Enable Projectile globally
 (projectile-global-mode)
@@ -15,8 +16,8 @@
 (setq projectile-completion-system 'default)
 ;; Switching
 ;; https://github.com/bbatsov/projectile#switching-projects
-;; (setq projectile-switch-project-action 'projectile-find-file)	; default
-(setq projectile-switch-project-action 'projectile-dired)
+(setq projectile-switch-project-action 'projectile-find-file)	; default
+;; (setq projectile-switch-project-action 'projectile-dired)
 (setq projectile-find-dir-includes-top-level t)
 ;; 
 ;;
