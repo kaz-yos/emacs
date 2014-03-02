@@ -139,7 +139,7 @@
 ;;
 ;; Buffers under control (default minus help-mode)
 (setq popwin:special-display-config
-      '(("*Completions*")
+      '(;; ("*Completions*")
 	(completion-list-mode :noselect t)
 	(compilation-mode :noselect t)
 	(grep-mode :noselect t)
