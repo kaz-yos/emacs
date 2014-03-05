@@ -5,6 +5,9 @@
 ;; Theme: This can be 'dark, 'light or 'respectful.
 ;; ALL COLORS ARE CUSTOMIZABLE! `sml/customize-faces'
 (setq sml/theme 'light)
+;; cutom background colors
+(setq sml/inactive-background-color "gray40")
+(setq sml/active-background-color "gray80")
 ;;
 ;; Load
 (require 'smart-mode-line)
