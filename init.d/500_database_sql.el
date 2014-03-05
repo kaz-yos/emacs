@@ -48,3 +48,38 @@
 	     ;; (local-set-key (kbd "<S-return>") 'my-sql-eval)
 	     ;; (local-set-key (kbd "<C-return>") 'my-sql-eval)
 	     ))
+
+
+;;; sqlplus.el		; User friendly interface to SQL*Plus and support for PL/SQL compilation
+;;  The following commands should be added to a global initialization
+;;  file or to any user's .emacs file to conveniently use
+;;  sqlplus-mode:
+;;
+(require 'sqlplus)
+(add-to-list 'auto-mode-alist '("\\.sqp\\'" . sqlplus-mode))
+;;
+;;  If you want PL/SQL support also, try something like this:
+;;
+;;  (require 'plsql)
+;;  (setq auto-mode-alist
+;;    (append '(("\\.pls\\'" . plsql-mode) ("\\.pkg\\'" . plsql-mode)
+;; 		("\\.pks\\'" . plsql-mode) ("\\.pkb\\'" . plsql-mode)
+;; 		("\\.sql\\'" . plsql-mode) ("\\.PLS\\'" . plsql-mode) 
+;; 		("\\.PKG\\'" . plsql-mode) ("\\.PKS\\'" . plsql-mode)
+;; 		("\\.PKB\\'" . plsql-mode) ("\\.SQL\\'" . plsql-mode)
+;; 		("\\.prc\\'" . plsql-mode) ("\\.fnc\\'" . plsql-mode)
+;; 		("\\.trg\\'" . plsql-mode) ("\\.vw\\'" . plsql-mode)
+;; 		("\\.PRC\\'" . plsql-mode) ("\\.FNC\\'" . plsql-mode)
+;; 		("\\.TRG\\'" . plsql-mode) ("\\.VW\\'" . plsql-mode))
+;; 	      auto-mode-alist ))
+;;
+;;  M-x sqlplus will start new SQL*Plus session.
+;;
+;;  C-RET   execute command under point
+;;  S-C-RET execute command under point and show result table in HTML 
+;;          buffer
+;;  M-RET   explain execution plan for command under point
+;;  M-. or C-mouse-1: find database object definition (table, view
+;;          index, synonym, trigger, procedure, function, package)
+;;          in filesystem
+;;  C-cC-s  show database object definition (retrieved from database)
