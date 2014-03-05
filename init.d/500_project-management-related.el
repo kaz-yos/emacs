@@ -5,7 +5,7 @@
 ;; Enable Projectile globally
 (projectile-global-mode)
 ;; Simpler lighter
-(setq projectile-mode-line-lighter " Project")
+(setq projectile-mode-line-lighter " ")
 ;; C-c p s should always work even before entering into a project
 (global-set-key (kbd "C-c p s") 'projectile-switch-project)
 ;; Indexing
@@ -18,8 +18,9 @@
 (setq projectile-completion-system 'default)
 ;; Switching
 ;; https://github.com/bbatsov/projectile#switching-projects
-(setq projectile-switch-project-action 'projectile-find-file)	; default
-;; (setq projectile-switch-project-action 'projectile-dired)
+;; (setq projectile-switch-project-action 'projectile-find-file)	; default
+;; (setq projectile-switch-project-action 'helm-projectile)
+(setq projectile-switch-project-action 'projectile-dired)
 (setq projectile-find-dir-includes-top-level t)
 ;; 
 ;;
