@@ -5,20 +5,30 @@
 ;; Theme: This can be 'dark, 'light or 'respectful.
 ;; ALL COLORS ARE CUSTOMIZABLE! `sml/customize-faces'
 (setq sml/theme 'light)
-;; cutom background colors
-(setq sml/inactive-background-color "gray40")
-(setq sml/active-background-color "gray80")
 ;;
 ;; Load
 (require 'smart-mode-line)
 (sml/setup)
 ;;
+;; cutom background colors
+(setq sml/inactive-background-color "gray40")
+(setq sml/active-background-color "gray80")
+;;
 ;; https://github.com/mgalgs/.emacs.d/blob/master/smart-mode-line-setup.el
-;; Shortening
+;;
+;; When the buffer+directory name is longer than
+;; `sml/name-width':
+;; 	if nil the rest of the mode-line is pushed right;
+;; 	otherwise the directory name is shortened to fit.
+(setq sml/name-width 15)
 (setq sml/shorten-directory t)
+;;
+;; When the modes list is longer than `sml/mode-width':
+;; 	if nil the rest of the mode-line is pushed right;
+;; 	otherwise the list is shortened to fit.
+;; (setq sml/mode-width 'full)
+(setq sml/mode-width 15)
 (setq sml/shorten-modes t)
-(setq sml/name-width 25)
-(setq sml/mode-width 'full)
 ;;
 ;; modes to hide
 (add-to-list 'sml/hidden-modes " ICY")
@@ -26,6 +36,11 @@
 (add-to-list 'sml/hidden-modes " SliNav")
 (add-to-list 'sml/hidden-modes " yas")
 (add-to-list 'sml/hidden-modes " Projectile")
+(add-to-list 'sml/hidden-modes " AC")
+(add-to-list 'sml/hidden-modes " Paredit")
+(add-to-list 'sml/hidden-modes " ARev")
+(add-to-list 'sml/hidden-modes " [none]")	; Projectile
+(add-to-list 'sml/hidden-modes " View")
 ;;
 ;;  3. `sml/replacer-regexp-list'
 ;;   This variable is a list of (REGEXP REPLACEMENT) that is used
