@@ -79,9 +79,9 @@
 ;; (setq icicle-modal-cycle-up-keys   (kbd "C-p"))
 ;; (setq icicle-modal-cycle-down-keys (kbd "C-n"))
 ;;
-;; prefix-cycle	This completely breaks other packages.
-;; (setq icicle-prefix-cycle-previous-keys (kbd "C-p"))
-;; (setq icicle-prefix-cycle-next-keys     (kbd "C-n"))
+;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
+(add-to-list 'icicle-prefix-cycle-previous-keys (kbd "H-p"))
+(add-to-list 'icicle-prefix-cycle-next-keys (kbd "H-n"))
 ;;
 ;; Key Bindings
 ;; http://www.emacswiki.org/emacs/Icicles_-_Key_Bindings
@@ -129,7 +129,7 @@
 ;; https://github.com/m2ym/popwin-el
 ;; http://d.hatena.ne.jp/m2ym/20110120/1295524932
 (require 'popwin)
-(popwin-mode 1)
+;; (popwin-mode 1)
 ;; Where to show
 (setq popwin:popup-window-position 'left)
 ;; width 20% of frame width
@@ -141,7 +141,7 @@
 (setq popwin:special-display-config
       '(;; ("*Completions*")
 	(completion-list-mode :noselect t)
-	(compilation-mode :noselect t)
+	;; (compilation-mode :noselect t)
 	(grep-mode :noselect t)
 	(occur-mode :noselect t)
 	("*Pp Macroexpand Output*" :noselect t)
