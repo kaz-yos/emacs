@@ -1,18 +1,17 @@
 ;;; bm.el	Within-file bookmarking
 ;; See ~/.emacs.d/elpa/bm-readme.txt
 ;; http://d.hatena.ne.jp/peccu/20100402
-;; Saving bookmarks
+;; Saving bookmarks (before require)
 (setq-default bm-buffer-persistence t)
 (setq bm-repository-file "~/.emacs.d/bm-el-repository")
 (setq bm-restore-repository-on-load t)	; bm-readme.txt
 ;;
-;; No annotation column because I do not used it
+;; Load
+(require 'bm)
+;; No annotation column because I do not used it (after require)
 (setq bm-show-annotations t)   ; Do show for spacing
 (setq bm-annotation-width 5)   ; Minimum width
 (setq bm-header-annotation "") ; No need to show "Annotation"
-;;
-;; Load
-(require 'bm)
 ;; Load on startup
 (add-hook 'after-init-hook		'bm-repository-load)
 ;; Restore when finding file
