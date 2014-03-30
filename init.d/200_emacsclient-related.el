@@ -1,11 +1,18 @@
-;; Use emacsclient
+;;; Use emacsclient
+;;
+;; emacsclient is a symlink
 ;; ln -s /Applications/Emacs24.3.app/Contents/MacOS/bin/emacsclient /usr/local/bin/emacsclient
+;;
+;; configured as $EDITOR
 ;; .profile: export EDITOR="emacsclient"
+;;;
 ;; http://www.emacswiki.org/emacs/EmacsClient
+;; http://qiita.com/syohex/items/2bdcd9cd5b701b1112e6
 (require 'server)
+;; Start server unless there is already one running.
 (unless (server-running-p)
   (server-start))
-(server-start)		; Start server
+;;
 (defvar server-buffer-clients)
 (when (and (fboundp 'server-start) (string-equal (getenv "TERM") 'xterm))
   (server-start)

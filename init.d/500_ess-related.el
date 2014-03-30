@@ -114,6 +114,7 @@
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ;; Additional keybinds
+	     (local-set-key (kbd "C-c f") 'ess-eval-function)
 	     ;; (local-set-key (kbd "C-c n") 'ess-next-code-line) ; Not useful?
 	     ;; (local-set-key (kbd "M-n p") 'ess-swv-PDF)	  ; Does not work. M-n is prefix. 2013-09-08
 	     ))

@@ -1,13 +1,33 @@
 ;;; view-mode			; C-x C-r to open in view-mode. Requires viewer.el
+;; http://www.emacswiki.org/emacs/ViewMode
+;;
 ;; Book by rubikitch p214-
 ;; http://d.hatena.ne.jp/rubikitch/20081104/1225745862
 ;; http://d.hatena.ne.jp/syohex/20110114/1294958917
-(setq view-read-only t)	; buffers visiting files read-only do so in view mode
+;;
+
+;;; view-read-only
+;; view-read-only is a variable defined in `files.el'.
+;; Non-nil means buffers visiting files read-only do so in view mode.
+(setq view-read-only t)
+;;
+
+
+;;; viewer.el		;
 (require 'viewer)
+;; Setup stay-in view-mode.
 (viewer-stay-in-setup)
+;; Change mode-line color
 (setq viewer-modeline-color-unwritable "tomato"
       viewer-modeline-color-view "salmon")	; color changed from orange 2014-02-02
 (viewer-change-modeline-color-setup)
+;;
+;; fix for problem in 24.4 (mode-line color change does not happen with:
+;; dired v and (read-only-mode)
+(add-hook 'view-mode-hook 'viewer-change-modeline-color)
+
+
+;;; view.el		; view-mode (part of emacs)
 (require 'view)
 ;; less like
 (define-key view-mode-map (kbd "N") 'View-search-last-regexp-backward)
@@ -37,14 +57,9 @@
 ;; (define-key view-mode-map (kbd "[") 'my-highlight-symbol-prev)
 ;; (define-key view-mode-map (kbd "]") 'my-highlight-symbol-next)
 ;;
-;; Open non-writable files in view-mode	; (setq view-read-only t) sufficient? 2014-02-03
-;; (defadvice find-file
-;;   (around find-file-switch-to-view-file (file &optional wild) activate)
-;;   (if (and (not (file-writable-p file))
-;;            (not (file-directory-p file)))
-;;       (view-file file)
-;;     ad-do-it))
+;;
 ;; Do not exit view-mode if non-writable
+;; http://www.emacswiki.org/emacs-es/ViewMode#toc4
 (defvar view-mode-force-exit nil)
 (defmacro do-not-exit-view-mode-unless-writable-advice (f)
   `(defadvice ,f (around do-not-exit-view-mode-unless-writable activate)
@@ -53,9 +68,27 @@
               (not (file-writable-p (buffer-file-name))))
          (message "File is unwritable, so stay in view-mode.")
        ad-do-it)))
-;; Add advice
+;; Add advice to disable view-mode-exit and view-mode-disable
 (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
 (do-not-exit-view-mode-unless-writable-advice view-mode-disable)
-;;
-;; Key-bind used instead of "jk"
-(global-set-key (kbd "C-c l") 'read-only-mode)
+;; Also disable toggle-read-only, which is most often used
+(do-not-exit-view-mode-unless-writable-advice toggle-read-only)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

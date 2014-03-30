@@ -1,26 +1,40 @@
-;;; project-explorer.el		; A project explorer sidebar
-;; https://github.com/sabof/project-explorer
-;; (require 'project-explorer)
-
-
 ;;; projectile.el		; Project Interaction Library for Emacs
 ;; https://github.com/bbatsov/projectile
+;; https://github.com/bbatsov/projectile#interactive-commands
 (require 'projectile)
 ;; Enable Projectile globally
 (projectile-global-mode)
 ;; Simpler lighter
-(setq projectile-mode-line-lighter "Project")
+(setq projectile-mode-line-lighter " ")
+;; C-c p s should always work even before entering into a project
+(global-set-key (kbd "C-c p s") 'projectile-switch-project)
+;; Indexing
 ;; https://github.com/bbatsov/projectile#indexing-method
 ;; (setq projectile-indexing-method 'native)
+;; Caching
 ;; https://github.com/bbatsov/projectile#caching
 (setq projectile-enable-caching t)
+;; No ido use for completion (icicle can be used this way)
+(setq projectile-completion-system 'default)
+;; Switching
+;; https://github.com/bbatsov/projectile#switching-projects
+;; (setq projectile-switch-project-action 'projectile-find-file)	; default
+;; (setq projectile-switch-project-action 'helm-projectile)
+(setq projectile-switch-project-action 'projectile-dired)
+(setq projectile-find-dir-includes-top-level t)
 ;; 
 ;;
-;;; helm-projectile.el		;
+;;; helm-projectile.el		; Helm plugin for projectile
 ;; C-c p h for helm-projectile
 (require 'helm-projectile)
 ;; C-M-z for helm-projectile
 (global-set-key (kbd "C-M-z") 'helm-projectile)
+
+
+
+;;; project-explorer.el		; A project explorer sidebar
+;; https://github.com/sabof/project-explorer
+;; (require 'project-explorer)
 
 
 ;;; eproject.el			; Assign files to projects, programatically

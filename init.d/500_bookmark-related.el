@@ -1,12 +1,17 @@
 ;;; bm.el	Within-file bookmarking
 ;; See ~/.emacs.d/elpa/bm-readme.txt
 ;; http://d.hatena.ne.jp/peccu/20100402
-;; Saving bookmarks
+;; Saving bookmarks (before require)
 (setq-default bm-buffer-persistence t)
 (setq bm-repository-file "~/.emacs.d/bm-el-repository")
 (setq bm-restore-repository-on-load t)	; bm-readme.txt
+;;
 ;; Load
 (require 'bm)
+;; No annotation column because I do not used it (after require)
+(setq bm-show-annotations t)   ; Do show for spacing
+(setq bm-annotation-width 5)   ; Minimum width
+(setq bm-header-annotation "") ; No need to show "Annotation"
 ;; Load on startup
 (add-hook 'after-init-hook		'bm-repository-load)
 ;; Restore when finding file
@@ -43,6 +48,11 @@
 (global-set-key (kbd "M-]")	'my-bm-next)
 (global-set-key (kbd "M-[")	'my-bm-previous)
 (global-set-key (kbd "C-c b")	'bm-show)
+;;
+;; helm-bm.el		; helm sources for bm.el
+(require 'helm-bm) ;; Not necessary if using ELPA package
+;; (global-set-key (kbd "C-c b") 'helm-bm)
+
 
 
 

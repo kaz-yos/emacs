@@ -6,6 +6,9 @@
 (winner-mode t)
 (global-set-key (kbd "M-<left>")	'winner-undo)		; M-<left>  to undo
 (global-set-key (kbd "M-<right>")	'winner-redo)		; M-<right> to redo
+;; hyper biding
+(global-set-key (kbd "H-b")	'winner-undo)
+(global-set-key (kbd "H-f")	'winner-redo)
 
 
 ;;; Useful shortcuts

@@ -50,14 +50,7 @@
 			  (mode . LaTeX-mode)))
 	       ("MAGIT"  (or
 			  (mode . magit-mode)
-			  (mode . magit-branch-manager-mode)
-			  (mode . magit-commit-mode)
-			  (mode . magit-diff-mode)
-			  (mode . magit-log-mode)
-			  (mode . magit-process-mode)
-			  (mode . magit-status-mode)
-			  (mode . magit-wazzup-mode)
-			  (mode . git-commit-mode)))
+			  (name . "^\\*magit")))
 	       ))))
 ;; Group for the remaning unclassified buffers.
 (add-hook 'ibuffer-mode-hook

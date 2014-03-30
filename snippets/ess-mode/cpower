@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: cpower
+# key: xcpower
+# --
+cpower(tref      = 1,    # Assessment at 1 year
+       n         = 2000, # Total sample size
+       mc        = 0.25, # Mortality in control
+       r         = 20,   # % decrease in by intervention
+       accrual   = 1,    # duration of enrollment period
+       tmin      = 1,    # minimum follow-up time
+       noncomp.c = 0,    # % non-compliant in control group (drop-ins)
+       noncomp.i = 0,    # % non-compliant in intervention group (non-adherers)
+       alpha     = 0.05, # alpha error
+       nc        = 1000, # n in control
+       ni        = 1000, # n in intervention
+       pr        = TRUE) # print details

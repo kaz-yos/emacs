@@ -25,3 +25,5 @@ tramp
 url/
 /projectile-bookmarks.eld
 /projectile.cache
+*.elc
+/pomodoro.org

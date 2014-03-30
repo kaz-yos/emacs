@@ -4,6 +4,5 @@
 # binding: direct-keybinding
 # --
 $0 <- lmer(formula =  ~  + (1 | level4/level3/level2),
-           data = ,
-           family = gaussian(link = "identity")
+           data = 
            )

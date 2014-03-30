@@ -1,7 +1,6 @@
 ;;; Auto-completion related configurations
 ;; Configure ac-* in respective files. Keep this file minimum.
 
-
 ;;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
 ;; https://github.com/auto-complete/auto-complete
 ;; http://cx4a.org/software/auto-complete/manual.html
@@ -60,14 +59,60 @@
 (setq popup-use-optimized-column-computation nil)
 
 
-;; icicles.el
+
+;;; icicles.el		; Minibuffer input completion and cycling.
 ;; http://www.emacswiki.org/emacs/Icicles
+;; http://www.emacswiki.org/emacs/Icicles_-_Nutshell_View
 ;; http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
 (require 'icicles)
 (icy-mode 1)
+;;
+;; *Initial height decrease for text in buffer `*Completions*'. (0.75 by default)
+;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-Completions-text-scale-decrease
+(setq icicle-Completions-text-scale-decrease 0.0)
+;;
+;; Default cycling mode
+;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#toc34
+(setq icicle-default-cycling-mode 'prefix)
+;;
+;; This completely breaks other packages. 2014-03-01
+;; (setq icicle-modal-cycle-up-keys   (kbd "C-p"))
+;; (setq icicle-modal-cycle-down-keys (kbd "C-n"))
+;;
+;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
+(add-to-list 'icicle-prefix-cycle-previous-keys (kbd "H-p"))
+(add-to-list 'icicle-prefix-cycle-next-keys (kbd "H-n"))
+;;
+;; Key Bindings
+;; http://www.emacswiki.org/emacs/Icicles_-_Key_Bindings
+;;
+;; Rubikitch Icicles Configuration
+;; http://www.emacswiki.org/emacs/RubikitchIciclesConfiguration
+;; modal cycling
+;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-modal-cycle-up-keys
 
 
-;; Handling of the tab completion buffer 2014-02-03
+
+;; ;;; ido.el and flx-ido.el		; flx integration for ido
+;; ;; http://www.emacswiki.org/emacs/InteractivelyDoThings
+;; ;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
+;; ;; http://miyazakikenji.wordpress.com/2013/06/11/emacs-に-ido-mode/
+;; ;;
+;; (require 'flx-ido)
+;; (ido-mode 1)
+;; (ido-everywhere 1)
+;; (flx-ido-mode 1)
+;; ;; disable ido faces to see flx highlights.
+;; (setq ido-use-faces nil)
+
+
+
+;;; grizzl.el		; A fuzzy-search utility for Emacs
+;; https://github.com/d11wtq/grizzl
+
+
+
+;;; Handling of the tab completion buffer 2014-02-03
 ;; http://stackoverflow.com/questions/6458220/automatically-close-emacs-shell-mode-tab-completion-buffer
 (defun delete-completion-window-buffer (&optional output)
   (interactive)
@@ -77,3 +122,45 @@
       (kill-buffer "*Completions*")))
   output)
 (add-hook 'comint-preoutput-filter-functions 'delete-completion-window-buffer)
+
+
+
+;;; popwin.el		; Popup Window Manager
+;; https://github.com/m2ym/popwin-el
+;; http://d.hatena.ne.jp/m2ym/20110120/1295524932
+(require 'popwin)
+;; (popwin-mode 1)
+;; Where to show
+(setq popwin:popup-window-position 'left)
+;; width 20% of frame width
+(setq popwin:popup-window-width 0.2)
+;; height 30% of frame height
+(setq popwin:popup-windowheightwidth 0.3)
+;;
+;; Buffers under control (default minus help-mode)
+(setq popwin:special-display-config
+      '(;; ("*Completions*")
+	(completion-list-mode :noselect t)
+	;; (compilation-mode :noselect t)
+	(grep-mode :noselect t)
+	(occur-mode :noselect t)
+	("*Pp Macroexpand Output*" :noselect t)
+	("*Shell Command Output*")
+	("*vc-diff*")
+	("*vc-change-log*")
+	(" *undo-tree*" :width 60 :position right)
+	("^\\*anything.*\\*$" :regexp t)
+	("*slime-apropos*")
+	("*slime-macroexpansion*")
+	("*slime-description*")
+	("*slime-compilation*" :noselect t)
+	("*slime-xref*")
+	(sldb-mode :stick t)
+	(slime-repl-mode)
+	(slime-connection-list-mode)))
+;;
+;; Add buffers under control
+;; http://aikotobaha.blogspot.com/2013/04/popwinel.html
+;; Completions
+;; (push '("*Completions*") popwin:special-display-config)
+
