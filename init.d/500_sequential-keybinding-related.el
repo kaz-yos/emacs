@@ -25,6 +25,7 @@
 
 
 ;;; smartchr.el (does not work great with multiple-cursors)
+;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;; Similar elips: http://tech.kayac.com/archive/emacs-tips-smartchr.html
 (require 'smartchr)
 ;; http://ratememo.blog17.fc2.com/blog-entry-937.html
