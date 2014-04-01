@@ -25,6 +25,7 @@
 
 
 ;;; smartchr.el (does not work great with multiple-cursors)
+;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;; Similar elips: http://tech.kayac.com/archive/emacs-tips-smartchr.html
 (require 'smartchr)
 ;; http://ratememo.blog17.fc2.com/blog-entry-937.html
@@ -61,3 +62,30 @@
   (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")))
   )
 (add-hook 'emacs-lisp-mode-hook 'my-elisp-smartchr-setting)
+
+
+
+;;; smartrep.el
+;; http://sheephead.homelinux.org/2011/12/19/6930/
+(require 'smartrep)
+;;
+;; org-mode
+(eval-after-load "org"
+        '(progn
+           (smartrep-define-key
+            org-mode-map "C-c" '(("C-n" . (lambda ()
+                                            (outline-next-visible-heading 1)))
+                                 ("C-p" . (lambda ()
+                                            (outline-previous-visible-heading 1)))))))
+;; Make C-q a prefix
+(defvar ctl-q-map (make-keymap))
+(define-key global-map "\C-q" ctl-q-map)
+;; Scroll the other window
+(smartrep-define-key
+ global-map "C-q" '(("n" . (lambda () (scroll-other-window 1)))
+                    ("p" . (lambda () (scroll-other-window -1)))
+                    ("N" . 'scroll-other-window)
+                    ("P" . (lambda () (scroll-other-window '-)))
+                    ("a" . (lambda () (beginning-of-buffer-other-window 0)))
+                    ("e" . (lambda () (end-of-buffer-other-window 0)))))
+;;
