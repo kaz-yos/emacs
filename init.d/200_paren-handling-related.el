@@ -33,7 +33,7 @@
 (global-set-key (kbd "[") 'skeleton-pair-insert-maybe) ; NOT Better handled with smartchr.el
 (global-set-key (kbd "\{") 'skeleton-pair-insert-maybe) ; This does not work?  added \ 20130426
 (global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "\'") 'skeleton-pair-insert-maybe)	; Not useful for lisp
+;; (global-set-key (kbd "\'") 'skeleton-pair-insert-maybe)	; Not useful for lisp
 ;; (global-set-key (kbd "\`") 'skeleton-pair-insert-maybe)	; Not useful for R
 ;; (local-set-key (kbd "<") 'skeleton-pair-insert-maybe)	; Not useful for R
 ;;

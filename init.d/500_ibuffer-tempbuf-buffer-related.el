@@ -44,7 +44,8 @@
 			  (mode . sql-mode)
 			  (mode . sql-interactive-mode)))
 	       ("LISP"	(or
-			 (mode . emacs-lisp-mode)))
+			 (mode . emacs-lisp-mode)
+			 (name . "^\\*slime")))
 	       ("TeX"    (or
 			  (mode . TeX-mode)
 			  (mode . LaTeX-mode)))
