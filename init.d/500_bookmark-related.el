@@ -31,7 +31,7 @@
                               (bm-buffer-save-all)
                               (bm-repository-save)))
 ;;
-;; Define function to do bm-previous/next and recenter
+;; Define functions to do bm-previous/next and recenter
 (defun my-bm-next ()
   (interactive)
   (bm-next)
@@ -41,18 +41,48 @@
   (bm-previous)
   (recenter "Top"))
 ;;
+;; Define a function to automatically bookmark by major-mode-specific regexp
+(defun my-bm-bookmark-auto ()
+  "Mark lines by regexp appropriate to the major mode"
+  (interactive)
+  ;; Set local variables
+  (let ((regexp)
+        (count 0)
+	(beg (point-min))
+	(end (point-max)))
+    ;; Create appropriate regexp depending on the major-mode
+    (cond ((or (equal major-mode 'emacs-lisp-mode)
+	       (equal major-mode 'lisp-mode))
+	   (setq regexp "^;;; \\|^;;;$"))
+	  (t
+	   (setq regexp "^### \\|^###$")))
+    ;; Bookmarking
+    (save-excursion
+      (goto-char beg)
+      (while (and (< (point) end)
+                  (re-search-forward regexp end t))
+	(bm-bookmark-add)	; Actually add a bookmark
+        (setq count (1+ count))
+        (forward-line 1)))
+    (message "%d bookmark(s) created." count)))
+;;
+;; Define a function to do both bookmarking and showing
+(defun my-bm-show ()
+  (interactive)
+  (my-bm-bookmark-auto)
+  (bm-show))
+;;
 ;; Keyboard
 (global-set-key (kbd "M-SPC")	'bm-toggle)	; Conflict with IM. Use ESC-SPC, which is the same
 ;; (global-set-key (kbd "M-]")	'bm-next)
 ;; (global-set-key (kbd "M-[")	'bm-previous)
 (global-set-key (kbd "M-]")	'my-bm-next)
 (global-set-key (kbd "M-[")	'my-bm-previous)
-(global-set-key (kbd "C-c b")	'bm-show)
+(global-set-key (kbd "C-c b")	'my-bm-show)
 ;;
 ;; helm-bm.el		; helm sources for bm.el
 (require 'helm-bm) ;; Not necessary if using ELPA package
 ;; (global-set-key (kbd "C-c b") 'helm-bm)
-
 
 
 
