@@ -57,9 +57,7 @@
     ;; If not selected, do all the following
     (beginning-of-line)						; Move to the beginning of line
     (if (looking-at "(defun ")					; Check if the first word is def (function def)
-	(progn							; If it is def
-	  (slime-eval-defun)					; Send whole def
-	  )
+	(slime-eval-defun)					; Send whole def
       ;; If it is not def, do all the following
       (end-of-line)						; Move to the end of line
       (slime-eval-last-expression)				; Eval the one before
