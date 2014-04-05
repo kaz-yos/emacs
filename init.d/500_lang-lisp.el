@@ -47,6 +47,30 @@
 (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'slime-repl-mode))
+;;
+;; Define a flexible eval function.
+(defun my-slime-eval ()
+  (interactive)
+  (if (and transient-mark-mode mark-active)			; Check if selection is present
+      ;; (apply #'slime-eval-region (sort (list (point) (mark)) #'<))
+      (slime-eval-region (point) (mark))			; If selected, send region
+    ;; If not selected, do all the following
+    (beginning-of-line)						; Move to the beginning of line
+    (if (looking-at "(defun ")					; Check if the first word is def (function def)
+	(progn							; If it is def
+	  (slime-eval-defun)					; Send whole def
+	  )
+      ;; If it is not def, do all the following
+      (end-of-line)						; Move to the end of line
+      (slime-eval-last-expression)				; Eval the one before
+      )
+    ))
+;;
+;;
+;; define keys
+(add-hook 'slime-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "<C-return>") 'my-slime-eval)))
 
 
 ;; auto-complete-emacs-lisp.el 2013-09-08
