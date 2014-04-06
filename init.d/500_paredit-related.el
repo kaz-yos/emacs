@@ -5,10 +5,11 @@
 ;;
 ;; M-x install-elisp http://mumble.net/~campbell/emacs/paredit.el
 (require 'paredit)
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook		'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook	'enable-paredit-mode)
+(add-hook 'lisp-mode-hook		'enable-paredit-mode)
+(add-hook 'clojure-mode-hook		'enable-paredit-mode)
+;; (add-hook 'ielm-mode-hook		'enable-paredit-mode)
 ;; (add-hook 'ess-mode-hook 'enable-paredit-mode)		; paredit for ESS. too restrictive
 ;; No space when inserted after a word
 ;; http://stackoverflow.com/questions/913449/changing-paredit-formatting
