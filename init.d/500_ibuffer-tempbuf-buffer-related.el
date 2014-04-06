@@ -32,6 +32,13 @@
 			 (mode . ess-mode)
 			 (mode . inferior-ess-mode)
 			 (mode . Rd-mode)))
+	       ("LISP"	(or
+			 (mode . emacs-lisp-mode)
+			 (name . "^\\*slime")
+			 (mode . list-mode)
+			 (mode . clojure-mode)
+			 (name . "^\\*cider-")
+			 (name . "^\\*nrepl-")))
 	       ("PYTHON" (or
 			  (mode . python-mode)
 			  (mode . inferior-python-mode)))
@@ -43,16 +50,12 @@
 	       ("SQL"  (or
 			  (mode . sql-mode)
 			  (mode . sql-interactive-mode)))
-	       ("LISP"	(or
-			 (mode . emacs-lisp-mode)
-			 (name . "^\\*slime")))
 	       ("TeX"    (or
 			  (mode . TeX-mode)
 			  (mode . LaTeX-mode)))
 	       ("MAGIT"  (or
 			  (mode . magit-mode)
-			  (name . "^\\*magit")))
-	       ))))
+			  (name . "^\\*magit")))))))
 ;; Group for the remaning unclassified buffers.
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()
