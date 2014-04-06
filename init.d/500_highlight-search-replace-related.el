@@ -185,6 +185,7 @@
 
 
 ;;; rainbow-mode.el
+;; Make strings describing colors appear in colors
 ;; http://julien.danjou.info/projects/emacs-packages
 (require 'rainbow-mode)
 ;;
