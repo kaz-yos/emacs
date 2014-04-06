@@ -29,7 +29,9 @@
 ;;
 ;; Activate in these modes
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook	'rainbow-delimiters-mode)
+(add-hook 'clojure-mode-hook	'rainbow-delimiters-mode)
+(add-hook 'ess-mode-hook	'rainbow-delimiters-mode)
 ;;
 ;; http://ergoemacs.org/misc/emacs_rainbow-delimiters-mode.html
 ;; (custom-set-faces
