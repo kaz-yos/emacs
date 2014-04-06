@@ -34,7 +34,7 @@
  '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
  '(font-latex-subscript-face ((t nil)))
  '(font-latex-superscript-face ((t nil)))
- ;; '(rainbow-delimiters-depth-1-face ((t (:foreground "gray90"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "gray90"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "PaleVioletRed1"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "cyan1"))))
  '(rainbow-delimiters-depth-4-face ((t (:foreground "orange1"))))
