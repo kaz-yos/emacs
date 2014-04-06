@@ -54,7 +54,7 @@
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'slime-repl-mode))
 ;;
-;; Define a flexible eval function.
+;;; Define a flexible eval function.
 (defun my-slime-eval ()
   (interactive)
   (if (and transient-mark-mode mark-active)			; Check if selection is present
@@ -104,3 +104,43 @@
 ;;     (add-hook 'cider-mode-hook 'ac-cider-compliment-setup)
 ;;     (eval-after-load "auto-complete"
 ;;       '(add-to-list 'ac-modes 'cider-mode))
+;;
+;;; Define a flexible eval function.
+(defun my-cider-eval ()
+  (interactive)
+  (if (and transient-mark-mode mark-active)			; Check if selection is present
+      ;; (apply #'slime-eval-region (sort (list (point) (mark)) #'<))
+      (cider-eval-region (point) (mark))			; If selected, send region
+    ;; If not selected, do all the following
+    (beginning-of-line)						; Move to the beginning of line
+    (if (looking-at "(defun ")					; Check if the first word is def (function def)
+	(cider-eval-defun-at-point)				; Send whole def
+      ;; If it is not def, do all the following
+      (end-of-line)						; Move to the end of line
+      (cider-eval-last-expression)				; Eval the one before
+      )
+    ))
+;;
+;;
+;; define keys
+(add-hook 'clojure-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "<C-return>") 'my-cider-eval)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
