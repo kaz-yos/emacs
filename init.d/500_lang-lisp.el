@@ -54,9 +54,27 @@
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'slime-repl-mode))
 ;;
+;;; Define REPL start up function
+(defun my-slime-start ()
+  (interactive)
+  (if (not (member "*slime-repl clisp*" (mapcar #'buffer-name (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))
+
+        (slime)						; Activate slime REPL
+
+        (set-window-buffer w1 "*slime-repl clisp**")	; REPL on the left (w1)
+        (set-window-buffer w2 w1name)			; script on the right (w2)
+	(select-window w2)				; Select script (w2) Added
+	)))
+;;
 ;;; Define a flexible eval function.
 (defun my-slime-eval ()
   (interactive)
+  (my-slime-start)
   (if (and transient-mark-mode mark-active)			; Check if selection is present
       ;; (apply #'slime-eval-region (sort (list (point) (mark)) #'<))
       (slime-eval-region (point) (mark))			; If selected, send region
@@ -88,7 +106,7 @@
 ;;
 ;; Configurations
 ;; https://github.com/clojure-emacs/cider#configuration
-;; 
+;;
 ;; Enable eldoc in Clojure buffers:
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 ;;
@@ -105,9 +123,26 @@
 ;;     (eval-after-load "auto-complete"
 ;;       '(add-to-list 'ac-modes 'cider-mode))
 ;;
+;;; Define REPL start up function
+(defun my-cider-start ()
+  (interactive)
+  (if (not (member "*cider-repl localhost*" (mapcar #'buffer-name (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))
+
+        (cider-jack-in)					; Activate cider REPL
+
+        (set-window-buffer w1 "*cider-repl localhost*")	; REPL on the left (w1)
+        (set-window-buffer w2 w1name)			; script on the right (w2)
+	(select-window w2)				; Select script (w2) Added
+	)))
 ;;; Define a flexible eval function.
 (defun my-cider-eval ()
   (interactive)
+  (my-cider-start)
   (if (and transient-mark-mode mark-active)			; Check if selection is present
       (cider-eval-region (point) (mark))			; If selected, send region
     ;; If not selected, do all the following
@@ -118,7 +153,6 @@
       (end-of-line)						; Move to the end of line
       (cider-eval-last-sexp)					; Eval the one before
       )))
-;;
 ;;
 ;; define keys
 (add-hook 'clojure-mode-hook
