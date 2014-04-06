@@ -109,7 +109,6 @@
 (defun my-cider-eval ()
   (interactive)
   (if (and transient-mark-mode mark-active)			; Check if selection is present
-      ;; (apply #'slime-eval-region (sort (list (point) (mark)) #'<))
       (cider-eval-region (point) (mark))			; If selected, send region
     ;; If not selected, do all the following
     (beginning-of-line)						; Move to the beginning of line
@@ -117,30 +116,11 @@
 	(cider-eval-defun-at-point)				; Send whole def
       ;; If it is not def, do all the following
       (end-of-line)						; Move to the end of line
-      (cider-eval-last-expression)				; Eval the one before
-      )
-    ))
+      (cider-eval-last-sexp)					; Eval the one before
+      )))
 ;;
 ;;
 ;; define keys
 (add-hook 'clojure-mode-hook
 	  '(lambda ()
 	     (local-set-key (kbd "<C-return>") 'my-cider-eval)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
