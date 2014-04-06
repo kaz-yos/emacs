@@ -1,7 +1,8 @@
+;;;
+;;; Emacs Lisp
 ;;; eval short cut
 ;; C-RET for eval-region in elisp mode 2013-12-22
 (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-region)
-
 
 ;;; SLIME-like navigation for elisp
 ;; This package provides Slime's convenient "M-." and "M-," navigation
@@ -13,7 +14,6 @@
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
 
-
 ;;; Auto byte-compile .el files at saving
 ;; http://www.emacswiki.org/emacs/auto-async-byte-compile.el
 ;; http://d.hatena.ne.jp/rubikitch/20100423/bytecomp
@@ -22,13 +22,18 @@
 (setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
+;;; auto-complete-emacs-lisp.el 2013-09-08
+;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
+(require 'auto-complete-emacs-lisp)
+
 
 ;;; lispxmp.el to evaluate sexp within .el
 (require 'lispxmp)
 (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
 
 
-;;; SLIME for non-elisp lisp family
+;;;
+;;; SLIME for non-elisp lisp
 ;; http://www.common-lisp.net/project/slime/
 ;; http://dev.ariel-networks.com/wp/archives/462
 (require 'slime)
@@ -71,6 +76,17 @@
 	     (local-set-key (kbd "<C-return>") 'my-slime-eval)))
 
 
-;; auto-complete-emacs-lisp.el 2013-09-08
-;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
-(require 'auto-complete-emacs-lisp)
+;;;
+;;; CLOJURE SETTINGS
+;; http://mkamotsu.hateblo.jp/entry/2013/10/31/142105
+;; http://www.braveclojure.com/using-emacs-with-clojure/
+;;
+;; cider.el
+;; https://github.com/clojure-emacs/cider
+(require 'cider)
+;;
+;; Configurations
+;; https://github.com/clojure-emacs/cider#configuration
+;; 
+;; Enable eldoc in Clojure buffers:
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
