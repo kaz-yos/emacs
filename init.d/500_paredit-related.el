@@ -22,12 +22,12 @@
 (require 'paredit-menu)
 
 
-;; ;; rainbow-delimiters.el
-;; ;; http://www.emacswiki.org/emacs/RainbowDelimiters
-;; (require 'rainbow-delimiters)
-;; (add-hook 'ess-mode-hook 'rainbow-delimiters-mode)
+;; rainbow-delimiters.el
+;; http://www.emacswiki.org/emacs/RainbowDelimiters
+(require 'rainbow-delimiters)
+(add-hook 'ess-mode-hook 'rainbow-delimiters-mode)
 ;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)	; for programming related modes
-;; ;;
+;;
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -36,8 +36,8 @@
 ;;  '(completions-common-part ((t (:inherit default :foreground "red"))))
 ;;  '(diredp-compressed-file-suffix ((t (:foreground "#7b68ee"))))
 ;;  '(diredp-ignored-file-name ((t (:foreground "#aaaaaa"))))
-;;  '(rainbow-delimiters-depth-1-face ((t (:foreground "blue"))))
-;;  '(rainbow-delimiters-depth-2-face ((t (:foreground "blue"))))
+;;  '(rainbow-delimiters-depth-1-face ((t (:foreground "dark cyan"))))
+;;  '(rainbow-delimiters-depth-2-face ((t (:foreground "MediumPurple1"))))
 ;;  '(rainbow-delimiters-depth-3-face ((t (:foreground "#8b7500"))))
 ;;  '(rainbow-delimiters-depth-4-face ((t (:foreground "#8b7500"))))
 ;;  '(rainbow-delimiters-depth-5-face ((t (:foreground "#8b7500"))))
