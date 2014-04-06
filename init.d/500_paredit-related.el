@@ -1,7 +1,8 @@
+;;;
 ;;; paredit.el
 ;; smartparens appears more modern. 2014-02-03
 ;; https://github.com/Fuco1/smartparens
-
+;;
 ;; M-x install-elisp http://mumble.net/~campbell/emacs/paredit.el
 (require 'paredit)
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
@@ -17,17 +18,20 @@
              (list ?\"  ;; REMOVED ?w ?_
                    (let ((matching (matching-paren delimiter)))
                      (and matching (char-syntax matching)))))))
-;; paredit-menu.el
+;;; paredit-menu.el
 ;; Adds a menu to paredit.el as memory aid
 (require 'paredit-menu)
 
-
-;; rainbow-delimiters.el
+;;;
+;;; rainbow-delimiters.el
 ;; http://www.emacswiki.org/emacs/RainbowDelimiters
 (require 'rainbow-delimiters)
-(add-hook 'ess-mode-hook 'rainbow-delimiters-mode)
-;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)	; for programming related modes
 ;;
+;; Activate in these modes
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+;;
+;; http://ergoemacs.org/misc/emacs_rainbow-delimiters-mode.html
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
