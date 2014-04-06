@@ -34,6 +34,7 @@
 
 ;;;
 ;;; SLIME for non-elisp lisp
+;;; slime.el
 ;; http://www.common-lisp.net/project/slime/
 ;; http://dev.ariel-networks.com/wp/archives/462
 (require 'slime)
@@ -46,7 +47,7 @@
 ;; Common lisp (installed via homebrew)
 (setq inferior-lisp-program "/usr/local/bin/clisp")
 ;;
-;; auto-complete for SLIME 2014-02-25
+;;; auto-complete for SLIME 2014-02-25
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
@@ -81,7 +82,7 @@
 ;; http://mkamotsu.hateblo.jp/entry/2013/10/31/142105
 ;; http://www.braveclojure.com/using-emacs-with-clojure/
 ;;
-;; cider.el
+;;; cider.el
 ;; https://github.com/clojure-emacs/cider
 (require 'cider)
 ;;
@@ -90,3 +91,16 @@
 ;; 
 ;; Enable eldoc in Clojure buffers:
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+;;
+;;
+;;; 4clojure.el
+(require '4clojure)
+;;
+;;
+;;; ac-cider-compliment.el
+;;     (load "path/to/ac-nrepl-compliment.el")
+;;     (require 'ac-cider-compliment)
+;;     (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+;;     (add-hook 'cider-mode-hook 'ac-cider-compliment-setup)
+;;     (eval-after-load "auto-complete"
+;;       '(add-to-list 'ac-modes 'cider-mode))
