@@ -52,7 +52,8 @@
 	(end (point-max)))
     ;; Create appropriate regexp depending on the major-mode
     (cond ((or (equal major-mode 'emacs-lisp-mode)
-	       (equal major-mode 'lisp-mode))
+	       (equal major-mode 'lisp-mode)
+	       (equal major-mode 'clojure-mode))
 	   (setq regexp "^;;; \\|^;;;$"))
 	  (t
 	   (setq regexp "^### \\|^###$")))
