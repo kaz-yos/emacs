@@ -109,6 +109,12 @@
 ;;
 ;; Enable eldoc in Clojure buffers:
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+;; Hide special repl buffers
+(setq nrepl-hide-special-buffers t)
+;; To auto-select the error buffer when it's displayed:
+(setq cider-auto-select-error-buffer t)
+;; Limit the number of items of each collection
+(setq cider-repl-print-length 500)
 ;;
 ;;
 ;;; 4clojure.el
@@ -158,3 +164,11 @@
 (add-hook 'clojure-mode-hook
 	  '(lambda ()
 	     (local-set-key (kbd "<C-return>") 'my-cider-eval)))
+;;
+;;
+;;; clojure-cheatsheet.el
+(require 'clojure-cheatsheet)
+;;
+;;
+;;; clojure-test-mode.el
+(require 'clojure-test-mode)
