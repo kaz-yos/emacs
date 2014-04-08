@@ -35,7 +35,7 @@
 (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
 
 
-
+;;;
 ;;; Optional helm packages
 ;;
 ;;; helm-descbinds.el
@@ -94,5 +94,11 @@
 (require 'helm-package)
 ;;
 ;;
-;; helm-themes.el	; Color theme selection with helm interface
+;;; helm-themes.el	; Color theme selection with helm interface
 (require 'helm-themes)
+;;
+;;
+;;; helm-dash.el
+;; http://fukuyama.co/helm-dash
+;; http://kapeli.com/dash
+(require 'helm-dash)
