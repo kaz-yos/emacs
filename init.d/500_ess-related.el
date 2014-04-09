@@ -87,7 +87,11 @@
 ;;
 (defun my-ess-eval-R ()
   (interactive)
-  (my-ess-start-R)			; R starts on the right if this is not used.
+  ;; (my-ess-start-R)			; R starts on the right if this is not used.
+
+  ;; defined in 200_my-misc-functions-and-bindings.el
+  (my-repl-start "*R*" #'R)
+
   (if (and transient-mark-mode mark-active)
       (call-interactively 'ess-eval-region)
     (call-interactively 'ess-eval-line-and-step)))
