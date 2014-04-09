@@ -29,13 +29,13 @@
  python-shell-completion-string-code		"';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 ;;
 ;; ;; Default shell interaction commands
-;; (define-key map "\C-c\C-p" 'run-python)
-;; (define-key map "\C-c\C-s" 'python-shell-send-string)
-;; (define-key map "\C-c\C-r" 'python-shell-send-region)
-;; (define-key map "\C-\M-x" 'python-shell-send-defun)
-;; (define-key map "\C-c\C-c" 'python-shell-send-buffer)
-;; (define-key map "\C-c\C-l" 'python-shell-send-file)
-;; (define-key map "\C-c\C-z" 'python-shell-switch-to-shell)
+;; (define-key map (kbd "C-c C-p") 'run-python)
+;; (define-key map (kbd "C-c C-s") 'python-shell-send-string)
+;; (define-key map (kbd "C-c C-r") 'python-shell-send-region)
+;; (define-key map (kbd "C-M-x")   'python-shell-send-defun)
+;; (define-key map (kbd "C-c C-c") 'python-shell-send-buffer)
+;; (define-key map (kbd "C-c C-l") 'python-shell-send-file)
+;; (define-key map (kbd "C-c C-z") 'python-shell-switch-to-shell)
 ;;
 ;; Redefine python-shell-send-region command to avoid sending blank line to ipython shell 2013-12-22
 ;; This, however, breaks the debugger. It will show the wrong lines in the beginning of the files. 2013-12-25
