@@ -1,10 +1,14 @@
-;; Take current line to top
+;;; My miscellaneous functions
+
+;;; Take current line to top
 (defun my-recenter-top ()
   (interactive)
   (recenter "Top")
 )
 (global-set-key (kbd "C-S-l") 'my-recenter-top)
 ;;
+
+;;; my-insert-date
 ;; http://ergoemacs.org/emacs/elisp_datetime.html
 (defun my-insert-date ()
   "Insert current date yyyy-mm-dd."
@@ -20,7 +24,48 @@
 (global-set-key (kbd "C-c r") 'replace-string)
 
 
-;; Surround region
+;;; my-start-repl
+;; A function to start a REPL if not already available
+;; https://stat.ethz.ch/pipermail/ess-help/2012-December/008426.html
+;; http://t7331.codeinpro.us/q/51502552e8432c0426273040
+;;
+(defun my-repl-start (repl-buffer-name fun-repl-start)
+  "Start an REPL using a function specified in fun-repl-start,
+if a buffer named repl-buffer-name is not available."
+  (interactive)
+  (if (not (member repl-buffer-name (mapcar #'buffer-name (buffer-list))))
+      (progn
+	;; C-x 1 Keep only the window from which this function was called.
+        (delete-other-windows)
+
+	;; Make window1 keep the selected (only) window
+        (setq window1 (selected-window))
+	;; Make name-script-buffer keep the selected (only) buffer
+        (setq name-script-buffer (buffer-name))
+	;; (split-window &optional WINDOW SIZE SIDE)
+	;; Split window1 (only one) without size, and create a new window on the right.
+	;; Use the return value (new window) for window2.
+	;; window1: left, window2: right
+        (setq window2 (split-window window1 nil "right"))
+
+	;; Activate the REPL
+        (funcall fun-repl-start)
+	;; Make name-repl-buffer keep the selected buffer (REPL)
+	(setq name-repl-buffer (buffer-name))
+
+	;; REPL on the left (window1)	; This gives an error.
+        (set-window-buffer window1 name-repl-buffer)
+	;; Script on the right (window2)
+        (set-window-buffer window2 name-script-buffer)
+	;; Select the script window on the right (window2)
+	(select-window window2)
+	)))
+;;
+;; R interpreter
+;; (my-repl-start "*R*" #'R)
+;;
+
+;;; Surround region
 ;; http://www.emacswiki.org/emacs/SurroundRegion
 (defun surround (begin end open close)
   "Put OPEN at START and CLOSE at END of the region.
