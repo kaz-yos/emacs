@@ -22,9 +22,12 @@
 (setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
+
 ;;; auto-complete-emacs-lisp.el 2013-09-08
 ;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
 (require 'auto-complete-emacs-lisp)
+;; Turn on and off
+(define-key emacs-lisp-mode-map (kbd "C-c a") 'auto-complete-mode)
 
 
 ;;; lispxmp.el to evaluate sexp within .el
