@@ -4,6 +4,7 @@
 ;; C-RET for eval-region in elisp mode 2013-12-22
 (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-region)
 
+
 ;;; SLIME-like navigation for elisp
 ;; This package provides Slime's convenient "M-." and "M-," navigation
 ;; in `emacs-lisp-mode', together with an elisp equivalent of
@@ -13,6 +14,7 @@
 (require 'elisp-slime-nav) ;; optional if installed via package.el
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
+
 
 ;;; Auto byte-compile .el files at saving
 ;; http://www.emacswiki.org/emacs/auto-async-byte-compile.el
@@ -33,6 +35,7 @@
 ;;; lispxmp.el to evaluate sexp within .el
 (require 'lispxmp)
 (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
+
 
 
 ;;;
@@ -65,7 +68,7 @@
         (delete-other-windows)
         (setq w1 (selected-window))
         (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))
+        (setq w2 (split-window w1 nil "right"))
 
         (slime)						; Activate slime REPL
 
@@ -77,7 +80,11 @@
 ;;; Define a flexible eval function.
 (defun my-slime-eval ()
   (interactive)
-  (my-slime-start)
+  
+  ;; (my-slime-start)
+  ;; defined in 200_my-misc-functions-and-bindings.el
+  (my-repl-start "*slime-repl clisp*" #'slime)
+  
   (if (and transient-mark-mode mark-active)			; Check if selection is present
       ;; (apply #'slime-eval-region (sort (list (point) (mark)) #'<))
       (slime-eval-region (point) (mark))			; If selected, send region
@@ -151,7 +158,11 @@
 ;;; Define a flexible eval function.
 (defun my-cider-eval ()
   (interactive)
-  (my-cider-start)
+  
+  ;; (my-cider-start)
+  ;; defined in 200_my-misc-functions-and-bindings.el
+  (my-repl-start "*cider-repl localhost*" #'cider-jack-in)
+  
   (if (and transient-mark-mode mark-active)			; Check if selection is present
       (cider-eval-region (point) (mark))			; If selected, send region
     ;; If not selected, do all the following
