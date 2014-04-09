@@ -5,30 +5,28 @@
 ;;
 ;; python-mode.el (more features, more configurations):
 ;; http://www.janteichmann.me/projects/emacs_as_python_editor
-;;
-;;
-;; python.el
+
+
+;;;
+;;; python.el
 ;; http://superuser.com/questions/345595/python-el-for-long-time-python-mode-el-user
 (require 'python)
 ;; (setq python-shell-interpreter "/usr/local/bin/python")	; symlink to python3 does not work.
 ;;
 ;; ipython setting for python.el (not used as of 2013-12-28)
-(setq
+'(setq
  ;; python-shell-interpreter "ipython"
- python-shell-interpreter "/usr/local/bin/ipython3"
+ python-shell-interpreter			"/usr/local/bin/ipython3"
  ;; python-shell-interpreter "/usr/local/bin/ipython"
  ;; "console --pylab" required for matplotlib? 2013-12-25
  ;; http://stackoverflow.com/questions/17117074/python-shell-in-emacs-freezes-when-using-matplotlib
  ;; python-shell-interpreter-args "console --pylab"
- python-shell-interpreter-args "--pylab"	; console does not work with Python 3.3.3. 2013-12-31
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-Regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
- "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
- "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
- "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+ python-shell-interpreter-args			"--pylab"	; console does not work with Python 3.3.3. 2013-12-31
+ python-shell-prompt-regexp			"In \\[[0-9]+\\]: "
+ python-shell-prompt-output-Regexp		"Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code		"from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code	"';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code		"';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 ;;
 ;; ;; Default shell interaction commands
 ;; (define-key map "\C-c\C-p" 'run-python)
@@ -42,7 +40,7 @@
 ;; Redefine python-shell-send-region command to avoid sending blank line to ipython shell 2013-12-22
 ;; This, however, breaks the debugger. It will show the wrong lines in the beginning of the files. 2013-12-25
 ;; Python3's traceback is smarter and correctly shows the error with the simplified send-region. 2014-01-02
-(defun python-shell-send-region (start end)
+'(defun python-shell-send-region (start end)
   "Send the region delimited by START and END to inferior Python process."
   (interactive "r")
   (python-shell-send-string
@@ -55,32 +53,6 @@
    ;;    (make-string (1- line-num) ?\n))
    ;;  (buffer-substring start end))
    nil t))
-;;
-;; jedi.el	; Python auto-completion for Emacs
-;; http://tkf.github.io/emacs-jedi/
-(setq jedi:complete-on-dot t)				; binds . to jedi:dot-complete. Dot alone activates jedi
-(add-hook 'python-mode-hook	     'jedi:setup)	; for full setup
-(add-hook 'inferior-python-mode-hook 'jedi:setup)	; for full setup
-;; (add-hook 'python-mode-hook	     'jedi:ac-setup)	; for completion only. keys are not changed.
-;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)	; for completion only. keys are not changed.
-;;
-;; C-c		Prefix Command
-;; .		jedi:dot-complete
-;; <C-M-tab>	jedi:complete
-;; <C-tab>		other-window-or-split
-;; C-c ,		jedi:goto-definition-pop-marker
-;; C-c .		jedi:goto-definition
-;; C-c /		helm-jedi-related-names
-;; C-c ?		jedi:show-doc
-;;
-(add-hook 'jedi-mode-hook
-          '(lambda()
-	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Python major mode
-	     (define-key jedi-mode-map (kbd "<C-tab>") 'other-window-or-split)	; Assigned to Jedi minor mode
-	     (define-key jedi-mode-map (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Jedi minor mode
-	     ;; jedi:show-doc
-	     (define-key jedi-mode-map (kbd "C-c C-v") 'jedi:show-doc)		; Simulate ESS
-	     ))
 ;;
 ;; Code to emulate ESS/R behavior 2013-12-22 version
 (defun my-python-start ()
@@ -144,9 +116,41 @@
              ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
              ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
 	     ))
+
+
+;;;
+;;; jedi.el	; Python auto-completion for Emacs
+;; http://tkf.github.io/emacs-jedi/
+(setq jedi:complete-on-dot t)				; binds . to jedi:dot-complete. Dot alone activates jedi
+(add-hook 'python-mode-hook	     'jedi:setup)	; for full setup
+(add-hook 'inferior-python-mode-hook 'jedi:setup)	; for full setup
+;; (add-hook 'python-mode-hook	     'jedi:ac-setup)	; for completion only. keys are not changed.
+;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)	; for completion only. keys are not changed.
 ;;
+;; C-c		Prefix Command
+;; .		jedi:dot-complete
+;; <C-M-tab>	jedi:complete
+;; <C-tab>		other-window-or-split
+;; C-c ,		jedi:goto-definition-pop-marker
+;; C-c .		jedi:goto-definition
+;; C-c /		helm-jedi-related-names
+;; C-c ?		jedi:show-doc
 ;;
-;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
+(add-hook 'jedi-mode-hook
+          '(lambda()
+	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Python major mode
+	     (define-key jedi-mode-map (kbd "<C-tab>") 'other-window-or-split)	; Assigned to Jedi minor mode
+	     (define-key jedi-mode-map (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Jedi minor mode
+	     ;; jedi:show-doc
+	     (define-key jedi-mode-map (kbd "C-c C-v") 'jedi:show-doc)		; Simulate ESS
+	     ))
+
+
+;;;
+;;; ein.el	; Emacs IPython Notebook (EIN)
+;; Current version does not work with ipython 2.0.0 as of 2013-12-20
+;; 20140317.1114 did not work with ipython 2.0.0 stable as of 2014-04-08
+;;
 ;; This is fundamentally different from python.el and can coexist. 2013-12-22
 ;; http://tkf.github.com/emacs-ipython-notebook/
 ;; Usage
@@ -169,8 +173,10 @@
 	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
 	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
 	     ))
-;;
-;; ;; elpy.el	; python.el replacement. No need for now. 2013-12-22
+
+
+;;;
+;;; elpy.el	; python.el replacement. No need for now. 2013-12-22
 ;; ;; https://github.com/jorgenschaefer/elpy/wiki
 ;; ;; Need to install elpy/rope/jedi/flake8 via $ sudo pip install
 ;; ;; $ sudo pip install --upgrade elpy # to upgrade to the latest elpy
