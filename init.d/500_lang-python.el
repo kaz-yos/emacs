@@ -100,7 +100,11 @@
 ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
 (defun my-python-eval ()
   (interactive)
-  (my-python-start)
+
+  ;; (my-python-start)
+  ;; defined in 200_my-misc-functions-and-bindings.el
+  (my-repl-start "*Python*" #'(lambda () (call-interactively 'run-python)))
+
   (if (and transient-mark-mode mark-active)			; Check if selection is present
       (python-shell-send-region (point) (mark))			; If selected, send region
     ;; If not selected, do all the following
