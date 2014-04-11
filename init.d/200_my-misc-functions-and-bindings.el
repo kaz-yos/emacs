@@ -1,5 +1,6 @@
 ;;; My miscellaneous functions
 
+;;;
 ;;; Take current line to top
 (defun my-recenter-top ()
   (interactive)
@@ -8,6 +9,7 @@
 (global-set-key (kbd "C-S-l") 'my-recenter-top)
 ;;
 
+;;;
 ;;; my-insert-date
 ;; http://ergoemacs.org/emacs/elisp_datetime.html
 (defun my-insert-date ()
@@ -24,6 +26,7 @@
 (global-set-key (kbd "C-c r") 'replace-string)
 
 
+;;;
 ;;; my-start-repl
 ;; A function to start a REPL if not already available
 ;; https://stat.ethz.ch/pipermail/ess-help/2012-December/008426.html
@@ -65,6 +68,7 @@ if a buffer named repl-buffer-name is not available."
 ;; (my-repl-start "*R*" #'R)
 ;;
 
+;;;
 ;;; Surround region
 ;; http://www.emacswiki.org/emacs/SurroundRegion
 (defun surround (begin end open close)
@@ -80,5 +84,11 @@ If you omit CLOSE, it will reuse OPEN."
     (insert open)))
 
 
-
-
+;;;
+;;; flush-empty-lines
+;; (defun flush-empty-lines ()
+;;   (interactive)
+;;   (flush-lines "^$"))
+;;
+;; Somehow does not work if not selected from bottom.
+(setq flush-empty-lines #'(flush-lines "^$"))
