@@ -126,6 +126,9 @@
 ;; Limit the number of items of each collection
 (setq cider-repl-print-length 500)
 ;;
+;; auto-complete-mode toggle
+(define-key clojure-mode-map (kbd "C-c a") 'auto-complete-mode)
+;;
 ;;
 ;;; 4clojure.el
 (require '4clojure)
