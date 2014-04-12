@@ -60,7 +60,7 @@
 	;; Go to the previous position
 	(goto-char initial-point)
 	;; Go back one S-exp
-	(backward-sexp)
+	(paredit-backward)
 	;; Loop
 	(while (not (equal (current-column) 0))
 	  ;; (backward-sexp)
@@ -262,7 +262,7 @@
 	;; Go to the previous position
 	(goto-char initial-point)
 	;; Go back one S-exp
-	(backward-sexp)
+	(paredit-backward)
 	;; Loop
 	(while (not (equal (current-column) 0))
 	  ;; (backward-sexp)
