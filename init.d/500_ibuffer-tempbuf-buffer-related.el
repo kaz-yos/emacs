@@ -34,11 +34,14 @@
 			 (mode . Rd-mode)))
 	       ("LISP"	(or
 			 (mode . emacs-lisp-mode)
-			 (name . "^\\*slime")
 			 (mode . list-mode)
-			 (mode . clojure-mode)
-			 (name . "^\\*cider-")
-			 (name . "^\\*nrepl-")))
+			 (name . "^\\*ielm")))
+	       ("CLOJURE" (or
+			   (mode . clojure-mode)
+			   (name . "^\\*cider-")
+			   (name . "^\\*nrepl-")))
+	       ("SLIME" (or
+			 (name . "^\\*slime")))
 	       ("PYTHON" (or
 			  (mode . python-mode)
 			  (mode . inferior-python-mode)))
@@ -48,8 +51,8 @@
 			  (mode . ssh-mode)
 			  (mode . eshell-mode)))
 	       ("SQL"  (or
-			  (mode . sql-mode)
-			  (mode . sql-interactive-mode)))
+			(mode . sql-mode)
+			(mode . sql-interactive-mode)))
 	       ("TeX"    (or
 			  (mode . TeX-mode)
 			  (mode . LaTeX-mode)))

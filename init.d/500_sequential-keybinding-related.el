@@ -77,12 +77,12 @@
                                             (outline-next-visible-heading 1)))
                                  ("C-p" . (lambda ()
                                             (outline-previous-visible-heading 1)))))))
-;; Make C-q a prefix
-(defvar ctl-q-map (make-keymap))
-(define-key global-map "\C-q" ctl-q-map)
+;; Make C-' a prefix
+(defvar ctl-quote-map (make-keymap))
+(define-key global-map (kbd "C-'") ctl-quote-map)
 ;; Scroll the other window
 (smartrep-define-key
- global-map "C-q" '(("n" . (lambda () (scroll-other-window 1)))
+ global-map "C-'" '(("n" . (lambda () (scroll-other-window 1)))
                     ("p" . (lambda () (scroll-other-window -1)))
                     ("N" . 'scroll-other-window)
                     ("P" . (lambda () (scroll-other-window '-)))

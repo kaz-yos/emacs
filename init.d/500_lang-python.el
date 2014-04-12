@@ -5,44 +5,29 @@
 ;;
 ;; python-mode.el (more features, more configurations):
 ;; http://www.janteichmann.me/projects/emacs_as_python_editor
-;;
-;;
-;; python.el
+
+
+;;;
+;;; python.el
 ;; http://superuser.com/questions/345595/python-el-for-long-time-python-mode-el-user
 (require 'python)
-;; (setq python-shell-interpreter "/usr/local/bin/python")	; symlink to python3 does not work.
 ;;
-;; ipython setting for python.el (not used as of 2013-12-28)
-(setq
- ;; python-shell-interpreter "ipython"
- python-shell-interpreter "/usr/local/bin/ipython3"
- ;; python-shell-interpreter "/usr/local/bin/ipython"
- ;; "console --pylab" required for matplotlib? 2013-12-25
- ;; http://stackoverflow.com/questions/17117074/python-shell-in-emacs-freezes-when-using-matplotlib
- ;; python-shell-interpreter-args "console --pylab"
- python-shell-interpreter-args "--pylab"	; console does not work with Python 3.3.3. 2013-12-31
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-Regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
- "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
- "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
- "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+;; Use python3 from homebrew.
+(setq python-shell-interpreter "/usr/local/bin/python3")
 ;;
 ;; ;; Default shell interaction commands
-;; (define-key map "\C-c\C-p" 'run-python)
-;; (define-key map "\C-c\C-s" 'python-shell-send-string)
-;; (define-key map "\C-c\C-r" 'python-shell-send-region)
-;; (define-key map "\C-\M-x" 'python-shell-send-defun)
-;; (define-key map "\C-c\C-c" 'python-shell-send-buffer)
-;; (define-key map "\C-c\C-l" 'python-shell-send-file)
-;; (define-key map "\C-c\C-z" 'python-shell-switch-to-shell)
+;; (define-key map (kbd "C-c C-p") 'run-python)
+;; (define-key map (kbd "C-c C-s") 'python-shell-send-string)
+;; (define-key map (kbd "C-c C-r") 'python-shell-send-region)
+;; (define-key map (kbd "C-M-x")   'python-shell-send-defun)
+;; (define-key map (kbd "C-c C-c") 'python-shell-send-buffer)
+;; (define-key map (kbd "C-c C-l") 'python-shell-send-file)
+;; (define-key map (kbd "C-c C-z") 'python-shell-switch-to-shell)
 ;;
 ;; Redefine python-shell-send-region command to avoid sending blank line to ipython shell 2013-12-22
 ;; This, however, breaks the debugger. It will show the wrong lines in the beginning of the files. 2013-12-25
 ;; Python3's traceback is smarter and correctly shows the error with the simplified send-region. 2014-01-02
-(defun python-shell-send-region (start end)
+'(defun python-shell-send-region (start end)
   "Send the region delimited by START and END to inferior Python process."
   (interactive "r")
   (python-shell-send-string
@@ -56,7 +41,97 @@
    ;;  (buffer-substring start end))
    nil t))
 ;;
-;; jedi.el	; Python auto-completion for Emacs
+;;;
+;;; my-send-to-python
+(defun my-send-to-python (start end)
+  "Sends expression to *Python* and have it evaluated."
+
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
+
+    ;; Change to Python shell
+    (python-shell-switch-to-shell)
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (comint-send-input)
+    ;; One more time if not ending with \n
+    (if (not (equal (substring region-string -1) "\n"))
+	(comint-send-input))
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
+;;; my-python-eval
+;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
+(defun my-python-eval ()
+  "Evaluates Python expressions"
+  (interactive)
+  ;; Define local variables
+  (let* (w-script)
+
+    ;; defined in 200_my-misc-functions-and-bindings.el
+    (my-repl-start "*Python*" #'(lambda () (call-interactively 'run-python)))
+
+    ;; Check if selection is present
+    (if (and transient-mark-mode mark-active)
+	;; If selected, send region
+	(my-send-to-python (point) (mark))
+
+      ;; If not selected, do all the following
+      ;; Move to the beginning of line
+      (beginning-of-line)
+      ;; Set mark at current position
+      (set-mark (point))
+      ;; Go to the end of statment
+      (python-nav-end-of-statement)
+      ;; Go to the end of block
+      (python-nav-end-of-block)
+      ;; Maker transient region active
+      ;; (setq mark-active t)
+      ;; Send region if not empty
+      (if (not (equal (point) (mark)))
+	  (my-send-to-python (point) (mark))
+	;; If empty, deselect region
+	(setq mark-active nil))
+      ;; Move to the next statement
+      (python-nav-forward-statement)				
+      
+      ;; Activate shell window, and switch back
+      ;; Remeber the script window
+      (setq w-script (selected-window))
+      ;; Switch to the shell
+      (python-shell-switch-to-shell)
+      ;; Switch back to the script window
+      (select-window w-script)					
+      )))
+;;
+;; Define hooks
+(add-hook 'python-mode-hook		; For Python script
+          '(lambda()
+	     (local-set-key (kbd "<S-return>") 'my-python-eval)
+	     (local-set-key (kbd "<C-return>") 'my-python-eval)
+	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
+	     ;; (eldoc-mode 1)			; eldoc in the mode line. Slow? 2013-12-25
+	     (local-set-key (kbd "C-m") 'newline-and-indent)	; Indent after newline
+	     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)
+	     (local-set-key (kbd "C-c c") 'python-check)	; Check grammar
+	     ))
+;;
+(add-hook 'inferior-python-mode-hook	; For Python process
+          '(lambda()
+             ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
+             ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
+	     ))
+
+
+;;;
+;;; jedi.el	; Python auto-completion for Emacs
 ;; http://tkf.github.io/emacs-jedi/
 (setq jedi:complete-on-dot t)				; binds . to jedi:dot-complete. Dot alone activates jedi
 (add-hook 'python-mode-hook	     'jedi:setup)	; for full setup
@@ -81,68 +156,13 @@
 	     ;; jedi:show-doc
 	     (define-key jedi-mode-map (kbd "C-c C-v") 'jedi:show-doc)		; Simulate ESS
 	     ))
+
+
+;;;
+;;; ein.el	; Emacs IPython Notebook (EIN)
+;; Current version does not work with ipython 2.0.0 as of 2013-12-20
+;; 20140317.1114 did not work with ipython 2.0.0 stable as of 2014-04-08
 ;;
-;; Code to emulate ESS/R behavior 2013-12-22 version
-(defun my-python-start ()
-  (interactive)
-  (if (not (member "*Python*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-        (delete-other-windows)
-        (setq w1 (selected-window))
-        (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))	; Split into two windows
-	(call-interactively 'run-python)	; Activate Python if not running (runs ipython)
-        (set-window-buffer w1 "*Python*")	; Python on the left (w1)
-        (set-window-buffer w2 w1name)		; Script on the right (w2)
-	(select-window w2)			; Select script (w2) Added
-	)))
-;; Start python if not started. Send region if selected, line if not selected (whole def if it is def)
-;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
-(defun my-python-eval ()
-  (interactive)
-  (my-python-start)
-  (if (and transient-mark-mode mark-active)			; Check if selection is present
-      (python-shell-send-region (point) (mark))			; If selected, send region
-    ;; If not selected, do all the following
-    (beginning-of-line)						; Move to the beginning of line
-    (if (looking-at "def")					; Check if the first word is def (function def)
-	(progn							; If it is def
-	  (python-shell-send-defun ())				; Send whole def
-	  (python-nav-end-of-defun)				; Move to the end of def
-	  (python-nav-forward-statement)			; Move to the next statement
-	  )
-      ;; If it is not def, do all the following
-      (python-shell-send-region (point-at-bol) (point-at-eol))	; Send the current line
-      (python-nav-forward-statement)				; Move to the next statement
-      )
-    ;; Activate shell window, and switch back
-    (progn
-      (setq w-script (selected-window))				; Remeber the script window
-      (python-shell-switch-to-shell)				; Switch to the shell
-      (select-window w-script)					; Switch back to the script window
-      )
-    ))
-;;
-;; Define hooks
-(add-hook 'python-mode-hook		; For Python script
-          '(lambda()
-	     (local-set-key (kbd "<S-return>") 'my-python-eval)
-	     (local-set-key (kbd "<C-return>") 'my-python-eval)
-	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
-	     ;; (eldoc-mode 1)			; eldoc in the mode line. Slow? 2013-12-25
-	     (local-set-key (kbd "C-m") 'newline-and-indent)	; Indent after newline
-	     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)
-	     (local-set-key (kbd "C-c c") 'python-check)	; Check grammar
-	     ))
-;;
-(add-hook 'inferior-python-mode-hook	; For Python process
-          '(lambda()
-             ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
-             ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
-	     ))
-;;
-;;
-;; ein.el	; Emacs IPython Notebook (EIN) ; Current version does not work with ipython 2.0.0 as of 2013-12-20
 ;; This is fundamentally different from python.el and can coexist. 2013-12-22
 ;; http://tkf.github.com/emacs-ipython-notebook/
 ;; Usage
@@ -165,8 +185,10 @@
 	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
 	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
 	     ))
-;;
-;; ;; elpy.el	; python.el replacement. No need for now. 2013-12-22
+
+
+;;;
+;;; elpy.el	; python.el replacement. No need for now. 2013-12-22
 ;; ;; https://github.com/jorgenschaefer/elpy/wiki
 ;; ;; Need to install elpy/rope/jedi/flake8 via $ sudo pip install
 ;; ;; $ sudo pip install --upgrade elpy # to upgrade to the latest elpy
