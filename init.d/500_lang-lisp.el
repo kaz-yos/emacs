@@ -18,8 +18,8 @@
     (set-mark (line-beginning-position))
     ;; Delete the region
     (delete-region (point) (mark))
-    ;; Unset region
-    
+    ;; Unset transient mark
+    (setq mark-active nil)
     ;; Insert the string
     (insert region-string)
     ;; Execute
@@ -54,7 +54,9 @@
 	    ;; Go to the end
 	    (forward-sexp)
 	    ;; Send to ielm
-	    (my-send-to-ielm (point) (mark)))
+	    (my-send-to-ielm (point) (mark))
+	    ;; Go to the next expression
+	    (forward-sexp))
 	;; If it is not def, do all the following
 	;; Go to the previous position
 	(goto-char initial-point)
@@ -62,7 +64,9 @@
 	(backward-sexp)
 	;; Loop
 	(while (not (equal (current-column) 0))
-	  (backward-sexp)
+	  ;; (backward-sexp)
+	  ;; paredit dependency
+	  (paredit-backward)
 	  )
 	;; Set a mark there
 	(set-mark (line-beginning-position))
@@ -70,6 +74,8 @@
 	(forward-sexp)
 	;; Eval the S-exp before
 	(my-send-to-ielm (point) (mark))
+	;; Go to the next expression
+	(forward-sexp)
 	))))
 ;;
 ;; define keys
@@ -82,7 +88,9 @@
 ;; `slime-describe-symbol', bound by default to `C-c C-d d`.
 ;; Usage:
 ;; Enable the package in elisp and ielm modes as follows:
-(require 'elisp-slime-nav) ;; optional if installed via package.el
+;; This is optional if installed via package.el
+(require 'elisp-slime-nav)
+;; Hook
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
 ;;
