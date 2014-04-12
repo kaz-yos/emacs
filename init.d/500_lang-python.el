@@ -44,14 +44,14 @@
 ;;;
 ;;; my-send-to-python
 (defun my-send-to-python (start end)
-    "Sends expression to *Python* and have it evaluated."
+  "Sends expression to *Python* and have it evaluated."
 
   (let* (;; Assign the current buffer
 	 (script-window (selected-window))
 	 ;; Assign the region as a string
 	 (region-string (buffer-substring-no-properties start end)))
 
-    ;; Change to cider REPL
+    ;; Change to Python shell
     (python-shell-switch-to-shell)
     ;; Move to end of buffer
     (end-of-buffer)
@@ -59,6 +59,9 @@
     (insert region-string)
     ;; Execute
     (comint-send-input)
+    ;; One more time if not ending with \n
+    (if (not (equal (substring region-string -1) "\n"))
+	(comint-send-input))
     ;; Come back to the script
     (select-window script-window)
     ;; Return nil
@@ -78,53 +81,34 @@
     ;; Check if selection is present
     (if (and transient-mark-mode mark-active)
 	;; If selected, send region
-	(progn
-	  ;; Send region
-	  (python-shell-send-region (point) (mark))
-	  ;; If the last letter is not \n, send \n
-	  (if (not (equal (substring (buffer-substring-no-properties (point) (mark)) -1) "\n"))
-	      (python-shell-send-string "\n")))
-      
+	(my-send-to-python (point) (mark))
+
       ;; If not selected, do all the following
       ;; Move to the beginning of line
       (beginning-of-line)
-      ;; Check if the first word is def (function def)
-      (if (looking-at "def ")
-	  ;; If it is def
-	  (progn
-	    ;; Send whole def
-	    (python-shell-send-defun ())
-	    ;; Move to the end of def
-	    (python-nav-end-of-defun)
-	    ;; Move to the next statement
-	    (python-nav-forward-statement)			
-	    )
-	;; If it is not def, do all the following
-	;; Set mark at current position
-	(set-mark (point))
-	;; Go to the end of statment
-	(python-nav-end-of-statement)
-	;; Go to the end of block
-	(python-nav-end-of-block)
-	;; Maker transient region active
-	(setq mark-active t)
-	;; Send region
-	(python-shell-send-region (point) (mark))
-	;; If the last letter is not \n, send \n
-	(if (not (equal (substring (buffer-substring-no-properties (point) (mark)) -1) "\n"))
-	    (python-shell-send-string "\n"))
-	;; Move to the next statement
-	(python-nav-forward-statement)				
-	)
+      ;; Set mark at current position
+      (set-mark (point))
+      ;; Go to the end of statment
+      (python-nav-end-of-statement)
+      ;; Go to the end of block
+      (python-nav-end-of-block)
+      ;; Maker transient region active
+      ;; (setq mark-active t)
+      ;; Send region if not empty
+      (if (not (equal (point) (mark)))
+	  (my-send-to-python (point) (mark))
+	;; If empty, deselect region
+	(setq mark-active nil))
+      ;; Move to the next statement
+      (python-nav-forward-statement)				
+      
       ;; Activate shell window, and switch back
-      (progn
-	;; Remeber the script window
-	(setq w-script (selected-window))
-	;; Switch to the shell
-	(python-shell-switch-to-shell)
-	;; Switch back to the script window
-	(select-window w-script)					
-	)
+      ;; Remeber the script window
+      (setq w-script (selected-window))
+      ;; Switch to the shell
+      (python-shell-switch-to-shell)
+      ;; Switch back to the script window
+      (select-window w-script)					
       )))
 ;;
 ;; Define hooks
