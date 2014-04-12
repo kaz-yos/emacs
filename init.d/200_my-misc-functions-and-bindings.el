@@ -70,7 +70,7 @@ if a buffer named repl-buffer-name is not available."
 ;; (my-repl-start "*R*" #'R)
 ;;
 ;;; my-repl-eval for lisp languages
-(defun my-repl-eval (repl-buffer-name fun-repl-start repl-sender defun-string)
+(defun my-repl-eval (repl-buffer-name fun-repl-start fun-repl-send defun-string)
   (interactive)
   (let* (;; Save current point
 	 (initial-point (point)))
@@ -81,7 +81,7 @@ if a buffer named repl-buffer-name is not available."
     ;; Check if selection is present
     (if (and transient-mark-mode mark-active)
 	;; If selected, send to ielm
-	(funcall repl-sender (point) (mark))
+	(funcall fun-repl-send (point) (mark))
       ;; If not selected, do all the following
       ;; Move to the beginning of line
       (beginning-of-line)
@@ -94,7 +94,7 @@ if a buffer named repl-buffer-name is not available."
 	    ;; Go to the end
 	    (forward-sexp)
 	    ;; Send to ielm
-	    (funcall repl-sender (point) (mark))
+	    (funcall fun-repl-send (point) (mark))
 	    ;; Go to the next expression
 	    (forward-sexp))
 	;; If it is not def, do all the following
@@ -111,7 +111,7 @@ if a buffer named repl-buffer-name is not available."
 	;; Go to the end of the S-exp starting there
 	(forward-sexp)
 	;; Eval the S-exp before
-	(funcall repl-sender (point) (mark))
+	(funcall fun-repl-send (point) (mark))
 	;; Go to the next expression
 	(forward-sexp)
 	))))

@@ -1,33 +1,32 @@
 ;;;
 ;;; Emacs Lisp
-;;;
 ;;; my-send-to-ielm
 (defun my-send-to-ielm (start end)
 
-  let* (;; Assign the current buffer
-	(script-window (selected-window))
-	;; Assign the region as a string
-	(region-string (buffer-substring-no-properties start end)))
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
 
-  ;; Change other window to REPL
-  (switch-to-buffer-other-window "*ielm*")
-  ;; Move to end of buffer
-  (end-of-buffer)
-  ;; Set mark from beginning
-  (set-mark (line-beginning-position))
-  ;; Delete the region
-  (delete-region (point) (mark))
-  ;; Unset transient mark
-  (setq mark-active nil)
-  ;; Insert the string
-  (insert region-string)
-  ;; Execute
-  (ielm-return)
-  ;; Come back to the script
-  (select-window script-window)
-  ;; Return nil
-  nil
-  )
+    ;; Change other window to REPL
+    (switch-to-buffer-other-window "*ielm*")
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; Set mark from beginning
+    (set-mark (line-beginning-position))
+    ;; Delete the region
+    (delete-region (point) (mark))
+    ;; Unset transient mark
+    (setq mark-active nil)
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (ielm-return)
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
 ;;
 ;;; my-elisp-eval
 (defun my-elisp-eval ()
@@ -37,7 +36,7 @@
    "*ielm*"
    ;; fun-repl-start
    #'ielm
-   ;; repl-sender
+   ;; fun-repl-send
    #'my-send-to-ielm
    ;;defun-string
    "(defun "))
@@ -206,7 +205,7 @@
    "*cider-repl localhost*"
    ;; fun-repl-start
    #'cider-jack-in
-   ;; repl-sender
+   ;; fun-repl-send
    #'my-send-to-cider
    ;;defun-string
    "(defn "))
