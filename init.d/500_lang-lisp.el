@@ -277,24 +277,6 @@
 	;; Go to the next expression
 	(forward-sexp)
 	))))
-
-;;; Define a flexible eval function.
-'(defun my-cider-eval ()
-  (interactive)
-
-  ;; defined in 200_my-misc-functions-and-bindings.el
-  (my-repl-start "*cider-repl localhost*" #'cider-jack-in)
-
-  (if (and transient-mark-mode mark-active)			; Check if selection is present
-      (cider-eval-region (point) (mark))			; If selected, send region
-    ;; If not selected, do all the following
-    (beginning-of-line)						; Move to the beginning of line
-    (if (looking-at "(defn ")					; Check if the first word is def (function def)
-	(cider-eval-defun-at-point)				; Send whole def
-      ;; If it is not def, do all the following
-      (end-of-line)						; Move to the end of line
-      (cider-eval-last-sexp)					; Eval the one before
-      )))
 ;;
 ;; define keys
 (add-hook 'clojure-mode-hook
