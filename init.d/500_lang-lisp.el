@@ -33,8 +33,9 @@
 
 
 ;;; lispxmp.el to evaluate sexp within .el
+;; evaluate within script
 (require 'lispxmp)
-(define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
+(define-key emacs-lisp-mode-map (kbd "C-c e") 'lispxmp)
 
 
 

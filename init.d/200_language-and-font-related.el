@@ -14,7 +14,7 @@
 
 ;;; Smooth Japanese input (mac only?)
 ;; http://suzukima.hatenablog.com/entry/2012/08/16/232210
-(setq show-paren-delay 0.5)			; Compatibility with Japanese input
+(setq show-paren-delay 0.25)			; Compatibility with Japanese input
 
 
 ;;; Mac OS X font settings
