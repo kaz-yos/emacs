@@ -69,25 +69,9 @@
 ;; (setq ess-gen-proc-buffer-name-function (lambda (proc) (concatenate 'proc "R")))
 ;; (setq ess-gen-proc-buffer-name-function (lambda (proc) "nameR"))
 ;;
-;; Starting R on the left
-(defun my-ess-start-R ()
-  (interactive)
-  (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-        (delete-other-windows)
-        (setq w1 (selected-window))
-        (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))
-        (R)
-        (set-window-buffer w1 "*R*")	; R on the left (w1)
-        (set-window-buffer w2 w1name)	; script on the right (w2)
-	;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Selecting-Windows.html
-	(select-window w2)		; Select script (w2) Added
-	)))
-;;
+;;; my-essh-eval-R function
 (defun my-ess-eval-R ()
   (interactive)
-  ;; (my-ess-start-R)			; R starts on the right if this is not used.
 
   ;; defined in 200_my-misc-functions-and-bindings.el
   (my-repl-start "*R*" #'R)
