@@ -41,21 +41,8 @@
    ;;  (buffer-substring start end))
    nil t))
 ;;
-;; Code to emulate ESS/R behavior 2013-12-22 version
-(defun my-python-start ()
-  (interactive)
-  (if (not (member "*Python*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-        (delete-other-windows)
-        (setq w1 (selected-window))
-        (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))	; Split into two windows
-	(call-interactively 'run-python)	; Activate Python if not running (runs ipython)
-        (set-window-buffer w1 "*Python*")	; Python on the left (w1)
-        (set-window-buffer w2 w1name)		; Script on the right (w2)
-	(select-window w2)			; Select script (w2) Added
-	)))
-;; Start python if not started. Send region if selected, line if not selected (whole def if it is def)
+;;;
+;;; my-python-eval
 ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
 (defun my-python-eval ()
   (interactive)
