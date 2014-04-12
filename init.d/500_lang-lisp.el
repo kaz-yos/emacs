@@ -1,32 +1,76 @@
 ;;;
 ;;; Emacs Lisp
-;;; eval short cut
-;; C-RET for eval-region in elisp mode 2013-12-22
-;; (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-region)
+;;;
+;;; my-elisp-eval
+;; send to ielm
+(defun my-send-to-ielm (start end)
+  
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
+    
+    ;; Change other window to REPL
+    (switch-to-buffer-other-window "*ielm*")
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; Set mark from beginning
+    (set-mark (line-beginning-position))
+    ;; Delete the region
+    (delete-region (point) (mark))
+    ;; Unset region
+    
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (ielm-return)
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
 ;;
 (defun my-elisp-eval ()
   (interactive)
+  (let* (;; Save current point
+	 (initial-point (point)))
+    ;; defined in 200_my-misc-functions-and-bindings.el
+    (my-repl-start "*ielm*" #'ielm)
 
-  ;; defined in 200_my-misc-functions-and-bindings.el
-  (my-repl-start "*ielm*" #'ielm)
-
-  ;; Check if selection is present
-  (if (and transient-mark-mode mark-active)
-      ;; If selected, eval region
-      (eval-region (point) (mark))
-    ;; If not selected, do all the following
-    ;; Move to the beginning of line
-    (beginning-of-line)
-    ;; Check if the first word is def (function def)
-    (if (looking-at "(defun ")
-	;; Use eval-defun if on defun
-	(eval-defun)
-      ;; If it is not def, do all the following
-      ;; Go to the end of the S-exp starting there
-      (forward-sexp)
-      ;; Eval the S-exp before
-      (eval-last-sexp)
-      )))
+    ;; Check if selection is present
+    (if (and transient-mark-mode mark-active)
+	;; If selected, send to ielm
+	(my-send-to-ielm (point) (mark))
+      ;; If not selected, do all the following
+      ;; Move to the beginning of line
+      (beginning-of-line)
+      ;; Check if the first word is def (function def)
+      (if (looking-at "(defun ")
+	  ;; Use eval-defun if on defun
+	  ;; (eval-defun)
+	  (progn
+	    ;; Set a mark there
+	    (set-mark (line-beginning-position))
+	    ;; Go to the end
+	    (forward-sexp)
+	    ;; Send to ielm
+	    (my-send-to-ielm (point) (mark)))
+	;; If it is not def, do all the following
+	;; Go to the previous position
+	(goto-char initial-point)
+	;; Go back one S-exp
+	(backward-sexp)
+	;; Loop
+	(while (not (equal (current-column) 0))
+	  (backward-sexp)
+	  )
+	;; Set a mark there
+	(set-mark (line-beginning-position))
+	;; Go to the end of the S-exp starting there
+	(forward-sexp)
+	;; Eval the S-exp before
+	(my-send-to-ielm (point) (mark))
+	))))
 ;;
 ;; define keys
 (define-key emacs-lisp-mode-map (kbd "<C-return>") 'my-elisp-eval)
