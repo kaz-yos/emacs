@@ -4,12 +4,12 @@
 ;;; my-elisp-eval
 ;; send to ielm
 (defun my-send-to-ielm (start end)
-  
+
   (let* (;; Assign the current buffer
 	 (script-window (selected-window))
 	 ;; Assign the region as a string
 	 (region-string (buffer-substring-no-properties start end)))
-    
+
     ;; Change other window to REPL
     (switch-to-buffer-other-window "*ielm*")
     ;; Move to end of buffer
@@ -206,12 +206,12 @@
 ;;; my-cider-eval
 ;; send to cider
 (defun my-send-to-cider (start end)
-  
+
   (let* (;; Assign the current buffer
 	 (script-window (selected-window))
 	 ;; Assign the region as a string
 	 (region-string (buffer-substring-no-properties start end)))
-    
+
     ;; Change to cider REPL
     (cider-switch-to-repl-buffer)
     ;; Move to end of buffer
@@ -232,7 +232,7 @@
     nil
     ))
 ;;
-(defun my-cider-eval ()
+'(defun my-cider-eval ()
   (interactive)
   (let* (;; Save current point
 	 (initial-point (point)))
@@ -277,6 +277,18 @@
 	;; Go to the next expression
 	(forward-sexp)
 	))))
+;;
+;;; my-cider-eval
+(defun my-cider-eval ()
+  (interactive)
+  (my-repl-eval   ;; repl-buffer-name
+   "*cider-repl localhost*"
+   ;; fun-repl-start
+   #'cider-jack-in
+   ;; repl-sender
+   #'my-send-to-cider
+   ;;defun-string
+   "(defn "))
 ;;
 ;; define keys
 (add-hook 'clojure-mode-hook
