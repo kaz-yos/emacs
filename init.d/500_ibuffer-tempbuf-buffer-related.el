@@ -35,7 +35,8 @@
 	       ("LISP"	(or
 			 (mode . emacs-lisp-mode)
 			 (name . "^\\*slime")
-			 (mode . list-mode)))
+			 (mode . list-mode)
+			 (mode . ielm-mode)))
 	       ("CLOJURE" (or
 			   (mode . clojure-mode)
 			   (name . "^\\*cider-")
