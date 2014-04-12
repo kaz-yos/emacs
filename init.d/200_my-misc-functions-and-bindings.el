@@ -32,7 +32,6 @@
 ;; A function to start a REPL if not already available
 ;; https://stat.ethz.ch/pipermail/ess-help/2012-December/008426.html
 ;; http://t7331.codeinpro.us/q/51502552e8432c0426273040
-;;
 (defun my-repl-start (repl-buffer-name fun-repl-start)
   "Start an REPL using a function specified in fun-repl-start,
 if a buffer named repl-buffer-name is not available."
@@ -67,9 +66,55 @@ if a buffer named repl-buffer-name is not available."
 	  (select-window window2)
 	  ))))
 ;;
-;; R interpreter
+;; eg. R interpreter
 ;; (my-repl-start "*R*" #'R)
 ;;
+;;; my-repl-eval for lisp languages
+(defun my-repl-eval (repl-buffer-name fun-repl-start repl-sender defun-string)
+  (interactive)
+  (let* (;; Save current point
+	 (initial-point (point)))
+    
+    ;; defined in 200_my-misc-functions-and-bindings.el
+    (my-repl-start repl-buffer-name fun-repl-start)
+
+    ;; Check if selection is present
+    (if (and transient-mark-mode mark-active)
+	;; If selected, send to ielm
+	(funcall repl-sender (point) (mark))
+      ;; If not selected, do all the following
+      ;; Move to the beginning of line
+      (beginning-of-line)
+      ;; Check if the first word is def (function def)
+      (if (looking-at defun-string)
+	  ;; Use eval-defun if on defun
+	  (progn
+	    ;; Set a mark there
+	    (set-mark (line-beginning-position))
+	    ;; Go to the end
+	    (forward-sexp)
+	    ;; Send to ielm
+	    (funcall repl-sender (point) (mark))
+	    ;; Go to the next expression
+	    (forward-sexp))
+	;; If it is not def, do all the following
+	;; Go to the previous position
+	(goto-char initial-point)
+	;; Go back one S-exp. (paredit dependency)
+	(paredit-backward)
+	;; Loop
+	(while (not (equal (current-column) 0))
+	  ;; Go back one S-exp. (paredit dependency)
+	  (paredit-backward))
+	;; Set a mark there
+	(set-mark (line-beginning-position))
+	;; Go to the end of the S-exp starting there
+	(forward-sexp)
+	;; Eval the S-exp before
+	(funcall repl-sender (point) (mark))
+	;; Go to the next expression
+	(forward-sexp)
+	))))
 
 ;;;
 ;;; Surround region
