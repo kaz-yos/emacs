@@ -42,6 +42,28 @@
    nil t))
 ;;
 ;;;
+;;; my-send-to-python
+(defun my-send-to-python (start end)
+    "Sends expression to *Python* and have it evaluated."
+
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
+
+    ;; Change to cider REPL
+    (python-shell-switch-to-shell)
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (comint-send-input)
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
 ;;; my-python-eval
 ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
 (defun my-python-eval ()
