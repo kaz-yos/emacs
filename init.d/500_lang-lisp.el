@@ -2,7 +2,7 @@
 ;;; Emacs Lisp
 ;;; my-send-to-ielm
 (defun my-send-to-ielm (start end)
-
+  "Sends expression to *ielm* and have it evaluated."
   (let* (;; Assign the current buffer
 	 (script-window (selected-window))
 	 ;; Assign the region as a string
@@ -171,6 +171,7 @@
 ;;; my-send-to-cider
 ;; send to cider
 (defun my-send-to-cider (start end)
+    "Sends expression to *cider-repl* and have it evaluated."
 
   (let* (;; Assign the current buffer
 	 (script-window (selected-window))

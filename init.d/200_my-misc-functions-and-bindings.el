@@ -71,6 +71,9 @@ if a buffer named repl-buffer-name is not available."
 ;;
 ;;; my-repl-eval for lisp languages
 (defun my-repl-eval (repl-buffer-name fun-repl-start fun-repl-send defun-string)
+    "Evaluates expression using a REPL specified by repl-buffer-name. Sends
+expression using a function specified in fun-repl-start. A function definition
+ is detected by a string specified in defun-string and handled accordingly."
   (interactive)
   (let* (;; Save current point
 	 (initial-point (point)))
