@@ -203,7 +203,7 @@
 ;;     (eval-after-load "auto-complete"
 ;;       '(add-to-list 'ac-modes 'cider-mode))
 ;;
-;;; my-cider-eval
+;;; my-send-to-cider
 ;; send to cider
 (defun my-send-to-cider (start end)
 
@@ -232,56 +232,11 @@
     nil
     ))
 ;;
-'(defun my-cider-eval ()
-  (interactive)
-  (let* (;; Save current point
-	 (initial-point (point)))
-    ;; defined in 200_my-misc-functions-and-bindings.el
-    (my-repl-start "*cider-repl localhost*" #'cider-jack-in)
-
-    ;; Check if selection is present
-    (if (and transient-mark-mode mark-active)
-	;; If selected, send to ielm
-	(my-send-to-cider (point) (mark))
-      ;; If not selected, do all the following
-      ;; Move to the beginning of line
-      (beginning-of-line)
-      ;; Check if the first word is def (function def)
-      (if (looking-at "(defn ")
-	  ;; Use eval-defun if on defun
-	  (progn
-	    ;; Set a mark there
-	    (set-mark (line-beginning-position))
-	    ;; Go to the end
-	    (forward-sexp)
-	    ;; Send to ielm
-	    (my-send-to-cider (point) (mark))
-	    ;; Go to the next expression
-	    (forward-sexp))
-	;; If it is not def, do all the following
-	;; Go to the previous position
-	(goto-char initial-point)
-	;; Go back one S-exp
-	(paredit-backward)
-	;; Loop
-	(while (not (equal (current-column) 0))
-	  ;; (backward-sexp)
-	  ;; paredit dependency
-	  (paredit-backward))
-	;; Set a mark there
-	(set-mark (line-beginning-position))
-	;; Go to the end of the S-exp starting there
-	(forward-sexp)
-	;; Eval the S-exp before
-	(my-send-to-cider (point) (mark))
-	;; Go to the next expression
-	(forward-sexp)
-	))))
-;;
 ;;; my-cider-eval
 (defun my-cider-eval ()
   (interactive)
-  (my-repl-eval   ;; repl-buffer-name
+  (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
+   ;; repl-buffer-name
    "*cider-repl localhost*"
    ;; fun-repl-start
    #'cider-jack-in
@@ -296,6 +251,7 @@
 	     (local-set-key (kbd "<C-return>") 'my-cider-eval)))
 ;;
 ;;
+;;;
 ;;; clojure-cheatsheet.el
 (require 'clojure-cheatsheet)
 ;;
