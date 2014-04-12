@@ -16,13 +16,14 @@
   "Insert current date yyyy-mm-dd."
   (interactive)
   (when (region-active-p)
-    (delete-region (region-beginning) (region-end) )
-    )
+    (delete-region (region-beginning) (region-end)))
   (insert (format-time-string "%Y-%m-%d"))
   )
 (global-set-key (kbd "C-c d") 'my-insert-date)
-;;
-;; replace
+
+
+;;;
+;;; replace (kbd "C-c r")
 (global-set-key (kbd "C-c r") 'replace-string)
 
 
