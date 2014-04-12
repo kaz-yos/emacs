@@ -47,7 +47,6 @@
       ;; Check if the first word is def (function def)
       (if (looking-at "(defun ")
 	  ;; Use eval-defun if on defun
-	  ;; (eval-defun)
 	  (progn
 	    ;; Set a mark there
 	    (set-mark (line-beginning-position))
@@ -66,8 +65,7 @@
 	(while (not (equal (current-column) 0))
 	  ;; (backward-sexp)
 	  ;; paredit dependency
-	  (paredit-backward)
-	  )
+	  (paredit-backward))
 	;; Set a mark there
 	(set-mark (line-beginning-position))
 	;; Go to the end of the S-exp starting there
@@ -205,8 +203,83 @@
 ;;     (eval-after-load "auto-complete"
 ;;       '(add-to-list 'ac-modes 'cider-mode))
 ;;
-;;; Define a flexible eval function.
+;;; my-cider-eval
+;; send to cider
+(defun my-send-to-cider (start end)
+  
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
+    
+    ;; Change other window to REPL
+    (switch-to-buffer-other-window "*cider-repl localhost*")
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; ;; Set mark from beginning
+    ;; (set-mark (line-beginning-position))
+    ;; ;; Delete the region
+    ;; (delete-region (point) (mark))
+    ;; ;; Unset transient mark
+    ;; (setq mark-active nil)
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (cider-repl-return)
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
+;;
 (defun my-cider-eval ()
+  (interactive)
+  (let* (;; Save current point
+	 (initial-point (point)))
+    ;; defined in 200_my-misc-functions-and-bindings.el
+    (my-repl-start "*cider-repl localhost*" #'cider-jack-in)
+
+    ;; Check if selection is present
+    (if (and transient-mark-mode mark-active)
+	;; If selected, send to ielm
+	(my-send-to-cider (point) (mark))
+      ;; If not selected, do all the following
+      ;; Move to the beginning of line
+      (beginning-of-line)
+      ;; Check if the first word is def (function def)
+      (if (looking-at "(defn ")
+	  ;; Use eval-defun if on defun
+	  (progn
+	    ;; Set a mark there
+	    (set-mark (line-beginning-position))
+	    ;; Go to the end
+	    (forward-sexp)
+	    ;; Send to ielm
+	    (my-send-to-cider (point) (mark))
+	    ;; Go to the next expression
+	    (forward-sexp))
+	;; If it is not def, do all the following
+	;; Go to the previous position
+	(goto-char initial-point)
+	;; Go back one S-exp
+	(backward-sexp)
+	;; Loop
+	(while (not (equal (current-column) 0))
+	  ;; (backward-sexp)
+	  ;; paredit dependency
+	  (paredit-backward))
+	;; Set a mark there
+	(set-mark (line-beginning-position))
+	;; Go to the end of the S-exp starting there
+	(forward-sexp)
+	;; Eval the S-exp before
+	(my-send-to-cider (point) (mark))
+	;; Go to the next expression
+	(forward-sexp)
+	))))
+
+;;; Define a flexible eval function.
+'(defun my-cider-eval ()
   (interactive)
 
   ;; defined in 200_my-misc-functions-and-bindings.el
