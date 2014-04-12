@@ -29,7 +29,7 @@
       )))
 ;;
 ;; define keys
-(define-key emacs-lisp-mode-map (kbd "<C-return>" 'my-elisp-eval))
+(define-key emacs-lisp-mode-map (kbd "<C-return>") 'my-elisp-eval)
 ;;
 ;;
 ;;; SLIME-like navigation for elisp
