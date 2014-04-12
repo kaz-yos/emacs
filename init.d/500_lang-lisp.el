@@ -212,8 +212,8 @@
 	 ;; Assign the region as a string
 	 (region-string (buffer-substring-no-properties start end)))
     
-    ;; Change other window to REPL
-    (switch-to-buffer-other-window "*cider-repl localhost*")
+    ;; Change to cider REPL
+    (cider-switch-to-repl-buffer)
     ;; Move to end of buffer
     (end-of-buffer)
     ;; ;; Set mark from beginning
