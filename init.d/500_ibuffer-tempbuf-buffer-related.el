@@ -34,13 +34,14 @@
 			 (mode . Rd-mode)))
 	       ("LISP"	(or
 			 (mode . emacs-lisp-mode)
-			 (name . "^\\*slime")
 			 (mode . list-mode)
-			 (mode . ielm-mode)))
+			 (name . "^\\*ielm")))
 	       ("CLOJURE" (or
 			   (mode . clojure-mode)
 			   (name . "^\\*cider-")
-			   (name . "^\\*nrepl-"))) 
+			   (name . "^\\*nrepl-")))
+	       ("SLIME" (or
+			 (name . "^\\*slime")))
 	       ("PYTHON" (or
 			  (mode . python-mode)
 			  (mode . inferior-python-mode)))
