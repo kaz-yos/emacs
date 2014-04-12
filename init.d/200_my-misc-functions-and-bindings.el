@@ -68,56 +68,7 @@ if a buffer named repl-buffer-name is not available."
 ;;
 ;; eg. R interpreter
 ;; (my-repl-start "*R*" #'R)
-;;
-;;; my-repl-eval for lisp languages
-(defun my-repl-eval (repl-buffer-name fun-repl-start fun-repl-send defun-string)
-    "Evaluates expression using a REPL specified by repl-buffer-name. Sends
-expression using a function specified in fun-repl-start. A function definition
- is detected by a string specified in defun-string and handled accordingly."
-  (interactive)
-  (let* (;; Save current point
-	 (initial-point (point)))
-    
-    ;; defined in 200_my-misc-functions-and-bindings.el
-    (my-repl-start repl-buffer-name fun-repl-start)
 
-    ;; Check if selection is present
-    (if (and transient-mark-mode mark-active)
-	;; If selected, send to ielm
-	(funcall fun-repl-send (point) (mark))
-      ;; If not selected, do all the following
-      ;; Move to the beginning of line
-      (beginning-of-line)
-      ;; Check if the first word is def (function def)
-      (if (looking-at defun-string)
-	  ;; Use eval-defun if on defun
-	  (progn
-	    ;; Set a mark there
-	    (set-mark (line-beginning-position))
-	    ;; Go to the end
-	    (forward-sexp)
-	    ;; Send to ielm
-	    (funcall fun-repl-send (point) (mark))
-	    ;; Go to the next expression
-	    (forward-sexp))
-	;; If it is not def, do all the following
-	;; Go to the previous position
-	(goto-char initial-point)
-	;; Go back one S-exp. (paredit dependency)
-	(paredit-backward)
-	;; Loop
-	(while (not (equal (current-column) 0))
-	  ;; Go back one S-exp. (paredit dependency)
-	  (paredit-backward))
-	;; Set a mark there
-	(set-mark (line-beginning-position))
-	;; Go to the end of the S-exp starting there
-	(forward-sexp)
-	;; Eval the S-exp before
-	(funcall fun-repl-send (point) (mark))
-	;; Go to the next expression
-	(forward-sexp)
-	))))
 
 ;;;
 ;;; Surround region
