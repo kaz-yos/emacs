@@ -139,7 +139,7 @@
       (cider-eval-region (point) (mark))			; If selected, send region
     ;; If not selected, do all the following
     (beginning-of-line)						; Move to the beginning of line
-    (if (looking-at "(defun ")					; Check if the first word is def (function def)
+    (if (looking-at "(defn ")					; Check if the first word is def (function def)
 	(cider-eval-defun-at-point)				; Send whole def
       ;; If it is not def, do all the following
       (end-of-line)						; Move to the end of line
