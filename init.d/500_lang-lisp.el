@@ -2,9 +2,36 @@
 ;;; Emacs Lisp
 ;;; eval short cut
 ;; C-RET for eval-region in elisp mode 2013-12-22
-(define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-region)
+;; (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-region)
+;;
+(defun my-elisp-eval ()
+  (interactive)
 
+  ;; defined in 200_my-misc-functions-and-bindings.el
+  (my-repl-start "*ielm*" #'ielm)
 
+  ;; Check if selection is present
+  (if (and transient-mark-mode mark-active)
+      ;; If selected, eval region
+      (eval-region (point) (mark))
+    ;; If not selected, do all the following
+    ;; Move to the beginning of line
+    (beginning-of-line)
+    ;; Check if the first word is def (function def)
+    (if (looking-at "(defun ")
+	;; Use eval-defun if on defun
+	(eval-defun)
+      ;; If it is not def, do all the following
+      ;; Go to the end of the S-exp starting there
+      (forward-sexp)
+      ;; Eval the S-exp before
+      (eval-last-sexp)
+      )))
+;;
+;; define keys
+(define-key emacs-lisp-mode-map (kbd "<C-return>" 'my-elisp-eval))
+;;
+;;
 ;;; SLIME-like navigation for elisp
 ;; This package provides Slime's convenient "M-." and "M-," navigation
 ;; in `emacs-lisp-mode', together with an elisp equivalent of
