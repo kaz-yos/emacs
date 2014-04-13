@@ -56,6 +56,12 @@ if a buffer named repl-buffer-name is not available."
 
 	  ;; Activate the REPL (Interactive functions are used)
 	  (call-interactively fun-repl-start)
+
+	  ;; If using cider-jack-in, wait for connection.
+	  (if (eq fun-repl-start 'cider-jack-in)
+	      (progn (when (not (cider-connected-p))
+		       (message "waiting for cider...")
+		       (sit-for 4))))
 	  
 	  ;; Make name-repl-buffer keep the selected buffer (REPL)
 	  ;; This does not work for python/clojure

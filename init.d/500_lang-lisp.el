@@ -1,5 +1,9 @@
 ;;;
 ;;; Emacs Lisp
+;;; elisp programming configurations
+;; Non-nil means enter debugger if an error is signaled.
+(setq debug-on-error t)
+;;
 ;;; my-repl-eval for lisp languages (used by both my-elisp-eval/my-cider-eval)
 (defun my-repl-eval (repl-buffer-name fun-repl-start fun-repl-send defun-string)
     "Evaluates expression using a REPL specified by repl-buffer-name. Sends
@@ -11,6 +15,15 @@ expression using a function specified in fun-repl-start. A function definition
     
     ;; defined in 200_my-misc-functions-and-bindings.el
     (my-repl-start repl-buffer-name fun-repl-start)
+
+    ;; Moved to my-repl-start
+    ;; ;; If using cider-jack-in, wait for connection.
+    ;; (if (eq fun-repl-start 'cider-jack-in)
+    ;; 	(progn (when (not (cider-connected-p))
+    ;; 		 (message "waiting for cider...")
+    ;; 		 (sit-for 0.5))
+    ;; 	       ;; Wait for another second to make sure.
+    ;; 	       (sit-for 3)))
 
     ;; Check if selection is present
     (if (and transient-mark-mode mark-active)
@@ -202,18 +215,16 @@ expression using a function specified in fun-repl-start. A function definition
 ;; Enable eldoc in Clojure buffers:
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 ;; Hide special repl buffers
-(setq nrepl-hide-special-buffers t)
+;; (setq nrepl-hide-special-buffers t)
 ;; To auto-select the error buffer when it's displayed:
 (setq cider-auto-select-error-buffer t)
+;; Prevent the auto-display of the REPL buffer in a separate window after connection is established
+;; (setq cider-repl-pop-to-buffer-on-connect nil)
 ;; Limit the number of items of each collection
 (setq cider-repl-print-length 500)
 ;;
 ;; auto-complete-mode toggle
 (define-key clojure-mode-map (kbd "C-c a") 'auto-complete-mode)
-;;
-;;
-;;; 4clojure.el
-(require '4clojure)
 ;;
 ;;
 ;;; ac-cider-compliment.el
@@ -264,9 +275,9 @@ expression using a function specified in fun-repl-start. A function definition
    ;; repl-buffer-name
    "*cider-repl localhost*"
    ;; fun-repl-start
-   #'cider-jack-in
+   'cider-jack-in
    ;; fun-repl-send
-   #'my-send-to-cider
+   'my-send-to-cider
    ;;defun-string
    "(defn "))
 ;;
@@ -282,3 +293,9 @@ expression using a function specified in fun-repl-start. A function definition
 ;;
 ;;; clojure-test-mode.el
 (require 'clojure-test-mode)
+;;
+;;
+;;; 4clojure.el
+(require '4clojure)
+;;
+;;
