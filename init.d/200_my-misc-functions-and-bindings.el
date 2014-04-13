@@ -98,9 +98,9 @@ If you omit CLOSE, it will reuse OPEN."
 
 ;;;
 ;;; flush-empty-lines
-;; (defun flush-empty-lines ()
-;;   (interactive)
-;;   (flush-lines "^$"))
-;;
-;; Somehow does not work if not selected from bottom.
-(setq flush-empty-lines #'(flush-lines "^$"))
+(defun flush-empty-lines (start end)
+  "Flush empty lines in the selected region."
+  (interactive "r")
+  ;; Do not do anything if no selection is present.
+  (if (and transient-mark-mode mark-active)
+      (flush-lines "^ *$" start end)))
