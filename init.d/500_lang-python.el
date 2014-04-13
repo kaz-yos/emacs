@@ -76,7 +76,7 @@
   (let* (w-script)
 
     ;; defined in 200_my-misc-functions-and-bindings.el
-    (my-repl-start "*Python*" #'(lambda () (call-interactively 'run-python)))
+    (my-repl-start "*Python*" #'run-python)
 
     ;; Check if selection is present
     (if (and transient-mark-mode mark-active)
@@ -92,8 +92,6 @@
       (python-nav-end-of-statement)
       ;; Go to the end of block
       (python-nav-end-of-block)
-      ;; Maker transient region active
-      ;; (setq mark-active t)
       ;; Send region if not empty
       (if (not (equal (point) (mark)))
 	  (my-send-to-python (point) (mark))

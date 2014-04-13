@@ -53,6 +53,8 @@ expression using a function specified in fun-repl-start. A function definition
 ;;; my-send-to-ielm
 (defun my-send-to-ielm (start end)
   "Sends expression to *ielm* and have it evaluated."
+
+  (interactive "r")
   (let* (;; Assign the current buffer
 	 (script-window (selected-window))
 	 ;; Assign the region as a string
@@ -80,6 +82,8 @@ expression using a function specified in fun-repl-start. A function definition
 ;;
 ;;; my-elisp-eval
 (defun my-elisp-eval ()
+  "This is a customized version of my-repl-eval for ielm."
+  
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-name
@@ -223,8 +227,9 @@ expression using a function specified in fun-repl-start. A function definition
 ;;; my-send-to-cider
 ;; send to cider
 (defun my-send-to-cider (start end)
-    "Sends expression to *cider-repl* and have it evaluated."
+  "Sends expression to *cider-repl* and have it evaluated."
 
+  (interactive "r")
   (let* (;; Assign the current buffer
 	 (script-window (selected-window))
 	 ;; Assign the region as a string
@@ -252,6 +257,8 @@ expression using a function specified in fun-repl-start. A function definition
 ;;
 ;;; my-cider-eval
 (defun my-cider-eval ()
+  "This is a customized version of my-repl-eval for cider."
+  
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-name
