@@ -1,4 +1,4 @@
-;;;
+;;; -*- lexical-binding: t; -*-
 ;;; Emacs Lisp
 ;;; elisp programming configurations
 ;; Non-nil means enter debugger if an error is signaled.

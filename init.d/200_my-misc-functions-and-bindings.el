@@ -1,4 +1,4 @@
-;;; My miscellaneous functions
+;;; My miscellaneous functions -*- lexical-binding: t; -*-
 
 ;;;
 ;;; Take current line to top
