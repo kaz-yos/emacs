@@ -16,15 +16,6 @@ expression using a function specified in fun-repl-start. A function definition
     ;; defined in 200_my-misc-functions-and-bindings.el
     (my-repl-start repl-buffer-name fun-repl-start)
 
-    ;; Moved to my-repl-start
-    ;; ;; If using cider-jack-in, wait for connection.
-    ;; (if (eq fun-repl-start 'cider-jack-in)
-    ;; 	(progn (when (not (cider-connected-p))
-    ;; 		 (message "waiting for cider...")
-    ;; 		 (sit-for 0.5))
-    ;; 	       ;; Wait for another second to make sure.
-    ;; 	       (sit-for 3)))
-
     ;; Check if selection is present
     (if (and transient-mark-mode mark-active)
 	;; If selected, send to ielm
