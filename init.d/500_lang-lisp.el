@@ -93,6 +93,7 @@ expression using a function specified in fun-repl-start. A function definition
 ;;
 ;; define keys
 (define-key emacs-lisp-mode-map (kbd "<C-return>") 'my-elisp-eval)
+(define-key lisp-interaction-mode-map (kbd "<C-return>") 'my-elisp-eval)
 ;;
 ;;
 ;;; SLIME-like navigation for elisp
@@ -128,6 +129,7 @@ expression using a function specified in fun-repl-start. A function definition
 ;; evaluate within script
 (require 'lispxmp)
 (define-key emacs-lisp-mode-map (kbd "C-c e") 'lispxmp)
+(define-key lisp-interaction-mode-map (kbd "C-c e") 'lispxmp)
 
 
 
