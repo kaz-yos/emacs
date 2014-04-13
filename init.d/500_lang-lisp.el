@@ -100,8 +100,12 @@ expression using a function specified in fun-repl-start. A function definition
    "(defun "))
 ;;
 ;; define keys
+;; .el files
 (define-key emacs-lisp-mode-map (kbd "<C-return>") 'my-elisp-eval)
+;; *scratch*
 (define-key lisp-interaction-mode-map (kbd "<C-return>") 'my-elisp-eval)
+;; M-x info
+(define-key Info-mode-map (kbd "<C-return>") 'my-elisp-eval)
 ;;
 ;;
 ;;; SLIME-like navigation for elisp
