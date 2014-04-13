@@ -37,8 +37,7 @@
 if a buffer named repl-buffer-name is not available."
   (interactive)
   ;; Create local variables
-  (let* (dummy)
-      ;;(window1 window2 name-script-buffer name-repl-buffer)
+  (let* (window1 window2 name-script-buffer name-repl-buffer)
     (if (not (member repl-buffer-name (mapcar #'buffer-name (buffer-list))))
 	(progn
 	  ;; C-x 1 Keep only the window from which this function was called.
