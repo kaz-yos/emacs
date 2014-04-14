@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t; -*-
-;;; Emacs Lisp
+;;; EMACS LISP
 ;;; elisp programming configurations
 ;; Non-nil means enter debugger if an error is signaled.
 (setq debug-on-error t)
@@ -332,3 +332,75 @@ expression using a function specified in fun-repl-start. A function definition
 (add-hook 'slime-mode-hook
 	  '(lambda ()
 	     (local-set-key (kbd "<C-return>") 'my-slime-eval)))
+
+
+
+;;;
+;;; SCHEME MODE
+;;; my-send-to-scheme
+;; send to scheme
+(defun my-send-to-scheme (start end)
+  "Sends expression to *scheme* and have it evaluated."
+
+  (interactive "r")
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
+
+    ;; Move to the other window
+    (other-window 1)
+    ;; Change to scheme REPL
+    (switch-to-scheme t)
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; ;; Set mark from beginning
+    ;; (set-mark (line-beginning-position))
+    ;; ;; Delete the region
+    ;; (delete-region (point) (mark))
+    ;; ;; Unset transient mark
+    ;; (setq mark-active nil)
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (comint-send-input)
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
+;;
+;;; my-scheme-eval
+(defun my-scheme-eval ()
+  "This is a customized version of my-repl-eval for scheme."
+
+  (interactive)
+  (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
+   ;; repl-buffer-name
+   "*scheme*"
+   ;; fun-repl-start
+   'run-scheme
+   ;; fun-repl-send
+   'my-send-to-scheme
+   ;;defun-string
+   "(define "))
+;;
+;;; define keys
+(add-hook 'scheme-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "<C-return>") 'my-scheme-eval)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
