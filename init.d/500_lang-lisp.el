@@ -68,12 +68,6 @@ expression using a function specified in fun-repl-start. A function definition
     (switch-to-buffer-other-window "*ielm*")
     ;; Move to end of buffer
     (end-of-buffer)
-    ;; Set mark from beginning
-    (set-mark (line-beginning-position))
-    ;; Delete the region
-    (delete-region (point) (mark))
-    ;; Unset transient mark
-    (setq mark-active nil)
     ;; Insert the string
     (insert region-string)
     ;; Execute
@@ -195,12 +189,6 @@ expression using a function specified in fun-repl-start. A function definition
     (cider-switch-to-repl-buffer)
     ;; Move to end of buffer
     (end-of-buffer)
-    ;; ;; Set mark from beginning
-    ;; (set-mark (line-beginning-position))
-    ;; ;; Delete the region
-    ;; (delete-region (point) (mark))
-    ;; ;; Unset transient mark
-    ;; (setq mark-active nil)
     ;; Insert the string
     (insert region-string)
     ;; Execute
@@ -297,12 +285,6 @@ expression using a function specified in fun-repl-start. A function definition
     (slime-switch-to-output-buffer)
     ;; Move to end of buffer
     (end-of-buffer)
-    ;; ;; Set mark from beginning
-    ;; (set-mark (line-beginning-position))
-    ;; ;; Delete the region
-    ;; (delete-region (point) (mark))
-    ;; ;; Unset transient mark
-    ;; (setq mark-active nil)
     ;; Insert the string
     (insert region-string)
     ;; Execute
@@ -354,12 +336,6 @@ expression using a function specified in fun-repl-start. A function definition
     (switch-to-scheme t)
     ;; Move to end of buffer
     (end-of-buffer)
-    ;; ;; Set mark from beginning
-    ;; (set-mark (line-beginning-position))
-    ;; ;; Delete the region
-    ;; (delete-region (point) (mark))
-    ;; ;; Unset transient mark
-    ;; (setq mark-active nil)
     ;; Insert the string
     (insert region-string)
     ;; Execute
@@ -389,18 +365,3 @@ expression using a function specified in fun-repl-start. A function definition
 (add-hook 'scheme-mode-hook
 	  '(lambda ()
 	     (local-set-key (kbd "<C-return>") 'my-scheme-eval)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
