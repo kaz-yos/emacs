@@ -44,6 +44,9 @@
 			 (mode . lisp-mode)
 			 (name . "^\\*slime")
 			 (name . "*inferior-lisp*")))
+	       ("SCHEME" (or
+			  (mode . scheme-mode)
+			  (mode . inferior-scheme-mode)))
 	       ("PYTHON" (or
 			  (mode . python-mode)
 			  (mode . inferior-python-mode)))
