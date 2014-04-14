@@ -32,7 +32,7 @@
 			 (mode . ess-mode)
 			 (mode . inferior-ess-mode)
 			 (mode . Rd-mode)))
-	       ("LISP"	(or
+	       ("ELISP"	(or
 			 (mode . emacs-lisp-mode)
 			 (mode . list-mode)
 			 (name . "^\\*ielm")))
@@ -41,7 +41,9 @@
 			   (name . "^\\*cider-")
 			   (name . "^\\*nrepl-")))
 	       ("SLIME" (or
-			 (name . "^\\*slime")))
+			 (mode . lisp-mode)
+			 (name . "^\\*slime")
+			 (name . "*inferior-lisp*")))
 	       ("PYTHON" (or
 			  (mode . python-mode)
 			  (mode . inferior-python-mode)))
