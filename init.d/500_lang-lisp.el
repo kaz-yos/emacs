@@ -99,7 +99,7 @@ expression using a function specified in fun-repl-start. A function definition
    ;;defun-string
    "(defun "))
 ;;
-;; define keys
+;;; define keys
 ;; .el files
 (define-key emacs-lisp-mode-map (kbd "<C-return>") 'my-elisp-eval)
 ;; *scratch*
@@ -226,7 +226,7 @@ expression using a function specified in fun-repl-start. A function definition
    ;;defun-string
    "(defn "))
 ;;
-;; define keys
+;;; define keys
 (add-hook 'clojure-mode-hook
 	  '(lambda ()
 	     (local-set-key (kbd "<C-return>") 'my-cider-eval)))
@@ -259,14 +259,10 @@ expression using a function specified in fun-repl-start. A function definition
 (require 'slime)
 (slime-setup '(slime-repl slime-fancy slime-banner))
 ;;
-;; elisp as inferior-lisp-program	; did not work
-;; http://stackoverflow.com/questions/6687721/repl-for-emacs-lisp
-;;(setq inferior-lisp-program "/usr/local/bin/emacs --batch --eval '(while t (print (eval (read))))'")
-;;
 ;; Common lisp (installed via homebrew)
-(setq inferior-lisp-program "/usr/local/bin/clisp")
+;; (setq inferior-lisp-program "/usr/local/bin/clisp")
 ;;
-;; 2.5.2 Multiple Lisps
+;; 2.5.2 Multiple Lisps (first one is the default)
 ;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
 ;; (NAME (PROGRAM PROGRAM-ARGS...) &key CODING-SYSTEM INIT INIT-FUNCTION ENV)
 ;; NAME is a symbol and is used to identify the program.
@@ -274,9 +270,9 @@ expression using a function specified in fun-repl-start. A function definition
 ;; PROGRAM-ARGS is a list of command line arguments.
 ;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)x
 (setq slime-lisp-implementations
-      '((scheme ("/usr/local/bin/scheme"))
-	(clisp ("/usr/local/bin/clisp"))
-	(sbcl ("/usr/local/bin/sbcl"))))
+      '((clisp ("/usr/local/bin/clisp"))	; first one is the default
+	(sbcl ("/usr/local/bin/sbcl"))
+	(scheme ("/usr/local/bin/scheme"))))
 ;;
 ;;; auto-complete for SLIME 2014-02-25
 (require 'ac-slime)
@@ -298,7 +294,7 @@ expression using a function specified in fun-repl-start. A function definition
 	 (region-string (buffer-substring-no-properties start end)))
 
     ;; Change to slime REPL
-    (slime-switch-to-repl-buffer)
+    (slime-switch-to-output-buffer)
     ;; Move to end of buffer
     (end-of-buffer)
     ;; ;; Set mark from beginning
@@ -324,36 +320,15 @@ expression using a function specified in fun-repl-start. A function definition
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-name
-   "*slime-repl localhost*"
+   "*slime-repl clisp*"
    ;; fun-repl-start
-   'slime-jack-in
+   'slime
    ;; fun-repl-send
    'my-send-to-slime
    ;;defun-string
    "(defn "))
-
-;;; Define a flexible eval function.
-(defun my-slime-eval ()
-  (interactive)
-
-  ;; defined in 200_my-misc-functions-and-bindings.el
-  (my-repl-start "*slime-repl clisp*" #'slime)
-
-  (if (and transient-mark-mode mark-active)			; Check if selection is present
-      ;; (apply #'slime-eval-region (sort (list (point) (mark)) #'<))
-      (slime-eval-region (point) (mark))			; If selected, send region
-    ;; If not selected, do all the following
-    (beginning-of-line)						; Move to the beginning of line
-    (if (looking-at "(defun ")					; Check if the first word is def (function def)
-	(slime-eval-defun)					; Send whole def
-      ;; If it is not def, do all the following
-      (end-of-line)						; Move to the end of line
-      (slime-eval-last-expression)				; Eval the one before
-      )
-    ))
 ;;
-;;
-;; define keys
+;;; define keys
 (add-hook 'slime-mode-hook
 	  '(lambda ()
 	     (local-set-key (kbd "<C-return>") 'my-slime-eval)))
