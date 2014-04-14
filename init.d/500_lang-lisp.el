@@ -12,7 +12,7 @@ expression using a function specified in fun-repl-start. A function definition
   (interactive)
   (let* (;; Save current point
 	 (initial-point (point)))
-    
+
     ;; defined in 200_my-misc-functions-and-bindings.el
     (my-repl-start repl-buffer-name fun-repl-start)
 
@@ -87,7 +87,7 @@ expression using a function specified in fun-repl-start. A function definition
 ;;; my-elisp-eval
 (defun my-elisp-eval ()
   "This is a customized version of my-repl-eval for ielm."
-  
+
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-name
@@ -214,7 +214,7 @@ expression using a function specified in fun-repl-start. A function definition
 ;;; my-cider-eval
 (defun my-cider-eval ()
   "This is a customized version of my-repl-eval for cider."
-  
+
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-name
@@ -252,7 +252,7 @@ expression using a function specified in fun-repl-start. A function definition
 
 
 ;;;
-;;; SLIME for non-elisp lisp
+;;; SLIME for non-elisp lisps
 ;;; slime.el
 ;; http://www.common-lisp.net/project/slime/
 ;; http://dev.ariel-networks.com/wp/archives/462
@@ -266,6 +266,18 @@ expression using a function specified in fun-repl-start. A function definition
 ;; Common lisp (installed via homebrew)
 (setq inferior-lisp-program "/usr/local/bin/clisp")
 ;;
+;; 2.5.2 Multiple Lisps
+;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
+;; (NAME (PROGRAM PROGRAM-ARGS...) &key CODING-SYSTEM INIT INIT-FUNCTION ENV)
+;; NAME is a symbol and is used to identify the program.
+;; PROGRAM is the filename of the program. Note that the filename can contain spaces.
+;; PROGRAM-ARGS is a list of command line arguments.
+;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)x
+(setq slime-lisp-implementations
+      '((scheme ("/usr/local/bin/scheme"))
+	(clisp ("/usr/local/bin/clisp"))
+	(sbcl ("/usr/local/bin/sbcl"))))
+;;
 ;;; auto-complete for SLIME 2014-02-25
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
@@ -274,6 +286,52 @@ expression using a function specified in fun-repl-start. A function definition
   '(add-to-list 'ac-modes 'slime-repl-mode))
 ;;
 ;;
+;;; my-send-to-slime
+;; send to slime
+(defun my-send-to-slime (start end)
+  "Sends expression to *slime-repl* and have it evaluated."
+
+  (interactive "r")
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
+
+    ;; Change to slime REPL
+    (slime-switch-to-repl-buffer)
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; ;; Set mark from beginning
+    ;; (set-mark (line-beginning-position))
+    ;; ;; Delete the region
+    ;; (delete-region (point) (mark))
+    ;; ;; Unset transient mark
+    ;; (setq mark-active nil)
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (slime-repl-return)
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
+;;
+;;; my-slime-eval
+(defun my-slime-eval ()
+  "This is a customized version of my-repl-eval for slime."
+
+  (interactive)
+  (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
+   ;; repl-buffer-name
+   "*slime-repl localhost*"
+   ;; fun-repl-start
+   'slime-jack-in
+   ;; fun-repl-send
+   'my-send-to-slime
+   ;;defun-string
+   "(defn "))
+
 ;;; Define a flexible eval function.
 (defun my-slime-eval ()
   (interactive)
