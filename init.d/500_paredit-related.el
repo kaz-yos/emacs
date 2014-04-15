@@ -9,6 +9,7 @@
 (add-hook 'lisp-interaction-mode-hook	'enable-paredit-mode)
 (add-hook 'lisp-mode-hook		'enable-paredit-mode)
 (add-hook 'clojure-mode-hook		'enable-paredit-mode)
+(add-hook 'scheme-mode-hook		'enable-paredit-mode)
 ;; (add-hook 'ielm-mode-hook		'enable-paredit-mode)
 ;; (add-hook 'ess-mode-hook 'enable-paredit-mode)		; paredit for ESS. too restrictive
 ;; No space when inserted after a word
@@ -33,6 +34,7 @@
 (add-hook 'lisp-mode-hook	'rainbow-delimiters-mode)
 (add-hook 'clojure-mode-hook	'rainbow-delimiters-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'scheme-mode-hook     'rainbow-delimiters-mode)
 (add-hook 'ess-mode-hook	'rainbow-delimiters-mode)
 ;;
 ;; http://ergoemacs.org/misc/emacs_rainbow-delimiters-mode.html

@@ -1,4 +1,4 @@
-;;; My miscellaneous functions
+;;; My miscellaneous functions -*- lexical-binding: t; -*-
 
 ;;;
 ;;; Take current line to top
@@ -50,18 +50,27 @@ if a buffer named repl-buffer-name is not available."
 	  ;; (split-window &optional WINDOW SIZE SIDE)
 	  ;; Split window1 (only one) without size, and create a new window on the right.
 	  ;; Use the return value (new window) for window2.
-	  ;; window1: left, window2: right
+	  ;; window1: left (still selected), window2: right
 	  (setq window2 (split-window window1 nil "right"))
 
-	  ;; Activate the REPL
-	  (funcall fun-repl-start)
+	  ;; Activate the REPL (Interactive functions are used)
+	  (call-interactively fun-repl-start)
+
+	  ;; If using cider-jack-in, wait for connection.
+	  (if (eq fun-repl-start 'cider-jack-in)
+	      (progn (when (not (cider-connected-p))
+		       (message "waiting for cider...")
+		       (sit-for 4))))
+	  
 	  ;; Make name-repl-buffer keep the selected buffer (REPL)
+	  ;; This does not work for python/clojure
 	  (setq name-repl-buffer (buffer-name))
 
-	  ;; REPL on the left (window1)	; This gives an error.
-	  (set-window-buffer window1 name-repl-buffer)
+	  ;; ;; REPL on the left (window1)  ; Not really necessary.
+	  ;; (set-window-buffer window1 name-repl-buffer)
 	  ;; Script on the right (window2)
 	  (set-window-buffer window2 name-script-buffer)
+	  
 	  ;; Select the script window on the right (window2)
 	  (select-window window2)
 	  ))))
@@ -88,9 +97,9 @@ If you omit CLOSE, it will reuse OPEN."
 
 ;;;
 ;;; flush-empty-lines
-;; (defun flush-empty-lines ()
-;;   (interactive)
-;;   (flush-lines "^$"))
-;;
-;; Somehow does not work if not selected from bottom.
-(setq flush-empty-lines #'(flush-lines "^$"))
+(defun flush-empty-lines (start end)
+  "Flush empty lines in the selected region."
+  (interactive "r")
+  ;; Do not do anything if no selection is present.
+  (if (and transient-mark-mode mark-active)
+      (flush-lines "^ *$" start end)))

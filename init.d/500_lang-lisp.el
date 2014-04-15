@@ -1,5 +1,9 @@
-;;;
-;;; Emacs Lisp
+;;; -*- lexical-binding: t; -*-
+;;; EMACS LISP
+;;; elisp programming configurations
+;; Non-nil means enter debugger if an error is signaled.
+(setq debug-on-error t)
+;;
 ;;; my-repl-eval for lisp languages (used by both my-elisp-eval/my-cider-eval)
 (defun my-repl-eval (repl-buffer-name fun-repl-start fun-repl-send defun-string)
     "Evaluates expression using a REPL specified by repl-buffer-name. Sends
@@ -8,7 +12,7 @@ expression using a function specified in fun-repl-start. A function definition
   (interactive)
   (let* (;; Save current point
 	 (initial-point (point)))
-    
+
     ;; defined in 200_my-misc-functions-and-bindings.el
     (my-repl-start repl-buffer-name fun-repl-start)
 
@@ -53,6 +57,8 @@ expression using a function specified in fun-repl-start. A function definition
 ;;; my-send-to-ielm
 (defun my-send-to-ielm (start end)
   "Sends expression to *ielm* and have it evaluated."
+
+  (interactive "r")
   (let* (;; Assign the current buffer
 	 (script-window (selected-window))
 	 ;; Assign the region as a string
@@ -62,12 +68,6 @@ expression using a function specified in fun-repl-start. A function definition
     (switch-to-buffer-other-window "*ielm*")
     ;; Move to end of buffer
     (end-of-buffer)
-    ;; Set mark from beginning
-    (set-mark (line-beginning-position))
-    ;; Delete the region
-    (delete-region (point) (mark))
-    ;; Unset transient mark
-    (setq mark-active nil)
     ;; Insert the string
     (insert region-string)
     ;; Execute
@@ -80,6 +80,8 @@ expression using a function specified in fun-repl-start. A function definition
 ;;
 ;;; my-elisp-eval
 (defun my-elisp-eval ()
+  "This is a customized version of my-repl-eval for ielm."
+
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-name
@@ -91,8 +93,13 @@ expression using a function specified in fun-repl-start. A function definition
    ;;defun-string
    "(defun "))
 ;;
-;; define keys
+;;; define keys
+;; .el files
 (define-key emacs-lisp-mode-map (kbd "<C-return>") 'my-elisp-eval)
+;; *scratch*
+(define-key lisp-interaction-mode-map (kbd "<C-return>") 'my-elisp-eval)
+;; M-x info
+(define-key Info-mode-map (kbd "<C-return>") 'my-elisp-eval)
 ;;
 ;;
 ;;; SLIME-like navigation for elisp
@@ -128,57 +135,8 @@ expression using a function specified in fun-repl-start. A function definition
 ;; evaluate within script
 (require 'lispxmp)
 (define-key emacs-lisp-mode-map (kbd "C-c e") 'lispxmp)
+(define-key lisp-interaction-mode-map (kbd "C-c e") 'lispxmp)
 
-
-
-;;;
-;;; SLIME for non-elisp lisp
-;;; slime.el
-;; http://www.common-lisp.net/project/slime/
-;; http://dev.ariel-networks.com/wp/archives/462
-(require 'slime)
-(slime-setup '(slime-repl slime-fancy slime-banner))
-;;
-;; elisp as inferior-lisp-program	; did not work
-;; http://stackoverflow.com/questions/6687721/repl-for-emacs-lisp
-;;(setq inferior-lisp-program "/usr/local/bin/emacs --batch --eval '(while t (print (eval (read))))'")
-;;
-;; Common lisp (installed via homebrew)
-(setq inferior-lisp-program "/usr/local/bin/clisp")
-;;
-;;; auto-complete for SLIME 2014-02-25
-(require 'ac-slime)
-(add-hook 'slime-mode-hook 'set-up-slime-ac)
-(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'slime-repl-mode))
-;;
-;;
-;;; Define a flexible eval function.
-(defun my-slime-eval ()
-  (interactive)
-
-  ;; defined in 200_my-misc-functions-and-bindings.el
-  (my-repl-start "*slime-repl clisp*" #'slime)
-
-  (if (and transient-mark-mode mark-active)			; Check if selection is present
-      ;; (apply #'slime-eval-region (sort (list (point) (mark)) #'<))
-      (slime-eval-region (point) (mark))			; If selected, send region
-    ;; If not selected, do all the following
-    (beginning-of-line)						; Move to the beginning of line
-    (if (looking-at "(defun ")					; Check if the first word is def (function def)
-	(slime-eval-defun)					; Send whole def
-      ;; If it is not def, do all the following
-      (end-of-line)						; Move to the end of line
-      (slime-eval-last-expression)				; Eval the one before
-      )
-    ))
-;;
-;;
-;; define keys
-(add-hook 'slime-mode-hook
-	  '(lambda ()
-	     (local-set-key (kbd "<C-return>") 'my-slime-eval)))
 
 
 ;;;
@@ -196,18 +154,16 @@ expression using a function specified in fun-repl-start. A function definition
 ;; Enable eldoc in Clojure buffers:
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 ;; Hide special repl buffers
-(setq nrepl-hide-special-buffers t)
+;; (setq nrepl-hide-special-buffers t)
 ;; To auto-select the error buffer when it's displayed:
 (setq cider-auto-select-error-buffer t)
+;; Prevent the auto-display of the REPL buffer in a separate window after connection is established
+;; (setq cider-repl-pop-to-buffer-on-connect nil)
 ;; Limit the number of items of each collection
 (setq cider-repl-print-length 500)
 ;;
 ;; auto-complete-mode toggle
 (define-key clojure-mode-map (kbd "C-c a") 'auto-complete-mode)
-;;
-;;
-;;; 4clojure.el
-(require '4clojure)
 ;;
 ;;
 ;;; ac-cider-compliment.el
@@ -221,8 +177,9 @@ expression using a function specified in fun-repl-start. A function definition
 ;;; my-send-to-cider
 ;; send to cider
 (defun my-send-to-cider (start end)
-    "Sends expression to *cider-repl* and have it evaluated."
+  "Sends expression to *cider-repl* and have it evaluated."
 
+  (interactive "r")
   (let* (;; Assign the current buffer
 	 (script-window (selected-window))
 	 ;; Assign the region as a string
@@ -232,12 +189,6 @@ expression using a function specified in fun-repl-start. A function definition
     (cider-switch-to-repl-buffer)
     ;; Move to end of buffer
     (end-of-buffer)
-    ;; ;; Set mark from beginning
-    ;; (set-mark (line-beginning-position))
-    ;; ;; Delete the region
-    ;; (delete-region (point) (mark))
-    ;; ;; Unset transient mark
-    ;; (setq mark-active nil)
     ;; Insert the string
     (insert region-string)
     ;; Execute
@@ -250,21 +201,27 @@ expression using a function specified in fun-repl-start. A function definition
 ;;
 ;;; my-cider-eval
 (defun my-cider-eval ()
+  "This is a customized version of my-repl-eval for cider."
+
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-name
    "*cider-repl localhost*"
    ;; fun-repl-start
-   #'cider-jack-in
+   'cider-jack-in
    ;; fun-repl-send
-   #'my-send-to-cider
+   'my-send-to-cider
    ;;defun-string
    "(defn "))
 ;;
-;; define keys
+;;; define keys
 (add-hook 'clojure-mode-hook
 	  '(lambda ()
 	     (local-set-key (kbd "<C-return>") 'my-cider-eval)))
+;;
+;;
+;;; cider-toggle-trace
+(require 'cider-tracing)
 ;;
 ;;
 ;;; clojure-cheatsheet.el
@@ -273,3 +230,138 @@ expression using a function specified in fun-repl-start. A function definition
 ;;
 ;;; clojure-test-mode.el
 (require 'clojure-test-mode)
+;;
+;;
+;;; 4clojure.el
+(require '4clojure)
+;;
+;;
+
+
+
+;;;
+;;; SLIME for non-elisp lisps
+;;; slime.el
+;; http://www.common-lisp.net/project/slime/
+;; http://dev.ariel-networks.com/wp/archives/462
+(require 'slime)
+(slime-setup '(slime-repl slime-fancy slime-banner))
+;;
+;; Common lisp (installed via homebrew)
+;; (setq inferior-lisp-program "/usr/local/bin/clisp")
+;;
+;; 2.5.2 Multiple Lisps (first one is the default)
+;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
+;; (NAME (PROGRAM PROGRAM-ARGS...) &key CODING-SYSTEM INIT INIT-FUNCTION ENV)
+;; NAME is a symbol and is used to identify the program.
+;; PROGRAM is the filename of the program. Note that the filename can contain spaces.
+;; PROGRAM-ARGS is a list of command line arguments.
+;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)x
+(setq slime-lisp-implementations
+      '((clisp ("/usr/local/bin/clisp"))	; first one is the default
+	(sbcl ("/usr/local/bin/sbcl"))
+	(scheme ("/usr/local/bin/scheme"))))
+;;
+;;; auto-complete for SLIME 2014-02-25
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'slime-repl-mode))
+;;
+;;
+;;; my-send-to-slime
+;; send to slime
+(defun my-send-to-slime (start end)
+  "Sends expression to *slime-repl* and have it evaluated."
+
+  (interactive "r")
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
+
+    ;; Change to slime REPL
+    (slime-switch-to-output-buffer)
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (slime-repl-return)
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
+;;
+;;; my-slime-eval
+(defun my-slime-eval ()
+  "This is a customized version of my-repl-eval for slime."
+
+  (interactive)
+  (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
+   ;; repl-buffer-name
+   "*slime-repl clisp*"
+   ;; fun-repl-start
+   'slime
+   ;; fun-repl-send
+   'my-send-to-slime
+   ;;defun-string
+   "(defn "))
+;;
+;;; define keys
+(add-hook 'slime-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "<C-return>") 'my-slime-eval)))
+
+
+
+;;;
+;;; SCHEME MODE
+;;; my-send-to-scheme
+;; send to scheme
+(defun my-send-to-scheme (start end)
+  "Sends expression to *scheme* and have it evaluated."
+
+  (interactive "r")
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
+
+    ;; Move to the other window
+    (other-window 1)
+    ;; Change to scheme REPL
+    (switch-to-scheme t)
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (comint-send-input)
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
+;;
+;;; my-scheme-eval
+(defun my-scheme-eval ()
+  "This is a customized version of my-repl-eval for scheme."
+
+  (interactive)
+  (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
+   ;; repl-buffer-name
+   "*scheme*"
+   ;; fun-repl-start
+   'run-scheme
+   ;; fun-repl-send
+   'my-send-to-scheme
+   ;;defun-string
+   "(define "))
+;;
+;;; define keys
+(add-hook 'scheme-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "<C-return>") 'my-scheme-eval)))
