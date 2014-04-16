@@ -3,11 +3,11 @@
 ;;;
 ;;; Take current line to top
 (defun my-recenter-top ()
+  "Recenter to the top"
   (interactive)
-  (recenter "Top")
-)
+  (recenter "Top"))
 (global-set-key (kbd "C-S-l") 'my-recenter-top)
-;;
+
 
 ;;;
 ;;; my-insert-date
@@ -17,8 +17,7 @@
   (interactive)
   (when (region-active-p)
     (delete-region (region-beginning) (region-end)))
-  (insert (format-time-string "%Y-%m-%d"))
-  )
+  (insert (format-time-string "%Y-%m-%d")))
 (global-set-key (kbd "C-c d") 'my-insert-date)
 
 
@@ -103,3 +102,5 @@ If you omit CLOSE, it will reuse OPEN."
   ;; Do not do anything if no selection is present.
   (if (and transient-mark-mode mark-active)
       (flush-lines "^ *$" start end)))
+;; key
+(global-set-key (kbd "s-f") 'flush-empty-lines)
