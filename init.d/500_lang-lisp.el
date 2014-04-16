@@ -2,7 +2,7 @@
 ;;; EMACS LISP
 ;;; elisp programming configurations
 ;; Non-nil means enter debugger if an error is signaled.
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 ;;
 ;;; my-repl-eval for lisp languages (used by both my-elisp-eval/my-cider-eval)
 (defun my-repl-eval (repl-buffer-name fun-repl-start fun-repl-send defun-string)
