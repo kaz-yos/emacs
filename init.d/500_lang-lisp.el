@@ -120,7 +120,7 @@ expression using a function specified in fun-repl-start. A function definition
 ;; http://d.hatena.ne.jp/rubikitch/20100423/bytecomp
 (require 'auto-async-byte-compile)
 ;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
-(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/")
+(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/\\|/programming/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 ;;
 ;;
@@ -135,7 +135,9 @@ expression using a function specified in fun-repl-start. A function definition
 ;; evaluate within script
 (require 'lispxmp)
 (define-key emacs-lisp-mode-map (kbd "C-c e") 'lispxmp)
+(define-key emacs-lisp-mode-map (kbd "s-e") 'lispxmp)
 (define-key lisp-interaction-mode-map (kbd "C-c e") 'lispxmp)
+(define-key lisp-interaction-mode-map (kbd "s-e") 'lispxmp)
 
 
 
