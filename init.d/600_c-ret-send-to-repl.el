@@ -30,9 +30,10 @@
 ;;; COMMON ELEMENTS
 ;;; my-matching-elements
 (defun my-matching-elements (regexp list)
-  "Return list elements matching regexp."
+  "Return a list of elements matching the REGEXP in the LIST."
   ;; emacs version of filter
   (delete-if-not
+   ;; predicate: non-nil if an element matches the REGEXP
    (lambda (elt) (string-match regexp elt))
    list))
 ;;
@@ -42,8 +43,8 @@
 ;; https://stat.ethz.ch/pipermail/ess-help/2012-December/008426.html
 ;; http://t7331.codeinpro.us/q/51502552e8432c0426273040
 (defun my-repl-start (repl-buffer-regexp fun-repl-start)
-  "Start an REPL using a function specified in fun-repl-start,
-if a buffer named repl-buffer-regexp is not available."
+  "Start an REPL using a function specified in FUN-REPL-START,
+if a buffer named REPL-BUFFER-REGEXP is not already available."
   (interactive)
   ;; Create local variables
   (let* (window1 window2 name-script-buffer name-repl-buffer)
@@ -69,7 +70,7 @@ if a buffer named repl-buffer-regexp is not available."
 	  (if (eq fun-repl-start 'cider-jack-in)
 	      (progn (when (not (cider-connected-p))
 		       (message "waiting for cider...")
-		       (sit-for 4))))
+		       (sit-for 5))))
 	  
 	  ;; Make name-repl-buffer keep the selected buffer (REPL)
 	  ;; This does not work for python/clojure
@@ -90,8 +91,8 @@ if a buffer named repl-buffer-regexp is not available."
 
 ;;;
 ;;; COMMON ELEMENTS FOR LISP LANGUAGES
-;;; my-repl-eval for lisp languages (used by both my-elisp-eval/my-cider-eval)
-(defun my-repl-eval (repl-buffer-regexp fun-repl-start fun-repl-send defun-string)
+;;; my-eval-in-repl for lisp languages (used as a skeleton for my-*-eval)
+(defun my-eval-in-repl (repl-buffer-regexp fun-repl-start fun-repl-send defun-string)
     "Evaluates expression using a REPL specified by repl-buffer-regexp. Sends
 expression using a function specified in fun-repl-start. A function definition
  is detected by a string specified in defun-string and handled accordingly."
@@ -167,28 +168,28 @@ expression using a function specified in fun-repl-start. A function definition
     nil
     ))
 ;;
-;;; my-elisp-eval
-(defun my-elisp-eval ()
-  "This is a customized version of my-repl-eval for ielm."
+;;; my-eval-in-ielm
+(defun my-eval-in-ielm ()
+  "This is a customized version of my-eval-in-repl for ielm."
 
   (interactive)
-  (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
+  (my-eval-in-repl	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-regexp
    "\\*ielm\\*"
    ;; fun-repl-start
    #'ielm
    ;; fun-repl-send
    #'my-send-to-ielm
-   ;;defun-string
+   ;; defun-string
    "(defun "))
 ;;
 ;;; define keys
 ;; .el files
-(define-key emacs-lisp-mode-map (kbd "<C-return>") 'my-elisp-eval)
+(define-key emacs-lisp-mode-map (kbd "<C-return>") 'my-eval-in-ielm)
 ;; *scratch*
-(define-key lisp-interaction-mode-map (kbd "<C-return>") 'my-elisp-eval)
+(define-key lisp-interaction-mode-map (kbd "<C-return>") 'my-eval-in-ielm)
 ;; M-x info
-(define-key Info-mode-map (kbd "<C-return>") 'my-elisp-eval)
+(define-key Info-mode-map (kbd "<C-return>") 'my-eval-in-ielm)
 
 
 
@@ -219,25 +220,25 @@ expression using a function specified in fun-repl-start. A function definition
     nil
     ))
 ;;
-;;; my-cider-eval
-(defun my-cider-eval ()
-  "This is a customized version of my-repl-eval for cider."
+;;; my-eval-in-cider
+(defun my-eval-in-cider ()
+  "This is a customized version of my-eval-in-repl for cider."
 
   (interactive)
-  (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
+  (my-eval-in-repl	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-regexp
    "\\*cider-repl.*$"
    ;; fun-repl-start
    'cider-jack-in
    ;; fun-repl-send
    'my-send-to-cider
-   ;;defun-string
+   ;; defun-string
    "(defn "))
 ;;
 ;;; define keys
 (add-hook 'clojure-mode-hook
 	  '(lambda ()
-	     (local-set-key (kbd "<C-return>") 'my-cider-eval)))
+	     (local-set-key (kbd "<C-return>") 'my-eval-in-cider)))
 
 
 
@@ -268,25 +269,25 @@ expression using a function specified in fun-repl-start. A function definition
     nil
     ))
 ;;
-;;; my-slime-eval
-(defun my-slime-eval ()
-  "This is a customized version of my-repl-eval for slime."
+;;; my-eval-in-slime
+(defun my-eval-in-slime ()
+  "This is a customized version of my-eval-in-repl for slime."
 
   (interactive)
-  (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
+  (my-eval-in-repl	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-regexp
    "\\*slime-repl.*$"
    ;; fun-repl-start
    'slime
    ;; fun-repl-send
    'my-send-to-slime
-   ;;defun-string
+   ;; defun-string
    "(defn "))
 ;;
 ;;; define keys
 (add-hook 'slime-mode-hook
 	  '(lambda ()
-	     (local-set-key (kbd "<C-return>") 'my-slime-eval)))
+	     (local-set-key (kbd "<C-return>") 'my-eval-in-slime)))
 
 
 ;;;
@@ -318,25 +319,25 @@ expression using a function specified in fun-repl-start. A function definition
     nil
     ))
 ;;
-;;; my-scheme-eval
-(defun my-scheme-eval ()
-  "This is a customized version of my-repl-eval for scheme."
+;;; my-eval-in-scheme
+(defun my-eval-in-scheme ()
+  "This is a customized version of my-eval-in-repl for scheme."
 
   (interactive)
-  (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
+  (my-eval-in-repl	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-regexp
    "\\*scheme\\*"
    ;; fun-repl-start
    'run-scheme
    ;; fun-repl-send
    'my-send-to-scheme
-   ;;defun-string
+   ;; defun-string
    "(define "))
 ;;
 ;;; define keys
 (add-hook 'scheme-mode-hook
 	  '(lambda ()
-	     (local-set-key (kbd "<C-return>") 'my-scheme-eval)))
+	     (local-set-key (kbd "<C-return>") 'my-eval-in-scheme)))
 
 
 
@@ -367,9 +368,10 @@ expression using a function specified in fun-repl-start. A function definition
     ;; Return nil
     nil
     ))
-;;; my-python-eval
+;;
+;;; my-eval-in-python
 ;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
-(defun my-python-eval ()
+(defun my-eval-in-python ()
   "Evaluates Python expressions"
   (interactive)
   ;; Define local variables
@@ -408,10 +410,10 @@ expression using a function specified in fun-repl-start. A function definition
       ;; Switch back to the script window
       (select-window w-script)					
       )))
-;;; Define keys
+;;; define keys
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
-	     (local-set-key (kbd "<C-return>") 'my-python-eval)
+	     (local-set-key (kbd "<C-return>") 'my-eval-in-python)
 	     ))
 
 
