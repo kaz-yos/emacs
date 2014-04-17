@@ -191,13 +191,19 @@ expression using a function specified in fun-repl-start. A function definition
 ;;; CIDER FOR CLOJURE RELATED
 ;;; my-cider-jack-in
 (defun my-cider-jack-in ()
-  "Invoke cider-jack-in and wait for activation."
+  "Invoke cider-jack-in and wait for activation.
+If *nrepl-** buffers are remaining, kill them silently.
+This function should not be invoked directly."
   
   (interactive)
   ;; If *nrepl-* buffers exist although *cider-repl* does not, kill them for safety.
   (let* ((nrepl-buffer-names (my-matching-elements "\\*nrepl-.*\\*$" (mapcar #'buffer-name (buffer-list)))))
     (when nrepl-buffer-names
-      (mapcar 'kill-buffer nrepl-buffer-names)))
+      (mapcar (lambda (elt)
+		;; kill-buffer without asking
+		(let (kill-buffer-query-functions)
+		  (kill-buffer elt)))
+	      nrepl-buffer-names)))
   ;; Activate cider
   (cider-jack-in)
   ;; Wait for connection
