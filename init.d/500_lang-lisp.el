@@ -5,8 +5,8 @@
 ;; (setq debug-on-error t)
 ;;
 ;;; my-repl-eval for lisp languages (used by both my-elisp-eval/my-cider-eval)
-(defun my-repl-eval (repl-buffer-name fun-repl-start fun-repl-send defun-string)
-    "Evaluates expression using a REPL specified by repl-buffer-name. Sends
+(defun my-repl-eval (repl-buffer-regexp fun-repl-start fun-repl-send defun-string)
+    "Evaluates expression using a REPL specified by repl-buffer-regexp. Sends
 expression using a function specified in fun-repl-start. A function definition
  is detected by a string specified in defun-string and handled accordingly."
   (interactive)
@@ -14,7 +14,7 @@ expression using a function specified in fun-repl-start. A function definition
 	 (initial-point (point)))
 
     ;; defined in 200_my-misc-functions-and-bindings.el
-    (my-repl-start repl-buffer-name fun-repl-start)
+    (my-repl-start repl-buffer-regexp fun-repl-start)
 
     ;; Check if selection is present
     (if (and transient-mark-mode mark-active)
@@ -84,8 +84,8 @@ expression using a function specified in fun-repl-start. A function definition
 
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
-   ;; repl-buffer-name
-   "*ielm*"
+   ;; repl-buffer-regexp
+   "\\*ielm\\*"
    ;; fun-repl-start
    #'ielm
    ;; fun-repl-send
@@ -207,7 +207,7 @@ expression using a function specified in fun-repl-start. A function definition
 
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
-   ;; repl-buffer-name
+   ;; repl-buffer-regexp
    "*cider-repl localhost*"
    ;; fun-repl-start
    'cider-jack-in
@@ -303,7 +303,7 @@ expression using a function specified in fun-repl-start. A function definition
 
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
-   ;; repl-buffer-name
+   ;; repl-buffer-regexp
    "*slime-repl clisp*"
    ;; fun-repl-start
    'slime
@@ -354,7 +354,7 @@ expression using a function specified in fun-repl-start. A function definition
 
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
-   ;; repl-buffer-name
+   ;; repl-buffer-regexp
    "*scheme*"
    ;; fun-repl-start
    'run-scheme
