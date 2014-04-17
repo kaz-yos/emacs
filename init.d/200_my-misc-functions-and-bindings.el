@@ -28,23 +28,15 @@
 
 ;;;
 ;;; my-matching-elements
+(require 'dash)
 (defun my-matching-elements (regexp list)
   "Return list elements matching regexp."
-  (-filter
+  ;; emacs version of filter
+  (delete-if-not
    (lambda (elt) (string-match regexp elt))
    list))
-
-;; test cases
-(my-matching-elements "^\*R:*[0-9]*\\*$" '("*R*" "*R:2*" "*repl*"))
-(not (my-matching-elements "^\*R:*[0-9]*\\*$" '("*R*" "*R:2*" "*repl*")))
-(not (my-matching-elements "^\*R:*[0-9]*\\*$" '("*k*" "*Rh:2*" "*repl*")))
-(some 'not (my-matching-elements "^\*R:*[0-9]*\\*$" '("*R*" "*R:2*" "*repl*")))
-(some (lambda (x) (my-matching-elements "^\*R:*[0-9]*\\*$" x) '("*R*" "*R:2*" "*repl*")))
-(my-matching-elements "^\\*R:*[0-9]*\\*$" '("*R*" "*R:2*" "*ielm*" "*cider-repl localhost"))
-(my-matching-elements "^\*R:*[0-9]*\*$" (mapcar #'buffer-name (buffer-list)))
-(member "*R*" (mapcar #'buffer-name (buffer-list)))
-
-
+;;
+;;
 ;;;
 ;;; my-start-repl
 ;; A function to start a REPL if not already available
