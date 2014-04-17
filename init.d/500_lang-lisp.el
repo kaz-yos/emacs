@@ -208,7 +208,7 @@ expression using a function specified in fun-repl-start. A function definition
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-regexp
-   "*cider-repl localhost*"
+   "\\*cider-repl.*$"
    ;; fun-repl-start
    'cider-jack-in
    ;; fun-repl-send
@@ -304,7 +304,7 @@ expression using a function specified in fun-repl-start. A function definition
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-regexp
-   "*slime-repl clisp*"
+   "\\*slime-repl.*$"
    ;; fun-repl-start
    'slime
    ;; fun-repl-send
@@ -355,7 +355,7 @@ expression using a function specified in fun-repl-start. A function definition
   (interactive)
   (my-repl-eval	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-regexp
-   "*scheme*"
+   "\\*scheme\\*"
    ;; fun-repl-start
    'run-scheme
    ;; fun-repl-send
