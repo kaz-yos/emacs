@@ -65,12 +65,6 @@ if a buffer named REPL-BUFFER-REGEXP is not already available."
 
 	  ;; Activate the REPL (Interactive functions are used)
 	  (call-interactively fun-repl-start)
-
-	  ;; If using cider-jack-in, wait for connection.
-	  (if (eq fun-repl-start 'cider-jack-in)
-	      (progn (when (not (cider-connected-p))
-		       (message "waiting for cider...")
-		       (sit-for 5))))
 	  
 	  ;; Make name-repl-buffer keep the selected buffer (REPL)
 	  ;; This does not work for python/clojure
@@ -195,8 +189,23 @@ expression using a function specified in fun-repl-start. A function definition
 
 ;;;
 ;;; CIDER FOR CLOJURE RELATED
+;;; my-cider-jack-in
+(defun my-cider-jack-in ()
+  "Invoke cider-jack-in and wait for activation."
+  
+  (interactive)
+  ;; If *nrepl-* buffers exist although *cider-repl* does not, kill them for safety.
+  (let* ((nrepl-buffer-names (my-matching-elements "\\*nrepl-.*\\*$" (mapcar #'buffer-name (buffer-list)))))
+    (when nrepl-buffer-names
+      (mapcar 'kill-buffer nrepl-buffer-names)))
+  ;; Activate cider
+  (cider-jack-in)
+  ;; Wait for connection
+  (when (not (cider-connected-p))
+    (message "waiting for cider...")
+    (sit-for 5)))
+;;
 ;;; my-send-to-cider
-;; send to cider
 (defun my-send-to-cider (start end)
   "Sends expression to *cider-repl* and have it evaluated."
 
@@ -227,9 +236,9 @@ expression using a function specified in fun-repl-start. A function definition
   (interactive)
   (my-eval-in-repl	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-regexp
-   "\\*cider-repl.*$"
+   "\\*cider-repl.*\\*$"
    ;; fun-repl-start
-   'cider-jack-in
+   'my-cider-jack-in
    ;; fun-repl-send
    'my-send-to-cider
    ;; defun-string
@@ -276,7 +285,7 @@ expression using a function specified in fun-repl-start. A function definition
   (interactive)
   (my-eval-in-repl	; defined in 200_my-misc-functions-and-bindings.el
    ;; repl-buffer-regexp
-   "\\*slime-repl.*$"
+   "\\*slime-repl.*\\*$"
    ;; fun-repl-start
    'slime
    ;; fun-repl-send
