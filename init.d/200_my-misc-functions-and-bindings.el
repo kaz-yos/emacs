@@ -27,6 +27,17 @@
 
 
 ;;;
+;;; my-member-regexp
+(defun my-member-regexp (regexp list)
+  (mapcar
+   (lambda (elt)
+     (string-match regexp elt))
+   list))
+
+(my-member-regexp "^\*R[:].*$" '("*R*" "*R:2*" "*repl*"))
+
+
+;;;
 ;;; my-start-repl
 ;; A function to start a REPL if not already available
 ;; https://stat.ethz.ch/pipermail/ess-help/2012-December/008426.html
