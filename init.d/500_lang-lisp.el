@@ -5,6 +5,11 @@
 ;; (setq debug-on-error t)
 ;;
 ;;
+;;; redshank to facilitate elisp/clisp
+;; http://www.foldr.org/~michaelw/emacs/redshank/
+(require 'redshank)
+;;
+;;
 ;;; SLIME-like navigation for elisp
 ;; This package provides Slime's convenient "M-." and "M-," navigation
 ;; in `emacs-lisp-mode', together with an elisp equivalent of
