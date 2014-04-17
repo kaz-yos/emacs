@@ -73,8 +73,7 @@
 (defun my-ess-eval-R ()
   (interactive)
 
-  ;; defined in 200_my-misc-functions-and-bindings.el
-  (my-repl-start "*R*" #'R)
+  (my-repl-start "^\*R:*[0-9]*\\*$" #'R)
 
   (if (and transient-mark-mode mark-active)
       (call-interactively 'ess-eval-region)
