@@ -27,14 +27,22 @@
 
 
 ;;;
-;;; my-member-regexp
-(defun my-member-regexp (regexp list)
-  (mapcar
-   (lambda (elt)
-     (string-match regexp elt))
+;;; my-matching-elements
+(defun my-matching-elements (regexp list)
+  "Return list elements matching regexp."
+  (-filter
+   (lambda (elt) (string-match regexp elt))
    list))
 
-(my-member-regexp "^\*R[:].*$" '("*R*" "*R:2*" "*repl*"))
+;; test cases
+(my-matching-elements "^\*R:*[0-9]*\\*$" '("*R*" "*R:2*" "*repl*"))
+(not (my-matching-elements "^\*R:*[0-9]*\\*$" '("*R*" "*R:2*" "*repl*")))
+(not (my-matching-elements "^\*R:*[0-9]*\\*$" '("*k*" "*Rh:2*" "*repl*")))
+(some 'not (my-matching-elements "^\*R:*[0-9]*\\*$" '("*R*" "*R:2*" "*repl*")))
+(some (lambda (x) (my-matching-elements "^\*R:*[0-9]*\\*$" x) '("*R*" "*R:2*" "*repl*")))
+(my-matching-elements "^\\*R:*[0-9]*\\*$" '("*R*" "*R:2*" "*ielm*" "*cider-repl localhost"))
+(my-matching-elements "^\*R:*[0-9]*\*$" (mapcar #'buffer-name (buffer-list)))
+(member "*R*" (mapcar #'buffer-name (buffer-list)))
 
 
 ;;;
@@ -42,13 +50,13 @@
 ;; A function to start a REPL if not already available
 ;; https://stat.ethz.ch/pipermail/ess-help/2012-December/008426.html
 ;; http://t7331.codeinpro.us/q/51502552e8432c0426273040
-(defun my-repl-start (repl-buffer-name fun-repl-start)
+(defun my-repl-start (repl-buffer-regexp fun-repl-start)
   "Start an REPL using a function specified in fun-repl-start,
-if a buffer named repl-buffer-name is not available."
+if a buffer named repl-buffer-regexp is not available."
   (interactive)
   ;; Create local variables
   (let* (window1 window2 name-script-buffer name-repl-buffer)
-    (if (not (member repl-buffer-name (mapcar #'buffer-name (buffer-list))))
+    (if (not (my-matching-elements repl-buffer-regexp (mapcar #'buffer-name (buffer-list))))
 	(progn
 	  ;; C-x 1 Keep only the window from which this function was called.
 	  (delete-other-windows)
