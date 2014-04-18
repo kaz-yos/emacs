@@ -457,9 +457,6 @@ This function should not be invoked directly."
     (insert region-string)
     ;; Execute
     (comint-send-input)
-    ;; One more time if not ending with \n
-    (if (not (equal (substring region-string -1) "\n"))
-	(comint-send-input))
     ;; Come back to the script
     (select-window script-window)
     ;; Return nil
@@ -505,6 +502,7 @@ This function should not be invoked directly."
       (select-window w-script)
       )))
 ;;
+;;; define keys
 (add-hook 'sh-mode-hook		; For shell script mode
           '(lambda()
              (local-set-key (kbd "S-<return>") 'my-eval-in-shell)
