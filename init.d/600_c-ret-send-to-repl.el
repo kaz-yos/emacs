@@ -20,7 +20,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -65,7 +65,7 @@ if a buffer named REPL-BUFFER-REGEXP is not already available."
 
 	  ;; Activate the REPL (Interactive functions are used)
 	  (call-interactively fun-repl-start)
-	  
+
 	  ;; Make name-repl-buffer keep the selected buffer (REPL)
 	  ;; This does not work for python/clojure
 	  (setq name-repl-buffer (buffer-name))
@@ -74,7 +74,7 @@ if a buffer named REPL-BUFFER-REGEXP is not already available."
 	  ;; (set-window-buffer window1 name-repl-buffer)
 	  ;; Script on the right (window2)
 	  (set-window-buffer window2 name-script-buffer)
-	  
+
 	  ;; Select the script window on the right (window2)
 	  (select-window window2)
 	  ))))
@@ -194,7 +194,7 @@ expression using a function specified in fun-repl-start. A function definition
   "Invoke cider-jack-in and wait for activation.
 If *nrepl-** buffers are remaining, kill them silently.
 This function should not be invoked directly."
-  
+
   (interactive)
   ;; If *nrepl-* buffers exist although *cider-repl* does not, kill them for safety.
   (let* ((nrepl-buffer-names (my-matching-elements "\\*nrepl-.*\\*$" (mapcar #'buffer-name (buffer-list)))))
@@ -415,15 +415,15 @@ This function should not be invoked directly."
 	;; If empty, deselect region
 	(setq mark-active nil))
       ;; Move to the next statement
-      (python-nav-forward-statement)				
-      
+      (python-nav-forward-statement)
+
       ;; Activate shell window, and switch back
       ;; Remeber the script window
       (setq w-script (selected-window))
       ;; Switch to the shell
       (python-shell-switch-to-shell)
       ;; Switch back to the script window
-      (select-window w-script)					
+      (select-window w-script)
       )))
 ;;; define keys
 (add-hook 'python-mode-hook		; For Python script
@@ -431,6 +431,84 @@ This function should not be invoked directly."
 	     (local-set-key (kbd "<C-return>") 'my-eval-in-python)
 	     ))
 
+
+;;;
+;;; SHELL RELATED
+;; depends on essh
+;; Changed from ESS
+;; Auto-scrolling of R console to bottom and Shift key extension
+;; http://www.kieranhealy.org/blog/archives/2009/10/12/make-shift-enter-do-a-lot-in-ess/
+;; Adapted with one minor change from Felipe Salazar at
+;; http://www.emacswiki.org/emacs/ESSShiftEnter
+;;; my-send-to-shell
+(defun my-send-to-shell (start end)
+  "Sends expression to *shell* and have it evaluated."
+
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+	 ;; Assign the region as a string
+	 (region-string (buffer-substring-no-properties start end)))
+
+    ;; Change to shell
+    (switch-to-buffer-other-window "*shell*")
+    ;; Move to end of buffer
+    (end-of-buffer)
+    ;; Insert the string
+    (insert region-string)
+    ;; Execute
+    (comint-send-input)
+    ;; One more time if not ending with \n
+    (if (not (equal (substring region-string -1) "\n"))
+	(comint-send-input))
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil
+    nil
+    ))
+;;
+;;; my-eval-in-shell
+(defun my-eval-in-shell ()
+  "Evaluates shell expressions in shell scripts."
+  (interactive)
+  ;; Define local variables
+  (let* (w-script)
+
+    ;; defined in 200_my-misc-functions-and-bindings.el
+    (my-repl-start "\\*shell\\*" #'shell)
+
+    ;; Check if selection is present
+    (if (and transient-mark-mode mark-active)
+	;; If selected, send region
+	(my-send-to-shell (point) (mark))
+
+      ;; If not selected, do all the following
+      ;; Move to the beginning of line
+      (beginning-of-line)
+      ;; Set mark at current position
+      (set-mark (point))
+      ;; Go to the end of line
+      (end-of-line)
+      ;; Send region if not empty
+      (if (not (equal (point) (mark)))
+	  (my-send-to-shell (point) (mark))
+	;; If empty, deselect region
+	(setq mark-active nil))
+      ;; Move to the next statement
+      (essh-next-code-line)
+
+      ;; Activate shell window, and switch back
+      ;; Remeber the script window
+      (setq w-script (selected-window))
+      ;; Switch to the shell
+      (switch-to-buffer-other-window "*shell*")
+      ;; Switch back to the script window
+      (select-window w-script)
+      )))
+;;
+(add-hook 'sh-mode-hook		; For shell script mode
+          '(lambda()
+             (local-set-key (kbd "S-<return>") 'my-eval-in-shell)
+	     (local-set-key (kbd "C-<return>") 'my-eval-in-shell)))
 
 
 
