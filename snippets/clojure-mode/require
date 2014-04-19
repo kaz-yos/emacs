@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: require
+# key: xrequire
+# --
+(require '[clojure.$1 :as c$1])$0
