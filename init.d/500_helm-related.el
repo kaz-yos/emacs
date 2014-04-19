@@ -87,13 +87,13 @@
 ;;; helm-open-github 2014-02-01 OAutho required
 ;; http://shibayu36.hatenablog.com/entry/2013/01/18/211428
 (require 'helm-open-github)
-(global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
-(global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
-(global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
+;; (global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
+;; (global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
+;; (global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
 ;;
 ;;
 ;;; ac-helm.el		; Helm interface for auto-complete
-(require 'ac-helm) ;; Not necessary if using ELPA package
+(require 'ac-helm)
 (global-set-key (kbd "C-:") 'ac-complete-with-helm)
 (define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
 ;;
