@@ -24,96 +24,11 @@
 ;; (define-key map (kbd "C-c C-l") 'python-shell-send-file)
 ;; (define-key map (kbd "C-c C-z") 'python-shell-switch-to-shell)
 ;;
-;; Redefine python-shell-send-region command to avoid sending blank line to ipython shell 2013-12-22
-;; This, however, breaks the debugger. It will show the wrong lines in the beginning of the files. 2013-12-25
-;; Python3's traceback is smarter and correctly shows the error with the simplified send-region. 2014-01-02
-'(defun python-shell-send-region (start end)
-  "Send the region delimited by START and END to inferior Python process."
-  (interactive "r")
-  (python-shell-send-string
-   (buffer-substring start end)
-   ;; No need to send blank lines in ipython? 2013-12-22
-   ;; (concat
-   ;;  (let ((line-num (line-number-at-pos start)))
-   ;;    ;; When sending a region, add blank lines for non sent code so
-   ;;    ;; backtraces remain correct.
-   ;;    (make-string (1- line-num) ?\n))
-   ;;  (buffer-substring start end))
-   nil t))
-;;
-;;;
-;;; my-send-to-python
-(defun my-send-to-python (start end)
-  "Sends expression to *Python* and have it evaluated."
-
-  (let* (;; Assign the current buffer
-	 (script-window (selected-window))
-	 ;; Assign the region as a string
-	 (region-string (buffer-substring-no-properties start end)))
-
-    ;; Change to Python shell
-    (python-shell-switch-to-shell)
-    ;; Move to end of buffer
-    (end-of-buffer)
-    ;; Insert the string
-    (insert region-string)
-    ;; Execute
-    (comint-send-input)
-    ;; One more time if not ending with \n
-    (if (not (equal (substring region-string -1) "\n"))
-	(comint-send-input))
-    ;; Come back to the script
-    (select-window script-window)
-    ;; Return nil
-    nil
-    ))
-;;; my-python-eval
-;; http://www.reddit.com/r/emacs/comments/1h4hyw/selecting_regions_pythonel/
-(defun my-python-eval ()
-  "Evaluates Python expressions"
-  (interactive)
-  ;; Define local variables
-  (let* (w-script)
-
-    ;; defined in 200_my-misc-functions-and-bindings.el
-    (my-repl-start "*Python*" #'run-python)
-
-    ;; Check if selection is present
-    (if (and transient-mark-mode mark-active)
-	;; If selected, send region
-	(my-send-to-python (point) (mark))
-
-      ;; If not selected, do all the following
-      ;; Move to the beginning of line
-      (beginning-of-line)
-      ;; Set mark at current position
-      (set-mark (point))
-      ;; Go to the end of statment
-      (python-nav-end-of-statement)
-      ;; Go to the end of block
-      (python-nav-end-of-block)
-      ;; Send region if not empty
-      (if (not (equal (point) (mark)))
-	  (my-send-to-python (point) (mark))
-	;; If empty, deselect region
-	(setq mark-active nil))
-      ;; Move to the next statement
-      (python-nav-forward-statement)				
-      
-      ;; Activate shell window, and switch back
-      ;; Remeber the script window
-      (setq w-script (selected-window))
-      ;; Switch to the shell
-      (python-shell-switch-to-shell)
-      ;; Switch back to the script window
-      (select-window w-script)					
-      )))
 ;;
 ;; Define hooks
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
-	     (local-set-key (kbd "<S-return>") 'my-python-eval)
-	     (local-set-key (kbd "<C-return>") 'my-python-eval)
+	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)
 	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
 	     ;; (eldoc-mode 1)			; eldoc in the mode line. Slow? 2013-12-25
 	     (local-set-key (kbd "C-m") 'newline-and-indent)	; Indent after newline

@@ -69,17 +69,6 @@
 ;; (setq ess-gen-proc-buffer-name-function (lambda (proc) (concatenate 'proc "R")))
 ;; (setq ess-gen-proc-buffer-name-function (lambda (proc) "nameR"))
 ;;
-;;; my-essh-eval-R function
-(defun my-ess-eval-R ()
-  (interactive)
-
-  ;; defined in 200_my-misc-functions-and-bindings.el
-  (my-repl-start "*R*" #'R)
-
-  (if (and transient-mark-mode mark-active)
-      (call-interactively 'ess-eval-region)
-    (call-interactively 'ess-eval-line-and-step)))
-;;
 ;; Function to toggle $ in syntax table 2013-08-06
 (defun toggle-dollar ()
   "Toggle status of $ in the syntax table"
@@ -93,11 +82,9 @@
       (modify-syntax-entry ?@  " "  S-syntax-table))
     ))
 ;;
-(add-hook 'ess-mode-hook		; For ESS mode
+;; R-mode
+(add-hook 'R-mode-hook
           '(lambda()
-	     ;; my-ess-eval-R
-	     (local-set-key (kbd "<S-return>") 'my-ess-eval-R)
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval-R)	; Change to my-ess-eval-R
 	     ;; Toggling $ in S-syntax-table
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
@@ -107,6 +94,16 @@
 	     ;; (local-set-key (kbd "M-n p") 'ess-swv-PDF)	  ; Does not work. M-n is prefix. 2013-09-08
 	     ))
 ;;
+;; ess-mode
+(add-hook 'ess-mode-hook		; For ESS mode
+          '(lambda()
+	     ;; Additional keybinds
+	     ;; (local-set-key (kbd "C-c f") 'ess-eval-function)
+	     ;; (local-set-key (kbd "C-c n") 'ess-next-code-line) ; Not useful?
+	     ;; (local-set-key (kbd "M-n p") 'ess-swv-PDF)	  ; Does not work. M-n is prefix. 2013-09-08
+	     ))
+;;
+;; inferior-ess-mode
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
           '(lambda()
 	     (local-set-key (kbd "C-c w") 'ess-execute-screen-options)	; To adjust width
@@ -120,23 +117,23 @@
 ;; https://stat.ethz.ch/pipermail/ess-help/2009-July/005455.html
 (add-hook 'ess-post-run-hook
 	  '(lambda ()
+	     ;; Extend column width of R-Process in Emacs
 	     (ess-execute-screen-options)))			; Reset screen width
 ;;
-(add-hook 'Rnw-mode-hook		; For Rnw mode
+;; Rnw-mode
+(add-hook 'Rnw-mode-hook
           '(lambda()
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval-R)
-	     (local-set-key (kbd "<S-return>") 'my-ess-eval-R)
+	     ;; 
 	     ))
 ;;
-(add-hook 'Rd-mode-hook			; For .Rd files
+;; Rd-mode-hook
+(add-hook 'Rd-mode-hook
           '(lambda()
-	     ;; my-ess-eval-R
-	     (local-set-key (kbd "<S-return>") 'my-ess-eval-R)
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval-R)	; Change to my-ess-eval-R
 	     ;; Toggling $ in S-syntax-table
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ))
+;;
 ;;
 ;; ess-trace-bug.el		; filtering ++++ > ??? Not working
 ;; http://code.google.com/p/ess-tracebug/
@@ -213,48 +210,23 @@
 (global-set-key (kbd "M--") 'toggle-cacoo-minor-mode) ; key bind example
 ;;
 ;;
-;; ESS julia language
+;;;
+;;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
 ;; excecutable file Changed as of 2013-12-20
 (setq inferior-julia-program-name "/Applications/Julia.app/Contents/Resources/julia/bin/julia-basic")
-;; Define a function to starting julia
-(defun my-ess-start-julia ()
-  (interactive)
-  (if (not (member "*julia*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-        (delete-other-windows)
-        (setq w1 (selected-window))
-        (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))
-        (julia)
-        (set-window-buffer w1 "*julia*")	; julia on the left (w1)
-        (set-window-buffer w2 w1name)	; script on the right (w2)
-	(select-window w2)		; Select script (w2) Added
-	)))
-;; Define a function to eval julia code	; Actually the one for R works???
-(defun my-ess-eval-julia ()
-  (interactive)
-  (my-ess-start-julia)
-  (if (and transient-mark-mode mark-active)
-      (call-interactively 'ess-eval-region)
-    (call-interactively 'ess-eval-line-and-step)))
-;; Hook for julia-mode
-(add-hook 'julia-mode-hook
-	  '(lambda()
-	     (local-set-key (kbd "<S-return>") 'my-ess-eval-julia)
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval-julia)
-	     )
-	  )
 ;;
 ;;
-;; ESS SAS configuration
+;;;
+;;; ESS SAS configuration
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
 (add-hook 'sas-mode-hook	; For SAS mode
           '(lambda()
              (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab from ESS major mode
 
 
-;; STAN support 2014-01-15
+;;;
+;;; STAN support 2014-01-15
 (require 'stan-mode)
 ;; stan-snippets.el
 ;; (require 'stan-snippets)
@@ -262,6 +234,7 @@
 ;; (require 'flymake-stan)
 
 
+;;;
 ;;; polymode (alpha) 2014-02-21
 ;; https://github.com/vitoshka/polymode
 ;; Set load path (forked and pulled from my repo)

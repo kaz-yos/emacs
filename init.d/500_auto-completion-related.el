@@ -1,6 +1,8 @@
 ;;; Auto-completion related configurations
 ;; Configure ac-* in respective files. Keep this file minimum.
 
+;;;
+;;; AUTO-COMPLETE
 ;;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
 ;; https://github.com/auto-complete/auto-complete
 ;; http://cx4a.org/software/auto-complete/manual.html
@@ -59,7 +61,7 @@
 (setq popup-use-optimized-column-computation nil)
 
 
-
+;;;
 ;;; icicles.el		; Minibuffer input completion and cycling.
 ;; http://www.emacswiki.org/emacs/Icicles
 ;; http://www.emacswiki.org/emacs/Icicles_-_Nutshell_View
@@ -73,15 +75,18 @@
 ;;
 ;; Default cycling mode
 ;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#toc34
-(setq icicle-default-cycling-mode 'prefix)
+;; (setq icicle-default-cycling-mode 'prefix)
+(setq icicle-default-cycling-mode 'apropos)
 ;;
-;; This completely breaks other packages. 2014-03-01
-;; (setq icicle-modal-cycle-up-keys   (kbd "C-p"))
-;; (setq icicle-modal-cycle-down-keys (kbd "C-n"))
-;;
+;;; Key configuration for cycling prefix matchingn
 ;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
-(add-to-list 'icicle-prefix-cycle-previous-keys (kbd "H-p"))
-(add-to-list 'icicle-prefix-cycle-next-keys (kbd "H-n"))
+;; Use tab for next. Use A-tab for previous.
+(add-to-list 'icicle-prefix-cycle-previous-keys (kbd "<A-tab>"))
+;;
+;;; Key configuration for cycling fuzzy matching
+;; icicle-apropos-cycle-previous/next-keys: [next]/[prior] by default
+;; Use S-tab for next. Use A-S-tab for previous.
+(add-to-list 'icicle-apropos-cycle-previous-keys (kbd "<S-A-tab>"))
 ;;
 ;; Key Bindings
 ;; http://www.emacswiki.org/emacs/Icicles_-_Key_Bindings
@@ -106,12 +111,12 @@
 ;; (setq ido-use-faces nil)
 
 
-
+;;;
 ;;; grizzl.el		; A fuzzy-search utility for Emacs
 ;; https://github.com/d11wtq/grizzl
 
 
-
+;;;
 ;;; Handling of the tab completion buffer 2014-02-03
 ;; http://stackoverflow.com/questions/6458220/automatically-close-emacs-shell-mode-tab-completion-buffer
 (defun delete-completion-window-buffer (&optional output)
