@@ -78,9 +78,15 @@
 ;; (setq icicle-default-cycling-mode 'prefix)
 (setq icicle-default-cycling-mode 'apropos)
 ;;
+;;; Key configuration for cycling prefix matchingn
 ;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
 ;; Use tab for next. Use A-tab for previous.
 (add-to-list 'icicle-prefix-cycle-previous-keys (kbd "<A-tab>"))
+;;
+;;; Key configuration for cycling fuzzy matching
+;; icicle-apropos-cycle-previous/next-keys: [next]/[prior] by default
+;; Use S-tab for next. Use A-S-tab for previous.
+(add-to-list 'icicle-apropos-cycle-previous-keys (kbd "<S-A-tab>"))
 ;;
 ;; Key Bindings
 ;; http://www.emacswiki.org/emacs/Icicles_-_Key_Bindings
@@ -105,12 +111,12 @@
 ;; (setq ido-use-faces nil)
 
 
-
+;;;
 ;;; grizzl.el		; A fuzzy-search utility for Emacs
 ;; https://github.com/d11wtq/grizzl
 
 
-
+;;;
 ;;; Handling of the tab completion buffer 2014-02-03
 ;; http://stackoverflow.com/questions/6458220/automatically-close-emacs-shell-mode-tab-completion-buffer
 (defun delete-completion-window-buffer (&optional output)
