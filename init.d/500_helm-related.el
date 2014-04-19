@@ -17,15 +17,15 @@
 (setq helm-locate-command "")
 ;;
 (let ((key-and-func
-       `(;(,(kbd "C-r")   helm-for-files)	; Not sure if backquote is right
-	 (,(kbd "C-z")   helm-for-files)	; Like recentf
-         (,(kbd "C-^")   helm-c-apropos)
-         (,(kbd "C-;")   helm-resume)
-         (,(kbd "M-s")   helm-occur)
-         (,(kbd "M-x")   helm-M-x)
-         (,(kbd "M-y")   helm-show-kill-ring)
-         (,(kbd "M-z")   helm-do-grep)
-         (,(kbd "C-S-h") helm-descbinds)
+       `((,(kbd "C-x C-f") helm-find-files)
+	 (,(kbd "C-z")	   helm-for-files)
+         (,(kbd "C-^")	   helm-c-apropos)
+         (,(kbd "C-;")	   helm-resume)
+         (,(kbd "M-s")	   helm-occur)
+         (,(kbd "M-x")	   helm-M-x)
+         (,(kbd "M-y")	   helm-show-kill-ring)
+         (,(kbd "M-z")	   helm-do-grep)
+         (,(kbd "C-S-h")   helm-descbinds)
 	 )))
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
