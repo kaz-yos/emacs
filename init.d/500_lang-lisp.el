@@ -107,6 +107,17 @@
 ;;;
 ;;; SLIME for non-elisp lisps
 ;;; slime.el
+;; Common Lisp hyperspec via homebrew
+;; http://www.lispworks.com/documentation/common-lisp.html
+(eval-after-load "slime"
+  '(progn
+     (setq common-lisp-hyperspec-root
+           "/usr/local/share/doc/hyperspec/HyperSpec/")
+     (setq common-lisp-hyperspec-symbol-table
+           (concat common-lisp-hyperspec-root "Data/Map_Sym.txt"))
+     (setq common-lisp-hyperspec-issuex-table
+           (concat common-lisp-hyperspec-root "Data/Map_IssX.txt"))))
+;; 
 ;; http://www.common-lisp.net/project/slime/
 ;; http://dev.ariel-networks.com/wp/archives/462
 (require 'slime)
@@ -123,8 +134,8 @@
 ;; PROGRAM-ARGS is a list of command line arguments.
 ;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)x
 (setq slime-lisp-implementations
-      '((clisp ("/usr/local/bin/clisp"))	; first one is the default
-	(sbcl ("/usr/local/bin/sbcl"))
+      '((clisp  ("/usr/local/bin/clisp"))	; first one is the default
+	(sbcl   ("/usr/local/bin/sbcl"))
 	(scheme ("/usr/local/bin/scheme"))))
 ;;
 ;;; auto-complete for SLIME 2014-02-25
