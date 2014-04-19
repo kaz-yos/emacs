@@ -28,8 +28,7 @@
 ;; Define hooks
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
-	     (local-set-key (kbd "<S-return>") 'my-python-eval)
-	     (local-set-key (kbd "<C-return>") 'my-python-eval)
+	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)
 	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
 	     ;; (eldoc-mode 1)			; eldoc in the mode line. Slow? 2013-12-25
 	     (local-set-key (kbd "C-m") 'newline-and-indent)	; Indent after newline
