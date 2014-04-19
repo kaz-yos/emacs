@@ -64,37 +64,45 @@
 ;;;
 ;;; icicles.el		; Minibuffer input completion and cycling.
 ;; http://www.emacswiki.org/emacs/Icicles
+;; Nutshell
 ;; http://www.emacswiki.org/emacs/Icicles_-_Nutshell_View
+;; Newbie
 ;; http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
+;; Customization and General Tips
+;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips
+;; Key Bindings
+;; http://www.emacswiki.org/emacs/Icicles_-_Key_Bindings
+;; Modal cycling
+;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-modal-cycle-up-keys
+;;
+;; Need to turn off icy-mode, and turn it back on to reflect configuration changes.
 (require 'icicles)
 (icy-mode 1)
 ;;
-;; *Initial height decrease for text in buffer `*Completions*'. (0.75 by default)
+;; Initial height decrease for text in buffer `*Completions*'. (0.75 by default)
 ;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-Completions-text-scale-decrease
 (setq icicle-Completions-text-scale-decrease 0.0)
 ;;
-;; Default cycling mode
-;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#toc34
-;; (setq icicle-default-cycling-mode 'prefix)
+;;; Default cycling mode to be used before you hit ‘TAB’ or ‘S-TAB’.
+;; prefix or apropos (fuzzy matching)
 (setq icicle-default-cycling-mode 'apropos)
 ;;
-;;; Key configuration for cycling prefix matchingn
-;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
-;; Use tab for next. Use A-tab for previous.
-(add-to-list 'icicle-prefix-cycle-previous-keys (kbd "<A-tab>"))
+;;; Key configuration for modal cycling within minibuffer.
+(add-to-list 'icicle-modal-cycle-up-keys (kbd "C-p"))
+(add-to-list 'icicle-modal-cycle-down-keys (kbd "C-n"))
 ;;
 ;;; Key configuration for cycling fuzzy matching
+;; icicle-apropos-complete-keys: tab by default
+(setq icicle-apropos-complete-keys (list (kbd "<tab>")))
 ;; icicle-apropos-cycle-previous/next-keys: [next]/[prior] by default
-;; Use S-tab for next. Use A-S-tab for previous.
-(add-to-list 'icicle-apropos-cycle-previous-keys (kbd "<S-A-tab>"))
+(setq icicle-apropos-cycle-previous-keys (list (kbd "<A-tab>") (kbd "<prior>")))
 ;;
-;; Key Bindings
-;; http://www.emacswiki.org/emacs/Icicles_-_Key_Bindings
+;;; Key configuration for cycling prefix matching
+;; icicle-prefix-complete-keys: tab by default
+(setq icicle-prefix-complete-keys (list (kbd "<S-tab>")))
+;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
+(setq icicle-prefix-cycle-previous-keys (list (kbd "<S-A-tab>") (kbd "<home>")))
 ;;
-;; Rubikitch Icicles Configuration
-;; http://www.emacswiki.org/emacs/RubikitchIciclesConfiguration
-;; modal cycling
-;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-modal-cycle-up-keys
 
 
 
