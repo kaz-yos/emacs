@@ -21,6 +21,8 @@
 	 (,(kbd "M-x")	   helm-M-x)
 	 (,(kbd "C-z")	   helm-for-files)
 	 (,(kbd "M-y")	   helm-show-kill-ring)
+	 (,(kbd "C-x b")   helm-buffers-list)
+	 (,(kbd "C-x C-r") helm-recentf)
 	 ;;
          (,(kbd "C-^")	   helm-c-apropos)
          (,(kbd "C-;")	   helm-resume)
@@ -31,9 +33,19 @@
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 ;;
+;; (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+;; (define-key global-map (kbd "C-x C-r") 'helm-recentf)
+;;
 ;; helm for isearch 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
+;;
+;; Emulate `kill-line' in helm minibuffer
+;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688
+(setq helm-delete-minibuffer-contents-from-point t)
+(defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
+  "Emulate `kill-line' in helm minibuffer"
+  (kill-new (buffer-substring (point) (field-end))))
 
 
 ;;;
