@@ -69,16 +69,6 @@
 ;; (setq ess-gen-proc-buffer-name-function (lambda (proc) (concatenate 'proc "R")))
 ;; (setq ess-gen-proc-buffer-name-function (lambda (proc) "nameR"))
 ;;
-;;; my-ess-eval-R function
-(defun my-ess-eval-R ()
-  (interactive)
-
-  (eir-repl-start "^\*R:*[0-9]*\\*$" #'R)
-
-  (if (and transient-mark-mode mark-active)
-      (call-interactively 'ess-eval-region)
-    (call-interactively 'ess-eval-line-and-step)))
-;;
 ;; Function to toggle $ in syntax table 2013-08-06
 (defun toggle-dollar ()
   "Toggle status of $ in the syntax table"
@@ -95,8 +85,6 @@
 ;; R-mode
 (add-hook 'R-mode-hook
           '(lambda()
-	     ;; my-ess-eval-R
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval-R)	; Change to my-ess-eval-R
 	     ;; Toggling $ in S-syntax-table
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
@@ -110,7 +98,7 @@
 (add-hook 'ess-mode-hook		; For ESS mode
           '(lambda()
 	     ;; Additional keybinds
-	     (local-set-key (kbd "C-c f") 'ess-eval-function)
+	     ;; (local-set-key (kbd "C-c f") 'ess-eval-function)
 	     ;; (local-set-key (kbd "C-c n") 'ess-next-code-line) ; Not useful?
 	     ;; (local-set-key (kbd "M-n p") 'ess-swv-PDF)	  ; Does not work. M-n is prefix. 2013-09-08
 	     ))
@@ -135,16 +123,12 @@
 ;; Rnw-mode
 (add-hook 'Rnw-mode-hook
           '(lambda()
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval-R)
-	     (local-set-key (kbd "<S-return>") 'my-ess-eval-R)
+	     ;; 
 	     ))
 ;;
 ;; Rd-mode-hook
 (add-hook 'Rd-mode-hook
           '(lambda()
-	     ;; my-ess-eval-R
-	     (local-set-key (kbd "<S-return>") 'my-ess-eval-R)
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval-R)	; Change to my-ess-eval-R
 	     ;; Toggling $ in S-syntax-table
 	     (local-set-key (kbd "C-c 4") 'toggle-dollar)	; Toggle $ in S-syntax-table
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
@@ -232,40 +216,9 @@
 ;; excecutable file Changed as of 2013-12-20
 (setq inferior-julia-program-name "/Applications/Julia.app/Contents/Resources/julia/bin/julia-basic")
 ;;
-;; my-ess-eval-julia
-(defun my-ess-eval-julia ()
-  (interactive)
-
-  (eir-repl-start "^\*julia:*[0-9]*\\*$" #'R)
-
-  (if (and transient-mark-mode mark-active)
-      (call-interactively 'ess-eval-region)
-    (call-interactively 'ess-eval-line-and-step)))
-;;
-;; Hook for julia-mode
-(add-hook 'julia-mode-hook
-	  '(lambda()
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval-julia)))
 ;;
 ;;;
-;;; ESS Stata
-;;; my-ess-eval-stata
-(defun my-ess-eval-stata ()
-  (interactive)
-
-  (eir-repl-start "^\*stata:*[0-9]*\\*$" #'R)
-
-  (if (and transient-mark-mode mark-active)
-      (call-interactively 'ess-eval-region)
-    (call-interactively 'ess-eval-line-and-step)))
-;;
-;; Hook for stata-mode
-(add-hook 'stata-mode-hook
-	  '(lambda()
-	     (local-set-key (kbd "<C-return>") 'my-ess-eval-stata)))
-;;
-;;
-;; ESS SAS configuration
+;;; ESS SAS configuration
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
 (add-hook 'sas-mode-hook	; For SAS mode
           '(lambda()
