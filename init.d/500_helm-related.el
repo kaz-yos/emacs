@@ -18,13 +18,14 @@
 ;;
 (let ((key-and-func
        `((,(kbd "C-x C-f") helm-find-files)
+	 (,(kbd "M-x")	   helm-M-x)
 	 (,(kbd "C-z")	   helm-for-files)
+	 (,(kbd "M-y")	   helm-show-kill-ring)
+	 ;;
          (,(kbd "C-^")	   helm-c-apropos)
          (,(kbd "C-;")	   helm-resume)
          (,(kbd "M-s")	   helm-occur)
-         (,(kbd "M-x")	   helm-M-x)
-         (,(kbd "M-y")	   helm-show-kill-ring)
-         (,(kbd "M-z")	   helm-do-grep)
+	 (,(kbd "M-z")	   helm-do-grep)
          (,(kbd "C-S-h")   helm-descbinds)
 	 )))
   (loop for (key func) in key-and-func
@@ -54,8 +55,7 @@
 ;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html	; helm-migemo
 (when (eq system-type 'darwin)
     ;; Mac-only
-    (require 'helm-migemo)
-  )
+    (require 'helm-migemo))
 ;;
 ;;
 ;;; wgrep-helm.el  2014-01-14
