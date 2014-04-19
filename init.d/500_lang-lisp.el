@@ -76,13 +76,13 @@
 (define-key clojure-mode-map (kbd "C-c a") 'auto-complete-mode)
 ;;
 ;;
-;;; ac-cider-compliment.el
-;;     (load "path/to/ac-nrepl-compliment.el")
-;;     (require 'ac-cider-compliment)
-;;     (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-;;     (add-hook 'cider-mode-hook 'ac-cider-compliment-setup)
-;;     (eval-after-load "auto-complete"
-;;       '(add-to-list 'ac-modes 'cider-mode))
+;;; ac-nrepl
+;; https://github.com/clojure-emacs/ac-nrepl
+(require 'ac-nrepl)
+(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
+(add-hook 'cider-mode-hook      'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'cider-repl-mode))
 ;;
 ;;
 ;;; cider-toggle-trace
