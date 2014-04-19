@@ -75,7 +75,7 @@
 ;; Modal cycling
 ;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-modal-cycle-up-keys
 ;;
-;; Need to turn off icy-mode, and turn it back on to reflect configuration changes.
+;; Need to turn off icicle-mode, and turn it back on to reflect configuration changes.
 (require 'icicles)
 (icy-mode 1)
 ;;
@@ -87,21 +87,24 @@
 ;; prefix or apropos (fuzzy matching)
 (setq icicle-default-cycling-mode 'apropos)
 ;;
-;;; Key configuration for modal cycling within minibuffer.
-(add-to-list 'icicle-modal-cycle-up-keys (kbd "C-p"))
-(add-to-list 'icicle-modal-cycle-down-keys (kbd "C-n"))
+;;; Key configuration for modal cycling within minibuffer
+;; No need for configuration. They already work if configured for apropos-cycle.
+;; (add-to-list 'icicle-modal-cycle-up-keys   (kbd "C-p"))
+;; (add-to-list 'icicle-modal-cycle-down-keys (kbd "C-n"))
 ;;
 ;;; Key configuration for cycling fuzzy matching
-;; icicle-apropos-complete-keys: tab by default
+;; icicle-apropos-complete-keys: S-tab by default
 (setq icicle-apropos-complete-keys (list (kbd "<tab>")))
 ;; icicle-apropos-cycle-previous/next-keys: [next]/[prior] by default
-(setq icicle-apropos-cycle-previous-keys (list (kbd "<A-tab>") (kbd "<prior>")))
+(setq icicle-apropos-cycle-previous-keys (list (kbd "<A-tab>") (kbd "C-p") (kbd "<prior>")))
+(setq icicle-apropos-cycle-next-keys     (list                 (kbd "C-n") (kbd "<next>")))
 ;;
 ;;; Key configuration for cycling prefix matching
 ;; icicle-prefix-complete-keys: tab by default
 (setq icicle-prefix-complete-keys (list (kbd "<S-tab>")))
 ;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
 (setq icicle-prefix-cycle-previous-keys (list (kbd "<S-A-tab>") (kbd "<home>")))
+(setq icicle-prefix-cycle-next-keys     (list                   (kbd "<end>")))
 ;;
 
 
