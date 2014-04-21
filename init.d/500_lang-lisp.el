@@ -111,8 +111,10 @@
 ;; http://www.lispworks.com/documentation/common-lisp.html
 (eval-after-load "slime"
   '(progn
+     ;; (setq common-lisp-hyperspec-root
+     ;;       "/usr/local/share/doc/hyperspec/HyperSpec/")
      (setq common-lisp-hyperspec-root
-           "/usr/local/share/doc/hyperspec/HyperSpec/")
+	   "http://www.harlequin.com/education/books/HyperSpec/")
      (setq common-lisp-hyperspec-symbol-table
            (concat common-lisp-hyperspec-root "Data/Map_Sym.txt"))
      (setq common-lisp-hyperspec-issuex-table
