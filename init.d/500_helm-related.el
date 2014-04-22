@@ -17,7 +17,7 @@
 (setq helm-locate-command "")
 ;;
 (let ((key-and-func
-       `((,(kbd "C-x C-f") helm-find-files)
+       `(;;(,(kbd "C-x C-f") helm-find-files)
 	 (,(kbd "M-x")	   helm-M-x)
 	 (,(kbd "C-z")	   helm-for-files)
 	 (,(kbd "M-y")	   helm-show-kill-ring)
