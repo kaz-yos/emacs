@@ -52,3 +52,7 @@ If you omit CLOSE, it will reuse OPEN."
       (flush-lines "^ *$" start end)))
 ;; key
 (global-set-key (kbd "s-f") 'flush-empty-lines)
+
+;;;
+;;; just-one-space
+(global-set-key (kbd "s-o") 'just-one-space)

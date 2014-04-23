@@ -76,13 +76,13 @@
 (define-key clojure-mode-map (kbd "C-c a") 'auto-complete-mode)
 ;;
 ;;
-;;; ac-cider-compliment.el
-;;     (load "path/to/ac-nrepl-compliment.el")
-;;     (require 'ac-cider-compliment)
-;;     (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-;;     (add-hook 'cider-mode-hook 'ac-cider-compliment-setup)
-;;     (eval-after-load "auto-complete"
-;;       '(add-to-list 'ac-modes 'cider-mode))
+;;; ac-nrepl
+;; https://github.com/clojure-emacs/ac-nrepl
+(require 'ac-nrepl)
+(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
+(add-hook 'cider-mode-hook      'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'cider-repl-mode))
 ;;
 ;;
 ;;; cider-toggle-trace
@@ -101,12 +101,48 @@
 (require '4clojure)
 ;;
 ;;
+;;; C-c v for help
+(defun cider-help-for-symbol ()
+  "Provide help for a symbol in the REPL."
+
+  (interactive)
+  ;; Define variables
+  (let* ((name-symbol (thing-at-point 'symbol t))
+	 (doc-string (concat "(doc " name-symbol ")"))
+	 (script-window (selected-window)))
+
+    ;; move to repl
+    (cider-switch-to-repl-buffer)
+
+    ;; Insert the (doc fun-name)
+    (insert doc-string)
+
+    ;; Execute
+    (cider-repl-return)
+
+    ;; Move back to the script window
+    (select-window script-window)))
+;;
+(define-key clojure-mode-map (kbd "C-c C-v") 'cider-help-for-symbol)
 
 
 
 ;;;
 ;;; SLIME for non-elisp lisps
 ;;; slime.el
+;; Common Lisp hyperspec via homebrew
+;; http://www.lispworks.com/documentation/common-lisp.html
+(eval-after-load "slime"
+  '(progn
+     ;; (setq common-lisp-hyperspec-root
+     ;;       "/usr/local/share/doc/hyperspec/HyperSpec/")
+     (setq common-lisp-hyperspec-root
+	   "http://www.harlequin.com/education/books/HyperSpec/")
+     (setq common-lisp-hyperspec-symbol-table
+           (concat common-lisp-hyperspec-root "Data/Map_Sym.txt"))
+     (setq common-lisp-hyperspec-issuex-table
+           (concat common-lisp-hyperspec-root "Data/Map_IssX.txt"))))
+;;
 ;; http://www.common-lisp.net/project/slime/
 ;; http://dev.ariel-networks.com/wp/archives/462
 (require 'slime)
@@ -123,13 +159,13 @@
 ;; PROGRAM-ARGS is a list of command line arguments.
 ;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)x
 (setq slime-lisp-implementations
-      '((clisp ("/usr/local/bin/clisp"))	; first one is the default
-	(sbcl ("/usr/local/bin/sbcl"))
+      '((clisp  ("/usr/local/bin/clisp"))	; first one is the default
+	(sbcl   ("/usr/local/bin/sbcl"))
 	(scheme ("/usr/local/bin/scheme"))))
 ;;
 ;;; auto-complete for SLIME 2014-02-25
 (require 'ac-slime)
-(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-mode-hook      'set-up-slime-ac)
 (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'slime-repl-mode))

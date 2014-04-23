@@ -28,9 +28,12 @@
 ;; lisp implementation of ls is used in systems without ls
 ;; (setq ls-lisp-use-insert-directory-program nil)
 ;; (require 'ls-lisp)
+;;
+;;; key configuration
+(define-key dired-mode-map (kbd "s-d") 'make-directory)
 
 
-;; dired+.el
+;;; dired+.el
 ;; This is set for dired+.el in 24.4.
 ;; Configuration in the dired+.el config file did not work(?)
 (setq diredp-hide-details-initially-flag nil)

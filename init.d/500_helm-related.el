@@ -17,22 +17,35 @@
 (setq helm-locate-command "")
 ;;
 (let ((key-and-func
-       `((,(kbd "C-x C-f") helm-find-files)
+       `(;;(,(kbd "C-x C-f") helm-find-files)
+	 (,(kbd "M-x")	   helm-M-x)
 	 (,(kbd "C-z")	   helm-for-files)
+	 (,(kbd "M-y")	   helm-show-kill-ring)
+	 (,(kbd "C-x b")   helm-buffers-list)
+	 (,(kbd "C-x C-r") helm-recentf)
+	 ;;
          (,(kbd "C-^")	   helm-c-apropos)
          (,(kbd "C-;")	   helm-resume)
          (,(kbd "M-s")	   helm-occur)
-         (,(kbd "M-x")	   helm-M-x)
-         (,(kbd "M-y")	   helm-show-kill-ring)
-         (,(kbd "M-z")	   helm-do-grep)
+	 (,(kbd "M-z")	   helm-do-grep)
          (,(kbd "C-S-h")   helm-descbinds)
 	 )))
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 ;;
+;; (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+;; (define-key global-map (kbd "C-x C-r") 'helm-recentf)
+;;
 ;; helm for isearch 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
+;;
+;; Emulate `kill-line' in helm minibuffer
+;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688
+(setq helm-delete-minibuffer-contents-from-point t)
+(defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
+  "Emulate `kill-line' in helm minibuffer"
+  (kill-new (buffer-substring (point) (field-end))))
 
 
 ;;;
@@ -54,8 +67,7 @@
 ;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html	; helm-migemo
 (when (eq system-type 'darwin)
     ;; Mac-only
-    (require 'helm-migemo)
-  )
+    (require 'helm-migemo))
 ;;
 ;;
 ;;; wgrep-helm.el  2014-01-14
@@ -75,13 +87,13 @@
 ;;; helm-open-github 2014-02-01 OAutho required
 ;; http://shibayu36.hatenablog.com/entry/2013/01/18/211428
 (require 'helm-open-github)
-(global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
-(global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
-(global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
+;; (global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
+;; (global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
+;; (global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
 ;;
 ;;
 ;;; ac-helm.el		; Helm interface for auto-complete
-(require 'ac-helm) ;; Not necessary if using ELPA package
+(require 'ac-helm)
 (global-set-key (kbd "C-:") 'ac-complete-with-helm)
 (define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
 ;;
