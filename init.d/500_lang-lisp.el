@@ -101,6 +101,29 @@
 (require '4clojure)
 ;;
 ;;
+;;; C-c v for help
+(defun cider-help-for-symbol ()
+  "Provide help for a symbol in the REPL."
+
+  (interactive)
+  ;; Define variables
+  (let* ((name-symbol (thing-at-point 'symbol t))
+	 (doc-string (concat "(doc " name-symbol ")"))
+	 (script-window (selected-window)))
+
+    ;; move to repl
+    (cider-switch-to-repl-buffer)
+
+    ;; Insert the (doc fun-name)
+    (insert doc-string)
+
+    ;; Execute
+    (cider-repl-return)
+
+    ;; Move back to the script window
+    (select-window script-window)))
+;;
+(define-key clojure-mode-map (kbd "C-c C-v") 'cider-help-for-symbol)
 
 
 
@@ -119,7 +142,7 @@
            (concat common-lisp-hyperspec-root "Data/Map_Sym.txt"))
      (setq common-lisp-hyperspec-issuex-table
            (concat common-lisp-hyperspec-root "Data/Map_IssX.txt"))))
-;; 
+;;
 ;; http://www.common-lisp.net/project/slime/
 ;; http://dev.ariel-networks.com/wp/archives/462
 (require 'slime)
