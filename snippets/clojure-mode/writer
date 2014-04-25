@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: writer
+# key: xwriter
+# --
+(with-open [wtr (clojure.java.io/writer file-path$1)]
+  (.write wtr (str "hello, world")))$0
