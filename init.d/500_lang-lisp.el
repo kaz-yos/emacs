@@ -79,10 +79,21 @@
 ;;; ac-nrepl
 ;; https://github.com/clojure-emacs/ac-nrepl
 (require 'ac-nrepl)
-(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
-(add-hook 'cider-mode-hook      'ac-nrepl-setup)
+(add-hook 'cider-repl-mode-hook
+	  '(lambda ()
+	     (ac-nrepl-setup)
+	     ;; Add ac-source-filename for directory name completion
+	     (add-to-list 'ac-sources 'ac-source-filename)))
+;;
+(add-hook 'cider-mode-hook
+	  '(lambda ()
+	     (ac-nrepl-setup)
+	     ;; Add ac-source-filename for directory name completion
+	     (add-to-list 'ac-sources 'ac-source-filename)))
+;;
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'cider-repl-mode))
+;;
 ;;
 ;;
 ;;; cider-toggle-trace
