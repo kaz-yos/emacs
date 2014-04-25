@@ -36,11 +36,11 @@
 ;; point-undo.el
 ;; http://d.hatena.ne.jp/rubikitch/20081230/pointundo
 (require 'point-undo)
-;; (define-key global-map (kbd "<f5>") 'point-undo)
-;; (define-key global-map (kbd "S-<f5>") 'point-redo)
-(define-key global-map (kbd "<C-f5>")   'point-undo)
-(define-key global-map (kbd "C-S-<f5>") 'point-redo)
-(define-key global-map (kbd "s-5")   'point-undo)
+;; (define-key global-map (kbd "<f4>") 'point-undo)
+;; (define-key global-map (kbd "S-<f4>") 'point-redo)
+(define-key global-map (kbd "<C-f4>")   'point-undo)
+(define-key global-map (kbd "C-S-<f4>") 'point-redo)
+(define-key global-map (kbd "s-4")   'point-undo)
 ;;
 ;; goto-chg.el
 ;; http://www.emacswiki.org/emacs/GotoChg
@@ -49,4 +49,4 @@
 ;; (global-set-key (kbd "C-S-<f5>") 'goto-last-change-reverse)
 (global-set-key (kbd "<f5>")   'goto-last-change)
 (global-set-key (kbd "S-<f5>") 'goto-last-change-reverse)
-(global-set-key (kbd "s-4")   'goto-last-change)
+(global-set-key (kbd "s-5")   'goto-last-change)
