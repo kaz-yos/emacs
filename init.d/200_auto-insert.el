@@ -12,3 +12,4 @@
 (define-auto-insert "\\.sh$"        "shell.sh")
 (define-auto-insert "\\.tex$"       "LaTeX.tex")
 (define-auto-insert "\\.gitignore$" ".gitignore")
+(define-auto-insert "project\\.clj" "project.clj")
