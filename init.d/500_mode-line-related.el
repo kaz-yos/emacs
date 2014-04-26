@@ -11,7 +11,7 @@
 (sml/setup)
 ;;
 ;; cutom background colors
-(setq sml/inactive-background-color "gray40")
+(setq sml/inactive-background-color "gray55")
 (setq sml/active-background-color   "gray80")
 ;;
 ;; https://github.com/mgalgs/.emacs.d/blob/master/smart-mode-line-setup.el
