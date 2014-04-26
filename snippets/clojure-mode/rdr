@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: reader
-# key: xreader
+# name: rdr
+# key: xrdr
 # --
 (with-open [rdr (clojure.java.io/reader file-path$1)]
   (doseq [line (line-seq rdr)]
