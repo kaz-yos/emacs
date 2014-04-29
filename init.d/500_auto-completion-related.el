@@ -51,15 +51,18 @@
  ac-quick-help-delay 1.5
  ac-quick-help-prefer-pos-tip t
  )
-;; Less anoying settings
+;; Key configuration
+;; Non-nil means a special keymap `ac-menu-map' on completing menu will be used.
 ;; http://cx4a.org/software/auto-complete/manual.html#Not_to_complete_automatically
 (setq ac-use-menu-map t)
-(define-key ac-menu-map (kbd "C-n") 'ac-next)
-(define-key ac-menu-map (kbd "C-p") 'ac-previous)
+(define-key ac-menu-map (kbd "C-n")    'ac-next)
+(define-key ac-menu-map (kbd "C-p")    'ac-previous)
+(define-key ac-menu-map (kbd "<tab>")  'ac-next)
+(define-key ac-menu-map (kbd "<S-tab>")'ac-previous)
 ;;
 ;; http://www.emacswiki.org/emacs/ESSAuto-complete
-(define-key ac-completing-map (kbd "<tab>") 'ac-complete)
-(define-key ac-completing-map (kbd "RET") 'ac-complete) ; configured again at end
+(define-key ac-completing-map (kbd "<tab>")    'ac-complete)
+(define-key ac-completing-map (kbd "<return>") 'ac-complete)
 ;;
 ;; Trigger key
 ;; http://cx4a.org/software/auto-complete/manual.html#Trigger_Key
