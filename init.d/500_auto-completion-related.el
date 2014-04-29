@@ -18,18 +18,27 @@
 ;; http://www.emacswiki.org/emacs/ESSAuto-complete
 (setq
  ;; ac-candidate-limit nil
- ac-delay 0			; Faster than default 0.1 before AC kicks in
- ac-auto-show-menu 0.1		; 0.1 sec before menu appears
- ac-candidate-menu-min 1	; Show menu if 2+ candidates
- ac-menu-height 20		; 20 candidates
+ ;; Faster than default 0.1 before AC kicks in
+ ac-delay 0
+ ;; 0.1 sec before menu appears
+ ac-auto-show-menu 0.1
+ ;; Show menu if 2+ candidates
+ ac-candidate-menu-min 1
+ ;; 20 candidates at a time
+ ac-menu-height 20
+ ;; Where to disable ac
  ;; http://stackoverflow.com/questions/17309773/emacs-autocomplete-inside-python-string
  ;; ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
- ac-disable-faces nil		; auto-complete everywhere, even within quotes, comments
- ;; ac-ignore-case 'smart	; Treat them smartly
- ac-ignore-case nil		; Treat them strictly
- ac-use-quick-help nil		; No pop up help!
- ;; ac-quick-help-delay 1.5
- ;; ac-quick-help-prefer-pos-tip t
+ ;; auto-complete everywhere, even within quotes, comments
+ ;; ac-disable-faces nil
+ ac-disable-faces '(font-lock-comment-face)
+ ;; Treat cases strictly by nil or smartly by 'smart
+ ac-ignore-case nil
+ ;; Pop up help
+ ;; ac-use-quick-help nil
+ ac-use-quick-help t
+ ac-quick-help-delay 1.5
+ ac-quick-help-prefer-pos-tip t
  )
 ;; Less anoying settings
 ;; http://cx4a.org/software/auto-complete/manual.html#Not_to_complete_automatically
