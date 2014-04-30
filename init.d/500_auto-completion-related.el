@@ -48,7 +48,7 @@
  ;; Pop up help
  ;; ac-use-quick-help nil
  ac-use-quick-help t
- ac-quick-help-delay 1.5
+ ac-quick-help-delay 1.0
  ac-quick-help-prefer-pos-tip t
  )
 ;; Key configuration
