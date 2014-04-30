@@ -11,15 +11,16 @@
            (other-window 1)))))
 (global-set-key (kbd "C-x /") 'swap-buffer)		; Enabled for everywhere
 
-;;; Unique buffer names
-;; rubikitch book p84
-;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
-(require 'uniquify)
-;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)	; rubikitch
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-ignore-buffers-re "*[^*]+*")
+;; ;;;
+;; ;;; Unique buffer names
+;; ;; rubikitch book p84
+;; ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
+;; (require 'uniquify)
+;; ;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)	; rubikitch
+;; (setq uniquify-buffer-name-style 'forward)
+;; (setq uniquify-ignore-buffers-re "*[^*]+*")
 
-
+;;;
 ;;; auto-revert buffers globally
 ;; Active in all buffers
 (setq global-auto-revert-mode t)
