@@ -43,7 +43,7 @@
 ;;
 ;; Must-haves for ESS
 ;; http://www.emacswiki.org/emacs/CategoryESS
-(setq ess-eval-visibly nil)		; New in 12.09-1
+(setq ess-eval-visibly 'nowait)		; New in 12.09-1
 (setq ess-ask-for-ess-directory nil)	; Don't ask for directory
 ;;
 ;; Auto-scrolling of R console to bottom and Shift key extension
