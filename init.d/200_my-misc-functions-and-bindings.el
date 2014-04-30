@@ -19,11 +19,13 @@
     (delete-region (region-beginning) (region-end)))
   (insert (format-time-string "%Y-%m-%d")))
 (global-set-key (kbd "C-c d") 'my-insert-date)
+(global-set-key (kbd "s-d") 'my-insert-date)
 
 
 ;;;
 ;;; replace (kbd "C-c r")
 (global-set-key (kbd "C-c r") 'replace-string)
+(global-set-key (kbd "s-r") 'replace-string)
 
 
 ;;;
@@ -56,3 +58,8 @@ If you omit CLOSE, it will reuse OPEN."
 ;;;
 ;;; just-one-space
 (global-set-key (kbd "s-o") 'just-one-space)
+
+;;;
+;;; revert-buffer
+;; (global-set-key (kbd "s-r") 'just-one-space)
+

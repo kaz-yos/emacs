@@ -29,14 +29,18 @@
 (require 'helm-projectile)
 ;; C-M-z for helm-projectile
 (global-set-key (kbd "C-M-z") 'helm-projectile)
+;;;
+;;; helm-projectile-all.el
+(require 'helm-projectile-all)
 
 
-
+;;;
 ;;; project-explorer.el		; A project explorer sidebar
 ;; https://github.com/sabof/project-explorer
 ;; (require 'project-explorer)
 
 
+;;;
 ;;; eproject.el			; Assign files to projects, programatically
 ;; http://www.emacswiki.org/emacs/eproject
 ;; https://github.com/jrockway/eproject
@@ -45,5 +49,6 @@
 ;; (require 'eproject)
 
 
+;;;
 ;;; prosjekt.el			; a software project tool for emacs
 ;; https://github.com/abingham/prosjekt

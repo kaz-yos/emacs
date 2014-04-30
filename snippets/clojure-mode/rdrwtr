@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: rdrwtr
+# key: xrdrwtr
+# --
+(with-open [rdr (clojure.java.io/reader file-in)
+            wtr (clojure.java.io/writer file-out)]
+  (doseq [line (line-seq rdr)]
+    (.write wtr (str line "\n"))))$0

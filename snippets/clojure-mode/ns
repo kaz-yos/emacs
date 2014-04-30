@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ns
+# key: xns
+# --
+(ns getting-data.read-csv-spec$1
+  (:use [speclj.core]
+        [getting-data.read-csv]
+        [incanter.core]))$0

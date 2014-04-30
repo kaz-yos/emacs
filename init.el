@@ -1,5 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ~/.emacs.d/init.el for cocoa emacs 24.3.1 (source with inline patch) on Mac OS X 10.8
+;; ~/.emacs.d/init.el for emacs 24.3.90.1 on Mac OS X 10.9
+;; Downloaded in the binary form from http://emacsformacosx.com/builds
 ;; Reference: http://sakito.jp/emacs/emacs24.html#ime
 ;; Now managed with init-loader.el: https://github.com/emacs-jp/init-loader
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

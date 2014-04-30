@@ -9,6 +9,10 @@
 (delete-selection-mode t)			
 
 
+;;; visible-bell instead of audible
+(setq visible-bell t)
+
+
 ;;; Bars: Menu bar only. No scroll bar or tool bar.
 ;; http://www.emacswiki.org/emacs/FullScreen#toc7
 (menu-bar-mode t)
