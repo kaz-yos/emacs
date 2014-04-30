@@ -13,8 +13,8 @@
 ;; http://qiita.com/acple@github/items/3709174ab24c5d82423a
 (setq vc-handled-backends nil)
 ;; Turn off related hooks
-(remove-hook 'find-file-hook 'vc-find-file-hook)
-(remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook);;
+(remove-hook 'find-file-hook   'vc-find-file-hook)
+(remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook)
 ;;
 ;; ;; modeline-git-branch.el (auto-install) 2014-02-14. Switch not fast enough.
 ;; (require 'modeline-git-branch)
