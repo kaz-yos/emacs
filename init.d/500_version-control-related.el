@@ -35,6 +35,7 @@
 (require 'magit)
 ;; keybinding for magit-status
 (global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "s-g")   'magit-status)
 ;;
 ;; change magit diff colors
 ;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
