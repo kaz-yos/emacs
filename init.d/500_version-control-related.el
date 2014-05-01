@@ -33,7 +33,12 @@
 ;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
 ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
 (require 'magit)
+;;
 ;; keybinding for magit-status
+(defun my-magit-status (dir)
+  (ess-nuke-trailing-whitespace)
+  (magit-status dir))
+;;
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "s-g")   'magit-status)
 ;;
