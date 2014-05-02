@@ -17,8 +17,8 @@
 ;; ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
 ;; (require 'uniquify)
 ;; ;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)	; rubikitch
-;; (setq uniquify-buffer-name-style 'forward)
-;; (setq uniquify-ignore-buffers-re "*[^*]+*")
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-ignore-buffers-re "*[^*]+*")
 
 ;;;
 ;;; auto-revert buffers globally
