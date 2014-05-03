@@ -1,22 +1,8 @@
 ;;; Org-mode related
-;; Load
+;; Load org
 (require 'org)
 ;;
-;; Keep the following key
-;; (global-set-key (kbd "<C-tab>") 'other-window-or-split)
+;;;
+;;; Reassign Keep the following key
 (define-key org-mode-map (kbd "<C-tab>") 'other-window-or-split)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(define-key org-mode-map (kbd "<A-tab>") 'org-global-cycle)

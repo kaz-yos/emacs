@@ -20,6 +20,15 @@
   (insert (format-time-string "%Y-%m-%d")))
 (global-set-key (kbd "C-c d") 'my-insert-date)
 (global-set-key (kbd "s-d") 'my-insert-date)
+;;
+;; without hyphnation
+(defun my-insert-date2 ()
+  "Insert current date yyyymmdd."
+  (interactive)
+  (when (region-active-p)
+    (delete-region (region-beginning) (region-end)))
+  (insert (format-time-string "%Y%m%d")))
+(global-set-key (kbd "C-s-d") 'my-insert-date2)
 
 
 ;;;

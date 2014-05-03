@@ -1,5 +1,15 @@
-;;; flyspell-mode 2014-01-20
-;; Define a fuction to use the popup.el
+;;; flyspell-mode related
+
+;;;
+;;; On Macx, configure aspell
+;; Mac-only configuration
+(when (eq system-type 'darwin)
+  ;; http://blog.bungu-do.jp/archives/2426
+  (setq ispell-program-name "/usr/local/bin/aspell")
+  )
+
+;;;
+;;; Define a fuction to use the popup.el
 ;; http://d.hatena.ne.jp/mooz/20100423/p1
 (defun flyspell-correct-word-popup-el ()
   "Pop up a menu of possible corrections for misspelled word before point."
@@ -40,18 +50,18 @@
 	    (flyspell-do-correct (popup-menu* (car (cddr poss)) :scroll-bar t :margin t)
 				 poss word cursor-location start end cursor-location)))
 	  (ispell-pdict-save t)))))
+;;
+(global-set-key (kbd "s-s") 'flyspell-correct-word-popup-el)
 
-;; C-M-return at the word to correct to activate
-(add-hook 'flyspell-mode-hook
-          (lambda ()
-            (define-key flyspell-mode-map (kbd "<C-M-return>") 'flyspell-correct-word-popup-el)
-            ))
 
-;; Auto-start flyspell-mode for these files
+;;;
+;;; Auto-start flyspell-mode for these files
+;; Not on, it can be annoying in Japanese input
 ;; (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.tex" . flyspell-mode))
 
 
+;;;
 ;;; Save word without a mouse
 ;; http://stackoverflow.com/questions/11070849/flyspell-without-a-mouse
 (defun save-ispell-word (word)
@@ -60,25 +70,19 @@
   (setq ispell-pdict-modified-p '(t)))
 
 
-;;; Spell checker (require aspell. No .el dependency)
-;; Mac-only configuration
-(when (eq system-type 'darwin)
-  ;; http://blog.bungu-do.jp/archives/2426
-  (setq ispell-program-name "/usr/local/bin/aspell")
-  )
-
-
-;; ac-ispell	; 2014-01-20
+;;;
+;;; ac-ispell.el
 ;; Auto-completion for English words
-;; (custom-set-variables
-;;   '(ac-ispell-requires 4))
-
-;; (eval-after-load "auto-complete"
-;;   '(progn
-;;       (ac-ispell-setup)))
-
-;; (defun my/enable-ac-ispell ()
-;;   (add-to-list 'ac-sources 'ac-source-ispell))
-
-;; (add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
-;; (add-hook 'mail-mode-hook 'my/enable-ac-ispell)
+(custom-set-variables
+  '(ac-ispell-requires 4))
+;;
+(eval-after-load "auto-complete"
+  '(progn
+      (ac-ispell-setup)))
+;;
+(defun my/enable-ac-ispell ()
+  (add-to-list 'ac-sources 'ac-source-ispell))
+;;
+;; Enable for these modes
+(add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
+(add-hook 'mail-mode-hook 'my/enable-ac-ispell)

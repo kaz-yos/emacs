@@ -80,13 +80,15 @@
 (global-set-key (kbd "M-]")	'my-bm-next)
 (global-set-key (kbd "M-[")	'my-bm-previous)
 (global-set-key (kbd "C-c b")	'my-bm-show)
+(global-set-key (kbd "s-b")	'my-bm-show)
 ;;
-;; helm-bm.el		; helm sources for bm.el
+;;
+;;; helm-bm.el		; helm sources for bm.el
 (require 'helm-bm) ;; Not necessary if using ELPA package
 ;; (global-set-key (kbd "C-c b") 'helm-bm)
 
 
-
+;;;
 ;;; Built-in bookmarks (not used)
 ;; http://www.emacswiki.org/emacs/BookMarks#toc6
 (setq bookmark-save-flag 1)

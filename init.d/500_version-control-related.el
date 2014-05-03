@@ -13,8 +13,8 @@
 ;; http://qiita.com/acple@github/items/3709174ab24c5d82423a
 (setq vc-handled-backends nil)
 ;; Turn off related hooks
-(remove-hook 'find-file-hook 'vc-find-file-hook)
-(remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook);;
+(remove-hook 'find-file-hook   'vc-find-file-hook)
+(remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook)
 ;;
 ;; ;; modeline-git-branch.el (auto-install) 2014-02-14. Switch not fast enough.
 ;; (require 'modeline-git-branch)
@@ -33,8 +33,14 @@
 ;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
 ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
 (require 'magit)
+;;
 ;; keybinding for magit-status
+(defun my-magit-status (dir)
+  (ess-nuke-trailing-whitespace)
+  (magit-status dir))
+;;
 (global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "s-g")   'magit-status)
 ;;
 ;; change magit diff colors
 ;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
