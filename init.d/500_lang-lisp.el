@@ -137,6 +137,31 @@
 (define-key clojure-mode-map (kbd "C-c C-v") 'cider-help-for-symbol)
 ;;
 ;;
+;;; C-c C-g for type
+(defun cider-type-for-symbol ()
+  "Provide type for a symbol in the REPL."
+
+  (interactive)
+  ;; Define variables
+  (let* ((name-symbol (thing-at-point 'symbol t))
+	 (type-string (concat "(type " name-symbol ")"))
+	 (script-window (selected-window)))
+
+    ;; move to repl
+    (cider-switch-to-repl-buffer)
+
+    ;; Insert the (type fun-name)
+    (insert type-string)
+
+    ;; Execute
+    (cider-repl-return)
+
+    ;; Move back to the script window
+    (select-window script-window)))
+;;
+(define-key clojure-mode-map (kbd "C-c C-g") 'cider-type-for-symbol)
+;;
+;;
 ;;; clj-refactor.el
 (require 'clj-refactor)
 (add-hook 'clojure-mode-hook (lambda ()
