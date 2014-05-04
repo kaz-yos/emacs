@@ -56,9 +56,14 @@
 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1))))))))))))))
 
 
-
 ;;;
 ;;; lispy.el vi-like Paredit
 ;; https://github.com/abo-abo/lispy
 (require 'lispy)
 
+
+;;;
+;;; smartparens.el
+;; https://github.com/Fuco1/smartparens/wiki
+;; paredit and smartparens: https://github.com/Fuco1/smartparens/wiki/Paredit-and-smartparens
+(require 'smartparens-config)
