@@ -228,3 +228,10 @@
 
 ;;;
 ;;; SCHEME MODE
+
+
+
+;;;
+;;; RACKET MODE
+;; https://github.com/greghendershott/racket-mode
+(require 'racket-mode)
