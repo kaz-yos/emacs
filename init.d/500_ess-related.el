@@ -124,16 +124,12 @@
 	     ))
 ;;
 ;;
-;; ess-trace-bug.el		; filtering ++++ > ??? Not working
+;;; ess-trace-bug.el		; filtering ++++ > ??? Not working
 ;; http://code.google.com/p/ess-tracebug/
 ;; (require 'ess-tracebug)	; Now included in ESS
 (setq ess-use-tracebug t)	; permanent activation
 ;;
-;; *.Rmd files invoke r-mode	; Temporary fix for R markdown files 2014-02-22 polymode did not work
-(setq auto-mode-alist
-      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
-;;
-;; Tooltip included in ESS
+;;; Tooltip included in ESS
 (setq ess-describe-at-point-method 'tooltip)		; 'tooltip or nil (buffer)
 ;;
 ;;
@@ -231,22 +227,3 @@
 ;; (require 'stan-snippets)
 ;; flymake-stan.el
 ;; (require 'flymake-stan)
-
-
-;;;
-;;; polymode (alpha) 2014-02-21
-;; https://github.com/vitoshka/polymode
-;; Set load path (forked and pulled from my repo)
-;; ;;
-;; ;; Activate necessary bundles
-;; (require 'poly-R)
-;; (require 'poly-markdown)
-;; ;;
-;; ;; key config
-;; (defun polymode-key-hook ()
-;;   (define-key polymode-mode-map (kbd "C-c n") 'polymode-next-chunk-same-type)
-;;   (define-key polymode-mode-map (kbd "C-c p") 'polymode-previous-chunk-same-type)
-;;   )
-;; (add-hook 'polymode-key-hook 'poly-markdown+r-hook)	; undefined
-;; (add-hook 'polymode-key-hook 'polymode-select-mode-hook)	; not working
-;; (add-hook 'polymode-key-hook 'ess-mode-hook)	; not working

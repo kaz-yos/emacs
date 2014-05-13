@@ -59,7 +59,7 @@
 (setq anzu-mode-lighter "")
 (setq anzu-use-migemo t)
 (setq anzu-search-threshold 1000)
-(setq anzu-minimum-input-length 3)
+(setq anzu-minimum-input-length 1)
 ;;
 ;; Define a large face (also used for multiple-cursors.el)
 ;; This was done in custom-set-faces.

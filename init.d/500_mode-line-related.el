@@ -39,6 +39,7 @@
 (add-to-list 'sml/hidden-modes " AC")
 (add-to-list 'sml/hidden-modes " Paredit")
 (add-to-list 'sml/hidden-modes " ARev")
+(add-to-list 'sml/hidden-modes " MRev")
 (add-to-list 'sml/hidden-modes " [none]")	; Projectile
 (add-to-list 'sml/hidden-modes " View")
 ;;
@@ -55,3 +56,7 @@
 ;;     (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
 ;;     (add-to-list 'sml/replacer-regexp-list '("^:Git:\\(.*\\)/src/main/java/" ":G/\\1/SMJ:"))
 ;;     (add-to-list 'sml/replacer-regexp-list '("^~/Git-Projects/" ":Git:"))
+
+
+
+

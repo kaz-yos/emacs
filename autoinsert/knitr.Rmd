@@ -1,8 +1,5 @@
 
 ==================
-<!--
-    ```
--->
 ```{r, message = FALSE, tidy = FALSE, echo = F}
 ## knitr configuration: http://yihui.name/knitr/options#chunk_options
 showMessage <- FALSE
@@ -19,9 +16,6 @@ opts_knit$set(animation.fun = hook_ffmpeg_html)
 ## R configuration
 options(width = 116, scipen = 5)
 ```
-<!--
-    ``` ```
--->
 
 References
 --------------------
@@ -29,8 +23,7 @@ References
 Load packages
 --------------------
 ```{r}
-## 
-library(survival)
+
 ```
 
 --------------------

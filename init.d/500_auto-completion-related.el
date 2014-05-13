@@ -21,10 +21,10 @@
  ;; ac-candidate-limit nil
  ;;
  ;; Number of letters before ac kicks in
- ;; ac-auto-start 2
+ ac-auto-start 1
  ;;
  ;; Delay to completions will be available.
- ;; ac-delay 0.1
+ ac-delay 0.0
  ;;
  ;; 0.1 sec before menu appears
  ac-auto-show-menu 0.1
@@ -46,7 +46,6 @@
  ac-ignore-case nil
  ;;
  ;; Pop up help
- ;; ac-use-quick-help nil
  ac-use-quick-help t
  ac-quick-help-delay 1.0
  ac-quick-help-prefer-pos-tip t

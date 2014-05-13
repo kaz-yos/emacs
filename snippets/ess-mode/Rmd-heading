@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: Rmd-heading
-# key: rmdh
-# binding: C-c -
-# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
-# --
-$1
---------------------
-$0
