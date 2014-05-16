@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: frailtyPenal
+# key: xfrailtyPenal
+# --
+resFrailtyPenal <- frailtyPenal(formula = ,
+                                data = ,
+                                hazard = "Splines",
+                                RandDist = "Gamma")
