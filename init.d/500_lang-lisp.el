@@ -129,11 +129,11 @@
     ;; Insert the (doc fun-name)
     (insert doc-string)
 
-    ;; Execute
-    (cider-repl-return)
+    ;; ;; Execute
+    ;; (cider-repl-return)
 
-    ;; Insert the (clojuredocs fun-name)
-    (insert eg-string)
+    ;; ;; Insert the (clojuredocs fun-name)
+    ;; (insert eg-string)
 
     ;; Execute
     (cider-repl-return)
