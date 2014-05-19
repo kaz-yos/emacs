@@ -30,7 +30,7 @@
 ;; http://emacs.1067599.n5.nabble.com/indentation-of-ggplot-code-and-ess-13-09-02-td322315.html#a322335
 (add-to-list 'ess-style-alist
 	     '(my-RRR (ess-indent-level . 4)
-		      (ess-first-continued-statement-offset . 4)
+		      (ess-first-continued-statement-offset . 2)
 		      ;; (ess-first-continued-statement-offset . 0)
 		      (ess-continued-statement-offset . 0)
 		      ;; (ess-continued-statement-offset . 4)
