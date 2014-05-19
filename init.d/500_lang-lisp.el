@@ -46,6 +46,12 @@
 (define-key emacs-lisp-mode-map (kbd "s-e") 'lispxmp)
 (define-key lisp-interaction-mode-map (kbd "C-c e") 'lispxmp)
 (define-key lisp-interaction-mode-map (kbd "s-e") 'lispxmp)
+;;
+;;
+;;; anaphora
+;;  Summary: anaphoric macros providing implicit temp variables
+;; Homepage: http://github.com/rolandwalker/anaphora
+;; (require 'anaphora)
 
 
 
@@ -112,7 +118,7 @@
 (require '4clojure)
 ;;
 ;;
-;;; C-c v for help
+;;; C-c C-v for help and examples
 (defun cider-help-for-symbol ()
   "Provide help for a symbol in the REPL."
 
@@ -120,6 +126,7 @@
   ;; Define variables
   (let* ((name-symbol (thing-at-point 'symbol t))
 	 (doc-string (concat "(doc " name-symbol ")"))
+	 (eg-string  (concat "(clojuredocs " name-symbol ")"))
 	 (script-window (selected-window)))
 
     ;; move to repl
@@ -127,6 +134,12 @@
 
     ;; Insert the (doc fun-name)
     (insert doc-string)
+
+    ;; ;; Execute
+    ;; (cider-repl-return)
+
+    ;; ;; Insert the (clojuredocs fun-name)
+    ;; (insert eg-string)
 
     ;; Execute
     (cider-repl-return)

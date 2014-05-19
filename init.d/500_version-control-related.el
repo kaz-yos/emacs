@@ -86,16 +86,14 @@
   "Key menu for logging (--graph --all by default)"
   (interactive)
   (magit-key-mode 'logging
-		  (list "--graph" "--all"))
-  )
+		  (list "--graph" "--all")))
 ;;
 ;; Merging does not use fast-forward by default (--no-ff option added by default)
 (defun magit-key-mode-popup-merging ()
   "Key menu for merging (--no-ff by default)"
   (interactive)
   (magit-key-mode 'merging
-		  (list "--no-ff"))
-  )
+		  (list "--no-ff")))
 ;;
 ;;
 ;; Configure fringe for git-gutter 2014-02-02
@@ -114,6 +112,10 @@
 (global-git-gutter+-mode)
 ;; Show on the right side
 (setq git-gutter-fr+-side 'right-fringe)
+;;
+;; Moving between hunks
+(global-set-key (kbd "A-p") 'git-gutter+-previous-hunk)
+(global-set-key (kbd "A-n") 'git-gutter+-next-hunk)
 
 
 ;;; Mercurial

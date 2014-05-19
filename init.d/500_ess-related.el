@@ -23,7 +23,24 @@
 ;; ess-expression-offset             4   2   8   5   4   4   4
 ;; ess-else-offset                   0   0   0   0   0   0   0
 ;; ess-close-brace-offset            0   0   0   0   0   0   2
-(setq ess-default-style 'RRR)	; Common R chosen (default since 13.05)
+;;
+;; (setq ess-default-style 'RRR)	; Common R chosen (default since 13.05)
+;;
+;;; my-RRR style (minor modification of default RRR) 2014-05-19
+;; Taken from spinuvit@gmail.com suggestion ess-help ML on 2014-05-19
+(add-to-list 'ess-style-alist
+	     '(my-RRR (ess-indent-level . 4)
+		      (ess-first-continued-statement-offset . 4)
+		      ;; (ess-first-continued-statement-offset . 0)
+		      (ess-continued-statement-offset . 0)
+		      ;; (ess-continued-statement-offset . 4)
+		      (ess-brace-offset . 0)
+		      (ess-arg-function-offset . 4)
+		      (ess-arg-function-offset-new-line . '(4))
+		      (ess-expression-offset . 4)
+		      (ess-else-offset . 0)
+		      (ess-close-brace-offset . 0)))
+(setq ess-default-style 'my-RRR)
 ;;
 ;;
 ;; Key assignment for delete trailing whitespace
