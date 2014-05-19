@@ -46,6 +46,12 @@
 (define-key emacs-lisp-mode-map (kbd "s-e") 'lispxmp)
 (define-key lisp-interaction-mode-map (kbd "C-c e") 'lispxmp)
 (define-key lisp-interaction-mode-map (kbd "s-e") 'lispxmp)
+;;
+;;
+;;; anaphora
+;;  Summary: anaphoric macros providing implicit temp variables
+;; Homepage: http://github.com/rolandwalker/anaphora
+;; (require 'anaphora)
 
 
 
