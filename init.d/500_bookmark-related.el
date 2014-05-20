@@ -55,8 +55,8 @@
 	       (equal major-mode 'lisp-mode)
 	       (equal major-mode 'clojure-mode))
 	   (setq regexp "^;;; \\|^;;;$"))
-	  (t
-	   (setq regexp "^### \\|^###$")))
+	  (t				; This is for SAS.
+	   (setq regexp "^### \\|^###$\\|^/\\*\\*")))
     ;; Bookmarking
     (save-excursion
       (goto-char beg)
