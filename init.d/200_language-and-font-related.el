@@ -59,7 +59,7 @@
   ;; Fontset for default-frame
   (add-to-list 'default-frame-alist '(font . "fontset-myfonts"))
   ;; Relative size of different fonts
-  (dolist (elt '(("^-apple-hiragino.*"		     . 1.2)
+  (dolist (elt '(("^-apple-hiragino.*"		     . 1.2) ; (font size setting * 1.2) is used for this font.
 		 (".*osaka-bold.*"		     . 1.2)
 		 (".*osaka-medium.*"		     . 1.2)
 		 (".*courier-bold-.*-mac-roman"	     . 1.0)
@@ -68,6 +68,13 @@
     (add-to-list 'face-font-rescale-alist elt))
   ;; Fontset configured to default face. Fixes default-frame-alist being ignored at startup.
   (set-face-font 'default "fontset-myfonts")
+  ;;
+  ;; Examples
+  ;; |123456|
+  ;; |Kazuki|
+  ;; |日本語|
+  ;; |よしだ|
+  ;; |ヨシダ|
 
   ;;; Method 2	; Not tested yet. Same configuration with a different method.
   ;; Font set for frame
