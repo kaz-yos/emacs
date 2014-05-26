@@ -1,6 +1,7 @@
 ;;; Language and font settings
 
 
+;;;
 ;;; Unicode use
 ;; http://d.hatena.ne.jp/syou6162/20080519/1211133695
 (set-locale-environment "utf-8")
@@ -12,11 +13,13 @@
 (prefer-coding-system 'utf-8)
 
 
+;;;
 ;;; Smooth Japanese input (mac only?)
 ;; http://suzukima.hatenablog.com/entry/2012/08/16/232210
 (setq show-paren-delay 0.25)			; Compatibility with Japanese input
 
 
+;;;
 ;;; Mac OS X font settings
 (when (eq system-type 'darwin)
   ;; Mac-only
@@ -86,6 +89,7 @@
   ;; 	       (".*monaco-bold-.*-mac-roman" . 0.9)))
   ;;   (add-to-list 'face-font-rescale-alist elt))
 
+  ;;;
   ;;; inline patch for Japanese IME
   ;; Change to English in minibuffer (require inline patch. No .el dependency)
   ;; http://molekun.blogspot.com/2011/03/homebrewemacs233.html
