@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Rmd-code
+# key: rmd
+# binding: C-c c
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# Ref: http://fukuyama.co/yasnippet
+# --
+\`\`\`{r}
+$0
+\`\`\`
