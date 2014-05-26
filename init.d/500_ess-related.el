@@ -27,7 +27,7 @@
 ;; (setq ess-default-style 'RRR)	; Common R chosen (default since 13.05)
 ;;
 ;;; my-RRR style (minor modification of default RRR) 2014-05-19
-;; Taken from spinuvit@gmail.com suggestion ess-help ML on 2014-05-19
+;; http://emacs.1067599.n5.nabble.com/indentation-of-ggplot-code-and-ess-13-09-02-td322315.html#a322335
 (add-to-list 'ess-style-alist
 	     '(my-RRR (ess-indent-level . 4)
 		      (ess-first-continued-statement-offset . 4)
@@ -244,3 +244,11 @@
 ;; (require 'stan-snippets)
 ;; flymake-stan.el
 ;; (require 'flymake-stan)
+
+
+;;;
+;;; *.Rmd files invoke r-mode
+;; Temporary fix for R markdown files. As of 2014-05-26, polymode is unstable.
+(setq auto-mode-alist
+      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
+
