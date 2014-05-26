@@ -244,3 +244,11 @@
 ;; (require 'stan-snippets)
 ;; flymake-stan.el
 ;; (require 'flymake-stan)
+
+
+;;;
+;;; *.Rmd files invoke r-mode
+;; Temporary fix for R markdown files. As of 2014-05-26, polymode is unstable.
+(setq auto-mode-alist
+      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
+
