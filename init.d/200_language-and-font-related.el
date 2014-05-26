@@ -59,7 +59,8 @@
   ;; Fontset for default-frame
   (add-to-list 'default-frame-alist '(font . "fontset-myfonts"))
   ;; Relative size of different fonts
-  (dolist (elt '(("^-apple-hiragino.*"		     . 1.2) ; (font size setting * 1.2) is used for this font.
+  (dolist (elt '(("Hiragino Maru Gothic ProN"        . 1.2) ; 2014-05-26 to match jpfont. 1.2 times more
+		 ("^-apple-hiragino.*"		     . 1.2)
 		 (".*osaka-bold.*"		     . 1.2)
 		 (".*osaka-medium.*"		     . 1.2)
 		 (".*courier-bold-.*-mac-roman"	     . 1.0)
