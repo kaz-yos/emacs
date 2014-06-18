@@ -1,18 +1,20 @@
 ;;; smart-mode-line.el		; A color coded smart mode-line.
 ;; https://github.com/Bruce-Connor/smart-mode-line/
 ;; https://github.com/Bruce-Connor/smart-mode-line/blob/master/smart-mode-line.el
+;;
+;; ALL COLORS ARE CUSTOMIZABLE! M-x sml/customize-faces
 ;; 
-;; Theme: This can be 'dark, 'light or 'respectful.
-;; ALL COLORS ARE CUSTOMIZABLE! `sml/customize-faces'
-(setq sml/theme 'light)
+;; Theme: 'automatic, 'respectful, 'dark, 'light or nil
+;; To change while in session use: M-x sml/apply-theme
+(setq sml/theme nil)
 ;;
 ;; Load
 (require 'smart-mode-line)
 (sml/setup)
 ;;
 ;; cutom background colors
-(setq sml/inactive-background-color "gray55")
-(setq sml/active-background-color   "gray80")
+;; (setq sml/inactive-background-color "gray55")
+;; (setq sml/active-background-color   "gray80")
 ;;
 ;; https://github.com/mgalgs/.emacs.d/blob/master/smart-mode-line-setup.el
 ;;
