@@ -241,7 +241,8 @@
 
 ;;;
 ;;; SCHEME MODE
-
+;; Use Gauche. REPL name is still *scheme*
+(setq scheme-program-name "gosh -i")
 
 
 ;;;
