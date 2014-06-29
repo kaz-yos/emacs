@@ -1,7 +1,7 @@
 ;;; eval-in-repl configuration
 
 ;; Set load-path
-(add-to-list 'load-path "~/Documents/programming/emacs-lisp-repos/eval-in-repl")
+;; (add-to-list 'load-path "~/Documents/programming/emacs-lisp-repos/eval-in-repl")
 
 ;; require the skeleton package
 (require 'eval-in-repl)
