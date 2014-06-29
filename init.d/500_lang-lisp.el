@@ -236,11 +236,14 @@
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'slime-repl-mode))
 ;;
-;;
 
 
 ;;;
 ;;; SCHEME MODE
+(require 'scheme)
+;; This defines REPL-related functions, including switch-to-scheme
+(require 'cmuscheme)
+;;
 ;; Use Gauche. REPL name is still *scheme*
 (setq scheme-program-name "gosh -i")
 
