@@ -1,16 +1,21 @@
 ;;; Nice options to have On by default
 ;; Activate mouse scrolling
-(mouse-wheel-mode t)				
+(mouse-wheel-mode t)
 ;; Syntax highlighting everywhere
-(global-font-lock-mode t)			
+(global-font-lock-mode t)
 ;; When enabled, the region is highlighted whenever the mark is active
-(transient-mark-mode t)				
+(transient-mark-mode t)
 ;; Typed text replaces the selection if the selection is active
-(delete-selection-mode t)			
+(delete-selection-mode t)
 
 
 ;;; visible-bell instead of audible
 (setq visible-bell t)
+
+
+;;; Never use tabs for indentation
+;; (setq tab-width 4)
+(setq indent-tabs-mode nil)
 
 
 ;;; Bars: Menu bar only. No scroll bar or tool bar.
@@ -32,8 +37,8 @@
 ;;; Line number settings
 ;;
 ;; Toggle column number display in the mode line (Column Number mode). (row, col)
-(column-number-mode 1)				
-;; 
+(column-number-mode 1)
+;;
 ;; delay linum for speed (linum not used
 ;; http://d.hatena.ne.jp/daimatz/20120215/1329248780
 (setq linum-delay t)
