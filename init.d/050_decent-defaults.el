@@ -148,3 +148,10 @@
 ;;; C-k (kill-line) with no arg at start of line kills the whole line.
 ;; vi dd-like behavior
 (setq kill-whole-line t)
+
+
+;;;
+;;; Regular expression fontlock
+;; rubikitch elisp book page 71
+(set-face-foreground 'font-lock-regexp-grouping-backslash "green3")
+(set-face-foreground 'font-lock-regexp-grouping-construct "green")
