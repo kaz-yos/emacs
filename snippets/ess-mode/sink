@@ -3,4 +3,5 @@
 # key: xsink
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
+sink()
 sink("`(concat (abbreviate-file-name (file-name-nondirectory (buffer-file-name))) ".txt")`$0", split = TRUE)
