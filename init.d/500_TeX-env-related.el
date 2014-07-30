@@ -1,6 +1,7 @@
 ;;; TeX environments
 ;;
-;; AUCtex
+;;;
+;;; AUCtex
 ;; http://www.gnu.org/software/auctex/index.html
 ;; http://www.gnu.org/software/auctex/manual/auctex.html
 ;;
@@ -14,13 +15,13 @@
 ;; http://emacsworld.blogspot.com/2011/05/auctex-tip-automatically-save-file.html
 (setq TeX-save-query nil) ;;autosave before compiling
 ;;
-;; TeX-fold-mode on by default (C-c C-b C-o to actually fold
+;;; TeX-fold-mode on by default (C-c C-b C-o to actually fold)
 ;; http://tex.stackexchange.com/questions/52179/what-is-your-favorite-emacs-and-or-auctex-command-trick
 (add-hook 'LaTeX-mode-hook
 	  (lambda ()
 	    (TeX-fold-mode 1)))
 ;;
-;; Avoid font size changes 2013-10-14
+;;; Avoid font size changes 2013-10-14
 ;; http://stackoverflow.com/questions/9534239/emacs-auctex-latex-syntax-prevents-monospaced-font
 ;; Only change sectioning colour
 (setq font-latex-fontify-sectioning 'color)
@@ -28,12 +29,12 @@
 (setq font-latex-script-display (quote (nil)))
 ;; Do not change super-/sub-script font
 
-;; Exclude bold/italic from keywords
+;;; Exclude bold/italic from keywords
 (setq font-latex-deactivated-keyword-classes
     '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))
 ;;
-;;
-;; Japanese setting etc
+;;;
+;;; Japanese setting etc
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
 ;; Hiragino font settings. Done in shell
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Mac#i9febc9b
@@ -43,7 +44,7 @@
 ;; tell application "Preview" to activate
 ;; tell application "Emacs" to activate
 ;;
-;; Add commands
+;;; Add commands
 (add-hook 'LaTeX-mode-hook
           (function (lambda ()
                       (add-to-list 'TeX-command-list
@@ -105,25 +106,24 @@
 ;; http://stackoverflow.com/questions/11060023/ess-auctex-sweave-synctex-integration-from-rnw-pdfviewer
 ;;
 ;;
-;; Auto-complete for LaTeX
+;;;
+;;; Auto-complete for LaTeX
 ;;
-;; ac-math.el: auto-complete sources for input of mathematical symbols and latex tags
+;;; ac-math.el: auto-complete sources for input of mathematical symbols and latex tags
 ;; https://github.com/vitoshka/ac-math#readme
 (require 'ac-math)
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 ;;
-;; ac-latex-mode.el
+;;; ac-latex-mode.el
 (defun add-ac-source-words-in-same-mode-buffers () ; add back
   (setq ac-sources
         (append '(ac-source-words-in-same-mode-buffers)
-                ac-sources))
-  )
+                ac-sources)))
 ;;
 (defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
   (setq ac-sources
 	(append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-		ac-sources))
-  )
+		ac-sources)))
 ;; Load by hook
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     ;; For ac-latex-mode.el Overwrite default in LaTeX mode
@@ -132,8 +132,7 @@
 			     ;; (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
 			     ;; (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15 2013-10-12 not helpful
-			     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)
-			     ))
+			     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)))
 ;;
 ;; auto-complete-auctex.el ; 2014-02-23 now via ELPA
 ;; https://github.com/monsanto/auto-complete-auctex
@@ -170,7 +169,8 @@
 ;; ;;         u    | user-commands or user-arguments
 ;;
 ;;
-;; latex-math-preview.el 2013-09-08
+;;;
+;;; latex-math-preview.el
 ;; http://www.emacswiki.org/emacs/LaTeXMathPreview
 (autoload 'latex-math-preview-expression "latex-math-preview" nil t)
 (autoload 'latex-math-preview-insert-symbol "latex-math-preview" nil t)
@@ -203,11 +203,12 @@
   (interactive)
   (setq w1 (selected-window))
   (latex-math-preview-beamer-frame)
-  (select-window w1)
-  )
+  (select-window w1))
 (define-key LaTeX-mode-map (kbd "C-c s") 'my-latex-beamer-preview)
 ;;
 ;;
+;;;
+;;; References
 ;; bibretrieve.el
 ;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
 ;; (require 'reftex)
@@ -216,7 +217,3 @@
 ;; zotelo (Zotero-Local)
 ;; https://github.com/vitoshka/zotelo for more
 (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
-;;
-;;
-;; YaTeX
-;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX
