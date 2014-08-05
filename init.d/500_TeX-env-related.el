@@ -209,11 +209,11 @@
 ;;
 ;;;
 ;;; References
-;; bibretrieve.el
+;;; bibretrieve.el
 ;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
 ;; (require 'reftex)
 ;; (require 'bibretrieve)
 ;;
-;; zotelo (Zotero-Local)
+;;; zotelo (Zotero-Local)
 ;; https://github.com/vitoshka/zotelo for more
 (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
