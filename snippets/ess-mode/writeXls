@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: writeXls
-# key: xwriteXls
-# --
-library(XLConnect)
-wb <- loadWorkbook("new_excel_file.xls", create = TRUE)
-wb["sheet_name_1"] <- data_frame_to_output
-saveWorkbook(wb)
