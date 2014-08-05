@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Filter
+# key: xFilter
+# --
+Filter(f = function(elt) {grepl("$1", elt)}, x = $0)

@@ -70,5 +70,5 @@ If you omit CLOSE, it will reuse OPEN."
 
 ;;;
 ;;; revert-buffer
-;; (global-set-key (kbd "s-r") 'just-one-space)
+(global-set-key (kbd "s-v") 'revert-buffer)
 

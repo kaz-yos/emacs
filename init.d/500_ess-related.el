@@ -162,12 +162,10 @@
 (defun ess-swv-weave-PDF ()
   (interactive)
   (ess-swv-weave nil)	; nil to run with default processor
-  (ess-swv-PDF "texi2pdf")
-  )
+  (ess-swv-PDF "texi2pdf"))
 (add-hook 'LaTeX-mode-hook
 	  '(lambda()
-	     (local-set-key (kbd "C-c e") 'ess-swv-weave-PDF)
-	     ))
+	     (local-set-key (kbd "C-c e") 'ess-swv-weave-PDF)))
 ;;
 ;;
 ;;;

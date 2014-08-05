@@ -1,3 +1,5 @@
+#!/usr/bin/Rscript
+
 ################################################################################
 ### 
 ## 
@@ -15,11 +17,20 @@ registerDoMC()          # Turn on multicore processing
 options(cores = 4)
 options(mc.cores = 4)
 
-### Load packages
+## Load packages
 library(reshape2)
 library(dplyr)
 library(ggplot2)
 library(survival)
 
+## Configure sink
 
-### 
+
+### Load data
+################################################################################
+
+
+
+################################################################################
+## Stop sinking to a file if active
+sink()

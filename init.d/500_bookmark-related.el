@@ -51,13 +51,20 @@
 	(beg (point-min))
 	(end (point-max)))
     ;; Create appropriate regexp depending on the major-mode
-    (cond ((or (equal major-mode 'emacs-lisp-mode)
-	       (equal major-mode 'lisp-mode)
-	       (equal major-mode 'clojure-mode))
-	   (setq regexp "^;;; \\|^;;;$"))
-	  (t				; This is for SAS.
-	   (setq regexp "^### \\|^###$\\|^/\\*\\*")))
-    ;; Bookmarking
+    (cond
+     ;; Lisp-related modes
+     ((or (equal major-mode 'emacs-lisp-mode)
+	  (equal major-mode 'lisp-mode)
+	  (equal major-mode 'clojure-mode))
+      (setq regexp "^;;; \\|^;;;$"))
+     ;; LaTeX
+     ((equal major-mode 'latex-mode)
+      (setq regexp "section{"))
+     ;; Others
+     (t				; /** for SAS; ** for Markdown
+      (setq regexp "^### \\|^###$\\|^/\\*\\*\\|^\\*\\*")))
+    ;;
+    ;; Actual bookmarking
     (save-excursion
       (goto-char beg)
       (while (and (< (point) end)

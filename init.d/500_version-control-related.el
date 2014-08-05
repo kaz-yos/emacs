@@ -101,6 +101,7 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fringes.html
 (set-fringe-mode '(0 . 1))
 ;;
+;;
 ;;; git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
 ;; Does not work in .emacs.d (not elisp in general) 2014-03-01
 ;; https://github.com/nonsequitur/git-gutter-fringe-plus
@@ -116,6 +117,12 @@
 ;; Moving between hunks
 (global-set-key (kbd "A-p") 'git-gutter+-previous-hunk)
 (global-set-key (kbd "A-n") 'git-gutter+-next-hunk)
+;;
+;;
+;;; git-timemachine.el
+;; Use git-timemachine to browse historic versions of a file with p
+;; (previous) and n (next).
+(require 'git-timemachine)
 
 
 ;;; Mercurial
