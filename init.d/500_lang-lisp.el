@@ -251,4 +251,8 @@
 ;;;
 ;;; RACKET MODE
 ;; https://github.com/greghendershott/racket-mode
+;;
+;; Package Management in Racket
+;; http://docs.racket-lang.org/pkg/
+;; $ raco pkg install rackunit
 (require 'racket-mode)
