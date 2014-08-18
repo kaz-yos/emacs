@@ -2,6 +2,12 @@
 ;; Configure ac-* in respective files. Keep this file minimum.
 
 ;;;
+;;; hippie-expand (built-in)
+;; hippie-expand instead of less functional dabbrev-expand
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+
+;;;
 ;;; AUTO-COMPLETE
 ;;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
 ;; https://github.com/auto-complete/auto-complete
