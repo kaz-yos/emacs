@@ -207,8 +207,8 @@
 (require 'rainbow-blocks)
 
 
-
-;;; ace-jump-mode.el (via el-get)
+;;;
+;;; ace-jump-mode.el
 ;; https://github.com/winterTTr/ace-jump-mode
 ;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
 (require 'ace-jump-mode)
@@ -219,3 +219,28 @@
 ;; This is optimized for JIS keyboards.
 ;; (setq ace-jump-mode-move-keys (append "asdfghjkl;:]qwertyuiop@zxcvbnm,." nil))
 (global-set-key (kbd "C-o") 'ace-jump-word-mode)
+
+;;; ace-window.el
+;; https://github.com/abo-abo/ace-window
+(require 'ace-window)
+(global-set-key (kbd "s-a") 'ace-window)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
