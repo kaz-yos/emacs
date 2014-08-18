@@ -25,6 +25,11 @@ library(ggplot2)
 library(survival)
 
 ## Configure sink
+sink()
+..scriptFileName.. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
+if (length(..scriptFileName..) == 1) {
+    sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
+}
 
 
 ### Load data
