@@ -215,7 +215,7 @@
 ;; rubikitch setting Software Design September 2014
 ;; (setq ace-jump-mode-gray-background nil)
 ;; If we need to ask for the query char before entering `ace-jump-word-mode'
-(setq ace-jump-word-mode-use-query-char nil)
+;; (setq ace-jump-word-mode-use-query-char nil)
 ;; This is optimized for JIS keyboards.
 ;; (setq ace-jump-mode-move-keys (append "asdfghjkl;:]qwertyuiop@zxcvbnm,." nil))
 (global-set-key (kbd "C-o") 'ace-jump-word-mode)
