@@ -17,6 +17,11 @@
 (require 'eval-in-repl-cider)
 (define-key clojure-mode-map (kbd "<C-return>") 'eir-eval-in-cider)
 
+;; Racket
+;; (require 'racket-mode) ; if not done elsewhere
+;; (require 'eval-in-repl-racket)
+;; (define-key racket-mode-map (kbd "<C-return>") 'eir-eval-in-racket)
+
 ;; SLIME
 ;; (require 'slime) ; if not done elsewhere
 (require 'eval-in-repl-slime)
