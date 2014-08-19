@@ -30,6 +30,7 @@ if (sink.number() != 0) {sink()}
 if (length(..scriptFileName..) == 1) {
     sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
 }
+options(width = 120)
 
 
 ### Load data
