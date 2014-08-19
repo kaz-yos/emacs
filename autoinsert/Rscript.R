@@ -25,9 +25,7 @@ library(ggplot2)
 library(survival)
 
 ## Configure sink()
-if (sink.number() != 0) {
-    sink()
-}
+if (sink.number() != 0) {sink()}
 ..scriptFileName.. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
 if (length(..scriptFileName..) == 1) {
     sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
@@ -41,4 +39,4 @@ if (length(..scriptFileName..) == 1) {
 
 ################################################################################
 ## Stop sinking to a file if active
-sink()
+if (sink.number() != 0) {sink()}

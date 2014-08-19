@@ -3,9 +3,7 @@
 # key: xsink
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
-if (sink.number() != 0) {
-    sink()
-}
+if (sink.number() != 0) {sink()}
 sink("`(concat (abbreviate-file-name (file-name-nondirectory (buffer-file-name))) ".txt")`$0", split = TRUE)
 ..scriptFileName.. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
 if (length(..scriptFileName..) == 1) {
