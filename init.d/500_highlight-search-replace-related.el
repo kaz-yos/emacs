@@ -218,29 +218,9 @@
 ;; (setq ace-jump-word-mode-use-query-char nil)
 ;; This is optimized for JIS keyboards.
 ;; (setq ace-jump-mode-move-keys (append "asdfghjkl;:]qwertyuiop@zxcvbnm,." nil))
-(global-set-key (kbd "C-o") 'ace-jump-word-mode)
+(global-set-key (kbd "s-a") 'ace-jump-word-mode)
 
 ;;; ace-window.el
 ;; https://github.com/abo-abo/ace-window
 (require 'ace-window)
-(global-set-key (kbd "s-a") 'ace-window)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(global-set-key (kbd "C-s-a") 'ace-window)
