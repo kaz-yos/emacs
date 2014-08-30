@@ -46,7 +46,8 @@
 			 (name . "*inferior-lisp*")))
 	       ("SCHEME" (or
 			  (mode . scheme-mode)
-			  (mode . inferior-scheme-mode)))
+			  (mode . inferior-scheme-mode)
+			  (mode . geiser-repl-mode)))
 	       ("PYTHON" (or
 			  (mode . python-mode)
 			  (mode . inferior-python-mode)))

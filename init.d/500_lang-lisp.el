@@ -247,14 +247,36 @@
 (require 'cmuscheme)
 ;;
 ;; Use Gauche. REPL name is still *scheme*
-(setq scheme-program-name "gosh -i")
+;; (setq scheme-program-name "gosh -i")
 
 
 ;;;
-;;; RACKET MODE
-;; https://github.com/greghendershott/racket-mode
+;;; RACKET RELATED
+;; Racket documentation for emacs
+;; http://docs.racket-lang.org/guide/Emacs.html
 ;;
 ;; Package Management in Racket
 ;; http://docs.racket-lang.org/pkg/
+;;
+;; Install these to make racket-mode work
 ;; $ raco pkg install rackunit
-(require 'racket-mode)
+
+
+;;; racket-mode.el
+;; https://github.com/greghendershott/racket-mode
+;; major mode for Racket. incompatible with geiser minor mode.
+;;
+;; (require 'racket-mode)
+
+;;; geiser.el
+;; Geiser for Racket and Guile Scheme
+;; Works as an add-on to the built-in scheme mode
+;; http://www.nongnu.org/geiser/
+(require 'geiser)
+
+;;; ac-geiser.el
+(require 'ac-geiser)
+(add-hook 'geiser-mode-hook 'ac-geiser-setup)
+(add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'geiser-repl-mode))
