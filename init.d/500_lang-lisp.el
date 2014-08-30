@@ -67,8 +67,8 @@
 ;; Configurations
 ;; https://github.com/clojure-emacs/cider#configuration
 ;;
-;; Enable eldoc in Clojure buffers:
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+;; Enable eldoc in Clojure buffers
+;; (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 ;; Hide special repl buffers
 ;; (setq nrepl-hide-special-buffers t)
 ;; To auto-select the error buffer when it's displayed:
@@ -87,12 +87,14 @@
 (require 'ac-nrepl)
 (add-hook 'cider-repl-mode-hook
 	  '(lambda ()
+	     (eldoc-mode -1)
 	     (ac-nrepl-setup)
 	     ;; Add ac-source-filename for directory name completion
 	     (add-to-list 'ac-sources 'ac-source-filename)))
 ;;
 (add-hook 'cider-mode-hook
 	  '(lambda ()
+	     (eldoc-mode -1)
 	     (ac-nrepl-setup)
 	     ;; Add ac-source-filename for directory name completion
 	     (add-to-list 'ac-sources 'ac-source-filename)))
