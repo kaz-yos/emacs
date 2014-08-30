@@ -6,16 +6,16 @@
 ;; require the main file containing common functions
 (require 'eval-in-repl)
 
-;; ielm for emacs lisp
+;; ielm support (for emacs lisp)
 (require 'eval-in-repl-ielm)
-;; For .el files
+;; for .el files
 (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
-;; For *scratch*
+;; for *scratch*
 (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
-;; For M-x info
+;; for M-x info
 (define-key Info-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
 
-;; cider for Clojure
+;; cider support (for Clojure)
 ;; (require 'cider) ; if not done elsewhere
 (require 'eval-in-repl-cider)
 (define-key clojure-mode-map (kbd "<C-return>") 'eir-eval-in-cider)
