@@ -30,10 +30,10 @@
  ac-auto-start 1
  ;;
  ;; Delay to completions will be available.
- ac-delay 0.0
+ ac-delay 0.1
  ;;
  ;; 0.1 sec before menu appears
- ac-auto-show-menu 0.1
+ ac-auto-show-menu 0.2
  ;;
  ;; Show menu if 2+ candidates
  ac-candidate-menu-min 1
