@@ -1,3 +1,6 @@
+;;; Sequential key binding related
+
+;;;
 ;;; Key-Chord
 ;; http://www.emacswiki.org/emacs/KeyChord
 ;; http://d.hatena.ne.jp/rubikitch/touch/20081104/1225745862
@@ -12,6 +15,7 @@
 (key-chord-define-global "sx" 'highlight-sexp-mode)		; (highlight-sexp-mode)
 
 
+;;;
 ;;; sequential-command.el for C-a C-a etc
 ;; Book by rubikitch p76. M-x auto-install-batch sequential-command (two files, one -config)
 ;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
@@ -24,11 +28,13 @@
 (global-set-key (kbd "M-l") 'seq-downcase-backward-word)
 
 
+;;;
 ;;; smartchr.el (does not work great with multiple-cursors)
 ;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;; Similar elips: http://tech.kayac.com/archive/emacs-tips-smartchr.html
 (require 'smartchr)
-;; http://ratememo.blog17.fc2.com/blog-entry-937.html
+;;
+;; ESS
 (defun my-ess-smartchr-setting ()
   (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
   (local-set-key (kbd "+") (smartchr '(" + " "+")))
@@ -41,7 +47,8 @@
   )
 (add-hook 'ess-mode-hook	  'my-ess-smartchr-setting)
 (add-hook 'inferior-ess-mode-hook 'my-ess-smartchr-setting)
-;
+;;
+;; Python
 (defun my-python-smartchr-setting ()
   (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
   (local-set-key (kbd "+") (smartchr '(" + " "+")))
@@ -52,19 +59,29 @@
 (add-hook 'python-mode-hook			'my-python-smartchr-setting)
 (add-hook 'inferior-python-mode-hook		'my-python-smartchr-setting)
 ;;
+;; LaTeX
 (defun my-LaTeX-smartchr-setting ()
   (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
   (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")))
   )
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-smartchr-setting)
 ;;
+;; Emacs Lisp
 (defun my-elisp-smartchr-setting ()
   (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")))
   )
 (add-hook 'emacs-lisp-mode-hook 'my-elisp-smartchr-setting)
+;;
+;; Haskell
+(defun my-haskell-smartchr-setting ()
+  (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
+  (local-set-key (kbd "+") (smartchr '(" + " "+")))
+  (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------")))
+  )
+(add-hook 'haskell-mode-hook 'my-haskell-smartchr-setting)
 
 
-
+;;;
 ;;; smartrep.el
 ;; http://sheephead.homelinux.org/2011/12/19/6930/
 (require 'smartrep)

@@ -22,6 +22,9 @@
  '(frame-brackground-mode (quote dark))
  '(fringe-mode 4 nil (fringe))
  '(global-anzu-mode t)
+ '(haskell-mode-hook
+   (quote
+    (turn-on-eldoc-mode turn-on-haskell-doc turn-on-haskell-indent)))
  '(linum-format " %7i ")
  '(magit-diff-options nil)
  '(main-line-color1 "#1E1E1E")
