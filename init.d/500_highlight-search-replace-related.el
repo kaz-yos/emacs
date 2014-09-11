@@ -224,3 +224,4 @@
 ;; https://github.com/abo-abo/ace-window
 (require 'ace-window)
 (global-set-key (kbd "C-s-a") 'ace-window)
+(global-set-key (kbd "s-3") 'ace-window)
