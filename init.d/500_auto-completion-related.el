@@ -2,6 +2,12 @@
 ;; Configure ac-* in respective files. Keep this file minimum.
 
 ;;;
+;;; hippie-expand (built-in)
+;; hippie-expand instead of less functional dabbrev-expand
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+
+;;;
 ;;; AUTO-COMPLETE
 ;;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
 ;; https://github.com/auto-complete/auto-complete
@@ -24,10 +30,10 @@
  ac-auto-start 1
  ;;
  ;; Delay to completions will be available.
- ac-delay 0.0
+ ac-delay 0.1
  ;;
  ;; 0.1 sec before menu appears
- ac-auto-show-menu 0.1
+ ac-auto-show-menu 0.2
  ;;
  ;; Show menu if 2+ candidates
  ac-candidate-menu-min 1

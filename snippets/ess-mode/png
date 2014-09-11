@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: png
+# key: xpng
+# --
+png(file = "$1", width = 700, height = 700, family = "sans")
+$0
+dev.off()

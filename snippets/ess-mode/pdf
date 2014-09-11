@@ -2,4 +2,6 @@
 # name: pdf
 # key: xpdf
 # --
-pdf(file = "$0", width = 7, height = 7, family = "sans")
+pdf(file = "$1", width = 7, height = 7, family = "sans")
+$0
+dev.off()

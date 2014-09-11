@@ -3,7 +3,14 @@
 ;; http://d.hatena.ne.jp/a_bicky/20140125/1390647299		; arabiki 2
 ;; http://sleepboy-zzz.blogspot.com/2012/09/anythinghelm.html	; in general
 ;; http://d.hatena.ne.jp/syohex/20121207/1354885367		; some useful tips
-;; Activate
+
+
+;; Temporary fix for name change
+;; https://github.com/emacs-helm/helm/commit/8cb7a9e0b98175845a68309e2dd9850bd0f02a28
+(defalias 'helm--make-source 'helm-make-source)
+
+
+;; Activate helm
 (require 'helm-config)
 (require 'helm-command)
 ;;

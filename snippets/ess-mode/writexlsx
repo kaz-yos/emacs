@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: writexlsx
+# key: xwritexlsx
+# --
+wb <- loadWorkbook("$1.xlsx", create = TRUE)
+wb["sheet1"] <- ${2:$$(yas-choose-value '("data_frame_to_output" ""))}
+saveWorkbook(wb)$0
+

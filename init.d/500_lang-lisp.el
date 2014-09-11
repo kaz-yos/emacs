@@ -67,8 +67,8 @@
 ;; Configurations
 ;; https://github.com/clojure-emacs/cider#configuration
 ;;
-;; Enable eldoc in Clojure buffers:
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+;; Enable eldoc in Clojure buffers
+;; (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 ;; Hide special repl buffers
 ;; (setq nrepl-hide-special-buffers t)
 ;; To auto-select the error buffer when it's displayed:
@@ -87,12 +87,14 @@
 (require 'ac-nrepl)
 (add-hook 'cider-repl-mode-hook
 	  '(lambda ()
+	     (eldoc-mode -1)
 	     (ac-nrepl-setup)
 	     ;; Add ac-source-filename for directory name completion
 	     (add-to-list 'ac-sources 'ac-source-filename)))
 ;;
 (add-hook 'cider-mode-hook
 	  '(lambda ()
+	     (eldoc-mode -1)
 	     (ac-nrepl-setup)
 	     ;; Add ac-source-filename for directory name completion
 	     (add-to-list 'ac-sources 'ac-source-filename)))
@@ -245,10 +247,36 @@
 (require 'cmuscheme)
 ;;
 ;; Use Gauche. REPL name is still *scheme*
-(setq scheme-program-name "gosh -i")
+;; (setq scheme-program-name "gosh -i")
 
 
 ;;;
-;;; RACKET MODE
+;;; RACKET RELATED
+;; Racket documentation for emacs
+;; http://docs.racket-lang.org/guide/Emacs.html
+;;
+;; Package Management in Racket
+;; http://docs.racket-lang.org/pkg/
+;;
+;; Install these to make racket-mode work
+;; $ raco pkg install rackunit
+
+
+;;; racket-mode.el
 ;; https://github.com/greghendershott/racket-mode
-(require 'racket-mode)
+;; major mode for Racket. incompatible with geiser minor mode.
+;;
+;; (require 'racket-mode)
+
+;;; geiser.el
+;; Geiser for Racket and Guile Scheme
+;; Works as an add-on to the built-in scheme mode
+;; http://www.nongnu.org/geiser/
+(require 'geiser)
+
+;;; ac-geiser.el
+(require 'ac-geiser)
+(add-hook 'geiser-mode-hook 'ac-geiser-setup)
+(add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'geiser-repl-mode))

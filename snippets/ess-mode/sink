@@ -3,5 +3,10 @@
 # key: xsink
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
-sink()
-sink("`(concat (abbreviate-file-name (file-name-nondirectory (buffer-file-name))) ".txt")`$0", split = TRUE)
+if (sink.number() != 0) {sink()}
+$0## sink("`(concat (abbreviate-file-name (file-name-nondirectory (buffer-file-name))) ".txt")`", split = TRUE)
+..scriptFileName.. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
+if (length(..scriptFileName..) == 1) {
+    sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
+}
+options(width = 120)

@@ -62,7 +62,7 @@ knit_hooks$set(rgl = hook_rgl)
 @ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-<<>>=
+<<size = "small">>=
 ## Load
 library(survival)
 @ 

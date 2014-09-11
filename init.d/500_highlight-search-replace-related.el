@@ -205,3 +205,23 @@
 ;; yourself in the code, and tell which statements are at a given
 ;; level.
 (require 'rainbow-blocks)
+
+
+;;;
+;;; ace-jump-mode.el
+;; https://github.com/winterTTr/ace-jump-mode
+;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
+(require 'ace-jump-mode)
+;; rubikitch setting Software Design September 2014
+;; (setq ace-jump-mode-gray-background nil)
+;; If we need to ask for the query char before entering `ace-jump-word-mode'
+;; (setq ace-jump-word-mode-use-query-char nil)
+;; This is optimized for JIS keyboards.
+;; (setq ace-jump-mode-move-keys (append "asdfghjkl;:]qwertyuiop@zxcvbnm,." nil))
+(global-set-key (kbd "s-a") 'ace-jump-word-mode)
+
+;;; ace-window.el
+;; https://github.com/abo-abo/ace-window
+(require 'ace-window)
+(global-set-key (kbd "C-s-a") 'ace-window)
+(global-set-key (kbd "s-3") 'ace-window)
