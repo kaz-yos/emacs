@@ -13,7 +13,8 @@
 (require 'python)
 ;;
 ;; Use python3 from homebrew.
-(setq python-shell-interpreter "/usr/local/bin/python3")
+;; (setq python-shell-interpreter "/usr/local/bin/python3")
+(setq python-shell-interpreter "/anaconda/bin/python")
 ;;
 ;; ;; Default shell interaction commands
 ;; (define-key map (kbd "C-c C-p") 'run-python)
