@@ -59,7 +59,7 @@
       (setq regexp "^;;; \\|^;;;$"))
      ;; LaTeX
      ((equal major-mode 'latex-mode)
-      (setq regexp "section{"))
+      (setq regexp "section{\\|frametitle{\\|^%%%"))
      ;; Others
      (t				; /** for SAS; ** for Markdown
       (setq regexp "^### \\|^###$\\|^/\\*\\*\\|^\\*\\*")))
