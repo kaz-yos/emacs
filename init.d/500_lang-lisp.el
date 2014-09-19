@@ -120,6 +120,11 @@
 ;;
 ;;
 ;;
+;;; latest-clojure-libraries.el
+;; https://github.com/AdamClements/latest-clojure-libraries/
+(require 'latest-clojure-libraries)
+;;
+;;
 ;;; cider-toggle-trace
 (require 'cider-tracing)
 ;;
