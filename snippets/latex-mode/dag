@@ -2,11 +2,10 @@
 # name: dag
 # key: xdag
 # --
-% DAG example
-% Put these before \begin{document}
-% \usepackage{tikz}
-% \usetikzlibrary{positioning,shapes.geometric}
-
+%% DAG example
+%% Put these before \begin{document}
+%% \usepackage{tikz}
+%% \usetikzlibrary{positioning,shapes.geometric}$0
 
 \begin{tikzpicture}[%
   ->,
@@ -18,12 +17,14 @@
     thick,
     shorten =2pt,}
   ]
-%A,B,C,F
+
+  %% Nodes
   \node (A) {A};
   \node[right =of A] (B) {B};
   \node[right =of B] (C) {C};
   \node[right =of C] (F) {F};
 
+  %% Edges
   \draw[->] (A) to (B);
 
   \draw[->] (A) to [out=25,in=155] (C);

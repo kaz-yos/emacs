@@ -178,11 +178,11 @@
 (autoload 'latex-math-preview-beamer-frame "latex-math-preview" nil t)
 ;; Paths to required external software (specific to MacTeX)
 (setq latex-math-preview-command-path-alist
-      '((latex . "/usr/texbin/latex")
-	(dvipng . "/usr/texbin/dvipng")
-	(dvips . "/usr/texbin/dvips")
+      '((latex    . "/usr/texbin/latex")
+	(dvipng   . "/usr/texbin/dvipng")
+	(dvips    . "/usr/texbin/dvips")
 	(pdflatex . "/usr/texbin/pdflatex")	; for beamer preview
-	(gs . "/usr/local/bin/gs")		; for beamer preview
+	(gs       . "/usr/local/bin/gs")		; for beamer preview
 	))
 ;; Colors for dark background 2013-09-28
 (setq latex-math-preview-dvipng-color-option nil)
@@ -194,8 +194,7 @@
   (interactive)
   (setq w1 (selected-window))
   (latex-math-preview-expression)
-  (select-window w1)
-  )
+  (select-window w1))
 ;; (define-key LaTeX-mode-map (kbd "C-c m") 'my-latex-math-preview)
 ;; Function to preview Beamer slide and shift focus after preview
 (defun my-latex-beamer-preview ()

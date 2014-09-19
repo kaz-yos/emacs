@@ -1,19 +1,20 @@
-(TeX-add-style-hook "LaTeX"
+(TeX-add-style-hook
+ "LaTeX"
  (lambda ()
     (TeX-run-style-hooks
-     "sectsty"
-     "enumerate"
-     "fancyhdr"
-     "tikz"
-     "graphicx"
-     "courier"
-     "listings"
-     "cancel"
-     "amsmath"
-     "geometry"
-     "margin=2.0cm"
      "latex2e"
-     "art10"
+     ""
      "article"
-     "")))
+     "art10"
+     "margin=2.0cm"
+     "geometry"
+     "amsmath"
+     "cancel"
+     "listings"
+     "courier"
+     "graphicx"
+     "tikz"
+     "fancyhdr"
+     "sectsty"
+     "enumerate")))
 
