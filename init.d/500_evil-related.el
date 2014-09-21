@@ -1,9 +1,11 @@
-;;; evil
+;;; EVIL AND VIM-LIKE CONFIGURATIONS
+
+;;;
+;;; evil.el
 ;; http://www.emacswiki.org/emacs/Evil
 ;; Activate evil (2014-02-03 conflict with helm C-z)
 (require 'evil)
 ;; (evil-mode 1)	; not by default
-
 ;;; Making the most of RET and SPC
 ;; Keep RET and SPC bindings.
 ;; http://www.emacswiki.org/emacs/Evil
@@ -14,12 +16,7 @@
 (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
 (my-move-key evil-motion-state-map evil-normal-state-map " ")
 
-
-
-
-
-
-
-
-
-
+;;;
+;;; evil-surround.el
+(require 'evil-surround)
+(global-evil-surround-mode 1)
