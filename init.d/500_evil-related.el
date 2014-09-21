@@ -18,5 +18,6 @@
 
 ;;;
 ;;; evil-surround.el
+;; https://github.com/timcharper/evil-surround
 (require 'evil-surround)
 (global-evil-surround-mode 1)
