@@ -212,12 +212,6 @@
 
 
 ;;;
-;;; ess-edit for added functionalities 2014-04-29
-;; Installed via el-get. add functionalities to ESS. Error? 2013-08-20
-(require 'ess-edit)
-
-
-;;;
 ;;; inlineR.el for graphics inside code
 ;; http://sheephead.homelinux.org/2011/02/10/6602/
 ;; https://github.com/myuhe/inlineR.el
