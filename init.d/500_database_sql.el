@@ -50,13 +50,14 @@
 	     ))
 
 
-;;; sqlplus.el		; User friendly interface to SQL*Plus and support for PL/SQL compilation
+;;; sqlplus.el
+;; User friendly interface to SQL*Plus and support for PL/SQL compilation
 ;;  The following commands should be added to a global initialization
 ;;  file or to any user's .emacs file to conveniently use
 ;;  sqlplus-mode:
 ;;
-(require 'sqlplus)
-(add-to-list 'auto-mode-alist '("\\.sqp\\'" . sqlplus-mode))
+;; (require 'sqlplus)
+;; (add-to-list 'auto-mode-alist '("\\.sqp\\'" . sqlplus-mode))
 ;;
 ;;  If you want PL/SQL support also, try something like this:
 ;;
@@ -64,7 +65,7 @@
 ;;  (setq auto-mode-alist
 ;;    (append '(("\\.pls\\'" . plsql-mode) ("\\.pkg\\'" . plsql-mode)
 ;; 		("\\.pks\\'" . plsql-mode) ("\\.pkb\\'" . plsql-mode)
-;; 		("\\.sql\\'" . plsql-mode) ("\\.PLS\\'" . plsql-mode) 
+;; 		("\\.sql\\'" . plsql-mode) ("\\.PLS\\'" . plsql-mode)
 ;; 		("\\.PKG\\'" . plsql-mode) ("\\.PKS\\'" . plsql-mode)
 ;; 		("\\.PKB\\'" . plsql-mode) ("\\.SQL\\'" . plsql-mode)
 ;; 		("\\.prc\\'" . plsql-mode) ("\\.fnc\\'" . plsql-mode)
@@ -76,7 +77,7 @@
 ;;  M-x sqlplus will start new SQL*Plus session.
 ;;
 ;;  C-RET   execute command under point
-;;  S-C-RET execute command under point and show result table in HTML 
+;;  S-C-RET execute command under point and show result table in HTML
 ;;          buffer
 ;;  M-RET   explain execution plan for command under point
 ;;  M-. or C-mouse-1: find database object definition (table, view
