@@ -3,6 +3,7 @@
 # key: xcode
 # binding: C-c c
 # --
-<<size = "small">>=
+<<size = "footnotesize">>=
 $0
-@ 
+
+@

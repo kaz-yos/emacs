@@ -13,18 +13,19 @@
 (setq-default TeX-master nil)
 ;;
 ;; http://emacsworld.blogspot.com/2011/05/auctex-tip-automatically-save-file.html
-(setq TeX-save-query nil) ;;autosave before compiling
+(setq TeX-save-query nil) ; autosave before compiling
 ;;
 ;;; TeX-fold-mode on by default (C-c C-b C-o to actually fold)
 ;; http://tex.stackexchange.com/questions/52179/what-is-your-favorite-emacs-and-or-auctex-command-trick
-(add-hook 'LaTeX-mode-hook
-	  (lambda ()
-	    (TeX-fold-mode 1)))
+;; (add-hook 'LaTeX-mode-hook
+;; 	  (lambda ()
+;; 	    (TeX-fold-mode 1)))
 ;;
 ;;; Avoid font size changes 2013-10-14
 ;; http://stackoverflow.com/questions/9534239/emacs-auctex-latex-syntax-prevents-monospaced-font
 ;; Only change sectioning colour
 (setq font-latex-fontify-sectioning 'color)
+;; (setq font-latex-fontify-sectioning (quote nil))
 ;; super-/sub-script on baseline
 (setq font-latex-script-display (quote (nil)))
 ;; Do not change super-/sub-script font
@@ -109,7 +110,8 @@
 ;;;
 ;;; Auto-complete for LaTeX
 ;;
-;;; ac-math.el: auto-complete sources for input of mathematical symbols and latex tags
+;;; ac-math.el
+;; auto-complete sources for input of mathematical symbols and latex tags
 ;; https://github.com/vitoshka/ac-math#readme
 (require 'ac-math)
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
@@ -168,7 +170,8 @@
 ;; ;;         B    | bib keys
 ;; ;;         u    | user-commands or user-arguments
 ;;
-;;
+
+
 ;;;
 ;;; latex-math-preview.el
 ;; http://www.emacswiki.org/emacs/LaTeXMathPreview
@@ -205,7 +208,8 @@
   (select-window w1))
 (define-key LaTeX-mode-map (kbd "C-c s") 'my-latex-beamer-preview)
 ;;
-;;
+
+
 ;;;
 ;;; References
 ;;; bibretrieve.el
