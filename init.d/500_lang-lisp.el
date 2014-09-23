@@ -32,16 +32,6 @@
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 ;;
 ;;
-;;; auto-complete-emacs-lisp.el (el-get)
-;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
-;; Automatically configured in script
-(require 'auto-complete-emacs-lisp)
-;; Also activate in IELM
-(add-hook 'ielm-mode-hook 'ac-emacs-lisp-setup)
-;; Turn on and off
-;; (define-key emacs-lisp-mode-map (kbd "C-c a") 'auto-complete-mode)
-;;
-;;
 ;;; lispxmp.el to evaluate sexp within .el
 ;; evaluate within script
 (require 'lispxmp)
