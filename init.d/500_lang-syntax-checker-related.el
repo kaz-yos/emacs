@@ -1,6 +1,6 @@
 ;;; SYNTAX CHECKER RELATED
 
-;;; 
+;;;
 ;;; fly-check.el
 ;; https://github.com/flycheck/flycheck
 ;; Supported languages
@@ -10,7 +10,7 @@
 (require 'flycheck)
 ;;
 ;; Global check
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 ;;
 ;;
 ;;; flycheck-pos-tip.el

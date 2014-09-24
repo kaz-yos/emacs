@@ -1,4 +1,4 @@
-;;; Python support				; external dependency
+;;; PYTHON SUPPORT-RELATED
 ;;
 ;; python.el (in use):
 ;; http://caisah.info/emacs-for-python/
