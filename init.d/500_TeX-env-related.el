@@ -117,6 +117,8 @@
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 ;;
 ;;; ac-latex-mode.el
+;; Function to add words in words in same mode buffers
+;; Slow 2013-09-15 2013-10-12 not helpful
 (defun add-ac-source-words-in-same-mode-buffers () ; add back
   (setq ac-sources
         (append '(ac-source-words-in-same-mode-buffers)
@@ -133,7 +135,7 @@
 			     ;; (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     ;; (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
-			     ;; (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15 2013-10-12 not helpful
+			     ;; (add-ac-source-words-in-same-mode-buffers) 
 			     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)))
 ;;
 ;; auto-complete-auctex.el ; 2014-02-23 now via ELPA

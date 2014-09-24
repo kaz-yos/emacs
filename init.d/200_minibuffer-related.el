@@ -4,20 +4,3 @@
 (defun my-minibuffer-setup ()
        (set (make-local-variable 'face-remapping-alist)
           '((default :height 1.2))))	; Larger font size
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
