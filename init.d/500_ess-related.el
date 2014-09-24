@@ -169,6 +169,14 @@
 ;;
 ;;
 ;;;
+;;; .Rnw LaTeX editing
+;; M-n s
+(define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave)
+;; M-n P
+(define-key ess-noweb-minor-mode-map (kbd "A-p") 'ess-swv-PDF)
+;;
+;;
+;;;
 ;;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
 ;; excecutable file Changed as of 2013-12-20
