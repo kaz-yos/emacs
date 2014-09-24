@@ -10,9 +10,13 @@
 ;;
 ;; Toggle read-only status
 (key-chord-define-global "jk" 'toggle-read-only)
+(global-set-key (kbd "H-o") 'toggle-read-only)
+(global-set-key (kbd "A-o") 'toggle-read-only)
 ;;
 ;; highlight-sexp-mode.el
-(key-chord-define-global "sx" 'highlight-sexp-mode)		; (highlight-sexp-mode)
+(key-chord-define-global "sx" 'highlight-sexp-mode)
+(global-set-key (kbd "H-s") 'highlight-sexp-mode)
+(global-set-key (kbd "A-s") 'highlight-sexp-mode)
 
 
 ;;;
