@@ -48,3 +48,6 @@
 (add-hook 'server-mode-hook	'remove-helm--maybe-update-keymap)
 (add-hook 'server-switch-hook	'remove-helm--maybe-update-keymap)
 (add-hook 'server-visit-hook	'remove-helm--maybe-update-keymap)
+;;
+;; Solution in general
+(add-hook 'post-command-hook	'remove-helm--maybe-update-keymap)
