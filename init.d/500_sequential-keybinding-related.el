@@ -15,8 +15,8 @@
 ;;
 ;; highlight-sexp-mode.el
 (key-chord-define-global "sx" 'highlight-sexp-mode)
-(global-set-key (kbd "H-s") 'highlight-sexp-mode)
-(global-set-key (kbd "A-s") 'highlight-sexp-mode)
+;; (global-set-key (kbd "H-s") 'highlight-sexp-mode)
+;; (global-set-key (kbd "A-s") 'highlight-sexp-mode)
 
 
 ;;;

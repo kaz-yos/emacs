@@ -91,8 +91,9 @@
 ;;
 ;;
 ;;; helm-bm.el		; helm sources for bm.el
-(require 'helm-bm) ;; Not necessary if using ELPA package
+(require 'helm-bm)
 ;; (global-set-key (kbd "C-c b") 'helm-bm)
+
 
 
 ;;;

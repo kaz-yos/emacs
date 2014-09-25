@@ -150,7 +150,7 @@
 (setq ess-describe-at-point-method 'tooltip)		; 'tooltip or nil (buffer)
 ;;
 ;;
-;; Reproducible research with knitr, etc
+;;; Reproducible research with knitr, etc
 ;; Use knitr for .Rnw document
 (setq ess-swv-processor 'knitr)
 ;; Add commands to AUCTeX's M-x TeX-command-list
@@ -162,16 +162,11 @@
 (defun ess-swv-weave-PDF ()
   (interactive)
   (ess-swv-weave nil)	; nil to run with default processor
-  (ess-swv-PDF "texi2pdf"))
-(add-hook 'LaTeX-mode-hook
-	  '(lambda()
-	     (local-set-key (kbd "C-c e") 'ess-swv-weave-PDF)))
+  ;; (ess-swv-PDF "texi2pdf")
+  (ess-swv-PDF))
 ;;
-;;
-;;;
-;;; .Rnw LaTeX editing
 ;; M-n s
-(define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave)
+(define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave-PDF)
 ;; M-n P
 (define-key ess-noweb-minor-mode-map (kbd "A-p") 'ess-swv-PDF)
 ;;

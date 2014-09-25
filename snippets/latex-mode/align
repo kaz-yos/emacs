@@ -3,6 +3,6 @@
 # key: xalign
 # binding: C-c a
 # --
-\begin{align*$1}
+\begin{align*}
 $0
 \end{align*$1}
