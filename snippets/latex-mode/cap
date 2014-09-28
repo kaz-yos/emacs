@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: cap
+# key: xcap
+# --
+\bigcap^n_{i=1}
