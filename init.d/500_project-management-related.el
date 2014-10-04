@@ -5,7 +5,9 @@
 ;; Enable Projectile globally
 (projectile-global-mode)
 ;; Simpler lighter
-(setq projectile-mode-line-lighter " ")
+(setq projectile-mode-line '(:eval
+			     (format " Pj[%s]"
+				     (projectile-project-name))))
 ;; C-c p s should always work even before entering into a project
 (global-set-key (kbd "C-c p s") 'projectile-switch-project)
 ;; Indexing
