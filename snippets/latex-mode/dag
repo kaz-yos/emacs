@@ -7,6 +7,7 @@
 %% \usepackage{tikz}
 %% \usetikzlibrary{positioning,shapes.geometric}$0
 
+\begin{center}
 \begin{tikzpicture}[%
   ->,
   shorten >=2pt,
@@ -34,3 +35,4 @@
   \draw[->] (B) to [out=-25,in=-155] (F);
   \draw[->] (C) to (F);
 \end{tikzpicture}
+\end{center}

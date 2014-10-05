@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: image
+# key: ximage
+# binding: direct-keybinding
+# --
+%% http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics
+\includegraphics[width=\textwidth]{$0.png}
