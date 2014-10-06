@@ -34,6 +34,7 @@
 ;;;
 ;;; ensime.el
 ;; ENhanced Scala Interaction Mode for Emacs
+;; https://github.com/ensime/ensime-server/wiki/Quick-Start-Guide
 ;; https://github.com/ensime/ensime-emacs
 ;; https://github.com/ensime/ensime-src
 ;; Manual
@@ -43,7 +44,7 @@
 ;; This step causes the ensime-mode to be started whenever
 ;; scala-mode is started for a buffer. You may have to customize this step
 ;; if you're not using the standard scala mode.
-;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 
 ;;;

@@ -2,6 +2,10 @@
 
 ;; Emacs for Haskell
 ;; http://www.haskell.org/haskellwiki/Emacs
+;;
+;; Using Emacs for Haskell development
+;; https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
+
 
 ;;;
 ;;; haskell-mode.el
