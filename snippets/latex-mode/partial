@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: partial
+# key: xpartial
+# binding: direct-keybinding
+# --
+\\frac{\\textnormal{\\partial}}{\\partial x$0}
