@@ -48,7 +48,7 @@
 ;; 	  '(lambda ()
 ;; 	     (local-set-key (kbd "<C-return>") 'eir-eval-in-scheme)))
 
-;; python support 
+;; python support
 ;; (require 'python) ; if not done elsewhere
 (require 'eval-in-repl-python)
 (define-key python-mode-map (kbd "<C-return>") 'eir-eval-in-python)
@@ -59,3 +59,13 @@
 (add-hook 'sh-mode-hook
           '(lambda()
 	     (local-set-key (kbd "C-<return>") 'eir-eval-in-shell)))
+
+;; sml support
+;; (require 'sml-mode) ; if not done elsewhere
+(require 'eval-in-repl-sml)
+(define-key sml-mode-map (kbd "<C-return>") 'eir-eval-in-sml)
+
+;; haskell support
+;; (require 'haskell-mode) ; if not done elsewhere
+(require 'eval-in-repl-haskell)
+(define-key haskell-mode-map (kbd "<C-return>") 'eir-eval-in-haskell)
