@@ -54,6 +54,9 @@
 	       ("PYTHON" (or
 			  (mode . python-mode)
 			  (mode . inferior-python-mode)))
+	       ("ML" (or
+			  (mode . sml-mode)
+			  (mode . inferior-sml-mode)))
 	       ("SHELL"  (or
 			  (mode . sh-mode)
 			  (mode . shell-mode)
