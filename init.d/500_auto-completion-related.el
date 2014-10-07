@@ -56,6 +56,16 @@
  ac-quick-help-delay 1.0
  ac-quick-help-prefer-pos-tip t
  )
+;;
+;;
+;; Configure sources
+;; http://cx4a.org/software/auto-complete/manual.html#Source
+;; (add-to-list 'ac-sources 'ac-source-filename)
+(setq-default ac-sources '(ac-source-abbrev
+			   ac-source-dictionary
+			   ac-source-filename
+			   ac-source-words-in-same-mode-buffers))
+;;
 ;; Key configuration
 ;; Non-nil means a special keymap `ac-menu-map' on completing menu will be used.
 ;; http://cx4a.org/software/auto-complete/manual.html#Not_to_complete_automatically
