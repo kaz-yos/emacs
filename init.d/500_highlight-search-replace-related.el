@@ -225,3 +225,8 @@
 (require 'ace-window)
 (global-set-key (kbd "C-s-a") 'ace-window)
 (global-set-key (kbd "s-3") 'ace-window)
+
+;;; ace-jump-zap.el
+;; https://github.com/waymondo/ace-jump-zap
+
+(require 'ace-jump-zap)
