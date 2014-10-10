@@ -96,6 +96,28 @@
 
 
 ;;;
+;;; COMPANY-MODE
+;;; company-mode.el
+;; Modular in-buffer completion framework for Emacs
+;; http://company-mode.github.io
+;; http://www.emacswiki.org/CompanyMode
+;;
+;; company-mode everywhere
+;; (add-hook 'after-init-hook 'global-company-mode)
+;;
+;; I don't like the default colors!
+;; http://www.emacswiki.org/CompanyMode#toc6
+;; (require 'color)
+(let ((bg (face-attribute 'default :background)))
+  (custom-set-faces
+   `(company-tooltip	       ((t (:inherit default :background ,(color-lighten-name bg (+ 2 50))))))
+   `(company-scrollbar-bg      ((t (:background ,(color-lighten-name bg (+ 10 50))))))
+   `(company-scrollbar-fg      ((t (:background ,(color-lighten-name bg (+ 5 50))))))
+   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+   `(company-tooltip-common    ((t (:inherit font-lock-constant-face))))))
+
+
+;;;
 ;;; icicles.el		; Minibuffer input completion and cycling.
 ;; http://www.emacswiki.org/emacs/Icicles
 ;; Nutshell

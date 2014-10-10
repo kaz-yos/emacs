@@ -172,6 +172,11 @@
 ;; ;;         B    | bib keys
 ;; ;;         u    | user-commands or user-arguments
 ;;
+;;
+;;; company-auctex.el
+;; https://github.com/alexeyr/company-auctex
+(require 'company-auctex)
+(company-auctex-init)
 
 
 ;;;
