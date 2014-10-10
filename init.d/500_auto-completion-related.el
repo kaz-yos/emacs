@@ -107,7 +107,7 @@
 ;;
 ;; I don't like the default colors!
 ;; http://www.emacswiki.org/CompanyMode#toc6
-;; (require 'color)
+(require 'color)
 (let ((bg (face-attribute 'default :background)))
   (custom-set-faces
    `(company-tooltip	       ((t (:inherit default :background ,(color-lighten-name bg (+ 2 50))))))
