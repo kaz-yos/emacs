@@ -57,6 +57,9 @@
 	  (equal major-mode 'lisp-mode)
 	  (equal major-mode 'clojure-mode))
       (setq regexp "^;;; \\|^;;;$"))
+     ;; SML
+     ((or (equal major-mode 'sml-mode))
+      (setq regexp "^(\\*\\*"))
      ;; LaTeX
      ((equal major-mode 'latex-mode)
       (setq regexp "section{\\|frametitle{\\|^%%%"))

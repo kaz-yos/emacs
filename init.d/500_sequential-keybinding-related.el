@@ -63,6 +63,12 @@
 (add-hook 'python-mode-hook			'my-python-smartchr-setting)
 (add-hook 'inferior-python-mode-hook		'my-python-smartchr-setting)
 ;;
+;; SML
+(defun my-sml-smartchr-setting ()
+  (local-set-key (kbd "=") (smartchr '(" = " " => " "=")))
+  (local-set-key (kbd ":") (smartchr '(" : " "::"))))
+(add-hook 'sml-mode-hook 'my-sml-smartchr-setting)
+;;
 ;; LaTeX
 (defun my-LaTeX-smartchr-setting ()
   (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
