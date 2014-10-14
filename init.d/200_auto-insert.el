@@ -13,3 +13,4 @@
 (define-auto-insert "\\.tex$"       "LaTeX.tex")
 (define-auto-insert "\\.gitignore$" ".gitignore")
 (define-auto-insert "project\\.clj" "project.clj")
+(define-auto-insert "\\.rkt"        "racket.rkt")
