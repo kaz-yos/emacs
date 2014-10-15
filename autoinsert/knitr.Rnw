@@ -18,7 +18,7 @@
 % % Code
 \usepackage{listings}
 \usepackage{courier}
-\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
 
 %% Graphics
 \usepackage{graphicx}
