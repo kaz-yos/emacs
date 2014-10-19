@@ -3,4 +3,4 @@
 # key: xpartial
 # binding: direct-keybinding
 # --
-\\frac{\\textnormal{\\partial}}{\\partial x$0}
+\\frac{\\partial}{\\partial x$0}
