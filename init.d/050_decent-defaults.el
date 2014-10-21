@@ -9,6 +9,11 @@
 (delete-selection-mode t)
 
 
+;;; 
+;;; Use newer of .elc or .el
+(setq load-prefer-newer t)
+
+
 ;;;
 ;;; Visible-bell instead of audible
 (setq visible-bell t)
