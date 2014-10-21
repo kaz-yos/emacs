@@ -39,5 +39,7 @@ options(width = 120)
 
 
 ################################################################################
+## Record package versions
+print(sessionInfo())
 ## Stop sinking to a file if active
 if (sink.number() != 0) {sink()}
