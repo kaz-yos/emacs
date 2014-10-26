@@ -13,10 +13,6 @@
 ;; http://www.haskell.org/haskellwiki/Emacs/Installing_haskell-mode
 (require 'haskell-mode)
 ;;
-;;
-(add-hook 'haskell-mode-hook
-	  '(turn-on-eldoc-mode turn-on-haskell-doc turn-on-haskell-indentation))
-;;
 ;; 3 mutually exclusive indent style
 ;; http://www.haskell.org/haskellwiki/Emacs/Indentation
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
@@ -26,7 +22,10 @@
 ;; Keys
 (defun haskell-mode-keys ()
   (local-set-key (kbd "C-c C-l") 'inferior-haskell-load-file)
-  (local-set-key (kbd "C-c C-r") 'inferior-haskell-reload-file))
+  (local-set-key (kbd "C-c C-r") 'inferior-haskell-reload-file)
+  (local-set-key (kbd "C-c C-t") 'inferior-haskell-type)
+  (local-set-key (kbd "C-c C-i") 'inferior-haskell-info)
+  (local-set-key (kbd "M-.") 'inferior-haskell-find-definition))
 ;;
 (add-hook 'haskell-mode-hook 'haskell-mode-keys)
 ;;
