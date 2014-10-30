@@ -142,8 +142,8 @@
 (require 'clojure-cheatsheet)
 ;;
 ;;
-;;; clojure-test-mode.el
-(require 'clojure-test-mode)
+;;; clojure-test-mode.el 2014-10-27 deprecated
+;; (require 'clojure-test-mode)
 ;;
 ;;
 ;;; 4clojure.el
