@@ -74,10 +74,14 @@
 
 ;;;
 ;;; ein.el	; Emacs IPython Notebook (EIN)
-;; Current version does not work with ipython 2.0.0 as of 2013-12-20
-;; 20140317.1114 did not work with ipython 2.0.0 stable as of 2014-04-08
+;; Forked version (different from the one by the original author on MELPA)
+;; https://github.com/millejoh/emacs-ipython-notebook
+;; Need to install from github
+;; cd ~/.emacs.d/plugins/
+;; git clone git://github.com/millejoh/emacs-ipython-notebook.git
+;; Add the path
+(add-to-list 'load-path "~/.emacs.d/plugins/emacs-ipython-notebook/lisp")
 ;;
-;; This is fundamentally different from python.el and can coexist. 2013-12-22
 ;; http://tkf.github.com/emacs-ipython-notebook/
 ;; Usage
 ;; Start IPython notebook server with $ ipython notebook --pylab inline
