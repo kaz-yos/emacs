@@ -85,8 +85,9 @@
 ;; Haskell
 (defun my-haskell-smartchr-setting ()
   (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
-  (local-set-key (kbd "+") (smartchr '(" + " "+")))
-  (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------")))
+  (local-set-key (kbd "+") (smartchr '(" + " " ++ " "+")))
+  (local-set-key (kbd "-") (smartchr '(" - " " -> " "-")))
+  (local-set-key (kbd ":") (smartchr '(" : " " :: " ":")))
   )
 (add-hook 'haskell-mode-hook 'my-haskell-smartchr-setting)
 
