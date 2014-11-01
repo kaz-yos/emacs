@@ -29,8 +29,7 @@ References
 Load packages
 --------------------
 ```{r}
-## 
-library(survival)
+
 ```
 
 --------------------
@@ -40,8 +39,7 @@ library(survival)
 
 
 --------------------
+- Top Page: http://rpubs.com/kaz_yos/
 - Table of Contents: http://rpubs.com/kaz_yos/toc
 - Table of Contents (Japanese): http://rpubs.com/kaz_yos/toc-j
-- Top Page: http://rpubs.com/kaz_yos/
-- SlideShare: http://www.slideshare.net/kaz_yos
 - github: https://github.com/kaz-yos
