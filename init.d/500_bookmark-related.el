@@ -55,6 +55,7 @@
      ;; Lisp-related modes
      ((or (equal major-mode 'emacs-lisp-mode)
 	  (equal major-mode 'lisp-mode)
+          (equal major-mode 'scheme-mode)
 	  (equal major-mode 'clojure-mode))
       (setq regexp "^;;; \\|^;;;$"))
      ;; SML

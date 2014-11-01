@@ -278,6 +278,8 @@
 ;;
 ;; Use Gauche. REPL name is still *scheme*
 ;; (setq scheme-program-name "gosh -i")
+(add-hook 'scheme-mode-hook '(lambda ()
+                               (company-mode -1)))
 
 
 ;;;
