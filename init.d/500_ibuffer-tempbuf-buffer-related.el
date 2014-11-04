@@ -49,14 +49,16 @@
 			  (mode . inferior-scheme-mode)
 			  (mode . geiser-repl-mode)))
 	       ("HASKELL" (or
-			  (mode . haskell-mode)
-			  (mode . inferior-haskell-mode)))
+                           (mode . haskell-mode)
+                           (mode . inferior-haskell-mode)))
 	       ("PYTHON" (or
 			  (mode . python-mode)
-			  (mode . inferior-python-mode)))
+			  (mode . inferior-python-mode)
+                          (mode . ein:notebooklist-mode)
+                          (mode . ein:notebook-multilang-mode)))
 	       ("ML" (or
-			  (mode . sml-mode)
-			  (mode . inferior-sml-mode)))
+                      (mode . sml-mode)
+                      (mode . inferior-sml-mode)))
 	       ("SHELL"  (or
 			  (mode . sh-mode)
 			  (mode . shell-mode)
