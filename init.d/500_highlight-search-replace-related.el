@@ -291,5 +291,5 @@
 ;; Use ace-isearch-funtion-from-isearch if the search term is longer than
 (setq ace-isearch-input-length 6)
 ;; Give swoop additional bindings
-(define-key swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
-(define-key swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
+(define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
+(define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
