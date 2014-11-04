@@ -245,6 +245,28 @@
 ;; (setq ace-jump-mode-move-keys (append "asdfghjkl;:]qwertyuiop@zxcvbnm,." nil))
 (global-set-key (kbd "s-a") 'ace-jump-word-mode)
 ;;
+;; Radical setting using H- bindings
+;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
+(defun add-keys-to-ace-jump-mode (prefix c &optional mode)
+  (define-key global-map
+    (read-kbd-macro (concat prefix (string c)))
+    `(lambda ()
+       (interactive)
+       (funcall (if (eq ',mode 'word)
+                    #'ace-jump-word-mode
+                  #'ace-jump-char-mode) ,c))))
+;;
+;; Numbers and characters
+;; (loop for c from ?0 to ?9 do (add-keys-to-ace-jump-mode "H-" c))
+;; (loop for c from ?a to ?z do (add-keys-to-ace-jump-mode "H-" c))
+;; (loop for c from ?0 to ?9 do (add-keys-to-ace-jump-mode "H-M-" c 'word))
+;; (loop for c from ?a to ?z do (add-keys-to-ace-jump-mode "H-M-" c 'word))
+;;
+;; Everything
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-" c))
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-M-" c 'word))
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "M-s-" c))
+;;
 ;;; ace-window.el
 ;; https://github.com/abo-abo/ace-window
 (require 'ace-window)
@@ -254,3 +276,20 @@
 ;;; ace-jump-zap.el
 ;; https://github.com/waymondo/ace-jump-zap
 (require 'ace-jump-zap)
+;;
+;;; ace-isearch.el
+;; https://github.com/tam17aki/ace-isearch
+(require 'ace-isearch)
+(global-ace-isearch-mode +1)
+;;
+;; all characters, not just word beginning
+(setq ace-isearch-submode 'ace-jump-char-mode)
+;;
+;; Delay before ace-jump kicks in
+(setq ace-isearch-input-idle-delay 0.3)
+;;
+;; Use ace-isearch-funtion-from-isearch if the search term is longer than
+(setq ace-isearch-input-length 6)
+;; Give swoop additional bindings
+(define-key swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
+(define-key swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
