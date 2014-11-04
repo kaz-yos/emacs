@@ -293,7 +293,6 @@
 ;; Install these to make racket-mode work
 ;; $ raco pkg install rackunit
 
-
 ;;; racket-mode.el
 ;; https://github.com/greghendershott/racket-mode
 ;; major mode for Racket. incompatible with geiser minor mode.
@@ -306,9 +305,15 @@
 ;; http://www.nongnu.org/geiser/
 (require 'geiser)
 
+
 ;;; ac-geiser.el
 (require 'ac-geiser)
-(add-hook 'geiser-mode-hook 'ac-geiser-setup)
-(add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'geiser-repl-mode))
+;;
+(defun my-ac-geiser-setup ()
+  (ac-geiser-setup)
+  (define-key geiser-mode-map (kbd "C-.") 'highlight-symbol-at-point))
+;;
+(add-hook 'geiser-mode-hook 'my-ac-geiser-setup)
+(add-hook 'geiser-repl-mode-hook 'my-ac-geiser-setup)
