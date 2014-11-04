@@ -3,6 +3,24 @@
 ;;; javascript and related languages
 
 
+;;;
+;;; js2-mode.el
+;;
+;; Set up Javascript development environment in Emacs
+;; http://truongtx.me/2014/02/23/set-up-javascript-development-environment-in-emacs/
+;;
+(require 'js2-mode)
+;;
+;; files
+(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+;;
+;; hooks
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+;;
+;; highlight
+(setq js2-highlight-level 3)
+
 ;;; 
 ;;; COFFEESCRIPT-RELATED
 ;;; coffee-mode.el
