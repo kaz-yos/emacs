@@ -12,6 +12,8 @@
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(background-color "#042028")
  '(background-mode dark)
+ '(coffee-args-compile (quote ("-c" "--bare")))
+ '(coffee-tab-width 2)
  '(cursor-color "#708183")
  '(custom-enabled-themes (quote (wheatgrass)))
  '(custom-safe-themes
@@ -39,7 +41,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ace-jump-face-foreground ((t (:foreground "red" :underline nil :weight extra-bold :height 1.0 :width expanded))))
  '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
+ '(company-scrollbar-bg ((t (:background "#999999"))))
+ '(company-scrollbar-fg ((t (:background "#8c8c8c"))))
+ '(company-tooltip ((t (:inherit default :background "#848484"))))
+ '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
+ '(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
  '(font-latex-subscript-face ((t nil)))
  '(font-latex-superscript-face ((t nil)))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "gray90"))))
