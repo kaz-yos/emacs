@@ -235,6 +235,12 @@
 (global-set-key (kbd "M--") 'toggle-cacoo-minor-mode) ; key bind example
 
 
+;;;
+;;; *.Rmd files invoke r-mode
+;; Temporary fix for R markdown files. As of 2014-05-26, polymode is unstable.
+(setq auto-mode-alist
+      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
+
 
 ;;;
 ;;; STAN support 2014-01-15
@@ -246,8 +252,6 @@
 
 
 ;;;
-;;; *.Rmd files invoke r-mode
-;; Temporary fix for R markdown files. As of 2014-05-26, polymode is unstable.
-(setq auto-mode-alist
-      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
-
+;;; julia-mode.el
+;; Official support
+(require 'julia-mode)
