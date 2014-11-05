@@ -123,14 +123,12 @@
 ;; Use git-timemachine to browse historic versions of a file with p
 ;; (previous) and n (next).
 (require 'git-timemachine)
-
+;;
+;;
+;;; github-browse-file.el
+;; https://github.com/osener/github-browse-file
+(require 'github-browse-file)
 
 ;;; Mercurial
 ;; A simple Emacs interface for the Mercurial (Hg) Distributed SCM. 2013-09-09
 (require 'ahg)
-
-
-
-
-
-
