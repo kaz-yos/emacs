@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: frac
-# key: xfrac
+# key: frac
 # binding: C-c f
 # --
 \frac{$1}{$0}

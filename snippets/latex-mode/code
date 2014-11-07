@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: code
-# key: xcode
+# key: code
 # binding: C-c c
 # --
 <<size = "footnotesize">>=

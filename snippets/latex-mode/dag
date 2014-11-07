@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: dag
-# key: xdag
+# key: dag
 # --
 %% DAG example
 %% Put these before \begin{document}

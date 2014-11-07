@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: image
-# key: ximage
+# key: image
 # binding: direct-keybinding
 # --
 %% http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics

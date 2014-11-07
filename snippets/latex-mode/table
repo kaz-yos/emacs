@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: table
-# key: xtable
+# key: table
 # --
 \begin{table}[!htbp]
 \centering

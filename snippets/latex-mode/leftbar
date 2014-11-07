@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: leftbar
-# key: xltb
+# key: ltb
 # --
 \\left. $0 \\right|

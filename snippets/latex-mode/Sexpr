@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: Sexpr
-# key: xS
+# key: S
 # --
 \\Sexpr{$0}

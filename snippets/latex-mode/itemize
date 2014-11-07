@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: itemize
-# key: xitemize
+# key: itemize
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 \begin{itemize}

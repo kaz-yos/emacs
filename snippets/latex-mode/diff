@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: diff
-# key: xdiff
+# key: diff
 # binding: direct-keybinding
 # --
 \\frac{\\textnormal{d}}{\\textnormal{d} x$0}

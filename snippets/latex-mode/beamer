@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: beamer
-# key: xbeamer
+# key: beamer
 # --
 %% Beamer template
 %% http://www.matthiaspospiech.de/latex/vorlagen/beamer/preambel/

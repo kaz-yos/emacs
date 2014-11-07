@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: slide
-# key: xsl
+# key: sl
 # --
 %%----------- slide --------------------------------------------------%
 \begin{frame}[fragile]

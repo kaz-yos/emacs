@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: curly
-# key: xcurly
+# key: curly
 # --
 \left\\{
   \begin{aligned}

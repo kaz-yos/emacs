@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: cup
-# key: xcup
+# key: cup
 # --
 \bigcup^n_{i=1}
