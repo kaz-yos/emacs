@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: join
-# key: xjoin
+# key: join
 # --
 CREATE TEMPORARY TABLE temp_itemid211 AS
 	SELECT chartevents.* 	        # Only from the table on the right

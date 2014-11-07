@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: rgl
-# key: xrgl
+# key: rgl
 # binding: direct-keybinding
 # expand-env: ((some-var some-value))
 # type: command

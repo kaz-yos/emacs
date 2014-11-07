@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: lrm
-# key: xlrm
+# key: lrm
 # binding: direct-keybinding
 # --
 <- lrm(formula = ,

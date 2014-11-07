@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: png
-# key: xpng
+# key: png
 # --
 png(file = "$1", width = 700, height = 700, family = "sans")
 $0

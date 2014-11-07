@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: frailtyPenal
-# key: xfrailtyPenal
+# key: frailtyPenal
 # --
 resFrailtyPenal <- frailtyPenal(formula = ,
                                 data = ,

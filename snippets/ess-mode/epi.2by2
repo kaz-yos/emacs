@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: epi.2by2
-# key: xepi.2by2
+# key: epi.2by2
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 epi.2by2(dat = mat, method = c("cohort.count","cohort.time","case.control","cross.sectional")[1],

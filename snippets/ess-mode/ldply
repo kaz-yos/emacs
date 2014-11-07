@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: ldply
-# key: xldply
+# key: ldply
 # --
 res. <- ldply(.data = $0,
               .variables = c(),                

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: cuminc
-# key: xcuminc
+# key: cuminc
 # --
 fit <- cuminc(ftime   = ,  # failure time variable
               fstatus = ,  # variable with distinct codes for different causes of failure

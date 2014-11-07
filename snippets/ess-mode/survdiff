@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: survdiff
-# key: xsurvdiff
+# key: survdiff
 # --
 survdiff(formula = , data = ,rho = 0)  #rho = 0 for MH test, 1 for Peto-Peto modification of Gehan-Wilcoxon

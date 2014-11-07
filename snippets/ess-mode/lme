@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: lme
-# key: xlme
+# key: lme
 # --
 res.$1 <- lme(fixed  = ,
               data   = $1,

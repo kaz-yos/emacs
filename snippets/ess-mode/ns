@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: ns
-# key: xns
+# key: ns
 # --
 ns($0, df = 5, knots = NULL, intercept = FALSE)

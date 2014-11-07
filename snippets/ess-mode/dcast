@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: dcast
-# key: xdcast
+# key: dcast
 # binding: direct-keybinding
 # --
 $0 <- dcast(data          = ,

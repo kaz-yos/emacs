@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: function
-# key: xfunc
+# key: func
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 $1 <- function($2) {

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: ddply
-# key: xddply
+# key: ddply
 # --
 $1 <- ddply(.data = $1,
             .variables = c($2),                

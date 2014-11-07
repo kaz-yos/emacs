@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: fun
-# key: xfun
+# key: fun
 # --
 $1 <- function($2) {
     $0

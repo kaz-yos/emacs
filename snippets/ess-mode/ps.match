@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: ps.match
-# key: xps.match
+# key: ps.match
 # --
 res.ps.match <- ps.match(object             = $0,
                          object.control     = NULL,

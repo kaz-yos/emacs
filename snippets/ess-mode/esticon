@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: esticon
-# key: xesticon
+# key: esticon
 # --
 library(doBy)
 res. <- esticon(obj        = ,

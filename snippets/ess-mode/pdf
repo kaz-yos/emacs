@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: pdf
-# key: xpdf
+# key: pdf
 # --
 pdf(file = "$1", width = 7, height = 7, family = "sans")
 $0

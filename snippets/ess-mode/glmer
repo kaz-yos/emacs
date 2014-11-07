@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: glmer
-# key: xglmer
+# key: glmer
 # binding: direct-keybinding
 # --
 $0 <- glmer(formula =  ~  + (1 | level4/level3/level2),

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: ggplot
-# key: xggplot
+# key: ggplot
 # --
 ggplot(data = $1, mapping = aes(x = $2, y = $3)) +
     layer(geom = "$4") +

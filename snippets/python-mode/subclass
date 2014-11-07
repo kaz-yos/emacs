@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: subclass
-# key: xsubclass
+# key: subclass
 # --
 class Template(ParentClass):
     def __init__(self):

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: rdrwtr
-# key: xrdrwtr
+# key: rdrwtr
 # --
 (with-open [rdr (clojure.java.io/reader file-in)
             wtr (clojure.java.io/writer file-out)]

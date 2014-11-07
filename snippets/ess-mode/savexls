@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: savexls
-# key: xsavexls
+# key: savexls
 # --
 ## Load workbook (create if not existing)
 wb <- loadWorkbook(filename = "./file.xlsx", create = TRUE)

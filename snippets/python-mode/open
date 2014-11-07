@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: open
-# key: xopen
+# key: open
 # --
 f = open(file = "$0", mode = "${1:$$(yas-choose-value '("b" "r+" "a" "w" "r"))}")
 

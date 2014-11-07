@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: lapply
-# key: xlapply
+# key: lapply
 # --
 res.$1 <- sapply($1,
                  FUN = function(i) {

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: reshape
-# key: xreshape
+# key: reshape
 # --
 $1.long <- reshape(data      = $1,
                    varying   = c($2), # Used in wide-to-long

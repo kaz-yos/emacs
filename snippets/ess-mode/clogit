@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: clogit
-# key: xclogit
+# key: clogit
 # --
 res. <- clogit(formula    = + strata(id),
                data       = ,

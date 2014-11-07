@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: merge
-# key: xmerge
+# key: merge
 # --
 dfMerge <- merge(x = $2,
                  y = $3,

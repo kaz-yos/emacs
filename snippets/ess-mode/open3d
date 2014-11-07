@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: open3d
-# key: xopen3d
+# key: open3d
 # --
 open3d(windowRect = c(100, 100, 700, 700))$0

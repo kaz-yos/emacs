@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: temp
-# key: xtemp
+# key: temp
 # --
 (def my-temp-file (java.io.File/createTempFile "filename$1" ".txt"))

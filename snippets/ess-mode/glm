@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: glm
-# key: xglm
+# key: glm
 # --
 $0 <- glm(formula = $2,
           family  = binomial(link = "logit"),

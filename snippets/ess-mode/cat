@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: cat
-# key: xcat
+# key: cat
 # binding: C-c t
 # --
 cat("### $0 \n")

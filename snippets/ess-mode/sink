@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: sink
-# key: xsink
+# key: sink
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 if (sink.number() != 0) {sink()}

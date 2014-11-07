@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: rq
-# key: xrq
+# key: rq
 # --
 res.$1 <- rq(formula = ,
              tau     = 0.5,

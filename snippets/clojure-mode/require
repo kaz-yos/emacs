@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: require
-# key: xrequire
+# key: require
 # --
 (require '[clojure.string  :as cstr]
          '[clojure.set     :as cset]

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: acast
-# key: xacast
+# key: acast
 # --
 <- acast(data =$0,
          formula =  ~ ,

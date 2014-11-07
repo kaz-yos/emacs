@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: doMC
-# key: xdoMC
+# key: doMC
 # --
 ## Load doMC
 library(doMC)           # parallel backend to foreach/plyr

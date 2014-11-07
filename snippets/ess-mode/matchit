@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: matchit
-# key: xmatchit
+# key: matchit
 # --
 out.matchit <- matchit(formula          = ,
                        data             = ,
