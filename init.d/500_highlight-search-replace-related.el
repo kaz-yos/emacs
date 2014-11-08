@@ -270,8 +270,7 @@
 ;;; ace-window.el
 ;; https://github.com/abo-abo/ace-window
 (require 'ace-window)
-(global-set-key (kbd "C-s-a") 'ace-window)
-(global-set-key (kbd "s-3") 'ace-window)
+(global-set-key (kbd "s-5") 'ace-window)
 ;;
 ;;; ace-jump-zap.el
 ;; https://github.com/waymondo/ace-jump-zap
@@ -289,7 +288,7 @@
 (setq ace-isearch-input-idle-delay 0.3)
 ;;
 ;; Use ace-isearch-funtion-from-isearch if the search term is longer than
-(setq ace-isearch-input-length 6)
+(setq ace-isearch-input-length 600)
 ;; Give swoop additional bindings
 (define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
 (define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
