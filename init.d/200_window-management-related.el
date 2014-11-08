@@ -1,5 +1,6 @@
 ;;; Window management
 
+;;;
 ;;; winner-mode to restore previous window configurations
 ;; http://www.emacswiki.org/emacs/WinnerMode
 ;; Default: C-c <left> to undo window rearragement. C-c <right> to redo.
@@ -10,7 +11,7 @@
 ;; (global-set-key (kbd "H-;")	'winner-undo)
 ;; (global-set-key (kbd "H-'")	'winner-redo)
 
-
+;;;
 ;;; Useful shortcuts
 ;; http://stackoverflow.com/questions/2901198/useful-keyboard-shortcuts-and-tips-for-ess-r
 ;; C-tab to switch to other window.
@@ -31,7 +32,7 @@
 ;; other-frame with C-x o, instead of other-window
 (global-set-key (kbd "C-x o") 'other-frame)
 
-
+;;;
 ;;; Scroll window with C-t/C-v
 ;; transpose-char changed to cua-scroll-down
 (global-set-key (kbd "C-t") 'cua-scroll-down)	; C-t to scroll down, C-v to scroll up
@@ -49,6 +50,7 @@
 ;;
 
 
+;;;
 ;;; Scroll other window with M-up/M-down	; Conflict with paredit. Use C-M-(S)-v
 ;; (global-set-key [M-up]		'scroll-other-window-down)
 ;; (global-set-key [M-down]	'scroll-other-window)
@@ -68,6 +70,7 @@
   )
 
 
+;;;
 ;;; e2wn		; Window management system
 ;; ;; e2wm minimal configuration (requires window-layout.el)
 ;; ;; http://d.hatena.ne.jp/kiwanami/20100528/1275038929
@@ -80,6 +83,29 @@
 ;; (require 'e2wm-R)
 
 
+;;;
 ;;; windresize for M-x windresize
 ;; M-x windresize, arrows, C-g for cancel, RET to save
 (require 'windresize)
+
+
+;;;
+;;; window-number.el for direct movement to windows
+(require 'window-number)
+(window-number-mode 1)
+;;
+(defun my-window-number-select (number)
+  "Selects the nth window."
+  (interactive "P")
+  (if (integerp number)
+      (let ((window (nth (1- number) (window-number-list))))
+        (if (and window (or (not (window-minibuffer-p window))
+                            (minibuffer-window-active-p window)))
+            (select-window window)
+          ;; if not found, activate ace-window
+          (ace-select-window)))))
+;;
+(global-set-key (kbd "s-1") (lambda () (interactive) (my-window-number-select 1)))
+(global-set-key (kbd "s-2") (lambda () (interactive) (my-window-number-select 2)))
+(global-set-key (kbd "s-3") (lambda () (interactive) (my-window-number-select 3)))
+(global-set-key (kbd "s-4") (lambda () (interactive) (my-window-number-select 4)))
