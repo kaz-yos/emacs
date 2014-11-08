@@ -5,15 +5,16 @@
 ;; http://d.hatena.ne.jp/rubikitch/20081104/1225745862
 ;; http://d.hatena.ne.jp/syohex/20110114/1294958917
 ;;
+(global-set-key (kbd "A-o") 'toggle-read-only)
+
 
 ;;; view-read-only
 ;; view-read-only is a variable defined in `files.el'.
 ;; Non-nil means buffers visiting files read-only do so in view mode.
 (setq view-read-only t)
-;;
 
 
-;;; viewer.el		;
+;;; viewer.el
 (require 'viewer)
 ;; Setup stay-in view-mode.
 (viewer-stay-in-setup)
