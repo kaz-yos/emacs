@@ -25,9 +25,9 @@
   (setq mac-option-modifier 'alt)
   ;;
   ;; right command
-  (setq mac-right-command-modifier 'super)
+  (setq mac-right-command-modifier 'hyper)
   ;; right option
-  (setq mac-right-option-modifier 'hyper)
+  (setq mac-right-option-modifier 'super)
   ;;
   ;; Mac Binding modifier keys
   ;; http://www.emacswiki.org/emacs/EmacsForMacOS#toc23
