@@ -28,10 +28,10 @@
  '(font-lock-type-face ((t (:foreground "SteelBlue1"))))
  '(font-lock-variable-name-face ((t (:foreground "Aquamarine"))))
  '(font-lock-warning-face ((t (:weight bold :foreground "Pink"))))
- '(link ((,class (:underline t :foreground "cyan"))))
- '(link-visited ((,class (:underline t :foreground "dark cyan"))))
+ '(link ((t (:underline (:color foreground-color :style line) :foreground "cyan1"))))
+ '(link-visited ((t (:underline (:color foreground-color :style line) :foreground "violet"))))
  '(fringe ((t (:foreground "Wheat" :background "grey30"))))
- '(header-line ((t (:height 0.9 :box (:line-width -1 :color "grey20" :style released-button) :foreground "grey90" :background "grey20"))))
+ '(header-line ((t (:height 1.0 :box (:line-width -1 :color "grey20" :style released-button) :foreground "grey90" :background "grey20"))))
  '(tooltip ((t (:foreground "black" :background "lightyellow"))))
  '(mode-line ((t (:background "gray90" :foreground "Blue" :box 1))))
  '(mode-line-buffer-id ((t (:weight bold))))
@@ -47,3 +47,8 @@
  '(default ((t (:family "Menlo" :foundry "nil" :width normal :height 140 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "WhiteSmoke" :background "black" :stipple nil :inherit nil)))))
 
 (provide-theme 'modified-manoj-dark-theme)
+
+
+
+
+
