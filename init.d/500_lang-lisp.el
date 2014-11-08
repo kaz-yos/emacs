@@ -28,15 +28,9 @@
 ;; http://d.hatena.ne.jp/rubikitch/20100423/bytecomp
 (require 'auto-async-byte-compile)
 ;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
-(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/\\|/programming/")
+;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/\\|/programming/")
+(setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|/programming/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
-;;
-;;
-;;; auto-complete-emacs-lisp.el 2013-09-08
-;; https://github.com/rik0/tentative-configuration-emacs/blob/master/emacs.d/auto-complete-emacs-lisp.el
-(require 'auto-complete-emacs-lisp)
-;; Turn on and off
-(define-key emacs-lisp-mode-map (kbd "C-c a") 'auto-complete-mode)
 ;;
 ;;
 ;;; lispxmp.el to evaluate sexp within .el
@@ -52,6 +46,21 @@
 ;;  Summary: anaphoric macros providing implicit temp variables
 ;; Homepage: http://github.com/rolandwalker/anaphora
 ;; (require 'anaphora)
+;;
+;;
+;;; Auto-complete in IELM
+;; http://www.masteringemacs.org/articles/2010/11/29/evaluating-elisp-emacs/
+(defun ielm-auto-complete ()
+  "Enables `auto-complete' support in \\[ielm]."
+  (setq ac-sources '(ac-source-functions
+                     ac-source-variables
+                     ac-source-features
+                     ac-source-symbols
+                     ac-source-words-in-same-mode-buffers))
+  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
+  (auto-complete-mode 1))
+(add-hook 'ielm-mode-hook 'ielm-auto-complete)
+;;
 
 
 
@@ -82,26 +91,47 @@
 (define-key clojure-mode-map (kbd "C-c a") 'auto-complete-mode)
 ;;
 ;;
-;;; ac-nrepl
-;; https://github.com/clojure-emacs/ac-nrepl
-(require 'ac-nrepl)
-(add-hook 'cider-repl-mode-hook
-	  '(lambda ()
-	     (eldoc-mode -1)
-	     (ac-nrepl-setup)
-	     ;; Add ac-source-filename for directory name completion
-	     (add-to-list 'ac-sources 'ac-source-filename)))
+;;; ac-cider.el
+;; https://github.com/clojure-emacs/ac-cider
+(require 'ac-cider)
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+;; (add-hook 'cider-mode-hook 'ac-cider-setup)
+;; (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'cider-mode))
+;; If you want to trigger auto-complete using TAB in CIDER buffers, you may
+;; want to use auto-complete in your `completion-at-point-functions':
+;; (defun set-auto-complete-as-completion-at-point-function ()
+;;   (setq completion-at-point-functions '(auto-complete)))
+;; (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+;; (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
 ;;
-(add-hook 'cider-mode-hook
-	  '(lambda ()
-	     (eldoc-mode -1)
-	     (ac-nrepl-setup)
-	     ;; Add ac-source-filename for directory name completion
-	     (add-to-list 'ac-sources 'ac-source-filename)))
 ;;
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'cider-repl-mode))
+;;; ac-nrepl.el (deprecated)
+;; ;; https://github.com/clojure-emacs/ac-nrepl
+;; (require 'ac-nrepl)
+;; (add-hook 'cider-repl-mode-hook
+;; 	  '(lambda ()
+;; 	     (eldoc-mode -1)
+;; 	     (ac-nrepl-setup)
+;; 	     ;; Add ac-source-filename for directory name completion
+;; 	     (add-to-list 'ac-sources 'ac-source-filename)))
+;; ;;
+;; (add-hook 'cider-mode-hook
+;; 	  '(lambda ()
+;; 	     (eldoc-mode -1)
+;; 	     (ac-nrepl-setup)
+;; 	     ;; Add ac-source-filename for directory name completion
+;; 	     (add-to-list 'ac-sources 'ac-source-filename)))
+;; ;;
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'cider-repl-mode))
 ;;
+;;
+;;
+;;; latest-clojure-libraries.el
+;; https://github.com/AdamClements/latest-clojure-libraries/
+(require 'latest-clojure-libraries)
 ;;
 ;;
 ;;; cider-toggle-trace
@@ -112,8 +142,8 @@
 (require 'clojure-cheatsheet)
 ;;
 ;;
-;;; clojure-test-mode.el
-(require 'clojure-test-mode)
+;;; clojure-test-mode.el 2014-10-27 deprecated
+;; (require 'clojure-test-mode)
 ;;
 ;;
 ;;; 4clojure.el
@@ -248,6 +278,8 @@
 ;;
 ;; Use Gauche. REPL name is still *scheme*
 ;; (setq scheme-program-name "gosh -i")
+(add-hook 'scheme-mode-hook '(lambda ()
+                               (company-mode -1)))
 
 
 ;;;
@@ -261,7 +293,6 @@
 ;; Install these to make racket-mode work
 ;; $ raco pkg install rackunit
 
-
 ;;; racket-mode.el
 ;; https://github.com/greghendershott/racket-mode
 ;; major mode for Racket. incompatible with geiser minor mode.
@@ -274,9 +305,15 @@
 ;; http://www.nongnu.org/geiser/
 (require 'geiser)
 
+
 ;;; ac-geiser.el
 (require 'ac-geiser)
-(add-hook 'geiser-mode-hook 'ac-geiser-setup)
-(add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'geiser-repl-mode))
+;;
+(defun my-ac-geiser-setup ()
+  (ac-geiser-setup)
+  (define-key geiser-mode-map (kbd "C-.") 'highlight-symbol-at-point))
+;;
+(add-hook 'geiser-mode-hook 'my-ac-geiser-setup)
+(add-hook 'geiser-repl-mode-hook 'my-ac-geiser-setup)

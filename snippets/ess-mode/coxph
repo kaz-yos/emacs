@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: coxph
-# key: xcoxph
+# key: coxph
 # --
 <- coxph(formula = ,
          data    = $0,

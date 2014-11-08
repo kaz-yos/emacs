@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: ns
-# key: xns
+# key: ns
 # --
 (ns getting-data.read-csv-spec$1
   (:use [speclj.core]

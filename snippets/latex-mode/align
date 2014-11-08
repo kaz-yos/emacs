@@ -1,8 +1,8 @@
 # -*- mode: snippet -*-
 # name: align
-# key: xalign
+# key: align
 # binding: C-c a
 # --
-\begin{align*$1}
+\begin{align*}
 $0
-\end{align*$1}
+\end{align*}

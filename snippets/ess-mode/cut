@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: cut
-# key: xcut
+# key: cut
 # --
 $1Cat <- cut($1, breaks = c(-Inf,$0,Inf), labels = c(,))

@@ -150,7 +150,7 @@
 (setq ess-describe-at-point-method 'tooltip)		; 'tooltip or nil (buffer)
 ;;
 ;;
-;; Reproducible research with knitr, etc
+;;; Reproducible research with knitr, etc
 ;; Use knitr for .Rnw document
 (setq ess-swv-processor 'knitr)
 ;; Add commands to AUCTeX's M-x TeX-command-list
@@ -161,11 +161,18 @@
 ;; Define a one step function for .Rnw 2013-09-10
 (defun ess-swv-weave-PDF ()
   (interactive)
-  (ess-swv-weave nil)	; nil to run with default processor
-  (ess-swv-PDF "texi2pdf"))
-(add-hook 'LaTeX-mode-hook
-	  '(lambda()
-	     (local-set-key (kbd "C-c e") 'ess-swv-weave-PDF)))
+  ;; Start R if not ready. (Depends on eval-in-repl.el)
+  ;; (eir-repl-start "\\*R.*\\*$" #'R)
+  ;; nil to run with default processor
+  (ess-swv-weave nil)
+  ;; (ess-swv-PDF "texi2pdf") does not wait for R
+  ;; This gives a prompt.
+  (ess-swv-PDF))
+;;
+;; M-n s
+(define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave-PDF)
+;; M-n P
+(define-key ess-noweb-minor-mode-map (kbd "A-p") 'ess-swv-PDF)
 ;;
 ;;
 ;;;
@@ -212,12 +219,6 @@
 
 
 ;;;
-;;; ess-edit for added functionalities 2014-04-29
-;; Installed via el-get. add functionalities to ESS. Error? 2013-08-20
-(require 'ess-edit)
-
-
-;;;
 ;;; inlineR.el for graphics inside code
 ;; http://sheephead.homelinux.org/2011/02/10/6602/
 ;; https://github.com/myuhe/inlineR.el
@@ -234,6 +235,12 @@
 (global-set-key (kbd "M--") 'toggle-cacoo-minor-mode) ; key bind example
 
 
+;;;
+;;; *.Rmd files invoke r-mode
+;; Temporary fix for R markdown files. As of 2014-05-26, polymode is unstable.
+(setq auto-mode-alist
+      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
+
 
 ;;;
 ;;; STAN support 2014-01-15
@@ -245,8 +252,6 @@
 
 
 ;;;
-;;; *.Rmd files invoke r-mode
-;; Temporary fix for R markdown files. As of 2014-05-26, polymode is unstable.
-(setq auto-mode-alist
-      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
-
+;;; julia-mode.el
+;; Official support
+(require 'julia-mode)

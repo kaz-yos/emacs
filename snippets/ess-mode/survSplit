@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: survSplit
-# key: xsurvSplit
+# key: survSplit
 # --
 .split <- survSplit(data    = $0,
                     cut     = c(0:50), # vector of timepoints to cut at

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: ipwpoint
-# key: xipwpoint
+# key: ipwpoint
 # --
 res.ipw <-
     ipwpoint(exposure    = ,

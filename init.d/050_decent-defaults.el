@@ -9,6 +9,11 @@
 (delete-selection-mode t)
 
 
+;;; 
+;;; Use newer of .elc or .el
+(setq load-prefer-newer t)
+
+
 ;;;
 ;;; Visible-bell instead of audible
 (setq visible-bell t)
@@ -18,6 +23,7 @@
 ;;; Never use tabs for indentation
 ;; Not working?
 ;; (setq tab-width 4)
+(set-default 'indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
 
 

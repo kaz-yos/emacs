@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: lst
-# key: xlst
+# key: lst
 # --
 \begin{lstlisting}
 $0

@@ -13,18 +13,19 @@
 (setq-default TeX-master nil)
 ;;
 ;; http://emacsworld.blogspot.com/2011/05/auctex-tip-automatically-save-file.html
-(setq TeX-save-query nil) ;;autosave before compiling
+(setq TeX-save-query nil) ; autosave before compiling
 ;;
 ;;; TeX-fold-mode on by default (C-c C-b C-o to actually fold)
 ;; http://tex.stackexchange.com/questions/52179/what-is-your-favorite-emacs-and-or-auctex-command-trick
-(add-hook 'LaTeX-mode-hook
-	  (lambda ()
-	    (TeX-fold-mode 1)))
+;; (add-hook 'LaTeX-mode-hook
+;; 	  (lambda ()
+;; 	    (TeX-fold-mode 1)))
 ;;
 ;;; Avoid font size changes 2013-10-14
 ;; http://stackoverflow.com/questions/9534239/emacs-auctex-latex-syntax-prevents-monospaced-font
 ;; Only change sectioning colour
 (setq font-latex-fontify-sectioning 'color)
+;; (setq font-latex-fontify-sectioning (quote nil))
 ;; super-/sub-script on baseline
 (setq font-latex-script-display (quote (nil)))
 ;; Do not change super-/sub-script font
@@ -109,12 +110,15 @@
 ;;;
 ;;; Auto-complete for LaTeX
 ;;
-;;; ac-math.el: auto-complete sources for input of mathematical symbols and latex tags
+;;; ac-math.el
+;; auto-complete sources for input of mathematical symbols and latex tags
 ;; https://github.com/vitoshka/ac-math#readme
 (require 'ac-math)
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 ;;
 ;;; ac-latex-mode.el
+;; Function to add words in words in same mode buffers
+;; Slow 2013-09-15 2013-10-12 not helpful
 (defun add-ac-source-words-in-same-mode-buffers () ; add back
   (setq ac-sources
         (append '(ac-source-words-in-same-mode-buffers)
@@ -131,7 +135,7 @@
 			     ;; (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     ;; (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
-			     ;; (add-ac-source-words-in-same-mode-buffers) ; Slow 2013-09-15 2013-10-12 not helpful
+			     ;; (add-ac-source-words-in-same-mode-buffers)
 			     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)))
 ;;
 ;; auto-complete-auctex.el ; 2014-02-23 now via ELPA
@@ -169,6 +173,12 @@
 ;; ;;         u    | user-commands or user-arguments
 ;;
 ;;
+;;; company-auctex.el
+;; https://github.com/alexeyr/company-auctex
+(require 'company-auctex)
+(company-auctex-init)
+
+
 ;;;
 ;;; latex-math-preview.el
 ;; http://www.emacswiki.org/emacs/LaTeXMathPreview
@@ -178,11 +188,11 @@
 (autoload 'latex-math-preview-beamer-frame "latex-math-preview" nil t)
 ;; Paths to required external software (specific to MacTeX)
 (setq latex-math-preview-command-path-alist
-      '((latex . "/usr/texbin/latex")
-	(dvipng . "/usr/texbin/dvipng")
-	(dvips . "/usr/texbin/dvips")
+      '((latex    . "/usr/texbin/latex")
+	(dvipng   . "/usr/texbin/dvipng")
+	(dvips    . "/usr/texbin/dvips")
 	(pdflatex . "/usr/texbin/pdflatex")	; for beamer preview
-	(gs . "/usr/local/bin/gs")		; for beamer preview
+	(gs       . "/usr/local/bin/gs")		; for beamer preview
 	))
 ;; Colors for dark background 2013-09-28
 (setq latex-math-preview-dvipng-color-option nil)
@@ -194,8 +204,7 @@
   (interactive)
   (setq w1 (selected-window))
   (latex-math-preview-expression)
-  (select-window w1)
-  )
+  (select-window w1))
 ;; (define-key LaTeX-mode-map (kbd "C-c m") 'my-latex-math-preview)
 ;; Function to preview Beamer slide and shift focus after preview
 (defun my-latex-beamer-preview ()
@@ -206,14 +215,24 @@
   (select-window w1))
 (define-key LaTeX-mode-map (kbd "C-c s") 'my-latex-beamer-preview)
 ;;
-;;
+
+
 ;;;
 ;;; References
+;;; reftex.el
+;; part of emacs
+;; http://www.gnu.org/software/emacs/manual/html_mono/reftex.html
+(require 'reftex)
+;; turn on REFTeX mode by default
+(add-hook 'LaTeX-mode-hook 'reftex-mode)
+;; AUCTeX integration
+(setq reftex-plug-into-AUCTeX t)
+;;
 ;;; bibretrieve.el
 ;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
-;; (require 'reftex)
 ;; (require 'bibretrieve)
 ;;
 ;;; zotelo (Zotero-Local)
-;; https://github.com/vitoshka/zotelo for more
+;; https://github.com/vitoshka/zotelo
+(require 'zotelo)
 (add-hook 'TeX-mode-hook 'zotelo-minor-mode)

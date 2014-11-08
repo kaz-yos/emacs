@@ -55,11 +55,15 @@
      ;; Lisp-related modes
      ((or (equal major-mode 'emacs-lisp-mode)
 	  (equal major-mode 'lisp-mode)
+          (equal major-mode 'scheme-mode)
 	  (equal major-mode 'clojure-mode))
       (setq regexp "^;;; \\|^;;;$"))
+     ;; SML
+     ((or (equal major-mode 'sml-mode))
+      (setq regexp "^(\\*\\*"))
      ;; LaTeX
      ((equal major-mode 'latex-mode)
-      (setq regexp "section{"))
+      (setq regexp "section{\\|frametitle{\\|^%%%"))
      ;; Others
      (t				; /** for SAS; ** for Markdown
       (setq regexp "^### \\|^###$\\|^/\\*\\*\\|^\\*\\*")))
@@ -91,8 +95,9 @@
 ;;
 ;;
 ;;; helm-bm.el		; helm sources for bm.el
-(require 'helm-bm) ;; Not necessary if using ELPA package
+(require 'helm-bm)
 ;; (global-set-key (kbd "C-c b") 'helm-bm)
+
 
 
 ;;;

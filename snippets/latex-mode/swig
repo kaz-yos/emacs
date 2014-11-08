@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: swig
-# key: xswig
+# key: swig
 # --
 % Put this before \begin{document}
 % \usepackage{tikz}

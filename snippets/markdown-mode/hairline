@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: hairline
-# key: xhairline
+# key: hairline
 # binding: C-c -
 # --
 $0

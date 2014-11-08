@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: defproject
-# key: xdefproject
+# key: defproject
 # --
 (defproject put-project-name "0.1.0-SNAPSHOT"
   :description "FIXME: write description"

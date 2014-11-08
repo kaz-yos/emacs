@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: geeglm
-# key: xgeeglm
+# key: geeglm
 # --
 <- geeglm(formula   = $0,
           family    = poisson(link = "log"),

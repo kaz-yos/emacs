@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: survfit
-# key: xsurvfit
+# key: survfit
 # --
  <- survfit(formula   = ,
             data      = $0,

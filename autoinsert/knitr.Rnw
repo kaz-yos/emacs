@@ -1,30 +1,33 @@
 \documentclass{article}
 
-% Margin
-%\usepackage[margin=1.5cm]{geometry}
-\usepackage[margin=2.0cm]{geometry}
-%\addtolength{\topmargin}{0.3cm}
-%\addtolength{\textheight}{1.75in}
+%% Templates
+%% http://www.latextemplates.com
 
-% Math
+%% Margin
+%% \usepackage[margin=1.5cm]{geometry}
+\usepackage[margin=2.0cm]{geometry}
+%% \addtolength{\topmargin}{0.3cm}
+%% \addtolength{\textheight}{1.75in}
+
+%% Math
 \usepackage{amsmath}
-% Allow new page within align
+%% Allow new page within align
 \allowdisplaybreaks
 \usepackage{cancel}
 
-% Code
+% % Code
 \usepackage{listings}
 \usepackage{courier}
-\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
 
-% Graphics
+%% Graphics
 \usepackage{graphicx}
 
-% DAG
+%% DAG
 \usepackage{tikz}
 \usetikzlibrary{positioning,shapes.geometric}
 
-% Header
+%% Header
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} % Erase first to supress section names
@@ -32,22 +35,30 @@
 \fancyhead[C]{} % CENTER
 \fancyhead[R]{} % RIGHT
 \fancyfoot[C]{\thepage}
-%\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+%% \fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
 
-% Section font size
+%% Section font size
 \usepackage{sectsty}
 \sectionfont{\small}
 \subsectionfont{\small}
 \subsubsectionfont{\small}
 
-% Section numbering
-% http://tex.stackexchange.com/questions/3177/how-to-change-the-numbering-of-part-chapter-section-to-alphabetical-r
-% \renewcommand\thesection{\alph{section}}
-% \renewcommand\thesubsection{\thesection.\arabic{subsection}}
-% \renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+%% Section numbering
+%% http://tex.stackexchange.com/questions/3177/how-to-change-the-numbering-of-part-chapter-section-to-alphabetical-r
+%% \renewcommand\thesection{\alph{section}}
+%% \renewcommand\thesubsection{\thesection.\arabic{subsection}}
+%% \renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+%%
+%% http://tex.stackexchange.com/questions/40067/numbering-sections-with-sequential-integers
+%% \usepackage{chngcntr}
+%% \counterwithout{subsection}{section}
 
-% enumerate
+%% enumerate
 \usepackage{enumerate}
+
+%% double space
+%% \usepackage{setspace}
+%% \linespread{2}
 
 \begin{document}
 <<message = FALSE, tidy = FALSE, echo = F>>=
@@ -59,13 +70,12 @@ opts_chunk$set(comment = "##", error= TRUE, warning = showWarning, message = sho
                tidy = FALSE, cache = F, echo = T,
                fig.width = 5, fig.height = 5, dev.args = list(family = "sans"))
 knit_hooks$set(rgl = hook_rgl)
-@ 
+@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 <<size = "small">>=
-## Load
-library(survival)
-@ 
+
+@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}

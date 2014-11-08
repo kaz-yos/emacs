@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: cstr
-# key: xcstr
+# key: cstr
 # --
 clojure.string/

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: crr
-# key: xcrr
+# key: crr
 # --
 <- crr(ftime    = , # vector of failure/censoring times
        fstatus  = , # vector with a unique code for each failure type and censoring

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: pwd
-# key: xpwd
+# key: pwd
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 "`(file-name-directory (buffer-file-name))`$0"

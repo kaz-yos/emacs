@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: leftparen
-# key: xltp
+# key: ltp
 # binding: C-c (
 # --
 \\left( $0 \\right)

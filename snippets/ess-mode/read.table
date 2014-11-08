@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: read.table
-# key: xread
+# key: read
 # --
  <- read.table(header = TRUE, text = "
 $0

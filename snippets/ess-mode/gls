@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: gls
-# key: xgls
+# key: gls
 # --
 res.$1 <- gls(model       = $2,
               data        = $1,

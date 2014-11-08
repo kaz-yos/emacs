@@ -28,23 +28,6 @@
 (package-initialize)
 
 
-;;; melpa.el (Obsolete in 24.4. Kept for backward compatibility)
-;; Installation:
-;; (progn
-;;   (switch-to-buffer
-;;    (url-retrieve-synchronously
-;;     "https://raw.github.com/milkypostman/melpa/master/melpa.el"))
-;;   (package-install-from-buffer  (package-buffer-info) 'single))
-;;
-;; Not necessary in 24.4
-;; https://github.com/milkypostman/melpa/issues/1031
-;; Load melpa.el if the stable version 2014-03-02
-(when (equal emacs-version "24.3.1")
-  ;; in "24.3.1" only
-  (add-to-list 'load-path "~/.emacs.d/plugins/melpa-20131205.15")
-  (require 'melpa))
-
-
 ;;; el-get.el package system 2013-02-26
 ;; https://github.com/dimitri/el-get
 ;; The load-path is configured at the top of init.el.

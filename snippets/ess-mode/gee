@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: gee
-# key: xgee
+# key: gee
 # --
 res. <- gee(formula     = $0,
             id          = id,

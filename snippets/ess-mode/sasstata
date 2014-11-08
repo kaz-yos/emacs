@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: sasstata
-# key: xsasstata
+# key: sasstata
 # --
 /* Export data as stata */
 PROC EXPORT DATA= WORK.$0 

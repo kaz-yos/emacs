@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: melt
-# key: xmelt
+# key: melt
 # --
 .melt <- melt(data          = $0,
               id.vars       = c(),

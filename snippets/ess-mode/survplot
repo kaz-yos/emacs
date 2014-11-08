@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: survplot
-# key: xsurvplot
+# key: survplot
 # --
 survplot(fit             = $0,
          conf            = c("none","bands","bars")[1],

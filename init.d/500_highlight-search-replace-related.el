@@ -1,3 +1,4 @@
+;;; 
 ;;; crosshairs.el: highlight current line/column using hl-line(+).el/col-highlight.el
 ;; http://www.emacswiki.org/emacs/CrosshairHighlighting
 (require 'crosshairs)
@@ -22,12 +23,14 @@
 ;; (set-face-background 'col-highlight "lemon chiffon")		; Column color
 
 
+;;;
 ;;; auto-highlight-symbol.el for highlighting multiple occurences
 ;; https://github.com/emacsmirror/auto-highlight-symbol
 (require 'auto-highlight-symbol)			; Not good with highlight-symbol.el
 ;; (global-auto-highlight-symbol-mode t)
 
 
+;;;
 ;;; highligh-symbol for highlighting multiple occurences
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
@@ -50,6 +53,7 @@
 (global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
 
 
+;;; 
 ;;; anzu.el 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 ;; http://qiita.com/syohex/items/56cf3b7f7d9943f7a7ba
@@ -68,6 +72,7 @@
 ;; (global-set-key (kbd "C-c R") 'anzu-query-replace-regexp)
 
 
+;;; 
 ;;; multiple-cursors for simultaneous editing multiple occurrences
 ;; https://github.com/magnars/multiple-cursors.el
 ;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
@@ -86,7 +91,7 @@
       `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
 			      (mc/num-cursors)))))
 
-
+;;; 
 ;;; isearch the selected word 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 (defadvice isearch-mode (around isearch-mode-default-string (forward &optional regexp op-fun recursive-edit word-p) activate)
@@ -101,7 +106,7 @@
           (isearch-repeat-forward)))
     ad-do-it))
 
-
+;;; 
 ;;; moccur-edit.el (el-get)
 ;; Requires color-moccur.el (elpa)
 ;; http://www.bookshelf.jp/elc/moccur-edit.el
@@ -117,6 +122,7 @@
 ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
 
 
+;;; 
 ;;; helm-c-moccur.el		; helm source for color-moccur.el
 (require 'helm-c-moccur)
 (global-set-key (kbd "M-o") 'helm-c-moccur-occur-by-moccur)
@@ -127,7 +133,7 @@
 (global-set-key (kbd "C-M-s") 'helm-c-moccur-isearch-forward)
 (global-set-key (kbd "C-M-r") 'helm-c-moccur-isearch-backward)
 
-
+;;; 
 ;;; ag.el and wgrep-ag.el. Faster replacement for moccur-edit.el 2014-01-14
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
 ;; https://github.com/Wilfred/ag.el
@@ -145,7 +151,7 @@
 ;; r in ag result buffer invokes edit mode. C-x C-s to save. C-x C-k to cancel.
 (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
 
-
+;;; 
 ;;; highlight-sexp.el
 ;; http://www.emacswiki.org/emacs/HighlightSexp
 ;; Color M-x list-colors-display  to check good colors
@@ -159,6 +165,7 @@
 ;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
 
 
+;;; 
 ;;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
 (require 'expand-region)
@@ -166,6 +173,7 @@
 (global-set-key (kbd "C-M-,") 'er/contract-region)
 
 
+;;; 
 ;;; cmigemo (installed from Homebrew)
 ;; Mac-only configuration
 (when (eq system-type 'darwin)
@@ -184,6 +192,7 @@
   )
 
 
+;;; 
 ;;; rainbow-mode.el
 ;; Make strings describing colors appear in colors
 ;; http://julien.danjou.info/projects/emacs-packages
@@ -196,7 +205,7 @@
 ;; See variable rainbow-r-colors-alist
 
 
-
+;;; 
 ;;; rainbow-blocks.el
 ;;
 ;; Rainbow-blocks highlights blocks made of parentheses, brackets, and
@@ -208,6 +217,22 @@
 
 
 ;;;
+;;; Temprary fix for void cua-replace-region
+;; https://github.com/Fuco1/smartparens/issues/271 
+(unless (fboundp 'cua-replace-region)
+  (defun cua-replace-region ()
+    "Replace the active region with the character you type."
+    (interactive)
+    (let ((not-empty (and cua-delete-selection (cua-delete-region))))
+      (unless (eq this-original-command this-command)
+        (let ((overwrite-mode
+               (and overwrite-mode
+                    not-empty
+                    (not (eq this-original-command 'self-insert-command)))))
+          (cua--fallback))))))
+
+;;;
+;;; ACE-JUMP-MODE-RELATED
 ;;; ace-jump-mode.el
 ;; https://github.com/winterTTr/ace-jump-mode
 ;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
@@ -219,9 +244,52 @@
 ;; This is optimized for JIS keyboards.
 ;; (setq ace-jump-mode-move-keys (append "asdfghjkl;:]qwertyuiop@zxcvbnm,." nil))
 (global-set-key (kbd "s-a") 'ace-jump-word-mode)
-
+;;
+;; Radical setting using H- bindings
+;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
+(defun add-keys-to-ace-jump-mode (prefix c &optional mode)
+  (define-key global-map
+    (read-kbd-macro (concat prefix (string c)))
+    `(lambda ()
+       (interactive)
+       (funcall (if (eq ',mode 'word)
+                    #'ace-jump-word-mode
+                  #'ace-jump-char-mode) ,c))))
+;;
+;; Numbers and characters
+;; (loop for c from ?0 to ?9 do (add-keys-to-ace-jump-mode "H-" c))
+;; (loop for c from ?a to ?z do (add-keys-to-ace-jump-mode "H-" c))
+;; (loop for c from ?0 to ?9 do (add-keys-to-ace-jump-mode "H-M-" c 'word))
+;; (loop for c from ?a to ?z do (add-keys-to-ace-jump-mode "H-M-" c 'word))
+;;
+;; Everything
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-" c))
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-M-" c 'word))
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "M-s-" c))
+;;
 ;;; ace-window.el
 ;; https://github.com/abo-abo/ace-window
 (require 'ace-window)
 (global-set-key (kbd "C-s-a") 'ace-window)
 (global-set-key (kbd "s-3") 'ace-window)
+;;
+;;; ace-jump-zap.el
+;; https://github.com/waymondo/ace-jump-zap
+(require 'ace-jump-zap)
+;;
+;;; ace-isearch.el
+;; https://github.com/tam17aki/ace-isearch
+(require 'ace-isearch)
+(global-ace-isearch-mode +1)
+;;
+;; all characters, not just word beginning
+(setq ace-isearch-submode 'ace-jump-char-mode)
+;;
+;; Delay before ace-jump kicks in
+(setq ace-isearch-input-idle-delay 0.3)
+;;
+;; Use ace-isearch-funtion-from-isearch if the search term is longer than
+(setq ace-isearch-input-length 6)
+;; Give swoop additional bindings
+(define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
+(define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)

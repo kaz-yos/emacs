@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: sandwich
-# key: xsandwich
+# key: sandwich
 # --
 ## Load sandwich package for robust sandwich covariance matrix estimators
 library(sandwich)

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: par
-# key: xpar
+# key: par
 # --
 par(las = c(parallel = 0, horizontal = 1, perpendicular = 2, vertical = 3)["horizontal"], # style of axis labels
     mar = c(bottom = 5, left = 4, top = 4, right = 2) + 0.1, # margin

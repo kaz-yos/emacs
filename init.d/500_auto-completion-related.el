@@ -56,6 +56,16 @@
  ac-quick-help-delay 1.0
  ac-quick-help-prefer-pos-tip t
  )
+;;
+;;
+;; Configure sources
+;; http://cx4a.org/software/auto-complete/manual.html#Source
+;; (add-to-list 'ac-sources 'ac-source-filename)
+(setq-default ac-sources '(ac-source-abbrev
+			   ac-source-dictionary
+			   ac-source-filename
+			   ac-source-words-in-same-mode-buffers))
+;;
 ;; Key configuration
 ;; Non-nil means a special keymap `ac-menu-map' on completing menu will be used.
 ;; http://cx4a.org/software/auto-complete/manual.html#Not_to_complete_automatically
@@ -83,6 +93,28 @@
 ;; Prevent broken popup
 ;; http://stackoverflow.com/questions/13242165/emacs-auto-complete-popup-menu-broken
 (setq popup-use-optimized-column-computation nil)
+
+
+;;;
+;;; COMPANY-MODE
+;;; company-mode.el
+;; Modular in-buffer completion framework for Emacs
+;; http://company-mode.github.io
+;; http://www.emacswiki.org/CompanyMode
+;;
+;; company-mode everywhere
+;; (add-hook 'after-init-hook 'global-company-mode)
+;;
+;; I don't like the default colors!
+;; http://www.emacswiki.org/CompanyMode#toc6
+(require 'color)
+(let ((bg (face-attribute 'default :background)))
+  (custom-set-faces
+   `(company-tooltip	       ((t (:inherit default :background ,(color-lighten-name bg (+ 2 50))))))
+   `(company-scrollbar-bg      ((t (:background ,(color-lighten-name bg (+ 10 50))))))
+   `(company-scrollbar-fg      ((t (:background ,(color-lighten-name bg (+ 5 50))))))
+   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+   `(company-tooltip-common    ((t (:inherit font-lock-constant-face))))))
 
 
 ;;;

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: within
-# key: xwithin
+# key: within
 # --
 $1 <- within($1, {
 $0

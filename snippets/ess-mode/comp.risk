@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: comp.risk
-# key: xcomp.risk
+# key: comp.risk
 # --
  <- comp.risk(formula      = Surv(time, cause > 0) ~ $0,
               data         = ,

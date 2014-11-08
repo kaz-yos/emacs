@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: vglm
-# key: xvglm
+# key: vglm
 # --
 resVglm <- vglm(formula = ,
                 data    = ,

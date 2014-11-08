@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: multicolumn
+# key: multicol
+# binding: direct-keybinding
+# --
+\multicolumn{2$1}{c}{ColName$0}

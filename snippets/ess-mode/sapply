@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: sapply
-# key: xsapply
+# key: sapply
 # --
 res.$1 <- sapply($1,
 		 simplify = FALSE,

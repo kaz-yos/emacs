@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: MCMCglmm
-# key: xMCMCglmm
+# key: MCMCglmm
 # --
 res. <- MCMCglmm(fixed = ,
                  random = NULL,

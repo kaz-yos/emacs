@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: left
-# key: xlt
+# key: lt
 # --
 \\left( $0 \\right)

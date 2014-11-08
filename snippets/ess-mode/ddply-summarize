@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: ddply-summarize
-# key: xddsum
+# key: ddsum
 # --
 summary.$1 <- ddply(.data = $1,
                     .variables = c($2),

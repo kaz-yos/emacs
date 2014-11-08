@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: choose
-# key: xchoose
+# key: choose
 # --
 \$\{1:$$(yas-choose-value '("$0" ""))\}

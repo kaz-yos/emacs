@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: lexical
-# key: xlexical
+# key: lexical
 # --
 ;; -*- lexical-binding: t -*-

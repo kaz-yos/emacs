@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: cpower
-# key: xcpower
+# key: cpower
 # --
 cpower(tref      = 1,    # Assessment at 1 year
        n         = 2000, # Total sample size

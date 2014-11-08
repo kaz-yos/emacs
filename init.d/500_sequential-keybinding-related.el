@@ -10,9 +10,13 @@
 ;;
 ;; Toggle read-only status
 (key-chord-define-global "jk" 'toggle-read-only)
+;; (global-set-key (kbd "H-o") 'toggle-read-only)
+(global-set-key (kbd "A-o") 'toggle-read-only)
 ;;
 ;; highlight-sexp-mode.el
-(key-chord-define-global "sx" 'highlight-sexp-mode)		; (highlight-sexp-mode)
+(key-chord-define-global "sx" 'highlight-sexp-mode)
+;; (global-set-key (kbd "H-s") 'highlight-sexp-mode)
+;; (global-set-key (kbd "A-s") 'highlight-sexp-mode)
 
 
 ;;;
@@ -59,6 +63,12 @@
 (add-hook 'python-mode-hook			'my-python-smartchr-setting)
 (add-hook 'inferior-python-mode-hook		'my-python-smartchr-setting)
 ;;
+;; SML
+(defun my-sml-smartchr-setting ()
+  (local-set-key (kbd "=") (smartchr '(" = " " => " "=")))
+  (local-set-key (kbd ":") (smartchr '(" : " "::"))))
+(add-hook 'sml-mode-hook 'my-sml-smartchr-setting)
+;;
 ;; LaTeX
 (defun my-LaTeX-smartchr-setting ()
   (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
@@ -75,34 +85,35 @@
 ;; Haskell
 (defun my-haskell-smartchr-setting ()
   (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
-  (local-set-key (kbd "+") (smartchr '(" + " "+")))
-  (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------")))
+  (local-set-key (kbd "+") (smartchr '(" + " " ++ " "+")))
+  (local-set-key (kbd "-") (smartchr '(" - " " -> " "-")))
+  (local-set-key (kbd ":") (smartchr '(" : " " :: " ":")))
   )
 (add-hook 'haskell-mode-hook 'my-haskell-smartchr-setting)
 
 
-;;;
-;;; smartrep.el
-;; http://sheephead.homelinux.org/2011/12/19/6930/
-(require 'smartrep)
-;;
-;; org-mode
-(eval-after-load "org"
-        '(progn
-           (smartrep-define-key
-            org-mode-map "C-c" '(("C-n" . (lambda ()
-                                            (outline-next-visible-heading 1)))
-                                 ("C-p" . (lambda ()
-                                            (outline-previous-visible-heading 1)))))))
-;; Make C-' a prefix
-(defvar ctl-quote-map (make-keymap))
-(define-key global-map (kbd "C-'") ctl-quote-map)
-;; Scroll the other window
-(smartrep-define-key
- global-map "C-'" '(("n" . (lambda () (scroll-other-window 1)))
-                    ("p" . (lambda () (scroll-other-window -1)))
-                    ("N" . 'scroll-other-window)
-                    ("P" . (lambda () (scroll-other-window '-)))
-                    ("a" . (lambda () (beginning-of-buffer-other-window 0)))
-                    ("e" . (lambda () (end-of-buffer-other-window 0)))))
-;;
+;; ;;;
+;; ;;; smartrep.el
+;; ;; http://sheephead.homelinux.org/2011/12/19/6930/
+;; (require 'smartrep)
+;; ;;
+;; ;; org-mode
+;; (eval-after-load "org"
+;;         '(progn
+;;            (smartrep-define-key
+;;             org-mode-map "C-c" '(("C-n" . (lambda ()
+;;                                             (outline-next-visible-heading 1)))
+;;                                  ("C-p" . (lambda ()
+;;                                             (outline-previous-visible-heading 1)))))))
+;; ;; Make C-' a prefix
+;; (defvar ctl-quote-map (make-keymap))
+;; (define-key global-map (kbd "C-'") ctl-quote-map)
+;; ;; Scroll the other window
+;; (smartrep-define-key
+;;  global-map "C-'" '(("n" . (lambda () (scroll-other-window 1)))
+;;                     ("p" . (lambda () (scroll-other-window -1)))
+;;                     ("N" . 'scroll-other-window)
+;;                     ("P" . (lambda () (scroll-other-window '-)))
+;;                     ("a" . (lambda () (beginning-of-buffer-other-window 0)))
+;;                     ("e" . (lambda () (end-of-buffer-other-window 0)))))
+;; ;;

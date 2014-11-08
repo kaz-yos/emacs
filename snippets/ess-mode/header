@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: header
-# key: xheader
+# key: header
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 ## $1

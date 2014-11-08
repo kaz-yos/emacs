@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: seq
-# key: xseq
+# key: seq
 # --
 seq(from = $1, to = $2, by = $3)$0

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: tryCatch
-# key: xtryCatch
+# key: tryCatch
 # --
 tryCatch.W.E <- function(expr) { # Taken from demo(error.catching)
         W <- NULL
