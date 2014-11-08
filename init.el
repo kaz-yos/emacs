@@ -15,7 +15,7 @@
 ;;
 ;; el-get.el package system 2013-02-26 (additional configuration further below)
 ;; https://github.com/dimitri/el-get
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get/")
 ;;
 ;; Packages added by auto-install (put no subfolders)
 (add-to-list 'load-path "~/.emacs.d/auto-install/")
@@ -23,8 +23,9 @@
 ;; Packages added manually (intentionally not recursive)
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 ;;
-;; Manually installed themes
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; Configure the custom theme directory
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Creating-Custom-Themes.html#Creating-Custom-Themes
+(setq custom-theme-directory "~/.emacs.d/themes/")
 
 
 ;;; init-loader.el
