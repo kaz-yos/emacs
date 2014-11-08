@@ -135,7 +135,7 @@
 			     ;; (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
 			     ;; (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
 			     ;; Add back text completion.
-			     ;; (add-ac-source-words-in-same-mode-buffers) 
+			     ;; (add-ac-source-words-in-same-mode-buffers)
 			     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)))
 ;;
 ;; auto-complete-auctex.el ; 2014-02-23 now via ELPA
@@ -219,11 +219,20 @@
 
 ;;;
 ;;; References
+;;; reftex.el
+;; part of emacs
+;; http://www.gnu.org/software/emacs/manual/html_mono/reftex.html
+(require 'reftex)
+;; turn on REFTeX mode by default
+(add-hook 'LaTeX-mode-hook 'reftex-mode)
+;; AUCTeX integration
+(setq reftex-plug-into-AUCTeX t)
+;;
 ;;; bibretrieve.el
 ;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
-;; (require 'reftex)
 ;; (require 'bibretrieve)
 ;;
 ;;; zotelo (Zotero-Local)
-;; https://github.com/vitoshka/zotelo for more
+;; https://github.com/vitoshka/zotelo
+(require 'zotelo)
 (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
