@@ -24,7 +24,7 @@
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 ;;
 ;; Manually installed themes
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 
 ;;; init-loader.el
