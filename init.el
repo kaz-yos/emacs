@@ -23,9 +23,8 @@
 ;; Packages added manually (intentionally not recursive)
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 ;;
-;; polymode.el (not used)
-;; (add-to-list 'load-path "~/.emacs.d/plugins/polymode/")
-;; (add-to-list 'load-path "~/.emacs.d/plugins/polymode/modes")
+;; Manually installed themes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 
 ;;; init-loader.el
