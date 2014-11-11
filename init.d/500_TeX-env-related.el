@@ -222,16 +222,13 @@
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
 ;; http://www.fan.gr.jp/~ring/doc/bibtex.html
 ;; http://d.hatena.ne.jp/ckazu/20100107/1262871971
+;; http://stackoverflow.com/questions/144639/how-do-i-order-citations-by-appearance-using-bibtex
 ;;
 ;;; bibtex.el
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX
 ;; Getting current LaTeX document to use your .bib file
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#Getting_current_LaTeX_document_to_use_your_.bib_file
 (require 'bibtex)
-;; 
-;;; bib-cite.el
-;; part of auc-tex
-(require 'bib-cite)
 ;;
 ;;
 ;;; bibretrieve.el
@@ -262,7 +259,14 @@
 ;;
 ;;; zotelo (Zotero-Local)
 ;; https://github.com/vitoshka/zotelo
+;; https://forums.zotero.org/discussion/19608/zotero-emacs-integration/
 (require 'zotelo)
+;;
+;; (setq zotelo--auto-update-is-on t)
+;; (setq zotelo-check-interval 600)
+;; this variable is invalid and not refered to
+;;
+;; (setq zotelo-use-ido nil)
 (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
 ;; C-c z c         zotelo-set-collection (also C-c z s)
 ;; C-c z u         zotelo-update-database
