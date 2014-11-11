@@ -81,4 +81,6 @@ library(magrittr)
 \section{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \bibliographystyle{plain}
+%% \bibliography{bib_file_name}
 \end{document}
