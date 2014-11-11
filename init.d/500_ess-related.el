@@ -161,8 +161,6 @@
 ;; Define a one step function for .Rnw 2013-09-10
 (defun ess-swv-weave-PDF ()
   (interactive)
-  ;; Start R if not ready. (Depends on eval-in-repl.el)
-  ;; (eir-repl-start "\\*R.*\\*$" #'R)
   ;; nil to run with default processor
   (ess-swv-weave nil)
   ;; (ess-swv-PDF "texi2pdf") does not wait for R

@@ -257,7 +257,7 @@
 ;;
 ;; http://tex.stackexchange.com/questions/54739/reftex-wont-find-my-bib-file-in-local-library-tree
 ;; So that RefTeX finds my bibliography
-(setq reftex-default-bibliography '("~/.emacs.d/biblio.bib"))
+;; (setq reftex-default-bibliography '("~/.emacs.d/biblio.bib"))
 ;;
 ;;
 ;;; zotelo (Zotero-Local)
