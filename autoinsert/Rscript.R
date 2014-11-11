@@ -18,9 +18,9 @@ options(cores = 4)
 options(mc.cores = 4)
 
 ## Load packages
-library(reshape2)
 library(magrittr)
 library(dplyr)
+library(reshape2)
 library(ggplot2)
 library(survival)
 

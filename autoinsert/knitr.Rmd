@@ -29,7 +29,7 @@ References
 Load packages
 --------------------
 ```{r}
-
+library(magrittr)
 ```
 
 --------------------
