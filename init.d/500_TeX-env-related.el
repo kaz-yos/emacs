@@ -218,7 +218,34 @@
 
 
 ;;;
-;;; References
+;;; Reference management
+;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
+;; http://www.fan.gr.jp/~ring/doc/bibtex.html
+;; http://d.hatena.ne.jp/ckazu/20100107/1262871971
+;;
+;;; bibtex.el
+;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX
+;; Getting current LaTeX document to use your .bib file
+;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#Getting_current_LaTeX_document_to_use_your_.bib_file
+(require 'bibtex)
+;; 
+;;; bib-cite.el
+;; part of auc-tex
+(require 'bib-cite)
+;;
+;;
+;;; bibretrieve.el
+;; Retrieving BibTeX
+;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
+(require 'bibretrieve)
+;;
+;;
+;;; bibtex-utils.el
+;; Provides utilities for extending BibTeX
+;; https://bitbucket.org/tws/bibtex-utils
+(require 'bibtex-utils)
+;;
+;;
 ;;; reftex.el
 ;; part of emacs
 ;; http://www.gnu.org/software/emacs/manual/html_mono/reftex.html
@@ -228,11 +255,17 @@
 ;; AUCTeX integration
 (setq reftex-plug-into-AUCTeX t)
 ;;
-;;; bibretrieve.el
-;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
-;; (require 'bibretrieve)
+;; http://tex.stackexchange.com/questions/54739/reftex-wont-find-my-bib-file-in-local-library-tree
+;; So that RefTeX finds my bibliography
+(setq reftex-default-bibliography '("~/.emacs.d/biblio.bib"))
+;;
 ;;
 ;;; zotelo (Zotero-Local)
 ;; https://github.com/vitoshka/zotelo
 (require 'zotelo)
 (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
+;; C-c z c         zotelo-set-collection (also C-c z s)
+;; C-c z u         zotelo-update-database
+;; C-c z e         zotelo-export-secondary
+;; C-c z r         zotelo-reset
+;; C-c z t         zotelo-set-translator
