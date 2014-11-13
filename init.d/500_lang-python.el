@@ -45,31 +45,104 @@
 
 
 ;;;
-;;; jedi.el	; Python auto-completion for Emacs
-;; http://tkf.github.io/emacs-jedi/
-(setq jedi:complete-on-dot t)				; binds . to jedi:dot-complete. Dot alone activates jedi
-(add-hook 'python-mode-hook	     'jedi:setup)	; for full setup
-(add-hook 'inferior-python-mode-hook 'jedi:setup)	; for full setup
-;; (add-hook 'python-mode-hook	     'jedi:ac-setup)	; for completion only. keys are not changed.
-;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)	; for completion only. keys are not changed.
-;;
-;; C-c		Prefix Command
-;; .		jedi:dot-complete
-;; <C-M-tab>	jedi:complete
-;; <C-tab>		other-window-or-split
-;; C-c ,		jedi:goto-definition-pop-marker
-;; C-c .		jedi:goto-definition
-;; C-c /		helm-jedi-related-names
-;; C-c ?		jedi:show-doc
-;;
-(add-hook 'jedi-mode-hook
-          '(lambda()
-	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Python major mode
-	     (define-key jedi-mode-map (kbd "<C-tab>") 'other-window-or-split)	; Assigned to Jedi minor mode
-	     (define-key jedi-mode-map (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Jedi minor mode
-	     ;; jedi:show-doc
-	     (define-key jedi-mode-map (kbd "C-c C-v") 'jedi:show-doc)		; Simulate ESS
-	     ))
+;;; python-environment.el
+;; Python virtualenv API for Emacs Lisp
+;; https://github.com/tkf/emacs-python-environment
+(require 'python-environment)
+
+
+;; ;;;
+;; ;;; pungi.el
+;; (require 'pungi)
+;; ;; This package provides integration with jedi virtualenv and buildout.
+;; ;; When working within a virtualenv, configure python sys.path passed
+;; ;; to `jedi:server-args' such jedi commands `jedi:complete',
+;; ;; `jedi:goto-definition' and `jedi:doc' show the correct sources.
+;; ;; Usage:
+;; ;;   When you'd like project specific variables to be taken into account,
+;; ;;   e.g python-mode specific changes, you can place a file at the root
+;; ;;   of the project directory called .dir-locals.el, in which
+;; ;;   you can set variables on a per-mode, or global basis.
+;; ;;   See http://www.gnu.org/software/emacs/manual/html_node/emacs/Directory-Variables.html
+;; ;;   for documentation.
+;; ;;   Set the `pungi-setup-jedi' to a non-nil value in order for `jedi:setup' to
+;; ;;   take those settings into account.
+;; (setq pungi-setup-jedi t)
+;; ;;   If jedi has been required, then jedi:setup will be triggered when
+;; ;;   python-mode-hook is fired.
+
+
+
+;; ;;;
+;; ;;; jedi.el	; Python auto-completion for Emacs
+;; ;; http://tkf.github.io/emacs-jedi/
+;; ;; http://d.hatena.ne.jp/syohex/20140321/1395363772
+;; ;;
+;; ;; jedi:install-server
+;; ;;   "This command installs Jedi server script jediepcserver.py in a
+;; ;; Python environment dedicated to Emacs.  By default, the
+;; ;; environment is at ``~/.emacs.d/.python-environments/default/``.
+;; ;; This environment is automatically created by ``virtualenv`` if it
+;; ;; does not exist.
+
+;; ;; Run this command (i.e., type ``M-x jedi:install-server RET``)
+;; ;; whenever Jedi.el shows a message to do so.  It is a good idea to
+;; ;; run this every time after you update Jedi.el to sync version of
+;; ;; Python modules used by Jedi.el and Jedi.el itself.
+
+;; ;; You can modify the location of the environment by changing
+;; ;; `jedi:environment-root' and/or `python-environment-directory'.  More
+;; ;; specifically, Jedi.el will install Python modules under the directory
+;; ;; ``PYTHON-ENVIRONMENT-DIRECTORY/JEDI:ENVIRONMENT-ROOT``.  Note that you
+;; ;; need command line program ``virtualenv``.  If you have the command in
+;; ;; an unusual location, use `python-environment-virtualenv' to specify the
+;; ;; location.
+
+;; ;; .. NOTE:: jediepcserver.py is installed in a virtual environment but it
+;; ;;    does not mean Jedi.el cannot recognize the modules in virtual
+;; ;;    environment you are using for your Python development.  Jedi
+;; ;;    EPC server recognize the virtualenv it is in (i.e., the
+;; ;;    environment variable ``VIRTUAL_ENV`` in your Emacs) and then
+;; ;;    add modules in that environment to its ``sys.path``.  You can
+;; ;;    also add ``--virtual-env PATH/TO/ENV`` to `jedi:server-args'
+;; ;;    to include modules of virtual environment even you launch
+;; ;;    Emacs outside of the virtual environment.
+
+;; ;; .. NOTE:: It is highly recommended to use this command to install
+;; ;;    Python modules for Jedi.el.  You still can install Python
+;; ;;    modules used by Jedi.el manually.  However, you are then
+;; ;;    responsible for keeping Jedi.el and Python modules compatible.
+
+;; ;; See also:
+
+;; ;; - https://github.com/tkf/emacs-jedi/pull/72
+;; ;; - https://github.com/tkf/emacs-jedi/issues/140#issuecomment-37358527"
+
+;; ;;
+;; (require 'jedi)
+;; (setq jedi:complete-on-dot t)				; binds . to jedi:dot-complete. Dot alone activates jedi
+;; (add-hook 'python-mode-hook	     'jedi:setup)	; for full setup
+;; (add-hook 'inferior-python-mode-hook 'jedi:setup)	; for full setup
+;; ;; (add-hook 'python-mode-hook	     'jedi:ac-setup)	; for completion only. keys are not changed.
+;; ;; (add-hook 'inferior-python-mode-hook 'jedi:ac-setup)	; for completion only. keys are not changed.
+;; ;;
+;; ;; C-c		Prefix Command
+;; ;; .		jedi:dot-complete
+;; ;; <C-M-tab>	jedi:complete
+;; ;; <C-tab>		other-window-or-split
+;; ;; C-c ,		jedi:goto-definition-pop-marker
+;; ;; C-c .		jedi:goto-definition
+;; ;; C-c /		helm-jedi-related-names
+;; ;; C-c ?		jedi:show-doc
+;; ;;
+;; (add-hook 'jedi-mode-hook
+;;           '(lambda()
+;; 	     ;; (local-set-key (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Python major mode
+;; 	     (define-key jedi-mode-map (kbd "<C-tab>") 'other-window-or-split)	; Assigned to Jedi minor mode
+;; 	     (define-key jedi-mode-map (kbd "<C-M-tab>") 'jedi:complete)	; Assigned to Jedi minor mode
+;; 	     ;; jedi:show-doc
+;; 	     (define-key jedi-mode-map (kbd "C-c C-v") 'jedi:show-doc)		; Simulate ESS
+;; 	     ))
 
 
 ;;;
