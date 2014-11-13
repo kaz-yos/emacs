@@ -51,6 +51,8 @@
 ;;
 (global-set-key (kbd "C-\}") 'my-highlight-symbol-next)
 (global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
+(global-set-key (kbd "A-]") 'my-highlight-symbol-next)
+(global-set-key (kbd "A-[") 'my-highlight-symbol-prev)
 
 
 ;;; 
