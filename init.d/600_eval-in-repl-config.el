@@ -66,8 +66,3 @@
 (define-key sml-mode-map (kbd "<C-return>") 'eir-eval-in-sml)
 ;; function to send a semicolon to SML REPL
 (define-key sml-mode-map (kbd "C-;") 'eir-send-to-sml-semicolon)
-
-;; haskell support
-;; (require 'haskell-mode) ; if not done elsewhere
-(require 'eval-in-repl-haskell)
-(define-key haskell-mode-map (kbd "<C-return>") 'eir-eval-in-haskell)
