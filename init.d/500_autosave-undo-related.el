@@ -1,11 +1,16 @@
 ;;; Auto-saving buffers
+
+;;;
+;;; auto-save-buffers
 ;; auto-save-buffers: Never lose your data
 ;; http://0xcc.net/misc/auto-save/
 ;; http://homepage3.nifty.com/oatu/emacs/archives/auto-save-buffers.el
 ;; (require 'auto-save-buffers)
 ;; (run-with-idle-timer 1 t 'auto-save-buffers)	; auto-save if idle for 1 sec
-;;
-;; auto-save-buffers-enhanced.el
+
+
+;;;
+;;; auto-save-buffers-enhanced.el
 ;; http://qiita.com/ongaeshi/items/8cbd8d3c792476c59a11
 ;; http://blog.sanojimaru.com/post/20090254216/emacs
 (require 'auto-save-buffers-enhanced)
@@ -21,7 +26,7 @@
 ;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
 
 
-
+;;;
 ;;; Undo tree for undoing edits visually
 ;; http://www.emacswiki.org/emacs/UndoTree
 ;; C-/ for undo. C-? (C-S-/) for redo.
@@ -31,6 +36,8 @@
 ;; Active everywhere
 (global-undo-tree-mode)
 
+
+;;;
 ;;; Cursor move undo
 ;;
 ;; point-undo.el
