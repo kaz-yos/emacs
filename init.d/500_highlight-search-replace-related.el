@@ -93,6 +93,15 @@
       `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
 			      (mc/num-cursors)))))
 
+
+;;;
+;;; phi-search.el
+;; https://github.com/zk-phi/phi-search
+;; https://www.youtube.com/watch?v=JSTO674y6Hcp
+(require 'phi-search)
+
+
+
 ;;; 
 ;;; isearch the selected word 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
