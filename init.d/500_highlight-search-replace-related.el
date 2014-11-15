@@ -79,11 +79,19 @@
 ;; https://github.com/magnars/multiple-cursors.el
 ;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
 ;; http://emacsrocks.com/e13.html (video)
+;; http://rubikitch.com/2014/11/10/multiple-cursors/
+;;
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-*") 'mc/mark-all-like-this)
+;; highlighting symbols only
+(global-set-key (kbd "C->") 'mc/mark-next-symbol-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-symbol-like-this)
+(global-set-key (kbd "C-*") 'mc/mark-all-symbols-like-this)
+;; highlighting all
+(global-set-key (kbd "C-M->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-M-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-M-*") 'mc/mark-all-like-this)
+;;
 ;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 ;;
 ;; What to display in the mode line while multiple-cursors-mode is active.
