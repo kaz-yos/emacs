@@ -41,7 +41,7 @@
 ;; (define-key racket-mode-map (kbd "<C-return>") 'eir-eval-in-racket)
 
 ;; scheme support
-;; (require 'scheme) ; if not done elsewhere
+;; (require 'scheme)    ; if not done elsewhere
 ;; (require 'cmuscheme) ; if not done elsewhere
 ;; (require 'eval-in-repl-scheme)
 ;; (add-hook 'scheme-mode-hook
@@ -66,3 +66,10 @@
 (define-key sml-mode-map (kbd "<C-return>") 'eir-eval-in-sml)
 ;; function to send a semicolon to SML REPL
 (define-key sml-mode-map (kbd "C-;") 'eir-send-to-sml-semicolon)
+
+;; ruby support
+;; (require 'ruby-mode) ; if not done elsewhere
+;; (require 'inf-ruby)  ; if not done elsewhere
+;; (require 'ess)       ; if not done elsewhere
+(require 'eval-in-repl-ruby)
+(define-key ruby-mode-map (kbd "<C-return>") 'eir-eval-in-ruby)
