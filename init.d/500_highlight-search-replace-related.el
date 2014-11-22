@@ -24,13 +24,6 @@
 
 
 ;;;
-;;; auto-highlight-symbol.el for highlighting multiple occurences
-;; https://github.com/emacsmirror/auto-highlight-symbol
-(require 'auto-highlight-symbol)			; Not good with highlight-symbol.el
-;; (global-auto-highlight-symbol-mode t)
-
-
-;;;
 ;;; highligh-symbol for highlighting multiple occurences
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
