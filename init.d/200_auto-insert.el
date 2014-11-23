@@ -5,11 +5,11 @@
 (setq auto-insert-directory "~/.emacs.d/autoinsert/")
 ;;
 ;; Definitions by the file extensions
+(define-auto-insert "^ui\\.R$"      "ui.R")
+(define-auto-insert "^server\\.R$"  "server.R")
 (define-auto-insert "\\.R$"         "Rscript.R")
 (define-auto-insert "\\.Rmd$"       "knitr.Rmd")
 (define-auto-insert "\\.Rnw$"       "knitr.Rnw")
-(define-auto-insert "^ui\\.R$"      "ui.R")
-(define-auto-insert "^server\\.R$"  "server.R")
 (define-auto-insert "\\.sas$"       "SAS.sas")
 (define-auto-insert "\\.sh$"        "shell.sh")
 (define-auto-insert "\\.tex$"       "LaTeX.tex")
