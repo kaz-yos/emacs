@@ -27,3 +27,4 @@ url/
 /projectile.cache
 *.elc
 /pomodoro.org
+/.python-environments/
