@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: readxlsx
+# key: readxlsx
+# binding: direct-keybinding
+# --
+wb <- XLConnect::loadWorkbook("$0")
+XLConnect::setMissingValue(wb, value = c("NA"))
+dat <- XLConnect::readWorksheet(wb, sheet = 1)
