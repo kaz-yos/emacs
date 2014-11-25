@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: double
+# key: double
+# binding: direct-keybinding
+# --
+\\linespread{2}
