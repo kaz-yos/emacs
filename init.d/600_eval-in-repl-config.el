@@ -73,3 +73,10 @@
 ;; (require 'ess)       ; if not done elsewhere
 (require 'eval-in-repl-ruby)
 (define-key ruby-mode-map (kbd "<C-return>") 'eir-eval-in-ruby)
+
+;; ocaml support
+;; (require 'tuareg) ; if not done elsewhere
+(require 'eval-in-repl-ocaml)
+(define-key tuareg-mode-map (kbd "<C-return>") 'eir-eval-in-ocaml)
+;; function to send a semicolon to OCaml REPL
+(define-key tuareg-mode-map (kbd "C-;") 'eir-send-to-ocaml-semicolon)
