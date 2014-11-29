@@ -27,22 +27,22 @@
 ;; https://github.com/shibayu36/emacs/blob/8376ba4e4b4d5cb4668e848c9a494b287232ea6f/emacs.d/inits/01-mode-line.el
 (defvar mode-line-cleaner-alist
   '(;; For minor-mode, first char is 'space'
-    (flymake-mode . " Fm")
-    (paredit-mode . " pr")
-    (eldoc-mode . "")
-    (abbrev-mode . "")
-    (undo-tree-mode . "")
-    (git-gutter-mode . "")
-    (anzu-mode . "")
-    (yas-minor-mode . "")
-    (guide-key-mode . "")
-    (icicle-mode . "")
-    (magit-auto-revert . "")
-    (elisp-slime-nav-mode . "")
+    (flymake-mode           . " Fm")
+    (paredit-mode           . " pr")
+    (eldoc-mode             . "")
+    (abbrev-mode            . "")
+    (undo-tree-mode         . "")
+    (git-gutter-mode        . "")
+    (anzu-mode              . "")
+    (yas-minor-mode         . "")
+    (guide-key-mode         . "")
+    (icicle-mode            . "")
+    (magit-auto-revert-mode . "")
+    (elisp-slime-nav-mode   . "")
     ;;
     ;; Major modes
-    (dired-mode . "Dir")
-    (emacs-lisp-mode . "el")
+    (dired-mode             . "Dir")
+    (emacs-lisp-mode        . "el")
     ))
 ;;
 (defun clean-mode-line ()

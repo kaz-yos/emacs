@@ -59,6 +59,9 @@
 	       ("ML" (or
                       (mode . sml-mode)
                       (mode . inferior-sml-mode)))
+               ("RUBY" (or
+                      (mode . ruby-mode)
+                      (mode . inf-ruby-mode)))
 	       ("SHELL"  (or
 			  (mode . sh-mode)
 			  (mode . shell-mode)

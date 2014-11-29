@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: single
+# key: single
+# binding: direct-keybinding
+# --
+\\linespread{1}
+$0
+\\linespread{2}

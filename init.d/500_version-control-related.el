@@ -128,6 +128,14 @@
 ;;; github-browse-file.el
 ;; https://github.com/osener/github-browse-file
 (require 'github-browse-file)
+;;
+;;
+;;; modeline-git-branch.el
+;; http://qiita.com/acple@github/items/3709174ab24c5d82423a
+;; https://github.com/acple/modeline-git-branch
+(require 'modeline-git-branch)
+
+
 
 ;;; Mercurial
 ;; A simple Emacs interface for the Mercurial (Hg) Distributed SCM. 2013-09-09

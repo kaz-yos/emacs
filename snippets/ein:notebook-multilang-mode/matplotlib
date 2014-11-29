@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: matplotlib
+# key: matplt
+# binding: direct-keybinding
+# --
+import matplotlib.pyplot as plt
+%matplotlib inline

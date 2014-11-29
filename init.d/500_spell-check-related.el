@@ -14,8 +14,8 @@
 (defun flyspell-correct-word-popup-el ()
   "Pop up a menu of possible corrections for misspelled word before point."
   (interactive)
-  ;; use the correct dictionary
-  (flyspell-accept-buffer-local-defs)
+  ;; use the correct dictionary (commented out 2014-11-14 no longer exist?)
+  ;; (flyspell-accept-buffer-local-defs)
   (let ((cursor-location (point))
 	(word (flyspell-get-word nil)))
     (if (consp word)

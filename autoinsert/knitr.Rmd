@@ -29,6 +29,7 @@ References
 Load packages
 --------------------
 ```{r}
+library(magrittr)
 
 ```
 
@@ -40,6 +41,4 @@ Load packages
 
 --------------------
 - Top Page: http://rpubs.com/kaz_yos/
-- Table of Contents: http://rpubs.com/kaz_yos/toc
-- Table of Contents (Japanese): http://rpubs.com/kaz_yos/toc-j
 - github: https://github.com/kaz-yos

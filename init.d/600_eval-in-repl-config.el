@@ -41,7 +41,7 @@
 ;; (define-key racket-mode-map (kbd "<C-return>") 'eir-eval-in-racket)
 
 ;; scheme support
-;; (require 'scheme) ; if not done elsewhere
+;; (require 'scheme)    ; if not done elsewhere
 ;; (require 'cmuscheme) ; if not done elsewhere
 ;; (require 'eval-in-repl-scheme)
 ;; (add-hook 'scheme-mode-hook
@@ -67,7 +67,16 @@
 ;; function to send a semicolon to SML REPL
 (define-key sml-mode-map (kbd "C-;") 'eir-send-to-sml-semicolon)
 
-;; haskell support
-;; (require 'haskell-mode) ; if not done elsewhere
-(require 'eval-in-repl-haskell)
-(define-key haskell-mode-map (kbd "<C-return>") 'eir-eval-in-haskell)
+;; ruby support
+;; (require 'ruby-mode) ; if not done elsewhere
+;; (require 'inf-ruby)  ; if not done elsewhere
+;; (require 'ess)       ; if not done elsewhere
+(require 'eval-in-repl-ruby)
+(define-key ruby-mode-map (kbd "<C-return>") 'eir-eval-in-ruby)
+
+;; ocaml support
+;; (require 'tuareg) ; if not done elsewhere
+(require 'eval-in-repl-ocaml)
+(define-key tuareg-mode-map (kbd "<C-return>") 'eir-eval-in-ocaml)
+;; function to send a semicolon to OCaml REPL
+(define-key tuareg-mode-map (kbd "C-;") 'eir-send-to-ocaml-semicolon)

@@ -18,7 +18,7 @@
  '(custom-enabled-themes (quote (modified-manoj-dark-theme)))
  '(custom-safe-themes
    (quote
-    ("696bcab946b2c00efb979beb008ddbc1dcdb9d217f99a8a80020bf52b991f58f" default)))
+    ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4b2f6ec6f2fd05594a2bafc9c4f7223d0d23289ee9fdcce2abea0e7fc5e5216e" default)))
  '(fci-rule-character-color "#202020")
  '(fci-rule-color "#2D2D2D")
  '(foreground-color "#708183")

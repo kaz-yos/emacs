@@ -60,6 +60,11 @@
 %% \usepackage{setspace}
 %% \linespread{2}
 
+%% Paragraph Indentation
+\usepackage{indentfirst}
+\setlength{\parindent}{4em}
+
+
 \begin{document}
 <<message = FALSE, tidy = FALSE, echo = F>>=
 ## knitr configuration: http://yihui.name/knitr/options#chunk_options
@@ -74,8 +79,14 @@ knit_hooks$set(rgl = hook_rgl)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 <<size = "small">>=
+library(magrittr)
 
 @
 
+\section{}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% https://www.sharelatex.com/learn/Bibtex_bibliography_styles
+%% \bibliographystyle{plain}
+%% \bibliography{bib_file_name}
 \end{document}

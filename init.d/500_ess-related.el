@@ -161,13 +161,15 @@
 ;; Define a one step function for .Rnw 2013-09-10
 (defun ess-swv-weave-PDF ()
   (interactive)
-  ;; Start R if not ready. (Depends on eval-in-repl.el)
-  ;; (eir-repl-start "\\*R.*\\*$" #'R)
   ;; nil to run with default processor
   (ess-swv-weave nil)
-  ;; (ess-swv-PDF "texi2pdf") does not wait for R
-  ;; This gives a prompt.
-  (ess-swv-PDF))
+  ;; Instead of (ess-swv-PDF), do the same from R console
+  (let* ((namestem (file-name-sans-extension (buffer-file-name)))
+         (latex-filename (concat namestem ".tex"))
+         (r-cmd-string (concat "system('texi2pdf " latex-filename "')"))
+         (r-process (get-process ess-local-process-name)))
+    ;; defun ess-send-string (process string &optional visibly message)
+    (ess-send-string r-process r-cmd-string t)))
 ;;
 ;; M-n s
 (define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave-PDF)

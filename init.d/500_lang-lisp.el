@@ -209,9 +209,8 @@
 ;;
 ;;; clj-refactor.el
 (require 'clj-refactor)
-(add-hook 'clojure-mode-hook (lambda ()
-			       (clj-refactor-mode 1)
-			       ))
+(add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
+;;
 ;; Setup keybindings
 ;; All functions in clj-refactor have a two-letter mnemonic shortcut. You
 ;; get to choose how those are bound. Here's how:
@@ -256,10 +255,11 @@
 ;; PROGRAM is the filename of the program. Note that the filename can contain spaces.
 ;; PROGRAM-ARGS is a list of command line arguments.
 ;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)x
+;;
+;; first one is the default
 (setq slime-lisp-implementations
-      '((clisp  ("/usr/local/bin/clisp"))	; first one is the default
-	(sbcl   ("/usr/local/bin/sbcl"))
-	(scheme ("/usr/local/bin/scheme"))))
+      '((sbcl   ("/usr/local/bin/sbcl"))
+        (clisp  ("/usr/local/bin/clisp"))))
 ;;
 ;;; auto-complete for SLIME 2014-02-25
 (require 'ac-slime)

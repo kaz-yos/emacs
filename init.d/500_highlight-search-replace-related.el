@@ -24,13 +24,6 @@
 
 
 ;;;
-;;; auto-highlight-symbol.el for highlighting multiple occurences
-;; https://github.com/emacsmirror/auto-highlight-symbol
-(require 'auto-highlight-symbol)			; Not good with highlight-symbol.el
-;; (global-auto-highlight-symbol-mode t)
-
-
-;;;
 ;;; highligh-symbol for highlighting multiple occurences
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
@@ -51,6 +44,8 @@
 ;;
 (global-set-key (kbd "C-\}") 'my-highlight-symbol-next)
 (global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
+(global-set-key (kbd "A-]") 'my-highlight-symbol-next)
+(global-set-key (kbd "A-[") 'my-highlight-symbol-prev)
 
 
 ;;; 
@@ -77,11 +72,19 @@
 ;; https://github.com/magnars/multiple-cursors.el
 ;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
 ;; http://emacsrocks.com/e13.html (video)
+;; http://rubikitch.com/2014/11/10/multiple-cursors/
+;;
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+;; highlighting symbols only
+(global-set-key (kbd "C-M->") 'mc/mark-next-symbol-like-this)
+(global-set-key (kbd "C-M-<") 'mc/mark-previous-symbol-like-this)
+(global-set-key (kbd "C-M-*") 'mc/mark-all-symbols-like-this)
+;; highlighting all
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-*") 'mc/mark-all-like-this)
+;;
 ;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 ;;
 ;; What to display in the mode line while multiple-cursors-mode is active.
@@ -90,6 +93,15 @@
       ;; `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
       `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
 			      (mc/num-cursors)))))
+
+
+;;;
+;;; phi-search.el
+;; https://github.com/zk-phi/phi-search
+;; https://www.youtube.com/watch?v=JSTO674y6Hcp
+(require 'phi-search)
+
+
 
 ;;; 
 ;;; isearch the selected word 2014-02-01
@@ -270,8 +282,7 @@
 ;;; ace-window.el
 ;; https://github.com/abo-abo/ace-window
 (require 'ace-window)
-(global-set-key (kbd "C-s-a") 'ace-window)
-(global-set-key (kbd "s-3") 'ace-window)
+(global-set-key (kbd "s-5") 'ace-window)
 ;;
 ;;; ace-jump-zap.el
 ;; https://github.com/waymondo/ace-jump-zap
@@ -289,7 +300,7 @@
 (setq ace-isearch-input-idle-delay 0.3)
 ;;
 ;; Use ace-isearch-funtion-from-isearch if the search term is longer than
-(setq ace-isearch-input-length 6)
+(setq ace-isearch-input-length 600)
 ;; Give swoop additional bindings
 (define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
 (define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)

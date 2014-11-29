@@ -1,9 +1,8 @@
 (deftheme modified-manoj-dark-theme
-  "manoj-dark-theme with modified mode-lines")
+  "Created 2014-11-08.")
 
 (custom-theme-set-faces
  'modified-manoj-dark-theme
- '(default ((t (:family "Menlo" :foundry "nil" :width normal :height 140 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "WhiteSmoke" :background "black" :stipple nil :inherit nil))))
  '(cursor ((t (:background "orchid"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))
@@ -29,11 +28,10 @@
  '(font-lock-type-face ((t (:foreground "SteelBlue1"))))
  '(font-lock-variable-name-face ((t (:foreground "Aquamarine"))))
  '(font-lock-warning-face ((t (:weight bold :foreground "Pink"))))
- '(button ((t (:weight bold :underline (:color foreground-color :style line) :box (:line-width 2 :color "grey" :style released-button) :foreground "black" :background "grey"))))
  '(link ((t (:underline (:color foreground-color :style line) :foreground "cyan1"))))
  '(link-visited ((t (:underline (:color foreground-color :style line) :foreground "violet"))))
  '(fringe ((t (:foreground "Wheat" :background "grey30"))))
- '(header-line ((t (:height 0.9 :box (:line-width -1 :color "grey20" :style released-button) :foreground "grey90" :background "grey20"))))
+ '(header-line ((t (:height 1.0 :box (:line-width -1 :color "grey20" :style released-button) :foreground "grey90" :background "grey20"))))
  '(tooltip ((t (:foreground "black" :background "lightyellow"))))
  '(mode-line ((t (:background "gray90" :foreground "Blue" :box 1))))
  '(mode-line-buffer-id ((t (:weight bold))))
@@ -45,6 +43,12 @@
  '(lazy-highlight ((((class color) (min-colors 88) (background light)) (:background "paleturquoise")) (((class color) (min-colors 88) (background dark)) (:background "paleturquoise4")) (((class color) (min-colors 16)) (:background "turquoise3")) (((class color) (min-colors 8)) (:background "turquoise3")) (t (:underline (:color foreground-color :style line)))))
  '(match ((((class color) (min-colors 88) (background light)) (:background "yellow1")) (((class color) (min-colors 88) (background dark)) (:background "RoyalBlue3")) (((class color) (min-colors 8) (background light)) (:foreground "black" :background "yellow")) (((class color) (min-colors 8) (background dark)) (:foreground "white" :background "blue")) (((type tty) (class mono)) (:inverse-video t)) (t (:background "gray"))))
  '(next-error ((t (:background "blue3"))))
- '(query-replace ((t (:foreground "brown4" :background "palevioletred2")))))
+ '(query-replace ((t (:foreground "brown4" :background "palevioletred2"))))
+ '(default ((t (:family "Menlo" :foundry "nil" :width normal :height 140 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "WhiteSmoke" :background "black" :stipple nil :inherit nil)))))
 
 (provide-theme 'modified-manoj-dark-theme)
+
+
+
+
+
