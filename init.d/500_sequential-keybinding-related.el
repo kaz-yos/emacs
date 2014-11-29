@@ -4,17 +4,16 @@
 ;;; Key-Chord
 ;; http://www.emacswiki.org/emacs/KeyChord
 ;; http://d.hatena.ne.jp/rubikitch/touch/20081104/1225745862
-(require 'key-chord)
-(setq key-chord-two-keys-delay 0.04)
-(key-chord-mode 1)
+;; (require 'key-chord)
+;; (setq key-chord-two-keys-delay 0.04)
+;; (key-chord-mode 1)
 ;;
 ;; Toggle read-only status
-(key-chord-define-global "jk" 'toggle-read-only)
+;; (key-chord-define-global "jk" 'toggle-read-only)
 ;; (global-set-key (kbd "H-o") 'toggle-read-only)
-(global-set-key (kbd "A-o") 'toggle-read-only)
 ;;
 ;; highlight-sexp-mode.el
-(key-chord-define-global "sx" 'highlight-sexp-mode)
+;; (key-chord-define-global "sx" 'highlight-sexp-mode)
 ;; (global-set-key (kbd "H-s") 'highlight-sexp-mode)
 ;; (global-set-key (kbd "A-s") 'highlight-sexp-mode)
 
