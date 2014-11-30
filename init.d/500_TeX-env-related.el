@@ -29,10 +29,14 @@
 ;; super-/sub-script on baseline
 (setq font-latex-script-display (quote (nil)))
 ;; Do not change super-/sub-script font
-
+;;
 ;;; Exclude bold/italic from keywords
 (setq font-latex-deactivated-keyword-classes
-    '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))
+      '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))
+;;
+;;; Additional keys
+;; this does not work
+;; (define-key TeX-mode-map (kbd "A-/") 'TeX-insert-backslash)
 ;;
 ;;;
 ;;; Japanese setting etc
