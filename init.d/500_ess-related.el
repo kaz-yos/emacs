@@ -164,12 +164,16 @@
   ;; nil to run with default processor
   (ess-swv-weave nil)
   ;; Instead of (ess-swv-PDF), do the same from R console
-  (let* ((namestem (file-name-sans-extension (buffer-file-name)))
+  (let* ((Rnw-buffer-file-name (buffer-file-name))
+         (dir-name (file-name-directory Rnw-buffer-file-name))
+         (namestem (file-name-sans-extension Rnw-buffer-file-name))
          (latex-filename (concat namestem ".tex"))
-         (r-cmd-string (concat "system('texi2pdf " latex-filename "')"))
          (r-process (get-process ess-local-process-name)))
     ;; defun ess-send-string (process string &optional visibly message)
-    (ess-send-string r-process r-cmd-string t)))
+    ;; setwd() to current .Rnw's directory (otherwise PDF goes to R's current dir
+    (ess-send-string r-process (concat "setwd('" dir-name "')") t)
+    ;; Invoke texi2pdf on the .tex file
+    (ess-send-string r-process (concat "system('texi2pdf " latex-filename "')") t)))
 ;;
 ;; M-n s
 (define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave-PDF)
