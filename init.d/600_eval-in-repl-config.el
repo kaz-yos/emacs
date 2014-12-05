@@ -52,6 +52,10 @@
 ;; (require 'python) ; if not done elsewhere
 (require 'eval-in-repl-python)
 (define-key python-mode-map (kbd "<C-return>") 'eir-eval-in-python)
+(add-hook 'ein:notebook-multilang-mode
+		  '(lambda ()
+		     (local-set-key (kbd "<C-return>") 'eir-eval-in-python)))
+;; (define-key ein:notebook-mode-map (kbd "<C-return>") 'eir-eval-in-python)
 
 ;; shell
 ;; (require 'essh) ; if not done elsewhere
