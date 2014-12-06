@@ -101,6 +101,7 @@
 	     (modify-syntax-entry ?$  " "  S-syntax-table)	; $ as whitespace in S
 	     ;; Additional keybinds
 	     (local-set-key (kbd "C-c f") 'ess-eval-function)
+             (local-set-key (kbd "S-<return>") 'ess-eval-region-or-function-or-paragraph-and-step)
 	     ))
 ;;
 ;; ess-mode
