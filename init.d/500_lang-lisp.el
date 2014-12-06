@@ -222,6 +222,11 @@
 ;; If neither of these appeal to your sense of keyboard layout aesthetics, feel free
 ;; to pick and choose your own keybindings with a smattering of:
 ;;     (define-key clj-refactor-map (kbd "C-x C-r") 'cljr-rename-file)
+;;
+;;
+;;; clojure-quick-repls.el
+;; https://github.com/symfrog/clojure-quick-repls
+(require 'clojure-quick-repls)
 
 
 ;;;
