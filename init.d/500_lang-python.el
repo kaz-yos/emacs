@@ -165,6 +165,7 @@
 ;; (setq ein:use-auto-complete-superpack t)
 (add-hook 'ein:notebook-multilang-mode-hook	; For EIN
           '(lambda()
+             (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell-and-goto-next)
              (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
 	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
 	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
@@ -173,7 +174,14 @@
 	     (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
 	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
 	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
+	     (local-set-key (kbd "A-[")      'ein:worksheet-goto-prev-input)
+	     (local-set-key (kbd "A-]")      'ein:worksheet-goto-next-input)
 	     ))
+;;
+;; (defn ein:worksheet-execute-cell-and-next ()
+;;   (interactive)
+;;   (ein:worksheet-execute-cell)
+;;   (ein:worksheet-goto-next-input))
 
 
 ;;;
