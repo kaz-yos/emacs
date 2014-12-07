@@ -44,7 +44,17 @@
 
 
 ;;;
-;;; python-environment.el
+;;; anaconda-mode.el
+;; https://github.com/proofit404/anaconda-mode
+(require 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'eldoc-mode)
+(add-hook 'inferior-python-mode-hook 'anaconda-mode)
+(add-hook 'inferior-python-mode-hook 'eldoc-mode)
+
+
+;;;
+;;; python-environment.el for virtualenv
 ;; Python virtualenv API for Emacs Lisp
 ;; https://github.com/tkf/emacs-python-environment
 (require 'python-environment)
