@@ -155,7 +155,7 @@
 
 
 ;;;
-;;; ein.el	; Emacs IPython Notebook (EIN)
+;;; ein2.el	; Emacs IPython Notebook (EIN)
 ;; Forked version (different from the one by the original author on MELPA)
 ;; https://github.com/millejoh/emacs-ipython-notebook
 ;; Need to install from github
@@ -168,7 +168,7 @@
 ;; Usage
 ;; Start IPython notebook server with $ ipython notebook --pylab inline
 ;; Hit M-x ein:notebooklist-open to open notebook list.
-(require 'ein)
+(require 'ein2)
 ;; Auto complete for ein
 (setq ein:use-auto-complete t)
 ;; Or, to enable "superpack" (a little bit hacky improvements):
