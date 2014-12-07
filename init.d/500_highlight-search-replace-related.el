@@ -277,8 +277,10 @@
 ;;
 ;; Everything
 (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-" c))
-(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-M-" c 'word))
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "A-M-" c))
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-s-" c))
 (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "M-s-" c))
+;;
 ;;
 ;;; ace-window.el
 ;; https://github.com/abo-abo/ace-window
