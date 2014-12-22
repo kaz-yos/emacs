@@ -107,28 +107,6 @@
 ;; (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
 ;;
 ;;
-;;; ac-nrepl.el (deprecated)
-;; ;; https://github.com/clojure-emacs/ac-nrepl
-;; (require 'ac-nrepl)
-;; (add-hook 'cider-repl-mode-hook
-;; 	  '(lambda ()
-;; 	     (eldoc-mode -1)
-;; 	     (ac-nrepl-setup)
-;; 	     ;; Add ac-source-filename for directory name completion
-;; 	     (add-to-list 'ac-sources 'ac-source-filename)))
-;; ;;
-;; (add-hook 'cider-mode-hook
-;; 	  '(lambda ()
-;; 	     (eldoc-mode -1)
-;; 	     (ac-nrepl-setup)
-;; 	     ;; Add ac-source-filename for directory name completion
-;; 	     (add-to-list 'ac-sources 'ac-source-filename)))
-;; ;;
-;; (eval-after-load "auto-complete"
-;;   '(add-to-list 'ac-modes 'cider-repl-mode))
-;;
-;;
-;;
 ;;; latest-clojure-libraries.el
 ;; https://github.com/AdamClements/latest-clojure-libraries/
 (require 'latest-clojure-libraries)
@@ -153,29 +131,18 @@
 ;;; C-c C-v for help and examples
 (defun cider-help-for-symbol ()
   "Provide help for a symbol in the REPL."
-
   (interactive)
   ;; Define variables
   (let* ((name-symbol (thing-at-point 'symbol t))
 	 (doc-string (concat "(doc " name-symbol ")"))
 	 (eg-string  (concat "(clojuredocs " name-symbol ")"))
 	 (script-window (selected-window)))
-
     ;; move to repl
     (cider-switch-to-repl-buffer)
-
     ;; Insert the (doc fun-name)
     (insert doc-string)
-
-    ;; ;; Execute
-    ;; (cider-repl-return)
-
-    ;; ;; Insert the (clojuredocs fun-name)
-    ;; (insert eg-string)
-
     ;; Execute
     (cider-repl-return)
-
     ;; Move back to the script window
     (select-window script-window)))
 ;;
@@ -227,6 +194,19 @@
 ;;; clojure-quick-repls.el
 ;; https://github.com/symfrog/clojure-quick-repls
 (require 'clojure-quick-repls)
+;;
+;;
+;;; cider-profile.el
+;; nrepl support for thunknyc/profile
+;; https://github.com/thunknyc/nrepl-profile; 
+(require 'cider-profile)
+;;
+;;
+;;; cider-spy.el
+;; Lets developers share information on CIDER nREPL sessions
+;; https://github.com/jonpither/cider-spy
+(require 'cider-spy)
+
 
 
 ;;;
