@@ -216,3 +216,10 @@
 ;; ;;       '("~/.emacs.d/snippets"
 ;; ;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
 ;; ;; 	))
+
+
+;;;
+;;; hy-mode.el
+;; Hy mode for Emacs
+;; https://github.com/hylang/hy-mode
+(require 'hy-mode)
