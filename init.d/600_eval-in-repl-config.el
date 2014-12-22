@@ -84,3 +84,8 @@
 (define-key tuareg-mode-map (kbd "<C-return>") 'eir-eval-in-ocaml)
 ;; function to send a semicolon to OCaml REPL
 (define-key tuareg-mode-map (kbd "C-;") 'eir-send-to-ocaml-semicolon)
+
+;; hy support
+;; (require 'hy-mode) ; if not done elsewhere
+(require 'eval-in-repl-hy)
+(define-key hy-mode-map (kbd "<C-return>") 'eir-eval-in-hy)
