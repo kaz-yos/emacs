@@ -19,11 +19,22 @@
 (add-hook 'dired-mode-hook 'turn-on-auto-revert-mode)
 
 
-;;; 24.4 issue
+;;; ls configuration
 ;; http://niku.name/articles/2013/04/30/emacsでls%20does%20not%20support%20--dired;%20see%20%60dired-use-ls-dired'%20for%20more%20details.と出たときの対処方法
 ;; ls does not support --dired; see `dired-use-ls-dired' for more details.
 ;; This occurs because Mac's ls does not support "--dired" option although there is "-dired"
-(setq dired-use-ls-dired 'unspecified)
+;; To leave it unspecified, do this.
+;; (setq dired-use-ls-dired 'unspecified)
+;;
+;; Use gls in Homebrew coreutils instead to allow use of --dired
+;; http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+;; http://lists.gnu.org/archive/html/bug-gnu-emacs/2012-07/msg01208.html
+;; http://qiita.com/maangie/items/5a80ae50c13d14368a72
+(setq ls-lisp-use-insert-directory-program t)
+;; Check existance of gls and use it if it exists
+(let ((gls "/usr/local/bin/gls"))
+  (when (file-exists-p gls)
+      (setq insert-directory-program gls)))
 ;;
 ;; lisp implementation of ls is used in systems without ls
 ;; (setq ls-lisp-use-insert-directory-program nil)
