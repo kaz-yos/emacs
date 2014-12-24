@@ -198,7 +198,7 @@
 ;;
 ;;; cider-profile.el
 ;; nrepl support for thunknyc/profile
-;; https://github.com/thunknyc/nrepl-profile; 
+;; https://github.com/thunknyc/nrepl-profile;
 (require 'cider-profile)
 ;;
 ;;
@@ -288,6 +288,9 @@
 ;; Geiser for Racket and Guile Scheme
 ;; Works as an add-on to the built-in scheme mode
 ;; http://www.nongnu.org/geiser/
+;;
+;; Do $ raco pkg install compatibility-lib if installing plt-racket via Homebrew
+;; https://github.com/jaor/geiser/issues/39
 (require 'geiser)
 
 
