@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: image
+# key: image
+# binding: direct-keybinding
+# --
+![Alt text](/path/to/img.jpg "Optional title")
