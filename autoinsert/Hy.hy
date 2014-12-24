@@ -1,1 +1,2 @@
-#!/usr/local/bin/hy
+#!/usr/bin/env hy
+
