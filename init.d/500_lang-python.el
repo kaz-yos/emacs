@@ -223,3 +223,7 @@
 ;; Hy mode for Emacs
 ;; https://github.com/hylang/hy-mode
 (require 'hy-mode)
+;; Activate auto-complete-mode
+(add-hook 'hy-mode-hook
+          '(lambda ()
+             (auto-complete-mode 1)))

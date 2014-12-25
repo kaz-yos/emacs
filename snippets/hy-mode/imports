@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: imports
+# key: imports
+# binding: direct-keybinding
+# --
+(import
+ sh
+ os
+ [sklearn :as sk]
+ [numpy   :as np]
+ [pandas  :as pd])
