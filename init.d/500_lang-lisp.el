@@ -202,10 +202,10 @@
 (require 'cider-profile)
 ;;
 ;;
-;;; cider-spy.el
+;;; cider-spy.el (this breaks REPL connection?)
 ;; Lets developers share information on CIDER nREPL sessions
 ;; https://github.com/jonpither/cider-spy
-(require 'cider-spy)
+;; (require 'cider-spy)
 
 
 
