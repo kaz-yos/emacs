@@ -9,7 +9,14 @@
 ;; MELPA repository
 ;; http://melpa.milkbox.net/#installing
 ;; http://melpa.milkbox.net/#/getting-started
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;;
+;; MELPA Stable
+
+;; http://stable.melpa.org/#/getting-started
+(add-to-list 'package-archives
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 ;;
 ;; Marmalade repository (not active)
 ;; http://www.emacswiki.org/emacs/Marmalade
