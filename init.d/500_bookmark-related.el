@@ -48,15 +48,16 @@
   ;; Set local variables
   (let ((regexp)
         (count 0)
-	(beg (point-min))
-	(end (point-max)))
+        (beg (point-min))
+        (end (point-max)))
     ;; Create appropriate regexp depending on the major-mode
     (cond
      ;; Lisp-related modes
      ((or (equal major-mode 'emacs-lisp-mode)
-	  (equal major-mode 'lisp-mode)
+          (equal major-mode 'lisp-mode)
           (equal major-mode 'scheme-mode)
-	  (equal major-mode 'clojure-mode))
+          (equal major-mode 'clojure-mode)
+          (equal major-mode 'hy-mode))
       (setq regexp "^;;; \\|^;;;$"))
      ;; SML
      ((or (equal major-mode 'sml-mode))
@@ -65,7 +66,7 @@
      ((equal major-mode 'latex-mode)
       (setq regexp "section{\\|frametitle{\\|^%%%"))
      ;; Others
-     (t				; /** for SAS; ** for Markdown
+     (t         ; /** for SAS; ** for Markdown
       (setq regexp "^### \\|^###$\\|^/\\*\\*\\|^\\*\\*")))
     ;;
     ;; Actual bookmarking
@@ -73,7 +74,7 @@
       (goto-char beg)
       (while (and (< (point) end)
                   (re-search-forward regexp end t))
-	(bm-bookmark-add)	; Actually add a bookmark
+        (bm-bookmark-add)       ; Actually add a bookmark
         (setq count (1+ count))
         (forward-line 1)))
     (message "%d bookmark(s) created." count)))
