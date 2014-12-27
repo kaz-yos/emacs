@@ -186,7 +186,7 @@
 ;;; ESS julia language
 ;; https://github.com/emacs-ess/ESS/wiki/Julia
 ;; excecutable file Changed as of 2013-12-20
-(setq inferior-julia-program-name "/Applications/Julia.app/Contents/Resources/julia/bin/julia-basic")
+(setq inferior-julia-program-name "/usr/local/bin/julia")
 ;;
 ;;
 ;;;
@@ -262,4 +262,4 @@
 ;;;
 ;;; julia-mode.el
 ;; Official support
-(require 'julia-mode)
+;; (require 'julia-mode)
