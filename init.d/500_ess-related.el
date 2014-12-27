@@ -245,8 +245,9 @@
 ;;;
 ;;; *.Rmd files invoke r-mode
 ;; Temporary fix for R markdown files. As of 2014-05-26, polymode is unstable.
-(setq auto-mode-alist
-      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
+;; (2014-12-26 commented out in favor of now stable polymode)
+;; (setq auto-mode-alist
+;;       (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
 
 
 ;;;
