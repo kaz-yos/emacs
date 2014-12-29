@@ -71,24 +71,24 @@
 ;; http://d.hatena.ne.jp/buzztaiki/20081115/1226760184 (anything version)
 (require 'helm-descbinds)
 (helm-descbinds-mode)
-;;
-;;
+
+
 ;;; helm-R.el
 (require 'helm-R)
-;;
-;;
+
+
 ;;; helm-migemo.el
 ;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html	; helm-migemo
 (when (eq system-type 'darwin)
     ;; Mac-only
     (require 'helm-migemo))
-;;
-;;
+
+
 ;;; wgrep-helm.el  2014-01-14
 ;; Writable helm-grep-mode buffer and apply the changes to files
 (require 'wgrep-helm)
-;;
-;;
+
+
 ;;; helm-ag.el
 ;; https://github.com/syohex/emacs-helm-ag
 ;; http://qiita.com/l3msh0@github/items/97909d6e2c92af3acc00
@@ -96,35 +96,44 @@
 (setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
 (setq helm-ag-command-option "--all-text")
 (setq helm-ag-thing-at-point 'symbol)
-;;
-;;
+
+
 ;;; helm-open-github 2014-02-01 OAutho required
 ;; http://shibayu36.hatenablog.com/entry/2013/01/18/211428
 (require 'helm-open-github)
 ;; (global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
 ;; (global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
 ;; (global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
-;;
-;;
+
+
 ;;; ac-helm.el		; Helm interface for auto-complete
 (require 'ac-helm)
 (global-set-key (kbd "C-:") 'ac-complete-with-helm)
 (define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
-;;
-;;
+
+
 ;;; helm-mode-manager.el		; Select and toggle major and minor modes with helm
 (require 'helm-mode-manager)
-;;
-;;
+
+
 ;;; helm-package.el	; Listing ELPA packages with helm interface
 (require 'helm-package)
-;;
-;;
+
+
 ;;; helm-themes.el	; Color theme selection with helm interface
 (require 'helm-themes)
-;;
-;;
+
+
 ;;; helm-dash.el
 ;; http://fukuyama.co/helm-dash
 ;; http://kapeli.com/dash
 (require 'helm-dash)
+
+
+;;; helm-swoop.el
+(require 'helm-swoop)
+(global-set-key (kbd "s-s") 'helm-swoop)
+;; Give swoop additional bindings
+(define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
+(define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
+

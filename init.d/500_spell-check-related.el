@@ -51,7 +51,7 @@
 				 poss word cursor-location start end cursor-location)))
 	  (ispell-pdict-save t)))))
 ;;
-(global-set-key (kbd "s-s") 'flyspell-correct-word-popup-el)
+;; (global-set-key (kbd "s-s") 'flyspell-correct-word-popup-el)
 
 
 ;;;
