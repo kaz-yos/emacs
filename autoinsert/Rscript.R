@@ -32,14 +32,16 @@ if (length(..scriptFileName..) == 1) {
 }
 options(width = 120)
 
-
+cat("
 ### Load data
 ################################################################################
+")
+
 
 
 
 ################################################################################
-## Record package versions
+cat("### Record package versions\n")
 print(sessionInfo())
 ## Stop sinking to a file if active
 if (sink.number() != 0) {sink()}
