@@ -33,7 +33,7 @@
 	 ;;
          (,(kbd "C-^")	   helm-c-apropos)
          (,(kbd "C-;")	   helm-resume)
-         (,(kbd "M-s")	   helm-occur)
+         (,(kbd "s-c")	   helm-occur)
 	 (,(kbd "M-z")	   helm-do-grep)
          (,(kbd "C-S-h")   helm-descbinds)
 	 )))
@@ -134,6 +134,6 @@
 (require 'helm-swoop)
 (global-set-key (kbd "s-s") 'helm-swoop)
 ;; Give swoop additional bindings
-(define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
-(define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
+;; (define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
+;; (define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
 
