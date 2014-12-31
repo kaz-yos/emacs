@@ -35,12 +35,12 @@
 		  '(lambda ()
 		     (local-set-key (kbd "<C-return>") 'eir-eval-in-geiser)))
 
-;; racket-mode support (for Racket)
+;; ;; racket-mode support (for Racket)
 ;; (require 'racket-mode) ; if not done elsewhere
 ;; (require 'eval-in-repl-racket)
 ;; (define-key racket-mode-map (kbd "<C-return>") 'eir-eval-in-racket)
 
-;; scheme support
+;; ;; scheme support
 ;; (require 'scheme)    ; if not done elsewhere
 ;; (require 'cmuscheme) ; if not done elsewhere
 ;; (require 'eval-in-repl-scheme)
