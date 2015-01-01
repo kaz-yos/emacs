@@ -35,12 +35,12 @@
 		  '(lambda ()
 		     (local-set-key (kbd "<C-return>") 'eir-eval-in-geiser)))
 
-;; racket-mode support (for Racket)
+;; ;; racket-mode support (for Racket)
 ;; (require 'racket-mode) ; if not done elsewhere
 ;; (require 'eval-in-repl-racket)
 ;; (define-key racket-mode-map (kbd "<C-return>") 'eir-eval-in-racket)
 
-;; scheme support
+;; ;; scheme support
 ;; (require 'scheme)    ; if not done elsewhere
 ;; (require 'cmuscheme) ; if not done elsewhere
 ;; (require 'eval-in-repl-scheme)
@@ -52,6 +52,10 @@
 ;; (require 'python) ; if not done elsewhere
 (require 'eval-in-repl-python)
 (define-key python-mode-map (kbd "<C-return>") 'eir-eval-in-python)
+(add-hook 'ein:notebook-multilang-mode
+		  '(lambda ()
+		     (local-set-key (kbd "<C-return>") 'eir-eval-in-python)))
+;; (define-key ein:notebook-mode-map (kbd "<C-return>") 'eir-eval-in-python)
 
 ;; shell
 ;; (require 'essh) ; if not done elsewhere
@@ -80,3 +84,8 @@
 (define-key tuareg-mode-map (kbd "<C-return>") 'eir-eval-in-ocaml)
 ;; function to send a semicolon to OCaml REPL
 (define-key tuareg-mode-map (kbd "C-;") 'eir-send-to-ocaml-semicolon)
+
+;; hy support
+;; (require 'hy-mode) ; if not done elsewhere
+(require 'eval-in-repl-hy)
+(define-key hy-mode-map (kbd "<C-return>") 'eir-eval-in-hy)

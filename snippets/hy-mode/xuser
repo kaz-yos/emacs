@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: xuser
+# key: xuser
+# binding: direct-keybinding
+# --
+(os.path.expanduser "~")

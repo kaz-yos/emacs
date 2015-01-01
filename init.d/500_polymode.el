@@ -13,7 +13,7 @@
 ;;; R modes
 ;; (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
-;; (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 ;;
 ;; key config
 (define-key polymode-mode-map (kbd "C-c n") 'polymode-next-chunk-same-type)

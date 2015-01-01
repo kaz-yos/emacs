@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: deftest
+# key: deftest
+# binding: direct-keybinding
+# --
+(deftest a-test
+  (testing "FIXME, I fail."
+    (is (= 0 1))))

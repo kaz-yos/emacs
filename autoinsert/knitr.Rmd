@@ -5,6 +5,7 @@
 -->
 ```{r, message = FALSE, tidy = FALSE, echo = F}
 ## knitr configuration: http://yihui.name/knitr/options#chunk_options
+library(knitr)
 showMessage <- FALSE
 showWarning <- TRUE
 set_alias(w = "fig.width", h = "fig.height", res = "results")
@@ -23,17 +24,17 @@ options(width = 116, scipen = 5)
     ``` ```
 -->
 
-References
---------------------
+## References
 
-Load packages
---------------------
+## Load packages
+
 ```{r}
 library(magrittr)
 
 ```
 
---------------------
+##
+
 ```{r}
 
 ```

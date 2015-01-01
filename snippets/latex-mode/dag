@@ -21,9 +21,9 @@
 
   %% Nodes
   \node (A) {A};
-  \node[right =of A] (B) {B};
-  \node[right =of B] (C) {C};
-  \node[right =of C] (F) {F};
+  \node[right = 2cm of A] (B) {B};
+  \node[right = 2cm of B] (C) {C};
+  \node[right = 2cm of C] (F) {F};
 
   %% Edges
   \draw[->] (A) to (B);

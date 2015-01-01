@@ -29,7 +29,6 @@
 ;; Define hooks
 (add-hook 'python-mode-hook		; For Python script
           '(lambda()
-	     ;; (local-set-key (kbd "<C-return>") 'my-python-eval)
 	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
 	     ;; (eldoc-mode 1)			; eldoc in the mode line. Slow? 2013-12-25
 	     (local-set-key (kbd "C-m") 'newline-and-indent)	; Indent after newline
@@ -45,7 +44,17 @@
 
 
 ;;;
-;;; python-environment.el
+;;; anaconda-mode.el
+;; https://github.com/proofit404/anaconda-mode
+(require 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'eldoc-mode)
+(add-hook 'inferior-python-mode-hook 'anaconda-mode)
+(add-hook 'inferior-python-mode-hook 'eldoc-mode)
+
+
+;;;
+;;; python-environment.el for virtualenv
 ;; Python virtualenv API for Emacs Lisp
 ;; https://github.com/tkf/emacs-python-environment
 (require 'python-environment)
@@ -146,7 +155,7 @@
 
 
 ;;;
-;;; ein.el	; Emacs IPython Notebook (EIN)
+;;; ein2.el	; Emacs IPython Notebook (EIN)
 ;; Forked version (different from the one by the original author on MELPA)
 ;; https://github.com/millejoh/emacs-ipython-notebook
 ;; Need to install from github
@@ -159,14 +168,14 @@
 ;; Usage
 ;; Start IPython notebook server with $ ipython notebook --pylab inline
 ;; Hit M-x ein:notebooklist-open to open notebook list.
-(require 'ein)
+(require 'ein2)
 ;; Auto complete for ein
 (setq ein:use-auto-complete t)
 ;; Or, to enable "superpack" (a little bit hacky improvements):
 ;; (setq ein:use-auto-complete-superpack t)
 (add-hook 'ein:notebook-multilang-mode-hook	; For EIN
           '(lambda()
-             (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell)
+             (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell-and-goto-next)
              (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
 	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
 	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
@@ -175,7 +184,14 @@
 	     (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
 	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
 	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
+	     (local-set-key (kbd "A-[")      'ein:worksheet-goto-prev-input)
+	     (local-set-key (kbd "A-]")      'ein:worksheet-goto-next-input)
 	     ))
+;;
+;; (defn ein:worksheet-execute-cell-and-next ()
+;;   (interactive)
+;;   (ein:worksheet-execute-cell)
+;;   (ein:worksheet-goto-next-input))
 
 
 ;;;
@@ -200,3 +216,14 @@
 ;; ;;       '("~/.emacs.d/snippets"
 ;; ;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
 ;; ;; 	))
+
+
+;;;
+;;; hy-mode.el
+;; Hy mode for Emacs
+;; https://github.com/hylang/hy-mode
+(require 'hy-mode)
+;; Activate auto-complete-mode
+(add-hook 'hy-mode-hook
+          '(lambda ()
+             (auto-complete-mode 1)))

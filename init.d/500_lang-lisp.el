@@ -107,28 +107,6 @@
 ;; (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
 ;;
 ;;
-;;; ac-nrepl.el (deprecated)
-;; ;; https://github.com/clojure-emacs/ac-nrepl
-;; (require 'ac-nrepl)
-;; (add-hook 'cider-repl-mode-hook
-;; 	  '(lambda ()
-;; 	     (eldoc-mode -1)
-;; 	     (ac-nrepl-setup)
-;; 	     ;; Add ac-source-filename for directory name completion
-;; 	     (add-to-list 'ac-sources 'ac-source-filename)))
-;; ;;
-;; (add-hook 'cider-mode-hook
-;; 	  '(lambda ()
-;; 	     (eldoc-mode -1)
-;; 	     (ac-nrepl-setup)
-;; 	     ;; Add ac-source-filename for directory name completion
-;; 	     (add-to-list 'ac-sources 'ac-source-filename)))
-;; ;;
-;; (eval-after-load "auto-complete"
-;;   '(add-to-list 'ac-modes 'cider-repl-mode))
-;;
-;;
-;;
 ;;; latest-clojure-libraries.el
 ;; https://github.com/AdamClements/latest-clojure-libraries/
 (require 'latest-clojure-libraries)
@@ -153,29 +131,18 @@
 ;;; C-c C-v for help and examples
 (defun cider-help-for-symbol ()
   "Provide help for a symbol in the REPL."
-
   (interactive)
   ;; Define variables
   (let* ((name-symbol (thing-at-point 'symbol t))
 	 (doc-string (concat "(doc " name-symbol ")"))
 	 (eg-string  (concat "(clojuredocs " name-symbol ")"))
 	 (script-window (selected-window)))
-
     ;; move to repl
     (cider-switch-to-repl-buffer)
-
     ;; Insert the (doc fun-name)
     (insert doc-string)
-
-    ;; ;; Execute
-    ;; (cider-repl-return)
-
-    ;; ;; Insert the (clojuredocs fun-name)
-    ;; (insert eg-string)
-
     ;; Execute
     (cider-repl-return)
-
     ;; Move back to the script window
     (select-window script-window)))
 ;;
@@ -222,6 +189,24 @@
 ;; If neither of these appeal to your sense of keyboard layout aesthetics, feel free
 ;; to pick and choose your own keybindings with a smattering of:
 ;;     (define-key clj-refactor-map (kbd "C-x C-r") 'cljr-rename-file)
+;;
+;;
+;;; clojure-quick-repls.el
+;; https://github.com/symfrog/clojure-quick-repls
+(require 'clojure-quick-repls)
+;;
+;;
+;;; cider-profile.el
+;; nrepl support for thunknyc/profile
+;; https://github.com/thunknyc/nrepl-profile;
+(require 'cider-profile)
+;;
+;;
+;;; cider-spy.el (this breaks REPL connection?)
+;; Lets developers share information on CIDER nREPL sessions
+;; https://github.com/jonpither/cider-spy
+;; (require 'cider-spy)
+
 
 
 ;;;
@@ -272,12 +257,13 @@
 
 ;;;
 ;;; SCHEME MODE
-(require 'scheme)
-;; This defines REPL-related functions, including switch-to-scheme
-(require 'cmuscheme)
-;;
-;; Use Gauche. REPL name is still *scheme*
-;; (setq scheme-program-name "gosh -i")
+;; Also used by geiser.el
+;; (require 'scheme)
+;; ;; This defines REPL-related functions, including switch-to-scheme
+;; (require 'cmuscheme)
+;; ;;
+;; ;; Use Gauche. REPL name is still *scheme*
+;; ;; (setq scheme-program-name "gosh -i")
 (add-hook 'scheme-mode-hook '(lambda ()
                                (company-mode -1)))
 
@@ -303,6 +289,9 @@
 ;; Geiser for Racket and Guile Scheme
 ;; Works as an add-on to the built-in scheme mode
 ;; http://www.nongnu.org/geiser/
+;;
+;; Do $ raco pkg install compatibility-lib if installing plt-racket via Homebrew
+;; https://github.com/jaor/geiser/issues/39
 (require 'geiser)
 
 
@@ -313,7 +302,8 @@
 ;;
 (defun my-ac-geiser-setup ()
   (ac-geiser-setup)
+  (company-mode -1)
   (define-key geiser-mode-map (kbd "C-.") 'highlight-symbol-at-point))
 ;;
-(add-hook 'geiser-mode-hook 'my-ac-geiser-setup)
+(add-hook 'geiser-mode-hook      'my-ac-geiser-setup)
 (add-hook 'geiser-repl-mode-hook 'my-ac-geiser-setup)

@@ -64,6 +64,12 @@
 \usepackage{indentfirst}
 \setlength{\parindent}{4em}
 
+%% Spacing after headings
+%% http://tex.stackexchange.com/questions/53338/reducing-spacing-after-headings
+\usepackage{titlesec}
+\titlespacing      \section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing   \subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
 
 \begin{document}
 <<message = FALSE, tidy = FALSE, echo = F>>=
@@ -87,6 +93,6 @@ library(magrittr)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% https://www.sharelatex.com/learn/Bibtex_bibliography_styles
-%% \bibliographystyle{plain}
+%% \bibliographystyle{ieeetr}
 %% \bibliography{bib_file_name}
 \end{document}

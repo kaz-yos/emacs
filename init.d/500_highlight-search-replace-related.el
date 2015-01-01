@@ -175,6 +175,7 @@
 ;; (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
 ;; (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
 ;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
+(global-set-key (kbd "s-x") 'highlight-sexp-mode)
 
 
 ;;; 
@@ -276,8 +277,10 @@
 ;;
 ;; Everything
 (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-" c))
-(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-M-" c 'word))
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "A-M-" c))
+(loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-s-" c))
 (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "M-s-" c))
+;;
 ;;
 ;;; ace-window.el
 ;; https://github.com/abo-abo/ace-window
@@ -301,6 +304,3 @@
 ;;
 ;; Use ace-isearch-funtion-from-isearch if the search term is longer than
 (setq ace-isearch-input-length 600)
-;; Give swoop additional bindings
-(define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
-(define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
