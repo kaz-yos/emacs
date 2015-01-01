@@ -14,7 +14,21 @@
            (switch-to-buffer buffer-b)
            (other-window 1)))))
 ;;
-(global-set-key (kbd "C-x /") 'swap-buffer)		; Enabled for everywhere
+;; (global-set-key (kbd "C-x /") 'swap-buffer)
+;;
+(defun swap-buffer-plus ()
+  "Swap buffers among windows
+
+When there is only one window split it into two.
+When there are two windows swap the buffers.
+When there are three or more call ace-swap-window."
+  (interactive)
+  (pcase (count-windows)
+    (`1 (swap-buffer))
+    (`2 (swap-buffer))
+    (_  (ace-swap-window))))
+;;
+(global-set-key (kbd "C-x /") 'swap-buffer-plus)
 
 
 ;;;
