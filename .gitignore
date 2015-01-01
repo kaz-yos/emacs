@@ -28,3 +28,4 @@ url/
 *.elc
 /pomodoro.org
 /.python-environments/
+*SugarSyncTemp
