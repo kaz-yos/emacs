@@ -255,16 +255,17 @@
 ;;
 
 
-;; ;;;
-;; ;;; SCHEME MODE
+;;;
+;;; SCHEME MODE
+;; Also used by geiser.el
 ;; (require 'scheme)
 ;; ;; This defines REPL-related functions, including switch-to-scheme
 ;; (require 'cmuscheme)
 ;; ;;
 ;; ;; Use Gauche. REPL name is still *scheme*
 ;; ;; (setq scheme-program-name "gosh -i")
-;; (add-hook 'scheme-mode-hook '(lambda ()
-;;                                (company-mode -1)))
+(add-hook 'scheme-mode-hook '(lambda ()
+                               (company-mode -1)))
 
 
 ;;;
@@ -301,7 +302,8 @@
 ;;
 (defun my-ac-geiser-setup ()
   (ac-geiser-setup)
-  (local-set-key (kbd "C-.") 'highlight-symbol-at-point))
+  (company-mode -1)
+  (define-key geiser-mode-map (kbd "C-.") 'highlight-symbol-at-point))
 ;;
-(add-hook 'geiser-mode-hook 'my-ac-geiser-setup)
+(add-hook 'geiser-mode-hook      'my-ac-geiser-setup)
 (add-hook 'geiser-repl-mode-hook 'my-ac-geiser-setup)
