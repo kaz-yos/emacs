@@ -161,14 +161,14 @@
 ;; Need to install from github
 ;; cd ~/.emacs.d/plugins/
 ;; git clone git://github.com/millejoh/emacs-ipython-notebook.git
-;; Add the path
-(add-to-list 'load-path "~/.emacs.d/plugins/emacs-ipython-notebook/lisp")
+;; Add the path. 2015-01-01 Now the forked version is ein on MELPA
+;; (add-to-list 'load-path "~/.emacs.d/plugins/emacs-ipython-notebook/lisp")
 ;;
 ;; http://tkf.github.com/emacs-ipython-notebook/
 ;; Usage
 ;; Start IPython notebook server with $ ipython notebook --pylab inline
 ;; Hit M-x ein:notebooklist-open to open notebook list.
-(require 'ein2)
+(require 'ein)
 ;; Auto complete for ein
 (setq ein:use-auto-complete t)
 ;; Or, to enable "superpack" (a little bit hacky improvements):
