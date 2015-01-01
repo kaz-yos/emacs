@@ -22,6 +22,25 @@
 ;;
 
 
+;;; dired-subtree.el
+;; https://github.com/Fuco1/dired-hacks/blob/master/dired-subtree.el
+(require 'dired-subtree)
+;;
+;; http://rubikitch.com/2014/12/22/dired-subtree/
+;; i is subtree
+(define-key dired-mode-map (kbd "i") 'dired-subtree-insert)
+;; tab folding
+(define-key dired-mode-map (kbd "<tab>") 'dired-subtree-remove)
+;; C-x n n for narrowing
+(define-key dired-mode-map (kbd "C-x n n") 'dired-subtree-narrow)
+;; ^ for dired-subtree
+(defun dired-subtree-up-dwim (&optional arg)
+  "Go to parent dir or open parent dir"
+  (interactive "p")
+  (or (dired-subtree-up arg)
+      (dired-up-directory)))
+(define-key dired-mode-map (kbd "^") 'dired-subtree-up-dwim)
+
 
 ;;; stripe-buffer.el
 ;; Turned off. Need decent color settings
