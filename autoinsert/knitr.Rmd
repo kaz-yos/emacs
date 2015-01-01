@@ -24,17 +24,17 @@ options(width = 116, scipen = 5)
     ``` ```
 -->
 
-References
---------------------
+## References
 
-Load packages
---------------------
+## Load packages
+
 ```{r}
 library(magrittr)
 
 ```
 
---------------------
+##
+
 ```{r}
 
 ```
