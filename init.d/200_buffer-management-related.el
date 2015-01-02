@@ -1,34 +1,4 @@
-;;; Buffere-related configurations
-
-
-;;;
-;;; Swap buffers with C-x /
-;; http://stackoverflow.com/questions/1510091/with-emacs-how-do-you-swap-the-position-of-2-windows
-(defun swap-buffer ()
-  (interactive)
-  (cond ((one-window-p) (display-buffer (other-buffer)))
-        ((let* ((buffer-a (current-buffer))
-                (window-b (cadr (window-list)))
-                (buffer-b (window-buffer window-b)))
-           (set-window-buffer window-b buffer-a)
-           (switch-to-buffer buffer-b)
-           (other-window 1)))))
-;;
-;; (global-set-key (kbd "C-x /") 'swap-buffer)
-;;
-(defun swap-buffer-plus ()
-  "Swap buffers among windows
-
-When there is only one window split it into two.
-When there are two windows swap the buffers.
-When there are three or more call ace-swap-window."
-  (interactive)
-  (pcase (count-windows)
-    (`1 (swap-buffer))
-    (`2 (swap-buffer))
-    (_  (ace-swap-window))))
-;;
-(global-set-key (kbd "C-x /") 'swap-buffer-plus)
+;;; Buffere-related configurations  -*- lexical-binding: t; -*-
 
 
 ;;;
@@ -51,3 +21,89 @@ When there are three or more call ace-swap-window."
 (setq auto-revert-check-vc-info t)
 ;; No ARev in mode-line (it is alwasy on)
 (setq auto-revert-mode-text "")
+
+
+
+;;;
+;;; ibuffer.el
+;; http://www.emacswiki.org/emacs/IbufferMode
+;; http://ergoemacs.org/emacs/emacs_buffer_management.html
+(defalias 'list-buffers 'ibuffer)
+;; Switching to ibuffer puts the cursor on the most recent buffer	; Not useful 2014-01-25
+;; http://www.emacswiki.org/emacs/IbufferMode#toc13
+;; (defadvice ibuffer (around ibuffer-point-to-most-recent) ()
+;;   "Open ibuffer with cursor pointed to most recent buffer name"
+;;   (let ((recent-buffer-name (buffer-name)))
+;;     ad-do-it
+;;     (ibuffer-jump-to-buffer recent-buffer-name)))
+;; (ad-activate 'ibuffer)
+;;
+;; Sorting
+;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
+;; (setq ibuffer-default-sorting-mode 'major-mode)
+;; https://github.com/pd/dotfiles/blob/master/emacs.d/pd/core.el
+(setq ibuffer-default-sorting-mode 'filename/process	; Sort by filename/process
+      ibuffer-show-empty-filter-groups nil)		; Don't show empty groups
+;;
+;;; ibuffer classification
+;; http://www.emacswiki.org/emacs/IbufferMode#toc6
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+	       ("DIRED" (mode . dired-mode))
+	       ("EMACS" (or
+			 (name . "^\\*scratch\\*$")
+			 (name . "^\\*Messages\\*$")
+			 (name . "^\\*Packages\\*$")
+			 ))
+	       ("ESS"   (or
+			 (mode . ess-mode)
+			 (mode . inferior-ess-mode)
+			 (mode . Rd-mode)))
+	       ("ELISP"	(or
+			 (mode . emacs-lisp-mode)
+			 (mode . list-mode)
+			 (name . "^\\*ielm")))
+	       ("CLOJURE" (or
+			   (mode . clojure-mode)
+			   (name . "^\\*cider-")
+			   (name . "^\\*nrepl-")))
+	       ("SLIME" (or
+			 (mode . lisp-mode)
+			 (name . "^\\*slime")
+			 (name . "*inferior-lisp*")))
+	       ("SCHEME" (or
+			  (mode . scheme-mode)
+			  (mode . inferior-scheme-mode)
+			  (mode . geiser-repl-mode)))
+	       ("HASKELL" (or
+                           (mode . haskell-mode)
+                           (mode . inferior-haskell-mode)))
+	       ("PYTHON" (or
+			  (mode . python-mode)
+			  (mode . inferior-python-mode)
+                          (mode . ein:notebooklist-mode)
+                          (mode . ein:notebook-multilang-mode)))
+	       ("ML" (or
+                      (mode . sml-mode)
+                      (mode . inferior-sml-mode)))
+               ("RUBY" (or
+                      (mode . ruby-mode)
+                      (mode . inf-ruby-mode)))
+	       ("SHELL"  (or
+			  (mode . sh-mode)
+			  (mode . shell-mode)
+			  (mode . ssh-mode)
+			  (mode . eshell-mode)))
+	       ("SQL"  (or
+			(mode . sql-mode)
+			(mode . sql-interactive-mode)))
+	       ("TeX"    (or
+			  (mode . TeX-mode)
+			  (mode . LaTeX-mode)))
+	       ("MAGIT"  (or
+			  (mode . magit-mode)
+			  (name . "^\\*magit")))))))
+;; Group for the remaning unclassified buffers.
+(add-hook 'ibuffer-mode-hook
+	  (lambda ()
+	    (ibuffer-switch-to-saved-filter-groups "default")))
