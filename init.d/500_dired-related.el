@@ -45,6 +45,6 @@
 ;;; stripe-buffer.el
 ;; Turned off. Need decent color settings
 ;; https://github.com/sabof/stripe-buffer
-;; (require 'stripe-buffer)
+(require 'stripe-buffer)
 ;; (add-hook 'dired-mode-hook 'stripe-listify-buffer)
 ;; (add-hook 'org-mode-hook 'turn-on-stripe-table-mode)

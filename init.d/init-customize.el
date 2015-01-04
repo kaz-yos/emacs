@@ -82,7 +82,8 @@
  '(rainbow-delimiters-depth-7-face ((t (:foreground "turquoise4"))))
  '(rainbow-delimiters-depth-8-face ((t (:foreground "tomato2"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "dark green"))))
- '(rainbow-delimiters-unmatched-face ((t (:foreground "red1" :weight ultra-bold :height 1.5)))))
+ '(rainbow-delimiters-unmatched-face ((t (:foreground "red1" :weight ultra-bold :height 1.5))))
+ '(stripe-highlight ((t (:background "gray10")))))
 
 
 ;;; theme memo
