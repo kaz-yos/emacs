@@ -1,0 +1,24 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: exec
+# key: exec
+# binding: direct-keybinding
+# --
+#!/usr/bin/env lein-exec
+;; https://github.com/kumarshantanu/lein-exec#executable-scripts
+
+;;; Getting dependencies from within script
+;; https://github.com/kumarshantanu/lein-exec#getting-dependencies-from-within-script
+(use '[leiningen.exec :only (deps)])
+(deps '[[org.clojure/clojure "1.6.0"]
+        [bigml/sampling "3.0"]])
+
+;;; Namespace
+(ns lein-exec
+  (:require [clojure.string  :as cstr]
+            [clojure.set     :as cset]
+            [clojure.java.io :as jio]
+            (bigml.sampling [simple :as simple]
+                            [reservoir :as reservoir]
+                            [stream :as stream])))
+
+(println (simple/sample (range 5)))

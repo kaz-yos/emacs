@@ -1,0 +1,21 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: oneoff
+# key: oneoff
+# binding: direct-keybinding
+# --
+#_(defdeps ;; Need to be at line 1
+    [[org.clojure/clojure "1.6.0"]
+     [bigml/sampling "3.0"]])
+;; lein oneoff script.clj to run
+;; https://github.com/mtyaka/lein-oneoff
+
+;; Namespace
+(ns sample$0
+  (:require [clojure.string  :as cstr]
+            [clojure.set     :as cset]
+            [clojure.java.io :as jio]
+            (bigml.sampling [simple :as simple]
+                            [reservoir :as reservoir]
+                            [stream :as stream])))
+
+(println (simple/sample (range 5)))
