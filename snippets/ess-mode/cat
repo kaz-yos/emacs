@@ -3,6 +3,4 @@
 # key: cat
 # binding: C-c t
 # --
-cat("
-### $0
-")
+cat("$1### $0")
