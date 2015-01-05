@@ -307,3 +307,10 @@
 ;;
 (add-hook 'geiser-mode-hook      'my-ac-geiser-setup)
 (add-hook 'geiser-repl-mode-hook 'my-ac-geiser-setup)
+
+
+;;;
+;;; egison-mode.el
+;; https://github.com/egison/egison/blob/master/elisp/egison-mode.el
+;; This is not provided. The mode appears incomplete.
+;; (require 'egison-mode)
