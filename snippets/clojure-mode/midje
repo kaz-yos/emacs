@@ -1,0 +1,16 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: midje
+# key: midje
+# binding: direct-keybinding
+# --
+;; project.clj
+;; [midje "1.6.3"]
+;; Name space
+;; (ns magic-square.puzzle
+;;   (:require [midje.sweet :as mj]))
+
+(mj/facts
+ (mj/fact
+  "Matrix conversion check"
+  (matrix (range 1 10))
+  => (partition-all 3 (range 1 10))))

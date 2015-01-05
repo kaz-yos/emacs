@@ -2,7 +2,11 @@
 # name: ns
 # key: ns
 # --
-(ns getting-data.read-csv-spec$1
-  (:use [speclj.core]
-        [getting-data.read-csv]
-        [incanter.core]))$0
+;; Namespace
+(ns sample$0
+  (:require [clojure.string  :as cstr]
+            [clojure.set     :as cset]
+            [clojure.java.io :as jio]
+            (bigml.sampling [simple :as simple]
+                            [reservoir :as reservoir]
+                            [stream :as stream])))
