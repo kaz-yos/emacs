@@ -27,13 +27,17 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning,shapes.geometric}
 
+%% Date
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{--}
+
 %% Header
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} % Erase first to supress section names
-\fancyhead[L]{} % LEFT
+\fancyhead[L]{Kazuki Yoshida} % LEFT
 \fancyhead[C]{} % CENTER
-\fancyhead[R]{} % RIGHT
+\fancyhead[R]{\today} % RIGHT
 \fancyfoot[C]{\thepage}
 %% \fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
 
