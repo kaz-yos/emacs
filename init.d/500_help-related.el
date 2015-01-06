@@ -4,6 +4,9 @@
 ;;; info
 ;; http://www.emacswiki.org/emacs/InfoPath
 (add-to-list 'Info-default-directory-list "~/.emacs.d/info/")
+;;
+;; 3.5 How do I install a piece of Texinfo documentation?
+;; http://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Texinfo-documentation.html
 
 
 ;;;
