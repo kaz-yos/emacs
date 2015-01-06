@@ -2,11 +2,18 @@
 
 ;;;
 ;;; info
+;; Emacs Wiki InfoPath
 ;; http://www.emacswiki.org/emacs/InfoPath
-(add-to-list 'Info-default-directory-list "~/.emacs.d/info/")
+;; Note: Above the line with ‘File: dir…’ there is a line with a unprintable char, which is showed by emacs as ‘^_’, it is actually one byte (1f in hex), you can input hex-chars with the M-x hexl-mode.
 ;;
 ;; 3.5 How do I install a piece of Texinfo documentation?
 ;; http://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Texinfo-documentation.html
+;;
+;; Setting Up and Using Emacs InfoMode
+;; http://pchristensen.com/blog/articles/setting-up-and-using-emacs-infomode/
+;;
+;; Add path (Need correctly formatted dir file with special format)
+(add-to-list 'Info-directory-list (expand-file-name "~/.emacs.d/info/"))
 
 
 ;;;
