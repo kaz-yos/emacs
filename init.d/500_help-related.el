@@ -1,3 +1,25 @@
+;;; 500_help-related.el --- -*- lexical-binding: t; -*-
+
+;;;
+;;; info
+;; http://www.emacswiki.org/emacs/InfoPath
+(add-to-list 'Info-default-directory-list "~/.emacs.d/info/")
+
+
+;;;
+;;; Use default eldoc (loaded automatically)
+;; (require 'eldoc)
+;; eldoc-extension
+;; http://d.hatena.ne.jp/rubikitch/20090207/1233936430
+(require 'eldoc-extension)
+(setq eldoc-idle-delay 0)
+(setq eldoc-echo-area-use-multiline-p t)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+(setq eldoc-minor-mode-string "") ; No need for ElDoc in modeline (rubikitch book p231)
+
+
 ;; ;; guide-key.el	for prefix key live help
 ;; ;; ELPA 2014-02-03
 ;; ;; See elpa help file. It is very helpful.
@@ -42,16 +64,3 @@
 ;; (setq guide-key/popup-window-position 'bottom)
 ;; ;; Activate
 ;; (guide-key-mode 1)  ; guide-key-mode on
-
-
-;; Use default eldoc (loaded automatically)
-;; (require 'eldoc)
-;; eldoc-extension
-;; http://d.hatena.ne.jp/rubikitch/20090207/1233936430
-(require 'eldoc-extension)
-(setq eldoc-idle-delay 0)
-(setq eldoc-echo-area-use-multiline-p t)
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-(setq eldoc-minor-mode-string "")		; No need for ElDoc in modeline (rubikitch book p231)
