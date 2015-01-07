@@ -165,17 +165,33 @@
 
 
 
-;; ;;; ido.el and flx-ido.el		; flx integration for ido
-;; ;; http://www.emacswiki.org/emacs/InteractivelyDoThings
-;; ;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
-;; ;; http://miyazakikenji.wordpress.com/2013/06/11/emacs-に-ido-mode/
-;; ;;
-;; (require 'flx-ido)
-;; (ido-mode 1)
-;; (ido-everywhere 1)
-;; (flx-ido-mode 1)
-;; ;; disable ido faces to see flx highlights.
-;; (setq ido-use-faces nil)
+;;;
+;;; IDO-RELATED
+;;
+;;; ido.el
+(require 'ido)
+;; Flexible matching
+(setq ido-enable-flex-matching t)
+(ido-mode 1)
+(ido-everywhere 1)
+;;
+;;
+;;; flx-ido.el
+;; http://www.emacswiki.org/emacs/InteractivelyDoThings
+;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
+;; http://miyazakikenji.wordpress.com/2013/06/11/emacs-に-ido-mode/
+(require 'flx-ido)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-use-faces nil)
+;;
+;;
+;;; ido-vertical-mode.el
+;; http://rubikitch.com/2015/01/06/ido-vertical-mode/
+(require 'ido-vertical-mode)
+;; height
+(setq ido-max-window-height 0.75)
+(ido-vertical-mode 1)
 
 
 ;;;
