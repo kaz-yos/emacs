@@ -10,6 +10,7 @@
 ;; https://github.com/kumarshantanu/lein-exec#getting-dependencies-from-within-script
 (use '[leiningen.exec :only (deps)])
 (deps '[[org.clojure/clojure "1.6.0"]
+        [midje "1.6.3"]
         [bigml/sampling "3.0"]])
 
 ;;; Namespace
@@ -17,6 +18,7 @@
   (:require [clojure.string  :as cstr]
             [clojure.set     :as cset]
             [clojure.java.io :as jio]
+            [midje.sweet :as mj]
             (bigml.sampling [simple :as simple]
                             [reservoir :as reservoir]
                             [stream :as stream])))
