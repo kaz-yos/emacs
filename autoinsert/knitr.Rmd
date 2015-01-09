@@ -1,8 +1,6 @@
 
 ==================
-<!--
-    ```
--->
+
 ```{r, message = FALSE, tidy = FALSE, echo = F}
 ## knitr configuration: http://yihui.name/knitr/options#chunk_options
 library(knitr)
@@ -20,9 +18,6 @@ opts_knit$set(animation.fun = hook_ffmpeg_html)
 ## R configuration
 options(width = 116, scipen = 5)
 ```
-<!--
-    ``` ```
--->
 
 ## References
 
