@@ -3,11 +3,15 @@
 ;; https://github.com/bbatsov/projectile#interactive-commands
 (require 'projectile)
 ;; Enable Projectile globally
+;; 2015-01-01 error *** Eval error ***  End of file during parsing
+;; 2015-01-11 Solved by deleting .emacs.d/projectile-bookmarks.eld
 (projectile-global-mode)
+;;
 ;; Simpler lighter
 (setq projectile-mode-line '(:eval
 			     (format " Pj[%s]"
 				     (projectile-project-name))))
+;;
 ;; C-c p s should always work even before entering into a project
 (global-set-key (kbd "C-c p s") 'projectile-switch-project)
 ;; Indexing
@@ -24,33 +28,14 @@
 ;; (setq projectile-switch-project-action 'helm-projectile)
 (setq projectile-switch-project-action 'projectile-dired)
 (setq projectile-find-dir-includes-top-level t)
-;; 
+;;
 ;;
 ;;; helm-projectile.el		; Helm plugin for projectile
-;; C-c p h for helm-projectile
-;; (require 'helm-projectile)
-;; C-M-z for helm-projectile
+;; http://tuhdo.github.io/helm-projectile.html
+(require 'helm-projectile)
 (global-set-key (kbd "C-M-z") 'helm-projectile)
-;;;
+;;
+;;
 ;;; helm-projectile-all.el
+;; https://github.com/spatz/helm-projectile-all
 (require 'helm-projectile-all)
-
-
-;;;
-;;; project-explorer.el		; A project explorer sidebar
-;; https://github.com/sabof/project-explorer
-;; (require 'project-explorer)
-
-
-;;;
-;;; eproject.el			; Assign files to projects, programatically
-;; http://www.emacswiki.org/emacs/eproject
-;; https://github.com/jrockway/eproject
-;; http://d.hatena.ne.jp/yuheiomori0718/20111227/1324995109
-;; http://d.hatena.ne.jp/yuheiomori0718/20111228/1325076537
-;; (require 'eproject)
-
-
-;;;
-;;; prosjekt.el			; a software project tool for emacs
-;; https://github.com/abingham/prosjekt
