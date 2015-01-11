@@ -176,6 +176,13 @@
 (ido-everywhere 1)
 ;;
 ;;
+;;; ido-ubiquitous.el
+;; https://github.com/DarwinAwardWinner/ido-ubiquitous
+(require 'ido-ubiquitous)
+;; ido for all completing-read
+(ido-ubiquitous-mode 1)
+;;
+;;
 ;;; flx-ido.el
 ;; http://www.emacswiki.org/emacs/InteractivelyDoThings
 ;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
