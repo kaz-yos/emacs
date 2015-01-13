@@ -42,6 +42,13 @@
 (define-key dired-mode-map (kbd "^") 'dired-subtree-up-dwim)
 
 
+;;; runner.el
+;; https://github.com/thamer/runner
+;; http://rubikitch.com/2015/01/13/runner-3/
+(require 'runner)
+(define-key dired-mode-map (kbd "C-c !") 'runner-add-extension)
+
+
 ;;; stripe-buffer.el
 ;; Turned off. Need decent color settings
 ;; https://github.com/sabof/stripe-buffer
