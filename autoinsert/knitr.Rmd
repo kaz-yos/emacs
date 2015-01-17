@@ -1,5 +1,9 @@
-
-==================
+---
+title: ""
+author: "kaz_yos"
+date: 
+output: html_document
+---
 
 ```{r, message = FALSE, tidy = FALSE, echo = F}
 ## knitr configuration: http://yihui.name/knitr/options#chunk_options
