@@ -2,10 +2,6 @@
 # name: doMC
 # key: doMC
 # --
-## Load doMC
-library(doMC)           # parallel backend to foreach/plyr
-registerDoMC()          # Turn on multicore processing
-
-## Configuration for parallel package
-options(cores = 4)
-options(mc.cores = 4)
+library(doMC)                    # parallel backend to foreach/plyr
+registerDoMC()                   # Turn on multicore processing
+options(cores = 4, mc.cores = 4) # Configuration for parallel package
