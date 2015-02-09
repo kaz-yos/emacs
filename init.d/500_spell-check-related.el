@@ -9,8 +9,10 @@
   (setq ispell-program-name "/usr/local/bin/aspell"))
 
 ;;; Configuration
+;; http://d.hatena.ne.jp/yutoichinohe/20140120/1390225624
 ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
 ;; https://joelkuiper.eu/spellcheck_emacs
+;; http://stackoverflow.com/questions/22107182/in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
 
 
 ;;;
@@ -22,7 +24,7 @@
 ;;
 (setq ispell-dictionary "en_US")
 ;;
-(global-set-key (kbd "s-c") 'ispell-word)
+;; (global-set-key (kbd "s-c") 'ispell-word)
 ;;
 (require 'ispell)
 ;;
@@ -83,7 +85,7 @@
 				 poss word cursor-location start end cursor-location)))
 	  (ispell-pdict-save t)))))
 ;;
-;; (global-set-key (kbd "s-c") 'flyspell-correct-word-popup-el)
+(global-set-key (kbd "s-c") 'flyspell-correct-word-popup-el)
 
 
 ;;;
