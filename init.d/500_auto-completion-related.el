@@ -95,7 +95,7 @@
 (setq popup-use-optimized-column-computation nil)
 ;;
 ;; Configure for some mode
-(add-hook 'text-mode-hook 'auto-complete-mode)
+;;
 
 
 ;;;

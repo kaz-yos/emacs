@@ -8,7 +8,9 @@
   ;; brew install aspell --with-lang-en
   (setq ispell-program-name "/usr/local/bin/aspell"))
 
-;;; Configuration
+
+;;;
+;;; Configuration helpful links
 ;; http://d.hatena.ne.jp/yutoichinohe/20140120/1390225624
 ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
 ;; https://joelkuiper.eu/spellcheck_emacs
@@ -39,9 +41,7 @@
 ;;;
 ;;; flyspell.el (built-in)
 (require 'flyspell)
-
-
-;;;
+;;
 ;;; Define a fuction to use the popup.el
 ;; 2015-02-09 Currently not functional
 ;; http://d.hatena.ne.jp/mooz/20100423/p1
@@ -86,9 +86,8 @@
 	  (ispell-pdict-save t)))))
 ;;
 (global-set-key (kbd "s-c") 'flyspell-correct-word-popup-el)
-
-
-;;;
+;;
+;;
 ;;; Auto-start flyspell-mode for these files
 ;; 2015-02-09 AquaSKK appears ok.
 (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
@@ -112,4 +111,6 @@
 ;; Enable for these modes
 (add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
 (add-hook 'mail-mode-hook 'my/enable-ac-ispell)
-(add-hook 'text-mode-hook 'my/enable-ac-ispell)
+;; 2015-02-09 Not functional?
+(add-hook 'fundamental-mode-hook 'auto-complete-mode)
+(add-hook 'fundamental-mode-hook 'my/enable-ac-ispell)
