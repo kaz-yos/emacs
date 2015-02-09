@@ -4,18 +4,41 @@
 ;;; On Macx, configure aspell
 ;; Mac-only configuration
 (when (eq system-type 'darwin)
-  ;; http://blog.bungu-do.jp/archives/2426
-  (setq ispell-program-name "/usr/local/bin/aspell")
-  )
+  ;; http://d.hatena.ne.jp/yutoichinohe/20140120/1390225624
+  ;; brew install aspell --with-lang-en
+  (setq ispell-program-name "/usr/local/bin/aspell"))
+
+;;; Configuration
+;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
+
+
+;;;
+;;; ispell.el (built-in)
+;; Ignore Japanese
+;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
+(eval-after-load "ispell"
+  '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+;;
+(global-set-key (kbd "s-c") 'ispell-word)
+;;
+(require 'ispell)
+
+
+
+;;;
+;;; flyspell.el (built-in)
+(require 'flyspell)
+
 
 ;;;
 ;;; Define a fuction to use the popup.el
+;; 2015-02-09 Currently not functional
 ;; http://d.hatena.ne.jp/mooz/20100423/p1
 (defun flyspell-correct-word-popup-el ()
   "Pop up a menu of possible corrections for misspelled word before point."
   (interactive)
-  ;; use the correct dictionary (commented out 2014-11-14 no longer exist?)
-  ;; (flyspell-accept-buffer-local-defs)
+  ;; use the correct dictionary
+  (flyspell-accept-buffer-local-defs)
   (let ((cursor-location (point))
 	(word (flyspell-get-word nil)))
     (if (consp word)
@@ -51,7 +74,7 @@
 				 poss word cursor-location start end cursor-location)))
 	  (ispell-pdict-save t)))))
 ;;
-;; (global-set-key (kbd "s-s") 'flyspell-correct-word-popup-el)
+;; (global-set-key (kbd "s-c") 'flyspell-correct-word-popup-el)
 
 
 ;;;
@@ -88,23 +111,3 @@
 (add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
 (add-hook 'mail-mode-hook 'my/enable-ac-ispell)
 (add-hook 'text-mode-hook 'my/enable-ac-ispell)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
