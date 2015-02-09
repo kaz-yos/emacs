@@ -81,8 +81,30 @@
       (ac-ispell-setup)))
 ;;
 (defun my/enable-ac-ispell ()
+  (interactive)
   (add-to-list 'ac-sources 'ac-source-ispell))
 ;;
 ;; Enable for these modes
 (add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
 (add-hook 'mail-mode-hook 'my/enable-ac-ispell)
+(add-hook 'text-mode-hook 'my/enable-ac-ispell)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

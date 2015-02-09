@@ -93,6 +93,9 @@
 ;; Prevent broken popup
 ;; http://stackoverflow.com/questions/13242165/emacs-auto-complete-popup-menu-broken
 (setq popup-use-optimized-column-computation nil)
+;;
+;; Configure for some mode
+(add-hook 'text-mode-hook 'auto-complete-mode)
 
 
 ;;;
