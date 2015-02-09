@@ -10,6 +10,7 @@
 
 ;;; Configuration
 ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
+;; https://joelkuiper.eu/spellcheck_emacs
 
 
 ;;;
