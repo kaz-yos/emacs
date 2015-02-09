@@ -88,9 +88,9 @@
 
 ;;;
 ;;; Auto-start flyspell-mode for these files
-;; Not on, it can be annoying in Japanese input
-;; (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
-;; (add-to-list 'auto-mode-alist '("\\.tex" . flyspell-mode))
+;; 2015-02-09 AquaSKK appears ok.
+(add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
+(add-to-list 'auto-mode-alist '("\\.tex" . flyspell-mode))
 
 
 ;;;
