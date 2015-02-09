@@ -2,9 +2,8 @@
 # name: melt
 # key: melt
 # --
-.melt <- melt(data          = $0,
-              id.vars       = c(),
-              measure.vars  = c(),
-              variable.name = "variable",
-              value.name    = "value"
-              )
+$1Melt <- melt(data          = $1,
+               id.vars       = c(),
+               measure.vars  = c(),
+               variable.name = "variable",
+               value.name    = "value")$0
