@@ -19,10 +19,18 @@
 (eval-after-load "ispell"
   '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 ;;
+(setq ispell-dictionary "en_US")
+;;
 (global-set-key (kbd "s-c") 'ispell-word)
 ;;
 (require 'ispell)
-
+;;
+;; Use i in ispell minor mode to save the word
+;; http://stackoverflow.com/questions/11070849/flyspell-without-a-mouse
+(defun save-ispell-word (word)
+  (interactive "sA word you want to add to dictionary ")
+  (ispell-send-string (concat "*" word "\n"))
+  (setq ispell-pdict-modified-p '(t)))
 
 
 ;;;
@@ -82,15 +90,6 @@
 ;; Not on, it can be annoying in Japanese input
 ;; (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.tex" . flyspell-mode))
-
-
-;;;
-;;; Save word without a mouse
-;; http://stackoverflow.com/questions/11070849/flyspell-without-a-mouse
-(defun save-ispell-word (word)
-  (interactive "sA word you want to add to dictionary ")
-  (ispell-send-string (concat "*" word "\n"))
-  (setq ispell-pdict-modified-p '(t)))
 
 
 ;;;
