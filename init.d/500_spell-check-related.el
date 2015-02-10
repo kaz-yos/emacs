@@ -106,7 +106,8 @@
 ;;
 (defun my/enable-ac-ispell ()
   (interactive)
-  (add-to-list 'ac-sources 'ac-source-ispell))
+  (add-to-list 'ac-sources 'ac-source-ispell)
+  (auto-complete-mode 1))
 ;;
 ;; Enable for these modes
 (add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
