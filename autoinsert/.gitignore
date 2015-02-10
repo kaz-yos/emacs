@@ -10,6 +10,8 @@
 *.xls*
 *.csv
 *.aux
+*.bbl
+*.blg
 auto/
 figure/
 cache/
