@@ -85,6 +85,8 @@ opts_chunk$set(comment = "##", error= TRUE, warning = showWarning, message = sho
                tidy = FALSE, cache = F, echo = T,
                fig.width = 5, fig.height = 5, dev.args = list(family = "sans"))
 knit_hooks$set(rgl = hook_rgl)
+rnd <- function(x, digits = 2) {sprintf(fmt = paste0("%.", digits,"f"), x)}
+
 @
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
