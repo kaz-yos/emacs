@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: matrix
+# key: matrix
+# binding: direct-keybinding
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# --
+\left[
+\begin{aligned}
+  1 && 0\\\
+  0 && 1\\\
+\end{aligned}
+\right]
