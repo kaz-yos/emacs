@@ -17,3 +17,4 @@
 (define-auto-insert "project\\.clj" "project.clj")
 (define-auto-insert "\\.rkt"        "racket.rkt")
 (define-auto-insert "\\.hy$"        "Hy.hy")
+(define-auto-insert "\\.stan$"      "Stan.stan")
