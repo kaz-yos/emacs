@@ -161,3 +161,11 @@
 ;; rubikitch elisp book page 71
 (set-face-foreground 'font-lock-regexp-grouping-backslash "green3")
 (set-face-foreground 'font-lock-regexp-grouping-construct "green")
+
+
+;;;
+;;; No emacs-default autosave or backup
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Auto-Save-Control.html
+(setq auto-save-default nil)
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Backup.html
+(setq make-backup-files nil)
