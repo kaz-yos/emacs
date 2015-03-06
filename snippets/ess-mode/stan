@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: stan
+# key: stan
+# binding: direct-keybinding
+# --
+## Load Stan file
+fileName <- "./"
+stan_code <- readChar(fileName, file.info(fileName)$size)
+cat(stan_code)
+## Run Stan
+resStan <- stan(model_code = stan_code, data = dat,
+                chains = 3, iter = 3000, warmup = 500, thin = 10)
