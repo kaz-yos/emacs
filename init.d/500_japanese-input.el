@@ -15,6 +15,7 @@
 ;;
 (global-set-key (kbd "s-j") 'skk-mode)
 (global-set-key (kbd "A-j") 'skk-mode)
+(global-set-key (kbd "M-j") 'skk-mode)
 ;;
 ;; Dictionaries
 ;; http://openlab.ring.gr.jp/skk/wiki/wiki.cgi?page=SKK%BC%AD%BD%F1
