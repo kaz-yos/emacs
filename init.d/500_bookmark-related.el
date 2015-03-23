@@ -65,8 +65,11 @@
      ;; LaTeX
      ((equal major-mode 'latex-mode)
       (setq regexp "section{\\|frametitle{\\|^%%%"))
+     ;; Markdown
+     ((equal major-mode 'markdown-mode)
+      (setq regexp "^### \\|^## \\|^# "))
      ;; Others
-     (t         ; /** for SAS; ** for Markdown
+     (t         ; /** for SAS
       (setq regexp "^### \\|^###$\\|^/\\*\\*\\|^\\*\\*")))
     ;;
     ;; Actual bookmarking
