@@ -137,3 +137,11 @@
 ;; (define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
 ;; (define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
 
+
+;;; helm-dictionary.el
+;; https://github.com/emacs-helm/helm-dictionary
+(require 'helm-dictionary)
+(setq helm-dictionary-database nil)
+;; Online dictionaries
+(setq helm-dictionary-online-dicts
+      '(("en.wiktionary.org" . "http://en.wiktionary.org/wiki/%s")))
