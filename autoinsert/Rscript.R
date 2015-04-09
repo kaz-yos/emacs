@@ -16,7 +16,6 @@ library(doMC)           # Parallel backend to foreach (used in plyr)
 registerDoMC()          # Turn on multicore processing
 options(cores = 4)
 options(mc.cores = 4)
-
 ## Load packages
 library(magrittr)
 library(dplyr)

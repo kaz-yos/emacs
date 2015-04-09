@@ -28,6 +28,7 @@ options(width = 116, scipen = 5)
 ## Load packages
 
 ```{r}
+
 library(magrittr)
 
 ```
