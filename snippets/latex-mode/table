@@ -3,7 +3,8 @@
 # key: table
 # --
 %% Use [H] with float package
-\begin{table}[H] %[!htbp]
+%%\begin{table}[H]
+\begin{table}[!htbp]
 \centering
     \begin{tabular}{cccccccccccccccccc}
     $0 & \\\
