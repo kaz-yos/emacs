@@ -2,4 +2,4 @@
 # name: cut
 # key: cut
 # --
-$1Cat <- cut($1, breaks = c(-Inf,$0,Inf), labels = c(,))
+$1Cat <- cut($1, breaks = c(-Inf,$0,Inf), labels = c(,), right = FALSE, include.lowest = TRUE)
