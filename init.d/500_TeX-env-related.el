@@ -179,8 +179,8 @@
 ;;
 ;;; company-auctex.el
 ;; https://github.com/alexeyr/company-auctex
-(require 'company-auctex)
-(company-auctex-init)
+;; (require 'company-auctex)
+;; (company-auctex-init)
 
 
 ;;;
@@ -193,15 +193,18 @@
 ;; Paths to required external software (specific to MacTeX)
 (setq latex-math-preview-command-path-alist
       '((latex    . "/usr/texbin/latex")
-	(dvipng   . "/usr/texbin/dvipng")
-	(dvips    . "/usr/texbin/dvips")
-	(pdflatex . "/usr/texbin/pdflatex")	; for beamer preview
-	(gs       . "/usr/local/bin/gs")		; for beamer preview
-	))
+        (dvipng   . "/usr/texbin/dvipng")
+        (dvips    . "/usr/texbin/dvips")
+        ;; for beamer preview
+        (pdflatex . "/usr/texbin/pdflatex")
+        ;; for beamer preview
+        (gs       . "/usr/local/bin/gs")
+        ))
 ;; Colors for dark background 2013-09-28
 (setq latex-math-preview-dvipng-color-option nil)
 (setq latex-math-preview-image-foreground-color "black")
 (setq latex-math-preview-image-background-color "white")
+;;
 ;; Function to preview math expression and shift focus after preview
 (defun my-latex-math-preview ()
   "Preview a math expression and shift focus after preview"
