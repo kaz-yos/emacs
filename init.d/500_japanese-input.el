@@ -22,3 +22,11 @@
 ;; http://openlab.ring.gr.jp/skk/skk-manual-git/Zui-moJi-Ben-De-naShe-Ding-.html#g_t_6700_3082_57fa_672c_7684_306a_8a2d_5b9a
 (setq skk-large-jisyo     "~/.emacs.d/skk/SKK-JISYO.L")
 (setq skk-cdb-large-jisyo "~/.emacs.d/skk/SKK-JISYO.L.cdb")
+
+
+
+;;;
+;;; ac-skk.el
+;; https://github.com/myuhe/ac-skk.el
+;;
+(require 'ac-skk)
