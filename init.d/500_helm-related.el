@@ -23,6 +23,7 @@
 ;; Disabled because it was giving an error 2013-11-22
 (setq helm-locate-command "")
 ;;
+(require 'cl)
 (let ((key-and-func
        `(;;(,(kbd "C-x C-f") helm-find-files)
 	 (,(kbd "M-x")	   helm-M-x)
