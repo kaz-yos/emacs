@@ -64,7 +64,7 @@
       (setq regexp "^(\\*\\*"))
      ;; LaTeX
      ((equal major-mode 'latex-mode)
-      (setq regexp "section{\\|frametitle{\\|^%%%"))
+      (setq regexp "^\\\\section{\\|^\\\\subsection{\\|^\\\\subsubsection{\\|frametitle{\\|^%%%"))
      ;; Markdown
      ((equal major-mode 'markdown-mode)
       (setq regexp "^### \\|^## \\|^# "))
