@@ -99,6 +99,7 @@
 ;;; phi-search.el
 ;; https://github.com/zk-phi/phi-search
 ;; https://www.youtube.com/watch?v=JSTO674y6Hcp
+;; http://rubikitch.com/2014/11/11/phi-search/
 (require 'phi-search)
 
 
