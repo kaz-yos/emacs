@@ -3,11 +3,9 @@
 # key: frame
 # --
 % ----------- slide --------------------------------------------------%
-\begin{frame}{$1}
-  \frametitle{$2}
-
+\begin{frame}[fragile]
+  \frametitle{$1}
   \begin{itemize}
   \item $0
   \end{itemize}
-
 \end{frame}
