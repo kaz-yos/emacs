@@ -41,7 +41,24 @@ cat("
 
 
 ################################################################################
-cat("### Record package versions\n")
+cat("\n### Record package versions\n")
 print(sessionInfo())
 ## Stop sinking to a file if active
 if (sink.number() != 0) {sink()}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
