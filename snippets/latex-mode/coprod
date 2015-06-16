@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: coprod
+# key: cp
+# binding: direct-keybinding
+# --
+\\coprod $0

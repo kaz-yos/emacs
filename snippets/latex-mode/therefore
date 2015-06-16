@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: therefore
+# key: tf
+# binding: direct-keybinding
+# --
+\\wasytherefore $0
