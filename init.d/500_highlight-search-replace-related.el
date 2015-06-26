@@ -1,4 +1,4 @@
-;;; 
+;;;
 ;;; crosshairs.el: highlight current line/column using hl-line(+).el/col-highlight.el
 ;; http://www.emacswiki.org/emacs/CrosshairHighlighting
 (require 'crosshairs)
@@ -48,7 +48,7 @@
 (global-set-key (kbd "A-[") 'my-highlight-symbol-prev)
 
 
-;;; 
+;;;
 ;;; anzu.el 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 ;; http://qiita.com/syohex/items/56cf3b7f7d9943f7a7ba
@@ -67,7 +67,7 @@
 ;; (global-set-key (kbd "C-c R") 'anzu-query-replace-regexp)
 
 
-;;; 
+;;;
 ;;; multiple-cursors for simultaneous editing multiple occurrences
 ;; https://github.com/magnars/multiple-cursors.el
 ;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
@@ -104,7 +104,7 @@
 
 
 
-;;; 
+;;;
 ;;; isearch the selected word 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 (defadvice isearch-mode (around isearch-mode-default-string (forward &optional regexp op-fun recursive-edit word-p) activate)
@@ -119,7 +119,15 @@
           (isearch-repeat-forward)))
     ad-do-it))
 
-;;; 
+
+;;;
+;;; loccur.el
+;; https://github.com/fourier/loccur
+;;
+(require 'loccur)
+
+
+;;;
 ;;; moccur-edit.el (el-get)
 ;; Requires color-moccur.el (elpa)
 ;; http://www.bookshelf.jp/elc/moccur-edit.el
@@ -135,7 +143,7 @@
 ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
 
 
-;;; 
+;;;
 ;;; helm-c-moccur.el		; helm source for color-moccur.el
 (require 'helm-c-moccur)
 (global-set-key (kbd "M-o") 'helm-c-moccur-occur-by-moccur)
@@ -146,7 +154,7 @@
 (global-set-key (kbd "C-M-s") 'helm-c-moccur-isearch-forward)
 (global-set-key (kbd "C-M-r") 'helm-c-moccur-isearch-backward)
 
-;;; 
+;;;
 ;;; ag.el and wgrep-ag.el. Faster replacement for moccur-edit.el 2014-01-14
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
 ;; https://github.com/Wilfred/ag.el
@@ -164,7 +172,7 @@
 ;; r in ag result buffer invokes edit mode. C-x C-s to save. C-x C-k to cancel.
 (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
 
-;;; 
+;;;
 ;;; highlight-sexp.el
 ;; http://www.emacswiki.org/emacs/HighlightSexp
 ;; Color M-x list-colors-display  to check good colors
@@ -179,7 +187,7 @@
 (global-set-key (kbd "s-x") 'highlight-sexp-mode)
 
 
-;;; 
+;;;
 ;;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
 (require 'expand-region)
@@ -187,7 +195,7 @@
 (global-set-key (kbd "C-M-,") 'er/contract-region)
 
 
-;;; 
+;;;
 ;;; cmigemo (installed from Homebrew)
 ;; Mac-only configuration
 (when (eq system-type 'darwin)
@@ -206,7 +214,7 @@
   )
 
 
-;;; 
+;;;
 ;;; rainbow-mode.el
 ;; Make strings describing colors appear in colors
 ;; http://julien.danjou.info/projects/emacs-packages
@@ -219,7 +227,7 @@
 ;; See variable rainbow-r-colors-alist
 
 
-;;; 
+;;;
 ;;; rainbow-blocks.el
 ;;
 ;; Rainbow-blocks highlights blocks made of parentheses, brackets, and
@@ -232,7 +240,7 @@
 
 ;;;
 ;;; Temprary fix for void cua-replace-region
-;; https://github.com/Fuco1/smartparens/issues/271 
+;; https://github.com/Fuco1/smartparens/issues/271
 (unless (fboundp 'cua-replace-region)
   (defun cua-replace-region ()
     "Replace the active region with the character you type."
