@@ -27,7 +27,7 @@
  '(global-anzu-mode t)
  '(haskell-mode-hook
    (quote
-    (turn-on-eldoc-mode turn-on-haskell-doc turn-on-haskell-indent)))
+    (turn-on-eldoc-mode turn-on-haskell-doc turn-on-haskell-indent)) t)
  '(linum-format " %7i ")
  '(magit-diff-options nil)
  '(main-line-color1 "#1E1E1E")
