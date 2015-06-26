@@ -2,12 +2,10 @@
 # name: comp.risk
 # key: comp.risk
 # --
- <- comp.risk(formula      = Surv(time, cause > 0) ~ $0,
+ <- comp.risk(formula      = Event(time, cause, cens.code = 0) ~ $0,
               data         = ,
-              cause        = $cause,    # causes. 0 for censoring
-              causeS       = 1,         # specificies which cause we consider
-              cens.code    = 0,         # censoring code
-              resample.iid = 1,         # to return the iid decomposition
-              n.sim        = 100,       # number of simulations in resampling
+              cause        = 1,   # specificies which cause we consider
+              resample.iid = 1,   # to return the iid decomposition
+              n.sim        = 100, # number of simulations in resampling
               model        = c("additive","prop","rcif","logistic")[1]
               )
