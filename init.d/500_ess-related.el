@@ -223,6 +223,23 @@
 ;;; ess-R-data-view.el
 ;; https://github.com/myuhe/ess-R-data-view.el/blob/master/README.org
 (define-key ess-mode-map (kbd "C-c C-d C-e") 'ess-R-dv-pprint)
+;;
+;;;
+;;; Send X to ESS buffer
+(defun ess-send-X ()
+  "Send X to ESS buffer to resolve LaTeX error"
+  (interactive)
+  ;; Go to inferior process
+  (ess-switch-to-ESS t)
+  ;;
+  (insert "X")
+  ;; Return key
+  (inferior-ess-send-input)
+  ;; Come back to script
+  (ess-switch-to-inferior-or-script-buffer nil))
+;;; Give H-x
+(define-key ess-mode-map (kbd "H-x") 'ess-send-X)
+(define-key latex-mode-map (kbd "H-x") 'ess-send-X)
 
 
 ;;;
