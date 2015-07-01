@@ -40,6 +40,18 @@
 ;; The main problem is emacsclient hits this error and die.
 ;; Magit uses emacsclient for COMMIT messages, so it does not work.
 ;;
+;; helm-internal function is supposed to add-hook and remove-hook these
+;; Buffer: File (grep): ~/.emacs.d/elpa/helm-20150630.1150/helm.el
+;; 1989                  (add-hook 'post-command-hook 'helm--maybe-update-keymap)
+;; 1990                  (add-hook 'post-command-hook 'helm--update-header-line)
+;; 2004       (remove-hook 'post-command-hook 'helm--maybe-update-keymap)
+;; 2005       (remove-hook 'post-command-hook 'helm--update-header-line)
+;; 2144           (unless (cl-loop for h in post-command-hook
+;; 2147             (add-hook 'post-command-hook 'helm--maybe-update-keymap)
+;; 2148             (add-hook 'post-command-hook 'helm--update-header-line))
+;; 3421 ;; Now we run this in post-command-hook, it is
+;; 3879   ;; This should be used in `post-command-hook',
+;;
 ;; Define a function to remove helm functions from post-command-hook
 (defun remove-helm-functions ()
   (remove-hook 'post-command-hook 'helm--maybe-update-keymap)
@@ -61,6 +73,7 @@
 ;; (add-hook 'server-visit-hook  'remove-helm--maybe-update-keymap)
 ;;
 ;; This hacky universal solution works.
+;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Command-Overview.html#Command-Overview
 ;; (add-hook 'post-command-hook 'remove-helm-functions)
 ;; 2015-07-01 Changed to the following.
 (add-hook 'pre-command-hook 'remove-helm-functions)
