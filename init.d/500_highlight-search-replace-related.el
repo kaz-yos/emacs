@@ -313,3 +313,9 @@
 ;;
 ;; Use ace-isearch-funtion-from-isearch if the search term is longer than
 (setq ace-isearch-input-length 600)
+;;
+;;; ace-jump-helm-line.el
+;; https://github.com/cute-jumper/ace-jump-helm-line
+(require 'ace-jump-helm-line)
+(eval-after-load "helm"
+  '(define-key helm-map (kbd "C-'") 'ace-jump-helm-line))
