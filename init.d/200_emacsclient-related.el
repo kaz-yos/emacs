@@ -56,6 +56,8 @@
 (defun remove-helm-functions ()
   (remove-hook 'post-command-hook 'helm--maybe-update-keymap)
   ;; 2015-07-01 The following function was also remaining in the hook.
+  ;; This hook was added 14 days ago coinciding breakage.
+  ;; https://github.com/emacs-helm/helm/commit/ff7c54d39501d894fdb06e049828b291327540e6
   (remove-hook 'post-command-hook 'helm--update-header-line))
 ;;
 ;; 2015-07-01
