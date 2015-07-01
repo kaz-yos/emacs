@@ -242,23 +242,6 @@
 
 
 ;;;
-;;; inlineR.el for graphics inside code
-;; http://sheephead.homelinux.org/2011/02/10/6602/
-;; https://github.com/myuhe/inlineR.el
-(require 'inlineR)
-;; (setq inlineR-re-funcname "plot\|image\|hogehoge\|my-func")	; recognize these plotting functions
-;; (setq inlineR-default-image "jpeg")				; jpeg
-;; (setq inlineR-default-dir "/tmp/")				; images in tmp dir
-;; (setq inlineR-cairo-p t)					; Use Cairo package
-;;
-;; cacoo.el for additional graphics functionalities (need account?)
-(require 'cacoo)
-(require 'cacoo-plugins)      ; option
-(setq cacoo:api-key "APIKEY") ; option
-(global-set-key (kbd "M--") 'toggle-cacoo-minor-mode) ; key bind example
-
-
-;;;
 ;;; *.Rmd files invoke r-mode
 ;; Temporary fix for R markdown files.
 ;; poly-mode does not work well with auto-save
