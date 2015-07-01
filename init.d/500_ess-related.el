@@ -239,7 +239,7 @@
   (ess-switch-to-inferior-or-script-buffer nil))
 ;;; Give H-x
 (define-key ess-mode-map (kbd "H-x") 'ess-send-X)
-(define-key latex-mode-map (kbd "H-x") 'ess-send-X)
+(define-key TeX-mode-map (kbd "H-x") 'ess-send-X)
 
 
 ;;;
