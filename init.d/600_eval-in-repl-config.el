@@ -1,7 +1,8 @@
 ;;; eval-in-repl configuration
 
 ;; Uncomment to use the local dev repo
-(add-to-list 'load-path "~/Documents/programming/emacs-lisp-repos/eval-in-repl")
+(when (file-exists-p "~/Documents/programming/emacs-lisp-repos/eval-in-repl")
+  (add-to-list 'load-path "~/Documents/programming/emacs-lisp-repos/eval-in-repl"))
 
 ;; require the main file containing common functions
 (require 'eval-in-repl)
