@@ -40,7 +40,8 @@ Dependency: ace-swap-window"
   (require 'reveal-in-finder)
   ;; autoload test
   ;; (autoload 'reveal-in-finder "reveal-in-finder")
-  (global-set-key (kbd "C-c z") 'reveal-in-finder))
+  (global-set-key (kbd "C-c z") 'reveal-in-finder)
+  (define-key TeX-mode-map (kbd "C-c z z") 'reveal-in-finder))
 
 
 ;;;
