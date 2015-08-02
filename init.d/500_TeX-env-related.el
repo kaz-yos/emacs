@@ -54,6 +54,10 @@
 ;; tell application "Emacs" to activate
 ;;
 ;;; Add commands
+;; 4.1.2 Selecting and Executing a Command
+;; https://www.gnu.org/software/auctex/manual/auctex/Selecting-a-Command.html
+;; %s becomes the file name without .tex, but .Rnw is not removed correctly.
+;;
 (add-hook 'LaTeX-mode-hook
           (function (lambda ()
                       (add-to-list 'TeX-command-list
