@@ -36,12 +36,17 @@ Dependency: ace-swap-window"
 ;;; reveal-in-finder.el
 ;; Mac-only configuration
 (when (eq system-type 'darwin)
+
+  ;; Add path to developmental repo
+  ;; (when (file-exists-p "~/Documents/programming/emacs-lisp-repos/reveal-in-osx-finder")
+  ;;   (add-to-list 'load-path "~/Documents/programming/emacs-lisp-repos/reveal-in-osx-finder"))
+
   ;; https://github.com/kaz-yos/elisp
-  (require 'reveal-in-finder)
+  (require 'reveal-in-osx-finder)
   ;; autoload test
   ;; (autoload 'reveal-in-finder "reveal-in-finder")
-  (global-set-key (kbd "C-c z") 'reveal-in-finder)
-  (define-key TeX-mode-map (kbd "C-c z z") 'reveal-in-finder))
+  (global-set-key (kbd "C-c z") 'reveal-in-osx-finder)
+  (define-key TeX-mode-map (kbd "C-c z z") 'reveal-in-osx-finder))
 
 
 ;;;
