@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: testthat
+# key: tt
+# binding: direct-keybinding
+# --
+test_that("$0", {
+
+    ## Expectations
+    expect_equal(NA,  NA)
+})

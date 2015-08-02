@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: expect_equal
+# key: ee
+# binding: direct-keybinding
+# --
+expect_equal($0)
