@@ -161,8 +161,10 @@
 ;; Define a one step function for .Rnw 2013-09-10
 (defun ess-swv-weave-PDF ()
   (interactive)
+  ;
   ;; nil to run with default processor
   (ess-swv-weave nil)
+  ;;
   ;; Instead of (ess-swv-PDF), do the same from R console
   (let* ((Rnw-buffer-file-name (buffer-file-name))
          (dir-name (file-name-directory Rnw-buffer-file-name))
@@ -173,7 +175,13 @@
     ;; setwd() to current .Rnw's directory (otherwise PDF goes to R's current dir
     (ess-send-string r-process (concat "setwd('" dir-name "')") t)
     ;; Invoke texi2pdf on the .tex file
-    (ess-send-string r-process (concat "system('texi2pdf " latex-filename "')") t)))
+    ;; file_name.Rnw.pdf is generated intentionally
+    (ess-send-string r-process (concat "system('texi2pdf "
+                                       latex-filename
+                                       " -o "
+                                       Rnw-buffer-file-name
+                                       ".pdf"
+                                       "')") t)))
 ;;
 ;; M-n s
 (define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave-PDF)
