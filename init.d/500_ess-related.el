@@ -29,17 +29,17 @@
 ;;; my-RRR style (minor modification of default RRR) 2014-05-19
 ;; http://emacs.1067599.n5.nabble.com/indentation-of-ggplot-code-and-ess-13-09-02-td322315.html#a322335
 ;;; https://github.com/emacs-ess/ESS/issues/96
-(add-to-list 'ess-style-alist
-	     '(my-RRR (ess-indent-level . 4)
-		      (ess-first-continued-statement-offset . 2)
-		      (ess-continued-statement-offset . 0)
-		      (ess-brace-offset . 0)
-		      (ess-arg-function-offset . 4)
-		      (ess-arg-function-offset-new-line . '(4))
-		      (ess-expression-offset . 4)
-		      (ess-else-offset . 0)
-		      (ess-close-brace-offset . 0)))
-(setq ess-default-style 'my-RRR)
+;; (add-to-list 'ess-style-alist
+;; 	     '(my-RRR (ess-indent-level . 4)
+;; 		      (ess-first-continued-statement-offset . 2)
+;; 		      (ess-continued-statement-offset . 0)
+;; 		      (ess-brace-offset . 0)
+;; 		      (ess-arg-function-offset . 4)
+;; 		      (ess-arg-function-offset-new-line . '(4))
+;; 		      (ess-expression-offset . 4)
+;; 		      (ess-else-offset . 0)
+;; 		      (ess-close-brace-offset . 0)))
+;; (setq ess-default-style 'my-RRR)
 ;;
 ;;
 ;; Key assignment for delete trailing whitespace
