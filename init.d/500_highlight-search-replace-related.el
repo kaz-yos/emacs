@@ -308,8 +308,8 @@
 ;; all characters, not just word beginning
 (setq ace-isearch-submode 'ace-jump-char-mode)
 ;;
-;; Delay before ace-jump kicks in
-(setq ace-isearch-input-idle-delay 0.3)
+;; Delay before ace-jump kicks in (I don't use this)
+(setq ace-isearch-input-idle-delay 10)
 ;;
 ;; Use ace-isearch-funtion-from-isearch if the search term is longer than
 (setq ace-isearch-input-length 600)
@@ -319,3 +319,11 @@
 (require 'ace-jump-helm-line)
 (eval-after-load "helm"
   '(define-key helm-map (kbd "C-'") 'ace-jump-helm-line))
+
+
+
+;;;
+;;; avy.el
+;; https://github.com/abo-abo/avy
+;; Potentially more powerful alternative to ace-jump-mode.el?
+;; (require 'avy)
