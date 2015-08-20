@@ -2,7 +2,7 @@
 # name: survplot
 # key: survplot
 # --
-survplot(fit             = $0,
+survplot(fit             = $0,                    # rms::npsurv()
          conf            = c("none","bands","bars")[1],
          xlab            = "", ylab = "Survival",
          ## xlim         = c(0,100),
