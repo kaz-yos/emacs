@@ -236,15 +236,16 @@
 (defun ess-send-X ()
   "Send X to ESS buffer to resolve LaTeX error"
   (interactive)
-  ;; Go to inferior process
-  (ess-switch-to-ESS t)
   ;;
-  (insert "X")
-  ;; Return key
-  (inferior-ess-send-input)
-  ;; Come back to script
-  (ess-switch-to-inferior-or-script-buffer nil))
-;;; Give H-x
+  (save-current-buffer
+    ;; Go to inferior process
+    (ess-switch-to-ESS t)
+    ;;
+    (insert "X")
+    ;; Return key
+    (inferior-ess-send-input)))
+;;
+;; Give H-x
 (define-key ess-mode-map (kbd "H-x") 'ess-send-X)
 (define-key TeX-mode-map (kbd "H-x") 'ess-send-X)
 
