@@ -13,3 +13,9 @@
 ;;; manage-minor-mode.el
 ;; http://fukuyama.co/manage-minor-mode
 (require 'manage-minor-mode)
+
+
+;;;
+;;; csv-mode.el
+;; http://emacswiki.org/emacs/CsvMode
+(require 'csv-mode)
