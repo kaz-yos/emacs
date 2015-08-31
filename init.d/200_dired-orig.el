@@ -19,6 +19,13 @@
 (add-hook 'dired-mode-hook 'turn-on-auto-revert-mode)
 
 
+;;; File type specific shell command
+;; https://www.gnu.org/software/emacs/manual/html_node/dired-x/Shell-Command-Guessing.html
+;; Use runner.el
+;; https://github.com/thamer/runner
+;; http://rubikitch.com/2015/01/13/runner/
+
+
 ;;; ls configuration
 ;; http://niku.name/articles/2013/04/30/emacsでls%20does%20not%20support%20--dired;%20see%20%60dired-use-ls-dired'%20for%20more%20details.と出たときの対処方法
 ;; ls does not support --dired; see `dired-use-ls-dired' for more details.
