@@ -49,6 +49,9 @@
 ;; http://rubikitch.com/2015/01/13/runner-3/
 ;; https://www.gnu.org/software/emacs/manual/html_node/dired-x/Shell-Command-Guessing.html
 ;;
+;; The functions `dired-guess-default' (from dired-x.el) and
+;; `dired-run-shell-command' (from dired-aux.el) will be redefined.
+;;
 (require 'runner)
 (define-key dired-mode-map (kbd "C-c !") 'runner-add-extension)
 
