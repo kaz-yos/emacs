@@ -3,4 +3,4 @@
 # key: diff
 # binding: direct-keybinding
 # --
-\\frac{\\textnormal{d}}{\\textnormal{d} x$0}
+\\frac{\\textrm{d}}{\\textrm{d} x$0}
