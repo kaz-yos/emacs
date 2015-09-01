@@ -296,10 +296,6 @@
 (require 'ace-window)
 (global-set-key (kbd "s-5") 'ace-window)
 ;;
-;;; ace-jump-zap.el
-;; https://github.com/waymondo/ace-jump-zap
-(require 'ace-jump-zap)
-;;
 ;;; ace-isearch.el
 ;; https://github.com/tam17aki/ace-isearch
 (require 'ace-isearch)
