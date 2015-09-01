@@ -83,43 +83,22 @@
 ;;   If a command is used successfully then it is stored permanently in
 ;;   `dired-shell-command-history'.
 ;;
-(defun buffer-do-shell-command (command &optional arg file-list)
-  "Run a shell command COMMAND on the current
+(defun buffer-do-async-shell-command (command &optional arg file-list)
+  "Run a shell command COMMAND on the current buffer file asynchronously
 
-Modifed version of dired-do-shell-command in dired-aux.el
+Modifed version of dired-do-async-shell-command in dired-aux.el
 Instead of obtaining file names from dired, gets a file name
 from the current buffer."
   (interactive
    (let ((files `(,buffer-file-name)))
      (list
       ;; Want to give feedback whether this file or marked files are used:
-      (dired-read-shell-command "! on %s: " current-prefix-arg files)
+      (dired-read-shell-command "& on %s: " current-prefix-arg files)
       current-prefix-arg
       files)))
-  (let* ((on-each (not (string-match-p dired-star-subst-regexp command)))
-	 (no-subst (not (string-match-p dired-quark-subst-regexp command)))
-	 (star (string-match-p "\\*" command))
-	 (qmark (string-match-p "\\?" command)))
-    ;; Get confirmation for wildcards that may have been meant
-    ;; to control substitution of a file name or the file name list.
-    (if (cond ((not (or on-each no-subst))
-	       (error "You can not combine `*' and `?' substitution marks"))
-	      ((and star on-each)
-	       (y-or-n-p "Confirm--do you mean to use `*' as a wildcard? "))
-	      ((and qmark no-subst)
-	       (y-or-n-p "Confirm--do you mean to use `?' as a wildcard? "))
-	      (t))
-	(if on-each
-	    (dired-bunch-files
-	     (- 10000 (length command))
-	     (function (lambda (&rest files)
-			 (dired-run-shell-command
-			  (dired-shell-stuff-it command files t arg))))
-	     nil
-	     file-list)
-	  ;; execute the shell command
-	  (dired-run-shell-command
-	   (dired-shell-stuff-it command file-list nil arg))))))
+  (unless (string-match-p "&[ \t]*\\'" command)
+    (setq command (concat command " &")))
+  (dired-do-shell-command command arg file-list))
 
 
 ;;; stripe-buffer.el
