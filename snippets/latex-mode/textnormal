@@ -1,6 +1,5 @@
 # -*- mode: snippet -*-
 # name: textnormal
 # key: textnormal
-# binding: C-c n
 # --
 \\textnormal{$0}
