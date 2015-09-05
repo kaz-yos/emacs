@@ -62,6 +62,10 @@
 ;;
 ;;; cider.el
 ;; https://github.com/clojure-emacs/cider
+;; Pin to the stable version
+;; https://github.com/clojure-emacs/cider#installation-via-packageel
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+;;
 (require 'cider)
 ;;
 ;; Configurations
