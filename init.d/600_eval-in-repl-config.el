@@ -64,6 +64,18 @@
 (add-hook 'sh-mode-hook
           '(lambda()
 	     (local-set-key (kbd "C-<return>") 'eir-eval-in-shell)))
+;; Version with opposite behavior to eir-jump-after-eval configuration
+(defun eir-eval-in-shell2 ()
+  "eval-in-repl for shell script (opposite behavior)
+
+This version has the opposite behavior to the eir-jump-after-eval
+configuration when invoked to evaluate a line."
+  (interactive)
+  (let ((eir-jump-after-eval (not eir-jump-after-eval)))
+       (eir-eval-in-shell)))
+(add-hook 'sh-mode-hook
+          '(lambda()
+	     (local-set-key (kbd "C-M-<return>") 'eir-eval-in-shell2)))
 
 ;; sml support
 ;; (require 'sml-mode) ; if not done elsewhere
