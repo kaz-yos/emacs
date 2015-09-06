@@ -99,11 +99,12 @@
 
 
 ;;;
-;;; COMPANY-MODE
-;;; company-mode.el
+;;; COMPANY-MODE (COMPlete ANYthing)
+;;; company.el
 ;; Modular in-buffer completion framework for Emacs
 ;; http://company-mode.github.io
 ;; http://www.emacswiki.org/CompanyMode
+(require 'company)
 ;;
 ;; company-mode everywhere
 ;; (add-hook 'after-init-hook 'global-company-mode)
@@ -113,15 +114,28 @@
 (require 'color)
 (let ((bg (face-attribute 'default :background)))
   (custom-set-faces
-   `(company-tooltip	       ((t (:inherit default :background ,(color-lighten-name bg (+ 2 50))))))
-   `(company-scrollbar-bg      ((t (:background ,(color-lighten-name bg (+ 10 50))))))
-   `(company-scrollbar-fg      ((t (:background ,(color-lighten-name bg (+ 5 50))))))
-   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-   `(company-tooltip-common    ((t (:inherit font-lock-constant-face))))))
+   ;; auto-complete-like color setting
+   ;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
+   `(company-tooltip                  ((t   :background "lightgray" :foreground "black")))
+   `(company-tooltip-selection        ((t   :background "steelblue" :foreground "white")))
+   `(company-tooltip-mouse            ((t   :background "blue"      :foreground "white")))
+   `(company-tooltip-common           ((t   :background "lightgray" :foreground "black")))
+   `(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
+   `(company-scrollbar-fg             ((t   :background "black")))
+   `(company-scrollbar-bg             ((t   :background "gray")))
+   `(company-preview                  ((t   :background nil         :foreground "darkgray")))
+   `(company-preview-common           ((t   :background nil         :foreground "darkgray")))))
+;;
+;; Keybidning
+(eval-after-load 'company
+  '(progn
+     (define-key company-active-map (kbd "C-n") 'company-select-next)
+     (define-key company-active-map (kbd "C-p") 'company-select-previous)))
 
 
 ;;;
-;;; icicles.el		; Minibuffer input completion and cycling.
+;;; icicles.el
+;; Enhances minibuffer completion
 ;; http://www.emacswiki.org/emacs/Icicles
 ;; Nutshell
 ;; http://www.emacswiki.org/emacs/Icicles_-_Nutshell_View
