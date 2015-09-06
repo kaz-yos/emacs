@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: textnormal
-# key: textnormal
+# key: tnl
 # --
 \\textnormal{$0}

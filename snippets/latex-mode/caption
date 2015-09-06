@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: diff
-# key: diff
+# name: caption
+# key: capt
 # binding: direct-keybinding
 # --
-\\frac{\\text{d}}{\\text{d} x$0}
+\\caption{\\label{$1} $0}

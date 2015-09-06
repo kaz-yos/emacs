@@ -1,5 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: textrm
-# key: trm
+# name: text
+# key: text
+# binding: C-c n
 # --
-\\textrm{$0}
+\\text{$0}
