@@ -106,6 +106,9 @@
 ;; company-mode everywhere
 (add-hook 'after-init-hook 'global-company-mode)
 ;;
+;; 2 letters before completion kicks in
+(setq company-minimum-prefix-length 2)
+;;
 ;; I don't like the default colors!
 ;; http://www.emacswiki.org/CompanyMode#toc6
 (require 'color)
@@ -122,7 +125,7 @@
  `(company-preview                  ((t   :background nil         :foreground "darkgray")))
  `(company-preview-common           ((t   :background nil         :foreground "darkgray"))))
 ;;
-;; Keybidning
+;; Keybinding
 (eval-after-load 'company
   '(progn
      (define-key company-active-map (kbd "C-n") 'company-select-next)
