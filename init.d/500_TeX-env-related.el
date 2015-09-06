@@ -15,10 +15,6 @@
 ;; http://emacsworld.blogspot.com/2011/05/auctex-tip-automatically-save-file.html
 (setq TeX-save-query nil) ; autosave before compiling
 ;;
-;; Emacs: Associate a File with a Major Mode
-;; http://ergoemacs.org/emacs/emacs_auto-activate_a_major-mode.html
-(add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
-;;
 ;;; TeX-fold-mode on by default (C-c C-b C-o to actually fold)
 ;; http://tex.stackexchange.com/questions/52179/what-is-your-favorite-emacs-and-or-auctex-command-trick
 ;; (add-hook 'LaTeX-mode-hook
