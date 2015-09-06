@@ -1,4 +1,4 @@
-;;; TeX environments
+;;; LaTeX environments
 ;;
 ;;;
 ;;; AUCtex
@@ -110,33 +110,21 @@
 ;;;
 ;;; Auto-complete for LaTeX
 ;;
+;; auto-complete-auctex.el
+(require 'auto-complete-auctex)
+;;
+;;
 ;;; ac-math.el
 ;; auto-complete sources for input of mathematical symbols and latex tags
 ;; https://github.com/vitoshka/ac-math#readme
-(require 'ac-math)
-(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
-;;
-;;; ac-latex-mode.el
-;; Function to add words in words in same mode buffers
-;; Slow 2013-09-15 2013-10-12 not helpful
-(defun add-ac-source-words-in-same-mode-buffers () ; add back
-  (setq ac-sources
-        (append '(ac-source-words-in-same-mode-buffers)
-                ac-sources)))
-;;
-(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
-  (setq ac-sources
-	(append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-		ac-sources)))
-;; Load by hook
-(add-hook 'LaTeX-mode-hook (lambda ()
-			     ;; For ac-latex-mode.el Overwrite default in LaTeX mode
-			     (setq ac-sources '(ac-source-math-latex ac-source-latex-commands))
-			     ;; (ac-l-setup) ; For auto-complete-latex (overwrite ac-sources)
-			     ;; (ac-latex-mode-setup) ; For ac-math (add to ac-sources)
-			     ;; Add back text completion.
-			     ;; (add-ac-source-words-in-same-mode-buffers)
-			     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)))
+;; (require 'ac-math)
+;; (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
+;; ;;
+;; ;; Load by hook
+;; (add-hook 'LaTeX-mode-hook (lambda ()
+;; 			     ;; Configure these ac-math.el variables only
+;; 			     (setq ac-sources '(ac-source-math-latex ac-source-latex-commands))
+;; 			     ))
 ;;
 ;; auto-complete-auctex.el ; 2014-02-23 now via ELPA
 ;; https://github.com/monsanto/auto-complete-auctex
