@@ -116,14 +116,14 @@
 ;; This is faster than ac-math.el. 2015-09-06
 ;; https://github.com/monsanto/auto-complete-auctex
 ;; Needs ac to be loaded first
-(require 'auto-complete)
-(require 'auto-complete-auctex)
+;; (require 'auto-complete)
+;; (require 'auto-complete-auctex)
 ;;
 ;;; ac-math.el
 ;; auto-complete sources for input of mathematical symbols and latex tags
 ;; https://github.com/vitoshka/ac-math#readme
 ;; (require 'ac-math)
-(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
+;; (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 ;; ;;
 ;; ;; Load by hook
 ;; (add-hook 'LaTeX-mode-hook (lambda ()
@@ -133,11 +133,23 @@
 ;;
 ;;; company-auctex.el
 ;; https://github.com/alexeyr/company-auctex
-;; (require 'company-auctex)
-;; (company-auctex-init)
+(require 'company-auctex)
+(company-auctex-init)
 ;;
 ;;; company-math.el
 ;; https://github.com/vspinu/company-math
+(require 'company-math)
+;;
+;; global activation of the unicode symbol completion
+(add-to-list 'company-backends 'company-math-symbols-unicode)
+;;
+;; local configuration for TeX modes
+(defun company-latex-mode-setup ()
+  (company-mode)
+  (setq-local company-backends
+              (append '(company-math-symbols-latex company-latex-commands)
+                      company-backends)))
+(add-hook 'TeX-mode-hook 'company-latex-mode-setup)
 
 
 ;;;
