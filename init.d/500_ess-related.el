@@ -11,37 +11,6 @@
 ;; No history, no saving!
 (setq-default inferior-R-args "--no-restore-history --no-save ")
 ;;
-;; Set code indentation following the standard in R sources.
-;; http://ess.r-project.org/Manual/ess.html#Indenting
-;; https://svn.r-project.org/ESS/trunk/lisp/ess-custom.el
-;; ESS provides: DEFAULT, OWN, GNU, BSD, K&R, C++, RRR, CLB.
-;;                                 DEF GNU BSD K&R C++ RRR CLB
-;; ess-indent-level                  2   2   8   5   4   4   2
-;; ess-continued-statement-offset    2   2   8   5   4   4   4
-;; ess-brace-offset                  0   0  -8  -5  -4   0   0
-;; ess-arg-function-offset           2   4   0   0   0   4   0
-;; ess-expression-offset             4   2   8   5   4   4   4
-;; ess-else-offset                   0   0   0   0   0   0   0
-;; ess-close-brace-offset            0   0   0   0   0   0   2
-;;
-;; (setq ess-default-style 'RRR)	; Common R chosen (default since 13.05)
-;;
-;;; my-RRR style (minor modification of default RRR) 2014-05-19
-;; http://emacs.1067599.n5.nabble.com/indentation-of-ggplot-code-and-ess-13-09-02-td322315.html#a322335
-;;; https://github.com/emacs-ess/ESS/issues/96
-;; (add-to-list 'ess-style-alist
-;; 	     '(my-RRR (ess-indent-level . 4)
-;; 		      (ess-first-continued-statement-offset . 2)
-;; 		      (ess-continued-statement-offset . 0)
-;; 		      (ess-brace-offset . 0)
-;; 		      (ess-arg-function-offset . 4)
-;; 		      (ess-arg-function-offset-new-line . '(4))
-;; 		      (ess-expression-offset . 4)
-;; 		      (ess-else-offset . 0)
-;; 		      (ess-close-brace-offset . 0)))
-;; (setq ess-default-style 'my-RRR)
-;;
-;;
 ;; Key assignment for delete trailing whitespace
 (add-hook 'ess-mode-hook (setq ess-nuke-trailing-whitespace-p t))
 (define-key ess-mode-map (kbd "s-w") 'ess-nuke-trailing-whitespace)
