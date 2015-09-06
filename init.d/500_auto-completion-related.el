@@ -17,8 +17,8 @@
 ;; (global-auto-complete-mode t)
 ;;
 ;; Activate ac in predefined modes
-(require 'auto-complete-config)
-(ac-config-default)
+;; (require 'auto-complete-config)
+;; (ac-config-default)
 ;;
 ;; Auto-complete for ESS configuration
 ;; http://www.emacswiki.org/emacs/ESSAuto-complete
@@ -93,9 +93,6 @@
 ;; Prevent broken popup
 ;; http://stackoverflow.com/questions/13242165/emacs-auto-complete-popup-menu-broken
 (setq popup-use-optimized-column-computation nil)
-;;
-;; Configure for some mode
-;;
 
 
 ;;;
