@@ -34,10 +34,6 @@
 (setq font-latex-deactivated-keyword-classes
       '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))
 ;;
-;;; Additional keys
-;; this does not work
-;; (define-key TeX-mode-map (kbd "A-/") 'TeX-insert-backslash)
-;;
 ;;;
 ;;; Japanese setting etc
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
@@ -109,10 +105,6 @@
 ;;
 ;; Interactive mode for errors
 (add-hook 'LaTeX-mode-hook 'TeX-interactive-mode)
-;;
-;; Single-step compilation that works with Japanese	; 2013-09-28 removed
-;; http://miyazakikenji.wordpress.com/2013/07/10/ess-で-sweave-出力/
-;; http://stackoverflow.com/questions/11060023/ess-auctex-sweave-synctex-integration-from-rnw-pdfviewer
 ;;
 ;;
 ;;;
