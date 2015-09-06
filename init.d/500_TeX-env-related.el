@@ -96,10 +96,12 @@
 ;; TeX-PDF mode (no DVI intermediate file in pdfTeX, LuaTex, XeTeX)
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
 ;;
-;; auctex-latexmk.el for Japanese tex to PDF direct conversion:
+;;; auctex-latexmk.el
+;; for Japanese tex to PDF direct conversion
 ;; http://qiita.com/tm_tn/items/cbc813028d7f5951b165
 ;; https://github.com/tom-tan/auctex-latexmk/
 ;; ln -sf ~/Documents/.latexmkrc ~/.latexmkrc
+;; C-c C-c LatexMk to use
 (require 'auctex-latexmk)
 (auctex-latexmk-setup)
 ;;
@@ -110,7 +112,9 @@
 ;;;
 ;;; Auto-complete for LaTeX
 ;;
-;; auto-complete-auctex.el
+;;; auto-complete-auctex.el
+(require 'auto-complete)
+;; Needs ac to be loaded first
 (require 'auto-complete-auctex)
 ;;
 ;;
