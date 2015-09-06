@@ -14,7 +14,7 @@
 ;; http://cx4a.org/software/auto-complete/manual.html
 (require 'auto-complete)
 ;; Activate ac everywhere
-(global-auto-complete-mode t)
+;; (global-auto-complete-mode t)
 ;;
 ;; Activate ac in predefined modes
 (require 'auto-complete-config)
@@ -107,24 +107,23 @@
 (require 'company)
 ;;
 ;; company-mode everywhere
-;; (add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 ;;
 ;; I don't like the default colors!
 ;; http://www.emacswiki.org/CompanyMode#toc6
 (require 'color)
-(let ((bg (face-attribute 'default :background)))
-  (custom-set-faces
-   ;; auto-complete-like color setting
-   ;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
-   `(company-tooltip                  ((t   :background "lightgray" :foreground "black")))
-   `(company-tooltip-selection        ((t   :background "steelblue" :foreground "white")))
-   `(company-tooltip-mouse            ((t   :background "blue"      :foreground "white")))
-   `(company-tooltip-common           ((t   :background "lightgray" :foreground "black")))
-   `(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
-   `(company-scrollbar-fg             ((t   :background "black")))
-   `(company-scrollbar-bg             ((t   :background "gray")))
-   `(company-preview                  ((t   :background nil         :foreground "darkgray")))
-   `(company-preview-common           ((t   :background nil         :foreground "darkgray")))))
+(custom-set-faces
+ ;; auto-complete-like color setting
+ ;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
+ `(company-tooltip                  ((t   :background "lightgray" :foreground "black")))
+ `(company-tooltip-selection        ((t   :background "steelblue" :foreground "white")))
+ `(company-tooltip-mouse            ((t   :background "blue"      :foreground "white")))
+ `(company-tooltip-common           ((t   :background "lightgray" :foreground "black")))
+ `(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
+ `(company-scrollbar-fg             ((t   :background "black")))
+ `(company-scrollbar-bg             ((t   :background "gray")))
+ `(company-preview                  ((t   :background nil         :foreground "darkgray")))
+ `(company-preview-common           ((t   :background nil         :foreground "darkgray"))))
 ;;
 ;; Keybidning
 (eval-after-load 'company
