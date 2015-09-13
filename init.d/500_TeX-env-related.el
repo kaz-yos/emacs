@@ -34,6 +34,12 @@
 (setq font-latex-deactivated-keyword-classes
       '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))
 ;;
+;;
+;;; Special key settings
+;;
+;; TeX-insert-backslash
+(define-key LaTeX-mode-map (kbd "A-/") 'TeX-insert-backslash)
+;;
 ;;;
 ;;; Japanese setting etc
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
@@ -189,7 +195,6 @@
   (setq w1 (selected-window))
   (latex-math-preview-beamer-frame)
   (select-window w1))
-(define-key LaTeX-mode-map (kbd "C-c s") 'my-latex-beamer-preview)
 ;;
 
 
