@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: int
-# key: int
+# name: mathbf
+# key: b
 # binding: direct-keybinding
 # --
-\int_0^t h(u)$0 \textnormal{d}u
+\\mathbf{$0}

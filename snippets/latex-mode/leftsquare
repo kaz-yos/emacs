@@ -1,6 +1,5 @@
 # -*- mode: snippet -*-
 # name: leftsquare
-# key: lts
-# binding: C-c [
+# key: ls
 # --
 \\left[ $0 \\right]

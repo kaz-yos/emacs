@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: leftcurly
-# key: ltc
+# key: lc
 # --
 \\left\\{ $0 \\right\\}

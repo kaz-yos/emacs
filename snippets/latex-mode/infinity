@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: infinity
+# key: inf
+# binding: direct-keybinding
+# --
+\\infty$0

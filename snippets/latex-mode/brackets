@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: brackets
+# key: br
+# binding: C-c [
+# --
+${1:$$(yas-choose-value '("\left(  \right)"  "\left[  \right]"  "\left\{  \right\}"))}

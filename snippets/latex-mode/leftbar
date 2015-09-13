@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: leftbar
-# key: ltb
+# key: lb
 # --
 \\left. $0 \\right|

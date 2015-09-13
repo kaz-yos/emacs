@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: newline
+# key: nr
+# binding: C-c j
+# --
+\\\
+$0

@@ -1,6 +1,5 @@
 # -*- mode: snippet -*-
-# name: leftparen
-# key: ltp
-# binding: C-c (
+# name: leftround
+# key: lr
 # --
 \\left( $0 \\right)
