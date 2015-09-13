@@ -200,6 +200,18 @@
 ;; http://d.hatena.ne.jp/ckazu/20100107/1262871971
 ;; http://stackoverflow.com/questions/144639/how-do-i-order-citations-by-appearance-using-bibtex
 ;;
+;;; reftex.el
+;; part of emacs
+;; http://www.gnu.org/software/emacs/manual/html_mono/reftex.html
+(require 'reftex)
+;; turn on REFTeX mode by default
+(add-hook 'LaTeX-mode-hook 'reftex-mode)
+;; AUCTeX integration
+(setq reftex-plug-into-AUCTeX t)
+;; Do not prompt for reference vs page
+(setq reftex-ref-macro-prompt nil)
+;;
+;;
 ;;; bibtex.el
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX
 ;; Getting current LaTeX document to use your .bib file
@@ -217,20 +229,6 @@
 ;; Provides utilities for extending BibTeX
 ;; https://bitbucket.org/tws/bibtex-utils
 (require 'bibtex-utils)
-;;
-;;
-;;; reftex.el
-;; part of emacs
-;; http://www.gnu.org/software/emacs/manual/html_mono/reftex.html
-(require 'reftex)
-;; turn on REFTeX mode by default
-(add-hook 'LaTeX-mode-hook 'reftex-mode)
-;; AUCTeX integration
-(setq reftex-plug-into-AUCTeX t)
-;;
-;; http://tex.stackexchange.com/questions/54739/reftex-wont-find-my-bib-file-in-local-library-tree
-;; So that RefTeX finds my bibliography
-;; (setq reftex-default-bibliography '("~/.emacs.d/biblio.bib"))
 ;;
 ;;
 ;;; zotelo (Zotero-Local)
