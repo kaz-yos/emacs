@@ -26,18 +26,18 @@
 (require 'cl)
 (let ((key-and-func
        `(;;(,(kbd "C-x C-f") helm-find-files)
-	 (,(kbd "M-x")	   helm-M-x)
-	 (,(kbd "C-z")	   helm-for-files)
-	 (,(kbd "M-y")	   helm-show-kill-ring)
-	 (,(kbd "C-x b")   helm-buffers-list)
-	 (,(kbd "C-x C-r") helm-recentf)
-	 ;;
-         (,(kbd "C-^")	   helm-c-apropos)
-         (,(kbd "C-;")	   helm-resume)
-         (,(kbd "s-c")	   helm-occur)
-	 (,(kbd "M-z")	   helm-do-grep)
-         (,(kbd "C-S-h")   helm-descbinds)
-	 )))
+         (,(kbd "M-x")     helm-M-x)
+         (,(kbd "C-M-x")   execute-extended-command)
+         (,(kbd "C-z")     helm-for-files)
+         (,(kbd "M-y")     helm-show-kill-ring)
+         (,(kbd "C-x b")   helm-buffers-list)
+         (,(kbd "C-x C-r") helm-recentf)
+         ;;
+         (,(kbd "C-^")     helm-c-apropos)
+         (,(kbd "C-;")     helm-resume)
+         (,(kbd "s-c")     helm-occur)
+         (,(kbd "M-z")     helm-do-grep)
+         (,(kbd "C-S-h")   helm-descbinds))))
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 ;;
