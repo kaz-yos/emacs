@@ -170,8 +170,8 @@
 ;;
 ;;
 ;;; clj-refactor.el
-(require 'clj-refactor)
-(add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
+;; (require 'clj-refactor)
+;; (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
 ;;
 ;; Setup keybindings
 ;; All functions in clj-refactor have a two-letter mnemonic shortcut. You
