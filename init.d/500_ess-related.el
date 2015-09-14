@@ -216,8 +216,9 @@
 ;;
 ;; Give H-x
 (define-key ess-mode-map (kbd "H-x") 'ess-send-X)
-(define-key TeX-mode-map (kbd "H-x") 'ess-send-X)
-
+(add-hook 'LaTeX-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "H-x") 'ess-send-X)))
 
 ;;;
 ;;; *.Rmd files invoke r-mode

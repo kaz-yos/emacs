@@ -46,7 +46,9 @@ Dependency: ace-swap-window"
   ;; autoload test
   ;; (autoload 'reveal-in-finder "reveal-in-finder")
   (global-set-key (kbd "C-c z") 'reveal-in-osx-finder)
-  (define-key TeX-mode-map (kbd "C-c z z") 'reveal-in-osx-finder))
+  (add-hook 'LaTeX-mode-hook
+            '(lambda ()
+               (local-set-key (kbd "C-c z z") 'reveal-in-osx-finder))))
 
 
 ;;;

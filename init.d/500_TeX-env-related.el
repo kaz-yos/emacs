@@ -38,7 +38,9 @@
 ;;; Special key settings
 ;;
 ;; TeX-insert-backslash
-(define-key LaTeX-mode-map (kbd "A-/") 'TeX-insert-backslash)
+(add-hook 'LaTeX-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "A-/") 'TeX-insert-backslash)))
 ;;
 ;;;
 ;;; Japanese setting etc
@@ -187,7 +189,7 @@
   (setq w1 (selected-window))
   (latex-math-preview-expression)
   (select-window w1))
-;; (define-key LaTeX-mode-map (kbd "C-c m") 'my-latex-math-preview)
+;;
 ;; Function to preview Beamer slide and shift focus after preview
 (defun my-latex-beamer-preview ()
   "Preview a Beamer slide and shift focus after preview"
