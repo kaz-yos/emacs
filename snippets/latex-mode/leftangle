@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: int
-# key: int
+# name: leftangle
+# key: la
 # binding: direct-keybinding
 # --
-\int_0^t h(u)$0 \textnormal{d}u
+\\langle $0 \\rangle
