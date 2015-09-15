@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: int
+# name: integral
 # key: int
 # binding: direct-keybinding
 # --
-\int_0^t h(u)$0 \textnormal{d}u
+\int_{0}^{t} h(u)$0 \text{d}u
