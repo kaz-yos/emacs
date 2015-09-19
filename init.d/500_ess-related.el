@@ -127,11 +127,29 @@
 ;; Supress ess-swv-PDF from opening PDF by meaning less value
 ;; http://tex.stackexchange.com/questions/69660/sweave-how-to-suppress-opening-new-instance-of-a-pdf-when-running-pdflatex
 (setq ess-pdf-viewer-pref "ls")
+;;
+;; Define a function to flush ess shell
+;; http://stackoverflow.com/questions/3447531/emacs-ess-version-of-clear-console
+(defun ess-flush-shell ()
+  "Flush ESS shell"
+  (interactive)
+  (let* (;; Assign the current buffer
+	 (script-window (selected-window))
+         (proc (get-process ess-local-process-name)))
+    ;; Change ESS shell (goes to bottom)
+    (ess-switch-to-ESS t)
+    ;; Flush
+    (comint-truncate-buffer)
+    ;; Come back to the script
+    (select-window script-window)
+    ;; Return nil (this is a void function)
+    nil))
+;;
 ;; Define a one step function for .Rnw 2013-09-10
 (defun ess-swv-weave-PDF ()
+  "One step function to sweave and create PDF"
   (interactive)
-  ;
-  ;; nil to run with default processor
+  ;; nil to run with default processor without asking
   (ess-swv-weave nil)
   ;;
   ;; Instead of (ess-swv-PDF), do the same from R console
@@ -150,7 +168,9 @@
                                        " -o "
                                        Rnw-buffer-file-name
                                        ".pdf"
-                                       "')") t)))
+                                       "')") t)
+    ;; Flush shell to prevent heavy log from staying around
+    (ess-flush-shell)))
 ;;
 ;; M-n s
 (define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave-PDF)
