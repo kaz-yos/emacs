@@ -2,4 +2,4 @@
 # name: leftround
 # key: lr
 # --
-\\left( $0 \\right)
+\left( $0 \right)

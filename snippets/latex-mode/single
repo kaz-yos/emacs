@@ -3,6 +3,6 @@
 # key: single
 # binding: direct-keybinding
 # --
-\\linespread{1}
+\linespread{1}
 $0
-\\linespread{2}
+\linespread{2}

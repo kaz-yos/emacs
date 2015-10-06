@@ -3,4 +3,4 @@
 # key: log
 # binding: direct-keybinding
 # --
-\\log{$0}
+\log{$0}

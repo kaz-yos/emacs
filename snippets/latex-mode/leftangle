@@ -3,4 +3,4 @@
 # key: la
 # binding: direct-keybinding
 # --
-\\langle $0 \\rangle
+\langle $0 \rangle

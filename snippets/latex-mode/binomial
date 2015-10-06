@@ -3,4 +3,4 @@
 # key: bin
 # binding: direct-keybinding
 # --
-{{$1}\\choose{$0}}
+{{$1}\choose{$0}}

@@ -3,4 +3,4 @@
 # key: lv
 # binding: direct-keybinding
 # --
-\\left| $0 \\right|
+\left| $0 \right|

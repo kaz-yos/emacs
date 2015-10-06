@@ -3,4 +3,4 @@
 # key: capt
 # binding: direct-keybinding
 # --
-\\caption{\\label{$1} $0}
+\caption{\label{$1} $0}

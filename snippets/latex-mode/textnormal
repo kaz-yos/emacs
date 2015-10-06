@@ -2,4 +2,4 @@
 # name: textnormal
 # key: tnl
 # --
-\\textnormal{$0}
+\textnormal{$0}

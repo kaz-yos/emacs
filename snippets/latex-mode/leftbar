@@ -2,4 +2,4 @@
 # name: leftbar
 # key: lb
 # --
-\\left. $0 \\right|
+\left. $0 \right|

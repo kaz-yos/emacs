@@ -3,4 +3,4 @@
 # key: ind
 # binding: direct-keybinding
 # --
-\\ind $0
+\ind $0

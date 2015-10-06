@@ -2,4 +2,4 @@
 # name: mathrm
 # key: mathrm
 # --
-\\mathrm{$0}
+\mathrm{$0}

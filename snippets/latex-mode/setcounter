@@ -3,4 +3,4 @@
 # key: reset
 # binding: direct-keybinding
 # --
-\\setcounter{subsection}{-1}
+\setcounter{subsection}{-1}

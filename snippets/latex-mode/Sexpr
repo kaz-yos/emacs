@@ -2,4 +2,4 @@
 # name: Sexpr
 # key: S
 # --
-\\Sexpr{$0}
+\Sexpr{$0}

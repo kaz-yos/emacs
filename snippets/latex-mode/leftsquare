@@ -2,4 +2,4 @@
 # name: leftsquare
 # key: ls
 # --
-\\left[ $0 \\right]
+\left[ $0 \right]
