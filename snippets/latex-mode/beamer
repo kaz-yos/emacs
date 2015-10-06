@@ -41,9 +41,9 @@
 \subtitle{Subtitle}
 \author[kaz_yos]{Kazuki Yoshida}
 \institute[HSPH]{
-  Doctor of Science Student (Pharmacoepidemiology) \\\
-  Department of Epidemiology \\\
-  Harvard T.H. Chan School of Public Health \\\
+  Doctor of Science Student (Pharmacoepidemiology) \\
+  Department of Epidemiology \\
+  Harvard T.H. Chan School of Public Health \\
   677 Huntington Ave, Boston, MA 02115, USA
 }
 \date{`(my-insert-date)`}
