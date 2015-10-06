@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: integral
-# key: int
+# name: eval_at
+# key: eval
 # binding: direct-keybinding
 # --
-\int_0^t h(u)$0 \text{d}u
+\\Bigg|_{x=0$0}
