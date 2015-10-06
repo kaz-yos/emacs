@@ -30,6 +30,9 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 ;;
+;; Some packages use defstruct, which is obsolete. Use cl-defstruct
+(defalias 'defstruct 'cl-defstruct)
+;;
 ;; Need to be initialized.
 (package-initialize)
 
