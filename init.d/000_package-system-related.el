@@ -23,7 +23,7 @@
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;;
 ;; org mode repository
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 ;;
 ;; Refresh contents  if no package-archive-contents available
 ;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
@@ -34,13 +34,29 @@
 (package-initialize)
 
 
-;;; el-get.el package system 2013-02-26
+;;; el-get.el package system
 ;; https://github.com/dimitri/el-get
+;;
 ;; The load-path is configured at the top of init.el.
+;;
+;;; Alternative Basic Setup with Installation via MELPA
+;; https://github.com/dimitri/el-get#alternative-basic-setup-with-installation-via-melpa
 (unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
+  (require 'package)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.org/packages/"))
+  (package-refresh-contents)
+  (package-initialize)
+  (package-install 'el-get)
+  (require 'el-get))
+;;
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+;;
 (el-get 'sync)
+;;
+;;; Packages installed via el-get
+;; smartchr
+;;
+;; essh no longer on el-get as of 2015-10-05. Installed from emacswiki
+;; moccur-edit no longer on el-get as of 2015-10-05. Installed from emacswiki
+;; highlight-sexp no longer on el-get as of 2015-10-05. Installed from emacswiki
