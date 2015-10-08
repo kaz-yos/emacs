@@ -1,6 +1,6 @@
 ;;; bm.el	Within-file bookmarking
-;; See ~/.emacs.d/elpa/bm-readme.txt
-;; http://d.hatena.ne.jp/peccu/20100402
+;; https://github.com/joodland/bm
+;;
 ;; Saving bookmarks (before require)
 ;; (setq-default bm-buffer-persistence t)
 (setq bm-repository-file "~/.emacs.d/bm-el-repository")
