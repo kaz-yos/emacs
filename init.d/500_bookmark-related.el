@@ -2,9 +2,9 @@
 ;; See ~/.emacs.d/elpa/bm-readme.txt
 ;; http://d.hatena.ne.jp/peccu/20100402
 ;; Saving bookmarks (before require)
-(setq-default bm-buffer-persistence t)
+;; (setq-default bm-buffer-persistence t)
 (setq bm-repository-file "~/.emacs.d/bm-el-repository")
-(setq bm-restore-repository-on-load t)	; bm-readme.txt
+;; (setq bm-restore-repository-on-load t)
 ;;
 ;; Load
 (require 'bm)
@@ -13,23 +13,23 @@
 (setq bm-annotation-width 5)   ; Minimum width
 (setq bm-header-annotation "") ; No need to show "Annotation"
 ;; Load on startup
-(add-hook 'after-init-hook		'bm-repository-load)
+;; (add-hook 'after-init-hook		'bm-repository-load)
 ;; Restore when finding file
-(add-hook 'find-file-hooks		'bm-buffer-restore)
+;; (add-hook 'find-file-hooks		'bm-buffer-restore)
 ;;
 ;; Saving on killing and saving a buffer
-(add-hook 'kill-buffer-hook		'bm-buffer-save)
-(add-hook 'auto-save-hook		'bm-buffer-save)
-(add-hook 'after-save-hook		'bm-buffer-save)
+;; (add-hook 'kill-buffer-hook		'bm-buffer-save)
+;; (add-hook 'auto-save-hook		'bm-buffer-save)
+;; (add-hook 'after-save-hook		'bm-buffer-save)
 ;; Version control (Rubikitch book p116)
-(add-hook 'after-revert-hook		'bm-buffer-restore)
-(add-hook 'vc-before-checkin-hook	'bm-buffer-save)
+;; (add-hook 'after-revert-hook		'bm-buffer-restore)
+;; (add-hook 'vc-before-checkin-hook	'bm-buffer-save)
 ;; Saving the repository to file when on exit.
 ;; kill-buffer-hook is not called when emacs is killed, so we
 ;; must save all bookmarks first.
-(add-hook 'kill-emacs-hook '(lambda nil
-                              (bm-buffer-save-all)
-                              (bm-repository-save)))
+;; (add-hook 'kill-emacs-hook '(lambda nil
+;;                               (bm-buffer-save-all)
+;;                               (bm-repository-save)))
 ;;
 ;; Define functions to do bm-previous/next and recenter
 (defun my-bm-next ()
