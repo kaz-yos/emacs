@@ -226,13 +226,15 @@
   "Send X to ESS buffer to resolve LaTeX error"
   (interactive)
   ;;
-  (save-current-buffer
+  (let* ((script-window (selected-window)))
     ;; Go to inferior process
     (ess-switch-to-ESS t)
     ;;
     (insert "X")
     ;; Return key
-    (inferior-ess-send-input)))
+    (inferior-ess-send-input)
+    ;; Come back to script
+    (select-window script-window)))
 ;;
 ;; Give H-x
 (define-key ess-mode-map (kbd "H-x") 'ess-send-X)
