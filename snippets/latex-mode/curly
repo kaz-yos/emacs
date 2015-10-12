@@ -2,7 +2,7 @@
 # name: curly
 # key: curly
 # --
-\left\{
+\left`(concat "\\" "{")`
   \begin{aligned}
     $0
   \end{aligned}

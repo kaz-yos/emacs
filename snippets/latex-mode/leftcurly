@@ -2,4 +2,4 @@
 # name: leftcurly
 # key: lc
 # --
-\left\{ $0 \right\}
+\left`(concat "\\" "{")` $0 \right`(concat "\\" "}")`
