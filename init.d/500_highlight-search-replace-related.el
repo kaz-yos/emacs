@@ -28,6 +28,10 @@
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (require 'highlight-symbol)
+;; No waiting
+(setq highlight-symbol-idle-delay 0)
+;;
+;; Key config
 (global-set-key (kbd "C-.") 'highlight-symbol-at-point)
 ;; (global-set-key (kbd "C-\}") 'highlight-symbol-next)
 ;; (global-set-key (kbd "C-\{") 'highlight-symbol-prev)
