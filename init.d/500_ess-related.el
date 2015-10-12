@@ -236,11 +236,11 @@
     ;; Come back to script
     (select-window script-window)))
 ;;
-;; Give H-x
+;; Give A-x (close to A-s for knitting)
 (define-key ess-mode-map (kbd "H-x") 'ess-send-X)
 (add-hook 'LaTeX-mode-hook
           '(lambda ()
-             (local-set-key (kbd "H-x") 'ess-send-X)))
+             (local-set-key (kbd "A-x") 'ess-send-X)))
 
 ;;;
 ;;; *.Rmd files invoke r-mode

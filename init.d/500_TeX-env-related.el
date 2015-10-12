@@ -38,9 +38,16 @@
 ;;; Special key settings
 ;;
 ;; TeX-insert-backslash
+(defun my-tex-insert-backslash ()
+  (interactive)
+  (insert "\\"))
+(defun my-tex-insert-forwardslash ()
+  (interactive)
+  (insert "/"))
 (add-hook 'LaTeX-mode-hook
           '(lambda ()
-             (local-set-key (kbd "A-/") 'TeX-insert-backslash)))
+             (local-set-key (kbd   "/") 'my-tex-insert-backslash)
+             (local-set-key (kbd "A-/") 'my-tex-insert-forwardslash)))
 ;;
 ;;;
 ;;; Japanese setting etc
@@ -83,8 +90,7 @@
                                      TeX-run-discard-or-function t t :help "Run Mozilla Firefox"))
                       (add-to-list 'TeX-command-list
                                    '("AdobeReader" "/usr/bin/open -a \"Adobe Reader.app\" %s.pdf"
-                                     TeX-run-discard-or-function t t :help "Run Adobe Reader"))
-		      )))
+                                     TeX-run-discard-or-function t t :help "Run Adobe Reader")))))
 ;;
 ;; (setq TeX-default-mode 'japanese-latex-mode)
 ;; jsarticle as the default style
