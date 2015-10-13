@@ -8,19 +8,6 @@
 (require 'ess-eldoc)				; Slows cursor movements slightly?
 ;; (setq ess-eldoc-show-on-symbol t)		; Shows eldoc when cursor is on function name (Causes errors)
 ;;
-;;
-;;; 2015-10-13 Hacky solution to .Rnw-helm incompatibility
-;; https://github.com/emacs-helm/helm/issues/1126
-;; Disable this offending function that makes it impossible
-;; to remove helm functions from post-command-hook.
-(defun ess-noweb-make-variable-permanent-local (var)
-  "Declare VAR buffer local, but protect it from beeing killed
-by major mode changes."
-  ;; (make-variable-buffer-local var)
-  ;; (put var 'permanent-local 't)
-  (ignore))
-;;
-;;
 ;; No history, no saving!
 (setq-default inferior-R-args "--no-restore-history --no-save ")
 ;;

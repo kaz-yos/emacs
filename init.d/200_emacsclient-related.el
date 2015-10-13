@@ -83,5 +83,6 @@
 ;;
 ;; This hacky universal solution works.
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Command-Overview.html#Command-Overview
+;; (add-hook 'post-command-hook 'remove-helm-functions)
 ;; 2015-07-01 Changed to the following.
-;; (add-hook 'pre-command-hook 'remove-helm-functions)
+(add-hook 'pre-command-hook 'remove-helm-functions)
