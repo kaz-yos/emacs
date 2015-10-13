@@ -36,7 +36,9 @@
 ;;
 ;; keybinding for magit-status
 (defun my-magit-status (dir)
+  (interactive)
   (ess-nuke-trailing-whitespace)
+  (save-buffer)
   (magit-status dir))
 ;;
 (global-set-key (kbd "C-c g") 'magit-status)
