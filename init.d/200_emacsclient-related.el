@@ -22,10 +22,17 @@
   (defun fp-kill-server-with-buffer-routine ()
     (and server-buffer-clients (server-done)))
   (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
-;;
-;;
+
+
+
 ;;;
 ;;; Handle *helm* buffer not found issue 2014-09-24, 2015-07-01
+;;
+;; Further information 2015-10-12
+;;  https://github.com/emacs-helm/helm/issues/1126
+;;  https://github.com/emacs-ess/ESS/issues/215
+;; This is an ESS bug. ess-noweb-make-variable-permanent-local disables
+;; removal of the helm commands from post-command-hook.
 ;;
 ;; Following errors were seen in *Messages* after opening *.Rnw file
 ;;
