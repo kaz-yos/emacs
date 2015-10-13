@@ -174,6 +174,7 @@
 ;;
 ;; M-n s
 (define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave-PDF)
+(define-key ess-noweb-minor-mode-map (kbd "H-s") 'ess-swv-weave-PDF)
 ;; M-n P
 (define-key ess-noweb-minor-mode-map (kbd "A-p") 'ess-swv-PDF)
 ;;
@@ -237,10 +238,8 @@
     (select-window script-window)))
 ;;
 ;; Give A-x (close to A-s for knitting)
-(define-key ess-mode-map (kbd "H-x") 'ess-send-X)
-(add-hook 'LaTeX-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "A-x") 'ess-send-X)))
+(define-key ess-noweb-minor-mode-map (kbd "A-x") 'ess-send-X)
+(define-key ess-noweb-minor-mode-map (kbd "H-x") 'ess-send-X)
 
 ;;;
 ;;; *.Rmd files invoke r-mode
