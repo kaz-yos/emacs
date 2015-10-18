@@ -39,11 +39,11 @@
 ;;
 ;; ESS
 (defun my-ess-smartchr-setting ()
-  (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
-  (local-set-key (kbd "+") (smartchr '(" + " "+")))
+  (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
+  (local-set-key (kbd "+") (smartchr '("+" " + ")))
   (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
   (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))) ; test
-  (local-set-key (kbd "~") (smartchr '(" ~ " "~")))
+  (local-set-key (kbd "~") (smartchr '("~" " ~ ")))
   (local-set-key (kbd "$") (smartchr '("$" "$`!!'$")))
   (local-set-key (kbd "%") (smartchr '("%" " %`!!'% ")))
 ;;  (local-set-key (kbd "[") (smartchr '("[`!!']" "[[`!!']]" "["))) ; not very useful
@@ -53,8 +53,8 @@
 ;;
 ;; Python
 (defun my-python-smartchr-setting ()
-  (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
-  (local-set-key (kbd "+") (smartchr '(" + " "+")))
+  (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
+  (local-set-key (kbd "+") (smartchr '("+" " + ")))
   (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
   (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))) ; test
   )
