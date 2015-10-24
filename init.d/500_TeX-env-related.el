@@ -175,13 +175,13 @@
 (autoload 'latex-math-preview-beamer-frame "latex-math-preview" nil t)
 ;; Paths to required external software (specific to MacTeX)
 (setq latex-math-preview-command-path-alist
-      '((latex    . "/usr/texbin/latex")
-        (dvipng   . "/usr/texbin/dvipng")
-        (dvips    . "/usr/texbin/dvips")
+      '((latex    . "/Library/TeX/texbin/latex")
+        (dvipng   . "/Library/TeX/texbin/dvipng")
+        (dvips    . "/Library/TeX/texbin/dvips")
         ;; for beamer preview
-        (pdflatex . "/usr/texbin/pdflatex")
+        (pdflatex . "/Library/TeX/texbin/pdflatex")
         ;; for beamer preview
-        (gs       . "/usr/local/bin/gs")
+        (gs       . "/Library/TeX/local/bin/gs")
         ))
 ;; Colors for dark background 2013-09-28
 (setq latex-math-preview-dvipng-color-option nil)
