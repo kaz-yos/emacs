@@ -44,10 +44,13 @@
 (defun my-tex-insert-forwardslash ()
   (interactive)
   (insert "/"))
+(defun my-tex-insert-semicolon ()
+  (interactive)
+  (insert ";"))
 (add-hook 'LaTeX-mode-hook
           '(lambda ()
-             (local-set-key (kbd   "/") 'my-tex-insert-backslash)
-             (local-set-key (kbd "A-/") 'my-tex-insert-forwardslash)))
+             (local-set-key (kbd   ";") 'my-tex-insert-backslash)
+             (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
 ;;
 ;;;
 ;;; Japanese setting etc
