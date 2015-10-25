@@ -300,19 +300,6 @@
 (require 'ace-window)
 (global-set-key (kbd "s-5") 'ace-window)
 ;;
-;;; ace-isearch.el
-;; https://github.com/tam17aki/ace-isearch
-(require 'ace-isearch)
-(global-ace-isearch-mode +1)
-;;
-;; all characters, not just word beginning
-(setq ace-isearch-submode 'ace-jump-char-mode)
-;;
-;; Delay before ace-jump kicks in (I don't use this)
-(setq ace-isearch-input-idle-delay 10)
-;;
-;; Use ace-isearch-funtion-from-isearch if the search term is longer than
-(setq ace-isearch-input-length 600)
 ;;
 ;;; ace-jump-helm-line.el
 ;; https://github.com/cute-jumper/ace-jump-helm-line
