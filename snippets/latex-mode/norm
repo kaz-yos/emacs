@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: because
-# key: bc
+# name: norm
+# key: norm
 # binding: direct-keybinding
 # --
-\because~ $0
+||$0||

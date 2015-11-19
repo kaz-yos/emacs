@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: because
-# key: bc
+# name: etal
+# key: et
 # binding: direct-keybinding
 # --
-\because~ $0
+\textit{et al} $0

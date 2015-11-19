@@ -3,4 +3,4 @@
 # key: int
 # binding: direct-keybinding
 # --
-\int_0^t h(u)$0 \text{d}u
+\int_{$1}^{\infty} $0 \text{d}$2

@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: matrix
+# name: bmatrix
 # key: mat
 # binding: direct-keybinding
 # --

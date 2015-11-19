@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: vmatrix
+# key: vmat
+# binding: direct-keybinding
+# --
+\begin{vmatrix}
+  1 & 0 `(concat "\\" "\\")`
+  0 & 1 `(concat "\\" "\\")`
+\end{vmatrix}$0

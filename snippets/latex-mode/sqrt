@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: because
-# key: bc
+# name: sqrt
+# key: sqr
 # binding: direct-keybinding
 # --
-\because~ $0
+\sqrt{$0}
