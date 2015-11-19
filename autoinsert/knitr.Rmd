@@ -15,7 +15,7 @@ opts_chunk$set(comment = "##", error= TRUE, warning = showWarning, message = sho
                tidy = FALSE, cache = F, echo = T,
                fig.width = 7, fig.height = 7, dev.args = list(family = "sans"))
 ## for rgl
-knit_hooks$set(rgl = hook_rgl, webgl = hook_webgl)
+## knit_hooks$set(rgl = hook_rgl, webgl = hook_webgl)
 ## for animation
 opts_knit$set(animation.fun = hook_ffmpeg_html)
 
