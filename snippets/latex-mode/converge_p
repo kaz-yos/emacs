@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: converge_p
+# key: convp
+# binding: direct-keybinding
+# --
+\overset{p}{\rightarrow} $0
