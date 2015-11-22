@@ -5,6 +5,8 @@
 
 ;;;
 ;;; js2-mode.el
+;; Improved JavaScript editing mode for GNU Emacs
+;; https://github.com/mooz/js2-mode
 ;;
 ;; Set up Javascript development environment in Emacs
 ;; http://truongtx.me/2014/02/23/set-up-javascript-development-environment-in-emacs/
@@ -24,7 +26,23 @@
 ;;; ac-js2.el
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 ;;
-;;
+
+
+;;;
+;;; js3-mode.el
+;; A chimeric fork of js2-mode and js-mode
+;; https://github.com/thomblake/js3-mode
+(require 'js3-mode)
+
+
+;;;
+;;; js-comint.el
+(require 'js-comint)
+;; Set inferior-js-program-command to the execution command for running your javascript REPL
+;; Use Node.js https://nodejs.org/en/
+(setq inferior-js-program-command "/usr/local/bin/node")
+
+
 ;;; moz.el
 ;; Lets current buffer interact with inferior mozilla
 ;; https://github.com/bard/mozrepl/wiki/Emacs-integration
