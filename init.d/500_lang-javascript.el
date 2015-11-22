@@ -40,7 +40,7 @@
 (require 'js-comint)
 ;; Set inferior-js-program-command to the execution command for running your javascript REPL
 ;; Use Node.js https://nodejs.org/en/
-(setq inferior-js-program-command "/usr/local/bin/node")
+(setq inferior-js-program-command "node --interactive")
 
 
 ;;; moz.el
