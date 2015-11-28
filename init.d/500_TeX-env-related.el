@@ -227,6 +227,11 @@
 ;; Do not prompt for reference vs page
 (setq reftex-ref-macro-prompt nil)
 ;;
+(add-hook 'LaTeX-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "H-c") 'reftex-citation)
+             (local-set-key (kbd "A-C-a") 'reftex-citation)))
+;;
 ;;
 ;;; bibtex.el
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX
