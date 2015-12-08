@@ -175,8 +175,11 @@
 ;; M-n s
 (define-key ess-noweb-minor-mode-map (kbd "A-s") 'ess-swv-weave-PDF)
 (define-key ess-noweb-minor-mode-map (kbd "H-s") 'ess-swv-weave-PDF)
+(define-key poly-noweb+r-mode-map (kbd "A-s") 'ess-swv-weave-PDF)
+(define-key poly-noweb+r-mode-map (kbd "H-s") 'ess-swv-weave-PDF)
 ;; M-n P
 (define-key ess-noweb-minor-mode-map (kbd "A-p") 'ess-swv-PDF)
+(define-key poly-noweb+r-mode-map (kbd "A-p") 'ess-swv-weave-PDF)
 ;;
 ;;
 ;;;
@@ -240,13 +243,15 @@
 ;; Give A-x (close to A-s for knitting)
 (define-key ess-noweb-minor-mode-map (kbd "A-x") 'ess-send-X)
 (define-key ess-noweb-minor-mode-map (kbd "H-x") 'ess-send-X)
+(define-key poly-noweb+r-mode-map (kbd "A-x") 'ess-send-X)
+(define-key poly-noweb+r-mode-map (kbd "H-x") 'ess-send-X)
 
 ;;;
 ;;; *.Rmd files invoke r-mode
 ;; Temporary fix for R markdown files.
 ;; poly-mode does not work well with auto-save
-(setq auto-mode-alist
-      (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
+;; (setq auto-mode-alist
+;;       (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
 
 
 ;;;
