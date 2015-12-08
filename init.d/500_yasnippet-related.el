@@ -18,6 +18,8 @@
 (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
 ;; View/edit snippets
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+;; Expand
+(define-key yas-minor-mode-map (kbd "A-y") 'yas/expand)
 ;;
 ;; Use Popup isearch For Yasnippet Prompt 2014-01-??
 ;; http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
