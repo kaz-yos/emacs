@@ -14,7 +14,7 @@
 ;;;
 ;;; auto-revert buffers globally
 ;; Active in all buffers
-(setq global-auto-revert-mode t)
+(setq global-auto-revert-mode nil)
 ;; Even in non-file buffers
 (setq global-auto-revert-non-file-buffers t)
 ;; VC status change is also captured
