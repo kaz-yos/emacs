@@ -24,11 +24,11 @@
 ;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
 (require 'sequential-command-config)	; Define these seq-* commands. Needs sequential-command.el
 (sequential-command-setup-keys)		; Rebind C-a, C-e, M-u, M-c, and M-l to seq-* commands.
-(global-set-key (kbd "C-a") 'seq-home)
-(global-set-key (kbd "C-e") 'seq-end)
-(global-set-key (kbd "M-u") 'seq-upcase-backward-word)
-(global-set-key (kbd "M-c") 'seq-capitalize-backward-word)
-(global-set-key (kbd "M-l") 'seq-downcase-backward-word)
+;; (global-set-key (kbd "C-a") 'seq-home)
+;; (global-set-key (kbd "C-e") 'seq-end)
+;; (global-set-key (kbd "M-u") 'seq-upcase-backward-word)
+;; (global-set-key (kbd "M-c") 'seq-capitalize-backward-word)
+;; (global-set-key (kbd "M-l") 'seq-downcase-backward-word)
 
 
 ;;;
