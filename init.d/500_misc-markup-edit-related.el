@@ -5,6 +5,14 @@
   "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
       (cons '("\\.md" . markdown-mode) auto-mode-alist))
+;;
+;;
+;;; Open current file in Atom for real-time preview
+;; http://qiita.com/takuma510/items/77489cf538580dfcc41d
+(defun open-atom ()
+  (interactive)
+  (call-process
+   "atom" nil nil nil buffer-file-name))
 
 
 ;;; Graphviz mode
