@@ -76,6 +76,11 @@
                       (add-to-list 'TeX-command-list
                                    '("Skim" "/usr/bin/open -a Skim.app %s.pdf"
                                      TeX-run-discard-or-function t t :help "Run Skim"))
+                      ;; Replace original View
+                      (add-to-list 'TeX-command-list
+                                   '("View" "/usr/bin/open -a Skim.app %s.pdf"
+                                     TeX-run-discard-or-function t t :help "Run Skim"))
+                      ;;
                       (add-to-list 'TeX-command-list
                                    '("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %s.pdf \"%b\""
                                      TeX-run-discard-or-function t t :help "Forward search with Skim"))
