@@ -28,28 +28,15 @@
 (setq custom-theme-directory "~/.emacs.d/themes/")
 
 
-;;; use-package.el
-;; https://github.com/jwiegley/use-package
-;; http://knmsyk.github.io/blog/2015-05-25-clean-.emacs-with-use-package-and-init-loader.html
-;; http://proglab.blog.fc2.com/blog-entry-4.html
-(require 'use-package)
-
-
 ;;; init-loader.el
 ;; https://github.com/emacs-jp/init-loader
 ;; http://d.hatena.ne.jp/hiro_nemu/20140118/1390058851
 ;; http://qiita.com/catatsuy/items/5f1cd86e2522fd3384a0
 ;; http://shibayu36.hatenablog.com/entry/20101229/1293624201
 ;;
-;; This configuration is highly dependent on init-loader.el!
-;;
-;; Load init-loader.el
 (require 'init-loader)
 ;; Always report errors and logs (default t)
 (setq init-loader-show-log-after-init t)
-;; Report errors after initialization only if there is any
-;; (if (not (equal (init-loader-error-log) ""))
-;;     (init-loader-show-log))
 ;; Load appropriate files in this directory
 (init-loader-load "~/.emacs.d/init.d")
 ;;
@@ -93,4 +80,3 @@
 ;; If `init-loader-show-log-after-init' is non-nil, the record is
 ;; shown after the overall loading process.  You can do this manually
 ;; by M-x init-loader-show-log.
-

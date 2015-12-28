@@ -1,10 +1,6 @@
 ;;; package.el and repositories
-;; THIS HAS TO COME BOFORE init-loader.el (installed via package.el)
-;; http://www.emacswiki.org/emacs/ELPA
 (require 'package)
 ;;
-;; Load Emacs Lisp packages, and activate them.
-;; (package-initialize)
 ;;
 ;; MELPA repository
 ;; http://melpa.milkbox.net/#installing
@@ -37,6 +33,16 @@
 (package-initialize)
 
 
+;;; use-package.el for clean package loading
+;; https://github.com/jwiegley/use-package
+;; http://knmsyk.github.io/blog/2015-05-25-clean-.emacs-with-use-package-and-init-loader.html
+;; http://proglab.blog.fc2.com/blog-entry-4.html
+;; http://qiita.com/kai2nenobu/items/5dfae3767514584f5220
+;;
+;; (require FEATURE &optional FILENAME NOERROR)
+(require 'use-package)
+
+
 ;;; el-get.el package system
 ;; https://github.com/dimitri/el-get
 ;;
@@ -44,6 +50,9 @@
 ;;
 ;;; Alternative Basic Setup with Installation via MELPA
 ;; https://github.com/dimitri/el-get#alternative-basic-setup-with-installation-via-melpa
+(use-package el-get)
+
+
 (unless (require 'el-get nil 'noerror)
   (require 'package)
   (add-to-list 'package-archives
