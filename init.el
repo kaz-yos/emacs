@@ -28,6 +28,13 @@
 (setq custom-theme-directory "~/.emacs.d/themes/")
 
 
+;;; use-package.el
+;; https://github.com/jwiegley/use-package
+;; http://knmsyk.github.io/blog/2015-05-25-clean-.emacs-with-use-package-and-init-loader.html
+;; http://proglab.blog.fc2.com/blog-entry-4.html
+(require 'use-package)
+
+
 ;;; init-loader.el
 ;; https://github.com/emacs-jp/init-loader
 ;; http://d.hatena.ne.jp/hiro_nemu/20140118/1390058851
