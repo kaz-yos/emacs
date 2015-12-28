@@ -50,21 +50,10 @@
 ;;
 ;;; Alternative Basic Setup with Installation via MELPA
 ;; https://github.com/dimitri/el-get#alternative-basic-setup-with-installation-via-melpa
-(use-package el-get)
-
-
-(unless (require 'el-get nil 'noerror)
-  (require 'package)
-  (add-to-list 'package-archives
-               '("melpa" . "http://melpa.org/packages/"))
-  (package-refresh-contents)
-  (package-initialize)
-  (package-install 'el-get)
-  (require 'el-get))
-;;
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-;;
-(el-get 'sync)
+(use-package el-get
+  :config
+  (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+  (el-get 'sync))
 ;;
 ;;; Packages installed via el-get
 ;; smartchr
