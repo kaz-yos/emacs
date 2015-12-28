@@ -9,6 +9,11 @@
 (require 'eval-in-repl)
 
 
+;;; Default behaviors
+;; Not splitting at REPL start up
+;; (setq eir-delete-other-windows nil)
+
+
 ;;; ielm support (for emacs lisp)
 (require 'eval-in-repl-ielm)
 ;; for .el files
