@@ -11,17 +11,16 @@
 ### Prepare environment
 ################################################################################
 
-## Configure parallelization
-library(doMC)           # Parallel backend to foreach (used in plyr)
-registerDoMC()          # Turn on multicore processing
-options(cores = 4)
-options(mc.cores = 4)
+## ## Configure parallelization
+## library(doParallel) # Parallel backend to foreach (used in plyr)
+## nCores <- detectCores()
+## registerDoParallel(cores = nCores)
+## library(doRNG) # Reproducible parallelization
+
 ## Load packages
 library(magrittr)
 library(dplyr)
-library(reshape2)
-library(ggplot2)
-library(survival)
+library(tidyr)
 
 ## Configure sink()
 if (sink.number() != 0) {sink()}

@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: parallel
+# key: parallel
+# binding: direct-keybinding
+# --
+## Configure parallelization
+library(doParallel) # Parallel backend to foreach (used in plyr)
+nCores <- detectCores()
+registerDoParallel(cores = nCores)
+library(doRNG) # Reproducible parallelization
