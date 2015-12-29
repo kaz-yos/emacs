@@ -122,9 +122,9 @@
 ;;; company-quickhelp.el
 ;; Documentation popup for Company
 ;; https://github.com/expez/company-quickhelp
-(use-package company-quickhelp
-  :config
-  (company-quickhelp-mode 1))
+;; (use-package company-quickhelp
+;;   :config
+;;   (company-quickhelp-mode 1))
 
 
 ;;;
