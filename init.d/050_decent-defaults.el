@@ -1,4 +1,8 @@
 ;;; Nice options to have On by default
+
+
+;;;
+;;; Taken from ESS/Emacs distribution
 ;; Activate mouse scrolling
 (mouse-wheel-mode t)
 ;; Syntax highlighting everywhere
@@ -58,6 +62,16 @@
 (setq initial-frame-alist
       '((fullscreen . maximized)))
 
+
+;;;
+;;; Faster pop-to-mark
+;; http://endlessparentheses.com/faster-pop-to-mark-command.html?source=rss
+(defadvice pop-to-mark-command (around ensure-new-position activate)
+  (let ((p (point)))
+    (dotimes (i 10)
+      (when (= p (point)) ad-do-it))))
+;; C-u C-SPC C-SPC...
+(setq set-mark-command-repeat-pop t)
 
 
 ;;;
