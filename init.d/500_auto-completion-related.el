@@ -91,13 +91,16 @@
 ;; Modular in-buffer completion framework for Emacs
 ;; http://company-mode.github.io
 ;; http://www.emacswiki.org/CompanyMode
-(require 'company)
+(use-package company
+  :config
+  ;; company-mode everywhere
+  (add-hook 'after-init-hook 'global-company-mode)
+  ;; 2 letters before completion kicks in
+  (setq company-minimum-prefix-length 2)
+  ;; Keys
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous))
 ;;
-;; company-mode everywhere
-(add-hook 'after-init-hook 'global-company-mode)
-;;
-;; 2 letters before completion kicks in
-(setq company-minimum-prefix-length 2)
 ;;
 ;; I don't like the default colors!
 ;; http://www.emacswiki.org/CompanyMode#toc6
@@ -115,19 +118,13 @@
  `(company-preview                  ((t   :background nil         :foreground "darkgray")))
  `(company-preview-common           ((t   :background nil         :foreground "darkgray"))))
 ;;
-;; Keybinding
-(eval-after-load 'company
-  '(progn
-     (define-key company-active-map (kbd "C-n") 'company-select-next)
-     (define-key company-active-map (kbd "C-p") 'company-select-previous)))
-;;
 ;;
 ;;; company-quickhelp.el
 ;; Documentation popup for Company
 ;; https://github.com/expez/company-quickhelp
-(require 'company-quickhelp)
-(company-quickhelp-mode 1)
-;;
+(use-package company-quickhelp
+  :config
+  (company-quickhelp-mode 1))
 
 
 ;;;
