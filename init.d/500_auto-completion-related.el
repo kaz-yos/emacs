@@ -12,87 +12,77 @@
 ;;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
 ;; https://github.com/auto-complete/auto-complete
 ;; http://cx4a.org/software/auto-complete/manual.html
-(require 'auto-complete)
-;; Activate ac everywhere
-;; (global-auto-complete-mode t)
-;;
-;; Activate ac in predefined modes
-;; (require 'auto-complete-config)
-;; (ac-config-default)
-;;
-;; Auto-complete for ESS configuration
-;; http://www.emacswiki.org/emacs/ESSAuto-complete
-(setq
- ;; Limit number of candidates
- ;; ac-candidate-limit nil
- ;;
- ;; Number of letters before ac kicks in
- ac-auto-start 1
- ;;
- ;; Delay to completions will be available.
- ac-delay 0.1
- ;;
- ;; 0.1 sec before menu appears
- ac-auto-show-menu 0.2
- ;;
- ;; Show menu if 2+ candidates
- ac-candidate-menu-min 1
- ;;
- ;; 20 candidates at a time
- ac-menu-height 20
- ;;
- ;; Where to disable ac
- ;; http://stackoverflow.com/questions/17309773/emacs-autocomplete-inside-python-string
- ;; ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
- ;; auto-complete everywhere, even within quotes, comments
- ;; ac-disable-faces nil
- ac-disable-faces '(font-lock-comment-face)
- ;;
- ;; Treat cases strictly by nil or smartly by 'smart
- ac-ignore-case nil
- ;;
- ;; Pop up help
- ac-use-quick-help t
- ac-quick-help-delay 1.0
- ac-quick-help-prefer-pos-tip t
- )
-;;
-;;
-;; Configure sources
-;; http://cx4a.org/software/auto-complete/manual.html#Source
-;; (add-to-list 'ac-sources 'ac-source-filename)
-(setq-default ac-sources '(ac-source-abbrev
-			   ac-source-dictionary
-			   ac-source-filename
-			   ac-source-words-in-same-mode-buffers))
-;;
-;; Key configuration
-;; Non-nil means a special keymap `ac-menu-map' on completing menu will be used.
-;; http://cx4a.org/software/auto-complete/manual.html#Not_to_complete_automatically
-(setq ac-use-menu-map t)
-(define-key ac-menu-map (kbd "C-n")    'ac-next)
-(define-key ac-menu-map (kbd "C-p")    'ac-previous)
-(define-key ac-menu-map (kbd "<tab>")  'ac-next)
-(define-key ac-menu-map (kbd "<S-tab>")'ac-previous)
-;;
-;; http://www.emacswiki.org/emacs/ESSAuto-complete
-(define-key ac-completing-map (kbd "<tab>")    'ac-complete)
-(define-key ac-completing-map (kbd "<return>") 'ac-complete)
-;;
-;; Trigger key
-;; http://cx4a.org/software/auto-complete/manual.html#Trigger_Key
-(ac-set-trigger-key "TAB")
-;;
-;; If you are using 'flyspell' you might want to activate the workaround
-;; http://www.emacswiki.org/emacs/AutoComplete#toc6
-(ac-flyspell-workaround)
-;;
-;; popup.el
-;; https://github.com/auto-complete/popup-el (called automatically)
-;; (require 'popup)
-;; Prevent broken popup
-;; http://stackoverflow.com/questions/13242165/emacs-auto-complete-popup-menu-broken
-(setq popup-use-optimized-column-computation nil)
+(use-package auto-complete
+  :init
+  ;; Configure default sources
+  (setq-default ac-sources '(ac-source-abbrev
+                             ac-source-dictionary
+                             ac-source-filename
+                             ac-source-words-in-same-mode-buffers))
+  ;;
+  :config
+  ;; Auto-complete for ESS configuration
+  ;; http://www.emacswiki.org/emacs/ESSAuto-complete
+  (setq
+   ;; Limit number of candidates
+   ;; ac-candidate-limit nil
+   ;;
+   ;; Number of letters before ac kicks in
+   ac-auto-start 1
+   ;;
+   ;; Delay to completions will be available.
+   ac-delay 0.1
+   ;;
+   ;; 0.1 sec before menu appears
+   ac-auto-show-menu 0.2
+   ;;
+   ;; Show menu if 2+ candidates
+   ac-candidate-menu-min 1
+   ;;
+   ;; 20 candidates at a time
+   ac-menu-height 20
+   ;;
+   ;; Where to disable ac
+   ;; http://stackoverflow.com/questions/17309773/emacs-autocomplete-inside-python-string
+   ;; ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
+   ;; auto-complete everywhere, even within quotes, comments
+   ;; ac-disable-faces nil
+   ac-disable-faces '(font-lock-comment-face)
+   ;;
+   ;; Treat cases strictly by nil or smartly by 'smart
+   ac-ignore-case nil
+   ;;
+   ;; Pop up help
+   ac-use-quick-help t
+   ac-quick-help-delay 1.0
+   ac-quick-help-prefer-pos-tip t)
+  ;;
+  ;; Key configuration
+  ;; Non-nil means a special keymap `ac-menu-map' on completing menu will be used.
+  ;; http://cx4a.org/software/auto-complete/manual.html#Not_to_complete_automatically
+  (setq ac-use-menu-map t)
+  (define-key ac-menu-map (kbd "C-n")    'ac-next)
+  (define-key ac-menu-map (kbd "C-p")    'ac-previous)
+  (define-key ac-menu-map (kbd "<tab>")  'ac-next)
+  (define-key ac-menu-map (kbd "<S-tab>")'ac-previous)
+  ;;
+  ;; http://www.emacswiki.org/emacs/ESSAuto-complete
+  (define-key ac-completing-map (kbd "<tab>")    'ac-complete)
+  (define-key ac-completing-map (kbd "<return>") 'ac-complete)
+  ;;
+  ;; Trigger key
+  ;; http://cx4a.org/software/auto-complete/manual.html#Trigger_Key
+  (ac-set-trigger-key "TAB")
+  ;;
+  ;; If you are using 'flyspell' you might want to activate the workaround
+  ;; http://www.emacswiki.org/emacs/AutoComplete#toc6
+  (ac-flyspell-workaround)
+  ;;
+  ;; popup.el
+  ;; https://github.com/auto-complete/popup-el (called automatically)
+  ;; Prevent broken popup
+  ;; http://stackoverflow.com/questions/13242165/emacs-auto-complete-popup-menu-broken
+  (setq popup-use-optimized-column-computation nil))
 
 
 ;;;
