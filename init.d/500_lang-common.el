@@ -4,14 +4,16 @@
 ;;;
 ;;; electric-spacing.el
 ;; https://github.com/zk-phi/electric-spacing
-(require 'electric-spacing)
+(use-package electric-spacing
+  :disabled t)
 
 
 ;;;
 ;;; column-marker.el
 ;; http://www.emacswiki.org/emacs/column-marker.el
-(require 'column-marker)
-;; Define a function for column 80 highlighting
-(defun column-marker80 ()
-  (interactive)
-  (column-marker-2 80))
+(use-package column-marker
+  :commands column-marker80
+  :config
+  (defun column-marker80 ()
+    (interactive)
+    (column-marker-2 80)))
