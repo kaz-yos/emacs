@@ -44,21 +44,21 @@
 ;;
 ;; Scroll one line at a time (less "jumpy" than defaults)
 ;; http://www.emacswiki.org/emacs/SmoothScrolling
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))	; one line at a time
-;;(setq mouse-wheel-progressive-speed nil)		; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't)			; scroll window under mouse
-;;(setq scroll-step 1)					; keyboard scroll one line at a time
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))     ; one line at a time
+;;(setq mouse-wheel-progressive-speed nil)               ; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't)                      ; scroll window under mouse
+;;(setq scroll-step 1)                                   ; keyboard scroll one line at a time
 ;;
 
 
 ;;;
 ;;; Scroll other window with M-up/M-down	; Conflict with paredit. Use C-M-(S)-v
-;; (global-set-key [M-up]		'scroll-other-window-down)
-;; (global-set-key [M-down]	'scroll-other-window)
-(global-set-key (kbd "M-<up>")		'scroll-other-window-down)
-(global-set-key (kbd "M-<down>")	'scroll-other-window)
-(global-set-key (kbd "C-M-t")		'scroll-other-window-down)
-(global-set-key (kbd "C-M-v")		'scroll-other-window)
+;; (global-set-key [M-up]   'scroll-other-window-down)
+;; (global-set-key [M-down] 'scroll-other-window)
+(global-set-key (kbd "M-<up>")   'scroll-other-window-down)
+(global-set-key (kbd "M-<down>") 'scroll-other-window)
+(global-set-key (kbd "C-M-t")    'scroll-other-window-down)
+(global-set-key (kbd "C-M-v")    'scroll-other-window)
 
 
 ;; Do not open a new frame opening a file from Finder
@@ -74,7 +74,8 @@
 ;;;
 ;;; windresize for M-x windresize
 ;; M-x windresize, arrows, C-g for cancel, RET to save
-(require 'windresize)
+(use-package windresize
+  :commands windresize)
 
 
 ;;;
