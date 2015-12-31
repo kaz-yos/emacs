@@ -3,8 +3,7 @@
 ;;;
 ;;; Erlang-related
 ;;; erlang.el
-(require 'erlang-start)
-
-
-
-
+(use-package erlang-start
+  :mode (("\\.erl\\'" . erlang-mode)
+         ("\\.hrl\\'" . erlang-mode))
+  :interpreter ("escript" . erlang-mode))
