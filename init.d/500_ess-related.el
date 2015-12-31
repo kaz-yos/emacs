@@ -245,17 +245,13 @@
 (define-key poly-noweb+r-mode-map (kbd "A-x") 'ess-send-X)
 (define-key poly-noweb+r-mode-map (kbd "H-x") 'ess-send-X)
 
-;;;
-;;; *.Rmd files invoke r-mode
-;; Temporary fix for R markdown files.
-;; poly-mode does not work well with auto-save
-;; (setq auto-mode-alist
-;;       (cons '("\\.Rmd$" . r-mode) auto-mode-alist))
-
 
 ;;;
 ;;; STAN support 2014-01-15
-(require 'stan-mode)
+(use-package stan-mode
+  :mode ("\\.stan\\'" . stan-mode))
+;;
+;; Other potentially useful packages
 ;; stan-snippets.el
 ;; (require 'stan-snippets)
 ;; flymake-stan.el
