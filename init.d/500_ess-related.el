@@ -224,11 +224,6 @@
 
 ;;
 ;;;
-;;; ess-R-data-view.el
-;; https://github.com/myuhe/ess-R-data-view.el/blob/master/README.org
-(define-key ess-mode-map (kbd "C-c C-d C-e") 'ess-R-dv-pprint)
-;;
-;;;
 ;;; Send X to ESS buffer
 (defun ess-send-X ()
   "Send X to ESS buffer to resolve LaTeX error"
