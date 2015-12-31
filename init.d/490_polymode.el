@@ -4,6 +4,8 @@
 ;;
 ;;; R-RELATED
 (use-package poly-R
+  ;; Do not defer as it is required by ess config
+  :demand
   :mode (("\\.Rnw" . poly-noweb+r-mode)
          ("\\.Rmd" . poly-markdown+r-mode))
   :config
