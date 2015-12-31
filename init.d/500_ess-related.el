@@ -200,24 +200,28 @@
 ;;;
 ;;; ess-R-object-popup.el
 ;; https://github.com/myuhe/ess-R-object-popup.el
-(require 'ess-R-object-popup)
-;; key config
-(define-key ess-mode-map (kbd "C-c C-g") 'ess-R-object-popup)
-;; Configuration for different objects
-(setq ess-R-object-popup-alist
-      '((numeric    . "summary")
-        (logical    . "summary")
-        (factor     . "summary")
-        (integer    . "summary")
-        (lm         . "summary")
-	(glm        . "summary")			; added
-	(gls        . "summary")			; added
-	(lme        . "summary")			; added
-	(glht	    . "summary")			; added
-	(survfit    . "survival:::print.survfit")	; added
-	(survdiff   . "survival:::print.survdiff")	; added
-	(coxph	    . "survival:::print.coxph")		; added
-        (other      . "str")))
+(use-package ess-R-object-popup
+  :commands (ess-R-object-popup)
+  :init
+  ;; key config always provide
+  (define-key ess-mode-map (kbd "C-c C-g") 'ess-R-object-popup)
+  :config
+  ;; Configuration for different objects
+  (setq ess-R-object-popup-alist
+        '((numeric    . "summary")
+          (logical    . "summary")
+          (factor     . "summary")
+          (integer    . "summary")
+          (lm         . "summary")
+          (glm        . "summary")			; added
+          (gls        . "summary")			; added
+          (lme        . "summary")			; added
+          (glht	    . "summary")			; added
+          (survfit    . "survival:::print.survfit")	; added
+          (survdiff   . "survival:::print.survdiff")	; added
+          (coxph	    . "survival:::print.coxph")		; added
+          (other      . "str"))))
+
 ;;
 ;;;
 ;;; ess-R-data-view.el
