@@ -63,14 +63,15 @@
 ;;; COFFEESCRIPT-RELATED
 ;;; coffee-mode.el
 ;; https://github.com/defunkt/coffee-mode
-(require 'coffee-mode)
-;;
-;; coffeescript
-(custom-set-variables
- '(coffee-tab-width 2)
- '(coffee-args-compile '("-c" "--bare")))
-;;
-(eval-after-load "coffee-mode"
-  '(progn
-     (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer)
-     (define-key coffee-mode-map (kbd "C-j") 'coffee-newline-and-indent)))
+(use-package coffee-mode
+  :mode (("\\.coffee\\'" . coffee-mode)
+         ("\\.iced\\'" . coffee-mode)
+         ("Cakefile\\'" . coffee-mode)
+         ("\\.cson\\'" . coffee-mode))
+  :interpreter ("coffee" . coffee-mode)
+  :config
+  (custom-set-variables
+   '(coffee-tab-width 2)
+   '(coffee-args-compile '("-c" "--bare")))
+  (bind-key "M-r" 'coffee-compile-buffer     coffee-mode-map)
+  (bind-key "C-j" 'coffee-newline-and-indent coffee-mode-map))
