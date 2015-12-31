@@ -2,19 +2,15 @@
 ;; Versatile multiple modes with extensive literate programming support
 ;; https://github.com/vitoshka/polymode
 ;;
-;; R
-(require 'poly-R)
-;; markdown
-(require 'poly-markdown)
+;;; R-RELATED
+(use-package poly-R
+  :mode (("\\.Rnw" . poly-noweb+r-mode)
+         ("\\.Rmd" . poly-markdown+r-mode))
+  :config
+  (bind-key "C-c n" 'polymode-next-chunk-same-type     polymode-mode-map)
+  (bind-key "C-c p" 'polymode-previous-chunk-same-type polymode-mode-map))
 ;;
-;;; MARKDOWN
-(add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
 ;;
-;;; R modes
-;; (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
-;;
-;; key config
-(define-key polymode-mode-map (kbd "C-c n") 'polymode-next-chunk-same-type)
-(define-key polymode-mode-map (kbd "C-c p") 'polymode-previous-chunk-same-type)
+;;; MARKDOWN-related
+(use-package poly-markdown
+  :mode ("\\.md" . poly-markdown-mode))
