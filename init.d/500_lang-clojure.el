@@ -77,6 +77,7 @@
 	 (doc-string (concat "(doc " name-symbol ")"))
 	 (eg-string  (concat "(clojuredocs " name-symbol ")"))
 	 (script-window (selected-window)))
+    ;;
     ;; move to repl
     (cider-switch-to-repl-buffer)
     ;; Insert the (doc fun-name)
@@ -92,22 +93,18 @@
 ;;; C-c C-g for type
 (defun cider-type-for-symbol ()
   "Provide type for a symbol in the REPL."
-
   (interactive)
   ;; Define variables
   (let* ((name-symbol (thing-at-point 'symbol t))
 	 (type-string (concat "(type " name-symbol ")"))
 	 (script-window (selected-window)))
-
+    ;;
     ;; move to repl
     (cider-switch-to-repl-buffer)
-
     ;; Insert the (type fun-name)
     (insert type-string)
-
     ;; Execute
     (cider-repl-return)
-
     ;; Move back to the script window
     (select-window script-window)))
 ;;
