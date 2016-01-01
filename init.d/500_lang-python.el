@@ -168,62 +168,38 @@
 ;; Usage
 ;; Start IPython notebook server with $ ipython notebook --pylab inline
 ;; Hit M-x ein:notebooklist-open to open notebook list.
-(require 'ein)
-;; Auto complete for ein
-(setq ein:use-auto-complete t)
-;; Or, to enable "superpack" (a little bit hacky improvements):
-;; (setq ein:use-auto-complete-superpack t)
-(add-hook 'ein:notebook-multilang-mode-hook	; For EIN
-          '(lambda()
-             (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell-and-goto-next)
-             (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
-	     (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
-	     (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
-	     (local-set-key (kbd "C-c k")      'ein:worksheet-kill-cell)
-	     (local-set-key (kbd "C-c w")      'ein:worksheet-copy-cell)
-	     (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
-	     (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
-	     (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
-	     (local-set-key (kbd "A-[")      'ein:worksheet-goto-prev-input)
-	     (local-set-key (kbd "A-]")      'ein:worksheet-goto-next-input)
-	     ))
-;;
-;; (defn ein:worksheet-execute-cell-and-next ()
-;;   (interactive)
-;;   (ein:worksheet-execute-cell)
-;;   (ein:worksheet-goto-next-input))
+(use-package ein
+  :commands (ein:connect-to-notebook)
+  :config
+  ;; Auto complete for ein
+  (setq ein:use-auto-complete t)
+  ;; Or, to enable "superpack" (a little bit hacky improvements):
+  ;; (setq ein:use-auto-complete-superpack t)
+  (add-hook 'ein:notebook-multilang-mode-hook
+            '(lambda()
+               (local-set-key (kbd "<C-return>") 'ein:worksheet-execute-cell-and-goto-next)
+               (local-set-key (kbd "<S-return>") 'ein:worksheet-execute-cell)
+               (local-set-key (kbd "C-c a")      'ein:worksheet-insert-cell-above)
+               (local-set-key (kbd "C-c b")      'ein:worksheet-insert-cell-below)
+               (local-set-key (kbd "C-c k")      'ein:worksheet-kill-cell)
+               (local-set-key (kbd "C-c w")      'ein:worksheet-copy-cell)
+               (local-set-key (kbd "C-c y")      'ein:worksheet-yank-cell)
+               (local-set-key (kbd "C-c p")      'ein:worksheet-goto-prev-input)
+               (local-set-key (kbd "C-c n")      'ein:worksheet-goto-next-input)
+               (local-set-key (kbd "A-[")        'ein:worksheet-goto-prev-input)
+               (local-set-key (kbd "A-]")        'ein:worksheet-goto-next-input))))
 
-
-;;;
-;;; elpy.el	; python.el replacement. No need for now. 2013-12-22
-;; ;; https://github.com/jorgenschaefer/elpy/wiki
-;; ;; Need to install elpy/rope/jedi/flake8 via $ sudo pip install
-;; ;; $ sudo pip install --upgrade elpy # to upgrade to the latest elpy
-;; ;; $ sudo ln -s /usr/local/bin/flake8 /usr/bin/flake8 # To make it visible to emacs. 2013-12-22
-;; ;;
-;; ;; (package-initialize)
-;; ;; To use elpy
-;; (elpy-enable)
-;; ;; To use ipython	; 2013-12-22 broken? ipython not found
-;; (elpy-use-ipython)
-;; ;; Simplify modeline
-;; (elpy-clean-modeline)
-;; ;; jedi as completion backend
-;; (setq elpy-rpc-backend "jedi")
-;; ;;
-;; ;; Fix yas-snippet-dirs (elpy breaks configuration)	; Not necessary as of 2013-12-22
-;; ;; (setq yas-snippet-dirs
-;; ;;       '("~/.emacs.d/snippets"
-;; ;; 	"/Users/kazuki/.emacs.d/el-get/yasnippet/snippets"
-;; ;; 	))
 
 
 ;;;
 ;;; hy-mode.el
 ;; Hy mode for Emacs
 ;; https://github.com/hylang/hy-mode
-(require 'hy-mode)
-;; Activate auto-complete-mode
-(add-hook 'hy-mode-hook
-          '(lambda ()
-             (auto-complete-mode 1)))
+(use-package hy-mode
+  :mode "\\.hy"
+  :config
+  ;; Activate auto-complete-mode
+  (add-hook 'hy-mode-hook
+            '(lambda ()
+               (auto-complete-mode 1))))
+
