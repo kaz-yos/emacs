@@ -70,79 +70,66 @@
 ;; Replace describe-bindings with helm interface
 ;; http://emacs-jp.github.io/packages/helm/helm-descbinds.html
 ;; http://d.hatena.ne.jp/buzztaiki/20081115/1226760184 (anything version)
-(require 'helm-descbinds)
-(helm-descbinds-mode)
-
-
-;;; helm-R.el
-(require 'helm-R)
+(use-package helm-descbinds
+  :commands (helm-descbinds)
+  :config
+  (helm-descbinds-mode))
 
 
 ;;; helm-migemo.el
-;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html	; helm-migemo
-(when (eq system-type 'darwin)
-    ;; Mac-only
-    (require 'helm-migemo))
+;; https://github.com/emacs-jp/helm-migemo
+;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html
+(use-package helm-migemo
+  ;; Mac-only
+  :if (eq system-type 'darwin))
 
 
 ;;; wgrep-helm.el  2014-01-14
 ;; Writable helm-grep-mode buffer and apply the changes to files
-(require 'wgrep-helm)
+(use-package wgrep-helm)
 
 
 ;;; helm-ag.el
 ;; https://github.com/syohex/emacs-helm-ag
 ;; http://qiita.com/l3msh0@github/items/97909d6e2c92af3acc00
-(require 'helm-ag)
-(setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
-(setq helm-ag-command-option "--all-text")
-(setq helm-ag-thing-at-point 'symbol)
+(use-package helm-ag
+  :commands (helm-ag helm-ag-this-file)
+  :config
+  (setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
+  (setq helm-ag-command-option "--all-text")
+  (setq helm-ag-thing-at-point 'symbol))
 
 
-;;; helm-open-github 2014-02-01 OAutho required
+
+;;; helm-open-github
+;;  2014-02-01 OAutho required
 ;; http://shibayu36.hatenablog.com/entry/2013/01/18/211428
-(require 'helm-open-github)
-;; (global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
-;; (global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
-;; (global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
+(use-package helm-open-github
+  :commands (helm-open-github-from-file
+             helm-open-github-from-commit
+             helm-open-github-from-issues))
 
 
-;;; ac-helm.el		; Helm interface for auto-complete
-(require 'ac-helm)
-(global-set-key (kbd "C-:") 'ac-complete-with-helm)
-(define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
-
-
-;;; helm-mode-manager.el		; Select and toggle major and minor modes with helm
-(require 'helm-mode-manager)
-
-
-;;; helm-package.el	; Listing ELPA packages with helm interface
-(require 'helm-package)
-
-
-;;; helm-themes.el	; Color theme selection with helm interface
-(require 'helm-themes)
+;;; helm-mode-manager.el
+;; Select and toggle major and minor modes with helm
+;; https://github.com/istib/helm-mode-manager
+(use-package helm-mode-manager
+  :commands (helm-switch-major-mode
+             helm-enable-minor-mode
+             helm-disable-minor-mode))
 
 
 ;;; helm-dash.el
 ;; http://fukuyama.co/helm-dash
 ;; http://kapeli.com/dash
-(require 'helm-dash)
+(use-package helm-dash
+  :commands (helm-dash
+             helm-dash-at-point))
 
 
 ;;; helm-swoop.el
-(require 'helm-swoop)
-(global-set-key (kbd "s-s") 'helm-swoop)
+(use-package helm-swoop
+  :bind ("s-s" . helm-swoop))
 ;; Give swoop additional bindings
 ;; (define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
 ;; (define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
-
-
-;;; helm-dictionary.el
-;; https://github.com/emacs-helm/helm-dictionary
-(require 'helm-dictionary)
-(setq helm-dictionary-database nil)
-;; Online dictionaries
-(setq helm-dictionary-online-dicts
-      '(("en.wiktionary.org" . "http://en.wiktionary.org/wiki/%s")))
