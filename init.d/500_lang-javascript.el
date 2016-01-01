@@ -11,36 +11,26 @@
 ;; Set up Javascript development environment in Emacs
 ;; http://truongtx.me/2014/02/23/set-up-javascript-development-environment-in-emacs/
 ;;
-(require 'js2-mode)
-;;
-;; files
-(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
-;;
-;; hooks
-(add-hook 'js-mode-hook 'js2-minor-mode)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-;;
-;; highlight
-(setq js2-highlight-level 3)
-;;
-;;; ac-js2.el
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-;;
+(use-package js2-mode
+  :mode (("\\.json$" . js-mode)
+         ("\\.js$" . js-mode))
+  :config
+  (add-hook 'js-mode-hook 'js2-minor-mode)
+  (add-hook 'js2-mode-hook 'ac-js2-mode)
+  ;; highlight
+  (setq js2-highlight-level 3)
+  ;; ac-js2.el
+  (add-hook 'js2-mode-hook 'ac-js2-mode)
 
-
-;;;
 ;;; js3-mode.el
-;; A chimeric fork of js2-mode and js-mode
-;; https://github.com/thomblake/js3-mode
-(require 'js3-mode)
-
-
-;;;
+  ;; A chimeric fork of js2-mode and js-mode
+  ;; https://github.com/thomblake/js3-mode
+  (require 'js3-mode)
 ;;; js-comint.el
-(require 'js-comint)
-;; Set inferior-js-program-command to the execution command for running your javascript REPL
-;; Use Node.js https://nodejs.org/en/
-(setq inferior-js-program-command "node --interactive")
+  (require 'js-comint)
+  ;; Set inferior-js-program-command to the execution command for running your javascript REPL
+  ;; Use Node.js https://nodejs.org/en/
+  (setq inferior-js-program-command "node --interactive"))
 
 
 ;;; moz.el
