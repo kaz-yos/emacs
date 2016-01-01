@@ -72,11 +72,6 @@
              (local-set-key (kbd "S-<return>") 'ess-eval-region-or-function-or-paragraph-and-step)
 	     ))
 ;;
-;; ess-mode
-(add-hook 'ess-mode-hook		; For ESS mode
-          '(lambda()
-	     ))
-;;
 ;; inferior-ess-mode
 (add-hook 'inferior-ess-mode-hook	; For iESS mode
           '(lambda()
@@ -94,12 +89,6 @@
 	  '(lambda ()
 	     ;; Extend column width of R-Process in Emacs
 	     (ess-execute-screen-options)))			; Reset screen width
-;;
-;; Rnw-mode
-(add-hook 'Rnw-mode-hook
-          '(lambda()
-	     ;;
-	     ))
 ;;
 ;; Rd-mode-hook
 (add-hook 'Rd-mode-hook
