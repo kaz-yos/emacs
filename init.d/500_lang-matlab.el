@@ -1,4 +1,0 @@
-;;; matlab-mode
-;;
-;;
-(require 'matlab)
