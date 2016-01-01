@@ -58,60 +58,46 @@
 ;;;
 ;;; SLIME for non-elisp lisps
 ;;; slime.el
-;; Common Lisp hyperspec via homebrew
-;; http://www.lispworks.com/documentation/common-lisp.html
-(eval-after-load "slime"
-  '(progn
-     ;; (setq common-lisp-hyperspec-root
-     ;;       "/usr/local/share/doc/hyperspec/HyperSpec/")
-     (setq common-lisp-hyperspec-root
-	   "http://www.harlequin.com/education/books/HyperSpec/")
-     (setq common-lisp-hyperspec-symbol-table
-           (concat common-lisp-hyperspec-root "Data/Map_Sym.txt"))
-     (setq common-lisp-hyperspec-issuex-table
-           (concat common-lisp-hyperspec-root "Data/Map_IssX.txt"))))
 ;;
 ;; http://www.common-lisp.net/project/slime/
 ;; http://dev.ariel-networks.com/wp/archives/462
-(require 'slime)
-(slime-setup '(slime-repl slime-fancy slime-banner))
-;;
-;; Common lisp (installed via homebrew)
-;; (setq inferior-lisp-program "/usr/local/bin/clisp")
-;;
-;; 2.5.2 Multiple Lisps (first one is the default)
-;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
-;; (NAME (PROGRAM PROGRAM-ARGS...) &key CODING-SYSTEM INIT INIT-FUNCTION ENV)
-;; NAME is a symbol and is used to identify the program.
-;; PROGRAM is the filename of the program. Note that the filename can contain spaces.
-;; PROGRAM-ARGS is a list of command line arguments.
-;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)x
-;;
-;; first one is the default
-(setq slime-lisp-implementations
-      '((sbcl   ("/usr/local/bin/sbcl"))
-        (clisp  ("/usr/local/bin/clisp"))))
-;;
+(use-package slime
+  :commands (slime)
+  :config
+  (slime-setup '(slime-repl slime-fancy slime-banner))
+  ;;
+  ;; Common Lisp hyperspec via homebrew
+  ;; http://www.lispworks.com/documentation/common-lisp.html
+  ;; (setq common-lisp-hyperspec-root
+  ;;       "/usr/local/share/doc/hyperspec/HyperSpec/")
+  (setq common-lisp-hyperspec-root
+        "http://www.harlequin.com/education/books/HyperSpec/")
+  (setq common-lisp-hyperspec-symbol-table
+        (concat common-lisp-hyperspec-root "Data/Map_Sym.txt"))
+  (setq common-lisp-hyperspec-issuex-table
+        (concat common-lisp-hyperspec-root "Data/Map_IssX.txt"))
+  ;;
+  ;; 2.5.2 Multiple Lisps (first one is the default)
+  ;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
+  ;; (NAME (PROGRAM PROGRAM-ARGS...) &key CODING-SYSTEM INIT INIT-FUNCTION ENV)
+  ;; NAME is a symbol and is used to identify the program.
+  ;; PROGRAM is the filename of the program. Note that the filename can contain spaces.
+  ;; PROGRAM-ARGS is a list of command line arguments.
+  ;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)x
+  ;;
+  ;; first one is the default
+  (setq slime-lisp-implementations
+        '((sbcl   ("/usr/local/bin/sbcl"))
+          (clisp  ("/usr/local/bin/clisp"))))
+  ;;
+  ;;
 ;;; auto-complete for SLIME 2014-02-25
-(require 'ac-slime)
-(add-hook 'slime-mode-hook      'set-up-slime-ac)
-(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'slime-repl-mode))
-;;
+  (when (require 'ac-slime nil 'noerror)
+    (add-hook 'slime-mode-hook      'set-up-slime-ac)
+    (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+    (eval-after-load "auto-complete"
+      '(add-to-list 'ac-modes 'slime-repl-mode))))
 
-
-;;;
-;;; SCHEME MODE
-;; Also used by geiser.el
-;; (require 'scheme)
-;; ;; This defines REPL-related functions, including switch-to-scheme
-;; (require 'cmuscheme)
-;; ;;
-;; ;; Use Gauche. REPL name is still *scheme*
-;; ;; (setq scheme-program-name "gosh -i")
-(add-hook 'scheme-mode-hook '(lambda ()
-                               (company-mode -1)))
 
 
 ;;;
@@ -138,25 +124,19 @@
 ;;
 ;; Do $ raco pkg install compatibility-lib if installing plt-racket via Homebrew
 ;; https://github.com/jaor/geiser/issues/39
-(require 'geiser)
-
-
+(use-package geiser
+  :commands (geiser-mode switch-to-geiser)
+  :config
 ;;; ac-geiser.el
-(require 'ac-geiser)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'geiser-repl-mode))
-;;
-(defun my-ac-geiser-setup ()
-  (ac-geiser-setup)
-  (company-mode -1)
-  (define-key geiser-mode-map (kbd "C-.") 'highlight-symbol-at-point))
-;;
-(add-hook 'geiser-mode-hook      'my-ac-geiser-setup)
-(add-hook 'geiser-repl-mode-hook 'my-ac-geiser-setup)
+  (when (require 'ac-geiser nil 'noerror)
+    (eval-after-load "auto-complete"
+      '(add-to-list 'ac-modes 'geiser-repl-mode))
+    ;;
+    (defun my-ac-geiser-setup ()
+      (ac-geiser-setup)
+      (company-mode -1)
+      (define-key geiser-mode-map (kbd "C-.") 'highlight-symbol-at-point))
+    (add-hook 'geiser-mode-hook      'my-ac-geiser-setup)
+    (add-hook 'geiser-repl-mode-hook 'my-ac-geiser-setup)))
 
 
-;;;
-;;; egison-mode.el
-;; https://github.com/egison/egison/blob/master/elisp/egison-mode.el
-;; This is not provided. The mode appears incomplete.
-;; (require 'egison-mode)
