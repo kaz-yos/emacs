@@ -18,4 +18,4 @@
 ;;; tuareg.el for OCaml
 ;; http://forge.ocamlcore.org/projects/tuareg/
 (use-package tuareg
-  :mode "\\.ml")
+  :mode ("\\.ml" . tuareg-mode))
