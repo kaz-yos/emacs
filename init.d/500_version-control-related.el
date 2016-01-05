@@ -124,21 +124,14 @@
 ;;; git-timemachine.el
 ;; Use git-timemachine to browse historic versions of a file with p
 ;; (previous) and n (next).
-(require 'git-timemachine)
+(use-package git-timemachine
+  :commands (git-timemachine-toggle
+             git-timemachine))
 ;;
 ;;
 ;;; github-browse-file.el
 ;; https://github.com/osener/github-browse-file
-(require 'github-browse-file)
-;;
-;;
-;;; modeline-git-branch.el
-;; http://qiita.com/acple@github/items/3709174ab24c5d82423a
-;; https://github.com/acple/modeline-git-branch
-(require 'modeline-git-branch)
-
-
-
-;;; Mercurial
-;; A simple Emacs interface for the Mercurial (Hg) Distributed SCM. 2013-09-09
-(require 'ahg)
+(use-package github-browse-file
+  :commands (github-browse-file
+             github-browse-file-blame
+             github-browse-commit))
