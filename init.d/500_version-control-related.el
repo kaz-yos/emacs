@@ -32,32 +32,49 @@
 ;; git real basics: http://xahlee.info/linux/git.html
 ;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
 ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
-(require 'magit)
+(use-package magit
+  :demand
+  :commands (magit-status)
+  :bind (("s-g" . my-magit-status)
+         ("C-c g" . magit-status))
+  :config
+  (defun my-magit-status ()
+    "Delete whitespaces, save, and magit-status"
+    (interactive)
+    (ess-nuke-trailing-whitespace)
+    (save-buffer)
+    (magit-status default-directory)
+    (message "Removed whitespaces if any."))
+  ;; change magit diff colors
+  ;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
+  ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
+  (eval-after-load 'magit
+    '(progn
+       (set-face-foreground 'magit-diff-add "SpringGreen3")
+       (set-face-background 'magit-diff-add "black")
+       (set-face-foreground 'magit-diff-del "firebrick3")
+       (set-face-background 'magit-diff-del "black")
+       (set-face-foreground 'magit-diff-file-header "blue")
+       ;; (set-face-background 'magit-diff-file-header "light yellow") ;Inherit: diff-file-header by default
+       ;; (set-face-foreground 'magit-item-highlight "black") ; Inherit: secondary-selection by default
+       (set-face-background 'magit-item-highlight "black") ; No highlight
+       ))
+  ;;
+  ;; Logging shows all branches by default (--all option added by default)
+  (defun magit-key-mode-popup-logging ()
+    "Key menu for logging (--graph --all by default)"
+    (interactive)
+    (magit-key-mode 'logging
+                    (list "--graph" "--all")))
+  ;;
+  ;; Merging does not use fast-forward by default (--no-ff option added by default)
+  (defun magit-key-mode-popup-merging ()
+    "Key menu for merging (--no-ff by default)"
+    (interactive)
+    (magit-key-mode 'merging
+                    (list "--no-ff"))))
 ;;
-;; keybinding for magit-status
-(defun my-magit-status (dir)
-  (interactive)
-  (ess-nuke-trailing-whitespace)
-  (save-buffer)
-  (magit-status dir))
 ;;
-(global-set-key (kbd "C-c g") 'magit-status)
-(global-set-key (kbd "s-g")   'magit-status)
-;;
-;; change magit diff colors
-;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
-;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
-(eval-after-load 'magit
-  '(progn
-     (set-face-foreground 'magit-diff-add "SpringGreen3")
-     (set-face-background 'magit-diff-add "black")
-     (set-face-foreground 'magit-diff-del "firebrick3")
-     (set-face-background 'magit-diff-del "black")
-     (set-face-foreground 'magit-diff-file-header "blue")
-     ;; (set-face-background 'magit-diff-file-header "light yellow") ;Inherit: diff-file-header by default
-     ;;(set-face-foreground 'magit-item-highlight "black") ; Inherit: secondary-selection by default
-     (set-face-background 'magit-item-highlight "black") ; No highlight
-     ))
 ;;
 ;; 2014-02-12 Add the --all switch by default to the logginb popup
 ;; Shown below is how magit-key-mode-popup-* is defined dynamically in magit-key-mode.el
@@ -83,42 +100,28 @@
 ;;
 ;; These just replace the dynamically created functions with statically made ones.
 ;;
-;; Logging shows all branches by default (--all option added by default)
-(defun magit-key-mode-popup-logging ()
-  "Key menu for logging (--graph --all by default)"
-  (interactive)
-  (magit-key-mode 'logging
-		  (list "--graph" "--all")))
 ;;
-;; Merging does not use fast-forward by default (--no-ff option added by default)
-(defun magit-key-mode-popup-merging ()
-  "Key menu for merging (--no-ff by default)"
-  (interactive)
-  (magit-key-mode 'merging
-		  (list "--no-ff")))
-;;
-;;
-;; Configure fringe for git-gutter 2014-02-02
-;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
-;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fringes.html
-(set-fringe-mode '(0 . 1))
-;;
+
 ;;
 ;;; git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
 ;; Does not work in .emacs.d (not elisp in general) 2014-03-01
 ;; https://github.com/nonsequitur/git-gutter-fringe-plus
 ;; fringe-helper.el is required.
-(require 'git-gutter-fringe+)
-;; Mute the mode-line
-(setq git-gutter+-lighter "")
-;; active everywhere
-(global-git-gutter+-mode)
-;; Show on the right side
-(setq git-gutter-fr+-side 'right-fringe)
-;;
-;; Moving between hunks
-(global-set-key (kbd "A-p") 'git-gutter+-previous-hunk)
-(global-set-key (kbd "A-n") 'git-gutter+-next-hunk)
+(use-package git-gutter-fringe+
+  :init ;; Configure fringe for git-gutter 2014-02-02
+  ;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
+  ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fringes.html
+  (set-fringe-mode '(0 . 1))
+  ;; Mute the mode-line
+  (setq git-gutter+-lighter "")
+  ;; active everywhere
+  (global-git-gutter+-mode)
+  ;; Show on the right side
+  (setq git-gutter-fr+-side 'right-fringe)
+  ;;
+  ;; Moving between hunks
+  (global-set-key (kbd "A-p") 'git-gutter+-previous-hunk)
+  (global-set-key (kbd "A-n") 'git-gutter+-next-hunk))
 ;;
 ;;
 ;;; git-timemachine.el
