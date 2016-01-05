@@ -202,13 +202,15 @@
           (factor     . "summary")
           (integer    . "summary")
           (lm         . "summary")
-          (glm        . "summary")			; added
-          (gls        . "summary")			; added
-          (lme        . "summary")			; added
-          (glht	    . "summary")			; added
-          (survfit    . "survival:::print.survfit")	; added
-          (survdiff   . "survival:::print.survdiff")	; added
-          (coxph	    . "survival:::print.coxph")		; added
+          ;; Added
+          (glm        . "summary")
+          (gls        . "summary")
+          (lme        . "summary")
+          (glht       . "summary")
+          (survfit    . "survival:::print.survfit")
+          (survdiff   . "survival:::print.survdiff")
+          (coxph      . "survival:::print.coxph")
+          ;;
           (other      . "str"))))
 
 ;;
