@@ -41,7 +41,7 @@
   (defun my-magit-status ()
     "Delete whitespaces, save, and magit-status"
     (interactive)
-    (ess-nuke-trailing-whitespace)
+    (delete-trailing-whitespace)
     (save-buffer)
     (magit-status default-directory)
     (message "Removed whitespaces if any."))
