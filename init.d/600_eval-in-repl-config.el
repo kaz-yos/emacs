@@ -1,8 +1,9 @@
 ;;; eval-in-repl configuration
 
 ;;; Uncomment to use the local dev repo
-(when (file-exists-p "~/Documents/programming/emacs-lisp-repos/eval-in-repl")
-  (add-to-list 'load-path "~/Documents/programming/emacs-lisp-repos/eval-in-repl"))
+(let ((eir-repo "~/Documents/programming/emacs-lisp-repos/eval-in-repl"))
+  (when (file-exists-p eir-repo)
+    (add-to-list 'load-path eir-repo)))
 
 
 ;;; require the main file containing common functions
@@ -10,9 +11,11 @@
 
 
 ;;; Default behaviors
-;; Not splitting at REPL start up
-;; (setq eir-delete-other-windows nil)
-
+;; Always split
+;; (setq eir-always-split-script-window nil)
+;; Place REPL on the left if starting with one window.
+;; This works only for IELM, Python, Hy, and shell.
+;; (setq eir-repl-placement 'left)
 
 ;;; ielm support (for emacs lisp)
 (use-package eval-in-repl-ielm
@@ -156,4 +159,3 @@ configuration when invoked to evaluate a line."
 (with-eval-after-load 'js2-mode
   (require 'eval-in-repl-javascript)
   (define-key js2-mode-map (kbd "<C-return>") 'eir-eval-in-javascript))
-
