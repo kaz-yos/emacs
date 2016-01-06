@@ -27,6 +27,10 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Creating-Custom-Themes.html#Creating-Custom-Themes
 (setq custom-theme-directory "~/.emacs.d/themes/")
 
+;;; initchart.el start up process visualizer
+;; (require 'initchart)
+;; (initchart-record-execution-time-of load file)
+;; (initchart-record-execution-time-of require feature)
 
 ;;; init-loader.el
 ;; https://github.com/emacs-jp/init-loader
