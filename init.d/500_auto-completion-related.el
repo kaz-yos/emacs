@@ -13,6 +13,7 @@
 ;; https://github.com/auto-complete/auto-complete
 ;; http://cx4a.org/software/auto-complete/manual.html
 (use-package auto-complete
+  :commands (auto-complete-mode)
   :init
   ;; Configure default sources
   (setq-default ac-sources '(ac-source-abbrev
@@ -104,7 +105,7 @@
 ;;
 ;; I don't like the default colors!
 ;; http://www.emacswiki.org/CompanyMode#toc6
-(require 'color)
+;; (require 'color) ; no need?
 (custom-set-faces
  ;; auto-complete-like color setting
  ;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
@@ -122,9 +123,10 @@
 ;;; company-quickhelp.el
 ;; Documentation popup for Company
 ;; https://github.com/expez/company-quickhelp
-;; (use-package company-quickhelp
-;;   :config
-;;   (company-quickhelp-mode 1))
+(use-package company-quickhelp
+  :disabled t
+  :config
+  (company-quickhelp-mode 1))
 
 
 ;;;
@@ -229,38 +231,40 @@
 ;;; popwin.el		; Popup Window Manager
 ;; https://github.com/m2ym/popwin-el
 ;; http://d.hatena.ne.jp/m2ym/20110120/1295524932
-(require 'popwin)
-;; (popwin-mode 1)
-;; Where to show
-(setq popwin:popup-window-position 'left)
-;; width 20% of frame width
-(setq popwin:popup-window-width 0.2)
-;; height 30% of frame height
-(setq popwin:popup-windowheightwidth 0.3)
-;;
-;; Buffers under control (default minus help-mode)
-(setq popwin:special-display-config
-      '(;; ("*Completions*")
-	(completion-list-mode :noselect t)
-	;; (compilation-mode :noselect t)
-	(grep-mode :noselect t)
-	(occur-mode :noselect t)
-	("*Pp Macroexpand Output*" :noselect t)
-	("*Shell Command Output*")
-	("*vc-diff*")
-	("*vc-change-log*")
-	(" *undo-tree*" :width 60 :position right)
-	("^\\*anything.*\\*$" :regexp t)
-	("*slime-apropos*")
-	("*slime-macroexpansion*")
-	("*slime-description*")
-	("*slime-compilation*" :noselect t)
-	("*slime-xref*")
-	(sldb-mode :stick t)
-	(slime-repl-mode)
-	(slime-connection-list-mode)))
-;;
-;; Add buffers under control
-;; http://aikotobaha.blogspot.com/2013/04/popwinel.html
-;; Completions
-;; (push '("*Completions*") popwin:special-display-config)
+(use-package popwin
+  :disabled t
+  :config
+  ;; Where to show
+  (setq popwin:popup-window-position 'left)
+  ;; width 20% of frame width
+  (setq popwin:popup-window-width 0.2)
+  ;; height 30% of frame height
+  (setq popwin:popup-windowheightwidth 0.3)
+  ;;
+  ;; Buffers under control (default minus help-mode)
+  (setq popwin:special-display-config
+        '(;; ("*Completions*")
+          (completion-list-mode :noselect t)
+          ;; (compilation-mode :noselect t)
+          (grep-mode :noselect t)
+          (occur-mode :noselect t)
+          ("*Pp Macroexpand Output*" :noselect t)
+          ("*Shell Command Output*")
+          ("*vc-diff*")
+          ("*vc-change-log*")
+          (" *undo-tree*" :width 60 :position right)
+          ("^\\*anything.*\\*$" :regexp t)
+          ("*slime-apropos*")
+          ("*slime-macroexpansion*")
+          ("*slime-description*")
+          ("*slime-compilation*" :noselect t)
+          ("*slime-xref*")
+          (sldb-mode :stick t)
+          (slime-repl-mode)
+          (slime-connection-list-mode)))
+  ;;
+  ;; Add buffers under control
+  ;; http://aikotobaha.blogspot.com/2013/04/popwinel.html
+  ;; Completions
+  ;; (push '("*Completions*") popwin:special-display-config)
+  )
