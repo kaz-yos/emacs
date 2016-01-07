@@ -90,9 +90,8 @@
   :config
   ;; What to display in the mode line while multiple-cursors-mode is active.
   (setq mc/mode-line
-        ;; `(" mc:" (:eval (format ,(propertize "%d" 'face 'font-lock-warning-face)
-        ;; `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
-        `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
+        ;; This requires anzu.el
+        `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)
                                 (mc/num-cursors))))))
 
 ;;;
