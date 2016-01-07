@@ -5,7 +5,7 @@
 ;; http://d.hatena.ne.jp/rubikitch/20081104/1225745862
 ;; http://d.hatena.ne.jp/syohex/20110114/1294958917
 ;;
-(global-set-key (kbd "A-o") 'toggle-read-only)
+(global-set-key (kbd "A-o") 'read-only-mode)
 
 
 ;;; view-read-only
