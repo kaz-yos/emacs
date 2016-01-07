@@ -15,8 +15,12 @@
 (setq dired-isearch-filenames t)
 ;; Automatically revert dired buffer on revisiting.
 (setq dired-auto-revert-buffer t)
-;; Auto-revert on change. (now auto-revert active globally)
+;; Auto-revert on change.
 (add-hook 'dired-mode-hook 'turn-on-auto-revert-mode)
+;;
+;;; key configuration
+(add-hook 'dired-mode-hook
+          '(lambda () (define-key dired-mode-map (kbd "s-d") 'make-directory)))
 
 
 ;;; File type specific shell command
@@ -46,10 +50,6 @@
 ;; lisp implementation of ls is used in systems without ls
 ;; (setq ls-lisp-use-insert-directory-program nil)
 ;; (require 'ls-lisp)
-
-
-;;; key configuration
-(define-key dired-mode-map (kbd "s-d") 'make-directory)
 
 
 ;;; dired+.el
