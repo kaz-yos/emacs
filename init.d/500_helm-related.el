@@ -3,57 +3,43 @@
 ;; http://d.hatena.ne.jp/a_bicky/20140125/1390647299		; arabiki 2
 ;; http://sleepboy-zzz.blogspot.com/2012/09/anythinghelm.html	; in general
 ;; http://d.hatena.ne.jp/syohex/20121207/1354885367		; some useful tips
+;; http://pages.sachachua.com/.emacs.d/Sacha.html#orgheadline12
 
 
-;; Temporary fix for name change
-;; https://github.com/emacs-helm/helm/commit/8cb7a9e0b98175845a68309e2dd9850bd0f02a28
-(defalias 'helm--make-source 'helm-make-source)
-
-
-;; Activate helm
-(require 'helm-config)
-(require 'helm-command)
-;;
-;;
-(setq helm-idle-delay             0.3
-      helm-input-idle-delay       0.3
-      helm-candidate-number-limit 200
-      helm-M-x-always-save-history t)
-;;
-;; Disabled because it was giving an error 2013-11-22
-(setq helm-locate-command "")
-;;
-(require 'cl)
-(let ((key-and-func
-       `(;;(,(kbd "C-x C-f") helm-find-files)
-         (,(kbd "M-x")     helm-M-x)
-         (,(kbd "C-M-x")   execute-extended-command)
-         (,(kbd "C-z")     helm-for-files)
-         (,(kbd "M-y")     helm-show-kill-ring)
-         (,(kbd "C-x b")   helm-buffers-list)
-         (,(kbd "C-x C-r") helm-recentf)
-         ;;
-         (,(kbd "C-^")     helm-c-apropos)
-         (,(kbd "C-;")     helm-resume)
-         (,(kbd "s-c")     helm-occur)
-         (,(kbd "M-z")     helm-do-grep)
-         (,(kbd "C-S-h")   helm-descbinds))))
-  (loop for (key func) in key-and-func
-        do (global-set-key key func)))
-;;
-;; (define-key global-map (kbd "C-x b")   'helm-buffers-list)
-;; (define-key global-map (kbd "C-x C-r") 'helm-recentf)
-;;
-;; helm for isearch 2014-02-01
-;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
-(define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
-;;
-;; Emulate `kill-line' in helm minibuffer
-;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688
-(setq helm-delete-minibuffer-contents-from-point t)
-(defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
-  "Emulate `kill-line' in helm minibuffer"
-  (kill-new (buffer-substring (point) (field-end))))
+(use-package helm
+  :ensure t
+  :diminish helm-mode
+  :init
+  (require 'helm-config)
+  :bind (("M-x" .     helm-M-x)
+         ("C-M-x" .   execute-extended-command)
+         ("C-z" .     helm-for-files)
+         ("M-y" .     helm-show-kill-ring)
+         ("C-x b" .   helm-buffers-list)
+         ("C-x C-r" . helm-recentf)
+         ("C-^" .     helm-c-apropos)
+         ("C-;" .     helm-resume)
+         ("s-c" .     helm-occur)
+         ("M-z" .     helm-do-grep)
+         ("C-S-h" .   helm-descbinds))
+  :config
+  ;; Disabled because it was giving an error 2013-11-22
+  (setq helm-locate-command "")
+  (setq helm-idle-delay             0.3
+        helm-input-idle-delay       0.3
+        helm-candidate-number-limit 200
+        helm-M-x-always-save-history t)
+  ;; helm for isearch 2014-02-01
+  ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
+  (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
+  ;;
+  ;; Emulate `kill-line' in helm minibuffer
+  ;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688
+  (setq helm-delete-minibuffer-contents-from-point t)
+  (defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
+    "Emulate `kill-line' in helm minibuffer"
+    (kill-new (buffer-substring (point) (field-end))))
+  )
 ;;
 ;;
 ;;; debug
