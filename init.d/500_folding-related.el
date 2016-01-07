@@ -11,7 +11,14 @@
 ;; it means that, if the cursor is in a currently hidden folded
 ;; construction, we want to show it; if it's not, we want to hide
 ;; whatever fold the cursor is in.
-(require 'fold-dwim)
+(use-package fold-dwim
+  :commands (fold-dwim-toggle
+             fold-dwim-hide-all
+             fold-dwim-show-all)
+  ;; :bind (("<f7>" . fold-dwim-toggle)
+  ;;        ("<M-f7>" . fold-dwim-hide-all)
+  ;;        ("<S-M-f7>" . fold-dwim-show-all))
+  )
 ;; This package binds no keys by default, so you need to find three
 ;; free and convenient key-bindings.  This is what I use:
 ;;
@@ -24,9 +31,8 @@
 ;;; 
 ;;; origami.el
 ;; https://github.com/gregsexton/origami.el
-(require 'origami)
-;;
-(add-to-list 'origami-parser-alist '(r-mode . origami-c-style-parser))
+(use-package origami
+  :commands (origami))
 
 
 
