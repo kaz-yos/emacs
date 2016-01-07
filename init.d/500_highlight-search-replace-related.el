@@ -55,19 +55,21 @@
 ;;; anzu.el 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 ;; http://qiita.com/syohex/items/56cf3b7f7d9943f7a7ba
-(require 'anzu)
-;;
-(global-anzu-mode +1)
-(setq anzu-mode-lighter "")
-(setq anzu-use-migemo t)
-(setq anzu-search-threshold 1000)
-(setq anzu-minimum-input-length 1)
-;;
-;; Define a large face (also used for multiple-cursors.el)
-;; This was done in custom-set-faces.
-;;
-;; (global-set-key (kbd "C-c r") 'anzu-query-replace)
-;; (global-set-key (kbd "C-c R") 'anzu-query-replace-regexp)
+(use-package anzu
+  :demand
+  :config
+  (global-anzu-mode +1)
+  (setq anzu-mode-lighter "")
+  (setq anzu-use-migemo t)
+  (setq anzu-search-threshold 1000)
+  (setq anzu-minimum-input-length 1)
+  ;;
+  ;; Define a large face (also used for multiple-cursors.el)
+  ;; This was done in custom-set-faces.
+  ;;
+  ;; (global-set-key (kbd "C-c r") 'anzu-query-replace)
+  ;; (global-set-key (kbd "C-c R") 'anzu-query-replace-regexp)
+  )
 
 
 ;;;
@@ -78,6 +80,7 @@
 ;; http://rubikitch.com/2014/11/10/multiple-cursors/
 ;;
 (use-package multiple-cursors
+  :demand ; otherwise mode-line override does not work
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ;; highlighting symbols only
          ("C-M->" . mc/mark-next-symbol-like-this)
