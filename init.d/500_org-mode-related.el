@@ -1,8 +1,8 @@
 ;;; Org-mode related
 ;; Load org
-(require 'org)
-;;
-;;;
-;;; Reassign Keep the following key
-(define-key org-mode-map (kbd "<C-tab>") 'other-window-or-split)
-(define-key org-mode-map (kbd "<A-tab>") 'org-global-cycle)
+(use-package org
+  :mode ("\\.org" . org-mode)
+  :config
+  ;; Reassign Keep the following key
+  (define-key org-mode-map (kbd "<C-tab>") 'other-window-or-split)
+  (define-key org-mode-map (kbd "<A-tab>") 'org-global-cycle))
