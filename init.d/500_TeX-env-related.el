@@ -242,34 +242,20 @@
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX
 ;; Getting current LaTeX document to use your .bib file
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#Getting_current_LaTeX_document_to_use_your_.bib_file
-(require 'bibtex)
-;;
-;;
-;;; bibretrieve.el
-;; Retrieving BibTeX
-;; https://github.com/pzorin/bibretrieve; reftex 4.0 not found??
-(require 'bibretrieve)
-;;
-;;
-;;; bibtex-utils.el
-;; Provides utilities for extending BibTeX
-;; https://bitbucket.org/tws/bibtex-utils
-(require 'bibtex-utils)
-;;
+;; (require 'bibtex)
 ;;
 ;;; zotelo (Zotero-Local)
 ;; https://github.com/vitoshka/zotelo
 ;; https://forums.zotero.org/discussion/19608/zotero-emacs-integration/
-(require 'zotelo)
-;;
-;; (setq zotelo--auto-update-is-on t)
-;; (setq zotelo-check-interval 600)
-;; this variable is invalid and not refered to
-;;
-;; (setq zotelo-use-ido nil)
-(add-hook 'TeX-mode-hook 'zotelo-minor-mode)
-;; C-c z c         zotelo-set-collection (also C-c z s)
-;; C-c z u         zotelo-update-database
-;; C-c z e         zotelo-export-secondary
-;; C-c z r         zotelo-reset
-;; C-c z t         zotelo-set-translator
+(use-package zotelo
+  :commands (zotelo-set-collection
+             zotelo-update-database)
+  :config
+  ;; (setq zotelo-use-ido nil)
+  (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
+  ;; C-c z c         zotelo-set-collection (also C-c z s)
+  ;; C-c z u         zotelo-update-database
+  ;; C-c z e         zotelo-export-secondary
+  ;; C-c z r         zotelo-reset
+  ;; C-c z t         zotelo-set-translator
+  )
