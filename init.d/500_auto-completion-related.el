@@ -213,11 +213,6 @@
 
 
 ;;;
-;;; grizzl.el		; A fuzzy-search utility for Emacs
-;; https://github.com/d11wtq/grizzl
-
-
-;;;
 ;;; Handling of the tab completion buffer 2014-02-03
 ;; http://stackoverflow.com/questions/6458220/automatically-close-emacs-shell-mode-tab-completion-buffer
 (defun delete-completion-window-buffer (&optional output)
@@ -269,4 +264,3 @@
 ;; http://aikotobaha.blogspot.com/2013/04/popwinel.html
 ;; Completions
 ;; (push '("*Completions*") popwin:special-display-config)
-
