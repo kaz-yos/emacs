@@ -163,7 +163,7 @@
 ;; http://git.sysphere.org/dotfiles/tree/emacs
 (setq save-place-file "~/.emacs.d/emacs-places")
 (setq-default save-place t)
-;; (require 'saveplace) ; no need as it is part of emacs
+(require 'saveplace)
 
 
 ;;;
