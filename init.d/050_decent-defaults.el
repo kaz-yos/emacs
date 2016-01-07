@@ -13,7 +13,7 @@
 (delete-selection-mode t)
 
 
-;;; 
+;;;
 ;;; Use newer of .elc or .el
 (setq load-prefer-newer t)
 
@@ -161,9 +161,9 @@
 ;;; Remeber the cursor position in a file
 ;; http://www.emacswiki.org/emacs/SavePlace
 ;; http://git.sysphere.org/dotfiles/tree/emacs
-(setq save-place-file "~/.emacs.d/emacs-places")		; save file within ~/.emacs.d
+(setq save-place-file "~/.emacs.d/emacs-places")
 (setq-default save-place t)
-(require 'saveplace)
+;; (require 'saveplace) ; no need as it is part of emacs
 
 
 ;;;
