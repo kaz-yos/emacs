@@ -1,55 +1,54 @@
 ;;;
 ;;; crosshairs.el: highlight current line/column using hl-line(+).el/col-highlight.el
 ;; http://www.emacswiki.org/emacs/CrosshairHighlighting
-(require 'crosshairs)
-;; (toggle-crosshairs-when-idle t) ; No need for crosshairs when idle
-;; (col-highlight-set-interval 60)
-;;
-;; hl-line+.el: highlight current line only (no column)
-;; http://www.emacswiki.org/emacs/HighlightCurrentLine#toc3
-;; (require 'hl-line+)		; required by crosshairs already
-;; (toggle-hl-line-when-idle t)	; turned on line highlight when idle
-;; (toggle-hl-line-when-idle nil)	; turned off line highlight when idle
-(hl-line-when-idle-interval 60)
-;;
-;; To customize the background color
-;; (setq my-highlight-color "light goldenrod yellow")
-(setq my-highlight-color "dark red")
-(set-face-background 'hl-line	    my-highlight-color) ; Line color
-(set-face-background 'col-highlight my-highlight-color)	; Column color
-;; (set-face-background 'hl-line	    "light goldenrod yellow")   ; Line color
-;; (set-face-background 'col-highlight "light goldenrod yellow")	; Column color
-;; (set-face-background 'hl-line "lemon chiffon")		; Line color
-;; (set-face-background 'col-highlight "lemon chiffon")		; Column color
+(use-package crosshairs
+  :commands (crosshairs-mode)
+  :config
+  ;; (toggle-crosshairs-when-idle t) ; No need for crosshairs when idle
+  ;; (col-highlight-set-interval 60)
+  ;;
+  ;; hl-line+.el: highlight current line only (no column)
+  ;; http://www.emacswiki.org/emacs/HighlightCurrentLine#toc3
+  ;; (require 'hl-line+)                ; required by crosshairs already
+  ;; (toggle-hl-line-when-idle t)       ; turned on line highlight when idle
+  ;; (toggle-hl-line-when-idle nil)     ; turned off line highlight when idle
+  (hl-line-when-idle-interval 60)
+  ;;
+  ;; To customize the background color
+  ;; (setq my-highlight-color "light goldenrod yellow")
+  (setq my-highlight-color "dark red")
+  (set-face-background 'hl-line my-highlight-color) ; Line color
+  (set-face-background 'col-highlight my-highlight-color) ; Column color
+  ;; (set-face-background 'hl-line "light goldenrod yellow")            ; Line color
+  ;; (set-face-background 'col-highlight "light goldenrod yellow")      ; Column color
+  ;; (set-face-background 'hl-line "lemon chiffon")                     ; Line color
+  ;; (set-face-background 'col-highlight "lemon chiffon")               ; Column color
+  )
 
 
 ;;;
 ;;; highligh-symbol for highlighting multiple occurences
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
-(require 'highlight-symbol)
-;; No waiting
-(setq highlight-symbol-idle-delay 0)
-;;
-;; Key config
-(global-set-key (kbd "C-.") 'highlight-symbol-at-point)
-;; (global-set-key (kbd "C-\}") 'highlight-symbol-next)
-;; (global-set-key (kbd "C-\{") 'highlight-symbol-prev)
-;;
-;; Define highlight-symbol-prev/next and recenter
-(defun my-highlight-symbol-prev ()
-  (interactive)
-  (highlight-symbol-prev)
-  (recenter))
-(defun my-highlight-symbol-next ()
-  (interactive)
-  (highlight-symbol-next)
-  (recenter))
-;;
-(global-set-key (kbd "C-\}") 'my-highlight-symbol-next)
-(global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
-(global-set-key (kbd "A-]") 'my-highlight-symbol-next)
-(global-set-key (kbd "A-[") 'my-highlight-symbol-prev)
+(use-package highlight-symbol
+  :bind ("C-." . highlight-symbol-at-point)
+  :config
+  (setq highlight-symbol-idle-delay 0)
+  ;;
+  ;; Define highlight-symbol-prev/next and recenter
+  (defun my-highlight-symbol-prev ()
+    (interactive)
+    (highlight-symbol-prev)
+    (recenter))
+  (defun my-highlight-symbol-next ()
+    (interactive)
+    (highlight-symbol-next)
+    (recenter))
+  ;;
+  (global-set-key (kbd "C-\}") 'my-highlight-symbol-next)
+  (global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
+  (global-set-key (kbd "A-]") 'my-highlight-symbol-next)
+  (global-set-key (kbd "A-[") 'my-highlight-symbol-prev))
 
 
 ;;;
@@ -78,33 +77,33 @@
 ;; http://emacsrocks.com/e13.html (video)
 ;; http://rubikitch.com/2014/11/10/multiple-cursors/
 ;;
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-;; highlighting symbols only
-(global-set-key (kbd "C-M->") 'mc/mark-next-symbol-like-this)
-(global-set-key (kbd "C-M-<") 'mc/mark-previous-symbol-like-this)
-(global-set-key (kbd "C-M-*") 'mc/mark-all-symbols-like-this)
-;; highlighting all
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-*") 'mc/mark-all-like-this)
-;;
-;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-;;
-;; What to display in the mode line while multiple-cursors-mode is active.
-(setq mc/mode-line
-      ;; `(" mc:" (:eval (format ,(propertize "%d" 'face 'font-lock-warning-face)
-      ;; `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
-      `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
-			      (mc/num-cursors)))))
-
+(use-package multiple-cursors
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+         ;; highlighting symbols only
+         ("C-M->" . mc/mark-next-symbol-like-this)
+         ("C-M-<" . mc/mark-previous-symbol-like-this)
+         ("C-M-*" . mc/mark-all-symbols-like-this)
+         ;; highlighting all
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-*" . mc/mark-all-like-this))
+  :config
+  ;; What to display in the mode line while multiple-cursors-mode is active.
+  (setq mc/mode-line
+        ;; `(" mc:" (:eval (format ,(propertize "%d" 'face 'font-lock-warning-face)
+        ;; `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
+        `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)	; Requires anzu.el
+                                (mc/num-cursors))))))
 
 ;;;
 ;;; phi-search.el
+;; another incremental search command, compatible with “multiple-cursors”
 ;; https://github.com/zk-phi/phi-search
 ;; https://www.youtube.com/watch?v=JSTO674y6Hcp
 ;; http://rubikitch.com/2014/11/11/phi-search/
-(require 'phi-search)
+(use-package phi-search
+  :commands (phi-search
+             phi-search-backward))
 
 
 
@@ -125,14 +124,7 @@
 
 
 ;;;
-;;; loccur.el
-;; https://github.com/fourier/loccur
-;;
-(require 'loccur)
-
-
-;;;
-;;; moccur-edit.el (el-get)
+;;; moccur-edit.el
 ;; Requires color-moccur.el (elpa)
 ;; http://www.bookshelf.jp/elc/moccur-edit.el
 ;; http://d.hatena.ne.jp/higepon/20061226/1167098839
@@ -180,23 +172,25 @@
 ;;; highlight-sexp.el
 ;; http://www.emacswiki.org/emacs/HighlightSexp
 ;; Color M-x list-colors-display  to check good colors
-(require 'highlight-sexp)
-;; (setq hl-sexp-background-color "thistle1")
-;; (setq hl-sexp-background-color "snow1")
-;; (setq hl-sexp-background-color "CadetBlue1") ; for light background
-(setq hl-sexp-background-color "dark red") ; for dark background
-;; (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
-;; (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
-;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
-(global-set-key (kbd "s-x") 'highlight-sexp-mode)
+(use-package highlight-sexp
+  :commands (highlight-sexp-mode)
+  :config
+  ;; (setq hl-sexp-background-color "thistle1")
+  ;; (setq hl-sexp-background-color "snow1")
+  ;; (setq hl-sexp-background-color "CadetBlue1") ; for light background
+  (setq hl-sexp-background-color "dark red") ; for dark background
+  ;; (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
+  ;; (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
+  ;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
+  (global-set-key (kbd "s-x") 'highlight-sexp-mode))
 
 
 ;;;
 ;;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
-(require 'expand-region)
-(global-set-key (kbd "C-,") 'er/expand-region)
-(global-set-key (kbd "C-M-,") 'er/contract-region)
+(use-package expand-region
+  :bind (("C-," . er/expand-region)
+         ("C-M-," . er/contract-region)))
 
 
 ;;;
@@ -222,24 +216,14 @@
 ;;; rainbow-mode.el
 ;; Make strings describing colors appear in colors
 ;; http://julien.danjou.info/projects/emacs-packages
-(require 'rainbow-mode)
+(use-package rainbow-mode
+  :commands (rainbow-mode))
 ;;
 ;; Colors in R
 ;; use the following code to generate the list in R
 ;; output_colors <- function(colors) {for(color in colors) {col <- col2rgb(color); cat(sprintf("(\"%s\" . \"#%02X%02X%02X\")\n",color,col[1],col[2],col[3]));}}
 ;; output_colors(colors())
 ;; See variable rainbow-r-colors-alist
-
-
-;;;
-;;; rainbow-blocks.el
-;;
-;; Rainbow-blocks highlights blocks made of parentheses, brackets, and
-;; braces according to their depth. Each successive level is
-;; highlighted in a different color. This makes it easy to orient
-;; yourself in the code, and tell which statements are at a given
-;; level.
-(require 'rainbow-blocks)
 
 
 ;;;
