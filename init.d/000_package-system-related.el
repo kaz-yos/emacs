@@ -26,6 +26,10 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 ;;
+;; Some packages use defstruct, which is obsolete. Alias cl-defstruct to avoid errors.
+;; 2016-01-09 latex-math-preview still depends on defstruct, and gives an error w/o it.
+(defalias 'defstruct 'cl-defstruct)
+;;
 ;; Need to be initialized.
 (package-initialize)
 
