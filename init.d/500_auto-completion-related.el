@@ -145,8 +145,9 @@
 ;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-modal-cycle-up-keys
 ;;
 ;; Need to turn off icicle-mode, and turn it back on to reflect configuration changes.
+;;
+;; Less annoying for C-x C-f than ido. I only use find-file to create a file or open a directory.
 (use-package icicles
-  :disabled t
   :demand
   :config
   (icy-mode 1)
@@ -184,6 +185,9 @@
 ;;; IDO-RELATED
 ;;
 ;;; ido.el
+;; http://www.emacswiki.org/emacs/InteractivelyDoThings
+;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
+;; http://miyazakikenji.wordpress.com/2013/06/11/emacs-に-ido-mode/
 (use-package ido
   :demand
   :config
@@ -191,6 +195,8 @@
   (setq ido-enable-flex-matching t)
   (ido-mode 1)
   (ido-everywhere 1)
+  ;; https://www.masteringemacs.org/article/introduction-to-ido-mode
+  (setq ido-use-filename-at-point 'guess)
   ;;
   ;;
 ;;; ido-ubiquitous.el
@@ -201,9 +207,6 @@
   ;;
   ;;
 ;;; flx-ido.el
-  ;; http://www.emacswiki.org/emacs/InteractivelyDoThings
-  ;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
-  ;; http://miyazakikenji.wordpress.com/2013/06/11/emacs-に-ido-mode/
   (require 'flx-ido)
   (flx-ido-mode 1)
   ;; disable ido faces to see flx highlights.
