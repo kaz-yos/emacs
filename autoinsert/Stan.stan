@@ -2,11 +2,11 @@ data {
   // Prior alpha
   int alpha;
   // Prior beta
-  int beta;  
+  int beta;
   // Define variables in data
   // Number of observations (an integer)
   int<lower=0> N;
-  // Birthweight outcome (a real vector of length N)
+  // Outcome (a real vector of length N)
   real y[N];
 }
 
@@ -28,10 +28,11 @@ transformed parameters  {
 model {
   // Prior part of Bayesian inference
   // Flat prior for mu (no need to specify if non-informative)
+
   // sigma^2 has inverse gamma (alpha = 1, beta = 1) prior
   sigmaSq ~ inv_gamma(alpha, beta);
 
   // Likelihood part of Bayesian inference
   // Outcome model N(mu, sigma^2) (use SD rather than Var)
-  y ~ normal(mu, sigma);    
+  y ~ normal(mu, sigma);
 }
