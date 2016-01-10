@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: for
+# key: for
+# binding: direct-keybinding
+# --
+  for (i in 1:N) {
+   $0 
+  }
