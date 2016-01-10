@@ -4,8 +4,8 @@
 ;;; C-h for delete (backspace)
 ;; http://www.emacswiki.org/emacs-en/BackspaceKey
 (define-key key-translation-map [?\C-h] [?\C-?])
-;; C-x ? for help instead
-(define-key global-map (kbd "C-x ?") 'help-command)
+;; A-h ? will bring up what's available
+(global-set-key (kbd "A-h") 'help-command)
 
 
 ;;; C-m for newline-and-indent
