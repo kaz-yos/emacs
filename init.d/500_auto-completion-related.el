@@ -145,36 +145,38 @@
 ;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-modal-cycle-up-keys
 ;;
 ;; Need to turn off icicle-mode, and turn it back on to reflect configuration changes.
-(require 'icicles)
-(icy-mode 1)
-;;
-;; Initial height decrease for text in buffer `*Completions*'. (0.75 by default)
-;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-Completions-text-scale-decrease
-(setq icicle-Completions-text-scale-decrease 0.0)
-;;
+(use-package icicles
+  :disabled t
+  :demand
+  :config
+  (icy-mode 1)
+  ;;
+  ;; Initial height decrease for text in buffer `*Completions*'. (0.75 by default)
+  ;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-Completions-text-scale-decrease
+  (setq icicle-Completions-text-scale-decrease 0.0)
+  ;;
 ;;; Default cycling mode to be used before you hit ‘TAB’ or ‘S-TAB’.
-;; prefix or apropos (fuzzy matching)
-(setq icicle-default-cycling-mode 'apropos)
-;;
+  ;; prefix or apropos (fuzzy matching)
+  (setq icicle-default-cycling-mode 'apropos)
+  ;;
 ;;; Key configuration for modal cycling within minibuffer
-;; No need for configuration. They already work if configured for apropos-cycle.
-;; (add-to-list 'icicle-modal-cycle-up-keys   (kbd "C-p"))
-;; (add-to-list 'icicle-modal-cycle-down-keys (kbd "C-n"))
-;;
+  ;; No need for configuration. They already work if configured for apropos-cycle.
+  ;; (add-to-list 'icicle-modal-cycle-up-keys   (kbd "C-p"))
+  ;; (add-to-list 'icicle-modal-cycle-down-keys (kbd "C-n"))
+  ;;
 ;;; Key configuration for cycling fuzzy matching
-;; icicle-apropos-complete-keys: S-tab by default
-(setq icicle-apropos-complete-keys (list (kbd "<tab>")))
-;; icicle-apropos-cycle-previous/next-keys: [next]/[prior] by default
-(setq icicle-apropos-cycle-previous-keys (list (kbd "<A-tab>") (kbd "C-p") (kbd "<prior>")))
-(setq icicle-apropos-cycle-next-keys     (list                 (kbd "C-n") (kbd "<next>")))
-;;
+  ;; icicle-apropos-complete-keys: S-tab by default
+  (setq icicle-apropos-complete-keys       (list (kbd "<tab>")))
+  ;; icicle-apropos-cycle-previous/next-keys: [next]/[prior] by default
+  (setq icicle-apropos-cycle-previous-keys (list (kbd "C-p") (kbd "<prior>")))
+  (setq icicle-apropos-cycle-next-keys     (list (kbd "C-n") (kbd "<next>")))
+  ;;
 ;;; Key configuration for cycling prefix matching
-;; icicle-prefix-complete-keys: tab by default
-(setq icicle-prefix-complete-keys (list (kbd "<S-tab>")))
-;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
-(setq icicle-prefix-cycle-previous-keys (list (kbd "<S-A-tab>") (kbd "<home>")))
-(setq icicle-prefix-cycle-next-keys     (list                   (kbd "<end>")))
-;;
+  ;; icicle-prefix-complete-keys: tab by default
+  (setq icicle-prefix-complete-keys (list (kbd "<S-tab>")))
+  ;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
+  (setq icicle-prefix-cycle-previous-keys (list (kbd "<home>")))
+  (setq icicle-prefix-cycle-next-keys     (list (kbd "<end>"))))
 
 
 
@@ -182,36 +184,39 @@
 ;;; IDO-RELATED
 ;;
 ;;; ido.el
-(require 'ido)
-;; Flexible matching
-(setq ido-enable-flex-matching t)
-(ido-mode 1)
-(ido-everywhere 1)
-;;
-;;
+(use-package ido
+  :demand
+  :config
+  ;; Flexible matching
+  (setq ido-enable-flex-matching t)
+  (ido-mode 1)
+  (ido-everywhere 1)
+  ;;
+  ;;
 ;;; ido-ubiquitous.el
-;; https://github.com/DarwinAwardWinner/ido-ubiquitous
-(require 'ido-ubiquitous)
-;; ido for all completing-read
-(ido-ubiquitous-mode 1)
-;;
-;;
+  ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
+  (require 'ido-ubiquitous)
+  ;; ido for all completing-read
+  (ido-ubiquitous-mode 1)
+  ;;
+  ;;
 ;;; flx-ido.el
-;; http://www.emacswiki.org/emacs/InteractivelyDoThings
-;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
-;; http://miyazakikenji.wordpress.com/2013/06/11/emacs-に-ido-mode/
-(require 'flx-ido)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-use-faces nil)
-;;
-;;
+  ;; http://www.emacswiki.org/emacs/InteractivelyDoThings
+  ;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
+  ;; http://miyazakikenji.wordpress.com/2013/06/11/emacs-に-ido-mode/
+  (require 'flx-ido)
+  (flx-ido-mode 1)
+  ;; disable ido faces to see flx highlights.
+  (setq ido-use-faces nil)
+  ;;
+  ;;
 ;;; ido-vertical-mode.el
-;; http://rubikitch.com/2015/01/06/ido-vertical-mode/
-(require 'ido-vertical-mode)
-;; height
-(setq ido-max-window-height 0.75)
-(ido-vertical-mode 1)
+  ;; http://rubikitch.com/2015/01/06/ido-vertical-mode/
+  (require 'ido-vertical-mode)
+  ;; height
+  (setq ido-max-window-height 0.75)
+  (ido-vertical-mode 1))
+
 
 
 ;;;
@@ -225,6 +230,8 @@
       (kill-buffer "*Completions*")))
   output)
 (add-hook 'comint-preoutput-filter-functions 'delete-completion-window-buffer)
+;; http://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
+(add-hook 'minibuffer-exit-hook 'delete-completion-window-buffer)
 
 
 
