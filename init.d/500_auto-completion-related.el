@@ -92,10 +92,14 @@
 ;; Modular in-buffer completion framework for Emacs
 ;; http://company-mode.github.io
 ;; http://www.emacswiki.org/CompanyMode
+;; http://qiita.com/syohex/items/8d21d7422f14e9b53b17
 (use-package company
   :config
   ;; company-mode everywhere
   (add-hook 'after-init-hook 'global-company-mode)
+  ;; except in these modes
+  ;; (custom-set-variables
+  ;;  '(company-global-modes '(not eshell-mode ielm-mode)))
   ;; 2 letters before completion kicks in
   (setq company-minimum-prefix-length 2)
   ;; Keys
