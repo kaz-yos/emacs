@@ -114,7 +114,7 @@
  `(company-tooltip-mouse            ((t   :background "blue"      :foreground "white")))
  `(company-tooltip-common           ((t   :background "lightgray" :foreground "black")))
  `(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
- `(company-scrollbar-fg             ((t   :background "black")))
+ `(company-scrollbar-fg             ((t   :background "OrangeRed4")))
  `(company-scrollbar-bg             ((t   :background "gray")))
  `(company-preview                  ((t   :background nil         :foreground "darkgray")))
  `(company-preview-common           ((t   :background nil         :foreground "darkgray"))))
