@@ -41,8 +41,11 @@
   (defun my-magit-status ()
     "Delete whitespaces, save, and magit-status"
     (interactive)
-    (delete-trailing-whitespace)
-    (save-buffer)
+    ;; Only when in a file associated buffer
+    ;; This avoids doing these in dired
+    (when (buffer-file-name)
+      (delete-trailing-whitespace)
+      (save-buffer))
     (magit-status default-directory)
     (message "Removed whitespaces if any."))
   ;; change magit diff colors
