@@ -1,9 +1,9 @@
 #!/usr/local/bin/Rscript
 
 ################################################################################
-### 
-## 
-## Created on: 
+###
+##
+## Created on:
 ## Author: Kazuki Yoshida
 ################################################################################
 
@@ -11,11 +11,21 @@
 ### Prepare environment
 ################################################################################
 
-## ## Configure parallelization
-## library(doParallel) # Parallel backend to foreach (used in plyr)
-## nCores <- detectCores()
-## registerDoParallel(cores = nCores)
-## library(doRNG) # Reproducible parallelization
+## Configure parallelization
+## Parallel backend for foreach (also loads foreach and parallel; includes doMC)
+library(doParallel)
+## Reproducible parallelization
+library(doRNG)
+## Detect core count
+nCores <- min(parallel::detectCores(), 10)
+## Used by parallel::mclapply() as default
+options(mc.cores = nCores)
+## Used by doParallel as default
+options(cores = nCores)
+## Register doParallel as the parallel backend with foreach
+## http://stackoverflow.com/questions/28989855/the-difference-between-domc-and-doparallel-in-r
+doParallel::registerDoParallel(cores = nCores)
+
 
 ## Load packages
 library(magrittr)
@@ -43,20 +53,3 @@ cat("\n### Record package versions\n")
 print(sessionInfo())
 ## Stop sinking to a file if active
 if (sink.number() != 0) {sink()}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
