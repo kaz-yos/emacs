@@ -25,6 +25,9 @@ options(cores = nCores)
 ## Register doParallel as the parallel backend with foreach
 ## http://stackoverflow.com/questions/28989855/the-difference-between-domc-and-doparallel-in-r
 doParallel::registerDoParallel(cores = nCores)
+## Report multicore use
+cat("### Using", foreach::getDoParWorkers(), "cores\n")
+cat("### Using", foreach::getDoParName(), "as backend\n")
 
 
 ## Load packages
