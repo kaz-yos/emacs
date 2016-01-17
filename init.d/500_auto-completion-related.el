@@ -116,11 +116,11 @@
  ;; auto-complete-like color setting
  ;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
  `(company-tooltip                  ((t   :background "lightgray" :foreground "black")))
- `(company-tooltip-selection        ((t   :background "steelblue" :foreground "white")))
- `(company-tooltip-mouse            ((t   :background "blue"      :foreground "white")))
+ `(company-tooltip-selection        ((t   :background "Red4"      :foreground "white")))
+ `(company-tooltip-mouse            ((t   :background "red"       :foreground "white")))
  `(company-tooltip-common           ((t   :background "lightgray" :foreground "black")))
  `(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
- `(company-scrollbar-fg             ((t   :background "OrangeRed4")))
+ `(company-scrollbar-fg             ((t   :background "OrangeRed1")))
  `(company-scrollbar-bg             ((t   :background "gray")))
  `(company-preview                  ((t   :background nil         :foreground "darkgray")))
  `(company-preview-common           ((t   :background nil         :foreground "darkgray"))))
