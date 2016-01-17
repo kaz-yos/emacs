@@ -102,6 +102,8 @@
   ;;  '(company-global-modes '(not eshell-mode ielm-mode)))
   ;; 2 letters before completion kicks in
   (setq company-minimum-prefix-length 2)
+  ;; Now donwcasing
+  (setq company-dabbrev-downcase nil)
   ;; Keys
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
