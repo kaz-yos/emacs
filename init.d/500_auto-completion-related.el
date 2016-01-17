@@ -30,26 +30,20 @@
    ;;
    ;; Number of letters before ac kicks in
    ac-auto-start 1
-   ;;
    ;; Delay to completions will be available.
    ac-delay 0.1
-   ;;
    ;; 0.1 sec before menu appears
    ac-auto-show-menu 0.2
-   ;;
    ;; Show menu if 2+ candidates
    ac-candidate-menu-min 1
-   ;;
    ;; 20 candidates at a time
    ac-menu-height 20
-   ;;
    ;; Where to disable ac
    ;; http://stackoverflow.com/questions/17309773/emacs-autocomplete-inside-python-string
    ;; ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
    ;; auto-complete everywhere, even within quotes, comments
    ;; ac-disable-faces nil
    ac-disable-faces '(font-lock-comment-face)
-   ;;
    ;; Treat cases strictly by nil or smartly by 'smart
    ac-ignore-case nil
    ;;
@@ -62,10 +56,10 @@
   ;; Non-nil means a special keymap `ac-menu-map' on completing menu will be used.
   ;; http://cx4a.org/software/auto-complete/manual.html#Not_to_complete_automatically
   (setq ac-use-menu-map t)
-  (define-key ac-menu-map (kbd "C-n")    'ac-next)
-  (define-key ac-menu-map (kbd "C-p")    'ac-previous)
-  (define-key ac-menu-map (kbd "<tab>")  'ac-next)
-  (define-key ac-menu-map (kbd "<S-tab>")'ac-previous)
+  (define-key ac-menu-map (kbd "C-n")     'ac-next)
+  (define-key ac-menu-map (kbd "C-p")     'ac-previous)
+  (define-key ac-menu-map (kbd "<tab>")   'ac-next)
+  (define-key ac-menu-map (kbd "<S-tab>") 'ac-previous)
   ;;
   ;; http://www.emacswiki.org/emacs/ESSAuto-complete
   (define-key ac-completing-map (kbd "<tab>")    'ac-complete)
