@@ -11,11 +11,12 @@
 
 
 ;;; Default behaviors
+;; Always delete other windows
+(setq eir-delete-other-windows nil)
 ;; Always split
-;; (setq eir-always-split-script-window nil)
-;; Place REPL on the left if starting with one window.
-;; This works only for IELM, Python, Hy, and shell.
-;; (setq eir-repl-placement 'left)
+(setq eir-always-split-script-window nil)
+;; Place REPL on the left when splitting
+(setq eir-repl-placement 'left)
 
 ;;; ielm support (for emacs lisp)
 (use-package eval-in-repl-ielm
