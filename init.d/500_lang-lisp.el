@@ -7,7 +7,8 @@
 ;;
 ;;; redshank to facilitate elisp/clisp
 ;; http://www.foldr.org/~michaelw/emacs/redshank/
-(require 'redshank)
+(use-package redshank
+  :disabled t)
 ;;
 ;;
 ;;; SLIME-like navigation for elisp
@@ -17,7 +18,7 @@
 ;; Usage:
 ;; Enable the package in elisp and ielm modes as follows:
 ;; This is optional if installed via package.el
-(require 'elisp-slime-nav)
+(use-package elisp-slime-nav)
 ;; Hook
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
@@ -36,7 +37,8 @@
 ;;; anaphora
 ;;  Summary: anaphoric macros providing implicit temp variables
 ;; Homepage: http://github.com/rolandwalker/anaphora
-;; (require 'anaphora)
+(use-package anaphora
+  :disabled t)
 ;;
 ;;
 ;;; Auto-complete in IELM
@@ -138,5 +140,3 @@
       (define-key geiser-mode-map (kbd "C-.") 'highlight-symbol-at-point))
     (add-hook 'geiser-mode-hook      'my-ac-geiser-setup)
     (add-hook 'geiser-repl-mode-hook 'my-ac-geiser-setup)))
-
-
