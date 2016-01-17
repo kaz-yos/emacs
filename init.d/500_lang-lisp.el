@@ -12,13 +12,10 @@
 ;;
 ;;
 ;;; SLIME-like navigation for elisp
+;; https://github.com/purcell/elisp-slime-nav
 ;; This package provides Slime's convenient "M-." and "M-," navigation
-;; in `emacs-lisp-mode', together with an elisp equivalent of
-;; `slime-describe-symbol', bound by default to `C-c C-d d`.
-;; Usage:
-;; Enable the package in elisp and ielm modes as follows:
-;; This is optional if installed via package.el
-(use-package elisp-slime-nav)
+(use-package elisp-slime-nav
+  :commands (turn-on-elisp-slime-nav-mode))
 ;; Hook
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
@@ -34,9 +31,9 @@
 ;; (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 ;;
 ;;
-;;; anaphora
+;;; anaphora.el
 ;;  Summary: anaphoric macros providing implicit temp variables
-;; Homepage: http://github.com/rolandwalker/anaphora
+;; http://github.com/rolandwalker/anaphora
 (use-package anaphora
   :disabled t)
 ;;
@@ -52,7 +49,9 @@
                      ac-source-words-in-same-mode-buffers))
   (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
   (auto-complete-mode 1))
+;;
 (add-hook 'ielm-mode-hook 'ielm-auto-complete)
+(add-hook 'emacs-lisp-mode-hook 'ielm-auto-complete)
 ;;
 
 
