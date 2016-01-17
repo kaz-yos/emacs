@@ -88,11 +88,10 @@
 ;; http://www.emacswiki.org/CompanyMode
 ;; http://qiita.com/syohex/items/8d21d7422f14e9b53b17
 ;; http://qiita.com/sune2/items/b73037f9e85962f5afb7
+;; http://emacs.stackexchange.com/questions/3654/filename-completion-using-company-mode
 ;;
 (use-package company
   :config
-  ;; emacs lisp
-  (require 'company-elisp)
   ;; company-mode everywhere
   (add-hook 'after-init-hook 'global-company-mode)
   ;; except in these modes
@@ -120,10 +119,21 @@
   (define-key company-search-map (kbd "C-n") 'company-select-next)
   (define-key company-search-map (kbd "C-p") 'company-select-previous)
   ;; Narrowing
-  (define-key company-active-map (kbd "C-s") 'company-filter-candidates))
+  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
+  ;;
+  ;; Backends
+  ;; Emacs lisp (one of default backends; somehow not included originally)
+  (add-to-list 'company-backends 'company-elisp)
+  ;;
+  ;; Mode hooks
+  ;; Configure the company-elisp backend, correctly.
+  ;; (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+  ;;   (add-hook hook '(lambda ()
+  ;;                     (add-to-list 'company-backends 'company-elisp))))
+  )
 ;;
 ;;
-;; I don't like the default colors!
+;; Color configuration
 ;; http://www.emacswiki.org/CompanyMode#toc6
 ;; (require 'color) ; no need?
 (custom-set-faces
