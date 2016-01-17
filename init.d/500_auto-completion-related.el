@@ -93,20 +93,40 @@
 ;; http://company-mode.github.io
 ;; http://www.emacswiki.org/CompanyMode
 ;; http://qiita.com/syohex/items/8d21d7422f14e9b53b17
+;; http://qiita.com/sune2/items/b73037f9e85962f5afb7
+;;
 (use-package company
   :config
+  ;; emacs lisp
+  (require 'company-elisp)
   ;; company-mode everywhere
   (add-hook 'after-init-hook 'global-company-mode)
   ;; except in these modes
   ;; (custom-set-variables
   ;;  '(company-global-modes '(not eshell-mode ielm-mode)))
+  ;;
+  ;; Sort completion candidates by previous completion choices
+  ;; https://github.com/company-mode/company-statistics
+  (require 'company-statistics)
+  (company-statistics-mode)
+  ;;
+  ;; Delay time
+  (setq company-idle-delay 0)
   ;; 2 letters before completion kicks in
   (setq company-minimum-prefix-length 2)
+  ;; Wrap after the final candidate
+  (setq company-selection-wrap-around t)
   ;; Now donwcasing
   (setq company-dabbrev-downcase nil)
   ;; Keys
+  (global-set-key (kbd "A-<tab>") 'company-complete)
+  ;; Selection
   (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous))
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (define-key company-search-map (kbd "C-n") 'company-select-next)
+  (define-key company-search-map (kbd "C-p") 'company-select-previous)
+  ;; Narrowing
+  (define-key company-active-map (kbd "C-s") 'company-filter-candidates))
 ;;
 ;;
 ;; I don't like the default colors!
@@ -133,6 +153,13 @@
   :disabled t
   :config
   (company-quickhelp-mode 1))
+;;
+;;; company-try-hard.el
+;; https://github.com/Wilfred/company-try-hard
+(use-package company-try-hard
+  :commands (company-try-hard)
+  :bind
+  ("A-C-<tab>" . company-try-hard))
 
 
 ;;;
