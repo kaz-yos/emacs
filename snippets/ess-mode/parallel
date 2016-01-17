@@ -4,7 +4,19 @@
 # binding: direct-keybinding
 # --
 ## Configure parallelization
-library(doParallel) # Parallel backend to foreach (used in plyr)
-nCores <- detectCores()
-registerDoParallel(cores = nCores)
-library(doRNG) # Reproducible parallelization
+## Parallel backend for foreach (also loads foreach and parallel; includes doMC)
+library(doParallel)
+## Reproducible parallelization
+library(doRNG)
+## Detect core count
+nCores <- min(parallel::detectCores(), 10)
+## Used by parallel::mclapply() as default
+options(mc.cores = nCores)
+## Used by doParallel as default
+options(cores = nCores)
+## Register doParallel as the parallel backend with foreach
+## http://stackoverflow.com/questions/28989855/the-difference-between-domc-and-doparallel-in-r
+doParallel::registerDoParallel(cores = nCores)
+## Report multicore use
+cat("### Using", foreach::getDoParWorkers(), "cores\n")
+cat("### Using", foreach::getDoParName(), "as backend\n")
