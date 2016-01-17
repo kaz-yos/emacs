@@ -41,8 +41,8 @@
   ;;
 ;;; ac-cider.el
   ;; https://github.com/clojure-emacs/ac-cider
-  (require 'ac-cider)
-  (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+  ;; (require 'ac-cider)
+  ;; (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
   ;; (add-hook 'cider-mode-hook 'ac-cider-setup)
   ;; (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
   ;; (eval-after-load "auto-complete"
@@ -148,5 +148,3 @@
   ;; https://github.com/jonpither/cider-spy
   ;; (require 'cider-spy)
   )
-
-
