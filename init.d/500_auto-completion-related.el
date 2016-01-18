@@ -121,16 +121,15 @@
   ;; Narrowing
   (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
   ;;
-  ;; Backends
+  ;; Backends (Adding globally is also ok; backends are context-aware)
+  ;; http://emacs.stackexchange.com/questions/17537/best-company-backends-lists
   ;; Emacs lisp (one of default backends; somehow not included originally)
-  (add-to-list 'company-backends 'company-elisp)
-  ;;
-  ;; Mode hooks
-  ;; Configure the company-elisp backend, correctly.
-  ;; (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-  ;;   (add-hook hook '(lambda ()
-  ;;                     (add-to-list 'company-backends 'company-elisp))))
-  )
+  ;; (add-to-list 'company-backends 'company-elisp) ; adding globally
+  ;; Add locally
+  (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+    (add-hook hook '(lambda ()
+                      (add-to-list (make-local-variable 'company-backends)
+                                   'company-elisp)))))
 ;;
 ;;
 ;; Color configuration
