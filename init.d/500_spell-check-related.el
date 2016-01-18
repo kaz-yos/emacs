@@ -1,46 +1,45 @@
 ;;; flyspell-mode related
 
 ;;;
-;;; On Macx, configure aspell
-;; Mac-only configuration
-(when (eq system-type 'darwin)
-  ;; http://d.hatena.ne.jp/yutoichinohe/20140120/1390225624
-  ;; brew install aspell --with-lang-en
-  (setq ispell-program-name "/usr/local/bin/aspell"))
-
-
-;;;
 ;;; Configuration helpful links
 ;; http://d.hatena.ne.jp/yutoichinohe/20140120/1390225624
 ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
 ;; https://joelkuiper.eu/spellcheck_emacs
 ;; http://stackoverflow.com/questions/22107182/in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
 
+;;;
+;;; Configure aspell if it exists
+;; brew install aspell --with-lang-en
+(let ((aspell-file "/usr/local/bin/aspell"))
+  (when (file-exists-p aspell-file)
+    (setq ispell-program-name aspell-file)))
+
 
 ;;;
 ;;; ispell.el (built-in)
-;; Ignore Japanese
-;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
-(eval-after-load "ispell"
-  '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
-;;
-(setq ispell-dictionary "en_US")
-;;
 ;; (global-set-key (kbd "s-c") 'ispell-word)
 ;;
-(require 'ispell)
-;;
-;; Use i in ispell minor mode to save the word
-;; http://stackoverflow.com/questions/11070849/flyspell-without-a-mouse
-(defun save-ispell-word (word)
-  (interactive "sA word you want to add to dictionary ")
-  (ispell-send-string (concat "*" word "\n"))
-  (setq ispell-pdict-modified-p '(t)))
+(use-package ispell
+  :commands (ispell-word
+             ispell-region
+             ispell-buffer)
+  :init
+  (setq ispell-dictionary "en_US")
+  :config
+  ;; Ignore Japanese
+  ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
+  (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))
+  ;; Use i in ispell minor mode to save the word
+  ;; http://stackoverflow.com/questions/11070849/flyspell-without-a-mouse
+  (defun save-ispell-word (word)
+    (interactive "sA word you want to add to dictionary ")
+    (ispell-send-string (concat "*" word "\n"))
+    (setq ispell-pdict-modified-p '(t))))
 
 
 ;;;
 ;;; flyspell.el (built-in)
-(require 'flyspell)
+(use-package flyspell)
 ;;
 ;;; Define a fuction to use the popup.el
 ;; 2015-02-09 Currently not functional
