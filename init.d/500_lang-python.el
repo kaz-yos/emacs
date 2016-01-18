@@ -10,54 +10,66 @@
 ;;;
 ;;; python.el
 ;; http://superuser.com/questions/345595/python-el-for-long-time-python-mode-el-user
-(require 'python)
-;;
-;; Use python3 from homebrew.
-;; (setq python-shell-interpreter "/usr/local/bin/python3")
-(setq python-shell-interpreter "~/anaconda/bin/python")
-;;
-;; ;; Default shell interaction commands
-;; (define-key map (kbd "C-c C-p") 'run-python)
-;; (define-key map (kbd "C-c C-s") 'python-shell-send-string)
-;; (define-key map (kbd "C-c C-r") 'python-shell-send-region)
-;; (define-key map (kbd "C-M-x")   'python-shell-send-defun)
-;; (define-key map (kbd "C-c C-c") 'python-shell-send-buffer)
-;; (define-key map (kbd "C-c C-l") 'python-shell-send-file)
-;; (define-key map (kbd "C-c C-z") 'python-shell-switch-to-shell)
-;;
-;;
-;; Define hooks
-(add-hook 'python-mode-hook		; For Python script
-          '(lambda()
-	     (local-unset-key (kbd "DEL"))	; Disable python-indent-dedent-line-backspace
-	     ;; (eldoc-mode 1)			; eldoc in the mode line. Slow? 2013-12-25
-	     (local-set-key (kbd "C-m") 'newline-and-indent)	; Indent after newline
-	     (local-set-key (kbd "M-p") 'ess-nuke-trailing-whitespace)
-	     (local-set-key (kbd "C-c c") 'python-check)	; Check grammar
-	     ))
-;;
-(add-hook 'inferior-python-mode-hook	; For Python process
-          '(lambda()
-             ;; (local-set-key (kbd "C-<up>") 'comint-previous-input)
-             ;; (local-set-key (kbd "C-<down>") 'comint-next-input)
-	     ))
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python[0-9.]*" . python-mode)
+  ;;
+  :config
+  (setq python-shell-interpreter "~/anaconda/bin/python")
+  ;;
+  ;; ;; Default shell interaction commands
+  ;; (define-key map (kbd "C-c C-p") 'run-python)
+  ;; (define-key map (kbd "C-c C-s") 'python-shell-send-string)
+  ;; (define-key map (kbd "C-c C-r") 'python-shell-send-region)
+  ;; (define-key map (kbd "C-M-x")   'python-shell-send-defun)
+  ;; (define-key map (kbd "C-c C-c") 'python-shell-send-buffer)
+  ;; (define-key map (kbd "C-c C-l") 'python-shell-send-file)
+  ;; (define-key map (kbd "C-c C-z") 'python-shell-switch-to-shell)
+  ;;
+  ;;
+  ;; Define hooks
+  ;; For Python script
+  (add-hook 'python-mode-hook
+            '(lambda()
+               ;; Disable python-indent-dedent-line-backspace
+               (local-unset-key (kbd "DEL"))
+               ;; eldoc in the mode line. Slow? 2013-12-25
+               ;; (eldoc-mode 1)
+               ;; Indent after newline
+               (local-set-key (kbd "C-m") 'newline-and-indent)
+               ;; Check grammar
+               (local-set-key (kbd "C-c c") 'python-check))))
 
 
 ;;;
 ;;; anaconda-mode.el
 ;; https://github.com/proofit404/anaconda-mode
-(require 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'eldoc-mode)
-(add-hook 'inferior-python-mode-hook 'anaconda-mode)
-(add-hook 'inferior-python-mode-hook 'eldoc-mode)
+(use-package anaconda-mode
+  :defer t)
+(dolist (hook '(python-mode-hook inferior-python-mode-hook))
+  (progn
+    (add-hook hook 'anaconda-mode)
+    (add-hook hook 'eldoc-mode)))
+;;
+
+
+;;;
+;;; company-anaconda.el
+;; https://github.com/proofit404/company-anaconda
+(use-package company-anaconda
+  :defer t)
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (add-to-list (make-local-variable 'company-backends)
+                          'company-anaconda)))
 
 
 ;;;
 ;;; python-environment.el for virtualenv
 ;; Python virtualenv API for Emacs Lisp
 ;; https://github.com/tkf/emacs-python-environment
-(require 'python-environment)
+(use-package python-environment
+  :defer t)
 
 
 ;; ;;;
@@ -202,4 +214,3 @@
   (add-hook 'hy-mode-hook
             '(lambda ()
                (auto-complete-mode 1))))
-

@@ -75,7 +75,9 @@
 ;; (require 'python) ; if not done elsewhere
 (use-package eval-in-repl-python
   :commands eir-eval-in-python)
-(define-key python-mode-map (kbd "<C-return>") 'eir-eval-in-python)
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "<C-return>") 'eir-eval-in-python)))
 (add-hook 'ein:notebook-multilang-mode
           '(lambda ()
              (local-set-key (kbd "<C-return>") 'eir-eval-in-python)))
