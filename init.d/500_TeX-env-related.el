@@ -155,32 +155,33 @@
 ;;
 ;;; company-auctex.el
 ;; https://github.com/alexeyr/company-auctex
-(require 'company-auctex)
-(company-auctex-init)
+(use-package company-auctex
+  :config
+  (company-auctex-init))
 ;;
 ;;; company-math.el
 ;; https://github.com/vspinu/company-math
-(require 'company-math)
+(use-package company-math
+  :config
+  ;; global activation of the unicode symbol completion
+  (add-to-list 'company-backends 'company-math-symbols-unicode)
+  ;; local configuration for TeX modes
+  (defun company-latex-mode-setup ()
+    (company-mode)
+    (setq-local company-backends
+                (append '(company-math-symbols-latex company-latex-commands)
+                        company-backends)))
+  (add-hook 'TeX-mode-hook 'company-latex-mode-setup))
 ;;
-;; global activation of the unicode symbol completion
-(add-to-list 'company-backends 'company-math-symbols-unicode)
-;;
-;; local configuration for TeX modes
-(defun company-latex-mode-setup ()
-  (company-mode)
-  (setq-local company-backends
-              (append '(company-math-symbols-latex company-latex-commands)
-                      company-backends)))
-(add-hook 'TeX-mode-hook 'company-latex-mode-setup)
 
 
 ;;;
 ;;; latex-math-preview.el
 ;; http://www.emacswiki.org/emacs/LaTeXMathPreview
-(autoload 'latex-math-preview-expression "latex-math-preview" nil t)
-(autoload 'latex-math-preview-insert-symbol "latex-math-preview" nil t)
+(autoload 'latex-math-preview-expression      "latex-math-preview" nil t)
+(autoload 'latex-math-preview-insert-symbol   "latex-math-preview" nil t)
 (autoload 'latex-math-preview-save-image-file "latex-math-preview" nil t)
-(autoload 'latex-math-preview-beamer-frame "latex-math-preview" nil t)
+(autoload 'latex-math-preview-beamer-frame    "latex-math-preview" nil t)
 ;; Paths to required external software (specific to MacTeX)
 (setq latex-math-preview-command-path-alist
       '((latex    . "/Library/TeX/texbin/latex")
@@ -189,8 +190,7 @@
         ;; for beamer preview
         (pdflatex . "/Library/TeX/texbin/pdflatex")
         ;; for beamer preview
-        (gs       . "/Library/TeX/local/bin/gs")
-        ))
+        (gs       . "/Library/TeX/local/bin/gs")))
 ;; Colors for dark background 2013-09-28
 (setq latex-math-preview-dvipng-color-option nil)
 (setq latex-math-preview-image-foreground-color "black")
@@ -224,18 +224,19 @@
 ;;; reftex.el
 ;; part of emacs
 ;; http://www.gnu.org/software/emacs/manual/html_mono/reftex.html
-(require 'reftex)
-;; turn on REFTeX mode by default
-(add-hook 'LaTeX-mode-hook 'reftex-mode)
-;; AUCTeX integration
-(setq reftex-plug-into-AUCTeX t)
-;; Do not prompt for reference vs page
-(setq reftex-ref-macro-prompt nil)
-;;
-(add-hook 'LaTeX-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "H-c") 'reftex-citation)
-             (local-set-key (kbd "A-C-a") 'reftex-citation)))
+(use-package reftex
+  :config
+  ;; turn on REFTeX mode by default
+  (add-hook 'LaTeX-mode-hook 'reftex-mode)
+  ;; AUCTeX integration
+  (setq reftex-plug-into-AUCTeX t)
+  ;; Do not prompt for reference vs page
+  (setq reftex-ref-macro-prompt nil)
+  ;;
+  (add-hook 'LaTeX-mode-hook
+            '(lambda ()
+               (local-set-key (kbd "H-c") 'reftex-citation)
+               (local-set-key (kbd "A-C-a") 'reftex-citation))))
 ;;
 ;;
 ;;; bibtex.el
