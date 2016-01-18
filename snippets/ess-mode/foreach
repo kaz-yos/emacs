@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: foreach
+# key: foreach
+# binding: direct-keybinding
+# --
+foreach(data = $1) %dopar% {
+    $0
+}
