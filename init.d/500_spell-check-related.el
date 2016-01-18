@@ -25,7 +25,10 @@
              ispell-buffer)
   :init
   (setq ispell-dictionary "en_US")
+  ;; http://stackoverflow.com/questions/2376113/personal-dictionaries-in-emacs-flyspell-mode
+  (setq ispell-personal-dictionary "~/.emacs.d/misc/aspell.en.pws")
   :config
+
   ;; Ignore Japanese
   ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
   (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))
@@ -39,57 +42,24 @@
 
 ;;;
 ;;; flyspell.el (built-in)
-(use-package flyspell)
 ;;
-;;; Define a fuction to use the popup.el
-;; 2015-02-09 Currently not functional
-;; http://d.hatena.ne.jp/mooz/20100423/p1
-(defun flyspell-correct-word-popup-el ()
-  "Pop up a menu of possible corrections for misspelled word before point."
-  (interactive)
-  ;; use the correct dictionary
-  (flyspell-accept-buffer-local-defs)
-  (let ((cursor-location (point))
-	(word (flyspell-get-word nil)))
-    (if (consp word)
-	(let ((start (car (cdr word)))
-	      (end (car (cdr (cdr word))))
-	      (word (car word))
-	      poss ispell-filter)
-	  ;; now check spelling of word.
-	  (ispell-send-string "%\n")	;put in verbose mode
-	  (ispell-send-string (concat "^" word "\n"))
-	  ;; wait until ispell has processed word
-	  (while (progn
-		   (accept-process-output ispell-process)
-		   (not (string= "" (car ispell-filter)))))
-	  ;; Remove leading empty element
-	  (setq ispell-filter (cdr ispell-filter))
-	  ;; ispell process should return something after word is sent.
-	  ;; Tag word as valid (i.e., skip) otherwise
-	  (or ispell-filter
-	      (setq ispell-filter '(*)))
-	  (if (consp ispell-filter)
-	      (setq poss (ispell-parse-output (car ispell-filter))))
-	  (cond
-	   ((or (eq poss t) (stringp poss))
-	    ;; don't correct word
-	    t)
-	   ((null poss)
-	    ;; ispell error
-	    (error "Ispell: error in Ispell process"))
-	   (t
-	    ;; The word is incorrect, we have to propose a replacement.
-	    (flyspell-do-correct (popup-menu* (car (cddr poss)) :scroll-bar t :margin t)
-				 poss word cursor-location start end cursor-location)))
-	  (ispell-pdict-save t)))))
-;;
-(global-set-key (kbd "s-c") 'flyspell-correct-word-popup-el)
+(use-package flyspell
+  :config
+  ;; Auto-start flyspell-mode for these files
+  ;; 2015-02-09 AquaSKK appears ok.
+  (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode)))
 ;;
 ;;
-;;; Auto-start flyspell-mode for these files
-;; 2015-02-09 AquaSKK appears ok.
-(add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
+;;; flyspell-popup.el
+;; https://github.com/xuchunyang/flyspell-popup
+(use-package flyspell-popup
+  :commands (flyspell-popup-correct)
+  :bind ("s-c" . flyspell-popup-correct)
+  :config
+  ;; Unless flyspell-mode is already running, activate.
+  ;; Necessary to avoid: Error: The encoding "nil" is not known.
+  (unless flyspell-mode
+    (flyspell-mode)))
 
 
 ;; ;;;
