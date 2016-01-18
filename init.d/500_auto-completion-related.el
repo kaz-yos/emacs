@@ -89,6 +89,8 @@
 ;; http://qiita.com/syohex/items/8d21d7422f14e9b53b17
 ;; http://qiita.com/sune2/items/b73037f9e85962f5afb7
 ;; http://emacs.stackexchange.com/questions/3654/filename-completion-using-company-mode
+;; http://blog.binchen.org/posts/emacs-auto-completion-for-non-programmers.html
+;; http://comments.gmane.org/gmane.emacs.ess.general/9037
 ;;
 (use-package company
   :config
