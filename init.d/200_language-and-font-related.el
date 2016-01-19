@@ -20,6 +20,17 @@
 
 
 ;;;
+;;; Default font size setter (effective in all buffers)
+;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
+;; http://ergoemacs.org/emacs/elisp_idioms_prompting_input.html
+(defun default-font-size (size)
+  "Set default font size (effective in all buffers)"
+  (interactive "sEnter font size in points: ")
+  (let ((size-ten (* (string-to-int size) 10)))
+    (set-face-attribute 'default nil :height size-ten)))
+
+
+;;;
 ;;; Mac OS X font settings
 (when (eq system-type 'darwin)
   ;; Mac-only
@@ -83,13 +94,11 @@
   ;; http://molekun.blogspot.com/2011/03/homebrewemacs233.html
   ;; http://blog.n-z.jp/blog/2013-11-12-cocoa-emacs-ime.html
   (when (fboundp 'mac-change-language-to-us)	; Only when inline patch is installed 2014-01-19
-    (add-hook 'minibuffer-setup-hook 'mac-change-language-to-us))
-  )
+    (add-hook 'minibuffer-setup-hook 'mac-change-language-to-us)))
 
 
 
 ;;; Windows font settings
 (when (eq system-type 'windows-nt)
   ;; http://d.hatena.ne.jp/eggtoothcroc/20130102/p1
-  (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 105)
-  )
+  (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 105))
