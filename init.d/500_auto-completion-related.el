@@ -115,6 +115,7 @@
   (setq company-dabbrev-downcase nil)
   ;; Keys
   (global-set-key (kbd "A-<tab>") 'company-complete)
+  (global-set-key (kbd "A-i") 'company-complete)
   ;; Selection
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
