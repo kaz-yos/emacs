@@ -65,8 +65,7 @@
 ;; ;;;
 ;; ;;; ac-ispell.el
 ;; ;; Auto-completion for English words
-;; (custom-set-variables
-;;   '(ac-ispell-requires 4))
+;; (setq ac-ispell-requires 4)
 ;; ;;
 ;; (eval-after-load "auto-complete"
 ;;   '(progn

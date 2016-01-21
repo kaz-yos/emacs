@@ -97,8 +97,7 @@
   ;; company-mode everywhere
   (add-hook 'after-init-hook 'global-company-mode)
   ;; except in these modes
-  ;; (custom-set-variables
-  ;;  '(company-global-modes '(not eshell-mode ielm-mode)))
+  ;; (setq company-global-modes '(not eshell-mode ielm-mode))
   ;;
   ;; Sort completion candidates by previous completion choices
   ;; https://github.com/company-mode/company-statistics
@@ -134,22 +133,11 @@
                       (add-to-list (make-local-variable 'company-backends)
                                    'company-elisp)))))
 ;;
-;;
-;; Color configuration
+;; Color configuration (done in init-customize.el)
 ;; http://www.emacswiki.org/CompanyMode#toc6
-;; (require 'color) ; no need?
-(custom-set-faces
- ;; auto-complete-like color setting
- ;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
- `(company-tooltip                  ((t   :background "lightgray" :foreground "black")))
- `(company-tooltip-selection        ((t   :background "Red4"      :foreground "white")))
- `(company-tooltip-mouse            ((t   :background "red"       :foreground "white")))
- `(company-tooltip-common           ((t   :background "lightgray" :foreground "black")))
- `(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
- `(company-scrollbar-fg             ((t   :background "OrangeRed1")))
- `(company-scrollbar-bg             ((t   :background "gray")))
- `(company-preview                  ((t   :background nil         :foreground "darkgray")))
- `(company-preview-common           ((t   :background nil         :foreground "darkgray"))))
+;; auto-complete-like color setting
+;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46 
+
 ;;
 ;;
 ;;; company-quickhelp.el

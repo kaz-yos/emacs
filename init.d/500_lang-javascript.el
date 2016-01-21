@@ -60,8 +60,7 @@
          ("\\.cson\\'" . coffee-mode))
   :interpreter ("coffee" . coffee-mode)
   :config
-  (custom-set-variables
-   '(coffee-tab-width 2)
-   '(coffee-args-compile '("-c" "--bare")))
+  (setq coffee-tab-width 2)
+  (setq coffee-args-compile '("-c" "--bare"))
   (bind-key "M-r" 'coffee-compile-buffer     coffee-mode-map)
   (bind-key "C-j" 'coffee-newline-and-indent coffee-mode-map))
