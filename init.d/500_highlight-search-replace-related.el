@@ -248,7 +248,7 @@
 ;;; ace-jump-mode.el
 ;; https://github.com/winterTTr/ace-jump-mode
 ;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
-(require 'ace-jump-mode)
+(use-package ace-jump-mode)
 ;; rubikitch setting Software Design September 2014
 ;; (setq ace-jump-mode-gray-background nil)
 ;; If we need to ask for the query char before entering `ace-jump-word-mode'
@@ -283,13 +283,16 @@
 ;;
 ;;; ace-window.el
 ;; https://github.com/abo-abo/ace-window
-(require 'ace-window)
+(use-package ace-window
+  :commands (ace-select-window
+             ace-swap-window)
+  :bind ("s-5" . ace-window))
 (global-set-key (kbd "s-5") 'ace-window)
 ;;
 ;;
 ;;; ace-jump-helm-line.el
 ;; https://github.com/cute-jumper/ace-jump-helm-line
-(require 'ace-jump-helm-line)
+(use-package ace-jump-helm-line)
 (eval-after-load "helm"
   '(define-key helm-map (kbd "C-'") 'ace-jump-helm-line))
 
