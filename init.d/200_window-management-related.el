@@ -67,8 +67,7 @@
 (when (eq system-type 'darwin)
   ;; Do not open a new frame opening a file from Finder
   ;; http://stackoverflow.com/questions/6068819/alias-to-make-emacs-open-a-file-in-a-new-buffer-not-frame-and-be-activated-com
-  (setq ns-pop-up-frames nil)
-  )
+  (setq ns-pop-up-frames nil))
 
 
 ;;;
@@ -80,21 +79,22 @@
 
 ;;;
 ;;; window-number.el for direct movement to windows
-(require 'window-number)
-(window-number-mode 1)
-;;
-(defun my-window-number-select (number)
-  "Selects the nth window."
-  (interactive "P")
-  (if (integerp number)
-      (let ((window (nth (1- number) (window-number-list))))
-        (if (and window (or (not (window-minibuffer-p window))
-                            (minibuffer-window-active-p window)))
-            (select-window window)
-          ;; if not found, activate ace-window
-          (ace-select-window)))))
-;;
-(global-set-key (kbd "s-1") (lambda () (interactive) (my-window-number-select 1)))
-(global-set-key (kbd "s-2") (lambda () (interactive) (my-window-number-select 2)))
-(global-set-key (kbd "s-3") (lambda () (interactive) (my-window-number-select 3)))
-(global-set-key (kbd "s-4") (lambda () (interactive) (my-window-number-select 4)))
+(use-package window-number
+  :config
+  (window-number-mode 1)
+  (defun my-window-number-select (number)
+    "Selects the nth window."
+    (interactive "P")
+    (if (integerp number)
+        (let ((window (nth (1- number) (window-number-list))))
+          (if (and window (or (not (window-minibuffer-p window))
+                              (minibuffer-window-active-p window)))
+              (select-window window)
+            ;; if not found, activate ace-window
+            (ace-select-window)))))
+  ;;
+  (global-set-key (kbd "s-1") (lambda () (interactive) (my-window-number-select 1)))
+  (global-set-key (kbd "s-2") (lambda () (interactive) (my-window-number-select 2)))
+  (global-set-key (kbd "s-3") (lambda () (interactive) (my-window-number-select 3)))
+  (global-set-key (kbd "s-4") (lambda () (interactive) (my-window-number-select 4))))
+
