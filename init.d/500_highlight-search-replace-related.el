@@ -220,12 +220,7 @@
 ;; http://julien.danjou.info/projects/emacs-packages
 (use-package rainbow-mode
   :commands (rainbow-mode))
-;;
-;; Colors in R
-;; use the following code to generate the list in R
-;; output_colors <- function(colors) {for(color in colors) {col <- col2rgb(color); cat(sprintf("(\"%s\" . \"#%02X%02X%02X\")\n",color,col[1],col[2],col[3]));}}
-;; output_colors(colors())
-;; See variable rainbow-r-colors-alist
+;; PaleVioletRed1 orange1 turquoise4
 
 
 ;;;
