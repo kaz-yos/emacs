@@ -41,21 +41,7 @@
 (add-hook 'hy-mode-hook         'rainbow-delimiters-mode)
 ;;
 ;; http://ergoemacs.org/misc/emacs_rainbow-delimiters-mode.html
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(rainbow-delimiters-depth-1-face ((t (:foreground "gray90"		:weight bold))))
-;;  '(rainbow-delimiters-depth-2-face ((t (:foreground "PaleVioletRed1"	:weight bold))))
-;;  '(rainbow-delimiters-depth-3-face ((t (:foreground "cyan1"		:weight bold))))
-;;  '(rainbow-delimiters-depth-4-face ((t (:foreground "orange1"		:weight bold))))
-;;  '(rainbow-delimiters-depth-5-face ((t (:foreground "chartreuse1"	:weight bold))))
-;;  '(rainbow-delimiters-depth-6-face ((t (:foreground "IndianRed4"	:weight bold))))
-;;  '(rainbow-delimiters-depth-7-face ((t (:foreground "turquoise4"	:weight bold))))
-;;  '(rainbow-delimiters-depth-8-face ((t (:foreground "tomato2"		:weight bold))))
-;;  '(rainbow-delimiters-depth-9-face ((t (:foreground "dark green"	:weight bold))))
-;;  '(rainbow-delimiters-unmatched-face ((t (:foreground "red1"		:weight ultra-bold :height 1.5)))))
+;; Configure in init-customize.el
 (setq delim-test (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1)))))))))))))))
 
 
