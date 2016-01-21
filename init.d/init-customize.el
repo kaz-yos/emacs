@@ -15,9 +15,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ace-jump-face-foreground ((t (:foreground "red" :underline nil :weight extra-bold :height 1.0 :width expanded))))
+ '(ace-jump-face-foreground ((t (:background "gray10" :foreground "gray90" :weight extra-bold :height 1.0 :width expanded))))
  '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
- '(aw-leading-char-face ((t (:foreground "red" :height 5.0))))
+ '(aw-leading-char-face ((t (:foreground "gray90" :height 5.0))))
  '(company-preview ((t :background nil :foreground "darkgray")))
  '(company-preview-common ((t :background nil :foreground "darkgray")))
  '(company-scrollbar-bg ((t :background "gray")))
