@@ -48,21 +48,9 @@
       (save-buffer))
     (magit-status default-directory)
     (message "Removed whitespaces if any."))
-  ;; change magit diff colors
+  ;; change magit diff colors (configure in init-customize.el)
   ;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
   ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
-  (progn
-    (set-face-foreground 'magit-diff-add "SpringGreen3")
-    (set-face-background 'magit-diff-add "black")
-    (set-face-foreground 'magit-diff-del "firebrick3")
-    (set-face-background 'magit-diff-del "black")
-    (set-face-foreground 'magit-diff-file-header "blue")
-    ;; Inherit: diff-file-header by default
-    ;; (set-face-background 'magit-diff-file-header "light yellow")
-    ;; Inherit: secondary-selection by default
-    ;; (set-face-foreground 'magit-item-highlight "black")
-    ;; No highlight
-    (set-face-background 'magit-item-highlight "black"))
   ;;
   ;; Logging shows all branches by default (--all option added by default)
   (defun magit-key-mode-popup-logging ()
