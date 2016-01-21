@@ -65,14 +65,24 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ace-jump-face-foreground ((t (:foreground "red" :underline nil :weight extra-bold :height 1.0 :width expanded))))
+ ;;
  '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
- '(company-scrollbar-bg ((t (:background "#999999"))))
- '(company-scrollbar-fg ((t (:background "#8c8c8c"))))
- '(company-tooltip ((t (:inherit default :background "#848484"))))
- '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
- '(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+ ;;
  '(font-latex-subscript-face ((t nil)))
  '(font-latex-superscript-face ((t nil)))
+ ;;
+ ;; auto-complete-like color setting
+ ;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
+ `(company-tooltip                  ((t   :background "lightgray" :foreground "black")))
+ `(company-tooltip-selection        ((t   :background "Red4"      :foreground "white")))
+ `(company-tooltip-mouse            ((t   :background "red"       :foreground "white")))
+ `(company-tooltip-common           ((t   :background "lightgray" :foreground "black")))
+ `(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
+ `(company-scrollbar-fg             ((t   :background "OrangeRed1")))
+ `(company-scrollbar-bg             ((t   :background "gray")))
+ `(company-preview                  ((t   :background nil         :foreground "darkgray")))
+ `(company-preview-common           ((t   :background nil         :foreground "darkgray")))
+ ;;
  '(rainbow-delimiters-depth-1-face ((t (:foreground "gray90"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "PaleVioletRed1"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "cyan1"))))
@@ -83,4 +93,5 @@
  '(rainbow-delimiters-depth-8-face ((t (:foreground "tomato2"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "dark green"))))
  '(rainbow-delimiters-unmatched-face ((t (:foreground "red1" :weight ultra-bold :height 1.5))))
+ ;;
  '(stripe-highlight ((t (:background "gray10")))))
