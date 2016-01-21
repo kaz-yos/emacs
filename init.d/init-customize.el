@@ -27,8 +27,6 @@
  '(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
  '(company-tooltip-mouse ((t :background "red" :foreground "white")))
  '(company-tooltip-selection ((t :background "Red4" :foreground "white")))
- '(font-latex-subscript-face ((t nil)))
- '(font-latex-superscript-face ((t nil)))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "gray90"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "PaleVioletRed1"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "cyan1"))))
