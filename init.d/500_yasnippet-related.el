@@ -35,20 +35,14 @@
       choices)
      :prompt prompt
      ;; start isearch mode immediately
-     :isearch t
-     )))
+     :isearch t)))
 (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
 ;;
 ;;
-;;; helm-c-yasnippet.el		; helm source for yasnippet.el
-;; config in the el file
-;; (require 'yasnippet)
-(require 'helm-c-yasnippet)
-(setq helm-yas-space-match-any-greedy t) ;[default: nil]
-(global-set-key (kbd "C-c y") 'helm-yas-complete)
-;; (yas-global-mode 1)
-;; (yas-load-directory "<path>/<to>/snippets/")
-
-
-
-
+;;; helm-c-yasnippet.el
+;; https://github.com/emacs-jp/helm-c-yasnippet
+;; http://rubikitch.com/2015/10/05/helm-c-yasnippet/
+(use-package helm-c-yasnippet
+  :bind ("C-c y" . helm-yas-complete)
+  :config
+  (setq helm-yas-space-match-any-greedy t))
