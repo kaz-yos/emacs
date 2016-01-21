@@ -286,8 +286,18 @@
 (use-package ace-window
   :commands (ace-select-window
              ace-swap-window)
-  :bind ("s-5" . ace-window))
-(global-set-key (kbd "s-5") 'ace-window)
+  :bind ("s-5" . ace-window)
+  :config
+  (global-set-key (kbd "s-5") 'ace-window)
+  ;;
+  ;; Face configuration (Do it in init-customize.el)
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Attribute-Functions.html
+  ;; (set-face-attribute FACE FRAME &rest ARGS)
+  ;; FRAME nil for all existing frames.
+  ;; (set-face-attribute 'aw-leading-char-face nil
+  ;;                     :foreground "red" :height 5.0)
+  )
+
 ;;
 ;;
 ;;; ace-jump-helm-line.el
