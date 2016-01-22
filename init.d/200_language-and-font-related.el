@@ -43,7 +43,7 @@
   ;; Fontset made with crease-fontse-from-ascii-font
   ;; Font selected by family name, font-spec object made.
   ;;
-  ;; Fontset made
+  ;; Fontset creation
   (let* ((fontset-name "myfonts")                   ; Fontset name
          (size         14)                          ; Font size one of [9/10/12/14/15/17/19/20/...]
          (asciifont    "Menlo")                     ; ascii font
@@ -57,7 +57,6 @@
     ;;
     ;; (set-fontset-font NAME TARGET FONT-SPEC &optional FRAME ADD)
     ;; Modify fontset NAME to use FONT-SPEC for TARGET characters.
-    ;;
     ;;                NAME TARGET                   FONT-SPEC
     (set-fontset-font fsn 'japanese-jisx0213.2004-1 jp-fontspec)
     (set-fontset-font fsn 'japanese-jisx0213-2      jp-fontspec)
@@ -67,16 +66,19 @@
     )
   ;; Fontset for default-frame
   (add-to-list 'default-frame-alist '(font . "fontset-myfonts"))
-  ;; Relative size of different fonts
+  ;;
+  ;; Relative sizes of different fonts
   (dolist (elt '(("Hiragino Maru Gothic ProN"        . 1.2) ; 2014-05-26 to match jpfont. 1.2 times more
-                 ("^-apple-hiragino.*"       . 1.2)
-                 (".*osaka-bold.*"       . 1.2)
-                 (".*osaka-medium.*"       . 1.2)
+                 ("^-apple-hiragino.*"               . 1.2)
+                 (".*osaka-bold.*"                   . 1.2)
+                 (".*osaka-medium.*"                 . 1.2)
                  (".*courier-bold-.*-mac-roman"      . 1.0)
                  (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-                 (".*monaco-bold-.*-mac-roman"      . 0.9)))
+                 (".*monaco-bold-.*-mac-roman"       . 0.9)))
+    ;; Alist of fonts vs the rescaling factors.
     (add-to-list 'face-font-rescale-alist elt))
-  ;; Fontset configured to default face. Fixes default-frame-alist being ignored at startup.
+  ;;
+  ;; Set default FACE to FONTSET
   (set-face-font 'default "fontset-myfonts")
   ;;
   ;; Examples
