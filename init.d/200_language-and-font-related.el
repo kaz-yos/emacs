@@ -14,9 +14,9 @@
 
 
 ;;;
-;;; Smooth Japanese input (mac only?)
+;;; Smooth Japanese input (Mac only?)
 ;; http://suzukima.hatenablog.com/entry/2012/08/16/232210
-(setq show-paren-delay 0.25)			; Compatibility with Japanese input
+(setq show-paren-delay 0.25)
 
 
 ;;;
@@ -60,6 +60,7 @@
     ;;
     ;; (set-fontset-font NAME TARGET FONT-SPEC &optional FRAME ADD)
     ;; Modify fontset NAME to use FONT-SPEC for TARGET characters.
+    ;;
     ;;                NAME TARGET		    FONT-SPEC
     (set-fontset-font fsn 'japanese-jisx0213.2004-1 jp-fontspec)
     (set-fontset-font fsn 'japanese-jisx0213-2	    jp-fontspec)
@@ -82,18 +83,21 @@
   (set-face-font 'default "fontset-myfonts")
   ;;
   ;; Examples
-  ;; |123456|
-  ;; |Kazuki|
-  ;; |日本語|
-  ;; |よしだ|
-  ;; |ヨシダ|
-
+  ;; |123456 123456|
+  ;; |Kazuki Yoshid|
+  ;; |αβγδεζ ηθικλμ|
+  ;; |ΑΒΓΔΕΖ ΗΘΙΚΛΜ|
+  ;; |'";:-+ =/\~`?|
+  ;; |日本語 の美観|
+  ;; |よしだ かずき|
+  ;; |ヨシダ カズキ|
   ;;;
-  ;;; inline patch for Japanese IME
-  ;; Change to English in minibuffer (require inline patch. No .el dependency)
+;;; inline patch for Japanese IME (require inline patch to Emacs.app. No .el dependency)
+  ;; Change to English in minibuffer
   ;; http://molekun.blogspot.com/2011/03/homebrewemacs233.html
   ;; http://blog.n-z.jp/blog/2013-11-12-cocoa-emacs-ime.html
-  (when (fboundp 'mac-change-language-to-us)	; Only when inline patch is installed 2014-01-19
+  (when (fboundp 'mac-change-language-to-us)
+    ;; Only when inline patch is installed 2014-01-19
     (add-hook 'minibuffer-setup-hook 'mac-change-language-to-us)))
 
 
