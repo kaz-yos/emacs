@@ -49,10 +49,14 @@
          (asciifont    "Menlo")                     ; ascii font
          (jpfont       "Hiragino Maru Gothic ProN") ; Japanese font
          ;;
+         ;; "Menlo-14:weight=normal:slant=normal"
          (font         (format "%s-%d:weight=normal:slant=normal" asciifont size))
+         ;; #<font-spec nil nil Menlo nil nil nil nil nil nil nil nil nil nil>
          (fontspec     (font-spec :family asciifont))
+         ;; #<font-spec nil nil Hiragino\ Maru\ Gothic\ ProN nil nil nil nil nil nil nil nil nil nil>
          (jp-fontspec  (font-spec :family jpfont))
          ;; Create a fontset from an ASCII font FONT.
+         ;; "-*-menlo-normal-normal-normal-*-*-140-*-*-m-0-fontset-myfonts"
          (fsn          (create-fontset-from-ascii-font font nil fontset-name)))
     ;;
     ;; (set-fontset-font NAME TARGET FONT-SPEC &optional FRAME ADD)
@@ -68,7 +72,7 @@
   (add-to-list 'default-frame-alist '(font . "fontset-myfonts"))
   ;;
   ;; Relative sizes of different fonts
-  (dolist (elt '(("Hiragino Maru Gothic ProN"        . 1.2) ; 2014-05-26 to match jpfont. 1.2 times more
+  (dolist (elt '(("Hiragino Maru Gothic ProN"        . 1.2) ; 2014-05-26 to match jpfont. 1.2 times larger
                  ("^-apple-hiragino.*"               . 1.2)
                  (".*osaka-bold.*"                   . 1.2)
                  (".*osaka-medium.*"                 . 1.2)
