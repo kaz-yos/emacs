@@ -62,16 +62,23 @@
     ;; (set-fontset-font NAME TARGET FONT-SPEC &optional FRAME ADD)
     ;; Modify fontset NAME to use FONT-SPEC for TARGET characters.
     ;;                NAME TARGET                   FONT-SPEC
+    ;; TARGET may be a charset.  In that case, use FONT-SPEC for
+    ;; all characters in the charset (other ways are possible).
+    ;; To list all possible choices, use M-x list-character-sets
+    ;; For these Japanese character sets, use jp-fontspec
     (set-fontset-font fsn 'japanese-jisx0213.2004-1 jp-fontspec)
     (set-fontset-font fsn 'japanese-jisx0213-2      jp-fontspec)
     (set-fontset-font fsn 'katakana-jisx0201        jp-fontspec) ; Half-sized katakana
+    ;;
+    ;; For the characters in the range #x0080 - #x024F, use fontspec
     (set-fontset-font fsn '(#x0080 . #x024F)        fontspec)    ; Latin with pronounciation marks
+    ;; For the characters in the range #x0370 - #x03FF, use fontspec
     (set-fontset-font fsn '(#x0370 . #x03FF)        fontspec)    ; Greek
     )
   ;; Fontset for default-frame
   (add-to-list 'default-frame-alist '(font . "fontset-myfonts"))
   ;;
-  ;; Relative sizes of different fonts
+  ;; Rescaling parameters to adjust font sizes
   (dolist (elt '(("Hiragino Maru Gothic ProN"        . 1.2) ; 2014-05-26 to match jpfont. 1.2 times larger
                  ("^-apple-hiragino.*"               . 1.2)
                  (".*osaka-bold.*"                   . 1.2)
