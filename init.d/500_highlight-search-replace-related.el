@@ -304,8 +304,8 @@
       `(lambda ()
          (interactive)
          (funcall (if (eq ',mode 'word)
-                      ;; Word beginning or camel beginning
-                      #'avy-goto-word-or-subword-1
+                      ;; Word beginning
+                      #'avy-goto-word-1
                     ;; Anywhere
                     #'avy-goto-char) ,c))))
   ;;
