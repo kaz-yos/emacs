@@ -66,9 +66,7 @@
 ;;; Code:
 
 (deftheme manoj-dark-modified
-  "Very high contrast faces with a black background.
-This theme avoids subtle color variations, while avoiding the
-jarring angry fruit salad look to reduce eye fatigue.")
+  "Minor modification of manoj-dark")
 
 (custom-theme-set-faces
  'manoj-dark
@@ -383,7 +381,7 @@ jarring angry fruit salad look to reduce eye fatigue.")
  '(change-log-conditionals-face ((t (:foreground "Aquamarine"))))
  '(change-log-date-face ((t (:italic t :slant oblique :foreground "BurlyWood"))))
  '(change-log-email-face ((t (:foreground "Aquamarine"))))
- '(change-log-file-face ((t (:bold t :weight bold :foreground "LightSkyBlue" :height 0.9))))
+ '(change-log-file-face ((t (:bold t :weight bold :foreground "LightSkyBlue"))))
  '(change-log-function-face ((t (:foreground "Aquamarine"))))
  '(change-log-list-face ((t (:foreground "LightSkyBlue"))))
  '(change-log-name-face ((t (:bold t :weight bold :foreground "Gold"))))
@@ -507,7 +505,7 @@ jarring angry fruit salad look to reduce eye fatigue.")
  '(flyspell-incorrect-face ((t (:foreground "Pink" :bold t :underline t))))
 
  '(fringe ((t (:background "grey30" :foreground "Wheat"))))
- '(header-line ((t (:box (:line-width -1 :color "grey20" :style released-button) :background "grey20" :foreground "grey90"  :height 0.9))))
+ '(header-line ((t (:box (:line-width -1 :color "grey20" :style released-button) :background "grey20" :foreground "grey90"))))
  '(help-argument-name ((t (:italic t :slant italic))))
  '(highlight ((t (:background "gray10" :foreground "Old Lace"))))
  '(hl-line  ((t (:background "grey10" :foreground "Old Lace"))))
@@ -582,16 +580,15 @@ jarring angry fruit salad look to reduce eye fatigue.")
  '(match ((t (:background "RoyalBlue3"))))
  '(minibuffer-prompt ((t (:foreground "cyan"))))
  '(mode-line ((t (:background "grey75" :foreground "Blue"
-                  :box '(:line-width -1 :style released-button)
-                  :height 0.9))))
+                  :box '(:line-width -1 :style released-button)))))
  '(mode-line-buffer-id ((t (:background "grey65" :foreground "red"
-                                        :bold t :weight bold :height 0.9))))
+                                        :bold t :weight bold))))
  '(mode-line-emphasis ((t (:bold t :weight bold))))
  '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40"
-                                              :style released-button :height 0.9)))))
+                                              :style released-button)))))
  '(mode-line-inactive ((t (:background "grey30" :foreground "grey80"
                                        :box '(:line-width -1 :color "grey40")
-                                       :weight light :height 0.9))))
+                                       :weight light))))
  '(mouse ((t (:background "OrangeRed"))))
 
  '(next-error ((t (:background "blue3"))))
