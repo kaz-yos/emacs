@@ -687,8 +687,4 @@
 
 (provide-theme 'manoj-dark-modified)
 
-;; Local Variables:
-;; no-byte-compile: t
-;; End:
-
 ;;; manoj-dark-modified-theme.el ends here
