@@ -17,6 +17,10 @@
  ;; If there is more than one, they won't work right.
  '(ace-jump-face-foreground ((t (:background "gray10" :foreground "gray90" :weight extra-bold :height 1.0 :width expanded))))
  '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
+ '(avy-lead-face ((t (:background "black" :foreground "white"))))
+ '(avy-lead-face-0 ((t (:background "black" :foreground "white"))))
+ '(avy-lead-face-1 ((t (:background "black" :foreground "white"))))
+ '(avy-lead-face-2 ((t (:background "black" :foreground "white"))))
  '(aw-leading-char-face ((t (:foreground "gray90" :height 5.0))))
  '(company-preview ((t :background nil :foreground "dark gray")))
  '(company-preview-common ((t :background nil :foreground "dark gray")))
