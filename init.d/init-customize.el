@@ -7,7 +7,8 @@
  '(custom-enabled-themes (quote (modified-manoj-dark-theme)))
  '(custom-safe-themes
    (quote
-    ("4b2f6ec6f2fd05594a2bafc9c4f7223d0d23289ee9fdcce2abea0e7fc5e5216e" default))))
+    ("4b2f6ec6f2fd05594a2bafc9c4f7223d0d23289ee9fdcce2abea0e7fc5e5216e" default)))
+ '(initial-buffer-choice (quote other-window-or-split)))
 ;;
 ;;
 (custom-set-faces
