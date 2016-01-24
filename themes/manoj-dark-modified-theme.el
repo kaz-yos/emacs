@@ -1,5 +1,7 @@
 ;;; manoj-dark-modified-theme.el --- A modified version of dark theme from Manoj
 
+;; The following description pertains to the original.
+
 ;; Copyright (C) 2011-2015 Free Software Foundation, Inc.
 
 ;; Author: Manoj Srivastava <srivasta@ieee.org>
@@ -579,10 +581,9 @@
  '(man-xref ((t (:underline t))))
  '(match ((t (:background "RoyalBlue3"))))
  '(minibuffer-prompt ((t (:foreground "cyan"))))
- '(mode-line ((t (:background "grey75" :foreground "Blue"
+ '(mode-line ((t (:background "grey90" :foreground "black"
                   :box '(:line-width -1 :style released-button)))))
- '(mode-line-buffer-id ((t (:background "grey65" :foreground "red"
-                                        :bold t :weight bold))))
+ '(mode-line-buffer-id ((t (:bold t :weight bold))))
  '(mode-line-emphasis ((t (:bold t :weight bold))))
  '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40"
                                               :style released-button)))))
