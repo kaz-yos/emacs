@@ -336,6 +336,7 @@
 ;; Depends on avy.el not ace-jump-mode.el
 ;; https://github.com/cute-jumper/ace-jump-helm-line
 (use-package ace-jump-helm-line
+  :commands (ace-jump-helm-line)
   :config
   (eval-after-load "helm"
     '(define-key helm-map (kbd "C-'") 'ace-jump-helm-line)))
