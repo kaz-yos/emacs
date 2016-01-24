@@ -210,8 +210,7 @@
   (setq migemo-coding-system 'utf-8-unix)
   (setq migemo-regex-dictionary nil)
   (load-library "migemo")
-  (migemo-init)
-  )
+  (migemo-init))
 
 
 ;;;
@@ -237,6 +236,7 @@
                     not-empty
                     (not (eq this-original-command 'self-insert-command)))))
           (cua--fallback))))))
+
 
 ;;;
 ;;; ACE-JUMP-MODE-RELATED
@@ -278,9 +278,43 @@
   ;; (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-s-" c))
   ;; (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "M-s-" c))
   )
+
+
+;;;
+;;; AVY-RELATED
+;;; avy.el
+;; More powerful reimplementation of ace-jump-mode
+;; https://github.com/abo-abo/avy
+;; http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/
+(use-package avy
+  :demand
+  :commands (avy-goto-char
+             avy-goto-char-2
+             avy-goto-word-1)
+  :config
+  ;; Darken background
+  (setq avy-background t)
+  ;;
+  ;; avy version of one-step activation
+  ;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
+  (defun add-keys-to-avy (prefix c &optional mode)
+    (define-key global-map
+      (read-kbd-macro (concat prefix (string c)))
+      `(lambda ()
+         (interactive)
+         (funcall (if (eq ',mode 'word)
+                      #'avy-goto-word-1
+                    #'avy-goto-char) ,c))))
+  ;;
+  ;; Assing key bindings for all characters
+  ;; eg, M-s-x will activate (avy-goto-char ?x), ie, all occurrence of x
+  (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
+  ;; eg, A-s-x will activate (avy-goto-word-1 ?x), ie, all words starting with x
+  (loop for c from ?! to ?~ do (add-keys-to-avy "A-s-" c 'word)))
 ;;
 ;;
 ;;; ace-window.el
+;; Window selection using avy.el (no dependency on ace-jump-mode.el)
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
   :commands (ace-select-window
@@ -299,37 +333,9 @@
 ;;
 ;;
 ;;; ace-jump-helm-line.el
+;; Depends on avy.el not ace-jump-mode.el
 ;; https://github.com/cute-jumper/ace-jump-helm-line
 (use-package ace-jump-helm-line
   :config
   (eval-after-load "helm"
     '(define-key helm-map (kbd "C-'") 'ace-jump-helm-line)))
-
-
-;;;
-;;; avy.el
-;; More powerful reimplementation of ace-jump-mode
-;; https://github.com/abo-abo/avy
-;; http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/
-(use-package avy
-  :demand
-  :commands (avy-goto-char
-             avy-goto-char2
-             avy-goto-word-1))
-;;
-;; avy version of one-step activation
-;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
-(defun add-keys-to-avy (prefix c &optional mode)
-  (define-key global-map
-    (read-kbd-macro (concat prefix (string c)))
-    `(lambda ()
-       (interactive)
-       (funcall (if (eq ',mode 'word)
-                    #'avy-goto-word-1
-                  #'avy-goto-char) ,c))))
-;;
-;; Assing key bindings for all characters
-;; eg, M-s-x will activate (avy-goto-char ?x), ie, all occurrence of x
-(loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
-;; eg, A-s-x will activate (avy-goto-word-1 ?x), ie, all words starting with x
-(loop for c from ?! to ?~ do (add-keys-to-avy "A-s-" c 'word))
