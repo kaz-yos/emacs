@@ -307,10 +307,10 @@
                     #'avy-goto-char) ,c))))
   ;;
   ;; Assing key bindings for all characters
-  ;; eg, M-s-x will activate (avy-goto-char ?x), ie, all occurrence of x
-  (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
-  ;; eg, A-s-x will activate (avy-goto-word-1 ?x), ie, all words starting with x
-  (loop for c from ?! to ?~ do (add-keys-to-avy "A-s-" c 'word)))
+  ;; eg, A-s-x will activate (avy-goto-char ?x), ie, all occurrence of x
+  (loop for c from ?! to ?~ do (add-keys-to-avy "A-s-" c))
+  ;; eg, M-s-x will activate (avy-goto-word-1 ?x), ie, all words starting with x
+  (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c 'word)))
 ;;
 ;;
 ;;; ace-window.el
