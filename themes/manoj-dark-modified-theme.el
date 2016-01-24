@@ -374,10 +374,6 @@
  '(bold-italic ((t (:bold t :italic t :slant italic :weight bold))))
  '(border ((t (:background "gold" :foreground "black" ))))
  '(buffer-menu-buffer ((t (:bold t :weight bold))))
- '(button ((t (:underline t :box (:line-width 2 :color "grey"
-                                              :style released-button)
-                          :foreground "black" :background "grey"
-                          :weight bold ))))
  '(calendar-today-face ((t (:underline t :bold t :foreground "cornsilk"))))
  '(change-log-acknowledgement-face ((t (:italic t :slant oblique :foreground "AntiqueWhite3"))))
  '(change-log-conditionals-face ((t (:foreground "Aquamarine"))))
