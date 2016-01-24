@@ -290,7 +290,8 @@
   :demand
   :commands (avy-goto-char
              avy-goto-char-2
-             avy-goto-word-1)
+             avy-goto-word-1
+             avy-goto-word-or-subword-1)
   :config
   ;; Darken background
   (setq avy-background t)
@@ -303,7 +304,9 @@
       `(lambda ()
          (interactive)
          (funcall (if (eq ',mode 'word)
-                      #'avy-goto-word-1
+                      ;; Word beginning or camel beginning
+                      #'avy-goto-word-or-subword-1
+                    ;; Anywhere
                     #'avy-goto-char) ,c))))
   ;;
   ;; Assing key bindings for all characters
