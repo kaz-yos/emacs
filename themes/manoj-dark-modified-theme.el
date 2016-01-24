@@ -1,4 +1,4 @@
-;;; manoj-dark-modified.el --- A modified version of dark theme from Manoj
+;;; manoj-dark-modified-theme.el --- A modified version of dark theme from Manoj
 
 ;; Copyright (C) 2011-2015 Free Software Foundation, Inc.
 
@@ -69,7 +69,7 @@
   "Minor modification of manoj-dark")
 
 (custom-theme-set-faces
- 'manoj-dark
+ 'manoj-dark-modified
  '(default ((t (:background "black" :foreground "WhiteSmoke"))))
  ;; Font lock faces
  '(font-lock-builtin-face       ((t (:foreground "LightSteelBlue"))))
@@ -684,10 +684,10 @@
  '(woman-italic-face ((t (:foreground "beige"))))
  '(woman-unknown-face ((t (:foreground "LightSalmon")))))
 
-(provide-theme 'manoj-dark)
+(provide-theme 'manoj-dark-modified)
 
 ;; Local Variables:
 ;; no-byte-compile: t
 ;; End:
 
-;;; manoj-dark.el ends here
+;;; manoj-dark-modified-theme.el ends here
