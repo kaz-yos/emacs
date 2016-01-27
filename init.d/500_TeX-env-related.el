@@ -79,14 +79,22 @@
           (function (lambda ()
                       (add-to-list 'TeX-command-list
                                    '("Preview" "/usr/bin/open -a Preview.app %s.pdf"
-                                     TeX-run-discard-or-function t t :help "Run Preview"))
+                                     TeX-run-discard-or-function nil t :help "Run Preview"))
                       (add-to-list 'TeX-command-list
                                    '("Skim" "/usr/bin/open -a Skim.app %s.pdf"
-                                     TeX-run-discard-or-function t t :help "Run Skim"))
+                                     TeX-run-discard-or-function nil t :help "Run Skim"))
                       ;; Replace original View
                       (add-to-list 'TeX-command-list
                                    '("View" "/usr/bin/open -a Skim.app %s.pdf"
-                                     TeX-run-discard-or-function t t :help "Run Skim"))
+                                     TeX-run-discard-or-function nil t :help "Run Skim"))
+                      ;; Original BibTeX
+                      (add-to-list 'TeX-command-list
+                                   '("BibTeX" "bibtex %s"
+                                     TeX-run-BibTeX nil t :help "Run BibTeX"))
+                      ;; BibTeX alternative
+                      (add-to-list 'TeX-command-list
+                                   '("BibTeX-alternative" "/Library/TeX/texbin/bibtex %s"
+                                     TeX-run-discard-or-function nil t :help "Run BibTeX (alternative)"))
                       ;;
                       (add-to-list 'TeX-command-list
                                    '("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %s.pdf \"%b\""
