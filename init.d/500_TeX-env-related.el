@@ -68,6 +68,13 @@
 ;; https://www.gnu.org/software/auctex/manual/auctex/Selecting-a-Command.html
 ;; %s becomes the file name without .tex, but .Rnw is not removed correctly.
 ;;
+;; TeX-command-list is a variable defined in `tex.el'.
+;; list elements:
+;; 1. name of the command
+;; 2. string handed to the shell after being expanded (follows TeX-expand-list)
+;; 3. function which actually start the process (various options)
+;; 4. if nil directly executed
+;; 5. if t, appears in all modes
 (add-hook 'LaTeX-mode-hook
           (function (lambda ()
                       (add-to-list 'TeX-command-list
