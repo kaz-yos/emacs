@@ -7,7 +7,7 @@
  '(custom-enabled-themes (quote (manoj-dark-modified)))
  '(custom-safe-themes
    (quote
-    ("ce2261ea4c09321bc115121c0229a08488ce7d4ff9db45acec389c37a03bc3b8" default)))
+    ("038e9891d071ca4dfc55775b15534f8be4979866dd5c063c801ec9717a5cd84b" default)))
  '(initial-buffer-choice (quote other-window-or-split)))
 ;;
 ;;
