@@ -93,7 +93,7 @@
                                      TeX-run-BibTeX nil t :help "Run BibTeX"))
                       ;; BibTeX alternative
                       (add-to-list 'TeX-command-list
-                                   '("BibTeX-alternative" "/Library/TeX/texbin/bibtex %s"
+                                   '("alt-BibTeX" "/Library/TeX/texbin/bibtex %s"
                                      TeX-run-discard-or-function nil t :help "Run BibTeX (alternative)"))
                       ;;
                       (add-to-list 'TeX-command-list
