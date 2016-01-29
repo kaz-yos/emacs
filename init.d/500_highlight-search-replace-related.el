@@ -27,6 +27,15 @@
 
 
 ;;;
+;;; beacon.el
+;; https://github.com/Malabarba/beacon
+(use-package beacon
+  :config
+  (beacon-mode 1)
+  (setq beacon-blink-when-focused t))
+
+
+;;;
 ;;; highligh-symbol for highlighting multiple occurences
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
