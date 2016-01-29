@@ -246,6 +246,7 @@
 (use-package ace-jump-mode
   :commands (ace-jump-char-mode
              ace-jump-word-mode)
+  :bind ("A-l" . avy-goto-line)
   :config
   ;; rubikitch setting Software Design September 2014
   ;; (setq ace-jump-mode-gray-background nil)
