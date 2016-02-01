@@ -119,6 +119,7 @@
   (global-set-key (kbd "A-c") 'elscreen-clone)
   (global-set-key (kbd "A-k") 'elscreen-kill)
   (global-set-key (kbd "A-r") 'elscreen-screen-nickname)
+  (global-set-key (kbd "A-t") 'elscreen-toggle-display-tab)
   ;;
   ;; Do not show tabls to save space
   ;; Can use M-x elscreen-toggle-display-tab
