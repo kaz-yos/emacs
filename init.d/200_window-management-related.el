@@ -98,3 +98,50 @@
   (global-set-key (kbd "s-3") (lambda () (interactive) (my-window-number-select 3)))
   (global-set-key (kbd "s-4") (lambda () (interactive) (my-window-number-select 4))))
 
+
+;;;
+;;; ELSCREEN-RELATED
+;;
+;;; elscreen.el
+;; https://github.com/knu/elscreen
+;; http://www.emacswiki.org/emacs/EmacsLispScreen
+;; http://rubikitch.com/2014/09/05/elscreen/
+(use-package elscreen
+  :init
+  ;; Do not set a prefix (conflict with helm)
+  (setq elscreen-prefix-key nil)
+  ;;
+  :config
+  ;; It has to kick in.
+  (elscreen-start)
+  ;; Key configs
+  (global-set-key (kbd "A-1") 'elscreen-previous)
+  (global-set-key (kbd "A-2") 'elscreen-next)
+  ;;
+  ;; No preceding [X] for closing
+  (setq elscreen-tab-display-kill-screen nil)
+  ;; No [<->] at the beginning
+  (setq elscreen-tab-display-control nil)
+  ;;
+  ;; buffer-dependent naming scheme
+  (setq elscreen-buffer-to-nickname-alist
+        '(("^dired-mode$" .
+           (lambda ()
+             (format "Dired(%s)" dired-directory)))
+          ("^Info-mode$" .
+           (lambda ()
+             (format "Info(%s)" (file-name-nondirectory Info-current-file))))
+          ("^mew-draft-mode$" .
+           (lambda ()
+             (format "Mew(%s)" (buffer-name (current-buffer)))))
+          ("^mew-" . "Mew")
+          ("^irchat-" . "IRChat")
+          ("^liece-" . "Liece")
+          ("^lookup-" . "Lookup")))
+  ;;
+  (setq elscreen-mode-to-nickname-alist
+        '(("[Ss]hell" . "shell")
+          ("compilation" . "compile")
+          ("-telnet" . "telnet")
+          ("dict" . "OnlineDict")
+          ("*WL:Message*" . "Wanderlust"))))
