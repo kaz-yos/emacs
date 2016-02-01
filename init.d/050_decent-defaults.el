@@ -159,11 +159,11 @@
 
 ;;;
 ;;; Remeber the cursor position in a file
-;; http://www.emacswiki.org/emacs/SavePlace
-;; http://git.sysphere.org/dotfiles/tree/emacs
-(setq save-place-file "~/.emacs.d/emacs-places")
-(setq-default save-place t)
-(require 'saveplace)
+(use-package saveplace
+  :config
+  (setq save-place-file "~/.emacs.d/emacs-places")
+  ;; New in 25.1
+  (save-place-mode t))
 
 
 ;;;
