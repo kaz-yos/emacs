@@ -32,6 +32,8 @@
  '(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
  '(company-tooltip-mouse ((t :background "red" :foreground "white")))
  '(company-tooltip-selection ((t :background "red4" :foreground "white")))
+ '(elscreen-tab-current-screen-face ((t :background "gray80" :foreground "black")))
+ '(elscreen-tab-other-screen-face ((t :background "gray20" :foreground "gray80")))
  '(font-latex-subscript-face ((t nil)))
  '(font-latex-superscript-face ((t nil)))
  '(magit-diff-add ((t (:foreground "SpringGreen3"))))
