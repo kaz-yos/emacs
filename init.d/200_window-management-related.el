@@ -109,7 +109,7 @@
 (use-package elscreen
   :init
   ;; Do not set a prefix (conflict with helm)
-  (setq elscreen-prefix-key nil)
+  (setq elscreen-prefix-key (kbd "C-;"))
   ;;
   :config
   ;; Key configs
