@@ -44,6 +44,8 @@
   ;; http://d.hatena.ne.jp/setoryohei/20110117
   ;; Good overview of how to configure a multi-language environment
   ;; http://qiita.com/melito/items/238bdf72237290bc6e42
+  ;; Overview of an alternative method
+  ;; http://lioon.net/emacs-change-font-size-quickly
   ;;
   ;; default-frame font configured
   ;; New font set made, it is then chosen as default-frame-alist font.
