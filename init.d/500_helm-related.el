@@ -12,17 +12,19 @@
   :init
   (require 'helm-config)
   :bind (("M-x" .     helm-M-x)
-         ("C-M-x" .   execute-extended-command)
+         ;; ("C-M-x" .   execute-extended-command)
          ("C-z" .     helm-for-files)
          ("M-y" .     helm-show-kill-ring)
-         ("C-x b" .   helm-buffers-list)
+         ;; ("C-x b" .   helm-buffers-list)
          ("C-x C-r" . helm-recentf)
-         ("C-^" .     helm-c-apropos)
-         ("C-;" .     helm-resume)
-         ("s-c" .     helm-occur)
+         ;; ("C-^" .     helm-c-apropos)
+         ;; This brings back the last helm used
+         ;; ("C-;" .     helm-resume)
+         ;; ("s-c" .     helm-occur)
          ("A-e" .     helm-elscreen)
-         ("M-z" .     helm-do-grep)
-         ("C-S-h" .   helm-descbinds))
+         ;; ("M-z" .     helm-do-grep)
+         ;; ("C-S-h" .   helm-descbinds)
+         )
   :config
   ;; Disabled because it was giving an error 2013-11-22
   (setq helm-locate-command "")
