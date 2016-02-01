@@ -112,12 +112,14 @@
   (setq elscreen-prefix-key nil)
   ;;
   :config
-  ;; It has to kick in.
-  (elscreen-start)
   ;; Key configs
   (global-set-key (kbd "A-1") 'elscreen-previous)
   (global-set-key (kbd "A-2") 'elscreen-next)
+  (global-set-key (kbd "A-c") 'elscreen-create)
+  (global-set-key (kbd "A-k") 'elscreen-kill)
   ;;
+  ;; Do not show tabls to save space
+  ;; (setq elscreen-display-tab nil)
   ;; No preceding [X] for closing
   (setq elscreen-tab-display-kill-screen nil)
   ;; No [<->] at the beginning
@@ -144,4 +146,7 @@
           ("compilation" . "compile")
           ("-telnet" . "telnet")
           ("dict" . "OnlineDict")
-          ("*WL:Message*" . "Wanderlust"))))
+          ("*WL:Message*" . "Wanderlust")))
+  ;;
+  ;; It has to kick in.
+  (elscreen-start))
