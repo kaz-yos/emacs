@@ -115,8 +115,10 @@
   ;; Key configs
   (global-set-key (kbd "A-1") 'elscreen-previous)
   (global-set-key (kbd "A-2") 'elscreen-next)
-  (global-set-key (kbd "A-c") 'elscreen-create)
+  ;; Cloning is more useful than fresh creation
+  (global-set-key (kbd "A-c") 'elscreen-clone)
   (global-set-key (kbd "A-k") 'elscreen-kill)
+  (global-set-key (kbd "A-r") 'elscreen-screen-nickname)
   ;;
   ;; Do not show tabls to save space
   ;; (setq elscreen-display-tab nil)
