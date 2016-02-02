@@ -1,4 +1,4 @@
-;;; bm.el	Within-file bookmarking
+;;; bm.el Within-file bookmarking
 ;; https://github.com/joodland/bm
 ;;
 ;;
@@ -19,17 +19,17 @@
   (setq bm-annotation-width 5)   ; Minimum width
   (setq bm-header-annotation "") ; No need to show "Annotation"
   ;; Load on startup
-  ;; (add-hook 'after-init-hook		'bm-repository-load)
+  ;; (add-hook 'after-init-hook 'bm-repository-load)
   ;; Restore when finding file
-  ;; (add-hook 'find-file-hooks		'bm-buffer-restore)
+  ;; (add-hook 'find-file-hooks 'bm-buffer-restore)
   ;;
   ;; Saving on killing and saving a buffer
-  ;; (add-hook 'kill-buffer-hook		'bm-buffer-save)
-  ;; (add-hook 'auto-save-hook		'bm-buffer-save)
-  ;; (add-hook 'after-save-hook		'bm-buffer-save)
+  ;; (add-hook 'kill-buffer-hook 'bm-buffer-save)
+  ;; (add-hook 'auto-save-hook 'bm-buffer-save)
+  ;; (add-hook 'after-save-hook 'bm-buffer-save)
   ;; Version control (Rubikitch book p116)
-  ;; (add-hook 'after-revert-hook		'bm-buffer-restore)
-  ;; (add-hook 'vc-before-checkin-hook	'bm-buffer-save)
+  ;; (add-hook 'after-revert-hook 'bm-buffer-restore)
+  ;; (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
   ;; Saving the repository to file when on exit.
   ;; kill-buffer-hook is not called when emacs is killed, so we
   ;; must save all bookmarks first.
@@ -95,13 +95,13 @@
     (bm-show))
   ;;
   ;; Keyboard
-  (global-set-key (kbd "M-SPC")	'bm-toggle)	; Conflict with IM. Use ESC-SPC, which is the same
-  ;; (global-set-key (kbd "M-]")	'bm-next)
-  ;; (global-set-key (kbd "M-[")	'bm-previous)
-  (global-set-key (kbd "M-]")	'my-bm-next)
-  (global-set-key (kbd "M-[")	'my-bm-previous)
-  (global-set-key (kbd "C-c b")	'my-bm-show)
-  (global-set-key (kbd "s-b")	'my-bm-show))
+  (global-set-key (kbd "M-SPC") 'bm-toggle) ; Conflict with IM. Use ESC-SPC, which is the same
+  ;; (global-set-key (kbd "M-]") 'bm-next)
+  ;; (global-set-key (kbd "M-[") 'bm-previous)
+  (global-set-key (kbd "M-]") 'my-bm-next)
+  (global-set-key (kbd "M-[") 'my-bm-previous)
+  (global-set-key (kbd "C-c b") 'my-bm-show)
+  (global-set-key (kbd "s-b") 'my-bm-show))
 
 
 
@@ -109,7 +109,7 @@
 ;;; Built-in bookmarks (not used)
 ;; http://www.emacswiki.org/emacs/BookMarks#toc6
 (setq bookmark-save-flag 1)
-(setq bookmark-default-file "~/.emacs.d/bookmarks")		; save file within ~/.emacs.d
+(setq bookmark-default-file "~/.emacs.d/bookmarks") ; save file within ~/.emacs.d
 (defadvice bookmark-jump (after bookmark-jump activate)
   (let ((latest (bookmark-get-bookmark bookmark)))
     (setq bookmark-alist (delq latest bookmark-alist))
