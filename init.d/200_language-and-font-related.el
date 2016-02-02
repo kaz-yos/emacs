@@ -31,8 +31,8 @@
 (defun default-font-size (size)
   "Set default font size (effective in all buffers)"
   (interactive "sEnter font size in points: ")
-  (let ((size-ten (* (string-to-int size) 10)))
-    (set-face-attribute 'default nil :height size-ten)))
+  (let ((ht (* (string-to-int size) 10)))
+    (set-face-attribute 'default nil :height ht)))
 
 
 ;;;
@@ -47,57 +47,57 @@
   ;; Overview of an alternative method
   ;; http://lioon.net/emacs-change-font-size-quickly
   ;;
-  ;; default-frame font configured
-  ;; New font set made, it is then chosen as default-frame-alist font.
-  ;; Fontset made with crease-fontse-from-ascii-font
-  ;; Font selected by family name, font-spec object made.
+  ;; Set default-frame font via default-frame-alist
   ;;
-  ;; Fontset creation
-  (let* ((fontset-name "myfonts")
+  ;; Create a customized font set
+  (let* ((my-fontset-name "myfonts")
          ;; Font size one of [9/10/12/14/15/17/19/20/...]
-         (size         14)
+         (my-default-font-size 14)
          ;;
-         ;; Pick a font name available in (font-family-list)
-         ;; Ascii font name
-         (asciifont    "Menlo")
-         ;; Japanese font name
-         (jpfont       "Hiragino Maru Gothic ProN")
+         ;; Ascii font name (pick from (font-family-list))
+         (my-ascii-font "Menlo")
+         ;; Japanese font name (pick from (font-family-list))
+         (my-jp-font    "Hiragino Maru Gothic ProN")
          ;;
          ;; Create a FONT string for create-fontset-from-ascii-font
          ;; "Menlo-14:weight=normal:slant=normal"
-         (font         (format "%s-%d:weight=normal:slant=normal" asciifont size))
+         (my-default-font-string (format "%s-%d:weight=normal:slant=normal" my-ascii-font my-default-font-size))
          ;;
-         ;; Create :family only font specifications (use later)
+         ;; Create :family-only font specifications (use later)
          ;; #<font-spec nil nil Menlo nil nil nil nil nil nil nil nil nil nil>
-         (fontspec     (font-spec :family asciifont))
+         (my-ascii-fontspec (font-spec :family my-ascii-font))
          ;; #<font-spec nil nil Hiragino\ Maru\ Gothic\ ProN nil nil nil nil nil nil nil nil nil nil>
-         (jp-fontspec  (font-spec :family jpfont))
+         (my-jp-fontspec    (font-spec :family my-jp-font))
          ;;
          ;; Create a fontset from an ASCII font FONT.
-         ;; Name as "fontset-" added to fontset-name
+         ;; Name as "fontset-" added to my-fontset-name
          ;; "-*-menlo-normal-normal-normal-*-*-140-*-*-m-0-fontset-myfonts"
-         (fsn          (create-fontset-from-ascii-font font nil fontset-name)))
+         (my-font-set (create-fontset-from-ascii-font my-default-font-string nil my-fontset-name)))
     ;;
+    ;; set-fontset-font
     ;; Modify fontset NAME to use FONT-SPEC for TARGET characters.
     ;; (set-fontset-font NAME TARGET FONT-SPEC &optional FRAME ADD)
+    ;;
+    ;; NAME is a fontset name string, nil for the fontset of FRAME,
+    ;; or t for the default fontset.
     ;;
     ;; TARGET may be a cons (FROM . TO) or a charset or others.
     ;; To list all possible choices, use M-x list-character-sets
     ;;
-    ;; For these Japanese character sets, use jp-fontspec
-    (set-fontset-font fsn 'japanese-jisx0213.2004-1 jp-fontspec)
-    (set-fontset-font fsn 'japanese-jisx0213-2      jp-fontspec)
-    ;; For Half-sized katakana characters, use jp-fontspec
-    (set-fontset-font fsn 'katakana-jisx0201        jp-fontspec)
+    ;; For these Japanese character sets, use my-jp-fontspec
+    (set-fontset-font my-font-set 'japanese-jisx0213.2004-1 my-jp-fontspec)
+    (set-fontset-font my-font-set 'japanese-jisx0213-2      my-jp-fontspec)
+    ;; For Half-sized katakana characters, use my-jp-fontspec
+    (set-fontset-font my-font-set 'katakana-jisx0201        my-jp-fontspec)
     ;;
-    ;; For the characters in the range #x0080 - #x024F, use fontspec
+    ;; For the characters in the range #x0080 - #x024F, use my-ascii-fontspec
     ;; Latin with pronounciation annotations
-    (set-fontset-font fsn '(#x0080 . #x024F)        fontspec)
-    ;; For the characters in the range #x0370 - #x03FF, use fontspec
+    (set-fontset-font my-font-set '(#x0080 . #x024F)        my-ascii-fontspec)
+    ;; For the characters in the range #x0370 - #x03FF, use my-ascii-fontspec
     ;; Greek characters
-    (set-fontset-font fsn '(#x0370 . #x03FF)        fontspec))
+    (set-fontset-font my-font-set '(#x0370 . #x03FF)        my-ascii-fontspec))
   ;;
-  ;; Fontset for default-frame (use at frame creation)
+  ;; Set the font set for the default frame (Used at frame creation)
   (add-to-list 'default-frame-alist '(font . "fontset-myfonts"))
   ;;
   ;; Rescaling parameters to adjust font sizes to match each other
@@ -111,8 +111,9 @@
     ;; Alist of fonts vs the rescaling factors.
     (add-to-list 'face-font-rescale-alist elt))
   ;;
-  ;; Set default face to fontset-myfonts defined above
-  (set-face-font 'default "fontset-myfonts")
+  ;; Set default face to fontset-myfonts defined above.
+  ;; For trouble shooting only. No longer needed?
+  ;; (set-face-font 'default "fontset-myfonts")
   ;;
   ;; Examples
   ;; |123456 123456|
