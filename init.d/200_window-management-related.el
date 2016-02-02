@@ -123,7 +123,7 @@
   ;;
   ;; Do not show tabls to save space
   ;; Can use M-x elscreen-toggle-display-tab
-  (setq elscreen-display-tab nil)
+  ;; (setq elscreen-display-tab nil)
   ;; No preceding [X] for closing
   (setq elscreen-tab-display-kill-screen nil)
   ;; No [<->] at the beginning
