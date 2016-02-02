@@ -111,9 +111,19 @@
     ;; Alist of fonts vs the rescaling factors.
     (add-to-list 'face-font-rescale-alist elt))
   ;;
-  ;; Set default face to fontset-myfonts defined above.
-  ;; For trouble shooting only. No longer needed?
-  ;; (set-face-font 'default "fontset-myfonts")
+  ;; There is a bug relating to this rescaling setting.
+  ;; https://debbugs.gnu.org/db/17/1785.html
+  ;; https://lists.gnu.org/archive/html/bug-gnu-emacs/2014-12/msg00774.html
+  ;;
+  ;; /lisp/startup.el.gz line 672-
+  ;; FIXME: The user's init file may change
+  ;; face-font-rescale-alist.  However, the default face
+  ;; already has an assigned font object, which does not take
+  ;; face-font-rescale-alist into account.  For such
+  ;; situations, we ought to have a way to find all font
+  ;; objects and regenerate them; currently we do not.  As a
+  ;; workaround, we specifically reset te default face's :font
+  ;; attribute here.  See bug#1785.
   ;;
   ;; Examples
   ;; |123456 123456|
