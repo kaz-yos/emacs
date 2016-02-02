@@ -138,7 +138,7 @@
 ;; http://qiita.com/melito/items/238bdf72237290bc6e42
 (when (eq system-type 'windows-nt)
   ;; http://d.hatena.ne.jp/eggtoothcroc/20130102/p1
-  (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 105)
+  (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 140)
   ;;
   ;; For Japanese file names on Windows
   (setq default-file-name-coding-system 'shift_jis))
