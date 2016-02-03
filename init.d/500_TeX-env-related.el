@@ -34,6 +34,9 @@
 (setq font-latex-deactivated-keyword-classes
       '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))
 ;;
+;; Insert {} after ^ or _
+(setq TeX-electric-sub-and-superscript t)
+;;
 ;;
 ;;; Special key settings
 ;;
