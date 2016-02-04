@@ -9,8 +9,10 @@
 ;; http://cmacr.ae/blog/2015/01/25/email-in-emacs/
 ;; Manage your gmail account in emacs with mu4e
 ;; https://gist.github.com/areina/3879626
-;; http://blog.danielgempesaw.com/post/43467552978/installing-mu-and-mu4e-with-homebrew-with-emacs
 ;; installing mu and mu4e with homebrew with emacs from emacsforosx
+;; http://blog.danielgempesaw.com/post/43467552978/installing-mu-and-mu4e-with-homebrew-with-emacs
+;; MU4E TUTORIALS
+;; http://pragmaticemacs.com/mu4e-tutorials/
 ;;
 ;; Install infrastructure
 ;;
