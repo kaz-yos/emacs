@@ -32,3 +32,15 @@
 ;;   ln -sfv /usr/local/opt/offlineimap/*.plist ~/Library/LaunchAgents
 ;; Then to load offlineimap now:
 ;;   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.offlineimap.plist
+;;
+;;
+;;; mu4e.el
+;; /usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu/mu4e/
+(let ((mu4e-dir
+       "/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu/mu4e/"))
+  (add-to-list 'load-path mu4e-dir))
+;;
+(use-package mu4e
+  :disabled t
+  :config
+  )
