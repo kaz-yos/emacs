@@ -47,8 +47,14 @@
   :config
   ;; tell mu4e where my Maildir is
   (setq mu4e-maildir "~/Documents/.maildir")
+  ;; mu binary (backend)
+  (setq mu4e-mu-binary "/usr/local/bin/mu")
   ;; tell mu4e how to sync email
-  (setq mu4e-get-mail-command "mbsync -a")
+  ;; Using timelimit for mbsync to limit execution time
+  ;; https://groups.google.com/forum/#!topic/mu-discuss/FLz4FcECo3U
+  (if (file-exists-p "/usr/local/bin/timelimit")
+      (setq mu4e-get-mail-command "timelimit -t 120 mbsync -Va")
+    (setq mu4e-get-mail-command "mbsync -Va"))
   ;; tell mu4e to use w3m for html rendering
   (setq mu4e-html2text-command "w3m -T text/html")
   ;; taken from mu4e page to define bookmarks
