@@ -1,9 +1,5 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ~/.emacs.d/init.el for emacs 24.3.90.1 on Mac OS X 10.9
-;; Downloaded in the binary form from http://emacsformacosx.com/builds
-;; Reference: http://sakito.jp/emacs/emacs24.html#ime
-;; Now managed with init-loader.el: https://github.com/emacs-jp/init-loader
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~/.emacs.d/init.el
+;; Managed with init-loader.el: https://github.com/emacs-jp/init-loader
 
 
 ;;; Configure load-path (load-path should only be defined in init.el)
