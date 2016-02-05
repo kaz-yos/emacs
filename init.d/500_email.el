@@ -37,6 +37,8 @@
 ;;; mu4e.el
 ;; Reading IMAP Mail in Emacs on OSX
 ;; http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
+;; Execute the following before first invocation
+;; mu index --maildir=~/.maildir
 (use-package mu4e
   :init
   ;; Check for mu4e directory
@@ -46,7 +48,7 @@
       (add-to-list 'load-path mu4e-dir)))
   :config
   ;; tell mu4e where my Maildir is
-  (setq mu4e-maildir "~/Documents/.maildir")
+  (setq mu4e-maildir "~/.maildir")
   ;; mu binary (backend)
   (setq mu4e-mu-binary "/usr/local/bin/mu")
   ;; tell mu4e how to sync email
