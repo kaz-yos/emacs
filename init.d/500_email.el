@@ -35,15 +35,31 @@
 ;;
 ;;
 ;;; mu4e.el
-;; /usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu/mu4e/
-(let ((mu4e-dir
-       "/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu/mu4e/"))
-  (add-to-list 'load-path mu4e-dir))
-;;
+;; Reading IMAP Mail in Emacs on OSX
+;; http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
 (use-package mu4e
-  :disabled t
+  :init
+  ;; Check for mu4e directory
+  (let ((mu4e-dir
+         "/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu/mu4e/"))
+    (when (file-exists-p mu4e-dir)
+      (add-to-list 'load-path mu4e-dir)))
   :config
-  )
+  ;; tell mu4e where my Maildir is
+  (setq mu4e-maildir "~/Documents/.maildir")
+  ;; tell mu4e how to sync email
+  (setq mu4e-get-mail-command "mbsync -a")
+  ;; tell mu4e to use w3m for html rendering
+  (setq mu4e-html2text-command "w3m -T text/html")
+  ;; taken from mu4e page to define bookmarks
+  (add-to-list 'mu4e-bookmarks
+               '("size:5M..500M"       "Big messages"     ?b))
+  ;; mu4e requires to specify drafts, sent, and trash dirs
+  ;; relative to mu4e-maildir
+  (setq mu4e-drafts-folder "/drafts")
+  (setq mu4e-sent-folder "/sent")
+  (setq mu4e-trash-folder "/trash"))
+
 
 
 ;;; GNUS-RELATED
