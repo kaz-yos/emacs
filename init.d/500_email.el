@@ -13,6 +13,8 @@
 ;; http://blog.danielgempesaw.com/post/43467552978/installing-mu-and-mu4e-with-homebrew-with-emacs
 ;; MU4E TUTORIALS
 ;; http://pragmaticemacs.com/mu4e-tutorials/
+;; The Ultimate Emailing Agent with Mu4e and Emacs
+;; http://tech.memoryimprintstudio.com/the-ultimate-emailing-agent-with-mu4e-and-emacs/
 ;;
 ;; Install infrastructure
 ;;
@@ -57,6 +59,8 @@
   (if (file-exists-p "/usr/local/bin/timelimit")
       (setq mu4e-get-mail-command "timelimit -t 120 mbsync -Va")
     (setq mu4e-get-mail-command "mbsync -Va"))
+  ;; Update interval
+  (setq mu4e-update-interval 300)
   ;; tell mu4e to use w3m for html rendering
   (setq mu4e-html2text-command "w3m -T text/html")
   ;; taken from mu4e page to define bookmarks
@@ -68,13 +72,18 @@
   (setq mu4e-sent-folder "/sent")
   (setq mu4e-trash-folder "/trash")
   ;;
-  ;; Sending
+  ;; Sending e-mail
   ;; use msmtp
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
   (setq sendmail-program "msmtp")
   ;; tell msmtp to choose the SMTP server according to the from field in the outgoing email
   (setq message-sendmail-extra-arguments '("--read-envelope-from"))
-  (setq message-sendmail-f-is-evil 't))
+  (setq message-sendmail-f-is-evil 't)
+  ;;
+  ;; Show mu4e maildirs summary in mu4e-main-view
+  ;; https://github.com/agpchil/mu4e-maildirs-extension
+  (require 'mu4e-maildirs-extension)
+  (mu4e-maildirs-extension))
 
 
 
