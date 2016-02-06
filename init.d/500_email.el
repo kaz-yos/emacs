@@ -80,7 +80,7 @@
   (setq mu4e-sent-folder "/sent")
   (setq mu4e-trash-folder "/trash")
   ;;
-  ;; Sending e-mail
+;;; Sending e-mail
   ;; use msmtp
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
   (setq sendmail-program "msmtp")
@@ -88,7 +88,7 @@
   (setq message-sendmail-extra-arguments '("--read-envelope-from"))
   (setq message-sendmail-f-is-evil 't)
   ;;
-  ;; Show mu4e maildirs summary in mu4e-main-view
+;;; Show mu4e maildirs summary in mu4e-main-view
   ;; https://github.com/agpchil/mu4e-maildirs-extension
   (require 'mu4e-maildirs-extension)
   (mu4e-maildirs-extension))
