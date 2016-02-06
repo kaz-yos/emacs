@@ -1,6 +1,14 @@
 ;;; e-mail related                                 -*- lexical-binding: t; -*-
 
 
+;;;
+;;; General configuration
+;; Default in sending e-mail
+;; (setq user-mail-address "kazukiyoshida@mail.harvard.edu")
+(setq user-full-name "Kazuki Yoshida")
+
+
+;;;
 ;;; mu4e-related
 ;; http://www.djcbsoftware.nl/code/mu/mu4e.html
 ;; https://www.emacswiki.org/emacs/mu4e

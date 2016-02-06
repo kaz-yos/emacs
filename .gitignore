@@ -35,3 +35,4 @@ url/
 /misc/aspell.en.pws
 /company-statistics-cache.el
 /anaconda-mode/
+/init.d/500_email-no-vc.el
