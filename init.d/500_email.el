@@ -80,6 +80,10 @@
   (setq mu4e-sent-folder "/sent")
   (setq mu4e-trash-folder "/trash")
   ;;
+  ;; Viewing setting
+  (setq mu4e-split-view 'vertical)
+  (setq mu4e-headers-visible-columns 100)
+  ;;
 ;;; Sending e-mail
   ;; use msmtp
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
