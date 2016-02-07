@@ -105,7 +105,7 @@
   (company-statistics-mode)
   ;;
   ;; Delay time
-  (setq company-idle-delay 0.5)
+  (setq company-idle-delay 1)
   ;; 2 letters before completion kicks in
   (setq company-minimum-prefix-length 2)
   ;; Wrap after the final candidate
