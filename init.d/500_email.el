@@ -92,10 +92,20 @@
   (setq message-sendmail-extra-arguments '("--read-envelope-from"))
   (setq message-sendmail-f-is-evil 't)
   ;;
-;;; Show mu4e maildirs summary in mu4e-main-view
+;;; mu4e-maildirs-extension.el
+  ;; Show mu4e maildirs summary in mu4e-main-view
   ;; https://github.com/agpchil/mu4e-maildirs-extension
   (require 'mu4e-maildirs-extension)
-  (mu4e-maildirs-extension))
+  (mu4e-maildirs-extension)
+  ;;
+;;; mu4e-alert.el
+  ;; Notification for mu4e
+  ;; https://github.com/iqbalansari/mu4e-alert
+  (require 'mu4e-alert)
+  (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
+  (when (file-exists-p "/usr/local/bin/terminal-notifier")
+    (mu4e-alert-set-default-style 'notifier)
+    (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)))
 
 
 
