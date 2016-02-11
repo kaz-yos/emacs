@@ -27,21 +27,14 @@
 ;; Install infrastructure
 ;;
 ;; mu along with mu4e
-;; make sure (which emacs gives the path to a new emacs (23+)
+;; make sure which emacs gives the path to a new emacs (23+)
 ;; https://github.com/Homebrew/homebrew/issues/16504#issuecomment-11394215
 ;; EMACS=$(which emacs) brew install mu --with-emacs --HEAD
 ;; ./configure --prefix=/usr/local/Cellar/mu/HEAD --with-lispdir=/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu
 ;;
-;; offlineimap
-;; brew install offlineimap
-;; * minimal configuration:
-;;     cp -n /usr/local/etc/offlineimap.conf.minimal ~/.offlineimaprc
-;; * advanced configuration:
-;;     cp -n /usr/local/etc/offlineimap.conf ~/.offlineimaprc
-;; To have launchd start offlineimap at login:
-;;   ln -sfv /usr/local/opt/offlineimap/*.plist ~/Library/LaunchAgents
-;; Then to load offlineimap now:
-;;   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.offlineimap.plist
+;; mbsync (isync) for IMAP-Maildir syncing
+;; msmtp for sending
+;; pass and gpg for encrypted password handling
 ;;
 ;;
 ;;; mu4e.el
@@ -51,11 +44,12 @@
 ;; mu index --maildir=~/.maildir
 (use-package mu4e
   :init
-  ;; Check for mu4e directory
+  ;; Check for mu4e directory before invoking all the following
   (let ((mu4e-dir
          "/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu/mu4e/"))
     (when (file-exists-p mu4e-dir)
       (add-to-list 'load-path mu4e-dir)))
+  ;;
   :config
   ;; tell mu4e where my Maildir is
   (setq mu4e-maildir "~/.maildir")
@@ -67,24 +61,45 @@
   (if (file-exists-p "/usr/local/bin/timelimit")
       (setq mu4e-get-mail-command "timelimit -t 120 mbsync -Va")
     (setq mu4e-get-mail-command "mbsync -Va"))
+  ;; Change file UID when moving (necessary for mbsync, but not for offlineimap)
+  ;; https://groups.google.com/forum/m/#!topic/mu-discuss/8c9LrYYpxjQ
+  ;; http://www.djcbsoftware.nl/code/mu/mu4e/General.html
+  (setq mu4e-change-filenames-when-moving t)
   ;; Update interval
-  (setq mu4e-update-interval 300)
+  (setq mu4e-update-interval (* 60 15))
   ;; tell mu4e to use w3m for html rendering
-  (setq mu4e-html2text-command "w3m -T text/html")
+  ;; http://hack.org/mc/blog/mu4e.html
+  ;; Not setting -I (input charset) works better for Japaneseq
+  (setq mu4e-html2text-command "w3m -O utf8 -T text/html")
   ;; taken from mu4e page to define bookmarks
   (add-to-list 'mu4e-bookmarks
-               '("size:5M..500M"       "Big messages"     ?b))
-  ;; mu4e requires to specify drafts, sent, and trash dirs
-  ;; relative to mu4e-maildir
-  (setq mu4e-drafts-folder "/drafts")
-  (setq mu4e-sent-folder "/sent")
-  (setq mu4e-trash-folder "/trash")
+               '("size:5M..500M" "Big messages" ?b))
+  ;; Do not occupy the minibuffer
+  (setq mu4e-hide-index-message t)
   ;;
-  ;; Viewing setting
+;;; Dynamic folder selection (configured elsewhere)
+  ;;
+  ;;
+;;; Composer configuration
+  ;; Do not drop myself from cc list
+  (setq mu4e-compose-keep-self-cc t)
+  ;; Always CC myself
+  ;; http://www.djcbsoftware.nl/code/mu/mu4e/Compose-hooks.html
+  (add-hook 'mu4e-compose-mode-hook
+            (defun my-add-header ()
+              "Add CC: and Bcc: to myself header."
+              (save-excursion (message-add-header
+                               (concat "CC: " "\n")
+                               (concat "Bcc: " user-mail-address "\n")))))
+  ;;
+;;; Viewer configuration
   (setq mu4e-split-view 'vertical)
+  (setq mu4e-headers-leave-behavior 'apply)
   (setq mu4e-headers-visible-columns 100)
-  ;;
-;;; Sending e-mail
+  (setq mu4e-view-show-images t)
+  (setq mu4e-view-show-addresses t)
+    ;;
+;;; Sender configuration
   ;; use msmtp
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
   (setq sendmail-program "msmtp")
@@ -109,6 +124,7 @@
 
 
 
+;;;
 ;;; GNUS-RELATED
 ;;; gnus
 ;; http://www.emacswiki.org/emacs/GnusGmail
