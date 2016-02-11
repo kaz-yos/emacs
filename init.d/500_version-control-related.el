@@ -104,12 +104,14 @@
   ;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
   ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fringes.html
   (set-fringe-mode '(0 . 1))
+  (fringe-mode)
   ;; Mute the mode-line
   (setq git-gutter+-lighter "")
-  ;; active everywhere
-  (global-git-gutter+-mode)
   ;; Show on the right side
   (setq git-gutter-fr+-side 'right-fringe)
+  :config
+  ;; active everywhere
+  (global-git-gutter+-mode)
   ;;
   ;; Moving between hunks
   (global-set-key (kbd "A-p") 'git-gutter+-previous-hunk)
