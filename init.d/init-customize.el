@@ -41,6 +41,7 @@
  '(magit-diff-add ((t (:foreground "SpringGreen3"))))
  '(magit-diff-del ((t (:foreground "firebrick3"))))
  '(magit-item-highlight ((t nil)))
+ '(message-cited-text ((t (:foreground "gray60"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "gray90"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "PaleVioletRed1"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "cyan1"))))
