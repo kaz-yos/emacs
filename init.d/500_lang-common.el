@@ -17,3 +17,11 @@
   (defun column-marker80 ()
     (interactive)
     (column-marker-2 80)))
+
+
+;;;
+;;; aggressive-indent.el
+;; https://github.com/Malabarba/aggressive-indent-mode
+(use-package aggressive-indent
+  :commands (aggressive-indent-mode))
+(add-hook 'emacs-lisp-mode-hook 'aggressive-indent-mode)
