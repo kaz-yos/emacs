@@ -196,6 +196,13 @@
 
 
 ;;;
+;;; latex-pretty-symbols.el
+(use-package latex-pretty-symbols
+  :commands (latex-unicode-simplified))
+(add-hook 'LaTeX-mode-hook 'latex-unicode-simplified)
+
+
+;;;
 ;;; latex-math-preview.el
 ;; http://www.emacswiki.org/emacs/LaTeXMathPreview
 (autoload 'latex-math-preview-expression      "latex-math-preview" nil t)
