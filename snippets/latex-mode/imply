@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: imply
+# key: imply
+# --
+\Longrightarrow $0
