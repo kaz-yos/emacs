@@ -7,13 +7,22 @@
 ;;
 ;; Bare minimum
 ;; http://www.gnu.org/software/auctex/manual/auctex.html#Quick-Start
-(require 'tex-site)
+;; Auto-loading works fine
+;; (require 'tex-site)
+;;
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
 ;;
+;; autosave before compiling
 ;; http://emacsworld.blogspot.com/2011/05/auctex-tip-automatically-save-file.html
-(setq TeX-save-query nil) ; autosave before compiling
+(setq TeX-save-query nil)
+;;
+;; Interactive mode for errors
+(add-hook 'LaTeX-mode-hook 'TeX-interactive-mode)
+;;
+;; TeX-PDF mode (no DVI intermediate file in pdfTeX, LuaTex, XeTeX)
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
 ;;
 ;;; TeX-fold-mode on by default (C-c C-b C-o to actually fold)
 ;; http://tex.stackexchange.com/questions/52179/what-is-your-favorite-emacs-and-or-auctex-command-trick
@@ -21,7 +30,7 @@
 ;; 	  (lambda ()
 ;; 	    (TeX-fold-mode 1)))
 ;;
-;;; Avoid font size changes 2013-10-14
+;;; Avoid font size changes
 ;; http://stackoverflow.com/questions/9534239/emacs-auctex-latex-syntax-prevents-monospaced-font
 ;; Only change sectioning colour
 (setq font-latex-fontify-sectioning 'color)
@@ -36,7 +45,6 @@
 ;;
 ;; Insert {} after ^ or _
 (setq TeX-electric-sub-and-superscript t)
-;;
 ;;
 ;;; Special key settings
 ;;
@@ -55,16 +63,6 @@
              (local-set-key (kbd   ";") 'my-tex-insert-backslash)
              (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
 ;;
-;;;
-;;; Japanese setting etc
-;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
-;; Hiragino font settings. Done in shell
-;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Mac#i9febc9b
-;;
-;; Apple Script to update PDF in Preview.app 2013-09-28 currently not active
-;; ~/scripts/refresh-preview.scpt
-;; tell application "Preview" to activate
-;; tell application "Emacs" to activate
 ;;
 ;;; Add commands
 ;; 4.1.2 Selecting and Executing a Command
@@ -118,6 +116,12 @@
                                    '("AdobeReader" "/usr/bin/open -a \"Adobe Reader.app\" %s.pdf"
                                      TeX-run-discard-or-function t t :help "Run Adobe Reader")))))
 ;;
+;;
+;;; Japanese setting etc
+;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
+;; Hiragino font settings. Done in shell
+;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Mac#i9febc9b
+;;
 ;; (setq TeX-default-mode 'japanese-latex-mode)
 ;; jsarticle as the default style
 (setq japanese-LaTeX-default-style "jsarticle")
@@ -130,23 +134,21 @@
 ;; Select TeX engine from default(pdfTeX) luatex omega ptex uptex xetex
 ;; (setq TeX-engine 'ptex)
 ;;
-;; Japanese setting by Dr. Okumura (not used for now
+;; Japanese setting by Dr. Okumura (not used for now)
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX#h32722ec
-;;
-;; TeX-PDF mode (no DVI intermediate file in pdfTeX, LuaTex, XeTeX)
-(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
-;;
+
+
+
+;;;
 ;;; auctex-latexmk.el
 ;; for Japanese tex to PDF direct conversion
 ;; http://qiita.com/tm_tn/items/cbc813028d7f5951b165
 ;; https://github.com/tom-tan/auctex-latexmk/
 ;; ln -sf ~/Documents/.latexmkrc ~/.latexmkrc
 ;; C-c C-c LatexMk to use
-(require 'auctex-latexmk)
-(auctex-latexmk-setup)
-;;
-;; Interactive mode for errors
-(add-hook 'LaTeX-mode-hook 'TeX-interactive-mode)
+(use-package auctex-latexmk
+  :commands (auctex-latexmk-setup))
+(add-hook 'LaTeX-mode-hook 'auctex-latexmk-setup)
 
 
 ;;;
@@ -174,8 +176,8 @@
 ;;; company-auctex.el
 ;; https://github.com/alexeyr/company-auctex
 (use-package company-auctex
-  :config
-  (company-auctex-init))
+  :commands (company-auctex-init))
+(add-hook 'LaTeX-mode-hook 'company-auctex-init)
 ;;
 ;;; company-math.el
 ;; https://github.com/vspinu/company-math
