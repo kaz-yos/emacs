@@ -99,11 +99,6 @@
   ;; except in these modes
   ;; (setq company-global-modes '(not eshell-mode ielm-mode))
   ;;
-  ;; Sort completion candidates by previous completion choices
-  ;; https://github.com/company-mode/company-statistics
-  (require 'company-statistics)
-  (company-statistics-mode)
-  ;;
   ;; Delay time
   (setq company-idle-delay 1)
   ;; 2 letters before completion kicks in
@@ -136,8 +131,14 @@
 ;; Color configuration (done in init-customize.el)
 ;; http://www.emacswiki.org/CompanyMode#toc6
 ;; auto-complete-like color setting
-;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46 
-
+;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
+;;
+;;; company-statistics.el
+;; Sort completion candidates by previous completion choices
+;; https://github.com/company-mode/company-statistics
+(use-package company-statistics
+  :commands (company-statistics-mode))
+(add-hook 'company-mode-hook 'company-statistics-mode)
 ;;
 ;;
 ;;; company-quickhelp.el
@@ -265,7 +266,7 @@
 
 
 
-;;; popwin.el		; Popup Window Manager
+;;; popwin.el
 ;; https://github.com/m2ym/popwin-el
 ;; http://d.hatena.ne.jp/m2ym/20110120/1295524932
 (use-package popwin
