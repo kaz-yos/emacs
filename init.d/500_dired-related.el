@@ -99,3 +99,18 @@ from the current buffer."
   (unless (string-match-p "&[ \t]*\\'" command)
     (setq command (concat command " &")))
   (dired-do-shell-command command arg file-list))
+
+
+;;;
+;;; neotree.el
+;; https://github.com/jaypei/emacs-neotree
+;; https://www.emacswiki.org/emacs/NeoTree
+;; http://kiririmode.hatenablog.jp/entry/20150806/1438786800
+(use-package neotree
+  :commands (neotree)
+  :config
+  (setq neo-show-hidden-files t)
+  (setq neo-create-file-auto-open t)
+  (setq neo-persist-show t)
+  (setq neo-keymap-style 'concise)
+  (setq neo-smart-open t))
