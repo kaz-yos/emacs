@@ -2,6 +2,7 @@
 *~
 *.zip
 *.tar.gz
+.Rhistory
 *.RData
 *.pdf
 *.png
