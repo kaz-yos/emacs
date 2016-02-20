@@ -36,14 +36,6 @@
 
 
 ;;;
-;;; back-button.el
-;; https://github.com/rolandwalker/back-button
-(use-package back-button
-  :config
-  (back-button-mode 1))
-
-
-;;;
 ;;; highligh-symbol for highlighting multiple occurences
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
