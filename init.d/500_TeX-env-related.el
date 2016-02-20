@@ -199,7 +199,8 @@
 ;;; latex-pretty-symbols.el
 (use-package latex-pretty-symbols
   :commands (latex-unicode-simplified))
-(add-hook 'LaTeX-mode-hook 'latex-unicode-simplified)
+;; (add-hook 'LaTeX-mode-hook 'latex-unicode-simplified)
+;; (add-hook 'latex-mode-hook 'latex-unicode-simplified)
 
 
 ;;;
