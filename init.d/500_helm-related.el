@@ -34,10 +34,12 @@
   ;;
   ;; Disabled because it was giving an error 2013-11-22
   (setq helm-locate-command "")
-  (setq helm-idle-delay             0.3
-        helm-input-idle-delay       0.3
-        helm-candidate-number-limit 200
-        helm-M-x-always-save-history t)
+  (setq helm-idle-delay 0.3)
+  (setq helm-input-idle-delay 0.3)
+  (setq helm-candidate-number-limit 200)
+  (setq helm-M-x-always-save-history t)
+  ;; Always use the other window for helm (below if no other window exists)
+  (setq helm-split-window-default-side 'other)
   ;; helm for isearch 2014-02-01
   ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
   (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
