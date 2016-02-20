@@ -27,6 +27,11 @@
          ;; ("C-S-h" .   helm-descbinds)
          )
   :config
+  ;; Make helm-mark-ring follow
+  ;; https://groups.google.com/forum/#!topic/emacs-helm/US8FWnfRu5o
+  (add-hook 'helm-before-initialize-hook
+            #'(lambda () (helm-attrset 'follow 1 helm-source-mark-ring)))
+  ;;
   ;; Disabled because it was giving an error 2013-11-22
   (setq helm-locate-command "")
   (setq helm-idle-delay             0.3
