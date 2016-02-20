@@ -39,6 +39,12 @@
 
 
 ;;;
+;;; C-u C-SPC C-SPC C-SPC ... to follow implicit marks
+;; http://rubikitch.com/2016/02/14/sd1506-builtin/
+(setq set-mark-command-repeat-pop t)
+
+
+;;;
 ;;; Bars: Menu bar only. No scroll bar or tool bar.
 ;; http://www.emacswiki.org/emacs/FullScreen#toc7
 (menu-bar-mode t)
