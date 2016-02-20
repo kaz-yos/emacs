@@ -22,6 +22,7 @@
          ;; ("C-;" .     helm-resume)
          ;; ("s-c" .     helm-occur)
          ("A-e" .     helm-elscreen)
+         ("A-m" .     helm-mark-ring)
          ;; ("M-z" .     helm-do-grep)
          ;; ("C-S-h" .   helm-descbinds)
          )
@@ -41,8 +42,7 @@
   (setq helm-delete-minibuffer-contents-from-point t)
   (defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
     "Emulate `kill-line' in helm minibuffer"
-    (kill-new (buffer-substring (point) (field-end))))
-  )
+    (kill-new (buffer-substring (point) (field-end)))))
 ;;
 ;;
 ;;; debug
