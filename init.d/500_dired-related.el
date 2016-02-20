@@ -113,4 +113,6 @@ from the current buffer."
   (setq neo-create-file-auto-open t)
   (setq neo-persist-show t)
   (setq neo-keymap-style 'concise)
-  (setq neo-smart-open t))
+  (setq neo-smart-open t)
+  ;; Projectile support
+  (setq projectile-switch-project-action 'neotree-projectile-action))
