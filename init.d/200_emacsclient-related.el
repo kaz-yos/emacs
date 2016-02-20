@@ -1,7 +1,7 @@
 ;;; Use emacsclient
 ;;
 ;; emacsclient is a symlink to the one in Application
-;; ln -s /Applications/Emacs.app/Contents/MacOS/bin/emacsclient /usr/local/bin/emacsclient
+;; ln -sf /Applications/Emacs.app/Contents/MacOS/bin/emacsclient /usr/local/bin/emacsclient
 ;;
 ;; Configure as $EDITOR
 ;; .profile: export EDITOR="emacsclient"
