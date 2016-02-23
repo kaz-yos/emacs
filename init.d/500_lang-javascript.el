@@ -1,5 +1,5 @@
 ;;; 500_lang-javascript.el ---                       -*- lexical-binding: t; -*-
-;;; 
+;;;
 ;;; javascript and related languages
 
 
@@ -47,20 +47,3 @@
 ;;; moz-controller.el
 ;; Control Firefox from Emacs
 ;; https://github.com/RenWenshan/emacs-moz-controller
-
-
-;;; 
-;;; COFFEESCRIPT-RELATED
-;;; coffee-mode.el
-;; https://github.com/defunkt/coffee-mode
-(use-package coffee-mode
-  :mode (("\\.coffee\\'" . coffee-mode)
-         ("\\.iced\\'" . coffee-mode)
-         ("Cakefile\\'" . coffee-mode)
-         ("\\.cson\\'" . coffee-mode))
-  :interpreter ("coffee" . coffee-mode)
-  :config
-  (setq coffee-tab-width 2)
-  (setq coffee-args-compile '("-c" "--bare"))
-  (bind-key "M-r" 'coffee-compile-buffer     coffee-mode-map)
-  (bind-key "C-j" 'coffee-newline-and-indent coffee-mode-map))
