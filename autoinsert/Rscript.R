@@ -11,6 +11,14 @@
 ### Prepare environment
 ################################################################################
 
+## Configure sink()
+if (sink.number() != 0) {sink()}
+..scriptFileName.. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
+if (length(..scriptFileName..) == 1) {
+    sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
+}
+options(width = 120)
+
 ## Configure parallelization
 ## Parallel backend for foreach (also loads foreach and parallel; includes doMC)
 library(doParallel)
@@ -29,19 +37,11 @@ doParallel::registerDoParallel(cores = nCores)
 cat("### Using", foreach::getDoParWorkers(), "cores\n")
 cat("### Using", foreach::getDoParName(), "as backend\n")
 
-
 ## Load packages
 library(magrittr)
 library(dplyr)
 library(tidyr)
 
-## Configure sink()
-if (sink.number() != 0) {sink()}
-..scriptFileName.. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
-if (length(..scriptFileName..) == 1) {
-    sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
-}
-options(width = 120)
 
 cat("
 ###
