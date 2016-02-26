@@ -107,6 +107,14 @@
 ;;; Tooltip included in ESS
 (setq ess-describe-at-point-method 'tooltip)		; 'tooltip or nil (buffer)
 ;;
+;;; setwd() from Emacs
+(defun my-ess-setwd ()
+  "setwd() to the current R script's parent directory"
+  (interactive)
+  (let ((dirname (abbreviate-file-name (file-name-directory (buffer-file-name))))
+        (r-process (get-process ess-local-process-name)))
+    (ess-send-string r-process (concat "setwd('" dir-name "')") t)))
+;;
 ;;
 ;;; Reproducible research with knitr, etc
 ;; Use knitr for .Rnw document
