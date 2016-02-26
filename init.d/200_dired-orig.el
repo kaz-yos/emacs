@@ -17,6 +17,8 @@
 (setq dired-auto-revert-buffer t)
 ;; Auto-revert on change.
 (add-hook 'dired-mode-hook 'turn-on-auto-revert-mode)
+;; Allow file permission rewrite
+;; (setq wdired-allow-to-change-permissions t)
 ;;
 ;;; key configuration
 (add-hook 'dired-mode-hook
