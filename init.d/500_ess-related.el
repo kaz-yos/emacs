@@ -111,7 +111,7 @@
 (defun my-ess-setwd ()
   "setwd() to the current R script's parent directory"
   (interactive)
-  (let ((dirname (abbreviate-file-name (file-name-directory (buffer-file-name))))
+  (let ((dir-name (abbreviate-file-name (file-name-directory (buffer-file-name))))
         (r-process (get-process ess-local-process-name)))
     (ess-send-string r-process (concat "setwd('" dir-name "')") t)))
 ;;
