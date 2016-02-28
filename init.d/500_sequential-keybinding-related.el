@@ -17,56 +17,36 @@
 
 
 ;;;
-;;; Key-Chord
-;; http://www.emacswiki.org/emacs/KeyChord
-;; http://d.hatena.ne.jp/rubikitch/touch/20081104/1225745862
-;; (require 'key-chord)
-;; (setq key-chord-two-keys-delay 0.04)
-;; (key-chord-mode 1)
-;;
-;; Toggle read-only status
-;; (key-chord-define-global "jk" 'toggle-read-only)
-;; (global-set-key (kbd "H-o") 'toggle-read-only)
-;;
-;; highlight-sexp-mode.el
-;; (key-chord-define-global "sx" 'highlight-sexp-mode)
-;; (global-set-key (kbd "H-s") 'highlight-sexp-mode)
-;; (global-set-key (kbd "A-s") 'highlight-sexp-mode)
-
-
-;;;
-
-
-;;;
 ;;; smartchr.el (does not work great with multiple-cursors)
 ;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;; Similar elips: http://tech.kayac.com/archive/emacs-tips-smartchr.html
-(require 'smartchr)
+;; (require 'smartchr)
+(use-package smartchr
+  :commands (smartchr))
 ;;
 ;; ESS
 (defun my-ess-smartchr-setting ()
   (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
   (local-set-key (kbd "+") (smartchr '("+" " + ")))
-  (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
-  (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))) ; test
+  (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------")))
+  (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################")))
   (local-set-key (kbd "~") (smartchr '("~" " ~ ")))
   (local-set-key (kbd "$") (smartchr '("$" "$`!!'$")))
   (local-set-key (kbd "%") (smartchr '("%" " %`!!'% ")))
-;;  (local-set-key (kbd "[") (smartchr '("[`!!']" "[[`!!']]" "["))) ; not very useful
   )
-(add-hook 'ess-mode-hook	  'my-ess-smartchr-setting)
+(add-hook 'ess-mode-hook          'my-ess-smartchr-setting)
 (add-hook 'inferior-ess-mode-hook 'my-ess-smartchr-setting)
 ;;
 ;; Python
 (defun my-python-smartchr-setting ()
   (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
   (local-set-key (kbd "+") (smartchr '("+" " + ")))
-  (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------"))) ; test
-  (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))) ; test
+  (local-set-key (kbd "-") (smartchr '("-" " - ")))
+  (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################")))
   )
-(add-hook 'ein:notebook-multilang-mode-hook	'my-python-smartchr-setting)
-(add-hook 'python-mode-hook			'my-python-smartchr-setting)
-(add-hook 'inferior-python-mode-hook		'my-python-smartchr-setting)
+(add-hook 'ein:notebook-multilang-mode-hook 'my-python-smartchr-setting)
+(add-hook 'python-mode-hook                 'my-python-smartchr-setting)
+(add-hook 'inferior-python-mode-hook        'my-python-smartchr-setting)
 ;;
 ;; SML
 (defun my-sml-smartchr-setting ()
@@ -77,14 +57,12 @@
 ;; LaTeX
 (defun my-LaTeX-smartchr-setting ()
   (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
-  (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")))
-  )
+  (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-smartchr-setting)
 ;;
 ;; Emacs Lisp
 (defun my-elisp-smartchr-setting ()
-  (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")))
-  )
+  (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"))))
 (add-hook 'emacs-lisp-mode-hook 'my-elisp-smartchr-setting)
 ;;
 ;; Haskell
@@ -92,39 +70,83 @@
   (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
   (local-set-key (kbd "+") (smartchr '(" + " " ++ " "+")))
   (local-set-key (kbd "-") (smartchr '(" - " " -> " "-")))
-  (local-set-key (kbd ":") (smartchr '(" : " " :: " ":")))
-  )
+  (local-set-key (kbd ":") (smartchr '(" : " " :: " ":"))))
 (add-hook 'haskell-mode-hook 'my-haskell-smartchr-setting)
 ;;
 ;; Ruby
 (defun my-ruby-smartchr-setting ()
-  (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
-  )
+  (local-set-key (kbd "=") (smartchr '(" = " " == " "="))))
 (add-hook 'ruby-mode-hook 'my-ruby-smartchr-setting)
 
 
-;; ;;;
-;; ;;; smartrep.el
-;; ;; http://sheephead.homelinux.org/2011/12/19/6930/
-;; (require 'smartrep)
-;; ;;
-;; ;; org-mode
-;; (eval-after-load "org"
-;;         '(progn
-;;            (smartrep-define-key
-;;             org-mode-map "C-c" '(("C-n" . (lambda ()
-;;                                             (outline-next-visible-heading 1)))
-;;                                  ("C-p" . (lambda ()
-;;                                             (outline-previous-visible-heading 1)))))))
-;; ;; Make C-' a prefix
-;; (defvar ctl-quote-map (make-keymap))
-;; (define-key global-map (kbd "C-'") ctl-quote-map)
-;; ;; Scroll the other window
-;; (smartrep-define-key
-;;  global-map "C-'" '(("n" . (lambda () (scroll-other-window 1)))
-;;                     ("p" . (lambda () (scroll-other-window -1)))
-;;                     ("N" . 'scroll-other-window)
-;;                     ("P" . (lambda () (scroll-other-window '-)))
-;;                     ("a" . (lambda () (beginning-of-buffer-other-window 0)))
-;;                     ("e" . (lambda () (end-of-buffer-other-window 0)))))
-;; ;;
+;;;
+;;; key-combo.el
+;; https://github.com/uk-ar/key-combo
+;; (use-package key-combo
+;;   :config
+;;   ;; ESS
+;;   (setq my-ess-mode-hooks
+;;         '(ess-mode-hook
+;;           inferior-ess-mode-hook))
+;;   (setq my-key-combos-for-ess
+;;         '(("=" . ("=" " = " " == "))
+;;           ("+" . ("+" " + "))
+;;           ("-" . ("-" " - " "--------------------------------------------------------------------------------"))
+;;           ("#" . ("# " "## " "### " "################################################################################"))
+;;           ("~" . ("~" " ~ "))
+;;           ("$" . ("$" "$`!!'$"))
+;;           ("%" . ("%" " %`!!'% "))))
+;;   (key-combo-define-hook my-ess-mode-hooks
+;;                          'my-ess-mode-hooks
+;;                          my-key-combos-for-ess)
+;;   ;;
+;;   ;; Python
+;;   (setq my-python-mode-hooks
+;;         '(ein:notebook-multilang-mode-hook
+;;           python-mode-hook
+;;           inferior-python-mode-hook))
+;;   (setq my-key-combos-for-python
+;;         '(("=" . ("=" " = " " == "))
+;;           ("+" . ("+" " + "))
+;;           ("-" . ("-" " - "))
+;;           ("#" . ("# " "## " "### " "################################################################################"))))
+;;   (key-combo-define-hook my-python-mode-hooks
+;;                          'my-python-mode-hooks
+;;                          my-key-combos-for-python)
+;;   ;;
+;;   ;; LaTeX
+;;   (setq my-latex-mode-hooks
+;;         '(LaTeX-mode-hook))
+;;   (setq my-key-combos-for-latex
+;;         '(("$" . ("$`!!'$" "$"))
+;;           ("%" . ("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
+;;   (key-combo-define-hook my-latex-mode-hooks
+;;                          'my-latex-mode-hooks
+;;                          my-key-combos-for-latex))
+
+
+;;;
+;;; smartrep.el
+;; http://sheephead.homelinux.org/2011/12/19/6930/
+(use-package smartrep
+  :config
+  ;; org-mode
+  (eval-after-load "org"
+    '(progn
+       (smartrep-define-key
+        org-mode-map "C-c" '(("C-n" . (lambda ()
+                                        (outline-next-visible-heading 1)))
+                             ("C-p" . (lambda ()
+                                        (outline-previous-visible-heading 1)))))))
+  ;;
+  ;; Make C-' a prefix
+  (defvar ctl-quote-map (make-keymap))
+  (define-key global-map (kbd "C-'") ctl-quote-map)
+  ;; Scroll the other window
+  (smartrep-define-key
+   global-map "C-'" '(("n" . (lambda () (scroll-other-window 1)))
+                      ("p" . (lambda () (scroll-other-window -1)))
+                      ("N" . 'scroll-other-window)
+                      ("P" . (lambda () (scroll-other-window '-)))
+                      ("a" . (lambda () (beginning-of-buffer-other-window 0)))
+                      ("e" . (lambda () (end-of-buffer-other-window 0))))))
