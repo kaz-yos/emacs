@@ -29,6 +29,7 @@
   :config
   ;; Make helm-mark-ring follow
   ;; https://groups.google.com/forum/#!topic/emacs-helm/US8FWnfRu5o
+  (require 'helm-ring)
   (add-hook 'helm-before-initialize-hook
             #'(lambda () (helm-attrset 'follow 1 helm-source-mark-ring)))
   ;;
