@@ -1,6 +1,22 @@
 ;;; Sequential key binding related
 
 ;;;
+;;; sequential-command.el for C-a C-a etc
+;; Book by rubikitch p76. M-x auto-install-batch sequential-command (two files, one -config)
+;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
+(use-package sequential-command
+  :config
+  (require 'sequential-command-config)
+  (sequential-command-setup-keys)
+  ;; (global-set-key (kbd "C-a") 'seq-home)
+  ;; (global-set-key (kbd "C-e") 'seq-end)
+  ;; (global-set-key (kbd "M-u") 'seq-upcase-backward-word)
+  ;; (global-set-key (kbd "M-c") 'seq-capitalize-backward-word)
+  ;; (global-set-key (kbd "M-l") 'seq-downcase-backward-word)
+  )
+
+
+;;;
 ;;; Key-Chord
 ;; http://www.emacswiki.org/emacs/KeyChord
 ;; http://d.hatena.ne.jp/rubikitch/touch/20081104/1225745862
@@ -19,16 +35,6 @@
 
 
 ;;;
-;;; sequential-command.el for C-a C-a etc
-;; Book by rubikitch p76. M-x auto-install-batch sequential-command (two files, one -config)
-;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
-(require 'sequential-command-config)	; Define these seq-* commands. Needs sequential-command.el
-(sequential-command-setup-keys)		; Rebind C-a, C-e, M-u, M-c, and M-l to seq-* commands.
-;; (global-set-key (kbd "C-a") 'seq-home)
-;; (global-set-key (kbd "C-e") 'seq-end)
-;; (global-set-key (kbd "M-u") 'seq-upcase-backward-word)
-;; (global-set-key (kbd "M-c") 'seq-capitalize-backward-word)
-;; (global-set-key (kbd "M-l") 'seq-downcase-backward-word)
 
 
 ;;;
