@@ -17,10 +17,13 @@
 
 
 ;;;
-;;; smartchr.el (does not work great with multiple-cursors)
+;;; smartchr.el
+;; https://github.com/imakado/emacs-smartchr
+;; http://tech.kayac.com/archive/emacs-tips-smartchr.html
+;;
+;; Problem with multiple-cursors.el
 ;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
-;; Similar elips: http://tech.kayac.com/archive/emacs-tips-smartchr.html
-;; (require 'smartchr)
+;;
 (use-package smartchr
   :commands (smartchr))
 ;;
