@@ -55,5 +55,11 @@
 	;; Right Windows key
 	w32-rwindow-modifier 'super
 	;; Menu key
-	w32-apps-modifier 'hyper)
-  )
+	w32-apps-modifier 'hyper))
+
+
+;;;
+;;; Keyboard macro configurations
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Basic-Keyboard-Macro.html
+(global-set-key (kbd "A-7") '-start-macro-or-insert-counter)
+(global-set-key (kbd "A-8") 'kmacro-end-or-call-macro)
