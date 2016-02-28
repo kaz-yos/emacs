@@ -81,6 +81,10 @@
 ;;
 (use-package multiple-cursors
   :demand ; otherwise mode-line override does not work
+  :init
+  ;; Where to save command list
+  (setq mc/list-file "~/.emacs.d/mc-lists.el")
+  ;;
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ;; highlighting symbols only
          ("C-M->" . mc/mark-next-symbol-like-this)
