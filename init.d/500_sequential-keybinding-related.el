@@ -17,6 +17,23 @@
 
 
 ;;;
+;;; electric-operator.el
+;; https://github.com/davidshepherd7/electric-operator
+;; http://rubikitch.com/tag/emacs-key-combo/
+(use-package electric-operator
+  :config
+  (electric-operator-add-rules-for-mode
+   'ess-mode
+   (cons "#" "# ")
+   (cons "##" "## ")
+   (cons "###" "### ")
+   (cons "####" "################################################################################"))
+  ;;
+  ;; hooks
+  (add-hook 'ess-mode-hook #'electric-operator-mode))
+
+
+;;;
 ;;; smartchr.el
 ;; https://github.com/imakado/emacs-smartchr
 ;; http://tech.kayac.com/archive/emacs-tips-smartchr.html
@@ -25,6 +42,7 @@
 ;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;;
 (use-package smartchr
+  :disabled t
   :init
   ;; ESS
   (defun my-ess-smartchr-setting ()
@@ -87,6 +105,10 @@
 ;;;
 ;;; key-combo.el
 ;; https://github.com/uk-ar/key-combo
+;; http://d.hatena.ne.jp/uk-ar/20111208/1322572618
+;; http://qiita.com/akisute3@github/items/0141c92dca0992732af8
+;; http://fnwiya.hatenablog.com/entry/2015/11/22/004358
+;;
 (use-package key-combo
   :disabled t
   :config
