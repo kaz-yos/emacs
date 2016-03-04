@@ -61,7 +61,13 @@
 (global-set-key (kbd "C-M-v")    'scroll-other-window)
 
 
-;; Do not open a new frame opening a file from Finder
+;;;
+;;; Scroll margin
+;; http://pragmaticemacs.com/emacs/use-scroll-margins-to-give-context-to-your-cursor/
+(setq scroll-margin 3)
+
+
+;;; Do not open a new frame opening a file from Finder
 ;; System-specific configuration
 ;; http://stackoverflow.com/questions/1817257/how-to-determine-operating-system-in-elisp
 (when (eq system-type 'darwin)
