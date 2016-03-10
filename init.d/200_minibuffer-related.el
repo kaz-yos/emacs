@@ -4,7 +4,7 @@
 ;;; Larger font size
 (defun my-minibuffer-setup ()
   (set (make-local-variable 'face-remapping-alist)
-       '((default :height 1.5))))
+       '((default :height 1.2))))
 ;;
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
 
