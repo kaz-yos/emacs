@@ -64,7 +64,7 @@
 ;;;
 ;;; Scroll margin
 ;; http://pragmaticemacs.com/emacs/use-scroll-margins-to-give-context-to-your-cursor/
-(setq scroll-margin 3)
+(setq scroll-margin 2)
 
 
 ;;; Do not open a new frame opening a file from Finder
