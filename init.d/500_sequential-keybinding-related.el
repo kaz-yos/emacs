@@ -21,6 +21,7 @@
 ;; https://github.com/davidshepherd7/electric-operator
 ;; http://rubikitch.com/tag/emacs-key-combo/
 (use-package electric-operator
+  :disabled t
   :config
   (electric-operator-add-rules-for-mode
    'ess-mode
@@ -42,7 +43,6 @@
 ;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;;
 (use-package smartchr
-  :disabled t
   :init
   ;; ESS
   (defun my-ess-smartchr-setting ()
