@@ -1,8 +1,8 @@
-# -*- mode: snippet; require-final-newline: nil -*-
+# -*- mode: snippet -*-
 # name: catheader
-# key: hd
-# binding: direct-keybinding
+# key: cath
 # --
-cat("###
+cat("
+###
 ### $0
 ################################################################################\n")
