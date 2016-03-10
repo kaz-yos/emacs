@@ -116,3 +116,15 @@ from the current buffer."
   (setq neo-smart-open t)
   ;; Projectile support
   (setq projectile-switch-project-action 'neotree-projectile-action))
+
+
+
+;;;
+;;; peep-dired.el
+;; https://github.com/asok/peep-dired
+(use-package peep-dired
+  :commands (peep-dired)
+  :config
+  (setq peep-dired-cleanup-eagerly t)
+  ;; (setq peep-dired-cleanup-on-disable t)
+  (setq peep-dired-ignored-extensions '("mkv" "iso" "mp4")))
