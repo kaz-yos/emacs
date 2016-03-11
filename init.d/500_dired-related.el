@@ -122,8 +122,12 @@ from the current buffer."
 ;;;
 ;;; peep-dired.el
 ;; https://github.com/asok/peep-dired
+;; http://pragmaticemacs.com/emacs/quickly-preview-images-and-other-files-with-peep-dired/
 (use-package peep-dired
-  :commands (peep-dired)
+  :ensure t
+  :defer t ; don't access `dired-mode-map' until `peep-dired' is loaded
+  :bind (:map dired-mode-map
+              ("P" . peep-dired))
   :config
   (setq peep-dired-cleanup-eagerly t)
   ;; (setq peep-dired-cleanup-on-disable t)
