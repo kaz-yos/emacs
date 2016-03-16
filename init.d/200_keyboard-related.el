@@ -61,5 +61,5 @@
 ;;;
 ;;; Keyboard macro configurations
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Basic-Keyboard-Macro.html
-(global-set-key (kbd "A-7") '-start-macro-or-insert-counter)
-(global-set-key (kbd "A-8") 'kmacro-end-or-call-macro)
+(global-set-key (kbd "A-3") 'kmacro-start-macro-or-insert-counter)
+(global-set-key (kbd "A-4") 'kmacro-end-or-call-macro)
