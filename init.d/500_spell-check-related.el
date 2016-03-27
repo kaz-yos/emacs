@@ -70,7 +70,9 @@
   ;; Unless flyspell-mode is already running, activate.
   ;; Necessary to avoid: Error: The encoding "nil" is not known.
   (unless flyspell-mode
-    (flyspell-mode)))
+    (flyspell-mode)
+    ;; Then turn it off to avoid annoying key bindings
+    (flyspell-mode "disable")))
 
 
 ;; ;;;
