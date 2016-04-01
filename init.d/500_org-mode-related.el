@@ -9,4 +9,8 @@
   ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
-  (require 'ox-beamer))
+  (require 'ox-beamer)
+  ;; Pretty bullets
+  ;; https://github.com/sabof/org-bullets
+  (require 'org-bullets)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
