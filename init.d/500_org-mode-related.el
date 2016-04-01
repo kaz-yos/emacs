@@ -12,6 +12,11 @@
   (setq org-startup-truncated nil)
   (define-key org-mode-map "\M-q" 'toggle-truncate-lines)
   ;;
+  ;; Do not fold at startup
+  (setq org-startup-folded nil)
+  ;; Indent at startup
+  (setq org-startup-indented t)
+  ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
   (require 'ox-beamer)
