@@ -16,8 +16,16 @@
   ;;
   ;; Do not fold at startup
   (setq org-startup-folded nil)
-  ;; Indent at startup
-  (setq org-startup-indented t)
+  ;; Indent at startup. This causes some strange behavior.
+  ;; (setq org-startup-indented t)
+  ;;
+  ;; Org-Bable
+  ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (R . t)
+     (emacs-lisp . t)))
   ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
