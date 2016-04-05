@@ -6,6 +6,8 @@
   ;; Reassign Keep the following key
   (define-key org-mode-map (kbd "<C-tab>") 'other-window-or-split)
   (define-key org-mode-map (kbd "<A-tab>") 'org-global-cycle)
+  ;; This breaks other behaviors?
+  ;; (define-key org-mode-map (kbd "<return>") 'org-meta-return)
   ;;
   ;; Linewrap in Org-mode of Emacs
   ;; http://superuser.com/questions/299886/linewrap-in-org-mode-of-emacs
