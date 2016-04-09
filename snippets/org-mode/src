@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: src
+# key: src
+# binding: C-c c
+# --
+#+BEGIN_SRC $1
+$0
+#+END_SRC

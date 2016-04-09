@@ -1,0 +1,72 @@
+# -*- mode: snippet -*-
+# name: latex_header
+# key: latex
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+# LaTeX configurations
+#+LATEX_HEADER: %% Margin
+#+LATEX_HEADER: %% \usepackage[margin=1.5cm]{geometry}
+#+LATEX_HEADER: \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm, headsep=4pt]{geometry}
+#+LATEX_HEADER: %% \addtolength{\topmargin}{0.3cm}
+#+LATEX_HEADER: %% \addtolength{\textheight}{1.75in}
+#+LATEX_HEADER: %% Math
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{amssymb}
+#+LATEX_HEADER: \usepackage{wasysym}
+#+LATEX_HEADER: \newcommand{\ind}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+#+LATEX_HEADER: %% Allow new page within align
+#+LATEX_HEADER: \allowdisplaybreaks
+#+LATEX_HEADER: \usepackage{cancel}
+#+LATEX_HEADER: % % Code
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{courier}
+#+LATEX_HEADER: \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
+#+LATEX_HEADER: %% Graphics
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: %% DAG
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{positioning,shapes.geometric}
+#+LATEX_HEADER: %% Date
+#+LATEX_HEADER: \usepackage[yyyymmdd]{datetime}
+#+LATEX_HEADER: \renewcommand{\dateseparator}{--}
+#+LATEX_HEADER: %% Header
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{} % Erase first to supress section names
+#+LATEX_HEADER: \fancyhead[L]{Kazuki Yoshida} % LEFT
+#+LATEX_HEADER: \fancyhead[C]{} % CENTER
+#+LATEX_HEADER: \fancyhead[R]{\today} % RIGHT
+#+LATEX_HEADER: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER: %% \fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+#+LATEX_HEADER: %% Section font size
+#+LATEX_HEADER: \usepackage{sectsty}
+#+LATEX_HEADER: \sectionfont{\small}
+#+LATEX_HEADER: \subsectionfont{\small}
+#+LATEX_HEADER: \subsubsectionfont{\small}
+#+LATEX_HEADER: %% Section numbering
+#+LATEX_HEADER: %% http://tex.stackexchange.com/questions/3177/how-to-change-the-numbering-of-part-chapter-section-to-alphabetical-r
+#+LATEX_HEADER: %% \renewcommand\thesection{\alph{section}}
+#+LATEX_HEADER: %% \renewcommand\thesubsection{\thesection.\arabic{subsection}}
+#+LATEX_HEADER: %% \renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+#+LATEX_HEADER: %%
+#+LATEX_HEADER: %% http://tex.stackexchange.com/questions/40067/numbering-sections-with-sequential-integers
+#+LATEX_HEADER: %% \usepackage{chngcntr}
+#+LATEX_HEADER: %% \counterwithout{subsection}{section}
+#+LATEX_HEADER: %% enumerate
+#+LATEX_HEADER: \usepackage{enumerate}
+#+LATEX_HEADER: %% double space
+#+LATEX_HEADER: %% \usepackage{setspace}
+#+LATEX_HEADER: %% \linespread{2}
+#+LATEX_HEADER: %% Paragraph Indentation
+#+LATEX_HEADER: \usepackage{indentfirst}
+#+LATEX_HEADER: \setlength{\parindent}{4em}
+#+LATEX_HEADER: %% Spacing after headings
+#+LATEX_HEADER: %% http://tex.stackexchange.com/questions/53338/reducing-spacing-after-headings
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \titlespacing      \section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+#+LATEX_HEADER: \titlespacing   \subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+#+LATEX_HEADER: \titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+#+LATEX_HEADER: %% Fix figures and tables by [H]
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: %% Allow URL embedding
+#+LATEX_HEADER: \usepackage{url}
