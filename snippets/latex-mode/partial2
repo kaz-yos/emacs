@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: partial2
+# key: partial2
+# --
+\frac{\partial^2}{\partial x$0^2}
