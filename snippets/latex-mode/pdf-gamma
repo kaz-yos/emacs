@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: pdf-gamma
-# key: pdf-gamma
-# --
-\frac{1}{\Gamma(\alpha)\beta^{\alpha}}x^{\alpha - 1}e^{-\frac{x}{\beta}}$0
