@@ -130,3 +130,9 @@
 ;; Give swoop additional bindings
 ;; (define-key helm-swoop-map (kbd "C-s") 'swoop-action-goto-line-next)
 ;; (define-key helm-swoop-map (kbd "C-r") 'swoop-action-goto-line-prev)
+
+
+;;; helm-bm.el
+;; https://github.com/jixiuf/helm-bm
+(use-package helm-bm
+  :commands (helm-bm))
