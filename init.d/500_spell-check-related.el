@@ -49,9 +49,8 @@
   (setq flyspell-auto-correct-binding nil)
   (setq flyspell-mode-map
         (let ((map (make-sparse-keymap)))
-          (if flyspell-use-meta-tab
-              (define-key map "\M-\t" 'flyspell-auto-correct-word))
-          (define-key map flyspell-auto-correct-binding 'flyspell-auto-correct-previous-word)
+          (when flyspell-use-meta-tab
+            (define-key map "\M-\t" 'flyspell-auto-correct-word))
           (define-key map [(control ?\,)] 'flyspell-goto-next-error)
           (define-key map [?\C-c ?$] 'flyspell-correct-word-before-point)
           map))
@@ -67,12 +66,14 @@
   :commands (flyspell-popup-correct)
   :bind ("s-c" . flyspell-popup-correct)
   :config
-  ;; Unless flyspell-mode is already running, activate.
-  ;; Necessary to avoid: Error: The encoding "nil" is not known.
-  (unless flyspell-mode
-    (flyspell-mode)
-    ;; Then turn it off to avoid annoying key bindings
-    (flyspell-mode "disable")))
+  ;; Turn flyspell-mode on before invoking popup
+  (advice-add 'flyspell-popup-correct
+              :before
+              #'turn-on-flyspell)
+  ;; Turn flyspell-mode off after invoking popup
+  (advice-add 'flyspell-popup-correct
+              :after
+              #'turn-off-flyspell))
 
 
 ;; ;;;
