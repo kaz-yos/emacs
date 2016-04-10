@@ -79,6 +79,7 @@
     (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
     (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
   (add-hook 'LaTeX-mode-hook 'my-LaTeX-smartchr-setting)
+  (add-hook 'org-mode-hook 'my-LaTeX-smartchr-setting)
   ;;
   ;; Emacs Lisp
   (defun my-elisp-smartchr-setting ()
