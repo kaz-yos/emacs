@@ -3,10 +3,17 @@
 (use-package org
   :mode ("\\.org" . org-mode)
   :config
-  ;; Reassign Keep the following key
+  ;; Key bindings
   (define-key org-mode-map (kbd "<C-tab>") 'other-window-or-split)
   (define-key org-mode-map (kbd "<A-tab>") 'org-global-cycle)
   (define-key org-mode-map (kbd "A-s") 'org-latex-export-to-pdf)
+  (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf)
+  ;; Backslash
+  (define-key org-mode-map (kbd   ";") 'my-tex-insert-backslash)
+  (define-key org-mode-map (kbd "A-;") 'my-tex-insert-semicolon)
+  ;;
+  (define-key org-mode-map (kbd "s-b") 'helm-org-in-buffer-headings)
+  ;;
   ;; This breaks other behaviors?
   ;; (define-key org-mode-map (kbd "<return>") 'org-meta-return)
   ;;
@@ -20,6 +27,7 @@
   ;; Indent at startup. This causes some strange behavior.
   ;; (setq org-startup-indented t)
   ;;
+  ;;
   ;; Org-Bable
   ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html
   (org-babel-do-load-languages
@@ -27,6 +35,9 @@
    '((python . t)
      (R . t)
      (emacs-lisp . t)))
+  ;;
+  (setq org-src-fontify-natively t)
+  ;;
   ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
