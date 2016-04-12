@@ -38,10 +38,19 @@
   ;;
   (setq org-src-fontify-natively t)
   ;;
+  ;; Citation management
+  ;; https://github.com/jkitchin/org-ref
+  ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
+  ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
+  (require 'org-ref)
+  ;;
+  ;; Emacs Org-mode Bibtex Screencast
+  ;; https://vimeo.com/99167082
   ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
   (require 'ox-beamer)
+  ;;
   ;; Pretty bullets
   ;; https://github.com/sabof/org-bullets
   (require 'org-bullets)
