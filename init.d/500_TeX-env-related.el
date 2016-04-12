@@ -277,11 +277,13 @@
 ;; https://github.com/vitoshka/zotelo
 ;; https://forums.zotero.org/discussion/19608/zotero-emacs-integration/
 (use-package zotelo
+  :demand t
   :commands (zotelo-set-collection
              zotelo-update-database)
   :config
-  ;; (setq zotelo-use-ido nil)
+  (setq zotelo-use-ido nil)
   (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
+  (add-hook 'org-mode-hook 'zotelo-minor-mode)
   ;; C-c z c         zotelo-set-collection (also C-c z s)
   ;; C-c z u         zotelo-update-database
   ;; C-c z e         zotelo-export-secondary
