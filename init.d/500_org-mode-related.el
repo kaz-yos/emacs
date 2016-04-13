@@ -12,7 +12,18 @@
   (define-key org-mode-map (kbd   ";") 'my-tex-insert-backslash)
   (define-key org-mode-map (kbd "A-;") 'my-tex-insert-semicolon)
   ;;
+  ;; bm.el-like function
   (define-key org-mode-map (kbd "s-b") 'helm-org-in-buffer-headings)
+  ;;
+  ;; Arrow key replacement for HHKB
+  (define-key org-mode-map (kbd "A-M-i") 'org-metaup)
+  (define-key org-mode-map (kbd "A-M-k") 'org-metadown)
+  (define-key org-mode-map (kbd "A-M-l") 'org-metaright)
+  (define-key org-mode-map (kbd "A-M-j") 'org-metaleft)
+  (define-key org-mode-map (kbd "A-S-M-i") 'org-shiftmetaup)
+  (define-key org-mode-map (kbd "A-S-M-k") 'org-shiftmetadown)
+  (define-key org-mode-map (kbd "A-S-M-l") 'org-shiftmetaright)
+  (define-key org-mode-map (kbd "A-S-M-j") 'org-shiftmetaleft)
   ;;
   ;; This breaks other behaviors?
   ;; (define-key org-mode-map (kbd "<return>") 'org-meta-return)
