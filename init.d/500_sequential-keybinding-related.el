@@ -79,7 +79,13 @@
     (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
     (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
   (add-hook 'LaTeX-mode-hook 'my-LaTeX-smartchr-setting)
-  (add-hook 'org-mode-hook 'my-LaTeX-smartchr-setting)
+  ;;
+  ;; Org
+  (defun my-org-smartchr-setting ()
+    (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
+    (local-set-key (kbd "#") (smartchr '("# " "#+" "# ############################################################################ #")))
+    (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
+  (add-hook 'org-mode-hook 'my-org-smartchr-setting)
   ;;
   ;; Emacs Lisp
   (defun my-elisp-smartchr-setting ()
