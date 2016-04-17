@@ -38,6 +38,8 @@
   ;; Indent at startup. This causes some strange behavior.
   ;; (setq org-startup-indented t)
   ;;
+  ;; TODO related
+  (setq org-log-done 'time)
   ;;
   ;; Org-Bable
   ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html
