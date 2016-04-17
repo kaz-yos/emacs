@@ -59,6 +59,16 @@
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
   (require 'org-ref)
+  (define-key org-mode-map (kbd "C-A-a") 'org-ref-helm-insert-cite-link)
+  ;;
+  ;; PDF processing with correct bibtex handling
+  ;; http://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html
+  ;; %f -> full file name; %b -> file base name; %o -> base directory
+  (setq org-latex-pdf-process
+        '("pdflatex -interaction nonstopmode -output-directory %o %f"
+          "bibtex %b"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"))
   ;;
   ;; Emacs Org-mode Bibtex Screencast
   ;; https://vimeo.com/99167082
