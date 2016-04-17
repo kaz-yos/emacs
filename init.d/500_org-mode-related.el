@@ -49,7 +49,10 @@
      (R . t)
      (emacs-lisp . t)))
   ;;
+  ;; http://orgmode.org/worg/org-contrib/babel/examples/fontify-src-code-blocks.html
   (setq org-src-fontify-natively t)
+  ;; http://stackoverflow.com/questions/17239273/org-mode-buffer-latex-syntax-highlighting
+  (setq org-highlight-latex-and-related '(latex script entities))
   ;;
   ;; Citation management
   ;; https://github.com/jkitchin/org-ref
