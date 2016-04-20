@@ -2,6 +2,10 @@
 ;; Load org
 (use-package org
   :mode ("\\.org" . org-mode)
+  :init
+  (add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
+  (add-to-list 'load-path "~/.emacs.d/packages/org-mode/contrib/lisp")
+  ;;
   :config
   ;; Key bindings
   (define-key org-mode-map (kbd "<C-tab>") 'other-window-or-split)
@@ -36,6 +40,8 @@
   (setq org-refile-use-outline-path (quote file))
   ;; Targets complete in steps so we start with filename, TAB shows the next level of targets etc
   (setq org-outline-path-complete-in-steps t)
+  ;;
+  (require 'org-ac)
   ;;
   ;; Linewrap in Org-mode of Emacs
   ;; http://superuser.com/questions/299886/linewrap-in-org-mode-of-emacs
