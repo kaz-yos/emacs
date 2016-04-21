@@ -200,6 +200,16 @@
 
 
 ;;;
+;;; embrace.el
+;; https://github.com/cute-jumper/embrace.el
+(use-package embrace
+  :commands (embrace-commander)
+  :bind
+  ("H-e" . {})
+  ("s-e" . embrace-commander))
+
+
+;;;
 ;;; cmigemo (installed from Homebrew)
 ;; Mac-only configuration
 (when (eq system-type 'darwin)
