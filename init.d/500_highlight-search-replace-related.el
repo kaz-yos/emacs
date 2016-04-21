@@ -205,7 +205,7 @@
 (use-package embrace
   :commands (embrace-commander)
   :bind
-  ("H-e" . {})
+  ("H-e" . embrace-commander)
   ("s-e" . embrace-commander))
 
 
