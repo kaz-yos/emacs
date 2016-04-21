@@ -21,8 +21,9 @@
 ;; (modeline-git-branch-mode 1)
 
 
+;;;
 ;;; Git
-;; magit.el
+;;; magit.el
 ;; e for ediff!
 ;; Magit User Manual: http://magit.github.io/magit/magit.html
 ;; emacs wiki magit: http://www.emacswiki.org/emacs/Magit
@@ -38,6 +39,10 @@
   :bind (("s-g" . my-magit-status)
          ("C-c g" . magit-status))
   :config
+  ;; https://magit.vc/manual/magit/Diff-options.html
+  ;; Word-level diff
+  (setq magit-diff-refine-hunk t)
+  ;;
   (defun my-magit-status ()
     "Delete whitespaces, save, and magit-status"
     (interactive)
