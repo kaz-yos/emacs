@@ -228,6 +228,19 @@
 
 
 ;;;
+;;; selected.el
+;; https://github.com/Kungsgeten/selected.el
+(use-package q
+  :commands selected-minor-mode
+  :bind (:map selected-keymap
+              ("q" . selected-off)
+              ("u" . upcase-region)
+              ("d" . downcase-region)
+              ("w" . count-words-region)
+              ("m" . apply-macro-to-region-lines)))
+
+
+;;;
 ;;; rainbow-mode.el
 ;; Make strings describing colors appear in colors
 ;; http://julien.danjou.info/projects/emacs-packages
