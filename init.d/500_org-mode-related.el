@@ -41,7 +41,14 @@
   ;; Targets complete in steps so we start with filename, TAB shows the next level of targets etc
   (setq org-outline-path-complete-in-steps t)
   ;;
+  ;; Auto-complete mode
   (require 'org-ac)
+  ;;
+  ;; Company mode
+  ;; https://github.com/company-mode/company-mode/issues/50
+  (defun add-pcomplete-to-capf ()
+    (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
+  (add-hook 'org-mode-hook #'add-pcomplete-to-capf)
   ;;
   ;; Linewrap in Org-mode of Emacs
   ;; http://superuser.com/questions/299886/linewrap-in-org-mode-of-emacs
@@ -63,12 +70,14 @@
    '((sql . t)
      (sqlite . t)
      (python . t)
+     (latex . t)
      (R . t)
      (emacs-lisp . t)))
   ;;
-
   ;; http://orgmode.org/worg/org-contrib/babel/examples/fontify-src-code-blocks.html
   (setq org-src-fontify-natively t)
+  ;; https://github.com/xiaohanyu/oh-my-emacs/blob/master/core/ome-org.org
+  (setq org-src-tab-acts-natively t)
   ;;
   ;; LaTeX
   (setq org-highlight-latex-fragments-and-specials t)
