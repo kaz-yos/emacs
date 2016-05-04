@@ -9,17 +9,23 @@
 ;; http://qiita.com/ongaeshi/items/8cbd8d3c792476c59a11
 ;; http://blog.sanojimaru.com/post/20090254216/emacs
 ;;
-(require 'auto-save-buffers-enhanced)
-;; Only in Git, CVS, or Subversion directories
-;; (auto-save-buffers-enhanced-include-only-checkout-path t)
-;; Timing of save
-;; (setq auto-save-buffers-enhanced-interval 1)	; 0.5 sec by default
-;; Quiet save
-(setq auto-save-buffers-enhanced-quiet-save-p t)
-;; Activate
-(auto-save-buffers-enhanced t)
-;; (setq auto-save-buffers-enhanced-include-regexps '(".+"))
-;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
+(use-package auto-save-buffers-enhanced
+  :config
+  ;; Only in Git, CVS, or Subversion directories
+  ;; (auto-save-buffers-enhanced-include-only-checkout-path t)
+  ;;
+  ;; Timing of save
+  (setq auto-save-buffers-enhanced-interval 1)
+  ;; Quiet save
+  (setq auto-save-buffers-enhanced-quiet-save-p t)
+  ;;
+  ;; (setq auto-save-buffers-enhanced-include-regexps '(".+"))
+  ;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
+  ;; Do not autosave over ssh to avoid slow down
+  (setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:"))
+  ;;
+  ;; Activate
+  (auto-save-buffers-enhanced t))
 
 
 ;; ;;;
