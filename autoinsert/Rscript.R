@@ -30,7 +30,7 @@ nCores <- min(parallel::detectCores(), 8)
 options(mc.cores = nCores)
 ## Used by doParallel as default
 options(cores = nCores)
-## Register doParallel as the parallel backend with foreach
+## Register doParallel as the parallel backend for foreach
 ## http://stackoverflow.com/questions/28989855/the-difference-between-domc-and-doparallel-in-r
 doParallel::registerDoParallel(cores = nCores)
 ## Report multicore use
