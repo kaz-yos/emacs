@@ -341,7 +341,9 @@
   ;; eg, M-s-x will activate (avy-goto-char ?x), ie, all occurrence of x
   (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
   ;; eg, A-s-x will activate (avy-goto-word-1 ?x), ie, all words starting with x
-  (loop for c from ?! to ?~ do (add-keys-to-avy "A-s-" c 'word)))
+  (loop for c from ?! to ?~ do (add-keys-to-avy "A-s-" c 'word))
+  (loop for c from ?! to ?~ do (add-keys-to-avy "H-M-" c 'word))
+  (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word)))
 ;;
 ;;
 ;;; ace-window.el
