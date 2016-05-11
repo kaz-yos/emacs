@@ -11,13 +11,17 @@
 ### Prepare environment
 ################################################################################
 
-## Configure sink()
+## sink() if being run non-interactively
 if (sink.number() != 0) {sink()}
 ..scriptFileName.. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
 if (length(..scriptFileName..) == 1) {
     sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
 }
 options(width = 120)
+
+## Record start time
+start_time <- Sys.time()
+cat("### Started ", as.character(start_time), "\n")
 
 ## Configure parallelization
 ## Parallel backend for foreach (also loads foreach and parallel; includes doMC)
@@ -54,5 +58,10 @@ cat("
 ################################################################################
 cat("\n### Record package versions\n")
 print(sessionInfo())
+## Record execution time
+end_time <- Sys.time()
+cat("### Started ", as.character(start_time), "\n")
+cat("### Finished ", as.character(end_time), "\n")
+print(end_time - start_time)
 ## Stop sinking to a file if active
 if (sink.number() != 0) {sink()}
