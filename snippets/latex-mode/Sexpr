@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: Sexpr
 # key: S
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 \Sexpr{$0}

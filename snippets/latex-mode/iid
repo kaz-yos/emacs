@@ -2,5 +2,6 @@
 # name: iid
 # key: iid
 # binding: direct-keybinding
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 \overset{\text{iid}}{\sim}

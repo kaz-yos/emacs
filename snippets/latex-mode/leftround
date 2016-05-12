@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: leftround
 # key: lr
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 \left( $0 \right)

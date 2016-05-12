@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: X
 # key: X
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 X_{1}, ..., X_{n}$0
