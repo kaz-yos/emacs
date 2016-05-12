@@ -21,13 +21,14 @@
 ;; (require 'eldoc)
 ;; eldoc-extension
 ;; http://d.hatena.ne.jp/rubikitch/20090207/1233936430
-(require 'eldoc-extension)
-(setq eldoc-idle-delay 0)
-(setq eldoc-echo-area-use-multiline-p t)
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-(setq eldoc-minor-mode-string "") ; No need for ElDoc in modeline (rubikitch book p231)
+(use-package eldoc-extension
+  :config
+  (setq eldoc-idle-delay 0)
+  (setq eldoc-echo-area-use-multiline-p t)
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+  (setq eldoc-minor-mode-string ""))
 
 
 ;; ;; guide-key.el	for prefix key live help
