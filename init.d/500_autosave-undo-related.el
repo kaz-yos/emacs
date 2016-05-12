@@ -29,6 +29,19 @@
 
 
 ;;;
+;;; super-save.el
+;; http://emacsredux.com/blog/2016/01/30/super-save/
+;; https://github.com/bbatsov/super-save
+(use-package super-save
+  :config
+  ;; Only when idle for some time
+  (setq super-save-auto-save-when-idle t)
+  (setq super-save-idle-duration 10)
+  ;; Activate
+  (super-save-mode +1))
+
+
+;;;
 ;;; Undo tree for undoing edits visually
 ;; http://www.emacswiki.org/emacs/UndoTree
 ;; C-/ for undo. C-? (C-S-/) for redo.
