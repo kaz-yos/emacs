@@ -39,9 +39,14 @@
   :bind (("s-g" . my-magit-status)
          ("C-c g" . magit-status))
   :config
-  ;; https://magit.vc/manual/magit/Diff-options.html
+  ;;
   ;; Word-level diff
+  ;; https://magit.vc/manual/magit/Diff-options.html
+  ;; http://html-color-codes.info
   (setq magit-diff-refine-hunk t)
+  ;;
+  ;; Just save everything when invoked
+  (setq magit-save-some-buffers 'dontask)
   ;;
   (defun my-magit-status ()
     "Delete whitespaces, save, and magit-status"
