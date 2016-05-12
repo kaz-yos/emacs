@@ -90,12 +90,14 @@ Modifed version of dired-do-async-shell-command in dired-aux.el
 Instead of obtaining file names from dired, gets a file name
 from the current buffer."
   (interactive
-   (let ((files `(,buffer-file-name)))
+   ;; Obtain the file name (no path) for the current buffer
+   (let ((files `(,(file-name-nondirectory buffer-file-name))))
      (list
       ;; Want to give feedback whether this file or marked files are used:
       (dired-read-shell-command "& on %s: " current-prefix-arg files)
       current-prefix-arg
       files)))
+  ;;
   (unless (string-match-p "&[ \t]*\\'" command)
     (setq command (concat command " &")))
   (dired-do-shell-command command arg file-list))
