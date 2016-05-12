@@ -57,7 +57,8 @@
   ;;
   ;; Auto-start flyspell-mode for these files
   ;; 2015-02-09 AquaSKK appears ok.
-  (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode)))
+  ;; (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
+  )
 ;;
 ;;
 ;;; flyspell-popup.el
