@@ -97,6 +97,8 @@ from the current buffer."
       (dired-read-shell-command "& on %s: " current-prefix-arg files)
       current-prefix-arg
       files)))
+  ;; Save buffer to avoid executing older code
+  (save-buffer)
   ;;
   (unless (string-match-p "&[ \t]*\\'" command)
     (setq command (concat command " &")))
