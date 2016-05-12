@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: roxy
+# key: roxy
+# --
+##' one-liner$0
+##'
+##' description
+##' @param param1
+##' @param param2
+##' @return
+##' 
+##' @author Kazuki Yoshida
+##' @export
