@@ -14,8 +14,8 @@
   ;; Only in Git, CVS, or Subversion directories
   ;; (auto-save-buffers-enhanced-include-only-checkout-path t)
   ;;
-  ;; Timing of save
-  (setq auto-save-buffers-enhanced-interval 1)
+  ;; Idle time in seconds required before saving
+  (setq auto-save-buffers-enhanced-interval 0.5)
   ;; Quiet save
   (setq auto-save-buffers-enhanced-quiet-save-p t)
   ;;
@@ -35,8 +35,9 @@
 (use-package super-save
   :config
   ;; Only when idle for some time
+  ;; This is active in ssh buffers, too
   (setq super-save-auto-save-when-idle t)
-  (setq super-save-idle-duration 10)
+  (setq super-save-idle-duration 5)
   ;; Activate
   (super-save-mode +1))
 
