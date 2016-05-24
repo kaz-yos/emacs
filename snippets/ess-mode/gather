@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gather
+# key: gather
+# --
+gather(data = $1, key = key, value = value, $0)
