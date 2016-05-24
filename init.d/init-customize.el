@@ -35,6 +35,8 @@
  '(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
  '(company-tooltip-mouse ((t :background "red" :foreground "white")))
  '(company-tooltip-selection ((t :background "red4" :foreground "white")))
+ '(diff-refine-added ((t (:inherit diff-refine-change :background "#005000"))))
+ '(diff-refine-removed ((t (:inherit diff-refine-change :background "#500000"))))
  '(elscreen-tab-current-screen-face ((t :background "gray80" :foreground "black")))
  '(elscreen-tab-other-screen-face ((t :background "gray20" :foreground "gray80")))
  '(font-latex-subscript-face ((t nil)))
