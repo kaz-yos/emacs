@@ -16,8 +16,8 @@ if (sink.number() != 0) {sink()}
 ..scriptFileName.. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
 if (length(..scriptFileName..) == 1) {
     sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
+    options(width = 100)
 }
-## options(width = 120)
 
 ## Record start time
 start_time <- Sys.time()
