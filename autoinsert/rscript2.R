@@ -17,7 +17,7 @@ if (sink.number() != 0) {sink()}
 if (length(..scriptFileName..) == 1) {
     sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
 }
-options(width = 120)
+## options(width = 120)
 
 ## Record start time
 start_time <- Sys.time()
@@ -56,7 +56,10 @@ cat("
 
 
 ################################################################################
-cat("\n### Record package versions\n")
+cat("
+###
+### Record package versions etc
+################################################################################\n")
 print(sessionInfo())
 ## Record execution time
 end_time <- Sys.time()
