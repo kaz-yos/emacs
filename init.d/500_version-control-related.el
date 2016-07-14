@@ -125,7 +125,36 @@
   ;;
   ;; Moving between hunks
   (global-set-key (kbd "A-p") 'git-gutter+-previous-hunk)
-  (global-set-key (kbd "A-n") 'git-gutter+-next-hunk))
+  (global-set-key (kbd "A-n") 'git-gutter+-next-hunk)
+  ;;
+  ;; Enhance emacs-git-gutter with ivy-mode
+  ;; http://blog.binchen.org/posts/enhance-emacs-git-gutter-with-ivy-mode.html
+  ;; Helper
+  (defun my-reshape-git-gutter (gutter)
+    "Re-shape gutter for `ivy-read'."
+    (let* ((lineno (aref gutter 3))
+           line)
+      (save-excursion
+        (goto-line lineno)
+        (setq line (buffer-substring (line-beginning-position)
+                                     (line-end-position))))
+      ;; build (key . lineno)
+      (cons (format "%s %d: %s"
+                    (if (eq 'deleted (aref gutter 1)) "-" "+")
+                    lineno
+                    (replace-regexp-in-string "^[ \t]*" "" line))
+            lineno)))
+  ;; User function
+  (defun my-goto-git-gutter ()
+    (interactive)
+    (if git-gutter:diffinfos
+        (let* ((collection (mapcar 'my-reshape-git-gutter
+                                   git-gutter:diffinfos)))
+          (ivy-read "git-gutters:"
+                    collection
+                    :action (lambda (lineno)
+                              (goto-line lineno))))
+      (message "NO git-gutters!"))))
 ;;
 ;;
 ;;; git-timemachine.el
