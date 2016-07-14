@@ -147,9 +147,9 @@
   ;; User function
   (defun my-goto-git-gutter ()
     (interactive)
-    (if git-gutter:diffinfos
+    (if git-gutter+-diffinfos
         (let* ((collection (mapcar 'my-reshape-git-gutter
-                                   git-gutter:diffinfos)))
+                                   git-gutter+-diffinfos)))
           (ivy-read "git-gutters:"
                     collection
                     :action (lambda (lineno)
