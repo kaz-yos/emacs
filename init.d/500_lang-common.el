@@ -25,3 +25,11 @@
 (use-package aggressive-indent
   :commands (aggressive-indent-mode))
 (add-hook 'emacs-lisp-mode-hook 'aggressive-indent-mode)
+
+
+;;;
+;;; dumb-jump.el
+;; https://github.com/jacktasia/dumb-jump
+(use-package dumb-jump
+  :config
+  (dumb-jump-mode))
