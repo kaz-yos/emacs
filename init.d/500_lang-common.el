@@ -31,5 +31,6 @@
 ;;; dumb-jump.el
 ;; https://github.com/jacktasia/dumb-jump
 (use-package dumb-jump
+  :disabled t
   :config
   (dumb-jump-mode))
