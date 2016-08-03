@@ -100,6 +100,14 @@ from the current buffer."
   ;; Save buffer to avoid executing older code
   (save-buffer)
   ;;
+  ;; Kill the ouput buffer. This appears necessary when using over ssh
+  (let ((buffer-name-list (mapcar (function buffer-name) (buffer-list)))
+        (regexp "*Runner Output*"))
+    (when (-filter
+           #'(lambda (elt) (string-match regexp elt))
+           buffer-name-list)
+      (kill-buffer regexp)))
+  ;;
   (unless (string-match-p "&[ \t]*\\'" command)
     (setq command (concat command " &")))
   (dired-do-shell-command command arg file-list))
