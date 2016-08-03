@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: latex_header
-# key: head_latex
+# key: head
 # expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
 # --
 # LaTeX configurations
