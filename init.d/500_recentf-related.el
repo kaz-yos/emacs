@@ -44,7 +44,7 @@
 ;;     (ad-enable-advice 'write-region 'around 'recentf-no-message)
 ;;     (ad-activate 'write-region)
 ;;     (unwind-protect
-;; 	(flet ((message (format-string &rest args)
+;; 	(cl-flet ((message (format-string &rest args)
 ;; 			(eval `(format ,format-string ,@args))))
 ;; 	  ad-do-it)
 ;;       (ad-disable-advice 'write-region 'around 'recentf-no-message)
@@ -55,7 +55,7 @@
 ;; (defadvice recentf-cleanup
 ;;   (around no-message activate)
 ;;   "suppress the output from message() to minibuffer"
-;;   (flet ((message (format-string &rest args)
+;;   (cl-flet ((message (format-string &rest args)
 ;; 		  (eval `(format ,format-string ,@args))))
 ;;     ad-do-it))
 ;; ;;
