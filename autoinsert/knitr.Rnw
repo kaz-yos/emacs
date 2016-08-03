@@ -84,6 +84,8 @@
 %% Allow URL embedding
 \usepackage{url}
 
+% \include{GrandMacros}
+
 \begin{document}
 <<message = FALSE, tidy = FALSE, echo = F>>=
 ## knitr configuration: http://yihui.name/knitr/options#chunk_options
