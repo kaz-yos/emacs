@@ -1,0 +1,71 @@
+# -*- mode: snippet -*-
+# name: mice
+# key: mice
+# --
+## Extract all variable names in dataset
+allVars <- names(df)
+
+## mice predictorMatrix
+## A square matrix of size ‘ncol(data)’ containing 0/1
+## data specifying the set of predictors to be used for each
+## target column. Rows correspond to target variables (i.e.
+## variables to be imputed), in the sequence as they appear in
+## data. A value of '1' means that the column variable is used
+## as a predictor for the target variable (in the rows). The
+## diagonal of ‘predictorMatrix’ must be zero. The default for
+## ‘predictorMatrix’ is that all other columns are used as
+## predictors (sometimes called massive imputation). Note: For
+## two-level imputation codes '2' and '-2' are also allowed.
+##
+predictorMatrix <- matrix(0, ncol = length(allVars), nrow = length(allVars))
+rownames(predictorMatrix) <- allVars
+colnames(predictorMatrix) <- allVars
+
+## Avoid perfect linear dependence
+## http://stats.stackexchange.com/questions/127104/r-mice-imputation-failing
+## Too many weights issue in nnet called by mice
+## http://stackoverflow.com/questions/28551633/error-in-r-mice-package-too-many-weights
+
+## Variables informing imputation (these must also be imputed to be useful)
+imputerVars <- c()
+imputerMatrix <- predictorMatrix
+imputerMatrix[,imputerVars] <- 1
+
+## Exclude some variables from imputed variables
+excludeVars <- c()
+imputedVars <- setdiff(imputerVars, excludeVars)
+imputedMatrix <- predictorMatrix
+imputedMatrix[imputedVars,] <- 1
+
+## Specify imputer and imputed variables
+## Keep correct imputer-imputed pairs only
+predictorMatrix <- imputerMatrix * imputedMatrix
+## Diagonals must be zeros
+diag(predictorMatrix) <- 0
+
+cat("### Imputers (non-zero columns)\n")
+names(colSums(predictorMatrix)[colSums(predictorMatrix) > 0])
+cat("### Imputed (non-zero rows)\n")
+names(rowSums(predictorMatrix)[rowSums(predictorMatrix) > 0])
+
+## Dry run for obtaining imputation methods
+dryMice <- mice(data = df, m = 1, predictorMatrix = predictorMatrix, maxit = 0)
+
+## Exclude some variables from imputation
+## Must be excluded from both the predictorMatrix and method
+## http://www.stefvanbuuren.nl/publications/MICE%20in%20R%20-%20Draft.pdf
+dryMice$method[excludeVars] <- ""
+
+## Impute in parallel
+M <- 8 * 3
+set.seed(3561126)
+
+dfMice <- foreach(i = seq_len(M), .combine = ibind) %dorng% {
+    cat("### Started iteration", i, "\n")
+    miceout <- mice(data = df, m = 1, print = FALSE,
+                    predictorMatrix = predictorMatrix, method = dryMice$method,
+                    MaxNWts = 2000)
+    cat("### Completed iteration", i, "\n")
+    ## Make sure to return the output
+    miceout
+}
