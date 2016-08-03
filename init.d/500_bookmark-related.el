@@ -74,8 +74,11 @@
        ;; Markdown
        ((equal major-mode 'markdown-mode)
         (setq regexp "^### \\|^## \\|^# "))
+       ;; ESS R package mode
+       ((bound-and-true-p ess-r-package-mode)
+        (setq regexp "^### \\|^###$\\|^test_that(\\|^context("))
        ;; Others
-       (t         ; /** for SAS
+       (t                             ; /** for SAS
         (setq regexp "^### \\|^###$\\|^/\\*\\*\\|^\\*\\*")))
       ;;
       ;; Actual bookmarking
