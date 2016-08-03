@@ -6,5 +6,4 @@ res. <- clogit(formula    = + strata(id),
                data       = ,
                ## weights = ,
                ## subset  = ,
-               method     =c("exact", "approximate", "efron", "breslow")[1],
-               )
+               method     =c("exact", "approximate", "efron", "breslow")[1])

@@ -6,5 +6,5 @@
 test_that("$0", {
 
     ## Expectations
-    expect_equal(NA,  NA)
+    expect_true(FALSE)
 })

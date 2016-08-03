@@ -2,4 +2,4 @@
 # name: code
 # key: code
 # --
-${1:$$(yas-choose-value '("\\\code{\\\link{}}" "\\\code{}"))}$0
+\\code{$0}
