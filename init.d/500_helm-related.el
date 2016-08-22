@@ -77,6 +77,7 @@
 ;; https://github.com/emacs-jp/helm-migemo
 ;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html
 (use-package helm-migemo
+  :disabled t
   ;; Mac-only
   :if (eq system-type 'darwin))
 
