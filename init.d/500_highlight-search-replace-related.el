@@ -120,7 +120,18 @@
 ;; http://pragmaticemacs.com/emacs/search-or-swipe-for-the-current-word/
 (use-package swiper-helm
   :commands (swiper
-             swiper-helm))
+             swiper-helm
+             swiper-helm-at-point)
+  :bind (("s-s" . swiper-helm-at-point)
+         ("C-s-s" . swiper-helm))
+  ;; Configuration
+  :config
+  ;; Newly defined
+  (defun swiper-helm-at-point ()
+    (interactive)
+    (swiper-helm (format "%s" (thing-at-point 'symbol)))))
+
+
 
 
 ;;;
