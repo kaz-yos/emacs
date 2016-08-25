@@ -112,6 +112,16 @@
              phi-search-backward))
 
 
+;;;
+;;; swiper.el / swiper-helm.el
+;; https://github.com/abo-abo/swiper
+;; https://github.com/abo-abo/swiper-helm
+;; http://pragmaticemacs.com/emacs/dont-search-swipe/
+;; http://pragmaticemacs.com/emacs/search-or-swipe-for-the-current-word/
+(use-package swiper-helm
+  :commands (swiper
+             swiper-helm))
+
 
 ;;;
 ;;; isearch the selected word 2014-02-01
