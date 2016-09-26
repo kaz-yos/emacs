@@ -9,6 +9,7 @@
 \documentclass[10pt]{beamer}
 \setbeamertemplate{navigation symbols}{} %remove navigation symbols
 \setbeamertemplate{footline}[frame number]
+\setbeamertemplate{frametitle}[default][center]
 %% \usetheme{umbc4}
 %% \useinnertheme{umbcboxes}
 %% \setbeamercolor{umbcboxes}{bg=violet!12,fg=black}
