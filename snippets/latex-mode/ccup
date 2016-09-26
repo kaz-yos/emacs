@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ccup
+# key: ccup
+# --
+\bigcup^{\infty}_{i=1}
