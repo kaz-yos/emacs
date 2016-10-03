@@ -119,13 +119,13 @@
   ;;
   :config
   ;; Key configs
-  (global-set-key (kbd "A-1") 'elscreen-previous)
-  (global-set-key (kbd "A-2") 'elscreen-next)
-  ;; Cloning is more useful than fresh creation
-  (global-set-key (kbd "A-c") 'elscreen-clone)
-  (global-set-key (kbd "A-k") 'elscreen-kill)
-  (global-set-key (kbd "A-r") 'elscreen-screen-nickname)
-  (global-set-key (kbd "A-t") 'elscreen-toggle-display-tab)
+  ;; (global-set-key (kbd "A-1") 'elscreen-previous)
+  ;; (global-set-key (kbd "A-2") 'elscreen-next)
+  ;; ;; Cloning is more useful than fresh creation
+  ;; (global-set-key (kbd "A-c") 'elscreen-clone)
+  ;; (global-set-key (kbd "A-k") 'elscreen-kill)
+  ;; (global-set-key (kbd "A-r") 'elscreen-screen-nickname)
+  ;; (global-set-key (kbd "A-t") 'elscreen-toggle-display-tab)
   ;;
   ;; Do not show tabls to save space
   ;; Can use M-x elscreen-toggle-display-tab
