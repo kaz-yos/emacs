@@ -64,7 +64,7 @@ cat("
 print(sessionInfo())
 ## Record execution time
 end_time <- Sys.time()
-cat("### Started  ", as.character(start_time), "\n")
+cat("\n### Started  ", as.character(start_time), "\n")
 cat("### Finished ", as.character(end_time), "\n")
 print(end_time - start_time)
 ## Stop sinking to a file if active
