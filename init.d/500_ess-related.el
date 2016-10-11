@@ -189,9 +189,10 @@
 ;;;
 ;;; ESS SAS configuration
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
-(add-hook 'sas-mode-hook	; For SAS mode
+(add-hook 'sas-mode-hook
           '(lambda()
-             (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))	; Unset C-tab from ESS major mode
+             ;; Unset C-tab from ESS major mode in SAS mode
+             (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))
 ;;;
 
 ;;;
