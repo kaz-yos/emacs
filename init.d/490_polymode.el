@@ -9,7 +9,7 @@
   ;; These mode association is overwritten by ess-site
   ;; So include the same thing in ess-site :mode
   :mode (("\\.Rnw" . poly-noweb+r-mode)
-         ;; ("\\.Rmd" . poly-markdown+r-mode)
+         ("\\.Rmd" . poly-markdown+r-mode)
          )
   :config
   ;; Key config
