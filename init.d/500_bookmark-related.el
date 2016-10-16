@@ -69,7 +69,8 @@
        ((or (equal major-mode 'sml-mode))
         (setq regexp "^(\\*\\*"))
        ;; LaTeX
-       ((equal major-mode 'latex-mode)
+       ((or (equal major-mode 'latex-mode)
+            (equal major-mode 'tex-mode))
         (setq regexp "^\\\\section{\\|^\\\\subsection{\\|^\\\\subsubsection{\\|frametitle{\\|^%%%"))
        ;; Markdown
        ((equal major-mode 'markdown-mode)
