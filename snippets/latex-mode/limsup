@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: limsup
+# key: limsup
+# --
+\limsup_{n \rightarrow \infty} X_{n}
