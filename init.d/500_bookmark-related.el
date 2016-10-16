@@ -71,7 +71,7 @@
        ;; LaTeX
        ((or (equal major-mode 'latex-mode)
             (equal major-mode 'tex-mode))
-        (setq regexp "^\\\\section{\\|^\\\\subsection{\\|^\\\\subsubsection{\\|frametitle{\\|^%%%"))
+        (setq regexp "^\\\\section{\\|^\\\\subsection{\\|^\\\\subsubsection{\\|^\\\\section\\*{\\|^\\\\subsection\\*{\\|^\\\\subsubsection\\*{\\|frametitle{\\|^%%%"))
        ;; Markdown
        ((equal major-mode 'markdown-mode)
         (setq regexp "^### \\|^## \\|^# "))
