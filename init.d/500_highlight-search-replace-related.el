@@ -128,8 +128,15 @@
   :config
   ;; Newly defined
   (defun swiper-helm-at-point ()
+    "Custom function to pick up a thing at a point for swiper-helm
+
+If there is a symbol at the current point, its textual representation is
+searched for by swiper-helm. If there is no symbol, empty search box is
+started."
     (interactive)
-    (swiper-helm (format "%s" (thing-at-point 'symbol)))))
+    (swiper-helm (format "%s"
+                         (or (thing-at-point 'symbol)
+                             "")))))
 
 
 
