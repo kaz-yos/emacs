@@ -201,7 +201,7 @@
 ;;;
 ;;; Killing buffers and frames
 ;; http://pragmaticemacs.com/emacs/dont-kill-buffer-kill-this-buffer-instead/
-(global-set-key (kbd "C-x k") 'kill-this-buffer)
+;; (global-set-key (kbd "C-x k") 'kill-this-buffer)
 (global-set-key (kbd "A-k") 'kill-this-buffer)
 ;; http://pragmaticemacs.com/emacs/a-better-shortcut-for-delete-frame/
 (global-set-key (kbd "C-x w") 'delete-frame)
