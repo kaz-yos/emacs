@@ -43,9 +43,7 @@ cat("### Using", foreach::getDoParWorkers(), "cores\n")
 cat("### Using", foreach::getDoParName(), "as backend\n")
 
 ## Load packages
-library(magrittr)
-library(dplyr)
-library(tidyr)
+library(tidyverse)
 
 
 cat("
