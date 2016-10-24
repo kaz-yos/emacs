@@ -3,6 +3,7 @@
 *.zip
 *.tar.gz
 .Rhistory
+.tramp_history
 *.RData
 *.pdf
 *.png
