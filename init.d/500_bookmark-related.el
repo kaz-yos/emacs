@@ -16,7 +16,7 @@
   :config
   ;; No annotation column because I do not used it (after require)
   (setq bm-show-annotations t)   ; Do show for spacing
-  (setq bm-annotation-width 5)   ; Minimum width
+  (setq bm-annotation-width 0)   ; Minimum width
   (setq bm-header-annotation "") ; No need to show "Annotation"
   ;; Load on startup
   ;; (add-hook 'after-init-hook 'bm-repository-load)
