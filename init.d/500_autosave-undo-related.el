@@ -22,7 +22,7 @@
   ;; (setq auto-save-buffers-enhanced-include-regexps '(".+"))
   ;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
   ;; Do not autosave over ssh to avoid slow down
-  (setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "/snippets/"))
+  (setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "^/scp:" "/snippets/" "Rmd"))
   ;;
   ;; Activate
   (auto-save-buffers-enhanced t))

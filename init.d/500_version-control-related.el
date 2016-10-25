@@ -56,8 +56,13 @@
     (when (buffer-file-name)
       (delete-trailing-whitespace)
       (save-buffer))
-    (magit-status default-directory)
+    ;; Invoke the true worker function (change tramp scp because it's slow)
+    (magit-status (replace-regexp-in-string "/scp"
+                                            "/ssh"
+                                            default-directory))
+    ;; Message
     (message "Removed whitespaces if any."))
+  ;;
   ;; change magit diff colors (configure in init-customize.el)
   ;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
   ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
