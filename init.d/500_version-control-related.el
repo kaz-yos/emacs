@@ -51,17 +51,16 @@
   (defun my-magit-status ()
     "Delete whitespaces, save, and magit-status"
     (interactive)
-    ;; Only when in a file associated buffer
-    ;; This avoids doing these in dired
-    (when (buffer-file-name)
+    ;; Do this only in a file associated buffer that's writable.
+    ;; Avoids errors in dired or read-only buffers.
+    (when (and (buffer-file-name)
+               (not buffer-read-only))
       (delete-trailing-whitespace)
       (save-buffer))
     ;; Invoke the true worker function (change tramp scp because it's slow)
     (magit-status (replace-regexp-in-string "/scp"
                                             "/ssh"
-                                            default-directory))
-    ;; Message
-    (message "Removed whitespaces if any."))
+                                            default-directory)))
   ;;
   ;; change magit diff colors (configure in init-customize.el)
   ;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
