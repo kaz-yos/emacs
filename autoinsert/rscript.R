@@ -14,9 +14,9 @@
 
 ## sink() if being run non-interactively
 if (sink.number() != 0) {sink()}
-..scriptFileName.. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
-if (length(..scriptFileName..) == 1) {
-    sink(file = paste0(..scriptFileName.., ".txt"), split = TRUE)
+.script_name. <- gsub("^--file=", "", Filter(function(x) {grepl("^--file=", x)}, commandArgs()))
+if (length(.script_name.) == 1) {
+    sink(file = paste0(.script_name., ".txt"), split = TRUE)
     options(width = 100)
 }
 
