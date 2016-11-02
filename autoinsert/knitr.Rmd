@@ -29,7 +29,7 @@ options(width = 116, scipen = 5)
 
 ```{r}
 
-library(magrittr)
+library(tidyverse)
 
 ```
 
