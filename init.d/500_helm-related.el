@@ -40,7 +40,8 @@
   (setq helm-input-idle-delay 0.3)
   (setq helm-candidate-number-limit 200)
   (setq helm-M-x-always-save-history t)
-  (setq helm-move-to-line-cycle-in-source t)
+  ;; This causes cycle with Buffers above Recentf and is useless.
+  ;; (setq helm-move-to-line-cycle-in-source t)
   ;; Always use the other window for helm (below if no other window exists)
   (setq helm-split-window-default-side 'other)
   ;; helm for isearch 2014-02-01
