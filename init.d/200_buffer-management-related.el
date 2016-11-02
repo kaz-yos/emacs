@@ -19,7 +19,7 @@
 (setq global-auto-revert-non-file-buffers t)
 ;; VC status change is also captured
 (setq auto-revert-check-vc-info t)
-;; No ARev in mode-line (it is alwasy on)
+;; No ARev in mode-line
 (setq auto-revert-mode-text "")
 
 
