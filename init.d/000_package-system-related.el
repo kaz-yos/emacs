@@ -2,13 +2,13 @@
 (require 'package)
 ;;
 ;;
-;; MELPA repository
+;;;  MELPA repository
 ;; http://melpa.milkbox.net/#installing
 ;; http://melpa.milkbox.net/#/getting-started
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;;
-;; MELPA Stable
+;;;  MELPA Stable
 ;; http://stable.melpa.org/#/getting-started
 (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
@@ -18,8 +18,9 @@
 ;; http://qiita.com/items/e81fca7a9797fe203e9f
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;;
-;; org mode repository
-;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+;;;  org mode repository
+;; http://orgmode.org/elpa.html
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 ;;
 ;; Refresh contents  if no package-archive-contents available
 ;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs

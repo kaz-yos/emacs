@@ -1,10 +1,18 @@
 ;;; Org-mode related
+;;
+;; Installation:
+;; Use org elpa http://orgmode.org/elpa.html
+;; Install org-plus-contrib from org repositorby
+;; Alternatively, download the full archive from http://orgmode.org/
+;; These both contain the contributed files, which gnu repo doesn't contain.
+;;
 ;; Load org
 (use-package org
   :mode ("\\.org" . org-mode)
-  :init
-  (add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
-  (add-to-list 'load-path "~/.emacs.d/packages/org-mode/contrib/lisp")
+  ;; If using downloaded version
+  ;; :init
+  ;; (add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
+  ;; (add-to-list 'load-path "~/.emacs.d/packages/org-mode/contrib/lisp")
   ;;
   :config
   ;; Key bindings
@@ -84,7 +92,7 @@
   ;; http://stackoverflow.com/questions/17239273/org-mode-buffer-latex-syntax-highlighting
   (setq org-highlight-latex-and-related '(latex script entities))
   ;; Default packages (Taken from Shunguang's)
-  (setq org-latex-packages-alist '(("AUTO" "inputenc" t) ("T1" "fontenc" t) ("" "fixltx2e" t) ("" "graphicx" t) ("" "longtable" t) ("" "float" t) ("" "wrapfig" t) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "amssymb" t) ("" "mathtools" t) ("" "amsmath" t) ("" "wasysym" t) ("" "latexsym" t)  ("" "hyperref" t) ("" "pdfpages" t) ("" "tikz" t ) ("" "listings" t) ("" "color" t) "\\tolerance=1000"))
+  ;; (setq org-latex-packages-alist '(("AUTO" "inputenc" t) ("T1" "fontenc" t) ("" "fixltx2e" t) ("" "graphicx" t) ("" "longtable" t) ("" "float" t) ("" "wrapfig" t) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "amssymb" t) ("" "mathtools" t) ("" "amsmath" t) ("" "wasysym" t) ("" "latexsym" t)  ("" "hyperref" t) ("" "pdfpages" t) ("" "tikz" t ) ("" "listings" t) ("" "color" t) "\\tolerance=1000"))
   ;;
   ;; Citation management
   ;; https://github.com/jkitchin/org-ref
