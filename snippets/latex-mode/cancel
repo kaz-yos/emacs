@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cancel
+# key: cancel
+# --
+~\cancel{$1}~$0
