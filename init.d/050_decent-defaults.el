@@ -205,3 +205,9 @@
 (global-set-key (kbd "A-k") 'kill-this-buffer)
 ;; http://pragmaticemacs.com/emacs/a-better-shortcut-for-delete-frame/
 (global-set-key (kbd "C-x w") 'delete-frame)
+
+
+;;;
+;;; Add the system clipboard to the emacs kill-ring
+;; http://pragmaticemacs.com/emacs/add-the-system-clipboard-to-the-emacs-kill-ring/
+(setq save-interprogram-paste-before-kill t)
