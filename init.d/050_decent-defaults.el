@@ -111,6 +111,8 @@
 ;; Get file path or URL from text in the current line
 ;; http://www.gnu.org/s/libtool/manual/emacs/FFAP.html
 (ffap-bindings)
+;; A wild card in ffap is passed to dired to get a filtered list of files
+(setq ffap-pass-wildcards-to-dired t)
 
 
 ;;;
