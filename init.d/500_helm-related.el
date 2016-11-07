@@ -140,3 +140,9 @@
 ;; https://github.com/jixiuf/helm-bm
 (use-package helm-bm
   :commands (helm-bm))
+
+
+;;; helm-google.el
+;; https://github.com/steckerhalter/helm-google
+(use-package helm-google
+  :commands (helm-google))
