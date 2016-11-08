@@ -165,4 +165,12 @@
       (setq elscreen-display-tab nil)))
   ;;
   ;; It has to kick in.
-  (elscreen-start))
+  (elscreen-start)
+  ;;
+  ;; separate buffer list for each elscreen
+  ;; https://github.com/wamei/elscreen-separate-buffer-list
+  (require 'elscreen-separate-buffer-list)
+  (elscreen-separate-buffer-list-mode)
+  ;; Less safe alternative
+  ;; https://github.com/jeffgran/elscreen-buffer-group
+  )
