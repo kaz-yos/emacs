@@ -46,3 +46,30 @@
   :bind ("C-c y" . helm-yas-complete)
   :config
   (setq helm-yas-space-match-any-greedy t))
+;;
+;;
+;;; yatemplate.el
+;; https://github.com/mineo/yatemplate
+;; http://emacs.rubikitch.com/yatemplate/
+(use-package yatemplate
+  :config
+  ;; Template folder (default)
+  (setq yatemplate-dir "~/.emacs.d/templates")
+  ;; Fill auto-insert-alist
+  ;; auto-insert-alist: A list specifying text to insert by default into a new file.
+  (yatemplate-fill-alist)
+  ;;
+  ;; From rubikitch example
+  (defun find-file-hook--yatemplate ()
+    "Activate snippet-mode upon opening a file in the template directory"
+    (when (string-match "emacs.d/templates/" buffer-file-name)
+      (let ((mode major-mode))
+        (snippet-mode)
+        (setq-local yas--guessed-modes (list mode)))))
+  (add-hook 'find-file-hook 'find-file-hook--yatemplate)
+  ;;
+  (defun after-save-hook--yatemplate ()
+    "Update auto-insert-alist after saving a yatemplate file"
+    (when (string-match "emacs.d/templates/" buffer-file-name)
+      (yatemplate-fill-alist)))
+  (add-hook 'after-save-hook 'after-save-hook--yatemplate))
