@@ -34,3 +34,18 @@
   :disabled t
   :config
   (dumb-jump-mode))
+
+
+;;;
+;;; pos-tip.el
+;; https://github.com/tjarvstrand/pos-tip
+;; It breaks down on macOS?
+(use-package pos-tip
+  :disabled t
+  :config
+  (defun pos-tip-eldoc-display-message (format-string &rest args)
+    "Display eldoc message near point."
+    (when format-string
+      (pos-tip-show (apply 'format format-string args))))
+  ;; Use
+  (setq eldoc-message-function #'pos-tip-eldoc-display-message))
