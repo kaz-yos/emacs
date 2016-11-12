@@ -79,9 +79,10 @@
   ;;
 ;;;
 ;;; Org-Babel
-  ;; Babel: active code in Org-mode
+  ;; Active code in Org-mode
   ;; http://orgmode.org/worg/org-contrib/babel/index.html
-  ;;
+  ;; Introduction
+  ;; http://orgmode.org/worg/org-contrib/babel/intro.html
   ;; Babel Languages
   ;; http://orgmode.org/worg/org-contrib/babel/languages.html
   (org-babel-do-load-languages
