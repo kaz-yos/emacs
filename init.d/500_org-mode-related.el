@@ -62,7 +62,7 @@
   ;; Linewrap in Org-mode of Emacs
   ;; http://superuser.com/questions/299886/linewrap-in-org-mode-of-emacs
   (setq org-startup-truncated nil)
-  (define-key org-mode-map "\M-q" 'toggle-truncate-lines)
+  (define-key org-mode-map (kbd "M-q") 'toggle-truncate-lines)
   ;;
   ;; Do not fold at startup
   (setq org-startup-folded nil)
@@ -70,9 +70,19 @@
   ;; (setq org-startup-indented t)
   ;;
   ;; TODO related
+  ;; Information to record when a task moves to the DONE state.
+  ;; nil     Don’t add anything, just change the keyword
+  ;; time    Add a time stamp to the task
+  ;; note    Prompt for a note and add it with template ‘org-log-note-headings’
   (setq org-log-done 'time)
   ;;
-  ;; Org-Bable
+  ;;
+;;;
+;;; Org-Babel
+  ;; Babel: active code in Org-mode
+  ;; http://orgmode.org/worg/org-contrib/babel/index.html
+  ;;
+  ;; R Source Code Blocks in Org Mode
   ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -83,19 +93,28 @@
      (R . t)
      (emacs-lisp . t)))
   ;;
+  ;; Source code fontification
   ;; http://orgmode.org/worg/org-contrib/babel/examples/fontify-src-code-blocks.html
   (setq org-src-fontify-natively t)
-  ;; https://github.com/xiaohanyu/oh-my-emacs/blob/master/core/ome-org.org
+  ;; Source code tab key behavior
+  ;; https://github.com/xiaohanyu/oh-my-emacs/blob/master/core/ome-org.org#code-block-fontification
   (setq org-src-tab-acts-natively t)
   ;;
-  ;; LaTeX
+  ;;
+;;;
+;;; LaTeX
   (setq org-highlight-latex-fragments-and-specials t)
   ;; http://stackoverflow.com/questions/17239273/org-mode-buffer-latex-syntax-highlighting
+  ;; ‘latex’    Highlight LaTeX snippets and environments. (not full LaTeX syntax highlighting)
+  ;; ‘script’   Highlight subscript and superscript.
+  ;; ‘entities’ Highlight entities.
   (setq org-highlight-latex-and-related '(latex script entities))
+  ;;
   ;; Default packages (Taken from Shunguang's)
   ;; (setq org-latex-packages-alist '(("AUTO" "inputenc" t) ("T1" "fontenc" t) ("" "fixltx2e" t) ("" "graphicx" t) ("" "longtable" t) ("" "float" t) ("" "wrapfig" t) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "amssymb" t) ("" "mathtools" t) ("" "amsmath" t) ("" "wasysym" t) ("" "latexsym" t)  ("" "hyperref" t) ("" "pdfpages" t) ("" "tikz" t ) ("" "listings" t) ("" "color" t) "\\tolerance=1000"))
   ;;
-  ;; Citation management
+  ;;
+;;; Citation management
   ;; https://github.com/jkitchin/org-ref
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
@@ -111,9 +130,6 @@
           "pdflatex -interaction nonstopmode -output-directory %o %f"
           "pdflatex -interaction nonstopmode -output-directory %o %f"))
   ;;
-  ;; Emacs Org-mode Bibtex Screencast
-  ;; https://vimeo.com/99167082
-  ;; (require 'ox-bibtex) ; not available?
   ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
