@@ -50,15 +50,6 @@
   ;; This breaks other behaviors?
   ;; (define-key org-mode-map (kbd "<return>") 'org-meta-return)
   ;;
-  ;; Completion (Taken from Shunguang's)
-  (setq org-completion-use-ido t)
-  ;; Targets include this file and any file contributing to the agenda - up to 3 levels deep
-  (setq org-refile-targets (quote ((org-agenda-files :maxlevel . 3) (nil :maxlevel . 3))))
-  ;; Targets start with the file name - allows creating level 1 tasks
-  (setq org-refile-use-outline-path (quote file))
-  ;; Targets complete in steps so we start with filename, TAB shows the next level of targets etc
-  (setq org-outline-path-complete-in-steps t)
-  ;;
   ;; Auto-complete mode
   (require 'org-ac)
   ;;
