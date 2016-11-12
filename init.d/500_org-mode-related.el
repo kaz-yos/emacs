@@ -2,10 +2,11 @@
 ;;
 ;; Installation:
 ;; Use org elpa http://orgmode.org/elpa.html
-;; Install org-plus-contrib from org repositorby
+;; Install org-plus-contrib from org repository. Does not contain scripts.
 ;;
-;; Alternatively, download the source from http://orgmode.org/
-;; These both contain the contributed files, which gnu repo doesn't contain.
+;; git repository. Contains scripts.
+;; $ git clone git://orgmode.org/org-mode.git
+;; $ make autoloads
 ;;
 ;; To inactivate org that came with emacs. Delete the folder (e.g., in Emacs.app).
 ;;
@@ -14,7 +15,7 @@
   :mode ("\\.org" . org-mode)
   ;; If using downloaded version
   :init
-  ;; Use if installing from source
+  ;; If using manually installed org-mode.
   ;; (add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
   ;; (add-to-list 'load-path "~/.emacs.d/packages/org-mode/contrib/lisp")
   ;;
@@ -79,6 +80,8 @@
   ;;
 ;;;
 ;;; Org-Babel
+  ;; org-mode manual 14 Working with source code
+  ;; http://orgmode.org/manual/Working-With-Source-Code.html#Working-With-Source-Code
   ;; Active code in Org-mode
   ;; http://orgmode.org/worg/org-contrib/babel/index.html
   ;; Introduction
@@ -99,6 +102,8 @@
      (clojure . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
      (python . t)
+     ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html
+     (ditaa . t)
      (emacs-lisp . t)
      (shell . t)))
   ;;
@@ -108,6 +113,10 @@
   ;; Source code tab key behavior
   ;; https://github.com/xiaohanyu/oh-my-emacs/blob/master/core/ome-org.org#code-block-fontification
   (setq org-src-tab-acts-natively t)
+  ;;
+  ;; Language specific settings
+  ;; ditaa diagram language (git repo org-mode has necessary scripts)
+  (setq org-ditaa-jar-path "~/.emacs.d/packages/org-mode/contrib/scripts/ditaa.jar")
   ;;
   ;;
 ;;;
