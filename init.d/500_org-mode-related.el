@@ -116,10 +116,51 @@
   ;; ‘latex’    Highlight LaTeX snippets and environments. (not full LaTeX syntax highlighting)
   ;; ‘script’   Highlight subscript and superscript.
   ;; ‘entities’ Highlight entities.
-  (setq org-highlight-latex-and-related '(latex script entities))
+  (setq org-highlight-latex-and-related '(latex
+                                          script
+                                          entities))
   ;;
-  ;; Default packages (Taken from Shunguang's)
-  ;; (setq org-latex-packages-alist '(("AUTO" "inputenc" t) ("T1" "fontenc" t) ("" "fixltx2e" t) ("" "graphicx" t) ("" "longtable" t) ("" "float" t) ("" "wrapfig" t) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "amssymb" t) ("" "mathtools" t) ("" "amsmath" t) ("" "wasysym" t) ("" "latexsym" t)  ("" "hyperref" t) ("" "pdfpages" t) ("" "tikz" t ) ("" "listings" t) ("" "color" t) "\\tolerance=1000"))
+  ;; ‘org-latex-default-packages-alist’ contains required packages
+  ;; The packages in this list are needed by one part or another of
+  ;; Org mode to function properly:
+  ;; - inputenc, fontenc:  for basic font and character selection
+  ;; - graphicx: for including images
+  ;; - grffile: allow periods and spaces in graphics file names
+  ;; - longtable: For multipage tables
+  ;; - wrapfig: for figure placement
+  ;; - rotating: for sideways figures and tables
+  ;; - ulem: for underline and strike-through
+  ;; - amsmath: for subscript and superscript and math environments
+  ;; - textcomp, amssymb: for various symbols used
+  ;; for interpreting the entities in ‘org-entities’.  You can skip
+  ;; some of these packages if you don’t use any of their symbols.
+  ;; - capt-of: for captions outside of floats
+  ;; - hyperref: for cross references
+  ;;
+  ;; A cell is of the format ("options" "package" SNIPPET-FLAG COMPILERS)
+  ;; The default is configured as follows
+  ;; (setq org-latex-default-packages-alist '(("AUTO" "inputenc" t ("pdflatex"))
+  ;;                                          ("T1" "fontenc" t ("pdflatex"))
+  ;;                                          ("" "graphicx" t)
+  ;;                                          ("" "grffile" t)
+  ;;                                          ("" "longtable" nil)
+  ;;                                          ("" "wrapfig" nil)
+  ;;                                          ("" "rotating" nil)
+  ;;                                          ("normalem" "ulem" t)
+  ;;                                          ("" "amsmath" t)
+  ;;                                          ("" "textcomp" t)
+  ;;                                          ("" "amssymb" t)
+  ;;                                          ("" "capt-of" nil)
+  ;;                                          ("" "hyperref" nil)))
+  ;;
+  ;; Alist of packages to be inserted in every LaTeX header.
+  ;; These will be inserted after ‘org-latex-default-packages-alist’.
+  ;; Each element is either a cell or a string.
+  ;; A cell is of the format: ("options" "package" SNIPPET-FLAG)
+  ;; A string will be inserted as-is in the header of the document.
+  (setq org-latex-packages-alist '(("" "tikz" t )
+                                   ;; String insertion for setting options
+                                   "\\tolerance=1000"))
   ;;
   ;;
 ;;;
