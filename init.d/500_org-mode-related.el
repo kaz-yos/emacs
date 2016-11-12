@@ -82,16 +82,24 @@
   ;; Babel: active code in Org-mode
   ;; http://orgmode.org/worg/org-contrib/babel/index.html
   ;;
-  ;; R Source Code Blocks in Org Mode
-  ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html
+  ;; Babel Languages
+  ;; http://orgmode.org/worg/org-contrib/babel/languages.html
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((sql . t)
-     (sqlite . t)
-     (python . t)
+   '(;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-LaTeX.html
      (latex . t)
+     ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html
      (R . t)
-     (emacs-lisp . t)))
+     ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-stan.html
+     (stan . t)
+     ;; https://github.com/gjkerns/ob-julia/blob/master/ob-julia-doc.org
+     (julia . t)
+     ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html
+     (clojure . t)
+     ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
+     (python . t)
+     (emacs-lisp . t)
+     (shell . t)))
   ;;
   ;; Source code fontification
   ;; http://orgmode.org/worg/org-contrib/babel/examples/fontify-src-code-blocks.html
@@ -102,7 +110,7 @@
   ;;
   ;;
 ;;;
-;;; LaTeX
+;;; LaTeX in org-mode
   (setq org-highlight-latex-fragments-and-specials t)
   ;; http://stackoverflow.com/questions/17239273/org-mode-buffer-latex-syntax-highlighting
   ;; ‘latex’    Highlight LaTeX snippets and environments. (not full LaTeX syntax highlighting)
@@ -114,7 +122,8 @@
   ;; (setq org-latex-packages-alist '(("AUTO" "inputenc" t) ("T1" "fontenc" t) ("" "fixltx2e" t) ("" "graphicx" t) ("" "longtable" t) ("" "float" t) ("" "wrapfig" t) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "amssymb" t) ("" "mathtools" t) ("" "amsmath" t) ("" "wasysym" t) ("" "latexsym" t)  ("" "hyperref" t) ("" "pdfpages" t) ("" "tikz" t ) ("" "listings" t) ("" "color" t) "\\tolerance=1000"))
   ;;
   ;;
-;;; Citation management
+;;;
+;;; org-mode citation management
   ;; https://github.com/jkitchin/org-ref
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
