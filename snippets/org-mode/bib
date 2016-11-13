@@ -1,0 +1,5 @@
+# key: bib
+# name: bib
+# --
+bibliographystyle:unsrt
+bibliography:`(concat (file-name-base) ".bib")`
