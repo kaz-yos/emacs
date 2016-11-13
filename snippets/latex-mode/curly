@@ -6,4 +6,4 @@
   \begin{aligned}
     $0
   \end{aligned}
-\right .
+\right .`(concat "\\" "\\")`
