@@ -1,6 +1,7 @@
 ;;; Org-mode related
 ;;
 ;; Installation:
+;; http://orgmode.org/manual/Installation.html
 ;; Use org elpa http://orgmode.org/elpa.html
 ;; Install org-plus-contrib from org repository. Does not contain scripts.
 ;;
@@ -181,9 +182,18 @@
   (require 'org-ref)
   (define-key org-mode-map (kbd "C-A-a") 'org-ref-helm-insert-cite-link)
   ;;
+  ;; Need to put these configurations within the org file.
+  ;; https://github.com/jkitchin/org-ref#screenshots
+  ;; https://www.sharelatex.com/learn/Bibtex_bibliography_styles
+  ;; http://sites.stat.psu.edu/~surajit/present/bib.htm
+  ;; bibliographystyle:plain
+  ;; bibliography:file_name.bib
+  ;;
   ;; PDF processing with correct bibtex handling
   ;; http://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html
-  ;; %f -> full file name; %b -> file base name; %o -> base directory
+  ;; %f: full file name
+  ;; %b: file base name
+  ;; %o: base directory
   (setq org-latex-pdf-process
         '("pdflatex -interaction nonstopmode -output-directory %o %f"
           "bibtex %b"
