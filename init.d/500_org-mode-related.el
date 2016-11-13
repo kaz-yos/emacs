@@ -122,6 +122,11 @@
   ;;
 ;;;
 ;;; LaTeX in org-mode
+  ;; The Org-article LaTeX class
+  ;; http://orgmode.org/worg/org-contrib/babel/examples/article-class.html
+  ;; 12.7.5 LaTeX specific attributes
+  ;; http://orgmode.org/manual/LaTeX-specific-attributes.html
+  ;;
   (setq org-highlight-latex-fragments-and-specials t)
   ;; http://stackoverflow.com/questions/17239273/org-mode-buffer-latex-syntax-highlighting
   ;; ‘latex’    Highlight LaTeX snippets and environments. (not full LaTeX syntax highlighting)
