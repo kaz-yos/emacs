@@ -169,9 +169,10 @@
   ;; Each element is either a cell or a string.
   ;; A cell is of the format: ("options" "package" SNIPPET-FLAG)
   ;; A string will be inserted as-is in the header of the document.
-  (setq org-latex-packages-alist '(("" "tikz" t )
-                                   ;; String insertion for setting options
-                                   "\\tolerance=1000"))
+  (setq org-latex-packages-alist
+        '(("" "tikz" t )
+          ;; String insertion for setting options
+          "\\tolerance=1000"))
   ;;
   ;;
 ;;;
