@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: latex_header
+# name: latexheader
 # key: head
 # expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
 # --
