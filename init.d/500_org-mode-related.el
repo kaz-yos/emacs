@@ -215,8 +215,10 @@
   ;;
 ;;;
 ;;; Exporter configurations
-  ;; Explained in ox.el file.
-  ;; Asynchronous export
+  ;; ox.el --- Export Framework for Org Mode
+  (require 'ox)
+  ;;
+  ;; Asynchronous export is explained in ox.el
   ;; Non-nil means export and publishing commands will run in background.
   ;; https://www.gnu.org/software/emacs/manual/html_node/org/The-Export-Dispatcher.html
   (setq org-export-in-background t)
@@ -231,30 +233,23 @@
   ;; load faster and the export more portable.
   ;; https://lists.gnu.org/archive/html/emacs-orgmode/2013-09/msg01299.html
   ;; https://lists.gnu.org/archive/html/emacs-orgmode/2014-09/msg00464.html
+  ;; https://github.com/russell/dotfiles/blob/master/emacs.d/init-org-export.el
   (setq org-export-async-init-file (expand-file-name "~/.emacs.d/init_org_async.el"))
+  ;; Check errors in async process with M-x org-export-stack
+  ;;
+  ;; Non-nil means asynchronous export process should leave data behind.
+  (setq org-export-async-debug t)
   ;;
   ;; Async export with direct key bindings
-  ;; Function: apply-partially func &rest args
-  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Calling-Functions.html
-  ;; (defalias 'org-latex-export-to-pdf-async
-  ;;   ;; (org-latex-export-to-pdf &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
-  ;;   (apply-partially 'org-latex-export-to-pdf t)
-  ;;   "Asynchronous org-latex-export-to-pdf")
-  ;; (defalias 'org-beamer-export-to-pdf-async
-  ;;   ;; (org-beamer-export-to-pdf &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
-  ;;   (apply-partially 'org-beamer-export-to-pdf t)
-  ;;   "Asynchronous org-beamer-export-to-pdf")
   (defun org-latex-export-to-pdf-async (&optional SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
     (interactive)
     (org-latex-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST))
   (defun org-beamer-export-to-pdf-async (&optional SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
     (interactive)
     (org-beamer-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST))
-  ;; Not these async ones are functioning yet
-  ;; (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf-async)
-  ;; (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf-async)
-  (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf)
-  (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf)
+  ;; Keys
+  (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf-async)
+  (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf-async)
   ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
