@@ -201,10 +201,15 @@
           "pdflatex -interaction nonstopmode -output-directory %o %f"))
   ;;
   ;;
+;;;
+;;; Optional exporters
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
   (require 'ox-beamer)
   ;;
+  ;;
+;;;
+;;; Miscellaneous configurations
   ;; Pretty bullets
   ;; https://github.com/sabof/org-bullets
   (require 'org-bullets)
