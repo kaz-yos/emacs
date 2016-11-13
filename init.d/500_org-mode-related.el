@@ -30,14 +30,12 @@
   ;; Key bindings
   (define-key org-mode-map (kbd "<C-tab>") 'other-window-or-split)
   (define-key org-mode-map (kbd "<A-tab>") 'org-global-cycle)
-  (define-key org-mode-map (kbd "A-s") 'org-latex-export-to-pdf)
-  (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf)
   ;; Backslash
   (define-key org-mode-map (kbd   ";") 'my-tex-insert-backslash)
   (define-key org-mode-map (kbd "A-;") 'my-tex-insert-semicolon)
   ;;
   ;; bm.el-like function
-  (define-key org-mode-map (kbd "s-b") 'helm-org-in-buffer-headings)
+  ;; (define-key org-mode-map (kbd "s-b") 'helm-org-in-buffer-headings)
   ;;
   ;; Arrow key replacement for HHKB
   (define-key org-mode-map (kbd "A-M-i") 'org-metaup)
@@ -136,6 +134,14 @@
                                           script
                                           entities))
   ;;
+  ;; Additional font locks
+  ;; (add-hook 'org-mode-hook
+  ;;           (lambda ()
+  ;;             ;; (font-lock-add-keywords MODE KEYWORDS &optional HOW)
+  ;;             (font-lock-add-keywords nil
+  ;;                                     '(("\\\\" 1
+  ;;                                        font-latex-warning-face t)))))
+  ;;
   ;; ‘org-latex-default-packages-alist’ contains required packages
   ;; The packages in this list are needed by one part or another of
   ;; Org mode to function properly:
@@ -213,6 +219,23 @@
   ;; Non-nil means export and publishing commands will run in background.
   ;; https://www.gnu.org/software/emacs/manual/html_node/org/The-Export-Dispatcher.html
   (setq org-export-in-background t)
+  ;;
+  ;; Async export with direct key bindings
+  ;; Function: apply-partially func &rest args
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Calling-Functions.html
+  (defalias 'org-latex-export-to-pdf-async
+    ;; (org-latex-export-to-pdf &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
+    (apply-partially 'org-latex-export-to-pdf t)
+    "Asynchronous org-latex-export-to-pdf")
+  (defalias 'org-beamer-export-to-pdf-async
+    ;; (org-beamer-export-to-pdf &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
+    (apply-partially 'org-beamer-export-to-pdf t)
+    "Asynchronous org-beamer-export-to-pdf")
+  ;; Not these async ones are functioning yet
+  ;; (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf-async)
+  ;; (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf-async)
+  (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdfc)
+  (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf)
   ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
