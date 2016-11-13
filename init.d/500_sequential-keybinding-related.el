@@ -82,8 +82,8 @@
   ;;
   ;; Org
   (defun my-org-smartchr-setting ()
-    (local-set-key (kbd "^") (smartchr '("^" "^{`!!'}")))
-    (local-set-key (kbd "_") (smartchr '("_" "_{`!!'}")))
+    (local-set-key (kbd "^") (smartchr '("^{`!!'}" "^")))
+    (local-set-key (kbd "_") (smartchr '("_{`!!'}" "_")))
     (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
     (local-set-key (kbd "#") (smartchr '("# " "#+" "# ############################################################################ #")))
     (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
