@@ -186,7 +186,7 @@
   ;; https://github.com/jkitchin/org-ref#screenshots
   ;; https://www.sharelatex.com/learn/Bibtex_bibliography_styles
   ;; http://sites.stat.psu.edu/~surajit/present/bib.htm
-  ;; bibliographystyle:plain
+  ;; bibliographystyle:unsrt
   ;; bibliography:file_name.bib
   ;;
   ;; PDF processing with correct bibtex handling
