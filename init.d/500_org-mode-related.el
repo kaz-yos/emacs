@@ -258,6 +258,27 @@
   ;;
 ;;;
 ;;; Miscellaneous configurations
+  ;; External applications for opening ‘file:path’ items in a document.
+  (setq org-file-apps
+        '((auto-mode . emacs)
+          ("\\.mm\\'" . default)
+          ("\\.x?html?\\'" . default)
+          ;; Drop default for pdf, which means Preview.app in macOS
+          ;; ("\\.pdf\\'" . default)
+          ))
+  ;;
+  ;; macOS-specific file-app associations
+  ;; http://emacs.stackexchange.com/questions/2856/how-to-configure-org-mode-to-respect-system-specific-default-applications-for-ex
+  (setq org-file-apps-defaults-macosx
+        '((remote . emacs)
+          (system . "open %s")
+          ("ps.gz" . "gv %s")
+          ("eps.gz" . "gv %s")
+          ("dvi" . "xdvi %s")
+          ("fig" . "xfig %s")
+          ("pdf" . "open -a Skim.app %s")
+          (t . "open %s")))
+  ;;
   ;; Pretty bullets
   ;; https://github.com/sabof/org-bullets
   (require 'org-bullets)
