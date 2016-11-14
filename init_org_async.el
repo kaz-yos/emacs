@@ -8,6 +8,15 @@
 (let ((default-directory "~/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
 
+;;; Loading
+;; Some packages use defstruct, which is obsolete. Alias cl-defstruct to avoid errors.
+;; 2016-01-09 latex-math-preview still depends on defstruct, and gives an error w/o it.
+(defalias 'defstruct 'cl-defstruct)
+;;
+;; Need to be initialized.
+(package-initialize)
+
+
 ;;;
 ;;; use-package.el
 (require 'use-package)
@@ -48,4 +57,4 @@
 ;;
 ;;
 ;; In case there are missed configurations. (loading this way may not be functions)
-(load "~/.emacs.d/init.d/500_org-mode-related.el")
+;; (load "~/.emacs.d/init.d/500_org-mode-related.el")
