@@ -2,8 +2,16 @@
 # name: mice
 # key: mice
 # --
+cat("
+###
+### Missing data imputation with mice
+################################################################################\n")
+
 ## Extract all variable names in dataset
-allVars <- names(df)
+allVars <- names($1)
+
+## names of variables with missingness
+missVars <- names($1)[colSums(is.na($1)) > 0]
 
 ## mice predictorMatrix
 ## A square matrix of size ‘ncol(data)’ containing 0/1
@@ -26,46 +34,120 @@ colnames(predictorMatrix) <- allVars
 ## Too many weights issue in nnet called by mice
 ## http://stackoverflow.com/questions/28551633/error-in-r-mice-package-too-many-weights
 
-## Variables informing imputation (these must also be imputed to be useful)
-imputerVars <- c()
+
+cat("
+###  Specify Variables informing imputation\n")
+## These can be either complete variables or variables with missingness.
+## Those with missingness must be imputed.
+## Explicitly specify.
+imputerVars <- c($2)
+## Keep variables that actually exist in dataset
+imputerVars <- intersect(unique(imputerVars), allVars)
+imputerVars
 imputerMatrix <- predictorMatrix
 imputerMatrix[,imputerVars] <- 1
+imputerMatrix
 
-## Exclude some variables from imputed variables
-excludeVars <- c()
-imputedVars <- setdiff(imputerVars, excludeVars)
+
+cat("
+###  Specify variables with missingness to be imputed \n")
+## Could specify additional variables that are imputed,
+## but does not inform imputation.
+imputedOnlyVars <- c($3)
+## Imputers that have missingness must be imputed.
+imputedVars <- intersect(unique(c(imputedOnlyVars, imputerVars)), missVars)
+imputedVars
 imputedMatrix <- predictorMatrix
 imputedMatrix[imputedVars,] <- 1
+imputedMatrix
 
-## Specify imputer and imputed variables
+
+cat("
+###  Construct a full predictor matrix (rows: imputed variables; cols: imputer variables)\n")
 ## Keep correct imputer-imputed pairs only
 predictorMatrix <- imputerMatrix * imputedMatrix
-## Diagonals must be zeros
+## Diagonals must be zeros (a variable cannot impute itself)
 diag(predictorMatrix) <- 0
+predictorMatrix
 
-cat("### Imputers (non-zero columns)\n")
-names(colSums(predictorMatrix)[colSums(predictorMatrix) > 0])
-cat("### Imputed (non-zero rows)\n")
-names(rowSums(predictorMatrix)[rowSums(predictorMatrix) > 0])
 
-## Dry run for obtaining imputation methods
-dryMice <- mice(data = df, m = 1, predictorMatrix = predictorMatrix, maxit = 0)
+cat("
+###  Dry-run mice for imputation methods\n")
+dryMice <- mice(data = $1, m = 1, predictorMatrix = predictorMatrix, maxit = 0)
+## Update predictor matrix
+predictorMatrix <- dryMice$predictorMatrix
+cat("###   Imputers (non-zero columns of predictorMatrix)\n")
+imputerVars <- colnames(predictorMatrix)[colSums(predictorMatrix) > 0]
+imputerVars
+cat("###   Imputed (non-zero rows of predictorMatrix)\n")
+imputedVars <- rownames(predictorMatrix)[rowSums(predictorMatrix) > 0]
+imputedVars
+cat("###   Imputers that are complete\n")
+setdiff(imputerVars, imputedVars)
+cat("###   Imputers with missingness\n")
+intersect(imputerVars, imputedVars)
+cat("###   Imputed-only variables without being imputers\n")
+setdiff(imputedVars, imputerVars)
+cat("###   Variables with missingness that are not imputed\n")
+setdiff(missVars, imputedVars)
+cat("###   Relevant part of predictorMatrix\n")
+predictorMatrix[rowSums(predictorMatrix) > 0, colSums(predictorMatrix) > 0]
 
-## Exclude some variables from imputation
-## Must be excluded from both the predictorMatrix and method
+
+## Empty imputation method to really exclude variables
 ## http://www.stefvanbuuren.nl/publications/MICE%20in%20R%20-%20Draft.pdf
-dryMice$method[excludeVars] <- ""
+##
+## MICE will automatically skip imputation of variables that are complete.
+## One of the problems in previous versions of MICE was that all incomplete
+## data needed to be imputed. In MICE 2.0 it is possible to skip imputation
+## of selected incomplete variables by specifying the empty method "".
+## This works as long as the incomplete variable that is skipped is not being
+## used as a predictor for imputing other variables.
+## Note: puttting zeros in the predictorMatrix alone is NOT enough!
+##
+dryMice$method[setdiff(allVars, imputedVars)] <- ""
+cat("###   Methods used for imputation\n")
+dryMice$method[sapply(dryMice$method, nchar) > 0]
 
-## Impute in parallel
-M <- 8 * 3
+
+cat("
+###  Run mice\n")
+M <- 4
+cat("### Imputing", M, "times\n")
+
+## Set seed for reproducibility
 set.seed(3561126)
 
-dfMice <- foreach(i = seq_len(M), .combine = ibind) %dorng% {
+## Parallelized execution
+miceout <- foreach(i = seq_len(M), .combine = ibind) %dorng% {
     cat("### Started iteration", i, "\n")
-    miceout <- mice(data = df, m = 1, print = FALSE,
+    miceout <- mice(data = $1, m = 1, print = TRUE,
                     predictorMatrix = predictorMatrix, method = dryMice$method,
                     MaxNWts = 2000)
     cat("### Completed iteration", i, "\n")
     ## Make sure to return the output
     miceout
 }
+
+
+cat("
+###  Show mice results\n")
+## mice object ifself
+miceout
+## Variables that no longer have missingness after imputation
+cat("###   Variables actually imputed\n")
+actuallyImputedVars <-
+    setdiff(names($1)[colSums(is.na($1)) > 0],
+            names(complete(miceout, action = 1))[colSums(is.na(complete(miceout, action = 1))) > 0])
+actuallyImputedVars
+
+## Examine discrepancies
+cat("###   Variables that were unexpectedly imputed\n")
+setdiff(actuallyImputedVars, imputedVars)
+cat("###   Variables that were planned for MI but not imputed\n")
+setdiff(imputedVars, actuallyImputedVars)
+
+## Still missing variables
+cat("###   Variables still having missing values\n")
+names(complete(miceout, action = 1))[colSums(is.na(complete(miceout, action = 1))) > 0]
+$0
