@@ -34,16 +34,14 @@
 (require 'ob-ditaa)
 ;;
 ;;; Enable languages
+;; Org-Mode Evaluation of code disabled
+;; https://github.com/syl20bnr/spacemacs/issues/7641
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-LaTeX.html
    (latex . t)
    ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html
    (R . t)
-   ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-stan.html
-   (stan . t)
-   ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html
-   (clojure . t)
    ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
    (python . t)
    ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html
