@@ -111,18 +111,18 @@ dryMice$method[sapply(dryMice$method, nchar) > 0]
 cat("
 ###  Run mice\n")
 M <- 4
-cat("### Imputing", M, "times\n")
+cat("###   Imputing", M, "times\n")
 
 ## Set seed for reproducibility
 set.seed(3561126)
 
 ## Parallelized execution
 miceout <- foreach(i = seq_len(M), .combine = ibind) %dorng% {
-    cat("### Started iteration", i, "\n")
+    cat("## Started iteration", i, "\n")
     miceout <- mice(data = $1, m = 1, print = TRUE,
                     predictorMatrix = predictorMatrix, method = dryMice$method,
                     MaxNWts = 2000)
-    cat("### Completed iteration", i, "\n")
+    cat("## Completed iteration", i, "\n")
     ## Make sure to return the output
     miceout
 }
