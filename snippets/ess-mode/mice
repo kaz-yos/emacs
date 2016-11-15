@@ -46,7 +46,6 @@ imputerVars <- intersect(unique(imputerVars), allVars)
 imputerVars
 imputerMatrix <- predictorMatrix
 imputerMatrix[,imputerVars] <- 1
-imputerMatrix
 
 
 cat("
@@ -59,7 +58,6 @@ imputedVars <- intersect(unique(c(imputedOnlyVars, imputerVars)), missVars)
 imputedVars
 imputedMatrix <- predictorMatrix
 imputedMatrix[imputedVars,] <- 1
-imputedMatrix
 
 
 cat("
