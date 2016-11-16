@@ -49,6 +49,9 @@
   ;;
   ;; This breaks other behaviors?
   ;; (define-key org-mode-map (kbd "<return>") 'org-meta-return)
+  ;; Swap these keys
+  ;; (define-key org-mode-map (kbd "<return>") 'org-return-indent)
+  ;; (define-key org-mode-map (kbd "C-j") 'org-return)
   ;;
   ;; Auto-complete mode
   (require 'org-ac)
