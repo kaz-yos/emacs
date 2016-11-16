@@ -221,7 +221,7 @@
   ;; Asynchronous export is explained in ox.el
   ;; Non-nil means export and publishing commands will run in background.
   ;; https://www.gnu.org/software/emacs/manual/html_node/org/The-Export-Dispatcher.html
-  (setq org-export-in-background t)
+  ;; (setq org-export-in-background t)
   ;;
   ;; File used to initialize external export process.
   ;; Value must be either nil or an absolute file name.  When nil, the
