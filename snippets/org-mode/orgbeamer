@@ -1,12 +1,12 @@
 # -*- mode: snippet -*-
-# name: beamer
+# name: orgbeamer
 # key: beamer
 # --
 # http://orgmode.org/worg/exporters/beamer/tutorial.html
 #+TITLE:
 #+AUTHOR:    Kazuki Yoshida
 #+EMAIL:
-#+DATE:      2016-04-09
+#+DATE:
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -18,3 +18,5 @@
 #+LINK_UP:
 #+LINK_HOME:
 #+STARTUP: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
