@@ -166,11 +166,12 @@ started."
 (require 'moccur-edit)
 ;; Modified buffers are saved automatically.
 (defadvice moccur-edit-change-file
-  (after save-after-moccur-edit-buffer activate)
+    (after save-after-moccur-edit-buffer activate)
   (save-buffer))
 ;; Usage:
-;; M-x moccur-grep-find to enter Moccur-grep, then objectName .R$
+;; M-x moccur-grep to enter Moccur-grep, then objectName .R$
 ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
+(global-set-key (kbd "s-m") 'moccur-grep)
 
 
 ;;;
