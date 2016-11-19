@@ -116,6 +116,9 @@
   ;; https://github.com/xiaohanyu/oh-my-emacs/blob/master/core/ome-org.org#code-block-fontification
   (setq org-src-tab-acts-natively t)
   ;;
+  ;; Delay before saving a source code buffer back into its base buffer.
+  (setq org-edit-src-auto-save-idle-delay 5)
+  ;;
   ;; Language specific settings
   ;; ditaa diagram language (git repo org-mode has necessary scripts)
   (setq org-ditaa-jar-path "~/.emacs.d/packages/org-mode/contrib/scripts/ditaa.jar")
