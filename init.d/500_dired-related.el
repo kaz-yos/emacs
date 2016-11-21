@@ -179,3 +179,12 @@ from the current buffer."
   (setq peep-dired-cleanup-eagerly t)
   ;; (setq peep-dired-cleanup-on-disable t)
   (setq peep-dired-ignored-extensions '("mkv" "iso" "mp4")))
+
+
+;;;
+;;; Async dired
+;; https://github.com/jwiegley/emacs-async
+(use-package dired-async-mode
+  :demand t
+  :config
+  (dired-async-mode 1))
