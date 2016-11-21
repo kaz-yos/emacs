@@ -79,8 +79,8 @@ This should be run before running multiple-cursors"
     ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Pattern-matching-case-statement.html#Pattern-matching-case-statement
     (pcase major-mode
       ;; ESS
-      ('ess-mode-hook               (smartchr-ess-mode-unset))
-      ('inferior-ess-mode-hook      (smartchr-ess-mode-unset))
+      ('ess-mode                    (smartchr-ess-mode-unset))
+      ('inferior-ess-mode           (smartchr-ess-mode-unset))
       ;; Python
       ('ein:notebook-multilang-mode (smartchr-python-mode-unset))
       ('python-mode                 (smartchr-python-mode-unset))
@@ -105,24 +105,24 @@ This should be run after running multiple-cursors"
     ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Pattern-matching-case-statement.html#Pattern-matching-case-statement
     (pcase major-mode
       ;; ESS
-      ('ess-mode-hook               (smartchr-ess-mode-unset))
-      ('inferior-ess-mode-hook      (smartchr-ess-mode-unset))
+      ('ess-mode                    (smartchr-ess-mode-set))
+      ('inferior-ess-mode           (smartchr-ess-mode-set))
       ;; Python
-      ('ein:notebook-multilang-mode (smartchr-python-mode-unset))
-      ('python-mode                 (smartchr-python-mode-unset))
-      ('inferior-python-mode        (smartchr-python-mode-unset))
+      ('ein:notebook-multilang-mode (smartchr-python-mode-set))
+      ('python-mode                 (smartchr-python-mode-set))
+      ('inferior-python-mode        (smartchr-python-mode-set))
       ;; SML
-      ('sml-mode                    (smartchr-sml-mode-unset))
+      ('sml-mode                    (smartchr-sml-mode-set))
       ;; LaTeX
-      ('LaTeX-mode                  (smartchr-LaTeX-mode-unset))
+      ('LaTeX-mode                  (smartchr-LaTeX-mode-set))
       ;; Org
-      ('org-mode                    (smartchr-org-mode-unset))
+      ('org-mode                    (smartchr-org-mode-set))
       ;; Emacs lisp
-      ('emacs-lisp-mode             (smartchr-emacs-lisp-mode-unset))
+      ('emacs-lisp-mode             (smartchr-emacs-lisp-mode-set))
       ;; Haskell
-      ('haskell-mode                (smartchr-haskell-mode-unset))
+      ('haskell-mode                (smartchr-haskell-mode-set))
       ;; Ruby
-      ('ruby-mode                   (smartchr-ruby-mode-unset))))
+      ('ruby-mode                   (smartchr-ruby-mode-set))))
   ;;
   ;; Work around for smartchr.el
   ;; https://github.com/magnars/multiple-cursors.el/blob/master/multiple-cursors-core.el#L514-L529
