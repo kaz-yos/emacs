@@ -46,20 +46,26 @@
   :init
 ;;; Define an unsetter constructor
   (defun smartchr-construct-unsetter (smartchar-set-function)
-    "Generate an unsetter from a smartchr setter function"
+    "Generate an unsetter lambda from a smartchr setter function"
     ;; Extract instructions in the body of the setterr
+    ;; http://endlessparentheses.com/new-in-emacs-25-1-more-flow-control-macros.html
     (let ((lst-instr (thread-first smartchar-set-function
+                       ;; Extract symbol’s function definition
                        symbol-function
+                       ;; Drop first two elements (lambda nil)
                        cddr)))
       ;; manipulate list elements to create an unsetter
       (thread-last (mapcar
                     ;; Loop over instructions generating unset instructions
                     (lambda (elt) (cons 'local-unset-key (list (nth 1 elt))))
                     lst-instr)
-        ;; argument is empty
+        ;; Add an empty argument part
         (cons nil)
         ;; Add lambda to generate an anonymous function
         (cons 'lambda))))
+  ;; Assignment to the function-cell require (fset 'symbol (lambda ...))
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
+  ;;
   ;;
 ;;;  ESS
   (defun smartchr-ess-mode-set ()
@@ -72,11 +78,7 @@
     (local-set-key (kbd "%") (smartchr '("%" " %`!!'% "))))
   (add-hook 'ess-mode-hook          'smartchr-ess-mode-set)
   (add-hook 'inferior-ess-mode-hook 'smartchr-ess-mode-set)
-  ;;
-
-  ;;  Try to generate an unsetter
-  (setq smartchr-ess-mode-unset (smartchr-construct-unsetter 'smartchr-ess-mode-set))
-  ;;
+  (fset 'smartchr-ess-mode-unset (smartchr-construct-unsetter 'smartchr-ess-mode-set))
   ;;
 ;;;  Python
   (defun smartchr-python-mode-set ()
@@ -87,18 +89,21 @@
   (add-hook 'ein:notebook-multilang-mode-hook 'smartchr-python-mode-set)
   (add-hook 'python-mode-hook                 'smartchr-python-mode-set)
   (add-hook 'inferior-python-mode-hook        'smartchr-python-mode-set)
+  (fset 'smartchr-python-mode-unset (smartchr-construct-unsetter 'smartchr-python-mode-set))
   ;;
 ;;;  SML
   (defun smartchr-sml-mode-set ()
     (local-set-key (kbd "=") (smartchr '(" = " " => " "=")))
     (local-set-key (kbd ":") (smartchr '(" : " "::"))))
   (add-hook 'sml-mode-hook 'smartchr-sml-mode-set)
+  (fset 'smartchr-sml-mode-unset (smartchr-construct-unsetter 'smartchr-sml-mode-set))
   ;;
 ;;;  LaTeX
   (defun smartchr-LaTeX-mode-set ()
     (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
     (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
   (add-hook 'LaTeX-mode-hook 'smartchr-LaTeX-mode-set)
+  (fset 'smartchr-LaTeX-mode-unset (smartchr-construct-unsetter 'smartchr-LaTeX-mode-set))
   ;;
 ;;;  Org
   (defun smartchr-org-mode-set ()
@@ -113,6 +118,7 @@
     (local-set-key (kbd "#") (smartchr '("# " "#+" "# ############################################################################ #")))
     (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
   (add-hook 'org-mode-hook 'smartchr-org-mode-set)
+  (fset 'smartchr-org-mode-unset (smartchr-construct-unsetter 'smartchr-org-mode-set))
   ;;
 ;;;  Emacs Lisp
   (defun smartchr-emacs-lisp-mode-set ()
@@ -126,11 +132,13 @@
     (local-set-key (kbd "-") (smartchr '(" - " " -> " "-")))
     (local-set-key (kbd ":") (smartchr '(" : " " :: " ":"))))
   (add-hook 'haskell-mode-hook 'smartchr-haskell-mode-set)
+  (fset 'smartchr-haskell-mode-unset (smartchr-construct-unsetter 'smartchr-haskell-mode-set))
   ;;
 ;;;  Ruby
   (defun smartchr-ruby-mode-set ()
     (local-set-key (kbd "=") (smartchr '(" = " " == " "="))))
   (add-hook 'ruby-mode-hook 'smartchr-ruby-mode-set)
+  (fset 'smartchr-ruby-mode-unset (smartchr-construct-unsetter 'smartchr-ruby-mode-set))
   ;;
   ;; Configuration
   :commands (smartchr))
