@@ -56,6 +56,11 @@
                        ;; Drop first two elements (lambda nil)
                        cddr)))
       ;; manipulate list elements to create an unsetter
+      ;; Commands for Binding Keys
+      ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
+      ;; (local-unset-key key) := (define-key (current-local-map) key nil)
+      ;; GNU Emacs Lisp Reference Manual: Controlling Active Maps
+      ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Controlling-Active-Maps.html
       (thread-last (mapcar
                     ;; Loop over instructions generating unset instructions
                     (lambda (elt) (cons 'local-unset-key (list (nth 1 elt))))
@@ -71,6 +76,7 @@
     "Unset particular smartchr setting conditional on major mode
 
 This should be run before running multiple-cursors"
+    ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Pattern-matching-case-statement.html#Pattern-matching-case-statement
     (pcase major-mode
       ;; ESS
       ('ess-mode-hook               (smartchr-ess-mode-unset))
@@ -96,6 +102,7 @@ This should be run before running multiple-cursors"
     "Set particular smartchr setting conditional on major mode
 
 This should be run after running multiple-cursors"
+    ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Pattern-matching-case-statement.html#Pattern-matching-case-statement
     (pcase major-mode
       ;; ESS
       ('ess-mode-hook               (smartchr-ess-mode-unset))
@@ -124,6 +131,8 @@ This should be run after running multiple-cursors"
   ;;
   ;;
 ;;; Define major-mode specific setters and unsetters
+  ;; fset: This function stores definition in the function cell of symbol.
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
 ;;;  ESS
   (defun smartchr-ess-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
