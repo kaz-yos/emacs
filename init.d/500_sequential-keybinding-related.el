@@ -124,6 +124,7 @@
   (defun smartchr-emacs-lisp-mode-set ()
     (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"))))
   (add-hook 'emacs-lisp-mode-hook 'smartchr-emacs-lisp-mode-set)
+  (fset 'smartchr-emacs-lisp-mode-unset (smartchr-construct-unsetter 'smartchr-emacs-lisp-mode-set))
   ;;
 ;;;  Haskell
   (defun smartchr-haskell-mode-set ()
