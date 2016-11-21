@@ -314,6 +314,7 @@ started."
   ;;
   ;; One-step ace-jump-mode activation
   ;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
+  ;; https://github.com/cjohansen/.emacs.d/commit/65efe88
   ;; (defun add-keys-to-ace-jump-mode (prefix c &optional mode)
   ;;   (define-key global-map
   ;;     (read-kbd-macro (concat prefix (string c)))
@@ -355,6 +356,7 @@ started."
   ;;
   ;; avy version of one-step activation
   ;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
+  ;; https://github.com/cjohansen/.emacs.d/commit/65efe88
   (defun add-keys-to-avy (prefix c &optional mode)
     (define-key global-map
       (read-kbd-macro (concat prefix (string c)))
