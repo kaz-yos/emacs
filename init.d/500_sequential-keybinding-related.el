@@ -44,8 +44,8 @@
 ;;
 (use-package smartchr
   :init
-  ;; ESS
-  (defun my-ess-smartchr-setting ()
+;;;  ESS
+  (defun smartchr-ess-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
     (local-set-key (kbd "+") (smartchr '("+" " + ")))
     (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------")))
@@ -54,58 +54,64 @@
     (local-set-key (kbd "$") (smartchr '("$" "$`!!'$")))
     (local-set-key (kbd "%") (smartchr '("%" " %`!!'% ")))
     )
-  (add-hook 'ess-mode-hook          'my-ess-smartchr-setting)
-  (add-hook 'inferior-ess-mode-hook 'my-ess-smartchr-setting)
+  (add-hook 'ess-mode-hook          'smartchr-ess-mode-set)
+  (add-hook 'inferior-ess-mode-hook 'smartchr-ess-mode-set)
   ;;
-  ;; Python
-  (defun my-python-smartchr-setting ()
+;;;  Python
+  (defun smartchr-python-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
     (local-set-key (kbd "+") (smartchr '("+" " + ")))
     (local-set-key (kbd "-") (smartchr '("-" " - ")))
-    (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################")))
-    )
-  (add-hook 'ein:notebook-multilang-mode-hook 'my-python-smartchr-setting)
-  (add-hook 'python-mode-hook                 'my-python-smartchr-setting)
-  (add-hook 'inferior-python-mode-hook        'my-python-smartchr-setting)
+    (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################"))))
+  (add-hook 'ein:notebook-multilang-mode-hook 'smartchr-python-mode-set)
+  (add-hook 'python-mode-hook                 'smartchr-python-mode-set)
+  (add-hook 'inferior-python-mode-hook        'smartchr-python-mode-set)
   ;;
-  ;; SML
-  (defun my-sml-smartchr-setting ()
+;;;  SML
+  (defun smartchr-sml-mode-set ()
     (local-set-key (kbd "=") (smartchr '(" = " " => " "=")))
     (local-set-key (kbd ":") (smartchr '(" : " "::"))))
-  (add-hook 'sml-mode-hook 'my-sml-smartchr-setting)
+  (add-hook 'sml-mode-hook 'smartchr-sml-mode-set)
   ;;
-  ;; LaTeX
-  (defun my-LaTeX-smartchr-setting ()
+;;;  LaTeX
+  (defun smartchr-LaTeX-mode-set ()
     (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
     (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
-  (add-hook 'LaTeX-mode-hook 'my-LaTeX-smartchr-setting)
+  (add-hook 'LaTeX-mode-hook 'smartchr-LaTeX-mode-set)
   ;;
-  ;; Org
-  (defun my-org-smartchr-setting ()
+;;;  Org
+  (defun smartchr-org-mode-set ()
     (local-set-key (kbd "^") (smartchr '("^{`!!'}" "^")))
-    (local-set-key (kbd "_") (smartchr '("_{`!!'}" "_")))
+    (local-set-key (kbd "_") (smartchr '("_{`!!'}" "_" "_`!!'_")))
+    (local-set-key (kbd "*") (smartchr '("*" "*`!!'*")))
+    (local-set-key (kbd "/") (smartchr '("/" "/`!!'/")))
+    (local-set-key (kbd "=") (smartchr '("=" "=`!!'=")))
+    (local-set-key (kbd "-") (smartchr '("-" "-`!!'-")))
+    (local-set-key (kbd "+") (smartchr '("+" "+`!!'+")))
     (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
     (local-set-key (kbd "#") (smartchr '("# " "#+" "# ############################################################################ #")))
     (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
-  (add-hook 'org-mode-hook 'my-org-smartchr-setting)
+  (add-hook 'org-mode-hook 'smartchr-org-mode-set)
   ;;
   ;; Emacs Lisp
   (defun my-elisp-smartchr-setting ()
+;;;  Emacs Lisp
+  (defun smartchr-emacs-lisp-mode-set ()
     (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"))))
-  (add-hook 'emacs-lisp-mode-hook 'my-elisp-smartchr-setting)
+  (add-hook 'emacs-lisp-mode-hook 'smartchr-emacs-lisp-mode-set)
   ;;
-  ;; Haskell
-  (defun my-haskell-smartchr-setting ()
+;;;  Haskell
+  (defun smartchr-haskell-mode-set ()
     (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
     (local-set-key (kbd "+") (smartchr '(" + " " ++ " "+")))
     (local-set-key (kbd "-") (smartchr '(" - " " -> " "-")))
     (local-set-key (kbd ":") (smartchr '(" : " " :: " ":"))))
-  (add-hook 'haskell-mode-hook 'my-haskell-smartchr-setting)
+  (add-hook 'haskell-mode-hook 'smartchr-haskell-mode-set)
   ;;
-  ;; Ruby
-  (defun my-ruby-smartchr-setting ()
+;;;  Ruby
+  (defun smartchr-ruby-mode-set ()
     (local-set-key (kbd "=") (smartchr '(" = " " == " "="))))
-  (add-hook 'ruby-mode-hook 'my-ruby-smartchr-setting)
+  (add-hook 'ruby-mode-hook 'smartchr-ruby-mode-set)
   ;;
   ;; Configuration
   :commands (smartchr))
