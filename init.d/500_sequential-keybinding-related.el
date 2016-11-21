@@ -66,6 +66,56 @@
   ;; Assignment to the function-cell require (fset 'symbol (lambda ...))
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
   ;;
+  (defun smartchr-unset-before-mc ()
+    "Unset particular smartchr setting conditional on major mode
+
+This should be run before running multiple-cursors"
+    (pcase major-mode
+      ;; ESS
+      ('ess-mode-hook          (smartchr-ess-mode-unset))
+      ('inferior-ess-mode-hook (smartchr-ess-mode-unset))
+      ;; Python
+      ('ein:notebook-multilang-mode (smartchr-python-mode-unset))
+      ('python-mode                 (smartchr-python-mode-unset))
+      ('inferior-python-mode        (smartchr-python-mode-unset))
+      ;; SML
+      ('sml-mode (smartchr-sml-mode-unset))
+      ;; LaTeX
+      ('LaTeX-mode (smartchr-LaTeX-mode-unset))
+      ;; Org
+      ('org-mode (smartchr-org-mode-unset))
+      ;; Emacs lisp
+      ('emacs-lisp-mode (smartchr-emacs-lisp-mode-unset))
+      ;; Haskell
+      ('haskell-mode (smartchr-haskell-mode-unset))
+      ;; Ruby
+      ('ruby-mode (smartchr-ruby-mode-unset))))
+  ;;
+  (defun smartchr-set-after-mc ()
+    "Set particular smartchr setting conditional on major mode
+
+This should be run after running multiple-cursors"
+    (pcase major-mode
+      ;; ESS
+      ('ess-mode-hook          (smartchr-ess-mode-unset))
+      ('inferior-ess-mode-hook (smartchr-ess-mode-unset))
+      ;; Python
+      ('ein:notebook-multilang-mode (smartchr-python-mode-unset))
+      ('python-mode                 (smartchr-python-mode-unset))
+      ('inferior-python-mode        (smartchr-python-mode-unset))
+      ;; SML
+      ('sml-mode (smartchr-sml-mode-unset))
+      ;; LaTeX
+      ('LaTeX-mode (smartchr-LaTeX-mode-unset))
+      ;; Org
+      ('org-mode (smartchr-org-mode-unset))
+      ;; Emacs lisp
+      ('emacs-lisp-mode (smartchr-emacs-lisp-mode-unset))
+      ;; Haskell
+      ('haskell-mode (smartchr-haskell-mode-unset))
+      ;; Ruby
+      ('ruby-mode (smartchr-ruby-mode-unset))))
+  ;;
   ;;
 ;;;  ESS
   (defun smartchr-ess-mode-set ()
