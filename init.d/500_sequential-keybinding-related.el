@@ -54,7 +54,7 @@
       ;; manipulate list elements to create an unsetter
       (thread-last (mapcar
                     ;; Loop over instructions generating unset instructions
-                    (lambda (elt) (cons 'local-unset-key (nth 1 elt)))
+                    (lambda (elt) (cons 'local-unset-key (list (nth 1 elt))))
                     lst-instr)
         ;; argument is empty
         (cons nil)
