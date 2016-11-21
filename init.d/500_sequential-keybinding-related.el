@@ -44,6 +44,23 @@
 ;;
 (use-package smartchr
   :init
+;;; Define an unsetter constructor
+  (defun smartchr-construct-unsetter (smartchar-set-function)
+    "Generate an unsetter from a smartchr setter function"
+    ;; Extract instructions in the body of the setterr
+    (let ((lst-instr (thread-first smartchar-set-function
+                       symbol-function
+                       cddr)))
+      ;; manipulate list elements to create an unsetter
+      (thread-last (mapcar
+                    ;; Loop over instructions generating unset instructions
+                    (lambda (elt) (cons 'local-unset-key (nth 1 elt)))
+                    lst-instr)
+        ;; argument is empty
+        (cons nil)
+        ;; Add lambda to generate an anonymous function
+        (cons 'lambda))))
+  ;;
 ;;;  ESS
   (defun smartchr-ess-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
@@ -52,10 +69,14 @@
     (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################")))
     (local-set-key (kbd "~") (smartchr '("~" " ~ ")))
     (local-set-key (kbd "$") (smartchr '("$" "$`!!'$")))
-    (local-set-key (kbd "%") (smartchr '("%" " %`!!'% ")))
-    )
+    (local-set-key (kbd "%") (smartchr '("%" " %`!!'% "))))
   (add-hook 'ess-mode-hook          'smartchr-ess-mode-set)
   (add-hook 'inferior-ess-mode-hook 'smartchr-ess-mode-set)
+  ;;
+
+  ;;  Try to generate an unsetter
+  (setq smartchr-ess-mode-unset (smartchr-construct-unsetter 'smartchr-ess-mode-set))
+  ;;
   ;;
 ;;;  Python
   (defun smartchr-python-mode-set ()
@@ -93,8 +114,6 @@
     (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
   (add-hook 'org-mode-hook 'smartchr-org-mode-set)
   ;;
-  ;; Emacs Lisp
-  (defun my-elisp-smartchr-setting ()
 ;;;  Emacs Lisp
   (defun smartchr-emacs-lisp-mode-set ()
     (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"))))
