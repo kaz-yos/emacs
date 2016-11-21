@@ -72,24 +72,24 @@
 This should be run before running multiple-cursors"
     (pcase major-mode
       ;; ESS
-      ('ess-mode-hook          (smartchr-ess-mode-unset))
-      ('inferior-ess-mode-hook (smartchr-ess-mode-unset))
+      ('ess-mode-hook               (smartchr-ess-mode-unset))
+      ('inferior-ess-mode-hook      (smartchr-ess-mode-unset))
       ;; Python
       ('ein:notebook-multilang-mode (smartchr-python-mode-unset))
       ('python-mode                 (smartchr-python-mode-unset))
       ('inferior-python-mode        (smartchr-python-mode-unset))
       ;; SML
-      ('sml-mode (smartchr-sml-mode-unset))
+      ('sml-mode                    (smartchr-sml-mode-unset))
       ;; LaTeX
-      ('LaTeX-mode (smartchr-LaTeX-mode-unset))
+      ('LaTeX-mode                  (smartchr-LaTeX-mode-unset))
       ;; Org
-      ('org-mode (smartchr-org-mode-unset))
+      ('org-mode                    (smartchr-org-mode-unset))
       ;; Emacs lisp
-      ('emacs-lisp-mode (smartchr-emacs-lisp-mode-unset))
+      ('emacs-lisp-mode             (smartchr-emacs-lisp-mode-unset))
       ;; Haskell
-      ('haskell-mode (smartchr-haskell-mode-unset))
+      ('haskell-mode                (smartchr-haskell-mode-unset))
       ;; Ruby
-      ('ruby-mode (smartchr-ruby-mode-unset))))
+      ('ruby-mode                   (smartchr-ruby-mode-unset))))
   ;;
   (defun smartchr-set-after-mc ()
     "Set particular smartchr setting conditional on major mode
@@ -97,24 +97,24 @@ This should be run before running multiple-cursors"
 This should be run after running multiple-cursors"
     (pcase major-mode
       ;; ESS
-      ('ess-mode-hook          (smartchr-ess-mode-unset))
-      ('inferior-ess-mode-hook (smartchr-ess-mode-unset))
+      ('ess-mode-hook               (smartchr-ess-mode-unset))
+      ('inferior-ess-mode-hook      (smartchr-ess-mode-unset))
       ;; Python
       ('ein:notebook-multilang-mode (smartchr-python-mode-unset))
       ('python-mode                 (smartchr-python-mode-unset))
       ('inferior-python-mode        (smartchr-python-mode-unset))
       ;; SML
-      ('sml-mode (smartchr-sml-mode-unset))
+      ('sml-mode                    (smartchr-sml-mode-unset))
       ;; LaTeX
-      ('LaTeX-mode (smartchr-LaTeX-mode-unset))
+      ('LaTeX-mode                  (smartchr-LaTeX-mode-unset))
       ;; Org
-      ('org-mode (smartchr-org-mode-unset))
+      ('org-mode                    (smartchr-org-mode-unset))
       ;; Emacs lisp
-      ('emacs-lisp-mode (smartchr-emacs-lisp-mode-unset))
+      ('emacs-lisp-mode             (smartchr-emacs-lisp-mode-unset))
       ;; Haskell
-      ('haskell-mode (smartchr-haskell-mode-unset))
+      ('haskell-mode                (smartchr-haskell-mode-unset))
       ;; Ruby
-      ('ruby-mode (smartchr-ruby-mode-unset))))
+      ('ruby-mode                   (smartchr-ruby-mode-unset))))
   ;;
   ;;
 ;;;  ESS
