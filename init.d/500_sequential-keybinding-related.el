@@ -43,8 +43,9 @@
 ;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;;
 (use-package smartchr
+  ;; Use init as they have to be present at the time of hook activation by major modes
   :init
-;;; Define an unsetter constructor
+;;; Define multiple-cursors work around functions
   (defun smartchr-construct-unsetter (smartchar-set-function)
     "Generate an unsetter lambda from a smartchr setter function"
     ;; Extract instructions in the body of the setterr
@@ -116,7 +117,13 @@ This should be run after running multiple-cursors"
       ;; Ruby
       ('ruby-mode                   (smartchr-ruby-mode-unset))))
   ;;
+  ;; Work around for smartchr.el
+  ;; https://github.com/magnars/multiple-cursors.el/blob/master/multiple-cursors-core.el#L514-L529
+  (setq multiple-cursors-mode-enabled-hook 'smartchr-unset-before-mc)
+  (setq multiple-cursors-mode-disabled-hook 'smartchr-set-after-mc)
   ;;
+  ;;
+;;; Define major-mode specific setters and unsetters
 ;;;  ESS
   (defun smartchr-ess-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
@@ -191,7 +198,7 @@ This should be run after running multiple-cursors"
   (add-hook 'ruby-mode-hook 'smartchr-ruby-mode-set)
   (fset 'smartchr-ruby-mode-unset (smartchr-construct-unsetter 'smartchr-ruby-mode-set))
   ;;
-  ;; Configuration
+  ;; Define an auto-loadable function
   :commands (smartchr))
 
 

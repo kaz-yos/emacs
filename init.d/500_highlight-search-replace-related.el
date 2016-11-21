@@ -73,7 +73,7 @@
 
 
 ;;;
-;;; multiple-cursors for simultaneous editing multiple occurrences
+;;; multiple-cursors.el
 ;; https://github.com/magnars/multiple-cursors.el
 ;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
 ;; http://emacsrocks.com/e13.html (video)
