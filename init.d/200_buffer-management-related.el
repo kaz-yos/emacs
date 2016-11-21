@@ -20,7 +20,7 @@
 ;; VC status change is also captured
 (setq auto-revert-check-vc-info t)
 ;; No ARev in mode-line
-(setq auto-revert-mode-text "")
+;; (setq auto-revert-mode-text "")
 
 
 
