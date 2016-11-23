@@ -354,6 +354,90 @@ started."
   ;; Darken background
   (setq avy-background t)
   ;;
+  ;; Modified version of avy-goto-char-timer
+  (defun avy-goto-char-timer (&optional arg)
+    "Read one or many consecutive chars and jump to the first one.
+The window scope is determined by `avy-all-windows' (ARG negates it)."
+    (interactive "P")
+    (let ((avy-all-windows (if arg
+                               (not avy-all-windows)
+                             avy-all-windows)))
+      (avy-with avy-goto-char-timer
+        (avy--process
+         (avy--read-candidates)
+         (avy--style-fn avy-style)))))
+  ;;
+  ;; Modified version of avy--read-candidates
+  (defun avy--read-candidates ()
+    "Read as many chars as possible and return their occurences.
+At least one char must be read, and then repeatedly one next char
+may be read if it is entered before `avy-timeout-seconds'.  `DEL'
+deletes the last char entered, and `RET' exits with the currently
+read string immediately instead of waiting for another char for
+`avy-timeout-seconds'.
+The format of the result is the same as that of `avy--regex-candidates'.
+This function obeys `avy-all-windows' setting."
+    (let ((str "") char break overlays regex)
+      (unwind-protect
+          (progn
+            (while (and (not break)
+                        (setq char
+                              (read-char (format "char%s: "
+                                                 (if (string= str "")
+                                                     str
+                                                   (format " (%s)" str)))
+                                         t
+                                         (and (not (string= str ""))
+                                              avy-timeout-seconds))))
+              ;; Unhighlight
+              (dolist (ov overlays)
+                (delete-overlay ov))
+              (setq overlays nil)
+              (cond
+               ;; Handle RET
+               ((= char 13)
+                (setq break t))
+               ;; Handle DEL
+               ((= char 127)
+                (let ((l (length str)))
+                  (when (>= l 1)
+                    (setq str (substring str 0 (1- l))))))
+               (t
+                (setq str (concat str (list char)))))
+              ;; Highlight
+              (when (>= (length str) 1)
+                (let ((case-fold-search
+                       (or avy-case-fold-search (string= str (downcase str))))
+                      found)
+                  (avy-dowindows current-prefix-arg
+                    (dolist (pair (avy--find-visible-regions
+                                   (window-start)
+                                   (window-end (selected-window) t)))
+                      (save-excursion
+                        (goto-char (car pair))
+                        (setq regex (regexp-quote str))
+                        (while (re-search-forward regex (cdr pair) t)
+                          (unless (get-char-property (1- (point)) 'invisible)
+                            (let ((ov (make-overlay
+                                       (match-beginning 0)
+                                       (match-end 0))))
+                              (setq found t)
+                              (push ov overlays)
+                              (overlay-put
+                               ov 'window (selected-window))
+                              (overlay-put
+                               ov 'face 'avy-goto-char-timer-face)))))))
+                  ;; No matches at all, so there's surely a typo in the input.
+                  (unless found (beep)))))
+            (nreverse (mapcar (lambda (ov)
+                                (cons (cons (overlay-start ov)
+                                            (overlay-end ov))
+                                      (overlay-get ov 'window)))
+                              overlays)))
+        (dolist (ov overlays)
+          (delete-overlay ov)))))
+
+  ;;
   ;; avy version of one-step activation
   ;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
   ;; https://github.com/cjohansen/.emacs.d/commit/65efe88
