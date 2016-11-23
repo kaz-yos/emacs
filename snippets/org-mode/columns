@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: columns
+# key: col
+# --
+** column1                                                          :B_block:
+   :PROPERTIES:
+   :BEAMER_col: 0.45
+   :BEAMER_env: block
+   :END:
+   body1
+
+** column2                                                          :B_block:
+   :PROPERTIES:
+   :BEAMER_col: 0.45
+   :BEAMER_env: block
+   :END:
+   body2
