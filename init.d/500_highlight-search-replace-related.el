@@ -354,6 +354,8 @@ started."
   ;; Darken background
   (setq avy-background t)
   ;;
+  ;; Time out for *-timer functions
+  (setq avy-timeout-seconds 0.3)
   ;; Modified version of avy-goto-char-timer
   (defun avy-goto-char-timer-mod (char1 &optional arg)
     "Read one or many consecutive chars and jump to the first one.
@@ -473,19 +475,24 @@ This function obeys `avy-all-windows' setting."
       (read-kbd-macro (concat prefix (string c)))
       `(lambda ()
          (interactive)
-         (funcall (if (eq ',mode 'word)
-                      ;; Word beginning
-                      #'avy-goto-word-1
-                    ;; Anywhere
-                    #'avy-goto-char) ,c))))
+         (funcall (cond
+                   ;; Word beginning
+                   ((eq ',mode 'word)  #'avy-goto-word-1)
+                   ;; Modified timer
+                   ((eq ',mode 'timer) #'avy-goto-char-timer-mod)
+                   ;; Anywhere
+                   (t                  #'avy-goto-char))
+                  ,c))))
   ;;
   ;; Assing key bindings for all characters
+  ;;
+  (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c 'timer))
   ;; eg, M-s-x will activate (avy-goto-char ?x), ie, all occurrence of x
-  (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
+  ;; (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
+  (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c))
   ;; eg, A-s-x will activate (avy-goto-word-1 ?x), ie, all words starting with x
-  (loop for c from ?! to ?~ do (add-keys-to-avy "A-s-" c 'word))
-  (loop for c from ?! to ?~ do (add-keys-to-avy "H-M-" c 'word))
-  (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word)))
+  ;; (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word))
+  )
 ;;
 ;;
 ;;; ace-window.el
