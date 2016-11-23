@@ -356,6 +356,8 @@ started."
   ;;
   ;; Time out for *-timer functions
   (setq avy-timeout-seconds 0.3)
+  ;; Key bind for regular avy timer
+  (global-set-key (kbd "C-M-s") 'avy-goto-char-timer)
   ;; Modified version of avy-goto-char-timer
   (defun avy-goto-char-timer-mod (char1 &optional arg)
     "Read one or many consecutive chars and jump to the first one.
@@ -406,9 +408,7 @@ This function obeys `avy-all-windows' setting."
                                    ;; INHERIT-INPUT-METHOD
                                    t
                                    ;; SECONDS: maximum number of seconds to wait for input
-                                   ;; Do not stop is string is just one character (initial str1)
-                                   (and (not (<= (length str) 1))
-                                        avy-timeout-seconds)))))
+                                   avy-timeout-seconds))))
               ;; WHILE BODY
               ;; Unhighlight
               (dolist (ov overlays)
