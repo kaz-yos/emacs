@@ -2,6 +2,7 @@
 # name: orgbeamer
 # key: beamer
 # --
+* Meta-data :noexport:
 # http://orgmode.org/worg/exporters/beamer/tutorial.html
 #+TITLE:
 #+AUTHOR:    Kazuki Yoshida
