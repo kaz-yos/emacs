@@ -1,3 +1,4 @@
+* Meta-data :noexport:
 #+TITLE:
 #+AUTHOR: Kazuki Yoshida
 #+OPTIONS: toc:nil
