@@ -2,4 +2,5 @@
 # name: noexport
 # key: nex
 # --
-:noexport:$0
+* $1 :noexport:
+$0

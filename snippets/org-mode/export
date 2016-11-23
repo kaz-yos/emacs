@@ -2,4 +2,5 @@
 # name: export
 # key: ex
 # --
-:export:$0
+* $1 :export:
+$0
