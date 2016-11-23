@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: orgnewline
+# key: nl
+# --
+@@latex:`(concat "\\" "\\")`@@

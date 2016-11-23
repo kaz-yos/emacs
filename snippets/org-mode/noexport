@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: noexport
+# key: nex
+# --
+:noexport:$0
