@@ -37,6 +37,9 @@
   ;; bm.el-like function
   ;; (define-key org-mode-map (kbd "s-b") 'helm-org-in-buffer-headings)
   ;;
+  ;; This is taken by icicle. Reclaim.
+  (define-key org-mode-map (kbd "C-c '") 'org-edit-src-code)
+  ;;
   ;; Arrow key replacement for HHKB
   (define-key org-mode-map (kbd "A-M-i") 'org-metaup)
   (define-key org-mode-map (kbd "A-M-k") 'org-metadown)
@@ -256,6 +259,9 @@
   ;; Keys
   (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf-async)
   (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf-async)
+  ;;
+  ;; auto-revert in org-stack-mode
+  (add-hook 'org-export-stack-mode-hook #'auto-revert-mode)
   ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
