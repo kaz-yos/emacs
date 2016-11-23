@@ -205,7 +205,11 @@
   (setq icicle-prefix-complete-keys (list (kbd "<S-tab>")))
   ;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
   (setq icicle-prefix-cycle-previous-keys (list (kbd "<home>")))
-  (setq icicle-prefix-cycle-next-keys     (list (kbd "<end>"))))
+  (setq icicle-prefix-cycle-next-keys     (list (kbd "<end>")))
+  ;;
+  ;; Drop unnecessary bindings
+  ;; http://emacsredux.com/blog/2013/09/25/removing-key-bindings-from-minor-mode-keymaps/
+  (define-key icicle-mode-map (kbd "C-c '") nil))
 
 
 
