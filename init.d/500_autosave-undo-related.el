@@ -10,6 +10,7 @@
 ;; http://blog.sanojimaru.com/post/20090254216/emacs
 ;;
 (use-package auto-save-buffers-enhanced
+  :disabled t
   :config
   ;; Only in Git, CVS, or Subversion directories
   ;; (auto-save-buffers-enhanced-include-only-checkout-path t)
