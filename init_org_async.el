@@ -54,5 +54,17 @@
 (setq org-ditaa-jar-path "~/.emacs.d/packages/org-mode/contrib/scripts/ditaa.jar")
 ;;
 ;;
+;; PDF processing with correct bibtex handling
+;; http://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html
+;; %f: full file name
+;; %b: file base name
+;; %o: base directory
+(setq org-latex-pdf-process
+      '("pdflatex -interaction nonstopmode -output-directory %o %f"
+        "bibtex %b"
+        "pdflatex -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -interaction nonstopmode -output-directory %o %f"))
+;;
+;;
 ;; In case there are missed configurations. (loading this way may not be functions)
 ;; (load "~/.emacs.d/init.d/500_org-mode-related.el")
