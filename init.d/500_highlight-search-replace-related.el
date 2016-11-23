@@ -355,21 +355,28 @@ started."
   (setq avy-background t)
   ;;
   ;; Modified version of avy-goto-char-timer
-  (defun avy-goto-char-timer (&optional arg)
+  (defun avy-goto-char-timer-mod (char1 &optional arg)
     "Read one or many consecutive chars and jump to the first one.
+
+This version takes the first character as an argument.
 The window scope is determined by `avy-all-windows' (ARG negates it)."
     (interactive "P")
     (let ((avy-all-windows (if arg
                                (not avy-all-windows)
                              avy-all-windows)))
       (avy-with avy-goto-char-timer
+        ;; avy--process: Select one of CANDIDATES
         (avy--process
-         (avy--read-candidates)
+         ;; Read as many chars as possible and return their occurences (modified)
+         (avy--read-candidates-mod (char-to-string char1))
+         ;; avy--style-fn: Transform STYLE symbol to a style function.
          (avy--style-fn avy-style)))))
   ;;
-  ;; Modified version of avy--read-candidates
-  (defun avy--read-candidates ()
+  ;; Modified version of avy--read-candidates compatible with avy-goto-char-timer-mod
+  (defun avy--read-candidates-mod (str1)
     "Read as many chars as possible and return their occurences.
+
+This version takes the first string element as an argument.
 At least one char must be read, and then repeatedly one next char
 may be read if it is entered before `avy-timeout-seconds'.  `DEL'
 deletes the last char entered, and `RET' exits with the currently
@@ -377,23 +384,41 @@ read string immediately instead of waiting for another char for
 `avy-timeout-seconds'.
 The format of the result is the same as that of `avy--regex-candidates'.
 This function obeys `avy-all-windows' setting."
-    (let ((str "") char break overlays regex)
+    ;; string should start with str1 given as argument
+    (let ((str str1) char break overlays regex)
       (unwind-protect
+          ;; BODYFORM
           (progn
-            (while (and (not break)
-                        (setq char
-                              (read-char (format "char%s: "
-                                                 (if (string= str "")
-                                                     str
-                                                   (format " (%s)" str)))
-                                         t
-                                         (and (not (string= str ""))
-                                              avy-timeout-seconds))))
+            ;; Loop while no break or no time out
+            ;; Allow going to body with a nil char (no key entry other than str1 arg)
+            ;; Don't forget to update nil char to str1 if this happens.
+            (while (or (not char)
+                       ;; Second pass
+                       (and (not break)
+                            ;; set char as a character code of key entry
+                            (setq char
+                                  ;; Read a character from the command input and return as a number.
+                                  (read-char
+                                   ;; PROMPT: what to display as a prompt (str is non-empty)
+                                   (format "char%s: " (format " (%s)" str))
+                                   ;; INHERIT-INPUT-METHOD
+                                   t
+                                   ;; SECONDS: maximum number of seconds to wait for input
+                                   ;; Do not stop is string is just one character (initial str1)
+                                   (and (not (<= (length str) 1))
+                                        avy-timeout-seconds)))))
+              ;; WHILE BODY
               ;; Unhighlight
               (dolist (ov overlays)
                 (delete-overlay ov))
               (setq overlays nil)
+              ;; Handling of special key entry
               (cond
+               ;; Ignore char if is is nil, and use str = str1 only.
+               ((not char)
+                ;; Update char to the initial str = str1 character code to avoid
+                ;; an infinite loop at while (or (not char) ...)
+                (setq char (string-to-char str1)))
                ;; Handle RET
                ((= char 13)
                 (setq break t))
@@ -403,7 +428,9 @@ This function obeys `avy-all-windows' setting."
                   (when (>= l 1)
                     (setq str (substring str 0 (1- l))))))
                (t
+                ;; This appends char as a string to str.
                 (setq str (concat str (list char)))))
+              ;;
               ;; Highlight
               (when (>= (length str) 1)
                 (let ((case-fold-search
@@ -434,9 +461,9 @@ This function obeys `avy-all-windows' setting."
                                             (overlay-end ov))
                                       (overlay-get ov 'window)))
                               overlays)))
+        ;; UNWINDFORMS
         (dolist (ov overlays)
           (delete-overlay ov)))))
-
   ;;
   ;; avy version of one-step activation
   ;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
