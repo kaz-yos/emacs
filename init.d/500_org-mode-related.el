@@ -111,6 +111,8 @@
      (ditaa . t)
      (emacs-lisp . t)
      (shell . t)))
+  ;; Do not ask code execution confirmation
+  (setq org-confirm-babel-evaluate nil)
   ;;
   ;; Source code fontification
   ;; http://orgmode.org/worg/org-contrib/babel/examples/fontify-src-code-blocks.html
@@ -261,7 +263,7 @@
   (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf-async)
   ;;
   ;; auto-revert in org-stack-mode
-  (add-hook 'org-export-stack-mode-hook #'auto-revert-mode)
+  (add-hook 'org-export-stack-mode-hook #'turn-on-auto-revert-mode)
   ;;
   ;; Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
