@@ -3,7 +3,6 @@
 # key: image
 # binding: direct-keybinding
 # --
-%% http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics
 \begin{center}
 \includegraphics[width=\textwidth]{$0.png}
 \end{center}
