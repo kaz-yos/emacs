@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: distequal
+# key: dist
+# --
+\overset{d}{=}
