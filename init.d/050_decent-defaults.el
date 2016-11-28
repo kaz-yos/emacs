@@ -207,6 +207,8 @@
 (global-set-key (kbd "A-k") 'kill-this-buffer)
 ;; http://pragmaticemacs.com/emacs/a-better-shortcut-for-delete-frame/
 (global-set-key (kbd "C-x w") 'delete-frame)
+;; Prevent killing emacs accidentaly
+(global-unset-key (kbd "s-q"))
 
 
 ;;;
