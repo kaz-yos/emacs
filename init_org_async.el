@@ -32,6 +32,11 @@
 (require 'ob-R)
 (require 'ob-python)
 (require 'ob-ditaa)
+;;; Language packages
+;;; ESS
+(require 'ess-site)
+(setq inferior-R-args "--no-restore-history --no-save ")
+(setq ess-ask-for-ess-directory nil)
 ;;
 ;;; Enable languages
 ;; Org-Mode Evaluation of code disabled
@@ -48,6 +53,9 @@
    (ditaa . t)
    (emacs-lisp . t)
    (shell . t)))
+;;
+;; Do not ask code execution confirmation
+(setq org-confirm-babel-evaluate nil)
 ;;
 ;; Language specific settings
 ;; ditaa diagram language (git repo org-mode has necessary scripts)
