@@ -84,7 +84,7 @@
 %% Allow URL embedding
 \usepackage{url}
 
-% \include{GrandMacros}
+\input{\string~/.emacs.d/misc/GrandMacros}
 
 \begin{document}
 <<message = FALSE, tidy = FALSE, echo = F>>=
