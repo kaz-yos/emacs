@@ -242,21 +242,36 @@
   ;; at start-up.
   ;; Therefore, using a specific configuration makes the process to
   ;; load faster and the export more portable.
+  ;; org-export-async-start calls another emacs with -Q -l org-export-async-init-file
+  ;;
+  ;; References
+  ;; org-mode ML: org-export-async-init-file
   ;; https://lists.gnu.org/archive/html/emacs-orgmode/2013-09/msg01299.html
+  ;; ode 8 async export process fails
+  ;; http://superuser.com/questions/738492/org-mode-8-async-export-process-fails
+  ;; org-mode ML: async export not working for me
   ;; https://lists.gnu.org/archive/html/emacs-orgmode/2014-09/msg00464.html
+  ;; org-mode ML: Very minimal async export example does not work
+  ;; http://osdir.com/ml/emacs-orgmode-gnu/2013-10/msg00939.html
+  ;; A minimum example
   ;; https://github.com/russell/dotfiles/blob/master/emacs.d/init-org-export.el
   (setq org-export-async-init-file (expand-file-name "~/.emacs.d/init_org_async.el"))
   ;; Check errors in async process with M-x org-export-stack
   ;;
   ;; Non-nil means asynchronous export process should leave data behind.
+  ;; This data is found in the appropriate "*Org Export Process*"
+  ;; buffer, and in files prefixed with "org-export-process" and
+  ;; located in ‘temporary-file-directory’.
   (setq org-export-async-debug t)
   ;;
   ;; Async export with direct key bindings
   (defun org-latex-export-to-pdf-async (&optional SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
     (interactive)
+    (save-buffer)
     (org-latex-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST))
   (defun org-beamer-export-to-pdf-async (&optional SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
     (interactive)
+    (save-buffer)
     (org-beamer-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST))
   ;; Keys
   (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf-async)
