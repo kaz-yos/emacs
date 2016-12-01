@@ -135,13 +135,7 @@
   ;; |よしだ かずき|
   ;; |ヨシダ カズキ|
   ;;
-;;; inline patch for Japanese IME (require inline patch to Emacs.app. No .el dependency)
-  ;; Change to English in minibuffer
-  ;; http://molekun.blogspot.com/2011/03/homebrewemacs233.html
-  ;; http://blog.n-z.jp/blog/2013-11-12-cocoa-emacs-ime.html
-  (when (fboundp 'mac-change-language-to-us)
-    ;; Only when inline patch is installed 2014-01-19
-    (add-hook 'minibuffer-setup-hook 'mac-change-language-to-us)))
+  )
 
 
 
