@@ -180,7 +180,7 @@
 
    ;;; font lock
    `(font-lock-builtin-face ((,class (:foreground ,cyberpunk-blue-5))))
-   `(font-lock-comment-face ((,class (:foreground ,cyberpunk-gray-2 :italic t))))
+   `(font-lock-comment-face ((,class (:foreground ,cyberpunk-orange :italic t))))
    ;; `(font-lock-comment-delimiter-face ((,class (:foreground ,cyberpunk-green)))) 
    `(font-lock-constant-face ((,class (:foreground ,cyberpunk-blue-6))))
    ;; `(font-lock-doc-face ((,class (:foreground ,cyberpunk-green+1))))
