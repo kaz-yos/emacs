@@ -209,7 +209,14 @@
   ;;
   ;; Drop unnecessary bindings
   ;; http://emacsredux.com/blog/2013/09/25/removing-key-bindings-from-minor-mode-keymaps/
-  (define-key icicle-mode-map (kbd "C-c '") nil))
+  (define-key icicle-mode-map (kbd "C-c '") nil)
+  (add-hook 'icicle-mode-hook #'(lambda ()
+                                  (local-unset-key (kbd "C-c '"))
+                                  ;; Trying to call *-map in here breaks config
+                                  ;; (define-key icicle-mode-map (kbd "C-c '") nil)
+                                  ;; (define-key org-mode-map (kbd "C-c '") 'org-edit-src-code)
+                                  ))
+  )
 
 
 
