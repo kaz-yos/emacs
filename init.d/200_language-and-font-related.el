@@ -37,7 +37,8 @@
 
 ;;;
 ;;; Mac OS X font settings
-(when (eq system-type 'darwin)
+(when (and (eq system-type 'darwin)
+           (display-graphic-p))
   ;; Mac-only
 ;;; Japanese font setting that works
   ;; Best one so far. Good rescaling, and working with Greek letters φ phi
