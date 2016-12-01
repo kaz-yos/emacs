@@ -111,7 +111,8 @@
    ;; Font-lock stuff
    `(font-lock-builtin-face ((t (:foreground ,yellow-1 :background ,yellow-1bg))))
    `(font-lock-constant-face ((t (:foreground ,purple-1 :background ,purple-1bg))))
-   `(font-lock-comment-face ((t (:foreground ,comment :background ,gray-1bg :italic t))))
+   ;; `(font-lock-comment-face ((t (:foreground ,comment :background ,gray-1bg :italic t))))
+   '(font-lock-comment-face       ((t (:italic t :slant oblique :foreground "chocolate1"))))
    `(font-lock-doc-face ((t (:foreground ,gray-1 :background ,gray-1bg))))
    `(font-lock-doc-string-face ((t (:foreground ,gray-1 :background ,gray-1bg))))
    `(font-lock-function-name-face ((t (:foreground ,red-1 :background ,red-1bg))))
