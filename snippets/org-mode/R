@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: R
+# key: R
+# --
+src_R[:session *R* :exports results]{$1} $0

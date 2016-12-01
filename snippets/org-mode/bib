@@ -1,5 +1,9 @@
 # key: bib
 # name: bib
 # --
-bibliographystyle:unsrt
+   :PROPERTIES:
+   :BEAMER_opt: allowframebreaks,label=
+   :END:
+\tiny
+bibliographystyle:apalike
 bibliography:`(concat (file-name-base) ".bib")`

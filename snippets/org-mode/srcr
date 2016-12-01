@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: srcr
+# key: srcr
+# --
+#+header: :width 3.5 :height 3
+#+BEGIN_SRC R :session *R* :results output graphics :file ./figure.pdf :exports results
+
+$0
+
+#+END_SRC
