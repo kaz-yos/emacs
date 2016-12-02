@@ -43,4 +43,6 @@
   (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
   ;;
   ;; Install PDF-Tools in all current and future PDF buffers.
-  (pdf-tools-install))
+  (pdf-tools-install)
+  ;;
+  (add-hook 'pdf-view-mode-hook #'turn-on-auto-revert-mode))
