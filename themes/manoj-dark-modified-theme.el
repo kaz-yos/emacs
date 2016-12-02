@@ -684,7 +684,54 @@
  '(widget-single-line-field-face ((t (:background "dim gray"))))
  '(woman-bold-face ((t (:bold t))))
  '(woman-italic-face ((t (:foreground "beige"))))
- '(woman-unknown-face ((t (:foreground "LightSalmon")))))
+ '(woman-unknown-face ((t (:foreground "LightSalmon"))))
+;;;
+;;; Additional
+;;; anzu
+ '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
+;;; avy
+ '(avy-lead-face ((t (:background "black" :foreground "white"))))
+ '(avy-lead-face-0 ((t (:background "black" :foreground "white"))))
+ '(avy-lead-face-1 ((t (:background "black" :foreground "white"))))
+ '(avy-lead-face-2 ((t (:background "black" :foreground "white"))))
+;;; ace-window
+ '(aw-leading-char-face ((t (:foreground "gray90" :height 5.0))))
+;;; company
+ '(company-preview ((t :background nil :foreground "dark gray")))
+ '(company-preview-common ((t :background nil :foreground "dark gray")))
+ '(company-scrollbar-bg ((t :background "gray")))
+ '(company-scrollbar-fg ((t :background "OrangeRed1")))
+ '(company-tooltip ((t :background "light gray" :foreground "black")))
+ '(company-tooltip-common ((t :background "light gray" :foreground "black")))
+ '(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
+ '(company-tooltip-mouse ((t :background "red" :foreground "white")))
+ '(company-tooltip-selection ((t :background "red4" :foreground "white")))
+;;; diff
+ '(diff-refine-added ((t (:inherit diff-refine-change :background "#005000"))))
+ '(diff-refine-removed ((t (:inherit diff-refine-change :background "#500000"))))
+;;; elscreen
+ '(elscreen-tab-current-screen-face ((t :background "gray80" :foreground "black")))
+ '(elscreen-tab-other-screen-face ((t :background "gray20" :foreground "gray80")))
+;;; latex
+ '(font-latex-subscript-face ((t nil)))
+ '(font-latex-superscript-face ((t nil)))
+;;; magit
+ '(magit-diff-add ((t (:foreground "SpringGreen3"))))
+ '(magit-diff-del ((t (:foreground "firebrick3"))))
+ '(magit-item-highlight ((t nil)))
+;;; rainbow-delimiter
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "gray90"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "PaleVioletRed1"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "cyan1"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "orange1"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "chartreuse1"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "IndianRed4"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "turquoise4"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "tomato2"))))
+ '(rainbow-delimiters-depth-9-face ((t (:foreground "dark green"))))
+ '(rainbow-delimiters-unmatched-face ((t (:foreground "red1" :weight ultra-bold :height 1.0))))
+ ;; end of custom-theme-set-faces
+ )
 
 (provide-theme 'manoj-dark-modified)
 
