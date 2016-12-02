@@ -39,8 +39,6 @@
 ;;; macOS font settings
 (when (and (eq system-type 'darwin)
            (display-graphic-p))
-  ;; Mac-only
-;;; Japanese font setting that works
   ;; Best one so far. Good rescaling, and working with Greek letters φ phi
   ;; http://d.hatena.ne.jp/setoryohei/20110117
   ;; Good overview of how to configure a multi-language environment
@@ -49,13 +47,16 @@
   ;; http://lioon.net/emacs-change-font-size-quickly
   ;; Detailed explanation with Japanese font-only config
   ;; http://extra-vision.blogspot.com/2016/07/emacs.html?m=1
-  ;; 37.12.11 Fontsets
+  ;; 37.12.11 Fontsets (Emacs Lisp Manual)
   ;; A fontset is a list of fonts, each assigned to a range of character codes.
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Fontsets.html#Fontsets
   ;;
-  ;; Set default-frame font via default-frame-alist
+  ;; Strategy
+  ;; 1. Create a fontset specifying Latin and Japanese letter separately
+  ;; 2. Set default-frame fontset via default-frame-alist
+  ;; 3. Set face-font-rescale-alist to match width of different fonts
   ;;
-  ;; Create a customized font set
+;;;  Step 1. Create a fontset specifying Latin and Japanese letter separately
   (let* ((my-fontset-name "myfonts")
          ;; Font size one of [9/10/12/14/15/17/19/20/...]
          (my-default-font-size 14)
@@ -110,10 +111,14 @@
     ;; Greek characters
     (set-fontset-font my-font-set '(#x0370 . #x03FF)        my-ascii-fontspec nil 'append))
   ;;
+;;;  Step 2. Set default-frame fontset via default-frame-alist
   ;; Set the font set for the default frame (Used at frame creation)
   ;; Alist of default values for frame creation.
+  ;; To check for the current frame, use M-x describe-fontset
+  ;; To examine a specific character under cursor, use M-x describe-font
   (add-to-list 'default-frame-alist '(font . "fontset-myfonts"))
   ;;
+;;;  Step 3. Set face-font-rescale-alist to match width of different fonts
   ;; Rescaling parameters to adjust font sizes to match each other
   (dolist (elt '(("Hiragino Maru Gothic ProN"        . 1.2)
                  ("^-apple-hiragino.*"               . 1.2)
@@ -123,6 +128,7 @@
                  (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
                  (".*monaco-bold-.*-mac-roman"       . 0.9)))
     ;; Alist of fonts vs the rescaling factors.
+    ;; Each element is a cons (FONT-PATTERN . RESCALE-RATIO)
     (add-to-list 'face-font-rescale-alist elt))
   ;;
   ;; There is a bug relating to this rescaling setting.
