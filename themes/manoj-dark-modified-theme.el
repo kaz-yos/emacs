@@ -329,7 +329,7 @@
  '(org-level-6 ((t (:foreground "Aquamarine"))))
  '(org-level-7 ((t (:foreground "LightSteelBlue"))))
  '(org-level-8 ((t (:foreground "LightSalmon"))))
- '(org-link ((t (:foreground "Cyan" :underline t))))
+ '(org-link ((t (:foreground "cyan2" :underline t))))
  '(org-mode-line-clock  ((t (:foreground "DarkGreen" :underline t))))
  '(org-scheduled-previously ((t (:foreground "chocolate1"))))
  '(org-scheduled-today ((t (:foreground "PaleGreen"))))
@@ -696,6 +696,8 @@
  '(avy-lead-face-2 ((t (:background "black" :foreground "white"))))
 ;;; ace-window
  '(aw-leading-char-face ((t (:foreground "gray90" :height 5.0))))
+;;; bm
+ '(bm-face ((t (:background "DarkOrange3" :foreground "Black"))))
 ;;; company
  '(company-preview ((t :background nil :foreground "dark gray")))
  '(company-preview-common ((t :background nil :foreground "dark gray")))
