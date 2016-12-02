@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: orgimage
+# key: image
+# --
+#+ATTR_LATEX: :width \textwidth :options page=1
+[[$1]]$0
