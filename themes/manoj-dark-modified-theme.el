@@ -72,8 +72,10 @@
 
 (custom-theme-set-faces
  'manoj-dark-modified
+;;;
+;;; Faces originally included (some have been modified)
  '(default ((t (:background "black" :foreground "WhiteSmoke"))))
- ;; Font lock faces
+;;; Font lock faces
  '(font-lock-builtin-face       ((t (:foreground "LightSteelBlue"))))
  '(font-lock-constant-face      ((t (:foreground "LightSlateBlue" :bold t))))
  '(font-lock-preprocessor-face  ((t (:foreground "CornFlowerBlue" :italic t))))
@@ -83,7 +85,7 @@
  '(font-lock-regexp-grouping-construct ((t (:bold t :weight bold))))
  '(font-lock-variable-name-face ((t (:foreground "Aquamarine"))))
  '(font-lock-function-name-face ((t (:foreground "mediumspringgreen"
-				     :weight bold :height 1.1))))
+                                                 :weight bold :height 1.1))))
  '(font-lock-string-face        ((t (:foreground "RosyBrown1"))))
  '(font-lock-comment-face       ((t (:italic t :slant oblique :foreground "chocolate1"))))
  '(font-lock-comment-delimiter-face ((t (:foreground "Salmon"))))
@@ -95,6 +97,7 @@
  '(cperl-hash-face ((t (:foreground "SpringGreen" :background "Black" :bold t :italic t))))
  '(cperl-nonoverridable-face ((t (:foreground "chartreuse3"))))
 
+;;; gnus
  '(gnus-button ((t (:bold t :weight bold :background "#191932" :box (:line-width 2 :style released-button)))))
  '(gnus-cite-attribution-face ((t (:italic t))))
  '(gnus-cite-face-1  ((t (:foreground "CornflowerBlue"))))
@@ -223,8 +226,8 @@
  '(gnus-group-news-low-empty ((t (:foreground "DarkTurquoise"))))
  '(gnus-group-news-low-empty-face ((t (:foreground "DarkTurquoise"))))
 
- ;;message faces
  '(message-cited-text ((t (:foreground "red3"))))
+;;; message faces
  '(message-header-cc ((t (:bold t :foreground "chartreuse1" :weight bold))))
  '(message-header-cc-face ((t (:bold t :foreground "chartreuse1" :weight bold))))
  '(message-header-name ((t (:foreground "green"))))
@@ -244,7 +247,7 @@
  '(message-separator ((t (:foreground "LightSkyBlue1"))))
  '(message-separator-face ((t (:foreground "LightSkyBlue1"))))
  '(message-url ((t (:bold t :foreground "blue" :weight bold))))
-
+;;; erc
  '(bg:erc-color-face0 ((t (:background "saddle brown"))))
  '(bg:erc-color-face1 ((t (:background "black"))))
  '(bg:erc-color-face10 ((t (:background "DodgerBlue4"))))
@@ -301,6 +304,7 @@
  '(fg:erc-color-face8 ((t (:foreground "yellow"))))
  '(fg:erc-color-face9 ((t (:foreground "green"))))
 
+;;; org
  '(org-agenda-date ((t (:foreground "LightSkyBlue"))))
  '(org-agenda-date-weekend ((t (:bold t :foreground "LightSkyBlue" :weight bold))))
  '(org-agenda-restriction-lock ((t (:background "skyblue4"))))
@@ -339,6 +343,7 @@
  '(org-upcoming-deadline ((t (:foreground "chocolate1"))))
  '(org-verbatim ((t (:foreground "grey70" :underline t))))
  '(org-warning ((t (:bold t :weight bold :foreground "Pink"))))
+;;; outline
  '(outline-1 ((t (:foreground "LightSkyBlue"))))
  '(outline-2 ((t (:foreground "LightGoldenrod"))))
  '(outline-3 ((t (:foreground "Cyan1"))))
@@ -347,7 +352,6 @@
  '(outline-6 ((t (:foreground "Aquamarine"))))
  '(outline-7 ((t (:foreground "LightSteelBlue"))))
  '(outline-8 ((t (:foreground "LightSalmon"))))
-
 
  '(CUA-global-mark-face ((t (:background "cyan" :foreground "black"))))
  '(CUA-rectangle-face ((t (:background "maroon" :foreground "white"))))
@@ -394,8 +398,8 @@
  '(compilation-warning ((t (:bold t :foreground "Orange" :weight bold))))
  '(compilation-warning-face ((t (:bold t :foreground "Orange" :weight bold))))
  '(completions-common-part ((t (:width normal :weight normal
-                                :slant normal :foreground "WhiteSmoke"
-				:background "black" :height 81))))
+                                       :slant normal :foreground "WhiteSmoke"
+                                       :background "black" :height 81))))
  '(completions-first-difference ((t (:bold t :weight bold))))
 
  '(css-selector ((t (:foreground "LightSteelBlue"))))
@@ -424,13 +428,14 @@
                                           :foreground "black"
                                           :box '(:line-width 2 :style released-button)))))
  '(custom-variable-tag-face ((t (:bold t :foreground "light blue"
-                                         :weight bold :height 1.2))))
+                                       :weight bold :height 1.2))))
 
  '(diary ((t (:foreground "IndianRed"))))
  '(diary-anniversary ((t (:foreground "Cyan1"))))
  '(diary-button ((t (:background "lightgrey" :foreground "black"  :box (:line-width 2 :style released-button)))))
  '(diary-face ((t (:foreground "IndianRed"))))
  '(diary-time ((t (:foreground "LightGoldenrod"))))
+;;; diff
  '(diff-added ((t (:foreground "Green"))))
  '(diff-added-face ((t (:foreground "Green"))))
  '(diff-changed-face ((t (:foreground "Khaki"))))
@@ -448,7 +453,7 @@
  '(diff-removed-face ((t (:foreground "salmon1"))))
  '(diff-refine-change-face ((t (:background "MidnightBlue"))))
  '(diff-refine-change      ((t (:background "MidnightBlue"))))
-
+;;; ediff
  '(ediff-current-diff-face-A ((t (:foreground "firebrick" :background "pale green"))))
  '(ediff-current-diff-face-Ancestor ((t (:foreground "Black" :background "VioletRed"))))
  '(ediff-current-diff-face-B ((t (:foreground "DarkOrchid" :background "Yellow"))))
@@ -478,7 +483,7 @@
  '(epa-validity-medium ((t (:italic t :foreground "PaleTurquoise" :slant italic))))
 
  '(escape-glyph ((t (:foreground "cyan"))))
-
+;;; eshell
  '(eshell-ls-archive-face ((t (:bold t :foreground "IndianRed"))))
  '(eshell-ls-backup-face ((t (:foreground "Grey"))))
  '(eshell-ls-clutter-face ((t (:foreground "DimGray"))))
@@ -522,7 +527,7 @@
 
  '(holiday ((t (:background "chocolate4"))))
  '(holiday-face ((t (:background "chocolate4"))))
-
+;;; ibuffer
  '(ibuffer-dired-buffer-face ((t (:foreground "mediumspringgreen" :weight bold :height 1.1))))
  '(ibuffer-help-buffer-face  ((t (:italic t :slant oblique :foreground "chocolate1"))))
  '(ibuffer-hidden-buffer-face  ((t (:bold t :foreground "Pink" :weight bold))))
@@ -578,7 +583,7 @@
  '(match ((t (:background "RoyalBlue3"))))
  '(minibuffer-prompt ((t (:foreground "cyan"))))
  '(mode-line ((t (:background "grey90" :foreground "black"
-                  :box '(:line-width -1 :style released-button)))))
+                              :box '(:line-width -1 :style released-button)))))
  '(mode-line-buffer-id ((t (:bold t :weight bold))))
  '(mode-line-emphasis ((t (:bold t :weight bold))))
  '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40"
