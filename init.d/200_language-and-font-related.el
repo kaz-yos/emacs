@@ -28,15 +28,10 @@
 ;;; Default font size setter (effective in all buffers)
 ;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
 ;; http://ergoemacs.org/emacs/elisp_idioms_prompting_input.html
-(defun default-font-size (size)
-  "Set default font size (effective in all buffers)"
-  (interactive "sEnter font size in points: ")
-  (let ((ht (* (string-to-int size) 10)))
-    (set-face-attribute 'default nil :height ht)
-    (update-current-frame-fontset)))
 
-(defun update-current-frame-fontset ()
-  "Update frame fontset "
+;; current frame fontset updater for each OS
+(defun update-current-frame-fontset-mac ()
+  "Update current frame fontset with Japanese font setting (macOS)"
   (let* (;; Ascii font name (pick from (font-family-list))
          (my-ascii-font "Menlo")
          ;; Japanese font name (pick from (font-family-list))
@@ -68,6 +63,33 @@
     ;; Greek characters
     (set-fontset-font (face-attribute 'default :fontset)
                       '(#x0370 . #x03FF)        my-ascii-fontspec nil 'append)))
+;;
+(defun update-current-frame-fontset-win ()
+  "Update current frame fontset with Japanese font setting (Windows)"
+  nil)
+;;
+(defun update-current-frame-fontset-linux ()
+  "Update current frame fontset with Japanese font setting (Linux)"
+  nil)
+;;
+(defun update-current-frame-fontset ()
+  (cond
+   ;; If in terminal, exit
+   ((not (display-graphic-p)) nil)
+   ;; Otherwise use appropriate one for each system
+   ((eq system-type 'darwin)     (update-current-frame-fontset-mac))
+   ((eq system-type 'windows-nt) (update-current-frame-fontset-win))
+   ((eq system-type 'gnu/linux)  (update-current-frame-fontset-linux))
+   (t nil)))
+;;
+(defun default-font-size (size)
+  "Set default font size in current frame (effective in all buffers)"
+  (interactive "sEnter font size in points: ")
+  (let ((ht (* (string-to-int size) 10)))
+    (set-face-attribute 'default nil :height ht)
+    ;; Call fontset updater to reinstall Japanese setting
+    (update-current-frame-fontset)))
+
 
 ;;;
 ;;; macOS font settings
