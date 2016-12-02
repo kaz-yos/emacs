@@ -184,7 +184,7 @@ from the current buffer."
 ;;;
 ;;; Async dired
 ;; https://github.com/jwiegley/emacs-async
-(use-package dired-async-mode
+(use-package dired-async
   :demand t
   :config
   (dired-async-mode 1))
