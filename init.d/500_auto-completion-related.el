@@ -100,7 +100,7 @@
   ;; (setq company-global-modes '(not eshell-mode ielm-mode))
   ;;
   ;; Delay time
-  (setq company-idle-delay 1)
+  (setq company-idle-delay 0.3)
   ;; 2 letters before completion kicks in
   (setq company-minimum-prefix-length 2)
   ;; Wrap after the final candidate
