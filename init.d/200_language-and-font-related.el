@@ -32,8 +32,42 @@
   "Set default font size (effective in all buffers)"
   (interactive "sEnter font size in points: ")
   (let ((ht (* (string-to-int size) 10)))
-    (set-face-attribute 'default nil :height ht)))
+    (set-face-attribute 'default nil :height ht)
+    (update-current-frame-fontset)))
 
+(defun update-current-frame-fontset ()
+  "Update frame fontset "
+  (let* (;; Ascii font name (pick from (font-family-list))
+         (my-ascii-font "Menlo")
+         ;; Japanese font name (pick from (font-family-list))
+         (my-jp-font    "Hiragino Maru Gothic ProN")
+         ;; Create :family-only font specifications (use later)
+         ;; #<font-spec nil nil Menlo nil nil nil nil nil nil nil nil nil nil>
+         (my-ascii-fontspec (font-spec :family my-ascii-font))
+         ;; #<font-spec nil nil Hiragino\ Maru\ Gothic\ ProN nil nil nil nil nil nil nil nil nil nil>
+         (my-jp-fontspec    (font-spec :family my-jp-font)))
+    ;;
+    ;; Return the value of FACE’s ATTRIBUTE on (current) FRAME.
+    ;; (face-attribute 'default :fontset) returns the current frame's fontset,
+    ;; which can be updated for some letters via set-fontset-font
+
+    ;; For these Japanese character sets, use my-jp-fontspec
+    (set-fontset-font (face-attribute 'default :fontset)
+                      'japanese-jisx0213.2004-1 my-jp-fontspec    nil 'append)
+    (set-fontset-font (face-attribute 'default :fontset)
+                      'japanese-jisx0213-2      my-jp-fontspec    nil 'append)
+    ;; For Half-sized katakana characters, use my-jp-fontspec
+    (set-fontset-font (face-attribute 'default :fontset)
+                      'katakana-jisx0201        my-jp-fontspec    nil 'append)
+    ;;
+    ;; For the characters in the range #x0080 - #x024F, use my-ascii-fontspec
+    ;; Latin with pronounciation annotations
+    (set-fontset-font (face-attribute 'default :fontset)
+                      '(#x0080 . #x024F)        my-ascii-fontspec nil 'append)
+    ;; For the characters in the range #x0370 - #x03FF, use my-ascii-fontspec
+    ;; Greek characters
+    (set-fontset-font (face-attribute 'default :fontset)
+                      '(#x0370 . #x03FF)        my-ascii-fontspec nil 'append)))
 
 ;;;
 ;;; macOS font settings
@@ -56,7 +90,8 @@
   ;; 2. Set default-frame fontset via default-frame-alist
   ;; 3. Set face-font-rescale-alist to match width of different fonts
   ;;
-;;;  Step 1. Create a fontset specifying Latin and Japanese letter separately
+;;;  Step 1. Create a fontset specifying different fonts for Latin and Japanese letters
+  ;; This creates a new fontset rather than overwriting the default fontset.
   (let* ((my-fontset-name "myfonts")
          ;; Font size one of [9/10/12/14/15/17/19/20/...]
          (my-default-font-size 14)
@@ -121,12 +156,14 @@
 ;;;  Step 3. Set face-font-rescale-alist to match width of different fonts
   ;; Rescaling parameters to adjust font sizes to match each other
   (dolist (elt '(("Hiragino Maru Gothic ProN"        . 1.2)
-                 ("^-apple-hiragino.*"               . 1.2)
-                 (".*osaka-bold.*"                   . 1.2)
-                 (".*osaka-medium.*"                 . 1.2)
-                 (".*courier-bold-.*-mac-roman"      . 1.0)
-                 (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-                 (".*monaco-bold-.*-mac-roman"       . 0.9)))
+                 ;; Below not relevant, but kept for historical reasons
+                 ;; ("^-apple-hiragino.*"               . 1.2)
+                 ;; (".*osaka-bold.*"                   . 1.2)
+                 ;; (".*osaka-medium.*"                 . 1.2)
+                 ;; (".*courier-bold-.*-mac-roman"      . 1.0)
+                 ;; (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
+                 ;; (".*monaco-bold-.*-mac-roman"       . 0.9)
+                 ))
     ;; Alist of fonts vs the rescaling factors.
     ;; Each element is a cons (FONT-PATTERN . RESCALE-RATIO)
     (add-to-list 'face-font-rescale-alist elt))
