@@ -486,12 +486,12 @@ This function obeys `avy-all-windows' setting."
   ;;
   ;; Assing key bindings for all characters
   ;;
-  (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c 'timer))
+  ;; (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c 'timer))
   ;; eg, M-s-x will activate (avy-goto-char ?x), ie, all occurrence of x
-  ;; (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
-  (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c))
+  (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
+  ;; (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c))
   ;; eg, A-s-x will activate (avy-goto-word-1 ?x), ie, all words starting with x
-  ;; (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word))
+  (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word))
   )
 ;;
 ;;
