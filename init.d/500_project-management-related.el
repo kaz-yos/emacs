@@ -5,7 +5,7 @@
   :config
   ;; Simpler lighter
   (setq projectile-mode-line '(:eval
-                               (format " Pj[%s]"
+                               (format " [%s]"
                                        (projectile-project-name))))
   ;; Enable Projectile globally
   ;; 2015-01-01 error *** Eval error ***  End of file during parsing
