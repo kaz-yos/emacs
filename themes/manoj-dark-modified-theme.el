@@ -335,7 +335,7 @@
  '(org-scheduled-today ((t (:foreground "PaleGreen"))))
  '(org-sexp-date ((t (:foreground "Cyan"))))
  '(org-special-keyword ((t (:foreground "LightSalmon"))))
- '(org-table ((t (:foreground "LightSkyBlue"))))
+ '(org-table ((t (:foreground "LightSkyBlue1"))))
  '(org-tag ((t (:bold t :weight bold))))
  '(org-target ((t (:underline t))))
  '(org-time-grid ((t (:foreground "LightGoldenrod"))))
@@ -572,7 +572,7 @@
  '(js2-warning-face ((t (:background "indian red" :foreground "green"))))
 
  '(lazy-highlight ((t (:background "paleturquoise4"))))
- '(link ((t (:foreground "cyan1" :underline t))))
+ '(link ((t (:foreground "cyan2" :underline t))))
  '(link-visited ((t (:underline t :foreground "violet"))))
 
  '(makefile-space ((t (:background "hotpink"))))
@@ -581,7 +581,7 @@
  '(man-italic ((t (:foreground "yellow"))))
  '(man-xref ((t (:underline t))))
  '(match ((t (:background "RoyalBlue3"))))
- '(minibuffer-prompt ((t (:foreground "cyan"))))
+ '(minibuffer-prompt ((t (:foreground "cyan3"))))
  '(mode-line ((t (:background "grey90" :foreground "black"
                               :box '(:line-width -1 :style released-button)))))
  '(mode-line-buffer-id ((t (:bold t :weight bold))))
