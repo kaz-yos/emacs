@@ -226,8 +226,8 @@
  '(gnus-group-news-low-empty ((t (:foreground "DarkTurquoise"))))
  '(gnus-group-news-low-empty-face ((t (:foreground "DarkTurquoise"))))
 
- '(message-cited-text ((t (:foreground "red3"))))
 ;;; message faces
+ '(message-cited-text ((t (:foreground "gray60"))))
  '(message-header-cc ((t (:bold t :foreground "chartreuse1" :weight bold))))
  '(message-header-cc-face ((t (:bold t :foreground "chartreuse1" :weight bold))))
  '(message-header-name ((t (:foreground "green"))))
