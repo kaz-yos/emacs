@@ -26,14 +26,15 @@
 ;;
 ;; Install infrastructure
 ;;
-;; mu along with mu4e
+;; Install HEAD mu along with mu4e following below
 ;; make sure which emacs gives the path to a new emacs (23+)
 ;; https://github.com/Homebrew/homebrew/issues/16504#issuecomment-11394215
 ;; EMACS=$(which emacs) brew install mu --with-emacs --HEAD
 ;; ./configure --prefix=/usr/local/Cellar/mu/HEAD --with-lispdir=/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu
 ;;
-;; mbsync (isync) for IMAP-Maildir syncing
-;; msmtp for sending
+;; These unix tools also have to be installed.
+;; mbsync (isync package) for IMAP-Maildir syncing
+;; msmtp for sending messages
 ;; pass and gpg for encrypted password handling
 ;;
 ;;
@@ -98,7 +99,7 @@
   (setq mu4e-headers-visible-columns 100)
   (setq mu4e-view-show-images t)
   (setq mu4e-view-show-addresses t)
-    ;;
+  ;;
 ;;; Sender configuration
   ;; use msmtp
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
