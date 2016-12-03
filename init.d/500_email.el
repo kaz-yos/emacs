@@ -32,10 +32,10 @@
 ;; EMACS=$(which emacs) brew install mu --with-emacs --HEAD
 ;; ./configure --prefix=/usr/local/Cellar/mu/HEAD --with-lispdir=/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu
 ;;
-;; These unix tools also have to be installed.
+;; These unix tools also have to be installed and configured elsewhere.
 ;; mbsync (isync package) for IMAP-Maildir syncing
 ;; msmtp for sending messages
-;; pass and gpg for encrypted password handling
+;; pass and gpg for encrypted password handling (instead macOS security command in use)
 ;;
 ;;
 ;;; mu4e.el
@@ -47,7 +47,7 @@
   :init
   ;; Check for mu4e directory before invoking all the following
   (let ((mu4e-dir
-         "/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu/mu4e/"))
+         "/usr/local/Cellar/mu/HEAD-b8711d2_2/share/emacs/site-lisp/mu/mu4e/"))
     (when (file-exists-p mu4e-dir)
       (add-to-list 'load-path mu4e-dir)))
   ;;
@@ -95,10 +95,17 @@
   ;;
 ;;; Viewer configuration
   (setq mu4e-split-view 'vertical)
+  ;; ‘apply’ automatically apply the marks before doing anything else
   (setq mu4e-headers-leave-behavior 'apply)
   (setq mu4e-headers-visible-columns 100)
   (setq mu4e-view-show-images t)
   (setq mu4e-view-show-addresses t)
+  ;; 4.4 Sort order and threading
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Sort-order-and-threading.html
+  ;; :date, :subject, :size, :prio, :from, :to
+  (setq mu4e-headers-sort-field :date)
+  ;; Threading off by default. use P to turn on.
+  (setq mu4e-headers-show-threads nil)
   ;;
 ;;; Sender configuration
   ;; use msmtp
