@@ -23,7 +23,10 @@
 ;;; key configuration
 (add-hook 'dired-mode-hook
           '(lambda () (define-key dired-mode-map (kbd "s-d") 'make-directory)))
-
+;; Opening parent folder of current buffer
+(global-set-key (kbd "s-d") #'(lambda ()
+                                (interactive)
+                                (find-file "./")))
 
 ;;; File type specific shell command
 ;; https://www.gnu.org/software/emacs/manual/html_node/dired-x/Shell-Command-Guessing.html
