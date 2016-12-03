@@ -1,11 +1,9 @@
-;;; Helm (Anything successor)
+;;; Helm
 ;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688		; arabiki
 ;; http://d.hatena.ne.jp/a_bicky/20140125/1390647299		; arabiki 2
 ;; http://sleepboy-zzz.blogspot.com/2012/09/anythinghelm.html	; in general
 ;; http://d.hatena.ne.jp/syohex/20121207/1354885367		; some useful tips
 ;; http://pages.sachachua.com/.emacs.d/Sacha.html#orgheadline12
-
-
 (use-package helm
   :ensure t
   :diminish helm-mode
@@ -14,6 +12,7 @@
   :bind (("M-x" .     helm-M-x)
          ;; ("C-M-x" .   execute-extended-command)
          ("C-z" .     helm-for-files)
+         ;; ("C-x C-f" . helm-find-files)
          ("M-y" .     helm-show-kill-ring)
          ;; ("C-x b" .   helm-buffers-list)
          ("C-x C-r" . helm-recentf)
@@ -40,6 +39,9 @@
   (setq helm-input-idle-delay 0.3)
   (setq helm-candidate-number-limit 200)
   (setq helm-M-x-always-save-history t)
+  ;; Show full path in helm-find-files
+  ;; http://emacs.stackexchange.com/questions/22407/view-a-whole-file-name-or-path-in-helm-buffer
+  (setq helm-ff-transformer-show-only-basename nil)
   ;; This causes cycle with Buffers above Recentf and is useless.
   ;; (setq helm-move-to-line-cycle-in-source t)
   ;; Always use the other window for helm (below if no other window exists)
