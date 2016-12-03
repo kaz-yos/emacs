@@ -237,6 +237,7 @@
   (ido-everywhere 1)
   ;; https://www.masteringemacs.org/article/introduction-to-ido-mode
   (setq ido-use-filename-at-point 'guess)
+  (global-set-key (kbd "C-x C-f") 'ido-find-file)
   ;;
   ;;
 ;;; ido-ubiquitous.el
