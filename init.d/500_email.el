@@ -1,5 +1,5 @@
 ;;; e-mail related                                 -*- lexical-binding: t; -*-
-
+;; This file is public on github. Do not put sensitive information here.
 
 ;;;
 ;;; General configuration
