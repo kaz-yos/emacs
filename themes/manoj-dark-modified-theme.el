@@ -230,7 +230,7 @@
  '(message-cited-text ((t (:foreground "gray60"))))
  '(message-header-cc ((t (:bold t :foreground "chartreuse1" :weight bold))))
  '(message-header-cc-face ((t (:bold t :foreground "chartreuse1" :weight bold))))
- '(message-header-name ((t (:foreground "green"))))
+ '(message-header-name ((t (:foreground "SpringGreen3"))))
  '(message-header-name-face ((t (:foreground "green"))))
  '(message-header-newsgroups ((t (:italic t :bold t :foreground "papaya whip" :slant italic :weight bold))))
  '(message-header-newsgroups-face ((t (:italic t :bold t :foreground "papaya whip" :slant italic :weight bold))))
