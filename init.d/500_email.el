@@ -4,7 +4,6 @@
 ;;;
 ;;; General configuration
 ;; Default in sending e-mail
-;; (setq user-mail-address "kazukiyoshida@mail.harvard.edu")
 (setq user-full-name "Kazuki Yoshida")
 
 
@@ -78,10 +77,10 @@
   ;; Do not occupy the minibuffer
   (setq mu4e-hide-index-message t)
   ;;
-;;; Dynamic folder selection (configured elsewhere)
+;;;  Dynamic folder selection (configured elsewhere)
   ;;
   ;;
-;;; Composer configuration
+;;;  Composer configuration
   ;; Do not drop myself from cc list
   (setq mu4e-compose-keep-self-cc t)
   ;; Always CC myself
@@ -93,7 +92,7 @@
                                (concat "CC: " "\n")
                                (concat "Bcc: " user-mail-address "\n")))))
   ;;
-;;; Viewer configuration
+;;;  Viewer configuration
   (setq mu4e-split-view 'vertical)
   ;; ‘apply’ automatically apply the marks before doing anything else
   (setq mu4e-headers-leave-behavior 'apply)
@@ -107,7 +106,7 @@
   ;; Threading off by default. use P to turn on.
   (setq mu4e-headers-show-threads nil)
   ;;
-;;; Sender configuration
+;;;  Sender configuration
   ;; use msmtp
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
   (setq sendmail-program "msmtp")
