@@ -12,7 +12,7 @@
   :bind (("M-x" .     helm-M-x)
          ;; ("C-M-x" .   execute-extended-command)
          ("C-z" .     helm-for-files)
-         ;; ("C-x C-f" . helm-find-files)
+         ("C-x C-f" . helm-find-files)
          ("M-y" .     helm-show-kill-ring)
          ;; ("C-x b" .   helm-buffers-list)
          ("C-x C-r" . helm-recentf)
