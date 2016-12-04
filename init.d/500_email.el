@@ -97,6 +97,7 @@
   ;; ‘apply’ automatically apply the marks before doing anything else
   (setq mu4e-headers-leave-behavior 'apply)
   (setq mu4e-headers-visible-columns 100)
+  (setq mu4e-headers-results-limit 500)
   (setq mu4e-view-show-images t)
   (setq mu4e-view-show-addresses t)
   ;; 4.4 Sort order and threading
