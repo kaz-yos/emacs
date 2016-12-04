@@ -28,7 +28,7 @@
 (global-set-key (kbd "<C-tab>") 'other-window-or-split)
 ;; Reversal
 ;; http://stackoverflow.com/questions/143072/in-emacs-what-is-the-opposite-function-of-other-window-c-x-o
-(global-set-key (kbd "<C-S-tab>") 'previous-multiframe-window)	;; Added by K
+(global-set-key (kbd "<C-S-tab>") 'previous-multiframe-window)
 ;;
 ;; other-frame with C-x o, instead of other-window
 (global-set-key (kbd "C-x o") 'other-frame)
