@@ -93,13 +93,14 @@
   (setq mu4e-headers-leave-behavior 'apply)
   (setq mu4e-headers-visible-columns 100)
   (setq mu4e-headers-results-limit 500)
+  (setq mu4e-headers-auto-update t)
   ;; 4.4 Sort order and threading
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Sort-order-and-threading.html
   ;; :date, :subject, :size, :prio, :from, :to
   (setq mu4e-headers-sort-field :date)
   ;; Threading off by default. use P to turn on.
   (setq mu4e-headers-show-threads nil)
-  (setq mu4e-use-fancy-chars t)
+  (setq mu4e-use-fancy-chars nil)
   ;; Faces
   ;; mu4e-trashed-face
   ;;
