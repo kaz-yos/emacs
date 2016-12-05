@@ -54,8 +54,7 @@
   :commands (mu4e)
   :init
   ;; Check for mu4e directory before invoking all the following
-  (let ((mu4e-dir
-         "/usr/local/Cellar/mu/HEAD-b8711d2_2/share/emacs/site-lisp/mu/mu4e/"))
+  (let ((mu4e-dir "/usr/local/Cellar/mu/HEAD-b8711d2_2/share/emacs/site-lisp/mu/mu4e/"))
     (when (file-exists-p mu4e-dir)
       (add-to-list 'load-path mu4e-dir)))
   ;;
@@ -67,7 +66,7 @@
   ;; tell mu4e how to sync email
   ;; Using timelimit for mbsync to limit execution time
   ;; https://groups.google.com/forum/#!topic/mu-discuss/FLz4FcECo3U
-  (if (file-exists-p "/usr/local/bin/timelimit")
+  (if (executable-find "timelimit")
       (setq mu4e-get-mail-command "timelimit -t 120 mbsync -Va")
     (setq mu4e-get-mail-command "mbsync -Va"))
   ;; Change file UID when moving (necessary for mbsync, but not for offlineimap)
@@ -110,8 +109,12 @@
   (setq mu4e-view-show-addresses t)
   ;; Displaying rich-text messages
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
-  (require 'mu4e-contrib)
-  (setq mu4e-html2text-command 'mu4e-shr2text)
+  (setq mu4e-view-prefer-html nil)
+  (when (executable-find "html2text")
+    (setq mu4e-html2text-command "html2text -utf8 -width 72"))
+  ;; This one is seems to be slow.
+  ;; (require 'mu4e-contrib)
+  ;; (setq mu4e-html2text-command 'mu4e-shr2text)
   ;;
 ;;;  Editor view configuration
   ;; Do not drop myself from cc list
