@@ -6,6 +6,14 @@
 ;; Default in sending e-mail
 (setq user-full-name "Kazuki Yoshida")
 
+;;;  SMTP configuration
+;; use msmtp
+(setq message-send-mail-function 'message-send-mail-with-sendmail)
+(setq sendmail-program "msmtp")
+;; tell msmtp to choose the SMTP server according to the from field in the outgoing email
+(setq message-sendmail-extra-arguments '("--read-envelope-from"))
+(setq message-sendmail-f-is-evil 't)
+
 
 ;;;
 ;;; mu4e-related
@@ -78,7 +86,30 @@
 ;;;  Dynamic folder selection (configured elsewhere)
   ;;
   ;;
-;;;  Composer configuration
+;;;  Header view configuration
+  (setq mu4e-split-view 'vertical)
+  ;; ‘apply’ automatically apply the marks before doing anything else
+  (setq mu4e-headers-leave-behavior 'apply)
+  (setq mu4e-headers-visible-columns 100)
+  (setq mu4e-headers-results-limit 500)
+  ;; 4.4 Sort order and threading
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Sort-order-and-threading.html
+  ;; :date, :subject, :size, :prio, :from, :to
+  (setq mu4e-headers-sort-field :date)
+  ;; Threading off by default. use P to turn on.
+  (setq mu4e-headers-show-threads nil)
+  ;; Faces
+  ;; mu4e-trashed-face
+  ;;
+;;;  Message view configuration
+  (setq mu4e-view-show-images t)
+  (setq mu4e-view-show-addresses t)
+  ;; Displaying rich-text messages
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
+  (require 'mu4e-contrib)
+  (setq mu4e-html2text-command 'mu4e-shr2text)
+  ;;
+;;;  Editor view configuration
   ;; Do not drop myself from cc list
   (setq mu4e-compose-keep-self-cc t)
   ;; Always CC myself
@@ -89,36 +120,6 @@
               (save-excursion (message-add-header
                                (concat "CC: " "\n")
                                (concat "Bcc: " user-mail-address "\n")))))
-  ;;
-;;;  Viewer configuration
-  (setq mu4e-split-view 'vertical)
-  ;; ‘apply’ automatically apply the marks before doing anything else
-  (setq mu4e-headers-leave-behavior 'apply)
-  (setq mu4e-headers-visible-columns 100)
-  (setq mu4e-headers-results-limit 500)
-  (setq mu4e-view-show-images t)
-  (setq mu4e-view-show-addresses t)
-  ;; 4.4 Sort order and threading
-  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Sort-order-and-threading.html
-  ;; :date, :subject, :size, :prio, :from, :to
-  (setq mu4e-headers-sort-field :date)
-  ;; Threading off by default. use P to turn on.
-  (setq mu4e-headers-show-threads nil)
-  ;; Faces
-  ;; mu4e-trashed-face
-  ;;
-  ;; Displaying rich-text messages
-  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
-  (require 'mu4e-contrib)
-  (setq mu4e-html2text-command 'mu4e-shr2text)
-  ;;
-;;;  Sender configuration
-  ;; use msmtp
-  (setq message-send-mail-function 'message-send-mail-with-sendmail)
-  (setq sendmail-program "msmtp")
-  ;; tell msmtp to choose the SMTP server according to the from field in the outgoing email
-  (setq message-sendmail-extra-arguments '("--read-envelope-from"))
-  (setq message-sendmail-f-is-evil 't)
   ;;
 ;;; mu4e-maildirs-extension.el
   ;; Show mu4e maildirs summary in mu4e-main-view
