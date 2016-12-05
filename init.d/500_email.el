@@ -136,8 +136,15 @@
   (require 'mu4e-alert)
   (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
   (when (file-exists-p "/usr/local/bin/terminal-notifier")
+    (setq alert-notifier-command "/usr/local/bin/terminal-notifier")
     (mu4e-alert-set-default-style 'notifier)
-    (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)))
+    (add-hook 'after-init-hook #'mu4e-alert-enable-notifications))
+  (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
+  ;; Interesting mail only
+  (setq mu4e-alert-interesting-mail-query
+        (concat
+         "flag:unread"
+         " AND NOT flag:trashed")))
 
 
 
