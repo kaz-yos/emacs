@@ -67,16 +67,13 @@
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-change-filenames-when-moving t)
   ;; Update interval
-  (setq mu4e-update-interval (* 60 15))
-  ;; tell mu4e to use w3m for html rendering
-  ;; http://hack.org/mc/blog/mu4e.html
-  ;; Not setting -I (input charset) works better for Japaneseq
-  (setq mu4e-html2text-command "w3m -O utf8 -T text/html")
+  (setq mu4e-update-interval (* 60 5))
   ;; taken from mu4e page to define bookmarks
   (add-to-list 'mu4e-bookmarks
                '("size:5M..500M" "Big messages" ?b))
-  ;; Do not occupy the minibuffer
-  (setq mu4e-hide-index-message t)
+  ;; Do not occupy the minibuffer with "Indexing..."
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
+  (setq mu4e-hide-index-messages t)
   ;;
 ;;;  Dynamic folder selection (configured elsewhere)
   ;;
