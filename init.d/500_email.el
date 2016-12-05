@@ -43,6 +43,7 @@
 ;; Execute the following before first invocation
 ;; mu index --maildir=~/.maildir
 (use-package mu4e
+  :commands (mu4e)
   :init
   ;; Check for mu4e directory before invoking all the following
   (let ((mu4e-dir
