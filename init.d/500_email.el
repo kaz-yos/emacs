@@ -130,6 +130,11 @@
         ;; This one gives live links, but seems to be slow.
         (t (progn (require 'mu4e-contrib)
                   (setq mu4e-html2text-command 'mu4e-shr2text))))
+  ;; pdf view
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Installation.html
+  ;; https://github.com/djcb/mu/issues/443
+  ;; http://stackoverflow.com/questions/24194357/glib-h-file-not-found-on-max-osx-10-9
+  (setq mu4e-msg2pdf nil)
   ;;
 ;;;  Editor view configuration
   ;; Do not drop myself from cc list
