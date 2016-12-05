@@ -76,15 +76,16 @@
   (setq mu4e-change-filenames-when-moving t)
   ;; Update interval
   (setq mu4e-update-interval (* 60 5))
-  ;; taken from mu4e page to define bookmarks
-  (add-to-list 'mu4e-bookmarks
-               '("size:5M..500M" "Big messages" ?b))
   ;; Do not occupy the minibuffer with "Indexing..."
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-hide-index-messages t)
+  ;; Default directory for saving attachments.
+  (setq mu4e-attachment-dir (expand-file-name "~/Downloads/"))
   ;;
 ;;;  Dynamic folder selection (configured elsewhere)
   ;;
+  ;;
+;;;  Main view configuration
   ;;
 ;;;  Header view configuration
   (setq mu4e-split-view 'vertical)
@@ -98,10 +99,12 @@
   (setq mu4e-headers-sort-field :date)
   ;; Threading off by default. use P to turn on.
   (setq mu4e-headers-show-threads nil)
+  (setq mu4e-use-fancy-chars t)
   ;; Faces
   ;; mu4e-trashed-face
   ;;
 ;;;  Message view configuration
+  ;; Whether to automatically display attached images in the message
   (setq mu4e-view-show-images t)
   (setq mu4e-view-show-addresses t)
   ;; Displaying rich-text messages
