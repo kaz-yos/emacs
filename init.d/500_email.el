@@ -107,6 +107,14 @@
   ;; Whether to automatically display attached images in the message
   (setq mu4e-view-show-images t)
   (setq mu4e-view-show-addresses t)
+  ;; Actions
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Actions.html
+  (setq mu4e-view-actions
+        '(("capture message"  . mu4e-action-capture-message)
+          ("view as pdf"      . mu4e-action-view-as-pdf)
+          ("show this thread" . mu4e-action-show-thread)
+          ("browser"          . mu4e-action-view-in-browser)))
+  ;;
   ;; Displaying rich-text messages
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
   (setq mu4e-view-prefer-html nil)
