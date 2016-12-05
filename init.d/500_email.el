@@ -110,11 +110,16 @@
   ;; Displaying rich-text messages
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
   (setq mu4e-view-prefer-html nil)
-  (when (executable-find "html2text")
-    (setq mu4e-html2text-command "html2text -utf8 -width 72"))
-  ;; This one is seems to be slow.
-  ;; (require 'mu4e-contrib)
-  ;; (setq mu4e-html2text-command 'mu4e-shr2text)
+  ;; html converters use first one that exists
+  (cond ((executable-find "html2text")
+         (setq mu4e-html2text-command "html2text -utf8 -nobs -width 72"))
+        ((executable-find "w3m")
+         (setq mu4e-html2text-command "w3m -T text/html"))
+        ((executable-find "textutil")
+         (setq mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout"))
+        ;; This one gives live links, but seems to be slow.
+        (t (progn (require 'mu4e-contrib)
+                  (setq mu4e-html2text-command 'mu4e-shr2text))))
   ;;
 ;;;  Editor view configuration
   ;; Do not drop myself from cc list
