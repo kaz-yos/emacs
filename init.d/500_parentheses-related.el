@@ -23,7 +23,7 @@
                      (and matching (char-syntax matching)))))))
 ;;; paredit-menu.el
 ;; Adds a menu to paredit.el as memory aid
-(require 'paredit-menu)
+;; (require 'paredit-menu)
 
 
 ;;;
@@ -49,4 +49,4 @@
 ;;; smartparens.el
 ;; https://github.com/Fuco1/smartparens/wiki
 ;; paredit and smartparens: https://github.com/Fuco1/smartparens/wiki/Paredit-and-smartparens
-(require 'smartparens-config)
+;; (require 'smartparens-config)
