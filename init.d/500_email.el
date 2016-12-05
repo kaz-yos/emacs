@@ -93,6 +93,8 @@
   (setq mu4e-headers-visible-columns 100)
   (setq mu4e-headers-results-limit 500)
   (setq mu4e-headers-auto-update t)
+  ;; http://www.djcbsoftware.nl/code/mu/mu4e/Other-search-functionality.html#Skipping-duplicates
+  (setq mu4e-headers-skip-duplicates t)
   ;; 4.4 Sort order and threading
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Sort-order-and-threading.html
   ;; :date, :subject, :size, :prio, :from, :to
