@@ -106,6 +106,13 @@
   (setq mu4e-headers-sort-field :date)
   ;; Threading off by default. use P to turn on.
   (setq mu4e-headers-show-threads nil)
+  ;; Faces
+  ;; mu4e-trashed-face
+  ;;
+  ;; Displaying rich-text messages
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
+  (require 'mu4e-contrib)
+  (setq mu4e-html2text-command 'mu4e-shr2text)
   ;;
 ;;;  Sender configuration
   ;; use msmtp
