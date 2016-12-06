@@ -184,23 +184,23 @@
   ;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-Completions-text-scale-decrease
   (setq icicle-Completions-text-scale-decrease 0.0)
   ;;
-;;; Default cycling mode to be used before you hit ‘TAB’ or ‘S-TAB’.
+;;;  Default cycling mode to be used before you hit ‘TAB’ or ‘S-TAB’.
   ;; prefix or apropos (fuzzy matching)
   (setq icicle-default-cycling-mode 'apropos)
   ;;
-;;; Key configuration for modal cycling within minibuffer
+;;;  Key configuration for modal cycling within minibuffer
   ;; No need for configuration. They already work if configured for apropos-cycle.
   ;; (add-to-list 'icicle-modal-cycle-up-keys   (kbd "C-p"))
   ;; (add-to-list 'icicle-modal-cycle-down-keys (kbd "C-n"))
   ;;
-;;; Key configuration for cycling fuzzy matching
+;;;  Key configuration for cycling fuzzy matching
   ;; icicle-apropos-complete-keys: S-tab by default
   (setq icicle-apropos-complete-keys       (list (kbd "<tab>")))
   ;; icicle-apropos-cycle-previous/next-keys: [next]/[prior] by default
   (setq icicle-apropos-cycle-previous-keys (list (kbd "C-p") (kbd "<prior>")))
   (setq icicle-apropos-cycle-next-keys     (list (kbd "C-n") (kbd "<next>")))
   ;;
-;;; Key configuration for cycling prefix matching
+;;;  Key configuration for cycling prefix matching
   ;; icicle-prefix-complete-keys: tab by default
   (setq icicle-prefix-complete-keys (list (kbd "<S-tab>")))
   ;; icicle-prefix-cycle-previous/next-keys: [home]/[end] by default
