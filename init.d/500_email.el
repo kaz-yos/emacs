@@ -121,8 +121,8 @@
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
   (setq mu4e-view-prefer-html nil)
   ;; html converters use first one that exists
-  (cond ((executable-find "html2text")
-         (setq mu4e-html2text-command "html2text -utf8 -nobs -width 72"))
+  (cond ((executable-find "/usr/local/bin/html2text")
+         (setq mu4e-html2text-command "/usr/local/bin/html2text -utf8 -nobs -width 72"))
         ((executable-find "w3m")
          (setq mu4e-html2text-command "w3m -T text/html"))
         ((executable-find "textutil")
