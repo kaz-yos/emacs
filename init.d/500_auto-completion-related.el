@@ -183,6 +183,8 @@
   ;; Initial height decrease for text in buffer `*Completions*'. (0.75 by default)
   ;; http://www.emacswiki.org/emacs/Icicles_-_Customization_and_General_Tips#icicle-Completions-text-scale-decrease
   (setq icicle-Completions-text-scale-decrease 0.0)
+  ;; Candidates are horizontally placed
+  (setq icicle-completions-format 'horizontal)
   ;;
 ;;;  Default cycling mode to be used before you hit ‘TAB’ or ‘S-TAB’.
   ;; prefix or apropos (fuzzy matching)
