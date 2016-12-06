@@ -2,13 +2,6 @@
 ;; Settings useful for programming in general
 
 ;;;
-;;; electric-spacing.el
-;; https://github.com/zk-phi/electric-spacing
-(use-package electric-spacing
-  :disabled t)
-
-
-;;;
 ;;; column-marker.el
 ;; http://www.emacswiki.org/emacs/column-marker.el
 (use-package column-marker
@@ -25,15 +18,6 @@
 (use-package aggressive-indent
   :commands (aggressive-indent-mode))
 (add-hook 'emacs-lisp-mode-hook 'aggressive-indent-mode)
-
-
-;;;
-;;; dumb-jump.el
-;; https://github.com/jacktasia/dumb-jump
-(use-package dumb-jump
-  :disabled t
-  :config
-  (dumb-jump-mode))
 
 
 ;;;
