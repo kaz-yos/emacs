@@ -79,7 +79,7 @@
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-hide-index-messages t)
   ;; Default directory for saving attachments.
-  (setq mu4e-attachment-dir (expand-file-name "~/Downloads/"))
+  (setq mu4e-attachment-dir (expand-file-name "~/Downloads"))
   ;;
 ;;;  Dynamic folder selection (configured elsewhere)
   ;;
