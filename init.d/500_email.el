@@ -92,6 +92,7 @@
   (setq mu4e-headers-leave-behavior 'apply)
   (setq mu4e-headers-visible-columns 100)
   (setq mu4e-headers-results-limit 500)
+  ;; Whether to automatically update headers if any indexed changes appear
   (setq mu4e-headers-auto-update t)
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/Other-search-functionality.html#Skipping-duplicates
   (setq mu4e-headers-skip-duplicates t)
