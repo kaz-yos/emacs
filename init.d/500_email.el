@@ -97,9 +97,17 @@
   ;;
 ;;;  Header view configuration
   (setq mu4e-split-view 'vertical)
-  ;; ‘apply’ automatically apply the marks before doing anything else
-  (setq mu4e-headers-leave-behavior 'apply)
+  ;; number of columns
   (setq mu4e-headers-visible-columns 100)
+  (add-hook 'mu4e-headers-mode-hook
+            '(lambda ()
+               (setq mu4e-headers-visible-columns
+                     ;; Set to 1/2 of frame width in default characters
+                     (/ (/ (frame-text-width) (frame-char-width)) 2))))
+  ;;
+  ;; Show related messages in addition to search results
+  (setq mu4e-headers-include-related nil)
+  ;; Maximum number of results to show
   (setq mu4e-headers-results-limit 500)
   ;; Whether to automatically update headers if any indexed changes appear
   (setq mu4e-headers-auto-update t)
@@ -112,6 +120,9 @@
   ;; Threading off by default. use P to turn on.
   (setq mu4e-headers-show-threads nil)
   (setq mu4e-use-fancy-chars nil)
+  ;; ‘apply’ automatically apply the marks before doing anything else
+  (setq mu4e-headers-leave-behavior 'apply)
+  ;;
   ;; Faces
   ;; mu4e-trashed-face
   ;;
