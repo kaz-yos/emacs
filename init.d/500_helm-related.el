@@ -40,6 +40,8 @@
   (setq helm-input-idle-delay 0.3)
   (setq helm-candidate-number-limit 200)
   (setq helm-M-x-always-save-history t)
+  ;; Max length of buffer names before truncate.
+  (setq helm-buffer-max-length nil)
   ;; Show full path in helm-find-files
   ;; http://emacs.stackexchange.com/questions/22407/view-a-whole-file-name-or-path-in-helm-buffer
   (setq helm-ff-transformer-show-only-basename nil)
