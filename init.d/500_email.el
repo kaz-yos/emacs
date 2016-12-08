@@ -74,9 +74,10 @@
   ;; tell mu4e how to sync email
   ;; Using timelimit for mbsync to limit execution time
   ;; https://groups.google.com/forum/#!topic/mu-discuss/FLz4FcECo3U
+  ;; inbox-only is a group of inbox channels and does not sync other boxes
   (if (executable-find "timelimit")
-      (setq mu4e-get-mail-command "timelimit -t 120 mbsync -Va")
-    (setq mu4e-get-mail-command "mbsync -Va"))
+      (setq mu4e-get-mail-command "timelimit -t 120 mbsync -V inbox-only")
+    (setq mu4e-get-mail-command "mbsync -V inbox-only"))
   ;; Change file UID when moving (necessary for mbsync, but not for offlineimap)
   ;; https://groups.google.com/forum/m/#!topic/mu-discuss/8c9LrYYpxjQ
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/General.html
