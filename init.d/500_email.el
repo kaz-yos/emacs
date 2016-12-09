@@ -78,8 +78,8 @@
   ;; https://groups.google.com/forum/#!topic/mu-discuss/FLz4FcECo3U
   ;; inbox-only is a group of inbox channels and does not sync other boxes
   (if (executable-find "timelimit")
-      (setq mu4e-get-mail-command "timelimit -t 120 mbsync -V inbox-only")
-    (setq mu4e-get-mail-command "mbsync -V inbox-only"))
+      (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
+    (setq mu4e-get-mail-command "mbsync inbox-only"))
   ;; Function to sync all folders
   (defun mu4e-update-mail-and-index-all ()
     "Update email with more extensive folder syncing"
@@ -87,6 +87,11 @@
     (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
     (mu4e-update-mail-and-index nil)
     (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only"))
+  (define-key 'mu4e-main-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
+  (define-key 'mu4e-headers-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
+  ;; This is giving an error.
+  ;; (define-key 'mu4e-compose-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
+  (define-key 'mu4e-view-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
   ;;
   ;; Change file UID when moving (necessary for mbsync, but not for offlineimap)
   ;; https://groups.google.com/forum/m/#!topic/mu-discuss/8c9LrYYpxjQ
