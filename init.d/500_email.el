@@ -162,7 +162,12 @@
          (setq mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout"))
         ;; This one gives live links, but seems to be slow.
         (t (progn (require 'mu4e-contrib)
-                  (setq mu4e-html2text-command 'mu4e-shr2text))))
+                  (setq mu4e-html2text-command 'mu4e-shr2text)
+                  (add-hook 'mu4e-view-mode-hook
+                            (lambda()
+                              ;; try to emulate some of the eww key-bindings
+                              (local-set-key (kbd "<tab>") 'shr-next-link)
+                              (local-set-key (kbd "<backtab>") 'shr-previous-link))))))
   ;; pdf view
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Installation.html
   ;; https://github.com/djcb/mu/issues/443
