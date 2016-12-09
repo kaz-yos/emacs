@@ -102,6 +102,11 @@
   ;; Whether to cache the list of maildirs
   (setq mu4e-cache-maildir-list t)
   ;;
+  ;; Whether to run a cleanup phase after indexing (avoids ghost messages)
+  (setq mu4e-index-cleanup nil)
+  ;; Date stamp check only; miss message that are modified outside mu
+  (setq mu4e-index-lazy-check t)
+  ;;
 ;;;  Dynamic folder selection (configured elsewhere)
   ;;
   ;;
