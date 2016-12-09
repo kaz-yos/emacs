@@ -80,6 +80,14 @@
   (if (executable-find "timelimit")
       (setq mu4e-get-mail-command "timelimit -t 120 mbsync -V inbox-only")
     (setq mu4e-get-mail-command "mbsync -V inbox-only"))
+  ;; Function to sync all folders
+  (defun mu4e-update-mail-and-index-all ()
+    "Update email with more extensive folder syncing"
+    (interactive)
+    (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
+    (mu4e-update-mail-and-index nil)
+    (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only"))
+  ;;
   ;; Change file UID when moving (necessary for mbsync, but not for offlineimap)
   ;; https://groups.google.com/forum/m/#!topic/mu-discuss/8c9LrYYpxjQ
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/General.html
