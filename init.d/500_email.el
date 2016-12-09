@@ -99,6 +99,8 @@
   (setq mu4e-hide-index-messages t)
   ;; Default directory for saving attachments.
   (setq mu4e-attachment-dir (expand-file-name "~/Downloads"))
+  ;; Whether to cache the list of maildirs
+  (setq mu4e-cache-maildir-list t)
   ;;
 ;;;  Dynamic folder selection (configured elsewhere)
   ;;
