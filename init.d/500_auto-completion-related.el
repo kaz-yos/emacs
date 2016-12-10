@@ -229,6 +229,9 @@
 (use-package ivy
   :config
   (ivy-mode 1))
+;;
+;;; counsel.el
+(use-package counsel)
 
 
 ;;;
