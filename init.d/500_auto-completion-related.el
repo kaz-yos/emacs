@@ -176,6 +176,7 @@
 ;;
 ;; Less annoying for C-x C-f than ido. I only use find-file to create a file or open a directory.
 (use-package icicles
+  :disabled t
   :demand
   :config
   (icy-mode 1)
@@ -220,6 +221,14 @@
                                   ))
   )
 
+
+;;;
+;;; IVY-RELATED
+;;
+;;; ivy.el
+(use-package ivy
+  :config
+  (ivy-mode 1))
 
 
 ;;;
