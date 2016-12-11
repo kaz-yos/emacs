@@ -74,6 +74,7 @@
   ;; mu binary (backend)
   (setq mu4e-mu-binary "/usr/local/bin/mu")
   ;;
+  ;;
 ;;;  Syncing
   ;; tell mu4e how to sync email
   ;; Defined by defcustom, thus, a dynamic variable.
@@ -155,12 +156,9 @@
   (setq mu4e-update-interval (* 60 5))
   ;; Do not occupy the minibuffer with "Indexing..."
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
-  (setq mu4e-hide-index-messages t)
-  ;; Default directory for saving attachments.
-  (setq mu4e-attachment-dir (expand-file-name "~/Downloads"))
+  (setq mu4e-hide-index-messages nil)
   ;; Whether to cache the list of maildirs
   (setq mu4e-cache-maildir-list t)
-  ;;
   ;; Whether to run a cleanup phase after indexing (avoids ghost messages)
   (setq mu4e-index-cleanup nil)
   ;; Date stamp check only; miss message that are modified outside mu
@@ -236,6 +234,8 @@
   ;; https://github.com/djcb/mu/issues/443
   ;; http://stackoverflow.com/questions/24194357/glib-h-file-not-found-on-max-osx-10-9
   (setq mu4e-msg2pdf nil)
+  ;; Default directory for saving attachments.
+  (setq mu4e-attachment-dir (expand-file-name "~/Downloads"))
   ;;
 ;;;  Editor view configuration
   ;; Do not drop myself from cc list
