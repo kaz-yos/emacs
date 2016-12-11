@@ -94,10 +94,13 @@
     ;; Conditionally manipulate mu4e-get-mail-command
     (if (called-interactively-p 'interactive)
         ;; If interactive, then inbox-only
-        (if (executable-find "timelimit")
-            (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
-          (setq mu4e-get-mail-command "mbsync inbox-only"))
+        (progn
+          (message "Called interactively")
+          (if (executable-find "timelimit")
+              (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
+            (setq mu4e-get-mail-command "mbsync inbox-only")))
       ;; Otherwise, all folders
+      (message "Called non-interactively")
       (if (executable-find "timelimit")
           (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
         (setq mu4e-get-mail-command "mbsync all")))
@@ -108,6 +111,9 @@
       (progn
         (run-hooks 'mu4e-update-pre-hook)
         (mu4e~update-mail-and-index-real run-in-background))))
+  ;; Replacement type advice
+  ;; (advice-add 'mu4e-update-mail-and-index :override #'mu4e-update-mail-and-index-conditional)
+  ;; (advice-remove 'mu4e-update-mail-and-index #'mu4e-update-mail-and-index-conditional)
   ;;
   (defun modify-mu4e-get-mail-command (run-in-background)
     "Manipulate mu4e-get-mail-command depending on interactive status"
@@ -124,9 +130,11 @@
           (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
         (setq mu4e-get-mail-command "mbsync all"))))
   ;;
-  (advice-add 'mu4e-update-mail-and-index :before #'modify-mu4e-get-mail-command)
+  ;; (advice-add 'mu4e-update-mail-and-index :before #'modify-mu4e-get-mail-command)
+  ;; (advice-remove 'mu4e-update-mail-and-index #'modify-mu4e-get-mail-command)
   ;;
   ;; (add-hook 'mu4e-update-pre-hook 'modify-mu4e-get-mail-command)
+  ;; (remove-hook 'mu4e-update-pre-hook 'modify-mu4e-get-mail-command)
   ;;
   ;; Function to sync all folders
   (defun mu4e-update-mail-and-index-all ()
