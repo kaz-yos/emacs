@@ -74,7 +74,7 @@
   ;; mu binary (backend)
   (setq mu4e-mu-binary "/usr/local/bin/mu")
   ;;
-  ;; Syncing
+;;;  Syncing
   ;; tell mu4e how to sync email
   ;; Defined by defcustom, thus, a dynamic variable.
   ;; Using timelimit for mbsync to limit execution time
@@ -84,9 +84,36 @@
       (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
     (setq mu4e-get-mail-command "mbsync inbox-only"))
   ;;
-  (defun modify-mu4e-get-mail-command ()
+  ;; Advice method
+  (defun mu4e-update-mail-and-index-conditional (run-in-background)
+    "Sync inbox if interactive, sync all if non-interactive"
+    ;; Taken from mu4e 0.9.8
+    (interactive "P")
+    (unless mu4e-get-mail-command
+      (mu4e-error "`mu4e-get-mail-command' is not defined"))
+    ;; Conditionally manipulate mu4e-get-mail-command
+    (if (called-interactively-p 'interactive)
+        ;; If interactive, then inbox-only
+        (if (executable-find "timelimit")
+            (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
+          (setq mu4e-get-mail-command "mbsync inbox-only"))
+      ;; Otherwise, all folders
+      (if (executable-find "timelimit")
+          (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
+        (setq mu4e-get-mail-command "mbsync all")))
+    ;; Execute real body
+    (if (and (buffer-live-p mu4e~update-buffer)
+             (process-live-p (get-buffer-process mu4e~update-buffer)))
+        (mu4e-message "Update process is already running")
+      (progn
+        (run-hooks 'mu4e-update-pre-hook)
+        (mu4e~update-mail-and-index-real run-in-background))))
+  ;;
+  (defun modify-mu4e-get-mail-command (run-in-background)
     "Manipulate mu4e-get-mail-command depending on interactive status"
-    (interactive)
+    ;; "P" is for universal argument
+    ;; http://ergoemacs.org/emacs/elisp_universal_argument.html
+    (interactive "P")
     (if (called-interactively-p 'interactive)
         ;; If interactive, then inbox-only
         (if (executable-find "timelimit")
@@ -96,7 +123,10 @@
       (if (executable-find "timelimit")
           (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
         (setq mu4e-get-mail-command "mbsync all"))))
-  (add-hook 'mu4e-update-pre-hook 'modify-mu4e-get-mail-command)
+  ;;
+  (advice-add 'mu4e-update-mail-and-index :before #'modify-mu4e-get-mail-command)
+  ;;
+  ;; (add-hook 'mu4e-update-pre-hook 'modify-mu4e-get-mail-command)
   ;;
   ;; Function to sync all folders
   (defun mu4e-update-mail-and-index-all ()
