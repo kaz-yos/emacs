@@ -171,6 +171,7 @@
   ;;
 ;;;  Main view configuration
   ;;
+  ;;
 ;;;  Header view configuration
   (setq mu4e-split-view 'vertical)
   ;; number of columns
@@ -199,8 +200,6 @@
   ;; ‘apply’ automatically apply the marks before doing anything else
   (setq mu4e-headers-leave-behavior 'apply)
   ;;
-  ;; Faces
-  ;; mu4e-trashed-face
   ;;
 ;;;  Message view configuration
   ;; Whether to automatically display attached images in the message
