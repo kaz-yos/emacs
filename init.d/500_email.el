@@ -73,13 +73,31 @@
   (setq mu4e-maildir "~/.maildir")
   ;; mu binary (backend)
   (setq mu4e-mu-binary "/usr/local/bin/mu")
+  ;;
+  ;; Syncing
   ;; tell mu4e how to sync email
+  ;; Defined by defcustom, thus, a dynamic variable.
   ;; Using timelimit for mbsync to limit execution time
   ;; https://groups.google.com/forum/#!topic/mu-discuss/FLz4FcECo3U
   ;; inbox-only is a group of inbox channels and does not sync other boxes
   (if (executable-find "timelimit")
       (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
     (setq mu4e-get-mail-command "mbsync inbox-only"))
+  ;;
+  (defun modify-mu4e-get-mail-command ()
+    "Manipulate mu4e-get-mail-command depending on interactive status"
+    (interactive)
+    (if (called-interactively-p 'interactive)
+        ;; If interactive, then inbox-only
+        (if (executable-find "timelimit")
+            (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
+          (setq mu4e-get-mail-command "mbsync inbox-only"))
+      ;; Otherwise, all folders
+      (if (executable-find "timelimit")
+          (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
+        (setq mu4e-get-mail-command "mbsync all"))))
+  (add-hook 'mu4e-update-pre-hook 'modify-mu4e-get-mail-command)
+  ;;
   ;; Function to sync all folders
   (defun mu4e-update-mail-and-index-all ()
     "Update email with more extensive folder syncing"
