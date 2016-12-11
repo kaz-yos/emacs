@@ -267,12 +267,6 @@
   (setq gnus-dired-mail-mode 'mu4e-user-agent)
   (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
   ;;
-;;; mu4e-maildirs-extension.el
-  ;; Show mu4e maildirs summary in mu4e-main-view
-  ;; https://github.com/agpchil/mu4e-maildirs-extension
-  ;; (require 'mu4e-maildirs-extension)
-  ;; (mu4e-maildirs-extension)
-  ;;
 ;;; mu4e-alert.el
   ;; Notification for mu4e
   ;; https://github.com/iqbalansari/mu4e-alert
