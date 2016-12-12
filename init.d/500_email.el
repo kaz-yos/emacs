@@ -273,10 +273,15 @@
   (require 'mu4e-alert)
   (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
   ;;
-  (when (file-exists-p "/usr/local/bin/terminal-notifier")
-    (setq alert-notifier-command "/usr/local/bin/terminal-notifier")
+  (when (executable-find "terminal-notifier")
+    (setq alert-notifier-command "terminal-notifier")
     (mu4e-alert-set-default-style 'notifier)
-    (add-hook 'after-init-hook #'mu4e-alert-enable-notifications))
+    ;; Immediately enable without waiting
+    ;; This entire use-package expression waits for M-x mu4e
+    (mu4e-alert-enable-notifications)
+    ;; after-init-hook does not work in delayed use-package expression
+    ;; (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
+    )
   ;; Interesting mail only
   (setq mu4e-alert-interesting-mail-query
         (concat
