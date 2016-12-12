@@ -92,7 +92,8 @@
 
 ;;; wgrep-helm.el  2014-01-14
 ;; Writable helm-grep-mode buffer and apply the changes to files
-(use-package wgrep-helm)
+(use-package wgrep-helm
+  :disabled t)
 
 
 ;;; helm-ag.el
