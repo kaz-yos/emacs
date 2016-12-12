@@ -279,6 +279,8 @@
     ;; Immediately enable without waiting
     ;; This entire use-package expression waits for M-x mu4e
     (mu4e-alert-enable-notifications)
+    ;; This is equivalent without immediate execution
+    ;; (add-hook 'mu4e-index-updated-hook #'mu4e-alert-notify-unread-mail-async)
     ;; after-init-hook does not work in delayed use-package expression
     ;; (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
     )
