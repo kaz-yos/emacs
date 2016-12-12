@@ -270,18 +270,18 @@
 ;;; mu4e-alert.el
   ;; Notification for mu4e
   ;; https://github.com/iqbalansari/mu4e-alert
-  ;; (require 'mu4e-alert)
-  ;; (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
-  ;; (when (file-exists-p "/usr/local/bin/terminal-notifier")
-  ;;   (setq alert-notifier-command "/usr/local/bin/terminal-notifier")
-  ;;   (mu4e-alert-set-default-style 'notifier)
-  ;;   (add-hook 'after-init-hook #'mu4e-alert-enable-notifications))
-  ;; (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
-  ;; ;; Interesting mail only
-  ;; (setq mu4e-alert-interesting-mail-query
-  ;;       (concat
-  ;;        "flag:unread"
-  ;;        " AND NOT flag:trashed"))
+  (require 'mu4e-alert)
+  (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
+  ;;
+  (when (file-exists-p "/usr/local/bin/terminal-notifier")
+    (setq alert-notifier-command "/usr/local/bin/terminal-notifier")
+    (mu4e-alert-set-default-style 'notifier)
+    (add-hook 'after-init-hook #'mu4e-alert-enable-notifications))
+  ;; Interesting mail only
+  (setq mu4e-alert-interesting-mail-query
+        (concat
+         "flag:unread"
+         " AND NOT flag:trashed"))
   ;;
   ;; Handcrafted notifier (use if the one above does not work)
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/Retrieving-mail.html#Retrieving-mail
