@@ -32,6 +32,13 @@
 ;;
 ;; other-frame with C-x o, instead of other-window
 (global-set-key (kbd "C-x o") 'other-frame)
+;;
+;; Select the previously-selected window in emacs
+;; http://stackoverflow.com/questions/7937395/select-the-previously-selected-window-in-emacs
+(defun switch-to-previous-buffer-possibly-creating-new-window ()
+  (interactive)
+  (pop-to-buffer (other-buffer (current-buffer) t)))
+
 
 ;;;
 ;;; Scroll window with C-t/C-v
