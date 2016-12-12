@@ -721,6 +721,8 @@
  '(magit-diff-add ((t (:foreground "SpringGreen3"))))
  '(magit-diff-del ((t (:foreground "firebrick3"))))
  '(magit-item-highlight ((t nil)))
+;;; mu4e
+ '(mu4e-modeline-face ((t (:foreground "black"))))
 ;;; rainbow-delimiter
  '(rainbow-delimiters-depth-1-face ((t (:foreground "gray90"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "PaleVioletRed1"))))
