@@ -1,0 +1,10 @@
+# key: again
+# name: againframe
+# --
+** SLIDE_NAME (repated) :B_againframe:
+  :PROPERTIES:
+  :BEAMER_env: againframe
+  :BEAMER_act: 2
+  :BEAMER_ref: *SLIDE_NAME
+  :END:
+$0

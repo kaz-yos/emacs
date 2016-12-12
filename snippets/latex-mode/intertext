@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: intertext
+# key: intt
+# --
+\intertext{\center{$0}}
