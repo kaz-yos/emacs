@@ -228,6 +228,10 @@
 ;;; ivy.el
 (use-package ivy
   :config
+  ;; Additional keys
+  ;; ivy-immediate-done finishes without completion
+  (define-key ivy-minibuffer-map (kbd "C-<return>") 'ivy-immediate-done)
+  ;; Activate
   (ivy-mode 1))
 ;;
 ;;; counsel.el
