@@ -285,9 +285,9 @@
   ;;
   ;; Handcrafted notifier (use if the one above does not work)
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/Retrieving-mail.html#Retrieving-mail
-  (add-hook 'mu4e-index-updated-hook
-            (defun new-mail-notifier ()
-              (shell-command "/usr/local/bin/terminal-notifier -message 'maildir updated'")))
+  ;; (add-hook 'mu4e-index-updated-hook
+  ;;           (defun new-mail-notifier ()
+  ;;             (shell-command "/usr/local/bin/terminal-notifier -message 'maildir updated'")))
   ;;
 ;;; helm-mu.el
   (require 'helm-mu)
