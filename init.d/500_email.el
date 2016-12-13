@@ -156,7 +156,7 @@
   (setq mu4e-update-interval (* 60 15))
   ;; Do not occupy the minibuffer with "Indexing..."
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
-  (setq mu4e-hide-index-messages nil)
+  (setq mu4e-hide-index-messages t)
   ;; Whether to cache the list of maildirs
   (setq mu4e-cache-maildir-list t)
   ;; Whether to run a cleanup phase after indexing (avoids ghost messages)
