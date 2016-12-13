@@ -45,7 +45,9 @@
   (define-key view-mode-map (kbd "l") 'forward-char)
   (define-key view-mode-map (kbd "J") 'View-scroll-line-forward)
   (define-key view-mode-map (kbd "K") 'View-scroll-line-backward)
-  ;; (define-key view-mode-map (kbd "i") 'read-only-mode)
+  (define-key view-mode-map (kbd "i") #'(lambda ()
+                                          (interactive)
+                                          (read-only-mode -1)))
   ;; Space bar use
   (define-key view-mode-map (kbd " ") 'scroll-up)
   (define-key view-mode-map (kbd "S-SPC") 'scroll-down)
