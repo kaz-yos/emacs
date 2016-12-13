@@ -43,10 +43,3 @@
 ;; http://ergoemacs.org/misc/emacs_rainbow-delimiters-mode.html
 ;; Configure in init-customize.el
 (setq delim-test (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1)))))))))))))))
-
-
-;;;
-;;; smartparens.el
-;; https://github.com/Fuco1/smartparens/wiki
-;; paredit and smartparens: https://github.com/Fuco1/smartparens/wiki/Paredit-and-smartparens
-;; (require 'smartparens-config)
