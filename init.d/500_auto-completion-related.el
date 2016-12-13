@@ -246,12 +246,14 @@
 ;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
 ;; http://miyazakikenji.wordpress.com/2013/06/11/emacs-に-ido-mode/
 (use-package ido
-  :demand
+  :disabled t
+  ;; :demand
   :config
+  ;; Enable
+  ;; (ido-mode 1)
+  ;; (ido-everywhere 1)
   ;; Flexible matching
   (setq ido-enable-flex-matching t)
-  (ido-mode 1)
-  (ido-everywhere 1)
   ;; https://www.masteringemacs.org/article/introduction-to-ido-mode
   (setq ido-use-filename-at-point 'guess)
   ;; (global-set-key (kbd "C-x C-f") 'ido-find-file)
@@ -261,7 +263,7 @@
   ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
   (require 'ido-ubiquitous)
   ;; ido for all completing-read
-  (ido-ubiquitous-mode 1)
+  ;; (ido-ubiquitous-mode 1)
   ;;
   ;;
 ;;; flx-ido.el
