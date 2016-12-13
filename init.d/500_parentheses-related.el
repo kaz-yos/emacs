@@ -21,9 +21,6 @@
              (list ?\"  ;; REMOVED ?w ?_
                    (let ((matching (matching-paren delimiter)))
                      (and matching (char-syntax matching)))))))
-;;; paredit-menu.el
-;; Adds a menu to paredit.el as memory aid
-;; (require 'paredit-menu)
 
 
 ;;;
