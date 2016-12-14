@@ -30,8 +30,6 @@
 ;; http://www.djcbsoftware.nl/code/mu/mu4e.html
 ;; https://www.emacswiki.org/emacs/mu4e
 ;;
-;; E-mail in Emacs with mu4e on OS X
-;; http://cmacr.ae/blog/2015/01/25/email-in-emacs/
 ;; Manage your gmail account in emacs with mu4e
 ;; https://gist.github.com/areina/3879626
 ;; installing mu and mu4e with homebrew with emacs from emacsforosx
@@ -218,6 +216,8 @@
               (save-excursion (message-add-header
                                (concat "CC: " "\n")
                                (concat "Bcc: " user-mail-address "\n")))))
+  ;; Flyspell
+  (add-hook 'mu4e-compose-mode-hook 'flyspell-mode-on)
   ;;
   ;; A.9 Attaching files with dired
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/Attaching-files-with-dired.html
