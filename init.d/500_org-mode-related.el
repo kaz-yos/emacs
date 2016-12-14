@@ -290,6 +290,10 @@
       (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
   (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
   ;;
+  ;; Qiita-Markdown exporter
+  ;; http://qiita.com/0x60df/items/3cde67967e3db30d9afe
+  (require 'ox-qmd)
+  ;;
   ;;
 ;;;
 ;;; Miscellaneous configurations
