@@ -12,7 +12,8 @@
 ;; http://openlab.ring.gr.jp/skk/dic.html
 ;;
 (use-package skk
-  :bind ("A-j" . skk-mode)
+  :bind (("A-j" . skk-mode)
+         ("s-j" . skk-mode))
   ;;
   :config
   ;; Dictionaries
