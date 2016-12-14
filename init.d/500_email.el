@@ -218,6 +218,8 @@
                                (concat "Bcc: " user-mail-address "\n")))))
   ;; Flyspell
   (add-hook 'mu4e-compose-mode-hook 'flyspell-mode-on)
+  ;; org-mode
+  (add-hook 'mu4e-compose-mode-hook 'mu4e-org-mode)
   ;;
   ;; A.9 Attaching files with dired
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/Attaching-files-with-dired.html
