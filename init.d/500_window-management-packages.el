@@ -95,11 +95,19 @@
              (screen-to-name-alist (elscreen-get-screen-to-name-alist))
              (title (mapconcat
                      (lambda (screen)
-                       (format "%d%s %s"
-                               screen (elscreen-status-label screen)
+                       (format "[%d%s%s]"
+                               ;; screen number
+                               screen
+                               ;; screen status +/-
+                               (elscreen-status-label screen)
+                               ;; screen name
                                ;; Return the value associated with KEY in ALIST
                                (alist-get screen screen-to-name-alist)))
-                     screen-list " ")))
+                     ;; Screen numbers (keys for alist)
+                     screen-list
+                     ;; Separator
+                     " ")))
+        ;; set-frame-name should be available in Emacs 25
         (if (fboundp 'set-frame-name)
             (set-frame-name title)
           (setq frame-title-format title)))))
