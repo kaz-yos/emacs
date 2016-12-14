@@ -142,11 +142,13 @@
   (setq mu4e-split-view 'vertical)
   ;; number of columns
   (setq mu4e-headers-visible-columns 100)
-  (add-hook 'mu4e-headers-mode-hook
-            '(lambda ()
-               (setq mu4e-headers-visible-columns
-                     ;; Set to 1/2 of frame width in default characters
-                     (/ (/ (frame-text-width) (frame-char-width)) 2))))
+  (defun set-header-columns-half-frame ()
+    "Make header split frame into half in mu4e split view"
+    (interactive)
+    (setq mu4e-headers-visible-columns
+          ;; Set to 1/2 of frame width in default characters
+          (/ (/ (frame-text-width) (frame-char-width)) 2)))
+  (add-hook 'mu4e-headers-mode-hook 'set-header-columns-half-frame)
   ;;
   ;; Show related messages in addition to search results
   (setq mu4e-headers-include-related nil)
