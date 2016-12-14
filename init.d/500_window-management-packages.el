@@ -86,7 +86,9 @@
   ;;
   ;; Use frame-title for tabs
   ;; https://www.emacswiki.org/emacs/EmacsLispScreen#toc8 (get-alist not found)
-  ;;
+  ;; Define truncation length
+  (setq elscreen-title-truncate-length 25)
+  ;; Actual work-horse function
   (defun elscreen-frame-title-update ()
     "Update frame title with elscreen tabs"
     (interactive)
@@ -95,14 +97,18 @@
              (screen-to-name-alist (elscreen-get-screen-to-name-alist))
              (title (mapconcat
                      (lambda (screen)
-                       (format "[%d%s%s]"
-                               ;; screen number
+                       (format (if (string-equal "+" (elscreen-status-label screen))
+                                   ;; Current screen format
+                                   "[(%d) %s]"
+                                 ;; Others
+                                 "(%d) %s")
+                               ;; screen number for %d
                                screen
-                               ;; screen status +/-
-                               (elscreen-status-label screen)
-                               ;; screen name
+                               ;; screen name for %s
                                ;; Return the value associated with KEY in ALIST
-                               (alist-get screen screen-to-name-alist)))
+                               (elscreen-truncate-screen-name
+                                (alist-get screen screen-to-name-alist)
+                                elscreen-title-truncate-length)))
                      ;; Screen numbers (keys for alist)
                      screen-list
                      ;; Separator
