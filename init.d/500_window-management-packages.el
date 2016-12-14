@@ -85,40 +85,54 @@
           ("*WL:Message*" . "Wanderlust")))
   ;;
   ;; Use frame-title for tabs
-  ;; https://www.emacswiki.org/emacs/EmacsLispScreen#toc8 (get-alist not found)
+  ;; How to display the list of screens on the frame-title of my Emacs?
+  ;; This is broken. get-alist should be changed to alist-get
+  ;; https://www.emacswiki.org/emacs/EmacsLispScreen#toc8
+  ;;
+  ;; More modern way to use frame title
   ;; Define truncation length
-  (setq elscreen-title-truncate-length 20)
-  ;; Actual work-horse function
-  (defun elscreen-frame-title-update ()
-    "Update frame title with elscreen tabs"
+  (setq elscreen-tab-truncate-length 20)
+  ;;
+  (defun elscreen-tabs-as-string ()
+    "Return a string representation of elscreen tab names
+
+Set nae truncation length in ELSCREEN-TRUNCATE-LENGTH"
+    (let* ((screen-list (sort (elscreen-get-screen-list) '<))
+           (screen-to-name-alist (elscreen-get-screen-to-name-alist)))
+      ;; mapconcat: mapping and then concate name elements together with separator
+      (mapconcat
+       (lambda (screen)
+         (format (if (string-equal "+" (elscreen-status-label screen))
+                     ;; Current screen format
+                     "[ %d ] %s"
+                   ;; Others
+                   "(%d) %s")
+                 ;; screen number: replaces %d (integer)
+                 screen
+                 ;; screen name: replaces %s (string)
+                 (elscreen-truncate-screen-name
+                  ;; Return the value associated with KEY in ALIST
+                  (alist-get screen screen-to-name-alist)
+                  elscreen-tab-truncate-length)))
+       ;; Screen numbers (keys for alist)
+       screen-list
+       ;; Separator
+       " | ")))
+  ;;
+  (defun elscreen-tabs-file-path ()
+    "Return a string containing tab names and file path
+
+Concate name elscreen tab names and current buffer name or
+associated file name."
     (interactive)
-    (when (elscreen-screen-modified-p 'elscreen-frame-title-update)
-      (let* ((screen-list (sort (elscreen-get-screen-list) '<))
-             (screen-to-name-alist (elscreen-get-screen-to-name-alist))
-             (title (mapconcat
-                     (lambda (screen)
-                       (format (if (string-equal "+" (elscreen-status-label screen))
-                                   ;; Current screen format
-                                   "[ %d ] %s"
-                                 ;; Others
-                                 "(%d) %s")
-                               ;; screen number for %d
-                               screen
-                               ;; screen name for %s
-                               ;; Return the value associated with KEY in ALIST
-                               (elscreen-truncate-screen-name
-                                (alist-get screen screen-to-name-alist)
-                                elscreen-title-truncate-length)))
-                     ;; Screen numbers (keys for alist)
-                     screen-list
-                     ;; Separator
-                     " | ")))
-        ;; set-frame-name should be available in Emacs 25
-        (if (fboundp 'set-frame-name)
-            (set-frame-name title)
-          (setq frame-title-format title)))))
-  ;; (add-hook 'elscreen-screen-update-hook 'elscreen-frame-title-update)
-  ;; (remove-hook 'elscreen-screen-update-hook 'elscreen-frame-title-update)
+    (let* ((buffer-name-part (if buffer-file-name
+                                 (abbreviate-file-name buffer-file-name)
+                               (buffer-name)))
+           (elscreen-tab-part (elscreen-tabs-as-string)))
+      ;; How they are combined together
+      (concat elscreen-tab-part "    ||    " buffer-name-part)))
+  ;; Using frame-title-format avoids the need for a hook
+  (setq frame-title-format '(:eval (elscreen-tabs-file-path)))
   ;;
   ;; It has to kick in.
   (elscreen-start))
