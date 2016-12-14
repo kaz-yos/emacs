@@ -85,38 +85,7 @@
       (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
     (setq mu4e-get-mail-command "mbsync inbox-only"))
   ;;
-  ;; :override advice method (bruteforce method with complete function replacement)
-  ;; (defun mu4e-update-mail-and-index-conditional (run-in-background)
-  ;;   "Sync inbox if interactive, sync all if non-interactive"
-  ;;   ;; Taken from mu4e 0.9.8
-  ;;   (interactive "P")
-  ;;   (unless mu4e-get-mail-command
-  ;;     (mu4e-error "`mu4e-get-mail-command' is not defined"))
-  ;;   ;; Conditionally manipulate mu4e-get-mail-command
-  ;;   (if (called-interactively-p 'interactive)
-  ;;       ;; If interactive, then inbox-only
-  ;;       (progn
-  ;;         (message "Called interactively")
-  ;;         (if (executable-find "timelimit")
-  ;;             (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
-  ;;           (setq mu4e-get-mail-command "mbsync inbox-only")))
-  ;;     ;; Otherwise, all folders
-  ;;     (message "Called non-interactively")
-  ;;     (if (executable-find "timelimit")
-  ;;         (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
-  ;;       (setq mu4e-get-mail-command "mbsync all")))
-  ;;   ;; Execute real body
-  ;;   (if (and (buffer-live-p mu4e~update-buffer)
-  ;;            (process-live-p (get-buffer-process mu4e~update-buffer)))
-  ;;       (mu4e-message "Update process is already running")
-  ;;     (progn
-  ;;       (run-hooks 'mu4e-update-pre-hook)
-  ;;       (mu4e~update-mail-and-index-real run-in-background))))
-  ;; Replacement type advice
-  ;; (advice-add 'mu4e-update-mail-and-index :override #'mu4e-update-mail-and-index-conditional)
-  ;; (advice-remove 'mu4e-update-mail-and-index #'mu4e-update-mail-and-index-conditional)
-  ;;
-  ;;
+  ;; Define a function to change mbsync behavior when called interactively
   (defun modify-mu4e-get-mail-command (run-in-background)
     "Manipulate mu4e-get-mail-command depending on interactive status"
     ;; "P" is for universal argument
@@ -139,14 +108,13 @@
   (defun mu4e-update-mail-and-index-all ()
     "Update email with more extensive folder syncing"
     (interactive)
-    (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
-    (mu4e-update-mail-and-index nil)
-    (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only"))
-  (define-key 'mu4e-main-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
+    ;; (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
+    ;; This is considered non-interactive call with respect to
+    ;; mu4e-update-mail-and-index. So it's all-box anyway.
+    (mu4e-update-mail-and-index nil))
+  (define-key 'mu4e-main-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
   (define-key 'mu4e-headers-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
-  ;; This is giving an error.
-  ;; (define-key 'mu4e-compose-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
-  (define-key 'mu4e-view-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
+  (define-key 'mu4e-view-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
   ;;
   ;; Change file UID when moving (necessary for mbsync, but not for offlineimap)
   ;; https://groups.google.com/forum/m/#!topic/mu-discuss/8c9LrYYpxjQ
