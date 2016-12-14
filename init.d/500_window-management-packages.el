@@ -49,12 +49,13 @@
   ;; (global-set-key (kbd "A-c") 'elscreen-clone)
   ;; (global-set-key (kbd "A-k") 'elscreen-kill)
   ;; (global-set-key (kbd "A-r") 'elscreen-screen-nickname)
-  ;; (global-set-key (kbd "A-t") 'elscreen-toggle-display-tab)
+  (global-set-key (kbd "C-; t") 'elscreen-toggle-display-tab)
   (global-set-key (kbd "C-; l") 'helm-elscreen)
+  (global-set-key (kbd "C-; h") 'helm-elscreen)
   ;;
   ;; Do not show tabls to save space
   ;; Can use M-x elscreen-toggle-display-tab
-  ;; (setq elscreen-display-tab nil)
+  (setq elscreen-display-tab nil)
   ;; No preceding [X] for closing
   (setq elscreen-tab-display-kill-screen nil)
   ;; No [<->] at the beginning
@@ -82,12 +83,6 @@
           ("-telnet" . "telnet")
           ("dict" . "OnlineDict")
           ("*WL:Message*" . "Wanderlust")))
-  ;;
-  (defun elscreen-toggle-display-tab2 (state)
-    "Toggle elscreen tab bar"
-    (if state
-        (setq elscreen-display-tab t)
-      (setq elscreen-display-tab nil)))
   ;;
   ;; It has to kick in.
   (elscreen-start))
