@@ -84,5 +84,24 @@
           ("dict" . "OnlineDict")
           ("*WL:Message*" . "Wanderlust")))
   ;;
+  ;; Use frame-title for tabs
+  ;; https://www.emacswiki.org/emacs/EmacsLispScreen#toc8 (get-alist not found)
+  ;;
+  (defun elscreen-frame-title-update ()
+    (when (elscreen-screen-modified-p 'elscreen-frame-title-update)
+      (let* ((screen-list (sort (elscreen-get-screen-list) '<))
+             (screen-to-name-alist (elscreen-get-screen-to-name-alist))
+             (title (mapconcat
+                     (lambda (screen)
+                       (format "%d%s %s"
+                               screen (elscreen-status-label screen)
+                               (get-alist screen screen-to-name-alist)))
+                     screen-list " ")))
+        (if (fboundp 'set-frame-name)
+            (set-frame-name title)
+          (setq frame-title-format title)))))
+  ;; (add-hook 'elscreen-screen-update-hook 'elscreen-frame-title-update)
+  ;; (remove-hook 'elscreen-screen-update-hook 'elscreen-frame-title-update)
+  ;;
   ;; It has to kick in.
   (elscreen-start))
