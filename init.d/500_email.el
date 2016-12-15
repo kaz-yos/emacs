@@ -80,7 +80,7 @@
   ;; https://groups.google.com/forum/#!topic/mu-discuss/FLz4FcECo3U
   ;; inbox-only is a group of inbox channels and does not sync other boxes
   (if (executable-find "timelimit")
-      (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
+      (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
     (setq mu4e-get-mail-command "mbsync inbox-only"))
   ;;
   ;; Define a function to change mbsync behavior when called interactively
@@ -92,11 +92,11 @@
     (if (called-interactively-p 'interactive)
         ;; If interactive, then inbox-only
         (if (executable-find "timelimit")
-            (setq mu4e-get-mail-command "timelimit -t 120 mbsync inbox-only")
+            (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
           (setq mu4e-get-mail-command "mbsync inbox-only"))
       ;; Otherwise, all folders
       (if (executable-find "timelimit")
-          (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
+          (setq mu4e-get-mail-command "timelimit -t 180 mbsync all")
         (setq mu4e-get-mail-command "mbsync all"))))
   ;; :before advice to mainpulate mu4e-get-mail-command variable
   (advice-add 'mu4e-update-mail-and-index :before #'modify-mu4e-get-mail-command)
