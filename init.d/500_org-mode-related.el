@@ -277,6 +277,10 @@
   (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf-async)
   (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf-async)
   ;;
+  ;; Save on dispatcher invokation (This does not work)
+  ;; (advice-add 'org-export-dispatch :before 'save-buffer)
+  ;; (advice-remove 'org-export-dispatch 'save-buffer)
+  ;;
   ;; auto-revert in org-stack-mode
   (add-hook 'org-export-stack-mode-hook #'turn-on-auto-revert-mode)
   ;;
