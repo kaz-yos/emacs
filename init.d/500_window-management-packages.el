@@ -131,6 +131,7 @@ associated file name."
            (elscreen-tab-part (elscreen-tabs-as-string)))
       ;; How they are combined together
       (concat elscreen-tab-part "    ||    " buffer-name-part)))
+  ;;
   ;; Using frame-title-format avoids the need for a hook
   (setq frame-title-format '(:eval (elscreen-tabs-file-path)))
   ;;
