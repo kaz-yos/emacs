@@ -186,15 +186,19 @@ started."
 ;; http://www.bookshelf.jp/elc/moccur-edit.el
 ;; http://d.hatena.ne.jp/higepon/20061226/1167098839
 ;; http://d.hatena.ne.jp/sandai/20120304/p2
-(require 'moccur-edit)
-;; Modified buffers are saved automatically.
-(defadvice moccur-edit-change-file
-    (after save-after-moccur-edit-buffer activate)
-  (save-buffer))
-;; Usage:
-;; M-x moccur-grep to enter Moccur-grep, then objectName .R$
-;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
-(global-set-key (kbd "s-m") 'moccur-grep)
+(use-package color-moccur
+  :commands (moccur-grep)
+  :bind (("s-m" . moccur-grep))
+  :config
+  ;; Editing moccur buffer
+  ;; Usage:
+  ;; M-x moccur-grep to enter Moccur-grep, then objectName .R$
+  ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
+  (require 'moccur-edit)
+  ;; Modified buffers are saved automatically.
+  (defadvice moccur-edit-change-file
+      (after save-after-moccur-edit-buffer activate)
+    (save-buffer)))
 
 
 ;;;
