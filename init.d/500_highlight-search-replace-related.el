@@ -193,7 +193,7 @@ started."
   ;; Editing moccur buffer
   ;; Usage:
   ;; M-x moccur-grep to enter Moccur-grep, then objectName .R$
-  ;; r to enter Moccur-edit. C-x C-s to save, C-c C-k
+  ;; r/C-x C-q/C-c C-i to enter Moccur-edit. C-x C-s to save, C-c C-k
   (require 'moccur-edit)
   ;; Modified buffers are saved automatically.
   (defadvice moccur-edit-change-file
@@ -206,18 +206,22 @@ started."
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
 ;; https://github.com/Wilfred/ag.el
 ;; ag.el
-(require 'ag)
-(setq ag-arguments '("--smart-case" "--group" "--column" "--"))	; grouping is better.
-(setq ag-highlight-search t)
-(setq ag-reuse-buffers t)
-(setq ag-reuse-window t)
-;;
-;; wgrep-ag.el
-(require 'wgrep-ag)
-(autoload 'wgrep-ag-setup "wgrep-ag")
-(add-hook 'ag-mode-hook 'wgrep-ag-setup)
-;; r in ag result buffer invokes edit mode. C-x C-s to save. C-x C-k to cancel.
-(define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
+(use-package ag
+  :commands (ag)
+  :config
+  (setq ag-arguments '("--smart-case" "--group" "--column" "--"))	; grouping is better.
+  (setq ag-highlight-search t)
+  (setq ag-reuse-buffers t)
+  (setq ag-reuse-window t)
+  ;;
+  ;; Editing
+  (require 'wgrep-ag)
+  (add-hook 'ag-mode-hook 'wgrep-ag-setup)
+  ;; r/C-x C-q/C-c C-i to enter edit mode. C-x C-s to save, C-c C-k
+  (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
+  (define-key ag-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode)
+  (define-key ag-mode-map (kbd "C-c C-i") 'wgrep-change-to-wgrep-mode))
+
 
 ;;;
 ;;; highlight-sexp.el
