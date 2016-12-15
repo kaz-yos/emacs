@@ -21,7 +21,7 @@
          ;; This brings back the last helm used
          ;; ("C-;" .     helm-resume)
          ;; ("s-c" .     helm-occur)
-         ("C-; l" .     helm-elscreen)
+         ;; ("C-; l" .     helm-elscreen)
          ("A-m" .     helm-mark-ring)
          ;; ("M-z" .     helm-do-grep)
          ;; ("C-S-h" .   helm-descbinds)
