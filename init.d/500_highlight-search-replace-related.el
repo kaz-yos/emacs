@@ -279,7 +279,7 @@ started."
 ;;;
 ;;; selected.el
 ;; https://github.com/Kungsgeten/selected.el
-(use-package q
+(use-package selected
   :commands selected-minor-mode
   :bind (:map selected-keymap
               ("q" . selected-off)
