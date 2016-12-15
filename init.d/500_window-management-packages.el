@@ -96,7 +96,7 @@
   (defun elscreen-tabs-as-string ()
     "Return a string representation of elscreen tab names
 
-Set nae truncation length in ELSCREEN-TRUNCATE-LENGTH"
+Set name truncation length in ELSCREEN-TRUNCATE-LENGTH"
     (let* ((screen-list (sort (elscreen-get-screen-list) '<))
            (screen-to-name-alist (elscreen-get-screen-to-name-alist)))
       ;; mapconcat: mapping and then concate name elements together with separator
@@ -118,22 +118,23 @@ Set nae truncation length in ELSCREEN-TRUNCATE-LENGTH"
        screen-list
        ;; Separator
        " | ")))
-  ;;
-  (defun elscreen-tabs-file-path ()
-    "Return a string containing tab names and file path
-
-Concate name elscreen tab names and current buffer name or
-associated file name."
+  ;; Define a global variable to hold current tab names
+  (defvar *elscreen-tabs-as-string*
+    "" "Variable to hold curent elscreen status")
+  (defun update-elscreen-tabs-as-string ()
+    "Update ELSCREEN-TABS-FILE-PATH variable"
     (interactive)
-    (let* ((buffer-name-part (if buffer-file-name
-                                 (abbreviate-file-name buffer-file-name)
-                               (buffer-name)))
-           (elscreen-tab-part (elscreen-tabs-as-string)))
-      ;; How they are combined together
-      (concat elscreen-tab-part "    ||    " buffer-name-part)))
+    (setq *elscreen-tabs-as-string* (elscreen-tabs-as-string)))
+  ;; Update when elscreen works
+  (add-hook 'elscreen-screen-update-hook 'update-elscreen-tabs-as-string)
   ;;
-  ;; Using frame-title-format avoids the need for a hook
-  (setq frame-title-format '(:eval (elscreen-tabs-file-path)))
+  ;; Set frame title as combination of current elscreen tabs and buffer/path
+  ;; This avoids inquiring elscreen status everytime.
+  (setq frame-title-format '(:eval (concat *elscreen-tabs-as-string*
+                                           "    ||    "
+                                           (if buffer-file-name
+                                               (abbreviate-file-name buffer-file-name)
+                                             "%b"))))
   ;;
   ;; It has to kick in.
   (elscreen-start))
