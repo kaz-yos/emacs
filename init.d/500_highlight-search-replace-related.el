@@ -134,9 +134,14 @@ If there is a symbol at the current point, its textual representation is
 searched for by swiper-helm. If there is no symbol, empty search box is
 started."
     (interactive)
-    (swiper-helm (format "%s"
-                         (or (thing-at-point 'symbol)
-                             "")))))
+    (swiper-helm (cond
+                  ;; If there is selection use it
+                  ((and transient-mark-mode mark-active (not (eq (mark) (point))))
+                   (buffer-substring-no-properties (mark) (point)))
+                  ;; Otherwise, use symbol at point or empty
+                  (t (format "%s"
+                             (or (thing-at-point 'symbol)
+                                 "")))))))
 
 
 
