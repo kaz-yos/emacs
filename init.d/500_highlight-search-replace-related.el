@@ -121,9 +121,12 @@
 (use-package swiper-helm
   :commands (swiper
              swiper-helm
-             swiper-helm-at-point)
+             swiper-helm-at-point
+             swiper-helm-from-isearch)
   :bind (("s-s" . swiper-helm-at-point)
          ("C-s-s" . swiper-helm))
+  :bind (:map isearch-mode-map
+              ("s-s" . swiper-helm-from-isearch))
   ;; Configuration
   :config
   ;; Newly defined
@@ -142,8 +145,6 @@ started."
                   (t (format "%s"
                              (or (thing-at-point 'symbol)
                                  "")))))))
-
-
 
 
 ;;;
