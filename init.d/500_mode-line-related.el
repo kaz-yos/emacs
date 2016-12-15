@@ -29,24 +29,28 @@
 ;; https://github.com/shibayu36/emacs/blob/8376ba4e4b4d5cb4668e848c9a494b287232ea6f/emacs.d/inits/01-mode-line.el
 (defvar mode-line-cleaner-alist
   '(;; For minor-mode, first char is 'space'
-    (flymake-mode           . "")
-    (paredit-mode           . "")
-    (eldoc-mode             . "")
     (abbrev-mode            . "")
-    (undo-tree-mode         . "")
-    (git-gutter-mode        . "")
     (anzu-mode              . "")
-    (yas-minor-mode         . "")
+    (company-mode           . "")
+    (eldoc-mode             . "")
+    (elisp-slime-nav-mode   . "")
+    (flymake-mode           . "")
+    (git-gutter-mode        . "")
     (guide-key-mode         . "")
     (icicle-mode            . "")
+    (ivy-mode               . "")
     (magit-auto-revert-mode . "")
-    (elisp-slime-nav-mode   . "")
+    (paredit-mode           . "")
+    (super-save-mode        . "")
+    (undo-tree-mode         . "")
+    (yas-minor-mode         . "")
     ;;
     ;; Major modes
     (dired-mode             . "Dir")
     (emacs-lisp-mode        . "elisp")))
 ;;
 (defun clean-mode-line ()
+  "Clean mode-line expressions"
   (interactive)
   (loop for (mode . mode-str) in mode-line-cleaner-alist
         do
