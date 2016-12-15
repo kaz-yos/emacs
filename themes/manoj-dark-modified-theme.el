@@ -690,7 +690,7 @@
 ;;; anzu
  '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
 ;;; avy
- '(avy-lead-face ((t (:background "black" :foreground "white"))))
+ '(avy-lead-face   ((t (:background "black" :foreground "white"))))
  '(avy-lead-face-0 ((t (:background "black" :foreground "white"))))
  '(avy-lead-face-1 ((t (:background "black" :foreground "white"))))
  '(avy-lead-face-2 ((t (:background "black" :foreground "white"))))
