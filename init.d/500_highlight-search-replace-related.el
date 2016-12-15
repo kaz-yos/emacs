@@ -202,17 +202,6 @@ started."
 
 
 ;;;
-;;; helm-c-moccur.el		; helm source for color-moccur.el
-(require 'helm-c-moccur)
-(global-set-key (kbd "M-o") 'helm-c-moccur-occur-by-moccur)
-(global-set-key (kbd "C-M-o") 'helm-c-moccur-dmoccur)
-(add-hook 'dired-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "O") 'helm-c-moccur-dired-do-moccur-by-moccur)))
-(global-set-key (kbd "C-M-s") 'helm-c-moccur-isearch-forward)
-(global-set-key (kbd "C-M-r") 'helm-c-moccur-isearch-backward)
-
-;;;
 ;;; ag.el and wgrep-ag.el. Faster replacement for moccur-edit.el 2014-01-14
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
 ;; https://github.com/Wilfred/ag.el
