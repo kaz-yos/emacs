@@ -113,6 +113,10 @@
   (define-key 'mu4e-main-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
   (define-key 'mu4e-headers-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
   (define-key 'mu4e-view-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
+  ;; indexing only
+  (define-key 'mu4e-main-mode-map (kbd "s-i")    'mu4e-update-index)
+  (define-key 'mu4e-headers-mode-map (kbd "s-i") 'mu4e-update-index)
+  (define-key 'mu4e-view-mode-map (kbd "s-i")    'mu4e-update-index)
   ;;
   ;; Change file UID when moving (necessary for mbsync, but not for offlineimap)
   ;; https://groups.google.com/forum/m/#!topic/mu-discuss/8c9LrYYpxjQ
@@ -126,9 +130,9 @@
   ;; Whether to cache the list of maildirs
   (setq mu4e-cache-maildir-list t)
   ;; Whether to run a cleanup phase after indexing (avoids ghost messages)
-  (setq mu4e-index-cleanup nil)
+  (setq mu4e-index-cleanup t)
   ;; Date stamp check only; miss message that are modified outside mu
-  (setq mu4e-index-lazy-check t)
+  (setq mu4e-index-lazy-check nil)
   ;;
 ;;;  Dynamic folder selection (configured elsewhere)
   ;;
