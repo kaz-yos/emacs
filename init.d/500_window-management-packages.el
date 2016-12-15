@@ -103,7 +103,7 @@ Set name truncation length in ELSCREEN-TRUNCATE-LENGTH"
        (lambda (screen)
          (format (if (string-equal "+" (elscreen-status-label screen))
                      ;; Current screen format
-                     "[ %d ] %s"
+                     "# [ %d ] %s #"
                    ;; Others
                    "(%d) %s")
                  ;; screen number: replaces %d (integer)
