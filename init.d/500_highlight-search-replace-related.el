@@ -161,6 +161,23 @@ started."
           (goto-char (mark))
           (isearch-repeat-forward)))
     ad-do-it))
+;;
+;; ;; Modern version (incomplete)
+;; ;; Define function
+;; (defun isearch-selection-advice (old-fun &optional regexp-p no-recursive-edit)
+;;   "Use selection for isearch"
+;;   (interactive)
+;;   (old-fun (cond
+;;             ;; If there is selection use it
+;;             ((and transient-mark-mode mark-active (not (eq (mark) (point))))
+;;              (buffer-substring-no-properties (mark) (point)))
+;;             ;; Otherwise, use symbol at point or empty
+;;             (t (format "%s"
+;;                        (or (thing-at-point 'symbol)
+;;                            ""))))))
+;; ;; Define around advice
+;; (advice-add :around )
+
 
 
 ;;;
