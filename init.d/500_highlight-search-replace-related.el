@@ -250,6 +250,7 @@ started."
 
 ;;;
 ;;; embrace.el
+;; Add/Change/Delete pairs based on `expand-region', similar to `evil-surround'.
 ;; https://github.com/cute-jumper/embrace.el
 (use-package embrace
   :commands (embrace-commander)
@@ -260,20 +261,26 @@ started."
 
 ;;;
 ;;; cmigemo (installed from Homebrew)
+;; Used brew to install cmigemo
+;; Used M-x list-package to install migemo.el (github)
+;; Configured refering to: http://d.hatena.ne.jp/ground256/20111008/1318063872
+;; Works by advising isearch-mode
+;;
 ;; Mac-only configuration
-(when (eq system-type 'darwin)
-  ;; Used brew to install cmigemo
-  ;; Used M-x list-package to install migemo.el (github)
-  ;; Configured refering to: http://d.hatena.ne.jp/ground256/20111008/1318063872
-  (require 'migemo)
-  (setq migemo-command "/usr/local/bin/cmigemo")
-  (setq migemo-options '("-q" "--emacs"))
-  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
-  (setq migemo-user-dictionary nil)
-  (setq migemo-coding-system 'utf-8-unix)
-  (setq migemo-regex-dictionary nil)
-  (load-library "migemo")
-  (migemo-init))
+(when (executable-find "/usr/local/bin/cmigemo")
+  (use-package migemo
+    :commands (migemo-init)
+    :init
+    (add-hook 'after-init-hook 'migemo-init)
+    :config
+    (setq migemo-command "/usr/local/bin/cmigemo")
+    (setq migemo-options '("-q" "--emacs"))
+    (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+    (setq migemo-user-dictionary nil)
+    (setq migemo-coding-system 'utf-8-unix)
+    (setq migemo-regex-dictionary nil)
+    ;; Advising
+    (migemo-init)))
 
 
 ;;;
