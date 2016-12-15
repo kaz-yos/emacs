@@ -84,14 +84,13 @@
           ("dict" . "OnlineDict")
           ("*WL:Message*" . "Wanderlust")))
   ;;
-  ;; Use frame-title for tabs
+;;;  Use frame-title for tabs
   ;; How to display the list of screens on the frame-title of my Emacs?
   ;; This is broken. get-alist should be changed to alist-get
   ;; https://www.emacswiki.org/emacs/EmacsLispScreen#toc8
   ;;
-  ;; More modern way to use frame title
-  ;; Define truncation length
-  (setq elscreen-tab-truncate-length 20)
+  (defvar *elscreen-tab-truncate-length*
+    20 "Number of characters to truncate tab names in frame title")
   ;;
   (defun elscreen-tabs-as-string ()
     "Return a string representation of elscreen tab names
@@ -113,23 +112,24 @@ Set name truncation length in ELSCREEN-TRUNCATE-LENGTH"
                  (elscreen-truncate-screen-name
                   ;; Return the value associated with KEY in ALIST
                   (alist-get screen screen-to-name-alist)
-                  elscreen-tab-truncate-length)))
+                  *elscreen-tab-truncate-length*)))
        ;; Screen numbers (keys for alist)
        screen-list
        ;; Separator
        " | ")))
-  ;; Define a global variable to hold current tab names
+  ;;
   (defvar *elscreen-tabs-as-string*
-    "" "Variable to hold curent elscreen status")
+    "" "Variable to hold curent elscreen tab names as a string")
+  ;;
   (defun update-elscreen-tabs-as-string ()
-    "Update ELSCREEN-TABS-FILE-PATH variable"
+    "Update *elscreen-tabs-as-string* variable"
     (interactive)
     (setq *elscreen-tabs-as-string* (elscreen-tabs-as-string)))
-  ;; Update when elscreen works
+  ;;
+  ;; Update *elscreen-tabs-as-string* whenever elscreen status updates
   (add-hook 'elscreen-screen-update-hook 'update-elscreen-tabs-as-string)
   ;;
-  ;; Set frame title as combination of current elscreen tabs and buffer/path
-  ;; This avoids inquiring elscreen status everytime.
+  ;; Set frame title format as combination of current elscreen tabs and buffer/path
   (setq frame-title-format '(:eval (concat *elscreen-tabs-as-string*
                                            "    ||    "
                                            (if buffer-file-name
