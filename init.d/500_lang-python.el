@@ -181,6 +181,7 @@
 ;; Start IPython notebook server with $ ipython notebook --pylab inline
 ;; Hit M-x ein:notebooklist-open to open notebook list.
 (use-package ein
+  :disabled t
   :commands (ein:connect-to-notebook)
   :config
   ;; Auto complete for ein
