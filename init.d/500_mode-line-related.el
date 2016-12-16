@@ -24,6 +24,14 @@
   (powerline-default-theme))
 
 
+;;;
+;;; spaceline.el
+;; Powerline theme from Spacemacs
+;; https://github.com/TheBB/spaceline
+(use-package spaceline
+  :disabled t
+  (spaceline-spacemacs-theme))
+
 
 ;;;
 ;;; Clean mode-line when switching major modes
