@@ -25,7 +25,8 @@
 
 
 
-;; Clean mode-line when switching major modes
+;;;
+;;; Clean mode-line when switching major modes
 ;; https://github.com/shibayu36/emacs/blob/8376ba4e4b4d5cb4668e848c9a494b287232ea6f/emacs.d/inits/01-mode-line.el
 (defvar mode-line-cleaner-alist
   '(;; For minor-mode, first char is 'space'
