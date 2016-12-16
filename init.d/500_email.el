@@ -248,19 +248,24 @@
   ;; Notification for mu4e
   ;; https://github.com/iqbalansari/mu4e-alert
   (require 'mu4e-alert)
-  (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
   ;;
-  (when (executable-find "terminal-notifier")
-    (setq alert-notifier-command "terminal-notifier")
-    (mu4e-alert-set-default-style 'notifier)
-    ;; Immediately enable without waiting
-    ;; This entire use-package expression waits for M-x mu4e
-    (mu4e-alert-enable-notifications)
-    ;; This is equivalent without immediate execution
-    ;; (add-hook 'mu4e-index-updated-hook #'mu4e-alert-notify-unread-mail-async)
-    ;; after-init-hook does not work in delayed use-package expression
-    ;; (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
-    )
+  (mu4e-alert-enable-mode-line-display)
+  ;;
+  ;; choose from alert-styles
+  (mu4e-alert-set-default-style 'message)
+  ;; Using macOS notifier (too annoying)
+  ;; (when (executable-find "terminal-notifier")
+  ;;   (setq alert-notifier-command "terminal-notifier")
+  ;;   ;; choose from alert-styles
+  ;;   (mu4e-alert-set-default-style 'notifier)
+  ;;   ;; Immediately enable without waiting
+  ;;   ;; This entire use-package expression waits for M-x mu4e
+  ;;   (mu4e-alert-enable-notifications)
+  ;;   ;; This is equivalent without immediate execution
+  ;;   ;; (add-hook 'mu4e-index-updated-hook #'mu4e-alert-notify-unread-mail-async)
+  ;;   ;; after-init-hook does not work in delayed use-package expression
+  ;;   ;; (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
+  ;;   )
   ;; Interesting mail only
   (setq mu4e-alert-interesting-mail-query
         (concat
