@@ -31,7 +31,11 @@
   ;; https://groups.google.com/forum/#!topic/emacs-helm/US8FWnfRu5o
   (require 'helm-ring)
   (add-hook 'helm-before-initialize-hook
-            #'(lambda () (helm-attrset 'follow 1 helm-source-mark-ring)))
+            #'(lambda ()
+                ;; Set follow attribute to 1 (yes) for helm-source-mark-ring
+                (helm-attrset 'follow 1 helm-source-mark-ring)
+                ;; (helm-attrset 'follow 1 helm-source-mark-ring)
+                ))
   ;;
   ;; Disabled because it was giving an error 2013-11-22
   (setq helm-locate-command "")
