@@ -40,12 +40,12 @@
   ;; Only one row
   (setq skk-henkan-show-candidates-rows 1)
   ;;
-  ;; Dynamic completion
-  (setq skk-dcomp-activate t)
-  (setq skk-dcomp-multiple-activate t)
-  (setq skk-dcomp-multiple-rows 10)
-  ;; C-n to select next completion
-  (define-key skk-j-mode-map (kbd "C-n") 'skk-completion-wrapper)
+  ;; Dynamic completion (More annoying than useful)
+  ;; (setq skk-dcomp-activate t)
+  ;; (setq skk-dcomp-multiple-activate t)
+  ;; (setq skk-dcomp-multiple-rows 10)
+  ;; ;; C-n to select next completion
+  ;; (define-key skk-j-mode-map (kbd "C-n") 'skk-completion-wrapper)
   ;;
   ;; Miscellaneous
   ;; RET gives new line if nil
