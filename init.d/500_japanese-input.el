@@ -12,6 +12,7 @@
 ;; http://openlab.ring.gr.jp/skk/dic.html
 ;;
 (use-package skk
+  :commands (skk-mode)
   :bind (("A-j" . skk-mode)
          ("s-j" . skk-mode))
   ;;
@@ -21,7 +22,31 @@
   ;; http://openlab.ring.gr.jp/skk/skk-manual-git/Zui-moJi-Ben-De-naShe-Ding-.html#g_t_6700_3082_57fa_672c_7684_306a_8a2d_5b9a
   (setq skk-large-jisyo     "~/.emacs.d/skk/SKK-JISYO.L")
   (setq skk-cdb-large-jisyo "~/.emacs.d/skk/SKK-JISYO.L.cdb")
+  ;;
+  ;; Configuration
+  ;; http://y-mattu.hatenablog.com/entry/2016/09/25/021937
+  ;;
+  ;; Assume private dictionary file is being access by
+  ;; multiple SKK processes (safer)
+  (setq skk-share-private-jisyo t)
+  ;;
+  ;;
+;;;  Google IME SKK
+  ;; http://y-mattu.hatenablog.com/entry/2016/09/25/021937
+  ;; Install via $ sudo gem install google-ime-skk
+  (when (executable-find "/usr/local/bin/google-ime-skk")
+    (setq skk-server-prog "/usr/local/bin/google-ime-skk")
+    ;; Allow starting skk server
+    (setq skk-server-inhibit-startup-server nil)
+    ;; Host and port
+    (setq skk-server-host "localhost")
+    (setq skk-server-portnum 55100))
+  ;;
+  ;;
 ;;;
 ;;; ac-skk.el
+  ;; Not useful if not using auto-complete.el
   ;; https://github.com/myuhe/ac-skk.el
-  (require 'ac-skk))
+  ;; (require 'ac-skk)
+  ;; (ac-skk-enable)
+  )
