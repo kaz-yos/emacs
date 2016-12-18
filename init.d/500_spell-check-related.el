@@ -69,9 +69,10 @@
               :before
               #'turn-on-flyspell)
   ;; Turn flyspell-mode off after invoking popup
-  (advice-add 'flyspell-popup-correct
-              :after
-              #'turn-off-flyspell))
+  ;; (advice-add 'flyspell-popup-correct
+  ;;             :after
+  ;;             #'turn-off-flyspell)
+  )
 
 
 ;; ;;;
