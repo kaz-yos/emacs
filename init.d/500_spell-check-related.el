@@ -47,13 +47,10 @@
   :config
   ;; Unset some key bindings to avoid collisions
   (setq flyspell-auto-correct-binding nil)
-  (setq flyspell-mode-map
-        (let ((map (make-sparse-keymap)))
-          (when flyspell-use-meta-tab
-            (define-key map "\M-\t" 'flyspell-auto-correct-word))
-          (define-key map [(control ?\,)] 'flyspell-goto-next-error)
-          (define-key map [?\C-c ?$] 'flyspell-correct-word-before-point)
-          map))
+  ;;
+  (setq flyspell-mode-map (make-sparse-keymap))
+  (define-key flyspell-mode-map (kbd "A-,") 'flyspell-goto-next-error)
+  (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct)
   ;;
   ;; Auto-start flyspell-mode for these files
   ;; 2015-02-09 AquaSKK appears ok.
