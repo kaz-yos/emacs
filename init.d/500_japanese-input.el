@@ -25,10 +25,37 @@
   ;;
   ;; Configuration
   ;; http://y-mattu.hatenablog.com/entry/2016/09/25/021937
+  ;; Learning capability
+  (require 'skk-study)
+  ;; Show hints
+  (require 'skk-hint)
   ;;
   ;; Assume private dictionary file is being access by
   ;; multiple SKK processes (safer)
   (setq skk-share-private-jisyo t)
+  ;;
+  ;; Candidates
+  ;; Show in minibuffer
+  (setq skk-show-candidates-always-pop-to-buffer nil)
+  ;; Only one row
+  (setq skk-henkan-show-candidates-rows 1)
+  ;;
+  ;; Dynamic completion
+  (setq skk-dcomp-activate t)
+  (setq skk-dcomp-multiple-activate t)
+  (setq skk-dcomp-multiple-rows 10)
+  ;; C-n to select next completion
+  (define-key skk-j-mode-map (kbd "C-n") 'skk-completion-wrapper)
+  ;;
+  ;; Miscellaneous
+  ;; RET gives new line if nil
+  (setq skk-egg-like-newline nil)
+  (setq skk-delete-implies-kakutei nil)
+  ;; Use unix look command for English completion
+  (setq skk-use-look t)
+  ;; Balanced paren isertion
+  (setq skk-auto-insert-paren t)
+  (setq skk-henkan-strict-okuri-precedence t)
   ;;
   ;;
 ;;;  Google IME SKK
