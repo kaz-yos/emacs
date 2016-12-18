@@ -76,25 +76,3 @@
   ;;             :after
   ;;             #'turn-off-flyspell)
   )
-
-
-;; ;;;
-;; ;;; ac-ispell.el
-;; ;; Auto-completion for English words
-;; (setq ac-ispell-requires 4)
-;; ;;
-;; (eval-after-load "auto-complete"
-;;   '(progn
-;;       (ac-ispell-setup)))
-;; ;;
-;; (defun my/enable-ac-ispell ()
-;;   (interactive)
-;;   (add-to-list 'ac-sources 'ac-source-ispell)
-;;   (auto-complete-mode 1))
-;; ;;
-;; ;; Enable for these modes
-;; (add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
-;; (add-hook 'mail-mode-hook 'my/enable-ac-ispell)
-;; ;; 2015-02-09 Not functional?
-;; (add-hook 'fundamental-mode-hook 'auto-complete-mode)
-;; (add-hook 'fundamental-mode-hook 'my/enable-ac-ispell)
