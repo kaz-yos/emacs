@@ -2,6 +2,7 @@
 #+TITLE:
 #+AUTHOR: Kazuki Yoshida
 #+OPTIONS: toc:nil
+#+OPTIONS: ^:{}
 # ############################################################################ #
 
 * :export:

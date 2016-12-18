@@ -10,7 +10,9 @@
 #+DATE:
 #+DESCRIPTION:
 #+KEYWORDS:
-#+OPTIONS:   H:2
+#+OPTIONS: toc:nil
+#+OPTIONS: H:2
+#+OPTIONS: ^:{}
 #+STARTUP: beamer
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [bigger]
