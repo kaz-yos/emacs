@@ -27,6 +27,12 @@
     (when (file-exists-p aquaskk-dict)
       (setq skk-large-jisyo aquaskk-dict)))
   ;;
+  ;; Personal dictionary
+  (setq skk-jisyo-code 'utf-8)
+  (setq skk-jisyo "~/.emacs.d/skk/skk-jisyo.utf8")
+  ;; Assume private dictionary file is being access by multiple SKK processes (safer)
+  (setq skk-share-private-jisyo t)
+  ;;
   ;; Configuration
   ;; http://y-mattu.hatenablog.com/entry/2016/09/25/021937
   ;; http://mugijiru.seesaa.net/article/275755984.html
@@ -39,10 +45,6 @@
   (setq skk-hint-start-char 58)
   (setq skk-show-annotation t)
   ;;
-  ;; Assume private dictionary file is being access by
-  ;; multiple SKK processes (safer)
-  (setq skk-share-private-jisyo t)
-  ;;
   ;; Candidates
   ;; Show in minibuffer
   (setq skk-show-candidates-always-pop-to-buffer nil)
@@ -50,6 +52,7 @@
   (setq skk-henkan-show-candidates-rows 1)
   ;;
   ;; Dynamic completion (More annoying than useful)
+  ;; http://d.hatena.ne.jp/tomoya/20100908/1283945987
   ;; (setq skk-dcomp-activate t)
   ;; (setq skk-dcomp-multiple-activate t)
   ;; (setq skk-dcomp-multiple-rows 10)
