@@ -44,17 +44,20 @@
 ;;; flyspell.el (built-in)
 ;;
 (use-package flyspell
+  :ensure t
+  :commands (flyspell-goto-next-error
+             flyspell-mode)
   :config
   ;; Unset some key bindings to avoid collisions
   (setq flyspell-auto-correct-binding nil)
-  ;;
+  ;; Reset to an empty map
   (setq flyspell-mode-map (make-sparse-keymap))
+  ;; These do not work
   (define-key flyspell-mode-map (kbd "A-,") 'flyspell-goto-next-error)
   (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct)
   ;;
-  ;; Auto-start flyspell-mode for these files
-  ;; 2015-02-09 AquaSKK appears ok.
-  ;; (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
+  (define-key global-map (kbd "A-,") 'flyspell-goto-next-error)
+  (define-key global-map (kbd "A-.") 'flyspell-popup-correct)
   )
 ;;
 ;;
