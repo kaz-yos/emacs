@@ -20,15 +20,24 @@
   ;; Dictionaries
   ;; http://openlab.ring.gr.jp/skk/wiki/wiki.cgi?page=SKK%BC%AD%BD%F1
   ;; http://openlab.ring.gr.jp/skk/skk-manual-git/Zui-moJi-Ben-De-naShe-Ding-.html#g_t_6700_3082_57fa_672c_7684_306a_8a2d_5b9a
-  (setq skk-large-jisyo     "~/.emacs.d/skk/SKK-JISYO.L")
-  (setq skk-cdb-large-jisyo "~/.emacs.d/skk/SKK-JISYO.L.cdb")
+  (setq skk-large-jisyo "~/.emacs.d/skk/SKK-JISYO.L")
+  ;; (setq skk-cdb-large-jisyo "~/.emacs.d/skk/SKK-JISYO.L.cdb")
+  ;; Use AquaSKK's dictionary if available.
+  (let ((aquaskk-dict "~/Library/Application Support/AquaSKK/SKK-JISYO.L"))
+    (when (file-exists-p aquaskk-dict)
+      (setq skk-large-jisyo aquaskk-dict)))
   ;;
   ;; Configuration
   ;; http://y-mattu.hatenablog.com/entry/2016/09/25/021937
+  ;; http://mugijiru.seesaa.net/article/275755984.html
+  ;;
   ;; Learning capability
   (require 'skk-study)
   ;; Show hints
   (require 'skk-hint)
+  ;; Use : as the hint key
+  (setq skk-hint-start-char 58)
+  (setq skk-show-annotation t)
   ;;
   ;; Assume private dictionary file is being access by
   ;; multiple SKK processes (safer)
