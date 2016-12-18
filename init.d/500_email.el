@@ -126,7 +126,7 @@
   (setq mu4e-update-interval (* 60 15))
   ;; Do not occupy the minibuffer with "Indexing..."
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
-  (setq mu4e-hide-index-messages t)
+  (setq mu4e-hide-index-messages nil)
   ;; Whether to cache the list of maildirs
   (setq mu4e-cache-maildir-list t)
   ;; Whether to run a cleanup phase after indexing (avoids ghost messages)
@@ -259,7 +259,7 @@
   (mu4e-alert-enable-mode-line-display)
   ;;
   ;; choose from alert-styles
-  (mu4e-alert-set-default-style 'message)
+  (mu4e-alert-set-default-style 'mode-line)
   ;; Using macOS notifier (too annoying)
   ;; (when (executable-find "terminal-notifier")
   ;;   (setq alert-notifier-command "terminal-notifier")
