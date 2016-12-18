@@ -225,6 +225,9 @@
   ;; org-mode's table editor minor mode
   ;; http://orgmode.org/manual/Orgtbl-mode.html
   (add-hook 'mu4e-compose-mode-hook 'turn-on-orgtbl)
+  ;;  Do not mess with C-a
+  (add-hook 'mu4e-compose-mode-hook '(lambda ()
+                                       (local-unset-key (kbd "C-a"))))
   ;;
   ;; A.9 Attaching files with dired
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/Attaching-files-with-dired.html
