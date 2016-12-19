@@ -52,14 +52,20 @@
   :config
   ;; Unset some key bindings to avoid collisions
   (setq flyspell-auto-correct-binding nil)
-  ;; Reset to an empty map
-  (setq flyspell-mode-map (make-sparse-keymap))
-  ;; These do not work
-  (define-key flyspell-mode-map (kbd "A-,") 'flyspell-goto-next-error)
-  (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct)
-  ;;
-  (define-key global-map (kbd "A-,") 'flyspell-goto-next-error)
-  (define-key global-map (kbd "A-.") 'flyspell-popup-correct)
+  (eval-after-load "flyspell"
+    #'(lambda ()
+        ;; Drop unnecessary key bindings
+        ;; http://stackoverflow.com/questions/16084022/emacs-flyspell-deactivate-c-key-binding
+        (define-key flyspell-mode-map (kbd "C-,") nil)
+        (define-key flyspell-mode-map (kbd "C-.") nil)
+        ;; Bind to less problematics ones
+        (define-key flyspell-mode-map (kbd "A-,") 'flyspell-goto-next-error)
+        (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct)))
+  ;; ;; Reset to an empty map
+  ;; (setq flyspell-mode-map (make-sparse-keymap))
+  ;; ;;
+  ;; (define-key global-map (kbd "A-,") 'flyspell-goto-next-error)
+  ;; (define-key global-map (kbd "A-.") 'flyspell-popup-correct)
   )
 ;;
 ;;
@@ -76,5 +82,4 @@
   ;; Turn flyspell-mode off after invoking popup
   (advice-add 'flyspell-popup-correc
               :after
-              #'turn-off-flyspell)
-  )
+              #'turn-off-flyspell))
