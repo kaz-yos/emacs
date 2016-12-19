@@ -75,8 +75,8 @@
   ;; Install via $ sudo gem install google-ime-skk
   (when (executable-find "/usr/local/bin/google-ime-skk")
     (setq skk-server-prog "/usr/local/bin/google-ime-skk")
-    ;; Allow starting skk server
-    (setq skk-server-inhibit-startup-server nil)
+    ;; Whether to prevent skk server start up from inside emacs
+    (setq skk-server-inhibit-startup-server t)
     ;; Host and port
     (setq skk-server-host "localhost")
     (setq skk-server-portnum 55100))
