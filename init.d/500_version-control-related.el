@@ -61,6 +61,9 @@
     (magit-status (replace-regexp-in-string "^/scp"
                                             "/ssh"
                                             default-directory)))
+  ;; Improve cursor movement when using n
+  (advice-add 'magit-goto-next-section
+              :after 'my-recenter-top)
   ;;
   ;; change magit diff colors (configure in init-customize.el)
   ;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
