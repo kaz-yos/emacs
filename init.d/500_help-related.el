@@ -31,6 +31,20 @@
   (setq eldoc-minor-mode-string ""))
 
 
+;;;
+;;; help-fns+.el
+(use-package help-fns+
+  :commands (describe-buffer
+             describe-command
+             describe-option
+             describe-key-briefly
+             describe-option-of-type
+             describe-copying
+             describe-file
+             describe-keymap
+             find-function-on-key))
+
+
 ;; ;; guide-key.el	for prefix key live help
 ;; ;; ELPA 2014-02-03
 ;; ;; See elpa help file. It is very helpful.
