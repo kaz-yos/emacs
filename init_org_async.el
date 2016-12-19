@@ -32,6 +32,7 @@
 (require 'ob-R)
 (require 'ob-python)
 (require 'ob-ditaa)
+(require 'ob-dot)
 ;;; Language packages
 ;;; ESS
 (require 'ess-site)
@@ -51,6 +52,9 @@
    (python . t)
    ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html
    (ditaa . t)
+   ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html
+   (dot . t)
+   ;;
    (emacs-lisp . t)
    (shell . t)))
 ;;
