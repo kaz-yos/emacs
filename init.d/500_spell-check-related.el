@@ -46,7 +46,9 @@
 (use-package flyspell
   :ensure t
   :commands (flyspell-goto-next-error
-             flyspell-mode)
+             flyspell-mode
+             turn-on-flyspell
+             turn-off-flyspell)
   :config
   ;; Unset some key bindings to avoid collisions
   (setq flyspell-auto-correct-binding nil)
