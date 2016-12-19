@@ -58,15 +58,12 @@
         ;; http://stackoverflow.com/questions/16084022/emacs-flyspell-deactivate-c-key-binding
         (define-key flyspell-mode-map (kbd "C-,") nil)
         (define-key flyspell-mode-map (kbd "C-.") nil)
+        (define-key flyspell-mode-map (kbd "C-;") nil)
+        (define-key flyspell-mode-map (kbd "C-c $") nil)
+        (define-key flyspell-mode-map (kbd "C-M-i") nil)
         ;; Bind to less problematics ones
         (define-key flyspell-mode-map (kbd "A-,") 'flyspell-goto-next-error)
-        (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct)))
-  ;; ;; Reset to an empty map
-  ;; (setq flyspell-mode-map (make-sparse-keymap))
-  ;; ;;
-  ;; (define-key global-map (kbd "A-,") 'flyspell-goto-next-error)
-  ;; (define-key global-map (kbd "A-.") 'flyspell-popup-correct)
-  )
+        (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct))))
 ;;
 ;;
 ;;; flyspell-popup.el
@@ -75,11 +72,21 @@
   :commands (flyspell-popup-correct)
   :bind ("s-c" . flyspell-popup-correct)
   :config
-  ;; Turn flyspell-mode on before invoking popup
+  ;;
+  (defun turn-on-off-flyspell-unless-already-on (oldfun)
+    "Turn flyspell on :before, and turn off :after unless already on
+
+This is meant to be an :around advice to flyspell-popup-correct,
+which has no argument of its own."
+    (if flyspell-mode
+        ;; If already on, just run the original function
+        (funcall oldfun)
+      ;; Otherwise,
+      (turn-on-flyspell)
+      ;; Call the original function
+      (funcall oldfun)
+      (turn-off-flyspell)))
+  ;; :around
   (advice-add 'flyspell-popup-correct
-              :before
-              #'turn-on-flyspell)
-  ;; Turn flyspell-mode off after invoking popup
-  (advice-add 'flyspell-popup-correc
-              :after
-              #'turn-off-flyspell))
+              :around
+              #'turn-on-off-flyspell-unless-already-on))
