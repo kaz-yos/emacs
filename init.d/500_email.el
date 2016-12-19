@@ -123,7 +123,7 @@
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-change-filenames-when-moving t)
   ;; Update interval
-  (setq mu4e-update-interval (* 60 15))
+  (setq mu4e-update-interval (* 60 5))
   ;; Do not occupy the minibuffer with "Indexing..."
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-hide-index-messages nil)
@@ -228,7 +228,7 @@
   ;;  Sequential command for message mode
   (define-sequential-command message-seq-cmd--home
     message-beginning-of-line message-goto-body beginning-of-buffer seq-cmd--return)
-  ;; Replace with C-a 
+  ;; Replace with C-a
   (add-hook 'mu4e-compose-mode-hook '(lambda ()
                                        (local-unset-key (kbd "C-a"))
                                        (local-set-key (kbd "C-a") 'message-seq-cmd--home)))
