@@ -109,6 +109,9 @@
      (python . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html
      (ditaa . t)
+     ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html
+     (dot . t)
+     ;; 
      (emacs-lisp . t)
      (shell . t)))
   ;; Do not ask code execution confirmation
