@@ -89,15 +89,29 @@
     ;; "P" is for universal argument
     ;; http://ergoemacs.org/emacs/elisp_universal_argument.html
     (interactive "P")
-    (if (called-interactively-p 'interactive)
-        ;; If interactive, then inbox-only
-        (if (executable-find "timelimit")
-            (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
-          (setq mu4e-get-mail-command "mbsync inbox-only"))
-      ;; Otherwise, all folders
+    (cond
+     ;; If interactive,
+     ((called-interactively-p 'interactive)
+      ;; Conduct abbreviated operations
+      (setq mu4e-hide-index-messages nil)
+      (setq mu4e-cache-maildir-list t)
+      (setq mu4e-index-cleanup nil)
+      (setq mu4e-index-lazy-check t)
+      ;; Inbox-only
+      (if (executable-find "timelimit")
+          (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
+        (setq mu4e-get-mail-command "mbsync inbox-only")))
+     ;; Otherwise,
+     (t
+      ;; Conduct thorough operations
+      (setq mu4e-hide-index-messages t)
+      (setq mu4e-cache-maildir-list nil)
+      (setq mu4e-index-cleanup t)
+      (setq mu4e-index-lazy-check nil)
+      ;; All boxes
       (if (executable-find "timelimit")
           (setq mu4e-get-mail-command "timelimit -t 180 mbsync all")
-        (setq mu4e-get-mail-command "mbsync all"))))
+        (setq mu4e-get-mail-command "mbsync all")))))
   ;; :before advice to mainpulate mu4e-get-mail-command variable
   (advice-add 'mu4e-update-mail-and-index :before #'modify-mu4e-get-mail-command)
   ;; (advice-remove 'mu4e-update-mail-and-index #'modify-mu4e-get-mail-command)
