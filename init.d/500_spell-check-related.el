@@ -87,6 +87,12 @@ which has no argument of its own."
       (funcall oldfun)
       (turn-off-flyspell)))
   ;; :around
+  ;; (advice-add 'flyspell-popup-correct
+  ;;             :around
+  ;;             #'turn-on-off-flyspell-unless-already-on)
+  ;;
+  ;; :around advice seems to break key binding in popup menu
   (advice-add 'flyspell-popup-correct
-              :around
-              #'turn-on-off-flyspell-unless-already-on))
+              :before
+              #'turn-on-flyspell)
+  )
