@@ -127,16 +127,16 @@
          ;; "Menlo-14:weight=normal:slant=normal"
          (my-default-font-string (format "%s-%d:weight=normal:slant=normal" my-ascii-font my-default-font-size))
          ;;
+         ;; Create a fontset from an ASCII font FONT.
+         ;; Name as "fontset-" added to my-fontset-name
+         ;; "-*-menlo-normal-normal-normal-*-*-140-*-*-m-0-fontset-myfonts"
+         (my-font-set (create-fontset-from-ascii-font my-default-font-string nil my-fontset-name))
+         ;;
          ;; Create :family-only font specifications (use later)
          ;; #<font-spec nil nil Menlo nil nil nil nil nil nil nil nil nil nil>
          (my-ascii-fontspec (font-spec :family my-ascii-font))
          ;; #<font-spec nil nil Hiragino\ Maru\ Gothic\ ProN nil nil nil nil nil nil nil nil nil nil>
-         (my-jp-fontspec    (font-spec :family my-jp-font))
-         ;;
-         ;; Create a fontset from an ASCII font FONT.
-         ;; Name as "fontset-" added to my-fontset-name
-         ;; "-*-menlo-normal-normal-normal-*-*-140-*-*-m-0-fontset-myfonts"
-         (my-font-set (create-fontset-from-ascii-font my-default-font-string nil my-fontset-name)))
+         (my-jp-fontspec    (font-spec :family my-jp-font)))
     ;;
     ;; set-fontset-font function
     ;; Modify fontset NAME to use FONT-SPEC for TARGET characters.
