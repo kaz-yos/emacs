@@ -235,7 +235,7 @@
                                (concat "CC: " "\n")
                                (concat "Bcc: " user-mail-address "\n")))))
   ;; Flyspell
-  (add-hook 'mu4e-compose-mode-hook 'flyspell-mode-on)
+  (add-hook 'mu4e-compose-mode-hook 'turn-on-flyspell)
   ;; org-mode's table editor minor mode
   ;; http://orgmode.org/manual/Orgtbl-mode.html
   (add-hook 'mu4e-compose-mode-hook 'turn-on-orgtbl)
