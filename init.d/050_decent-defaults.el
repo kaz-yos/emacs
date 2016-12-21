@@ -19,6 +19,12 @@
 
 
 ;;;
+;;; Fewer garbage collection
+;; Number of bytes of consing between garbage collections.
+(setq gc-cons-threshold (* gc-cons-threshold 10))
+
+
+;;;
 ;;; Visible-bell instead of audible
 ;; (setq visible-bell t)
 ;;
