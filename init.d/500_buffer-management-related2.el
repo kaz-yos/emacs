@@ -124,7 +124,9 @@ Dependency: ace-swap-window"
 ;;; elscreen-separate-buffer-list.el
 ;; separate buffer list for each elscreen
 ;; https://github.com/wamei/elscreen-separate-buffer-list
-(require 'elscreen-separate-buffer-list)
-(elscreen-separate-buffer-list-mode)
+(use-package elscreen-separate-buffer-list
+  :demand
+  :config
+  (elscreen-separate-buffer-list-mode))
 ;; Less safe alternative
 ;; https://github.com/jeffgran/elscreen-buffer-group
