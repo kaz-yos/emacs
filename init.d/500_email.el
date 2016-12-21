@@ -287,11 +287,11 @@
   ;;   ;; after-init-hook does not work in delayed use-package expression
   ;;   ;; (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
   ;;   )
-  ;; Interesting mail only
-  (setq mu4e-alert-interesting-mail-query
-        (concat
-         "flag:unread"
-         " AND NOT flag:trashed"))
+  ;; Interesting mail only (configured elsewhere)
+  ;; (setq mu4e-alert-interesting-mail-query
+  ;;       (concat
+  ;;        "flag:unread"
+  ;;        " AND NOT flag:trashed"))
   ;;
   ;; Handcrafted notifier (use if the one above does not work)
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/Retrieving-mail.html#Retrieving-mail
