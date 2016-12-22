@@ -35,7 +35,7 @@
       (setq ispell-program-name hunspell-file)
       ;; http://emacs.stackexchange.com/questions/21378/spell-check-with-multiple-dictionaries
       (setq ispell-dictionary "en_US,en_US-med")
-      (setq ispell-personal-dictionary "~/.emacs.d/misc/aspell.en.pws"))
+      (setq ispell-personal-dictionary "~/.emacs.d/misc/hunspell.en"))
      ;; aspell
      ;; install with brew install aspell --with-lang-en
      (aspell-file
