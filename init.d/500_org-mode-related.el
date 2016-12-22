@@ -201,7 +201,7 @@
   ;;
   ;;
 ;;;
-;;; org-mode citation management
+;;; org-mode citation management by org-ref
   ;; https://github.com/jkitchin/org-ref
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
@@ -280,14 +280,10 @@
   (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf-async)
   (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf-async)
   ;;
-  ;; Save on dispatcher invokation (This does not work)
-  ;; (advice-add 'org-export-dispatch :before 'save-buffer)
-  ;; (advice-remove 'org-export-dispatch 'save-buffer)
-  ;;
   ;; auto-revert in org-stack-mode
   (add-hook 'org-export-stack-mode-hook #'turn-on-auto-revert-mode)
   ;;
-  ;; Beamer presentations using the new export engine
+;;;  Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
   (require 'ox-beamer)
   ;; bold is bold not \alert{} (can appear as red text)
@@ -297,7 +293,7 @@
       (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
   (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
   ;;
-  ;; Qiita-Markdown exporter
+;;;  Qiita-Markdown exporter
   ;; http://qiita.com/0x60df/items/3cde67967e3db30d9afe
   (require 'ox-qmd)
   ;;
