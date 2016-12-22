@@ -7,28 +7,28 @@
 ;; https://joelkuiper.eu/spellcheck_emacs
 ;; http://stackoverflow.com/questions/22107182/in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
 
-;;;
-;;; Configure aspell if it exists
-;; brew install aspell --with-lang-en
-(let ((aspell-file "/usr/local/bin/aspell"))
-  (when (file-exists-p aspell-file)
-    (setq ispell-program-name aspell-file)))
-
 
 ;;;
 ;;; ispell.el (built-in)
-;; (global-set-key (kbd "s-c") 'ispell-word)
-;;
+;; Spell check with multiple dictionaries
+;; http://emacs.stackexchange.com/questions/21378/spell-check-with-multiple-dictionaries
 (use-package ispell
   :commands (ispell-word
              ispell-region
              ispell-buffer)
-  :init
-  ;; (setq ispell-program-name "/usr/local/bin/aspell")
+  :config
+  ;; Use best program available
+  (let ((hunspell-file (executable-find "hunspell"))
+        (aspell-file (executable-find "aspell"))
+        (ispell-file (executable-find "ispell")))
+    (cond
+     (hunspell-file (setq ispell-program-name hunspell-file))
+     (aspell-file (setq ispell-program-name aspell-file))
+     (ispell-file (setq ispell-program-name ispell-file))))
+  ;;
   (setq ispell-dictionary "en_US")
   ;; http://stackoverflow.com/questions/2376113/personal-dictionaries-in-emacs-flyspell-mode
   (setq ispell-personal-dictionary "~/.emacs.d/misc/aspell.en.pws")
-  :config
   ;;
   ;; Ignore Japanese
   ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
