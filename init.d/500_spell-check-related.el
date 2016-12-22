@@ -34,7 +34,13 @@
      (hunspell-file
       (setq ispell-program-name hunspell-file)
       ;; http://emacs.stackexchange.com/questions/21378/spell-check-with-multiple-dictionaries
-      (setq ispell-dictionary "en_US,en_US-med")
+      ;; http://gromnitsky.blogspot.com/2016/09/emacs-251-hunspell.html
+      ;; This is then looked for in the alist below.
+      (setq ispell-dictionary "en_US")
+      ;; This is the real configuration.
+      (setq ispell-hunspell-dict-paths-alist
+            '(("en_US" "/Library/Spelling/en_US.aff")
+              ("en_US-med" "/Library/Spelling/en_US-med.aff")))
       (setq ispell-personal-dictionary "~/.emacs.d/misc/hunspell.en"))
      ;; aspell
      ;; install with brew install aspell --with-lang-en
