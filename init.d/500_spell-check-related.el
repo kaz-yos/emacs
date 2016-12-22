@@ -14,6 +14,9 @@
 ;;
 ;; Spell check with multiple dictionaries (hunspell)
 ;; http://emacs.stackexchange.com/questions/21378/spell-check-with-multiple-dictionaries
+;;
+;; Hunspell English Dictionaries
+;; http://wordlist.aspell.net/hunspell-readme/
 (use-package ispell
   :commands (ispell-word
              ispell-region
@@ -24,11 +27,17 @@
         (aspell-file (executable-find "aspell"))
         (ispell-file (executable-find "ispell")))
     (cond
-     (hunspell-file (setq ispell-program-name hunspell-file))
-     (aspell-file (setq ispell-program-name aspell-file))
+     ;; hunspell
+     ;; Dictionaries are in ~/Library/Spelling/
+     (hunspell-file
+      (setq ispell-program-name hunspell-file)
+      (setq ispell-dictionary "en_US,en_US-med"))
+     ;; aspell install with brew install aspell --with-lang-en
+     (aspell-file
+      (setq ispell-program-name aspell-file)
+      (setq ispell-dictionary "en_US"))
      (ispell-file (setq ispell-program-name ispell-file))))
   ;;
-  (setq ispell-dictionary "en_US")
   ;; http://stackoverflow.com/questions/2376113/personal-dictionaries-in-emacs-flyspell-mode
   (setq ispell-personal-dictionary "~/.emacs.d/misc/aspell.en.pws")
   ;;
