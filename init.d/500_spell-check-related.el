@@ -32,13 +32,14 @@
   ;;
   ;; Ignore Japanese
   ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
-  (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))
-  ;; Use i in ispell minor mode to save the word
-  ;; http://stackoverflow.com/questions/11070849/flyspell-without-a-mouse
-  (defun save-ispell-word (word)
-    (interactive "sA word you want to add to dictionary ")
-    (ispell-send-string (concat "*" word "\n"))
-    (setq ispell-pdict-modified-p '(t))))
+  ;; Alist expressing beginning and end of regions not to spell check.
+  ;; The alist key must be a regular expression.
+  ;; Valid forms include:
+  ;; (KEY) - just skip the key.
+  ;; (KEY . REGEXP) - skip to the end of REGEXP.  REGEXP may be string or symbol.
+  ;; (KEY REGEXP) - skip to end of REGEXP.  REGEXP must be a string.
+  ;; (KEY FUNCTION ARGS) - FUNCTION called with ARGS returns end of region.
+  (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 
 
 ;;;
