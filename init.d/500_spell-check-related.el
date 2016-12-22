@@ -1,16 +1,18 @@
-;;; flyspell-mode related
-
-;;;
-;;; Configuration helpful links
-;; http://d.hatena.ne.jp/yutoichinohe/20140120/1390225624
-;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
-;; https://joelkuiper.eu/spellcheck_emacs
-;; http://stackoverflow.com/questions/22107182/in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
-
+;;; spell check related
 
 ;;;
 ;;; ispell.el (built-in)
-;; Spell check with multiple dictionaries
+;; Spell checking in Emacs (ispell, flyspell, hunspell, and languagetool)
+;; https://joelkuiper.eu/spellcheck_emacs
+;;
+;; brew install hunspell
+;; Dictionary files (*.aff and *.dic) should be placed in
+;; ~/Library/Spelling/ or /Library/Spelling/.  Homebrew itself
+;; provides no dictionaries for Hunspell, but you can download
+;; compatible dictionaries from other sources, such as
+;; https://wiki.openoffice.org/wiki/Dictionaries .
+;;
+;; Spell check with multiple dictionaries (hunspell)
 ;; http://emacs.stackexchange.com/questions/21378/spell-check-with-multiple-dictionaries
 (use-package ispell
   :commands (ispell-word
