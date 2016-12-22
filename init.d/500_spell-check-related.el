@@ -33,11 +33,14 @@
      ;; hunspell -D to check paths. /Library/Spelling/ was added for use.
      (hunspell-file
       (setq ispell-program-name hunspell-file)
+      ;; http://emacs.stackexchange.com/questions/21378/spell-check-with-multiple-dictionaries
       (setq ispell-dictionary "en_US,en_US-med"))
-     ;; aspell install with brew install aspell --with-lang-en
+     ;; aspell
+     ;; install with brew install aspell --with-lang-en
      (aspell-file
       (setq ispell-program-name aspell-file)
       (setq ispell-dictionary "en_US"))
+     ;; ispell
      (ispell-file (setq ispell-program-name ispell-file))))
   ;;
   ;; http://stackoverflow.com/questions/2376113/personal-dictionaries-in-emacs-flyspell-mode
