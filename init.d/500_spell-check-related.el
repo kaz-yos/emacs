@@ -30,7 +30,7 @@
         (ispell-file (executable-find "ispell")))
     (cond
      ;; hunspell
-     ;; Dictionaries are in ~/Library/Spelling/
+     ;; hunspell -D to check paths. /Library/Spelling/ was added for use.
      (hunspell-file
       (setq ispell-program-name hunspell-file)
       (setq ispell-dictionary "en_US,en_US-med"))
