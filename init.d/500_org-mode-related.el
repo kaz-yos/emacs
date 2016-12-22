@@ -255,6 +255,8 @@
   ;; http://osdir.com/ml/emacs-orgmode-gnu/2013-10/msg00939.html
   ;; A minimum example
   ;; https://github.com/russell/dotfiles/blob/master/emacs.d/init-org-export.el
+  ;; Spacemacs example
+  ;; https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bemacs/org/local/org-async-init.el
   (setq org-export-async-init-file
         ;; Need to be a full path.
         (expand-file-name "~/.emacs.d/init_org_async.el"))
