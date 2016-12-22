@@ -34,17 +34,20 @@
      (hunspell-file
       (setq ispell-program-name hunspell-file)
       ;; http://emacs.stackexchange.com/questions/21378/spell-check-with-multiple-dictionaries
-      (setq ispell-dictionary "en_US,en_US-med"))
+      (setq ispell-dictionary "en_US,en_US-med")
+      (setq ispell-personal-dictionary "~/.emacs.d/misc/aspell.en.pws"))
      ;; aspell
      ;; install with brew install aspell --with-lang-en
      (aspell-file
       (setq ispell-program-name aspell-file)
-      (setq ispell-dictionary "en_US"))
+      (setq ispell-dictionary "en_US")
+      (setq ispell-personal-dictionary "~/.emacs.d/misc/aspell.en.pws"))
      ;; ispell
-     (ispell-file (setq ispell-program-name ispell-file))))
+     (ispell-file
+      (setq ispell-program-name ispell-file)
+      (setq ispell-personal-dictionary "~/.emacs.d/misc/ispell.en"))))
   ;;
   ;; http://stackoverflow.com/questions/2376113/personal-dictionaries-in-emacs-flyspell-mode
-  (setq ispell-personal-dictionary "~/.emacs.d/misc/aspell.en.pws")
   ;;
   ;; Ignore Japanese
   ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
