@@ -17,6 +17,8 @@
 ;;
 ;; Hunspell English Dictionaries
 ;; http://wordlist.aspell.net/hunspell-readme/
+;; SCOWL (Spell Checker Oriented Word Lists) and Friends
+;; http://wordlist.aspell.net
 (use-package ispell
   :commands (ispell-word
              ispell-region
