@@ -24,11 +24,12 @@
              ispell-region
              ispell-buffer)
   :init
+  ;; (setq ispell-program-name "/usr/local/bin/aspell")
   (setq ispell-dictionary "en_US")
   ;; http://stackoverflow.com/questions/2376113/personal-dictionaries-in-emacs-flyspell-mode
   (setq ispell-personal-dictionary "~/.emacs.d/misc/aspell.en.pws")
   :config
-
+  ;;
   ;; Ignore Japanese
   ;; http://keisanbutsuriya.blog.fc2.com/blog-entry-60.html
   (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))
