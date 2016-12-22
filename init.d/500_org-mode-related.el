@@ -56,9 +56,6 @@
   ;; (define-key org-mode-map (kbd "<return>") 'org-return-indent)
   ;; (define-key org-mode-map (kbd "C-j") 'org-return)
   ;;
-  ;; Auto-complete mode
-  (require 'org-ac)
-  ;;
   ;; Company mode
   ;; https://github.com/company-mode/company-mode/issues/50
   (defun add-pcomplete-to-capf ()
