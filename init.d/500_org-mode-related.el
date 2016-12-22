@@ -111,7 +111,7 @@
      (ditaa . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html
      (dot . t)
-     ;; 
+     ;;
      (emacs-lisp . t)
      (shell . t)))
   ;; Do not ask code execution confirmation
@@ -233,22 +233,19 @@
   (require 'ox)
   ;;
   ;; Asynchronous export is explained in ox.el
+  ;; `org-export-in-background'
   ;; Non-nil means export and publishing commands will run in background.
   ;; https://www.gnu.org/software/emacs/manual/html_node/org/The-Export-Dispatcher.html
   ;; (setq org-export-in-background t)
   ;;
+  ;; `org-export-async-init-file'
   ;; File used to initialize external export process.
-  ;; Value must be either nil or an absolute file name.  When nil, the
-  ;; external process is launched like a regular Emacs session,
-  ;; loading user’s initialization file and any site specific
-  ;; configuration.  If a file is provided, it, and only it, is loaded
-  ;; at start-up.
-  ;; Therefore, using a specific configuration makes the process to
-  ;; load faster and the export more portable.
-  ;; org-export-async-start calls another emacs with -Q -l org-export-async-init-file
+  ;;  Absolute path: That init.el is used for the external emacs process.
+  ;;  nil: The regular init.el is used (slow).
+  ;; `org-export-async-start' calls another emacs with -Q -l org-export-async-init-file
   ;;
   ;; References
-  ;; org-mode ML: org-export-async-init-file
+  ;; org-mode ML: `org-export-async-init-file'
   ;; https://lists.gnu.org/archive/html/emacs-orgmode/2013-09/msg01299.html
   ;; ode 8 async export process fails
   ;; http://superuser.com/questions/738492/org-mode-8-async-export-process-fails
@@ -258,9 +255,12 @@
   ;; http://osdir.com/ml/emacs-orgmode-gnu/2013-10/msg00939.html
   ;; A minimum example
   ;; https://github.com/russell/dotfiles/blob/master/emacs.d/init-org-export.el
-  (setq org-export-async-init-file (expand-file-name "~/.emacs.d/init_org_async.el"))
+  (setq org-export-async-init-file
+        ;; Need to be a full path.
+        (expand-file-name "~/.emacs.d/init_org_async.el"))
   ;; Check errors in async process with M-x org-export-stack
   ;;
+  ;; `org-export-async-debug'
   ;; Non-nil means asynchronous export process should leave data behind.
   ;; This data is found in the appropriate "*Org Export Process*"
   ;; buffer, and in files prefixed with "org-export-process" and
