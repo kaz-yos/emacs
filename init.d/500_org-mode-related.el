@@ -269,10 +269,16 @@
   ;;
   ;; Async export with direct key bindings
   (defun org-latex-export-to-pdf-async (&optional SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
+    "Export to pdf async directly
+
+This is a custom version of org-latex-export-to-pdf with an async flag."
     (interactive)
     (save-buffer)
     (org-latex-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST))
   (defun org-beamer-export-to-pdf-async (&optional SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
+    "Export to beamer async directly
+
+This is a custom version of org-beamer-export-to-pdf with an async flag."
     (interactive)
     (save-buffer)
     (org-beamer-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST))
