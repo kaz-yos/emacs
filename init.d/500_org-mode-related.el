@@ -257,6 +257,8 @@
   ;; https://github.com/russell/dotfiles/blob/master/emacs.d/init-org-export.el
   ;; Spacemacs example
   ;; https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bemacs/org/local/org-async-init.el
+  ;; Example of One unified file for both usual and async org-mode
+  ;; https://github.com/dzop/emacs.d/blob/master/core/init/init-org-mode.el
   (setq org-export-async-init-file
         ;; Need to be a full path.
         (expand-file-name "~/.emacs.d/init_org_async.el"))
