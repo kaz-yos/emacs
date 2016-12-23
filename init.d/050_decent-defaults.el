@@ -22,8 +22,17 @@
 ;;; Fewer garbage collection
 ;; Number of bytes of consing between garbage collections.
 ;; Value taken from spacemacs init.el
-(setq gc-cons-threshold 100000000)
 (setq garbage-collection-messages t)
+;; Set different gc-cons-threshold values depending on the context.
+;; http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
+(defun set-gc-cons-threshold-max ()
+  "Set gc-cons-threshold to maximum"
+  (setq gc-cons-threshold most-positive-fixnum))
+(defun set-gc-cons-threshold-normal ()
+  "Set gc-cons-threshold to 800kb"
+  (setq gc-cons-threshold 800000))
+(add-hook 'minibuffer-setup-hook #'set-gc-cons-threshold-max)
+(add-hook 'minibuffer-exit-hook #'set-gc-cons-threshold-normal)
 
 
 ;;;
