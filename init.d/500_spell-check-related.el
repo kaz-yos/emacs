@@ -154,3 +154,19 @@ which has no argument of its own."
   (advice-add 'flyspell-popup-correct
               :before
               #'turn-on-flyspell))
+
+
+;;;
+;;; langtools.el
+;; https://github.com/mhayashi1120/Emacs-langtool
+(use-package langtool
+  :config
+  (setq langtool-language-tool-jar "languagetool")
+  ;; Your mothertongue Language name pass to LanguageTool.
+  (setq langtool-mother-tongue "nl")
+  ;; Disabled rules pass to LanguageTool.
+  ;; String that separated by comma or list of string.
+  (setq langtool-disabled-rules '("WHITESPACE_RULE"
+                                  "EN_UNPAIRED_BRACKETS"
+                                  "COMMA_PARENTHESIS_WHITESPACE"
+                                  "EN_QUOTES")))
