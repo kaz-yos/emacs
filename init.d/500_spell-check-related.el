@@ -79,18 +79,19 @@
              flyspell-prog-mode)
   :init
   ;; Activate for some modes.
-  (dolist (mode '(text-mode))
-    (add-hook mode #'turn-on-flyspell))
+  (dolist (mode-hook '(text-mode-hook
+                       git-commit-mode-hook))
+    (add-hook mode-hook #'turn-on-flyspell))
   ;;
   ;; Use the comment-only spell check in programming modes.
   ;; https://joelkuiper.eu/spellcheck_emacs
-  (dolist (mode '(emacs-lisp-mode-hook
-                  inferior-lisp-mode-hook
-                  clojure-mode-hook
-                  python-mode-hook
-                  js-mode-hook
-                  R-mode-hook))
-    (add-hook mode #'flyspell-prog-mode))
+  (dolist (mode-hook '(emacs-lisp-mode-hook
+                       inferior-lisp-mode-hook
+                       clojure-mode-hook
+                       python-mode-hook
+                       js-mode-hook
+                       R-mode-hook))
+    (add-hook mode-hook #'flyspell-prog-mode))
   ;;
   :config
   ;; Unset some key bindings to avoid collisions
