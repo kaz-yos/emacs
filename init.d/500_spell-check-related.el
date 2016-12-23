@@ -79,7 +79,7 @@
   :init
   ;; Activate for some modes.
   (dolist (mode '(text-mode))
-    (add-hook mode #'flyspell-mode))
+    (add-hook mode #'turn-on-flyspell))
   ;;
   ;; Use the comment-only spell check in programming modes.
   ;; https://joelkuiper.eu/spellcheck_emacs
@@ -90,6 +90,7 @@
                   js-mode-hook
                   R-mode-hook))
     (add-hook mode #'flyspell-prog-mode))
+  ;;
   :config
   ;; Unset some key bindings to avoid collisions
   (setq flyspell-auto-correct-binding nil)
@@ -104,7 +105,16 @@
         (define-key flyspell-mode-map (kbd "C-M-i") nil)
         ;; Bind commands to less problematic keys.
         (define-key flyspell-mode-map (kbd "A-,") 'flyspell-goto-next-error)
-        (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct))))
+        (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct)))
+  ;; Advice flyspell-goto-next-error to make it more useful.
+  ;; Check the current buffer again before going to the next error.
+  (advice-add 'flyspell-goto-next-error
+              :before
+              'flyspell-buffer)
+  ;; Once reaching a misspelled word bring up the popup menu.
+  (advice-add 'flyspell-goto-next-error
+              :after
+              'flyspell-popup-correct))
 ;;
 ;;
 ;;; flyspell-popup.el
