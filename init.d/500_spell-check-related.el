@@ -160,10 +160,13 @@ which has no argument of its own."
 ;;; langtools.el
 ;; https://github.com/mhayashi1120/Emacs-langtool
 (use-package langtool
+  :commands (langtool-check)
   :config
-  (setq langtool-language-tool-jar "languagetool")
+  ;; The standalone desktop version was downloaded from the following URL.
+  ;; https://www.languagetool.org
+  (setq langtool-language-tool-jar "~/.emacs.d/misc/LanguageTool-3.5/languagetool-commandline.jar")
   ;; Your mothertongue Language name pass to LanguageTool.
-  (setq langtool-mother-tongue "nl")
+  (setq langtool-mother-tongue "ja")
   ;; Disabled rules pass to LanguageTool.
   ;; String that separated by comma or list of string.
   (setq langtool-disabled-rules '("WHITESPACE_RULE"
