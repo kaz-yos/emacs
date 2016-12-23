@@ -71,11 +71,20 @@
 ;;; flyspell.el (built-in)
 ;;
 (use-package flyspell
-  :ensure t
   :commands (flyspell-goto-next-error
              flyspell-mode
              turn-on-flyspell
              turn-off-flyspell)
+  :init
+  ;; Use the comment-only spell check in programming modes.
+  ;; https://joelkuiper.eu/spellcheck_emacs
+  (dolist (mode '(emacs-lisp-mode-hook
+                  inferior-lisp-mode-hook
+                  clojure-mode-hook
+                  python-mode-hook
+                  js-mode-hook
+                  R-mode-hook))
+    (add-hook mode #'flyspell-prog-mode))
   :config
   ;; Unset some key bindings to avoid collisions
   (setq flyspell-auto-correct-binding nil)
@@ -121,5 +130,4 @@ which has no argument of its own."
   ;; :around advice seems to break key binding in popup menu
   (advice-add 'flyspell-popup-correct
               :before
-              #'turn-on-flyspell)
-  )
+              #'turn-on-flyspell))
