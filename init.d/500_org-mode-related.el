@@ -113,7 +113,10 @@
      (shell . t)))
   ;; Do not ask code execution confirmation
   (setq org-confirm-babel-evaluate nil)
-  ;;
+  ;; Org-mode: Source block doesn't respect parent buffer indentation
+  ;; http://emacs.stackexchange.com/questions/9472/org-mode-source-block-doesnt-respect-parent-buffer-indentation
+  (setq org-src-preserve-indentation nil)
+  (setq org-edit-src-content-indentation 0)
   ;; Source code fontification
   ;; http://orgmode.org/worg/org-contrib/babel/examples/fontify-src-code-blocks.html
   (setq org-src-fontify-natively t)
