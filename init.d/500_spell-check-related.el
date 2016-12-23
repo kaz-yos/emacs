@@ -90,14 +90,14 @@
   (setq flyspell-auto-correct-binding nil)
   (eval-after-load "flyspell"
     #'(lambda ()
-        ;; Drop unnecessary key bindings
+        ;; Drop unnecessary key bindings.
         ;; http://stackoverflow.com/questions/16084022/emacs-flyspell-deactivate-c-key-binding
         (define-key flyspell-mode-map (kbd "C-,") nil)
         (define-key flyspell-mode-map (kbd "C-.") nil)
         (define-key flyspell-mode-map (kbd "C-;") nil)
         (define-key flyspell-mode-map (kbd "C-c $") nil)
         (define-key flyspell-mode-map (kbd "C-M-i") nil)
-        ;; Bind to less problematics ones
+        ;; Bind commands to less problematic keys.
         (define-key flyspell-mode-map (kbd "A-,") 'flyspell-goto-next-error)
         (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct))))
 ;;
