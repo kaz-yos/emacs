@@ -74,8 +74,13 @@
   :commands (flyspell-goto-next-error
              flyspell-mode
              turn-on-flyspell
-             turn-off-flyspell)
+             turn-off-flyspell
+             flyspell-prog-mode)
   :init
+  ;; Activate for some modes.
+  (dolist (mode '(text-mode))
+    (add-hook mode #'flyspell-mode))
+  ;;
   ;; Use the comment-only spell check in programming modes.
   ;; https://joelkuiper.eu/spellcheck_emacs
   (dolist (mode '(emacs-lisp-mode-hook
