@@ -1,7 +1,7 @@
 ;;; spell check related
 
 ;;;
-;;; ispell.el (built-in)
+;;; ispell.el
 ;; Spell checking in Emacs (ispell, flyspell, hunspell, and languagetool)
 ;; https://joelkuiper.eu/spellcheck_emacs
 ;;
@@ -69,7 +69,7 @@
 
 
 ;;;
-;;; flyspell.el (built-in)
+;;; flyspell.el
 ;;
 (use-package flyspell
   :commands (flyspell-goto-next-error
@@ -123,7 +123,7 @@
         (define-key flyspell-mode-map (kbd "A-.") 'flyspell-goto-next-error-and-popup))))
 ;;
 ;;
-;;; flyspell-popup.el
+;;;  flyspell-popup.el
 ;; https://github.com/xuchunyang/flyspell-popup
 (use-package flyspell-popup
   :commands (flyspell-popup-correct)
