@@ -310,6 +310,11 @@
  '(org-agenda-restriction-lock ((t (:background "skyblue4"))))
  '(org-agenda-structure ((t (:foreground "LightSkyBlue"))))
  '(org-archived ((t (:foreground "grey70"))))
+ ;; Pretty fontification of source code blocks
+ ;; http://orgmode.org/worg/sources/org-contrib/babel/examples/fontify-src-code-blocks.org
+ ;; '(org-block-begin-line ((t (:underline "gray10"))))
+ '(org-block ((t (:background "gray10"))))
+ ;; '(org-block-end-line ((t (:overline "gray10"))))
  '(org-code ((t (:foreground "grey70"))))
  '(org-column ((t (:background "grey30" :slant normal :weight normal :height 81))))
  '(org-column-title ((t (:bold t :background "grey30" :underline t :weight bold))))
