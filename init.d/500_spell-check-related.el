@@ -32,6 +32,7 @@
      ;; hunspell
      ;; hunspell -D to check paths. /Library/Spelling/ was added for use.
      (hunspell-file
+      (setq ispell-really-hunspell hunspell-file)
       (setq ispell-program-name hunspell-file)
       ;; http://emacs.stackexchange.com/questions/21378/spell-check-with-multiple-dictionaries
       ;; http://gromnitsky.blogspot.com/2016/09/emacs-251-hunspell.html
