@@ -186,3 +186,12 @@ which has no argument of its own."
         (let ((msg (langtool-details-error-message overlays)))
           (popup-tip msg)))))
   (setq langtool-autoshow-message-function 'langtool-autoshow-detail-popup))
+
+
+
+;;;
+;;; osx-dictionary.el
+;; https://github.com/xuchunyang/osx-dictionary.el
+(use-package osx-dictionary
+  :commands (osx-dictionary-search-word-at-point
+             osx-dictionary-search-input))
