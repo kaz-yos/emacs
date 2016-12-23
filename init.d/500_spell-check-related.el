@@ -96,6 +96,19 @@
   :config
   ;; Unset some key bindings to avoid collisions
   (setq flyspell-auto-correct-binding nil)
+  ;;
+  (defun flyspell-check-goto-next-error-and-popup ()
+    "Fly-spell the current buffer, go to the next error, and pop up a menu."
+    (interactive)
+    (flyspell-buffer)
+    (flyspell-goto-next-error)
+    (flyspell-popup-correct))
+  (defun flyspell-goto-next-error-and-popup ()
+    "Go to the next error and pop up a menu."
+    (interactive)
+    (flyspell-goto-next-error)
+    (flyspell-popup-correct))
+  ;;
   (eval-after-load "flyspell"
     #'(lambda ()
         ;; Drop unnecessary key bindings.
@@ -106,17 +119,8 @@
         (define-key flyspell-mode-map (kbd "C-c $") nil)
         (define-key flyspell-mode-map (kbd "C-M-i") nil)
         ;; Bind commands to less problematic keys.
-        (define-key flyspell-mode-map (kbd "A-,") 'flyspell-goto-next-error)
-        (define-key flyspell-mode-map (kbd "A-.") 'flyspell-popup-correct)))
-  ;; Advice flyspell-goto-next-error to make it more useful.
-  ;; Check the current buffer again before going to the next error.
-  (advice-add 'flyspell-goto-next-error
-              :before
-              'flyspell-buffer)
-  ;; Once reaching a misspelled word bring up the popup menu.
-  (advice-add 'flyspell-goto-next-error
-              :after
-              'flyspell-popup-correct))
+        (define-key flyspell-mode-map (kbd "A-,") 'flyspell-check-goto-next-error-and-popup)
+        (define-key flyspell-mode-map (kbd "A-.") 'flyspell-goto-next-error-and-popup))))
 ;;
 ;;
 ;;; flyspell-popup.el
