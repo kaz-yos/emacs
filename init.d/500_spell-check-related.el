@@ -76,7 +76,9 @@
              flyspell-mode
              turn-on-flyspell
              turn-off-flyspell
-             flyspell-prog-mode)
+             flyspell-prog-mode
+             flyspell-check-goto-next-error-and-popup
+             flyspell-goto-next-error-and-popup)
   :init
   ;; Activate for some modes.
   (dolist (mode-hook '(text-mode-hook
