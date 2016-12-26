@@ -131,6 +131,9 @@
   :commands (flyspell-popup-correct)
   :bind ("s-c" . flyspell-popup-correct)
   :config
+  ;; (global-set-key (kbd "A-m") '(lambda ()
+  ;;                                (interaction)
+  ;;                                (mouse--down-1-maybe-follows-link)))
   ;;
   (defun turn-on-off-flyspell-unless-already-on (oldfun)
     "Turn flyspell on :before, and turn off :after unless already on
