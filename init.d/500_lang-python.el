@@ -15,7 +15,7 @@
   :interpreter ("python[0-9.]*" . python-mode)
   ;;
   :config
-  (setq python-shell-interpreter "~/anaconda/bin/python")
+  (setq python-shell-interpreter (executable-find "python"))
   ;;
   ;; ;; Default shell interaction commands
   ;; (define-key map (kbd "C-c C-p") 'run-python)
