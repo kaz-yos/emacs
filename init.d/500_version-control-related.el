@@ -178,3 +178,12 @@
   :commands (github-browse-file
              github-browse-file-blame
              github-browse-commit))
+;;
+;;
+;;; git-messenger.el
+;; https://github.com/syohex/emacs-git-messenger
+(use-package git-messenger
+  :commands (git-messenger:popup-message
+             git-messenger:popup-diff)
+  :config
+  (setq git-messenger:show-detail t))
