@@ -236,9 +236,12 @@
                                (concat "Bcc: " user-mail-address "\n")))))
   ;; Flyspell
   (add-hook 'mu4e-compose-mode-hook 'turn-on-flyspell)
+  ;;
   ;; org-mode's table editor minor mode
+  ;; This hijack RET binding. It makes RET in flyspell popup correction unresponsive.
   ;; http://orgmode.org/manual/Orgtbl-mode.html
-  (add-hook 'mu4e-compose-mode-hook 'turn-on-orgtbl)
+  ;; (add-hook 'mu4e-compose-mode-hook 'turn-on-orgtbl)
+  ;;
   ;;  Sequential command for message mode
   (define-sequential-command message-seq-cmd--home
     message-beginning-of-line message-goto-body beginning-of-buffer seq-cmd--return)
