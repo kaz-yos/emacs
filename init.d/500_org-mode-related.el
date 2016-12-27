@@ -304,6 +304,9 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
       (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
   (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
   ;;
+;;;  Regular markdown exporter
+  (require 'ox-md)
+  ;;
 ;;;  Qiita-Markdown exporter
   ;; http://qiita.com/0x60df/items/3cde67967e3db30d9afe
   (require 'ox-qmd)
