@@ -6,6 +6,7 @@ autoinsert/.gitignore
 .Rhistory
 .juliahistory
 .mc-lists.el
+*.info
 ac-comphist.dat
 auto-install/
 auto-save-list/
@@ -29,7 +30,6 @@ url/
 /pomodoro.org
 /.python-environments/
 *SugarSyncTemp
-/info/sicp.info
 /ido.last
 /skk/
 /misc/aspell.en.pws
