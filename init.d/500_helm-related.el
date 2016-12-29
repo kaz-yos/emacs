@@ -156,3 +156,14 @@
 ;; https://github.com/steckerhalter/helm-google
 (use-package helm-google
   :commands (helm-google))
+
+
+;;; helm-hunks.el
+;; https://github.com/torgeir/helm-hunks.el/blob/master/readme.md
+(use-package helm-hunks
+  :commands (helm-hunks
+             helm-hunks-current-buffer
+             helm-hunks-staged
+             helm-hunks-staged-current-buffer)
+  :config
+  (add-hook 'helm-hunks-refresh-hook 'git-gutter+-refresh))
