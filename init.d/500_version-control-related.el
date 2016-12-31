@@ -60,9 +60,11 @@
       (delete-trailing-whitespace)
       (save-buffer))
     ;; Invoke the true worker function (change tramp scp because it's slow)
-    (magit-status (replace-regexp-in-string "^/scp"
-                                            "/ssh"
-                                            default-directory)))
+    (magit-status)
+    ;; (magit-status (replace-regexp-in-string "^/scp"
+    ;;                                         "/ssh"
+    ;;                                         default-directory))
+    )
   ;; Improve cursor movement when using n
   (advice-add 'magit-goto-next-section
               :after 'my-recenter-top)
