@@ -25,3 +25,10 @@
 (use-package demo-it
   :commands (demo-it-mode
              demo-it-start))
+
+
+;;;
+;;; command-log-mode.el
+;; https://github.com/lewang/command-log-mode
+(use-package command-log-mode
+  :commands (clm/open-command-log-buffer))
