@@ -40,6 +40,8 @@
          ("C-c g" . magit-status))
   :config
   ;;
+  (define-key magit-status-mode-map (kbd "S-<tab>") 'magit-section-cycle)
+  (define-key magit-status-mode-map (kbd "C-<tab>") nil)
   ;; Word-level diff
   ;; https://magit.vc/manual/magit/Diff-options.html
   ;; http://html-color-codes.info
