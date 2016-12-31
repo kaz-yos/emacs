@@ -64,54 +64,9 @@
   ;; Improve cursor movement when using n
   (advice-add 'magit-goto-next-section
               :after 'my-recenter-top)
-  ;;
-  ;; change magit diff colors (configure in init-customize.el)
-  ;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
-  ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
-  ;;
-  ;; Logging shows all branches by default (--all option added by default)
-  (defun magit-key-mode-popup-logging ()
-    "Key menu for logging (--graph --all by default)"
-    (interactive)
-    (magit-key-mode 'logging
-                    (list "--graph" "--all")))
-  ;;
-  ;; Merging does not use fast-forward by default (--no-ff option added by default)
-  (defun magit-key-mode-popup-merging ()
-    "Key menu for merging (--no-ff by default)"
-    (interactive)
-    (magit-key-mode 'merging
-                    (list "--no-ff"))))
-;;
-;;
-;;
-;; 2014-02-12 Add the --all switch by default to the logginb popup
-;; Shown below is how magit-key-mode-popup-* is defined dynamically in magit-key-mode.el
-;; (defun magit-key-mode-generate (group)
-;;   "Generate the key-group menu for GROUP."
-;;   (let ((opts (magit-key-mode-options-for-group group)))
-;;     (eval
-;;      `(defun ,(intern (concat "magit-key-mode-popup-" (symbol-name group))) nil
-;;         ,(concat "Key menu for " (symbol-name group))
-;;         (interactive)
-;;         (magit-key-mode
-;;          (quote ,group)
-;;          ;; As a tempory kludge it is okay to do this here.
-;;          ,(cl-case group
-;;             (logging
-;;              '(list "--graph" "--all")) ; 2014-02-12 Can be hacked like this
-;;             (diff-options
-;;              '(when (local-variable-p 'magit-diff-options)
-;;                 magit-diff-options))))))))
-;;
-;; To see the definition of the function defined here, do the following
-;; (symbol-function 'magit-key-mode-popup-logging)
-;;
-;; These just replace the dynamically created functions with statically made ones.
-;;
-;;
+  )
 
-;;
+
 ;;; git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
 ;; Does not work in .emacs.d (not elisp in general) 2014-03-01
 ;; https://github.com/nonsequitur/git-gutter-fringe-plus
