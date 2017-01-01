@@ -175,8 +175,8 @@ This should be run after running multiple-cursors"
   ;;
 ;;;  Org
   (defun smartchr-org-mode-set ()
-    (local-set-key (kbd "^") (smartchr '("^{`!!'}" "^")))
-    (local-set-key (kbd "_") (smartchr '("_{`!!'}" "_" "_`!!'_")))
+    (local-set-key (kbd "^") (smartchr '("^" "^{`!!'}")))
+    (local-set-key (kbd "_") (smartchr '("_" "_{`!!'}" "_`!!'_")))
     (local-set-key (kbd "/") (smartchr '("/" "/`!!'/")))
     (local-set-key (kbd "=") (smartchr '("=" "=`!!'=")))
     (local-set-key (kbd "-") (smartchr '("-" "-`!!'-")))
