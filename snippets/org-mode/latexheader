@@ -14,7 +14,6 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{amssymb}
 #+LATEX_HEADER: \usepackage{wasysym}
-#+LATEX_HEADER: \newcommand{\ind}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
 #+LATEX_HEADER: %% Allow new page within align
 #+LATEX_HEADER: \allowdisplaybreaks
 #+LATEX_HEADER: \usepackage{cancel}
@@ -24,6 +23,7 @@
 #+LATEX_HEADER: \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
 #+LATEX_HEADER: %% Graphics
 #+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{grffile}
 #+LATEX_HEADER: %% DAG
 #+LATEX_HEADER: \usepackage{tikz}
 #+LATEX_HEADER: \usetikzlibrary{positioning,shapes.geometric}
