@@ -311,6 +311,78 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   ;; http://qiita.com/0x60df/items/3cde67967e3db30d9afe
   (require 'ox-qmd)
   ;;
+;;;  Publishing Org-mode files to HTML
+  ;; http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
+  (require 'ox-publish)
+  ;;
+;;; org2jekyll.el
+  ;; https://github.com/ardumont/org2jekyll#installsetup
+  ;; jekyll installation
+  ;; https://jekyllrb.com/docs/troubleshooting/#jekyll-amp-mac-os-x-1011
+  (require 'org2jekyll)
+  ;; org2jekyll is about:
+  ;;  - writing comfortably leveraging org-mode
+  ;;  - converting your org-mode blog or page to html leveraging org-publish
+  ;;  - and see the rendering result in the browser with jekyll
+  ;; Set up example
+  ;; https://github.com/ardumont/org2jekyll#setup
+  ;; https://github.com/ardumont/blog-pack/blob/master/blog-pack.el
+  (setq org2jekyll-blog-author "kaz-yos")
+  (setq org2jekyll-source-directory  (expand-file-name "~/Documents/_web/org"))
+  (setq org2jekyll-jekyll-directory  (expand-file-name "~/Documents/_web/html"))
+  (setq org2jekyll-jekyll-drafts-dir "")
+  (setq org2jekyll-jekyll-posts-dir  "_posts/")
+  ;; Association list to control publishing behavior. (defined in ox-publish.el)
+  (setq org-publish-project-alist
+        `(("default"
+           :base-directory ,(org2jekyll-input-directory)
+           :base-extension "org"
+           ;; :publishing-directory "/ssh:user@host:~/html/"
+           :publishing-directory ,(org2jekyll-output-directory)
+           :publishing-function org-html-publish-to-html
+           :headline-levels 4
+           :section-numbers nil
+           :with-toc nil
+           :html-head "<link rel=\"stylesheet\" href=\"./css/style.css\" type=\"text/css\"/>"
+           :html-preamble t
+           :recursive t
+           :make-index t
+           :html-extension "html"
+           :body-only t)
+          ("post"
+           :base-directory ,(org2jekyll-input-directory)
+           :base-extension "org"
+           :publishing-directory ,(org2jekyll-output-directory org2jekyll-jekyll-posts-dir)
+           :publishing-function org-html-publish-to-html
+           :headline-levels 4
+           :section-numbers nil
+           :with-toc nil
+           :html-head "<link rel=\"stylesheet\" href=\"./css/style.css\" type=\"text/css\"/>"
+           :html-preamble t
+           :recursive t
+           :make-index t
+           :html-extension "html"
+           :body-only t)
+          ("images"
+           :base-directory ,(org2jekyll-input-directory "img")
+           :base-extension "jpg\\|gif\\|png"
+           :publishing-directory ,(org2jekyll-output-directory "img")
+           :publishing-function org-publish-attachment
+           :recursive t)
+          ("js"
+           :base-directory ,(org2jekyll-input-directory "js")
+           :base-extension "js"
+           :publishing-directory ,(org2jekyll-output-directory "js")
+           :publishing-function org-publish-attachment
+           :recursive t)
+          ("css"
+           :base-directory ,(org2jekyll-input-directory "css")
+           :base-extension "css\\|el"
+           :publishing-directory ,(org2jekyll-output-directory "css")
+           :publishing-function org-publish-attachment
+           :recursive t)
+          ("web" :components ("images" "js" "css"))))
+  ;;
   ;;
 ;;;
 ;;; Miscellaneous configurations
