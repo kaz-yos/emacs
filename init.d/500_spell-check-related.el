@@ -168,8 +168,10 @@ which has no argument of its own."
   ;; The standalone desktop version was downloaded from the following URL.
   ;; https://www.languagetool.org
   (setq langtool-language-tool-jar "~/.emacs.d/misc/LanguageTool-3.5/languagetool-commandline.jar")
+  ;; Language name pass to LanguageTool.
+  (setq langtool-default-language "en-US")
   ;; Your mothertongue Language name pass to LanguageTool.
-  (setq langtool-mother-tongue "ja")
+  (setq langtool-mother-tongue nil)
   ;; Disabled rules pass to LanguageTool.
   ;; String that separated by comma or list of string.
   (setq langtool-disabled-rules '("WHITESPACE_RULE"
