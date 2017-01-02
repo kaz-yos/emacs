@@ -212,57 +212,6 @@ This should be run after running multiple-cursors"
 
 
 ;;;
-;;; key-combo.el
-;; https://github.com/uk-ar/key-combo
-;; http://d.hatena.ne.jp/uk-ar/20111208/1322572618
-;; http://qiita.com/akisute3@github/items/0141c92dca0992732af8
-;; http://fnwiya.hatenablog.com/entry/2015/11/22/004358
-;;
-(use-package key-combo
-  :disabled t
-  :config
-  ;; ESS
-  (setq my-ess-mode-hooks
-        '(ess-mode-hook
-          inferior-ess-mode-hook))
-  (setq my-key-combos-for-ess
-        '(("=" . ("=" " = " " == "))
-          ("+" . ("+" " + "))
-          ("-" . ("-" " - " "--------------------------------------------------------------------------------"))
-          ("#" . ("# " "## " "### " "################################################################################"))
-          ("~" . ("~" " ~ "))
-          ("$" . ("$" "$`!!'$"))
-          ("%" . ("%" " %`!!'% "))))
-  (key-combo-define-hook my-ess-mode-hooks
-                         'my-ess-mode-hooks
-                         my-key-combos-for-ess)
-  ;;
-  ;; Python
-  (setq my-python-mode-hooks
-        '(ein:notebook-multilang-mode-hook
-          python-mode-hook
-          inferior-python-mode-hook))
-  (setq my-key-combos-for-python
-        '(("=" . ("=" " = " " == "))
-          ("+" . ("+" " + "))
-          ("-" . ("-" " - "))
-          ("#" . ("# " "## " "### " "################################################################################"))))
-  (key-combo-define-hook my-python-mode-hooks
-                         'my-python-mode-hooks
-                         my-key-combos-for-python)
-  ;;
-  ;; LaTeX
-  (setq my-latex-mode-hooks
-        '(LaTeX-mode-hook))
-  (setq my-key-combos-for-latex
-        '(("$" . ("$`!!'$" "$"))
-          ("%" . ("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
-  (key-combo-define-hook my-latex-mode-hooks
-                         'my-latex-mode-hooks
-                         my-key-combos-for-latex))
-
-
-;;;
 ;;; smartrep.el
 ;; http://sheephead.homelinux.org/2011/12/19/6930/
 (use-package smartrep
