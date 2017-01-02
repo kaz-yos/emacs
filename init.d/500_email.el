@@ -248,9 +248,7 @@ The optional and unused msg argument is to fit into mu4e's action framework."
     (let* ((from (message-field-value "From"))
            ;; gnus-extract-address-components gives ("name" "address")
            (sender-address (cadr (gnus-extract-address-components from))))
-      ;; Taken from mu4e-view-search-narrow
-      (mu4e~view-in-headers-context
-       (mu4e-headers-search-narrow (concat "from:" sender-address)))))
+      (mu4e-headers-search-narrow (concat "from:" sender-address))))
   ;;
   ;; Actions
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Actions.html
