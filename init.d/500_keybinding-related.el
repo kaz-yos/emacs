@@ -244,12 +244,52 @@ This should be run after running multiple-cursors"
     "zoom"
     ("g" text-scale-increase "in")
     ("l" text-scale-decrease "out"))
+  ;;
   ;; Minimum org-mode setting
   (defhydra hydra-org-next-prev (org-mode-map "C-c")
     "Move to "
     ("C-n"  outline-next-visible-heading "Next visible heading")
     ("C-p"  outline-previous-visible-heading "Previous visible heading")
-    ("c" nil "Cancel")))
+    ("C-f"  outline-forward-same-level "Forward same level")
+    ("C-b"  outline-backward-same-level "Backward same level")
+    ("C-k" nil "Cancel")
+    ("k" nil "Cancel"))
+  ;;
+  ;; Extensive outline mode bindings
+  ;; https://github.com/abo-abo/hydra/wiki/Emacs#outline-minor-mode
+  (defhydra hydra-outline (:color pink :hint nil)
+    "
+^Hide^             ^Show^           ^Move
+^^^^^^------------------------------------------------------
+_q_: sublevels     _a_: all         _u_: up
+_t_: body          _e_: entry       _n_: next visible
+_o_: other         _i_: children    _p_: previous visible
+_c_: entry         _k_: branches    _f_: forward same level
+_l_: leaves        _s_: subtree     _b_: backward same level
+_d_: subtree
+
+"
+    ;; Hide
+    ("q" hide-sublevels)    ; Hide everything but the top-level headings
+    ("t" hide-body)         ; Hide everything but headings (all body lines)
+    ("o" hide-other)        ; Hide other branches
+    ("c" hide-entry)        ; Hide this entry's body
+    ("l" hide-leaves)       ; Hide body lines in this entry and sub-entries
+    ("d" hide-subtree)      ; Hide everything in this entry and sub-entries
+    ;; Show
+    ("a" show-all)          ; Show (expand) everything
+    ("e" show-entry)        ; Show this heading's body
+    ("i" show-children)     ; Show this heading's immediate child sub-headings
+    ("k" show-branches)     ; Show all sub-headings under this heading
+    ("s" show-subtree)      ; Show (expand) everything in this heading & below
+    ;; Move
+    ("u" outline-up-heading)                ; Up
+    ("n" outline-next-visible-heading)      ; Next
+    ("p" outline-previous-visible-heading)  ; Previous
+    ("f" outline-forward-same-level)        ; Forward - same level
+    ("b" outline-backward-same-level)       ; Backward - same level
+    ("z" nil "leave"))
+  (global-set-key (kbd "C-c #") 'hydra-outline/body))
 
 
 ;;;
@@ -257,5 +297,7 @@ This should be run after running multiple-cursors"
 ;; A part of use-package.el
 ;; https://github.com/jwiegley/use-package/blob/master/bind-key.el
 ;; http://emacs.rubikitch.com/bind-key/
+;; describe-personal-keybindings can be used to check all my bindings.
 (use-package bind-key
-  :commands (bind-key))
+  :commands (bind-key
+             describe-personal-keybindings))
