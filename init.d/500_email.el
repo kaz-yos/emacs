@@ -202,13 +202,6 @@
   ;; Whether to automatically display attached images in the message
   (setq mu4e-view-show-images t)
   (setq mu4e-view-show-addresses t)
-  ;; Actions
-  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Actions.html
-  (setq mu4e-view-actions
-        '(("capture message"  . mu4e-action-capture-message)
-          ("view as pdf"      . mu4e-action-view-as-pdf)
-          ("show this thread" . mu4e-action-show-thread)
-          ("browser"          . mu4e-action-view-in-browser)))
   ;;
   ;; Displaying rich-text messages
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
@@ -235,6 +228,39 @@
   (setq mu4e-msg2pdf nil)
   ;; Default directory for saving attachments.
   (setq mu4e-attachment-dir (expand-file-name "~/Downloads"))
+  ;;
+  ;; Find messages from the same sender.
+  (defun my-mu4e-action-find-messages-from-same-sender (&optional msg)
+    "Extract sender from From: field and find messages from same sender
+
+The optional and unused msg argument is to fit into mu4e's action framework."
+    (interactive)
+    (let* ((from (message-field-value "From"))
+           ;; gnus-extract-address-components gives ("name" "address")
+           (sender-address (cadr (gnus-extract-address-components from))))
+      (mu4e-headers-search (concat "from:" sender-address))))
+  ;;
+  (defun my-mu4e-action-narrow-messages-to-same-sender (&optional msg)
+    "Extract sender from From: field and narrow messages to same sender
+
+The optional and unused msg argument is to fit into mu4e's action framework."
+    (interactive)
+    (let* ((from (message-field-value "From"))
+           ;; gnus-extract-address-components gives ("name" "address")
+           (sender-address (cadr (gnus-extract-address-components from))))
+      ;; Taken from mu4e-view-search-narrow
+      (mu4e~view-in-headers-context
+       (mu4e-headers-search-narrow (concat "from:" sender-address)))))
+  ;;
+  ;; Actions
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Actions.html
+  (setq mu4e-view-actions
+        '(("capture message"    . mu4e-action-capture-message)
+          ("view as pdf"        . mu4e-action-view-as-pdf)
+          ("show this thread"   . mu4e-action-show-thread)
+          ("browser"            . mu4e-action-view-in-browser)
+          ("find same sender"   . my-mu4e-action-find-messages-from-same-sender)
+          ("narrow same sender" . my-mu4e-action-narrow-messages-to-same-sender)))
   ;;
 ;;;  Editor view configuration
   ;; Do not drop myself from cc list
