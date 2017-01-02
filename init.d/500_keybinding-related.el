@@ -311,6 +311,7 @@ _d_: subtree
 (use-package guide-key
   :commands (guide-key-mode)
   :init
+  ;; Activate on start up
   (add-hook 'after-init-hook 'guide-key-mode)
   :config
   ;; Delay in seconds before guide buffer is displayed.
@@ -319,15 +320,13 @@ _d_: subtree
   (setq guide-key/text-scale-amount 0.1)
   ;; Show at the bottom
   ;; http://shibayu36.hatenablog.com/entry/2013/08/05/214023
-  (setq guide-key/popup-window-position 'bottom)
+  (setq guide-key/popup-window-position 'left)
   ;; Guide everything
   (setq guide-key/guide-key-sequence t)
   ;; Guide specific sequences
   ;; (setq guide-key/guide-key-sequence '("C-x" "C-c"))
   ;; Check an input key sequence recursively.
-  (setq guide-key/recursive-key-sequence-flag t)
-  ;; Activate
-  (guide-key-mode))
+  (setq guide-key/recursive-key-sequence-flag t))
 
 
 ;;;
