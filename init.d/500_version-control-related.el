@@ -66,7 +66,9 @@
     ;;                                         default-directory))
     )
   ;; Improve cursor movement when using n
-  (advice-add 'magit-goto-next-section
+  (advice-add 'magit-section-forward
+              :after 'my-recenter-top)
+  (advice-add 'magit-section-forward-sibling
               :after 'my-recenter-top)
   )
 
