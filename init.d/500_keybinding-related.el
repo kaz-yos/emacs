@@ -328,3 +328,13 @@ _d_: subtree
   (setq guide-key/recursive-key-sequence-flag t)
   ;; Activate
   (guide-key-mode))
+
+
+;;;
+;;; free-keys.el
+;; https://github.com/Fuco1/free-keys
+;; http://emacs.stackexchange.com/questions/964/show-unbound-keys
+;; Use this to see what remaining keys are available.
+;; Use bind-key.el describe-personal-keybindings for used keys.
+(use-package free-keys
+  :commands (free-keys))
