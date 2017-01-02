@@ -301,3 +301,30 @@ _d_: subtree
 (use-package bind-key
   :commands (bind-key
              describe-personal-keybindings))
+
+
+;;;
+;;; guide-key.el
+;; https://github.com/kai2nenobu/guide-key
+;; http://www.kaichan.info/blog/2013-12-22-emacs-advent-calendar-2013-22.html
+;; http://www.kaichan.info/blog/2012-12-03-emacs-advent-calendar-2012-03.html
+(use-package guide-key
+  :commands (guide-key-mode)
+  :init
+  (add-hook 'after-init-hook 'guide-key-mode)
+  :config
+  ;; Delay in seconds before guide buffer is displayed.
+  (setq guide-key/idle-delay 1.0)
+  ;; Set font size (negative for smaller)
+  (setq guide-key/text-scale-amount 0.1)
+  ;; Show at the bottom
+  ;; http://shibayu36.hatenablog.com/entry/2013/08/05/214023
+  (setq guide-key/popup-window-position 'bottom)
+  ;; Guide everything
+  (setq guide-key/guide-key-sequence t)
+  ;; Guide specific sequences
+  ;; (setq guide-key/guide-key-sequence '("C-x" "C-c"))
+  ;; Check an input key sequence recursively.
+  (setq guide-key/recursive-key-sequence-flag t)
+  ;; Activate
+  (guide-key-mode))
