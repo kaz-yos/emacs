@@ -65,6 +65,8 @@
   (let ((mu4e-dir "/usr/local/Cellar/mu/HEAD-1f232b6/share/emacs/site-lisp/mu/mu4e/"))
     (when (file-exists-p mu4e-dir)
       (add-to-list 'load-path mu4e-dir)))
+  ;; Start mu4e after init.
+  (add-hook 'after-init-hook 'mu4e)
   ;;
   :config
   ;; tell mu4e where my Maildir is
@@ -137,7 +139,7 @@
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-change-filenames-when-moving t)
   ;; Update interval
-  (setq mu4e-update-interval (* 60 5))
+  (setq mu4e-update-interval (* 60 15))
   ;; Do not occupy the minibuffer with "Indexing..."
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-hide-index-messages nil)
@@ -147,6 +149,16 @@
   (setq mu4e-index-cleanup t)
   ;; Date stamp check only; miss message that are modified outside mu
   (setq mu4e-index-lazy-check nil)
+  ;;
+  ;; The dreaded "Waiting for message..." message and what to do about it
+  ;; http://mu-discuss.narkive.com/VpWEtZ7w/the-dreaded-waiting-for-message-message-and-what-to-do-about-it
+  ;; This hook does not exist now.
+  ;; (add-hook 'mu4e~proc-start-hook
+  ;;           '(lambda ()
+  ;;              (message "Now running the 'killall mu' hook!")
+  ;;              (shell-command "killall mu")
+  ;;              (sleep-for 0 250)))
+  ;;
   ;;
 ;;;  Dynamic folder selection (configured elsewhere)
   ;;
