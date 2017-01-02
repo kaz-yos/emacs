@@ -216,12 +216,46 @@ This should be run after running multiple-cursors"
 ;; https://github.com/myuhe/smartrep.el
 ;; http://sheephead.homelinux.org/2011/12/19/6930/
 (use-package smartrep
+  :disabled t
   :config
   ;; org-mode
   (eval-after-load "org"
     '(progn
        (smartrep-define-key
-           org-mode-map "C-c" '(("C-n" . (lambda ()
-                                           (outline-next-visible-heading 1)))
-                                ("C-p" . (lambda ()
-                                           (outline-previous-visible-heading 1))))))))
+        org-mode-map "C-c" '(("C-n" . (lambda ()
+                                        (outline-next-visible-heading 1)))
+                             ("C-p" . (lambda ()
+                                        (outline-previous-visible-heading 1))))))))
+
+
+;;;
+;;; hydra.el
+;; https://github.com/abo-abo/hydra
+;; https://github.com/abo-abo/hydra/wiki/Emacs
+;; https://github.com/yangchenyun/emacs-prelude/blob/master/setup-hydra.el
+;; This may be outdated.
+;; http://emacs.rubikitch.com/hydra/
+(use-package hydra
+  :commands (hydra-zoom/body)
+  :config
+  ;; Buffer text scaling
+  ;; https://github.com/abo-abo/hydra#the-one-with-the-least-amount-of-code
+  (defhydra hydra-zoom (global-map "<f2>")
+    "zoom"
+    ("g" text-scale-increase "in")
+    ("l" text-scale-decrease "out"))
+  ;; Minimum org-mode setting
+  (defhydra hydra-org-next-prev (org-mode-map "C-c")
+    "Move to "
+    ("C-n"  outline-next-visible-heading "Next visible heading")
+    ("C-p"  outline-previous-visible-heading "Previous visible heading")
+    ("c" nil "Cancel")))
+
+
+;;;
+;;; bind-keys.el
+;; A part of use-package.el
+;; https://github.com/jwiegley/use-package/blob/master/bind-key.el
+;; http://emacs.rubikitch.com/bind-key/
+(use-package bind-key
+  :commands (bind-key))
