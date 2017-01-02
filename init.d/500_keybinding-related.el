@@ -289,7 +289,8 @@ _d_: subtree
     ("f" outline-forward-same-level)        ; Forward - same level
     ("b" outline-backward-same-level)       ; Backward - same level
     ("z" nil "leave"))
-  (global-set-key (kbd "C-c #") 'hydra-outline/body))
+  (global-set-key (kbd "C-c #") 'hydra-outline/body)
+  (define-key org-mode-map (kbd "C-`") 'hydra-outline/body))
 
 
 ;;;
