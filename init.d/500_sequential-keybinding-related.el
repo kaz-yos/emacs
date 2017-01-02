@@ -213,6 +213,7 @@ This should be run after running multiple-cursors"
 
 ;;;
 ;;; smartrep.el
+;; https://github.com/myuhe/smartrep.el
 ;; http://sheephead.homelinux.org/2011/12/19/6930/
 (use-package smartrep
   :config
@@ -223,16 +224,4 @@ This should be run after running multiple-cursors"
            org-mode-map "C-c" '(("C-n" . (lambda ()
                                            (outline-next-visible-heading 1)))
                                 ("C-p" . (lambda ()
-                                           (outline-previous-visible-heading 1)))))))
-  ;;
-  ;; Make C-' a prefix
-  (defvar ctl-quote-map (make-keymap))
-  (define-key global-map (kbd "C-'") ctl-quote-map)
-  ;; Scroll the other window
-  (smartrep-define-key
-      global-map "C-'" '(("n" . (lambda () (scroll-other-window 1)))
-                         ("p" . (lambda () (scroll-other-window -1)))
-                         ("N" . 'scroll-other-window)
-                         ("P" . (lambda () (scroll-other-window '-)))
-                         ("a" . (lambda () (beginning-of-buffer-other-window 0)))
-                         ("e" . (lambda () (end-of-buffer-other-window 0))))))
+                                           (outline-previous-visible-heading 1))))))))
