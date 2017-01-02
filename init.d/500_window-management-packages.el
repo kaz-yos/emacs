@@ -47,9 +47,14 @@
 ;; http://www.emacswiki.org/emacs/EmacsLispScreen
 ;; http://rubikitch.com/2014/09/05/elscreen/
 (use-package elscreen
+  :commands (elscreen-toggle-display-tab
+             helm-elscreen)
   :init
   ;; Do not set a prefix (conflict with helm)
   (setq elscreen-prefix-key (kbd "C-;"))
+  (global-set-key (kbd "C-; t") 'elscreen-toggle-display-tab)
+  (global-set-key (kbd "C-; l") 'helm-elscreen)
+  (global-set-key (kbd "C-; h") 'helm-elscreen)
   ;;
   :config
   ;; Key configs
@@ -59,9 +64,9 @@
   ;; (global-set-key (kbd "A-c") 'elscreen-clone)
   ;; (global-set-key (kbd "A-k") 'elscreen-kill)
   ;; (global-set-key (kbd "A-r") 'elscreen-screen-nickname)
-  (global-set-key (kbd "C-; t") 'elscreen-toggle-display-tab)
-  (global-set-key (kbd "C-; l") 'helm-elscreen)
-  (global-set-key (kbd "C-; h") 'helm-elscreen)
+  ;;
+  ;; Helm-base screen selector (part of helm)
+  (require 'helm-elscreen)
   ;;
   ;; Do not show tabls to save space
   ;; Can use M-x elscreen-toggle-display-tab
