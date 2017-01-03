@@ -33,7 +33,7 @@
 ;;; zoom-window.el
 ;; https://github.com/syohex/emacs-zoom-window
 (use-package zoom-window
-  :bind (("C-x 1" . zoom-window-zoom))
+  :commands (zoom-window-zoom)
   :config
   (setq zoom-window-use-elscreen t)
   (zoom-window-setup))
