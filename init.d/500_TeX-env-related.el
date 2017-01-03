@@ -12,6 +12,7 @@
 ;;
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+(setq TeX-show-compilation nil)
 (setq-default TeX-master nil)
 ;;
 ;; autosave before compiling
