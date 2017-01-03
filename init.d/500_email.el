@@ -108,7 +108,7 @@
      ;; Otherwise,
      (t
       ;; Conduct thorough operations
-      (setq mu4e-hide-index-messages t)
+      (setq mu4e-hide-index-messages nil)
       (setq mu4e-cache-maildir-list nil)
       (setq mu4e-index-cleanup t)
       (setq mu4e-index-lazy-check nil)
