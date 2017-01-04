@@ -183,6 +183,8 @@
   (advice-add 'mu4e-headers-view-message
               :before 'delete-other-windows)
   ;;
+  (setq mu4e-headers-date-format "%Y-%m-%d")
+  ;;
   ;; Show related messages in addition to search results
   (setq mu4e-headers-include-related nil)
   ;; Maximum number of results to show
@@ -219,6 +221,7 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   ;; Whether to automatically display attached images in the message
   (setq mu4e-view-show-images t)
   (setq mu4e-view-show-addresses t)
+  (setq mu4e-view-date-format "%Y-%m-%d %H:%M:%S")
   ;;
   ;; Displaying rich-text messages
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
