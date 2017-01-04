@@ -198,6 +198,19 @@
   ;; ‘apply’ automatically apply the marks before doing anything else
   (setq mu4e-headers-leave-behavior 'apply)
   ;;
+  ;; Actions
+  (defun my-mu4e-action-narrow-messages-to-unread (&optional msg)
+    "Narrow current messages to unread only
+
+The optional and unused msg argument is to fit into mu4e's action framework."
+    (interactive)
+    (mu4e-headers-search-narrow "flag:unread"))
+  ;;
+  (setq mu4e-headers-actions
+        '(("capture message"    . mu4e-action-capture-message)
+          ("show this thread"   . mu4e-action-show-thread)
+          ("unread among these" . my-mu4e-action-narrow-messages-to-unread)))
+  ;;
   ;;
 ;;;  Message view configuration
   ;; Whether to automatically display attached images in the message
