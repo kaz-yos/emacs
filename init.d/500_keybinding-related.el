@@ -245,6 +245,18 @@ This should be run after running multiple-cursors"
     ("g" text-scale-increase "in")
     ("l" text-scale-decrease "out"))
   ;;
+  ;; Keyboard macro configurations
+  ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Basic-Keyboard-Macro.html
+  (defhydra hydra-kmacro (global-map "<f3>" :exit t :foreign-keys nil)
+    "kmacro"
+    ("3" kmacro-start-macro-or-insert-counter "Start recording")
+    ("4" kmacro-end-or-call-macro "End recording or Call macro")
+    ("i" kmacro-insert-counter "Insert counter")
+    ("s" kmacro-start-macro "Start recording")
+    ("e" kmacro-end-macro "End recording")
+    ("c" kmacro-call-macro "Call macro")
+    ("q" nil "Quit"))
+  ;;
   ;; Minimum org-mode setting
   (defhydra hydra-org-next-prev (org-mode-map "C-c")
     "Move to "
