@@ -331,6 +331,17 @@ _d_: subtree
 
 
 ;;;
+;;; which-key.el
+;; https://github.com/justbur/emacs-which-key
+;; Vertical alignment breaks down by default, giving an ugly look.
+(use-package which-key
+  :disabled t
+  :config
+  (setq which-key-popup-type 'side-window)
+  (setq which-key-side-window-location 'left))
+
+
+;;;
 ;;; free-keys.el
 ;; https://github.com/Fuco1/free-keys
 ;; http://emacs.stackexchange.com/questions/964/show-unbound-keys
