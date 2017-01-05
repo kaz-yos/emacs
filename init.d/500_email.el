@@ -182,9 +182,10 @@
   ;; Delete other windows before entering message from header.
   (advice-add 'mu4e-headers-view-message
               :before 'delete-other-windows)
-  ;;
+  ;; X-Keywords is the gmail compatible tag name.
+  (setq mu4e-action-tags-header "X-Keywords")
+  ;; The header date format for messages received yesterday and before.
   (setq mu4e-headers-date-format "%Y-%m-%d")
-  ;;
   ;; Show related messages in addition to search results
   (setq mu4e-headers-include-related nil)
   ;; Maximum number of results to show
@@ -214,7 +215,8 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (setq mu4e-headers-actions
         '(("capture message"    . mu4e-action-capture-message)
           ("show this thread"   . mu4e-action-show-thread)
-          ("unread among these" . my-mu4e-action-narrow-messages-to-unread)))
+          ("unread among these" . my-mu4e-action-narrow-messages-to-unread)
+          ("tag"                . mu4e-action-retag-message)))
   ;;
   ;;
 ;;;  Message view configuration
@@ -278,7 +280,9 @@ The optional and unused msg argument is to fit into mu4e's action framework."
           ("show this thread"   . mu4e-action-show-thread)
           ("browser"            . mu4e-action-view-in-browser)
           ("find same sender"   . my-mu4e-action-find-messages-from-same-sender)
-          ("narrow same sender" . my-mu4e-action-narrow-messages-to-same-sender)))
+          ("narrow same sender" . my-mu4e-action-narrow-messages-to-same-sender)
+          ;; Example: +tag,+long tag,-oldtag
+          ("tag"                . mu4e-action-retag-message)))
   ;;
 ;;;  Editor view configuration
   ;; Do not drop myself from cc list
