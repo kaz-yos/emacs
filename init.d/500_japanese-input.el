@@ -17,21 +17,67 @@
          ("s-j" . skk-mode))
   ;;
   :config
+  ;; Config files
+  ;; http://openlab.ring.gr.jp/skk/skk-manual-git/She-Ding-huairu.html#g_t_8a2d_5b9a_30d5_30a1_30a4_30eb
+  ;; Put everything under this directory.
+  (setq skk-user-directory "~/.emacs.d/skk")
+  ;;
   ;; Dictionaries
   ;; http://openlab.ring.gr.jp/skk/wiki/wiki.cgi?page=SKK%BC%AD%BD%F1
   ;; http://openlab.ring.gr.jp/skk/skk-manual-git/Zui-moJi-Ben-De-naShe-Ding-.html#g_t_6700_3082_57fa_672c_7684_306a_8a2d_5b9a
-  (setq skk-large-jisyo "~/.emacs.d/skk/SKK-JISYO.L")
-  ;; (setq skk-cdb-large-jisyo "~/.emacs.d/skk/SKK-JISYO.L.cdb")
-  ;; Use AquaSKK's dictionary if available.
-  (let ((aquaskk-dict "~/Library/Application Support/AquaSKK/SKK-JISYO.L"))
-    (when (file-exists-p aquaskk-dict)
-      (setq skk-large-jisyo aquaskk-dict)))
+  ;; Use utf-8.
+  ;; This affects ALL dictionaries' assumed encoding.
+  ;; http://arat.xyz/wordpress/?p=129
+  ;; http://openlab.ring.gr.jp/skk/skk/main/etc/dot.skk
+  (setq skk-jisyo-code 'utf-8)
+  ;;
+  (setq skk-kakutei-jisyo nil)
+  (setq skk-initial-search-jisyo nil)
   ;;
   ;; Personal dictionary
-  (setq skk-jisyo-code 'utf-8)
   (setq skk-jisyo "~/.emacs.d/skk/skk-jisyo.utf8")
   ;; Assume private dictionary file is being access by multiple SKK processes (safer)
   (setq skk-share-private-jisyo t)
+  ;; Back up for the personal dictionary
+  (setq skk-backup-jisyo "~/.emacs.d/skk/skk-jisyo.utf8.BAK")
+  ;;
+  ;; Main dictionary
+  ;; Optimized file for faster access (unused by default)
+  (setq skk-cdb-large-jisyo nil)
+  ;; Non-optimized raw dictionary file
+  (let ((aquaskk-dict "~/Library/Application Support/AquaSKK/SKK-JISYO.L")
+        (ddskk-dict "~/.emacs.d/skk/SKK-JISYO.L"))
+    (cond
+     ;; Use AquaSKK's dictionary if available.
+     ((file-exists-p aquaskk-dict) (setq skk-large-jisyo aquaskk-dict))
+     ((file-exists-p ddskk-dict) (setq skk-large-jisyo ddskk-dict))
+     (t (setq skk-large-jisyo nil))))
+  ;; Fall back dictionary when the dictionary server cannot be reached.
+  (setq skk-aux-large-jisyo nil)
+  ;;
+  ;; Additional dictionaries. Each file must be a sorted dictionary file.
+  ;; Specify the encoding if different from the main encoding.
+  ;;
+  ;; Dictionary prioirity
+  ;; http://openlab.ring.gr.jp/skk/skk-manual-git/Ci-Shu-huairunoZhi-Ding-.html
+  ;; http://openlab.ring.gr.jp/skk/skk-manual-git/Ci-Shu-Jian-Suo-noShe-Ding-noJu-Ti-Li.html
+  (setq skk-search-prog-list
+        '((skk-search-kakutei-jisyo-file skk-kakutei-jisyo 10000 t)
+          (skk-tankan-search 'skk-search-jisyo-file skk-large-jisyo 10000)
+          (skk-search-jisyo-file skk-initial-search-jisyo 10000 t)
+          (skk-search-jisyo-file skk-jisyo 0 t)
+          (skk-look)
+          (skk-okuri-search)
+          (skk-search-cdb-jisyo skk-cdb-large-jisyo)
+          ;; Assume euc encoding for the large dictionary.
+          ;; Check encoding by nkf --guess SKK-JISYO.L => EUC-JP (LF)
+          (skk-search-jisyo-file (cons skk-large-jisyo 'euc-jp) 10000)
+          (skk-search-server skk-aux-large-jisyo 10000)
+          (skk-search-ja-dic-maybe)
+          (skk-search-extra-jisyo-files)
+          (skk-search-katakana-maybe)
+          (skk-search-sagyo-henkaku-maybe)
+          (skk-search-itaiji)))
   ;;
   ;; Configuration
   ;; http://y-mattu.hatenablog.com/entry/2016/09/25/021937
