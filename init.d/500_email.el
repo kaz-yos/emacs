@@ -52,6 +52,11 @@
 ;; msmtp for sending messages
 ;; pass and gpg for encrypted password handling (instead macOS security command in use)
 ;;
+;; Put in the shell environment.
+;; # CJK searching in mu4e
+;; # http://www.djcbsoftware.nl/code/mu/mu4e/General.html
+;; export XAPIAN_CJK_NGRAM="TRUE"
+;;
 ;;
 ;;; mu4e.el
 ;; Reading IMAP Mail in Emacs on OSX
