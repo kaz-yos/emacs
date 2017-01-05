@@ -349,3 +349,26 @@ _d_: subtree
 ;; Use bind-key.el describe-personal-keybindings for used keys.
 (use-package free-keys
   :commands (free-keys))
+
+
+;;;
+;;; iso-transl.el
+;; How can I prevent/override key translation behavior such as: µ (translated from A-m) runs the command self-insert-command
+;; http://emacs.stackexchange.com/questions/17508/how-can-i-prevent-override-key-translation-behavior-such-as-µ-translated-from
+;; Culprit: key-translation-map (Keymap of key translations that can override keymaps)
+;; The override should happen at iso-transl loading.
+(with-eval-after-load 'iso-transl
+  ;; Define a worker function first.
+  (defun drop-Alt-letter-from-key-translation-map (letter)
+    "Drop Alt-letter binding from key-translation-map to avoid translation."
+    (let ((vec (vconcat letter)))
+      (aset vec 0 (logior (aref vec 0) ?\A-\^@))
+      ;; define-key KEYMAP KEY DEFINITION
+      (define-key key-translation-map vec nil)))
+  ;;
+  ;; The following cancels translation of A-letter bindings.
+  ;; These get translated to greek mu.
+  (drop-Alt-letter-from-key-translation-map "m")
+  (drop-Alt-letter-from-key-translation-map "u")
+  ;; This gets translated to small o at the top.
+  (drop-Alt-letter-from-key-translation-map "o"))
