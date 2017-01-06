@@ -20,13 +20,16 @@
 
 ;;; ielm support (for emacs lisp)
 (use-package eval-in-repl-ielm
-  :commands eir-eval-in-ielm)
-;; for .el files
-(define-key emacs-lisp-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
-;; for *scratch*
-(define-key lisp-interaction-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
-;; for M-x info
-(define-key Info-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+  :commands (eir-eval-in-ielm)
+  :init
+  ;; for .el files
+  (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+  ;; for *scratch*
+  (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+  ;; for M-x info
+  (define-key Info-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+  :config
+  (setq eir-ielm-eval-in-current-buffer t))
 
 
 ;;; cider support (for Clojure)
