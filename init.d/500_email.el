@@ -92,6 +92,18 @@
       (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
     (setq mu4e-get-mail-command "mbsync inbox-only"))
   ;;
+  ;; Define a function to list visible buffer names.
+  (defun visible-buffer-names ()
+    "Return a list of visible buffer names"
+    (let* ((all-buffer-names (mapcar (function buffer-name) (buffer-list))))
+      (-filter 'get-buffer-window
+               all-buffer-names)))
+  ;; Function to check mu4e visibility.
+  (defun mu4e-buffer-visible-p ()
+    "Return non-nil if any buffer with a name containing mu4e has a window"
+    (-filter (lambda (str) (string-match "*mu4e" str))
+             (visible-buffer-names)))
+  ;;
   ;; Define a function to change mbsync behavior when called interactively
   (defun modify-mu4e-get-mail-command (run-in-background)
     "Manipulate mu4e-get-mail-command depending on interactive status"
@@ -101,7 +113,7 @@
     (cond
      ;; If interactive,
      ((called-interactively-p 'interactive)
-      ;; Conduct abbreviated operations
+      ;; Conduct abbreviated operations.
       (setq mu4e-hide-index-messages nil)
       (setq mu4e-cache-maildir-list t)
       (setq mu4e-index-cleanup nil)
@@ -110,6 +122,20 @@
       (if (executable-find "timelimit")
           (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
         (setq mu4e-get-mail-command "mbsync inbox-only")))
+     ;;
+     ;; If any mu4e windows are active, abbreviate operations.
+     ;; This happens even if update is running non-interactively.
+     ((mu4e-buffer-visible-p)
+      ;; Conduct abbreviated operations.
+      (setq mu4e-hide-index-messages nil)
+      (setq mu4e-cache-maildir-list t)
+      (setq mu4e-index-cleanup nil)
+      (setq mu4e-index-lazy-check t)
+      ;; Inbox-only
+      (if (executable-find "timelimit")
+          (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
+        (setq mu4e-get-mail-command "mbsync inbox-only")))
+     ;;
      ;; Otherwise,
      (t
       ;; Conduct thorough operations
@@ -118,6 +144,7 @@
       (setq mu4e-index-cleanup t)
       (setq mu4e-index-lazy-check nil)
       ;; All boxes
+
       (if (executable-find "timelimit")
           (setq mu4e-get-mail-command "timelimit -t 180 mbsync all")
         (setq mu4e-get-mail-command "mbsync all")))))
@@ -126,13 +153,25 @@
   ;; (advice-remove 'mu4e-update-mail-and-index #'modify-mu4e-get-mail-command)
   ;;
   ;; Function to sync all folders
-  (defun mu4e-update-mail-and-index-all ()
+  (defun mu4e-update-mail-and-index-all (run-in-background)
     "Update email with more extensive folder syncing"
-    (interactive)
-    ;; (setq mu4e-get-mail-command "timelimit -t 120 mbsync all")
-    ;; This is considered non-interactive call with respect to
-    ;; mu4e-update-mail-and-index. So it's all-box anyway.
-    (mu4e-update-mail-and-index nil))
+    (interactive "P")
+    (setq mu4e-hide-index-messages nil)
+    (setq mu4e-cache-maildir-list nil)
+    (setq mu4e-index-cleanup t)
+    (setq mu4e-index-lazy-check nil)
+    ;; All boxes
+    (if (executable-find "timelimit")
+        (setq mu4e-get-mail-command "timelimit -t 180 mbsync all")
+      (setq mu4e-get-mail-command "mbsync all"))
+    ;; This is the body of mu4e-update-mail-and-index to avoid advice.
+    (if (and (buffer-live-p mu4e~update-buffer)
+             (process-live-p (get-buffer-process mu4e~update-buffer)))
+        (mu4e-message "Update process is already running")
+      (progn
+        (run-hooks 'mu4e-update-pre-hook)
+        (mu4e~update-mail-and-index-real run-in-background))))
+  ;;
   (define-key 'mu4e-main-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
   (define-key 'mu4e-headers-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
   (define-key 'mu4e-view-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
@@ -208,6 +247,9 @@
   (setq mu4e-use-fancy-chars nil)
   ;; ‘apply’ automatically apply the marks before doing anything else
   (setq mu4e-headers-leave-behavior 'apply)
+  ;;
+  ;; Automatically run the following?
+  ;; mu4e-headers-rerun-search
   ;;
   ;; Actions
   (defun my-mu4e-action-narrow-messages-to-unread (&optional msg)
