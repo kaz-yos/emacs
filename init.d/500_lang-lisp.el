@@ -15,10 +15,11 @@
 ;; https://github.com/purcell/elisp-slime-nav
 ;; This package provides Slime's convenient "M-." and "M-," navigation
 (use-package elisp-slime-nav
-  :commands (turn-on-elisp-slime-nav-mode))
-;; Hook
-(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-  (add-hook hook 'turn-on-elisp-slime-nav-mode))
+  :commands (turn-on-elisp-slime-nav-mode)
+  ;; Hook
+  :init
+  (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+    (add-hook hook 'turn-on-elisp-slime-nav-mode)))
 ;;
 ;;
 ;; ;;; Auto byte-compile .el files at saving
