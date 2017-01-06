@@ -172,13 +172,13 @@
         (run-hooks 'mu4e-update-pre-hook)
         (mu4e~update-mail-and-index-real run-in-background))))
   ;;
-  (define-key 'mu4e-main-mode-map (kbd "C-c C-a")    'mu4e-update-mail-and-index-all)
-  (define-key 'mu4e-headers-mode-map (kbd "C-c C-a") 'mu4e-update-mail-and-index-all)
-  (define-key 'mu4e-view-mode-map (kbd "C-c C-a")    'mu4e-update-mail-and-index-all)
+  (define-key 'mu4e-main-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
+  (define-key 'mu4e-headers-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
+  (define-key 'mu4e-view-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
   ;; indexing only
-  (define-key 'mu4e-main-mode-map (kbd "C-c C-i")    'mu4e-update-index)
-  (define-key 'mu4e-headers-mode-map (kbd "C-c C-i") 'mu4e-update-index)
-  (define-key 'mu4e-view-mode-map (kbd "C-c C-i")    'mu4e-update-index)
+  (define-key 'mu4e-main-mode-map (kbd "A-i")    'mu4e-update-index)
+  (define-key 'mu4e-headers-mode-map (kbd "A-i") 'mu4e-update-index)
+  (define-key 'mu4e-view-mode-map (kbd "A-i")    'mu4e-update-index)
   ;;
   ;; Change file UID when moving (necessary for mbsync, but not for offlineimap)
   ;; https://groups.google.com/forum/m/#!topic/mu-discuss/8c9LrYYpxjQ
