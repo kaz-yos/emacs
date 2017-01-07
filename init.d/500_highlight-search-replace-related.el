@@ -322,50 +322,6 @@ searched. If there is no symbol, empty search box is started."
 
 
 ;;;
-;;; ACE-JUMP-MODE-RELATED
-;;; ace-jump-mode.el
-;; https://github.com/winterTTr/ace-jump-mode
-;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
-(use-package ace-jump-mode
-  :commands (ace-jump-char-mode
-             ace-jump-word-mode)
-  :bind ("A-l" . avy-goto-line)
-  :config
-  ;; rubikitch setting Software Design September 2014
-  ;; (setq ace-jump-mode-gray-background nil)
-  ;; If we need to ask for the query char before entering `ace-jump-word-mode'
-  ;; (setq ace-jump-word-mode-use-query-char nil)
-  ;; This is optimized for JIS keyboards.
-  ;; (setq ace-jump-mode-move-keys (append "asdfghjkl;:]qwertyuiop@zxcvbnm,." nil))
-  ;; (global-set-key (kbd "s-a") 'ace-jump-word-mode)
-  ;;
-  ;; One-step ace-jump-mode activation
-  ;; http://d.hatena.ne.jp/rkworks/20120520/1337528737
-  ;; https://github.com/cjohansen/.emacs.d/commit/65efe88
-  ;; (defun add-keys-to-ace-jump-mode (prefix c &optional mode)
-  ;;   (define-key global-map
-  ;;     (read-kbd-macro (concat prefix (string c)))
-  ;;     `(lambda ()
-  ;;        (interactive)
-  ;;        (funcall (if (eq ',mode 'word)
-  ;;                     #'ace-jump-word-mode
-  ;;                   #'ace-jump-char-mode) ,c))))
-  ;;
-  ;; Numbers and characters
-  ;; (loop for c from ?0 to ?9 do (add-keys-to-ace-jump-mode "H-" c))
-  ;; (loop for c from ?a to ?z do (add-keys-to-ace-jump-mode "H-" c))
-  ;; (loop for c from ?0 to ?9 do (add-keys-to-ace-jump-mode "H-M-" c 'word))
-  ;; (loop for c from ?a to ?z do (add-keys-to-ace-jump-mode "H-M-" c 'word))
-  ;;
-  ;; Everything
-  ;; (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-" c))
-  ;; (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "A-M-" c))
-  ;; (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "H-s-" c))
-  ;; (loop for c from ?! to ?~ do (add-keys-to-ace-jump-mode "M-s-" c))
-  )
-
-
-;;;
 ;;; AVY-RELATED
 ;;; avy.el
 ;; More powerful reimplementation of ace-jump-mode

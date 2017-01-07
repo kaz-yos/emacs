@@ -1,14 +1,9 @@
 ;;; -*- lexical-binding: t; -*-
+;;;
 ;;; EMACS LISP
 ;;; elisp programming configurations
 ;; Non-nil means enter debugger if an error is signaled.
 ;; (setq debug-on-error t)
-;;
-;;
-;;; redshank to facilitate elisp/clisp
-;; http://www.foldr.org/~michaelw/emacs/redshank/
-(use-package redshank
-  :disabled t)
 ;;
 ;;
 ;;; SLIME-like navigation for elisp
@@ -30,13 +25,6 @@
 ;; ;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/\\|/programming/")
 ;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|/programming/")
 ;; (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
-;;
-;;
-;;; anaphora.el
-;;  Summary: anaphoric macros providing implicit temp variables
-;; http://github.com/rolandwalker/anaphora
-(use-package anaphora
-  :disabled t)
 ;;
 ;;
 ;;; Auto-complete in IELM
