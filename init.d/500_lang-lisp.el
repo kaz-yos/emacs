@@ -72,7 +72,16 @@
                (save-excursion
                  (end-of-defun)
                  (point)))))
-
+;;
+;;
+;;;
+;;; lispxmp.el
+;;
+;; M-; M-; to insert ; =>
+;; M-; is for paredit-comment-dwim, which is advised by lispxmp.el.
+(use-package lispxmp
+  :commands (lispxmp)
+  :bind (("C-c ;" . lispxmp)))
 
 
 ;;;
