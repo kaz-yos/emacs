@@ -35,6 +35,7 @@
 (package-initialize)
 
 
+;;;
 ;;; use-package.el for clean package loading
 ;; https://github.com/jwiegley/use-package
 ;; http://knmsyk.github.io/blog/2015-05-25-clean-.emacs-with-use-package-and-init-loader.html
@@ -43,22 +44,26 @@
 ;;
 ;; (require FEATURE &optional FILENAME NOERROR)
 (require 'use-package)
+;; Automatic installation when its not installed.
+;; https://github.com/jwiegley/use-package#for-packageel-users
+(setq use-package-always-ensure t)
 
 
+;;;
 ;;; el-get.el package system
 ;; https://github.com/dimitri/el-get
 ;;
 ;; The load-path is configured at the top of init.el.
 ;;
-;;; Alternative Basic Setup with Installation via MELPA
+;; Alternative Basic Setup with Installation via MELPA
 ;; https://github.com/dimitri/el-get#alternative-basic-setup-with-installation-via-melpa
 (use-package el-get
   :config
   (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
   (el-get 'sync))
 ;;
-;;; Packages installed via el-get
-;; smartchr
+;;;  Packages installed via el-get
+;;;   smartchr
 ;;
 ;; essh no longer on el-get as of 2015-10-05. Installed from emacswiki
 ;; moccur-edit no longer on el-get as of 2015-10-05. Installed from emacswiki
