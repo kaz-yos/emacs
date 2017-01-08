@@ -5,13 +5,7 @@
 ;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
 ;;
 (use-package yasnippet
-  :init
   :config
-  ;; auto-complete-yasnippet	; not sure if this is necessary. Inactive 2014-02-03
-  ;; https://github.com/szunyog/.emacs.d/blob/master/auto-complete-yasnippet.el
-  ;; (require 'auto-complete-yasnippet)
-  ;;
-  (yas-global-mode 1)
   ;; Key-bind for expanding
   ;; Insert default snippet
   (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
@@ -37,7 +31,10 @@
        :prompt prompt
        ;; start isearch mode immediately
        :isearch t)))
-  (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt)))
+  (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
+  ;;
+  ;; Activate globally.
+  (yas-global-mode 1))
 ;;
 ;;
 ;;; helm-c-yasnippet.el
