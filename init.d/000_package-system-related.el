@@ -44,9 +44,10 @@
 ;;
 ;; (require FEATURE &optional FILENAME NOERROR)
 (require 'use-package)
-;; Automatic installation when its not installed.
+;;
+;; Automatic installation when packages not installed. (Don't use many errors).
 ;; https://github.com/jwiegley/use-package#for-packageel-users
-(setq use-package-always-ensure t)
+;; (setq use-package-always-ensure t)
 
 
 ;;;
