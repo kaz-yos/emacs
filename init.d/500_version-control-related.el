@@ -34,7 +34,6 @@
 ;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
 ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
 (use-package magit
-  :demand
   :commands (magit-status)
   :bind (("s-g" . my-magit-status)
          ("C-c g" . magit-status))
@@ -78,7 +77,8 @@
 ;; https://github.com/nonsequitur/git-gutter-fringe-plus
 ;; fringe-helper.el is required.
 (use-package git-gutter-fringe+
-  :init ;; Configure fringe for git-gutter 2014-02-02
+  :init
+  ;; Configure fringe for git-gutter 2014-02-02
   ;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
   ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fringes.html
   (set-fringe-mode '(0 . 1))
@@ -87,6 +87,7 @@
   (setq git-gutter+-lighter "")
   ;; Show on the right side
   (setq git-gutter-fr+-side 'right-fringe)
+  ;;
   :config
   ;; active everywhere
   (global-git-gutter+-mode)
