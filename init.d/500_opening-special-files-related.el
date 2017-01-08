@@ -33,7 +33,10 @@
 ;; up, just do 'brew uninstall pdf-tools', wipe out the elpa
 ;; pdf-tools package and reinstall both as at the start.
 (use-package pdf-tools
-  :ensure t
+  ;; The deferring configuration was take from the following repository.
+  ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-pdf.el
+  :mode (("\\.pdf\\'" . pdf-view-mode))
+  ;;
   :config
   ;; Whether PDF Tools should handle upgrading itself.
   ;; Up grading should be via Homebrew
