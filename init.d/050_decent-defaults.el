@@ -21,7 +21,6 @@
 ;;;
 ;;; Fewer garbage collection
 ;; Number of bytes of consing between garbage collections.
-;; Value taken from spacemacs init.el
 (setq garbage-collection-messages t)
 ;; Set different gc-cons-threshold values depending on the context.
 ;; http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/

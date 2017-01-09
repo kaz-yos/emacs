@@ -1,6 +1,13 @@
 ;; ~/.emacs.d/init.el
 ;; Managed with init-loader.el: https://github.com/emacs-jp/init-loader
 
+;; Find what causes a package to be loaded.
+;; (eval-after-load "hydra"
+;;   '(debug))
+
+;;; No garbage collection during loading.
+(setq gc-cons-threshold most-positive-fixnum)
+
 
 ;;; Configure load-path (load-path should only be defined in init.el)
 ;;
@@ -14,7 +21,7 @@
 ;; (package-initialize)
 
 (let ((default-directory "~/.emacs.d/elpa/"))
-       (normal-top-level-add-subdirs-to-load-path))
+  (normal-top-level-add-subdirs-to-load-path))
 ;;
 ;; el-get.el package system 2013-02-26 (additional configuration further below)
 ;; https://github.com/dimitri/el-get
