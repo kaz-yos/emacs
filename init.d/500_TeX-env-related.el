@@ -254,9 +254,11 @@
 ;; part of emacs
 ;; http://www.gnu.org/software/emacs/manual/html_mono/reftex.html
 (use-package reftex
-  :config
+  :commands (reftex-mode)
+  :init
   ;; turn on REFTeX mode by default
   (add-hook 'LaTeX-mode-hook 'reftex-mode)
+  :config
   ;; AUCTeX integration
   (setq reftex-plug-into-AUCTeX t)
   ;; Do not prompt for reference vs page
@@ -278,13 +280,14 @@
 ;; https://github.com/vitoshka/zotelo
 ;; https://forums.zotero.org/discussion/19608/zotero-emacs-integration/
 (use-package zotelo
-  :demand t
   :commands (zotelo-set-collection
-             zotelo-update-database)
+             zotelo-update-database
+             zotelo-minor-mode)
+  :init
+  (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
+  ;;
   :config
   (setq zotelo-use-ido nil)
-  (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
-  (add-hook 'org-mode-hook 'zotelo-minor-mode)
   ;; C-c z c         zotelo-set-collection (also C-c z s)
   ;; C-c z u         zotelo-update-database
   ;; C-c z e         zotelo-export-secondary

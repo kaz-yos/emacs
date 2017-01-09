@@ -205,7 +205,8 @@
   ;; https://github.com/jkitchin/org-ref
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
-  (require 'org-ref)
+  (use-package org-ref
+    :commands (org-ref-helm-insert-cite-link))
   (define-key org-mode-map (kbd "C-A-a") 'org-ref-helm-insert-cite-link)
   ;;
   ;; Need to put these configurations within the org file.
@@ -225,6 +226,8 @@
           "bibtex %b"
           "pdflatex -interaction nonstopmode -output-directory %o %f"
           "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;;
+  (add-hook 'org-mode-hook 'zotelo-minor-mode)
   ;;
   ;;
 ;;;

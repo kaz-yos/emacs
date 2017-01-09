@@ -5,6 +5,12 @@
 ;; Book by rubikitch p76. M-x auto-install-batch sequential-command (two files, one -config)
 ;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
 (use-package sequential-command
+  :commands (define-sequential-command)
+  :bind (("C-a" . seq-cmd--home)
+         ("C-e" . seq-cmd--end)
+         ("M-u" . seq-cmd--upcase-backward-word)
+         ("M-c" . seq-cmd--capitalize-backward-word)
+         ("M-l" . seq-cmd--downcase-backward-word))
   :config
   (require 'sequential-command-config)
   (sequential-command-setup-keys)
@@ -236,7 +242,7 @@ This should be run after running multiple-cursors"
 ;; This may be outdated.
 ;; http://emacs.rubikitch.com/hydra/
 (use-package hydra
-  :commands (hydra-zoom/body)
+  ;; This package should be loaded without deferring.
   :config
   ;; Buffer text scaling
   ;; https://github.com/abo-abo/hydra#the-one-with-the-least-amount-of-code
@@ -258,14 +264,15 @@ This should be run after running multiple-cursors"
     ("q" nil "Quit"))
   ;;
   ;; Minimum org-mode setting
-  (defhydra hydra-org-next-prev (org-mode-map "C-c")
-    "Move to "
-    ("C-n"  outline-next-visible-heading "Next visible heading")
-    ("C-p"  outline-previous-visible-heading "Previous visible heading")
-    ("C-f"  outline-forward-same-level "Forward same level")
-    ("C-b"  outline-backward-same-level "Backward same level")
-    ("C-k" nil "Cancel")
-    ("k" nil "Cancel"))
+  (eval-after-load "org"
+    '(defhydra hydra-org-next-prev (org-mode-map "C-c")
+       "Move to "
+       ("C-n"  outline-next-visible-heading "Next visible heading")
+       ("C-p"  outline-previous-visible-heading "Previous visible heading")
+       ("C-f"  outline-forward-same-level "Forward same level")
+       ("C-b"  outline-backward-same-level "Backward same level")
+       ("C-k" nil "Cancel")
+       ("k" nil "Cancel")))
   ;;
   ;; Extensive outline mode bindings
   ;; https://github.com/abo-abo/hydra/wiki/Emacs#outline-minor-mode
@@ -302,7 +309,8 @@ _d_: subtree
     ("b" outline-backward-same-level)       ; Backward - same level
     ("z" nil "leave"))
   (global-set-key (kbd "C-c #") 'hydra-outline/body)
-  (define-key org-mode-map (kbd "C-`") 'hydra-outline/body))
+  (eval-after-load "org"
+    '(define-key org-mode-map (kbd "C-`") 'hydra-outline/body)))
 
 
 ;;;
