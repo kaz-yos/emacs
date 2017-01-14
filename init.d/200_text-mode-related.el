@@ -9,6 +9,6 @@
 ;;; Default major mode set as text-mode
 ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Major-Modes.html
 (setq-default major-mode 'text-mode)
-
-
-
+;;
+;;; Manual filling
+(global-set-key (kbd "C-c f") 'fill-paragraph)
