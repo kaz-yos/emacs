@@ -174,50 +174,6 @@
 
 
 ;;;
-;;; IDO-RELATED
-;;
-;;; ido.el
-;; http://www.emacswiki.org/emacs/InteractivelyDoThings
-;; http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/
-;; http://miyazakikenji.wordpress.com/2013/06/11/emacs-に-ido-mode/
-(use-package ido
-  :disabled t
-  ;; :demand
-  :config
-  ;; Enable
-  ;; (ido-mode 1)
-  ;; (ido-everywhere 1)
-  ;; Flexible matching
-  (setq ido-enable-flex-matching t)
-  ;; https://www.masteringemacs.org/article/introduction-to-ido-mode
-  (setq ido-use-filename-at-point 'guess)
-  ;; (global-set-key (kbd "C-x C-f") 'ido-find-file)
-  ;;
-  ;;
-;;; ido-ubiquitous.el
-  ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
-  (require 'ido-ubiquitous)
-  ;; ido for all completing-read
-  ;; (ido-ubiquitous-mode 1)
-  ;;
-  ;;
-;;; flx-ido.el
-  (require 'flx-ido)
-  (flx-ido-mode 1)
-  ;; disable ido faces to see flx highlights.
-  (setq ido-use-faces nil)
-  ;;
-  ;;
-;;; ido-vertical-mode.el
-  ;; http://rubikitch.com/2015/01/06/ido-vertical-mode/
-  (require 'ido-vertical-mode)
-  ;; height
-  (setq ido-max-window-height 0.75)
-  (ido-vertical-mode 1))
-
-
-
-;;;
 ;;; Handling of the tab completion buffer 2014-02-03
 ;; http://stackoverflow.com/questions/6458220/automatically-close-emacs-shell-mode-tab-completion-buffer
 (defun delete-completion-window-buffer (&optional output)
