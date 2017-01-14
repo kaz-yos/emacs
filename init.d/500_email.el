@@ -185,7 +185,7 @@
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-change-filenames-when-moving t)
   ;; Update interval
-  (setq mu4e-update-interval (* 60 15))
+  (setq mu4e-update-interval (* 60 8))
   ;; Do not occupy the minibuffer with "Indexing..."
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-hide-index-messages nil)
