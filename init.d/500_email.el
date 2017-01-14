@@ -263,6 +263,8 @@ The optional and unused msg argument is to fit into mu4e's action framework."
         '(("capture message"    . mu4e-action-capture-message)
           ("show this thread"   . mu4e-action-show-thread)
           ("unread among these" . my-mu4e-action-narrow-messages-to-unread)
+          ("find same sender"   . my-mu4e-action-find-messages-from-same-sender)
+          ("narrow same sender" . my-mu4e-action-narrow-messages-to-same-sender)
           ("tag"                . mu4e-action-retag-message)))
   ;;
   ;;
@@ -300,24 +302,22 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (setq mu4e-attachment-dir (expand-file-name "~/Downloads"))
   ;;
   ;; Find messages from the same sender.
-  (defun my-mu4e-action-find-messages-from-same-sender (&optional msg)
+  (defun my-mu4e-action-find-messages-from-same-sender (msg)
     "Extract sender from From: field and find messages from same sender
 
 The optional and unused msg argument is to fit into mu4e's action framework."
     (interactive)
-    (let* ((from (message-field-value "From"))
-           ;; gnus-extract-address-components gives ("name" "address")
-           (sender-address (cadr (gnus-extract-address-components from))))
+    (let* ((from (mu4e-message-field msg :from))
+           (sender-address (cdar from)))
       (mu4e-headers-search (concat "from:" sender-address))))
   ;;
-  (defun my-mu4e-action-narrow-messages-to-same-sender (&optional msg)
+  (defun my-mu4e-action-narrow-messages-to-same-sender (msg)
     "Extract sender from From: field and narrow messages to same sender
 
 The optional and unused msg argument is to fit into mu4e's action framework."
     (interactive)
-    (let* ((from (message-field-value "From"))
-           ;; gnus-extract-address-components gives ("name" "address")
-           (sender-address (cadr (gnus-extract-address-components from))))
+    (let* ((from (mu4e-message-field msg :from))
+           (sender-address (cdar from)))
       (mu4e-headers-search-narrow (concat "from:" sender-address))))
   ;;
   ;; Actions
