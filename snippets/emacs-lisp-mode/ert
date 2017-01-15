@@ -1,0 +1,6 @@
+# key: ert
+# name: ert
+# --
+(ert-deftest ${1:test-object-name} ()
+  "${2:test description}"
+  (should (equal ${3:expression} ${0:target})))
