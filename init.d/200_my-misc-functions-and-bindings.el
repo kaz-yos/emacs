@@ -12,23 +12,17 @@
 ;;;
 ;;; my-insert-date
 ;; http://ergoemacs.org/emacs/elisp_datetime.html
-(defun my-insert-date ()
-  "Insert current date yyyy-mm-dd."
-  (interactive)
+(defun my-insert-date (u-arg)
+  "Insert current date yyyy-mm-dd.
+
+The format is yyyymmdd if a universal argument is given."
+  (interactive "P")
   (when (region-active-p)
     (delete-region (region-beginning) (region-end)))
-  (insert (format-time-string "%Y-%m-%d")))
+  (insert (if u-arg
+              (format-time-string "%Y%m%d")
+            (format-time-string "%Y-%m-%d"))))
 (global-set-key (kbd "C-c d") 'my-insert-date)
-;; (global-set-key (kbd "s-d") 'my-insert-date)
-;;
-;; without hyphnation
-(defun my-insert-date2 ()
-  "Insert current date yyyymmdd."
-  (interactive)
-  (when (region-active-p)
-    (delete-region (region-beginning) (region-end)))
-  (insert (format-time-string "%Y%m%d")))
-(global-set-key (kbd "C-c C-d") 'my-insert-date2)
 
 
 ;;;
@@ -71,4 +65,3 @@ If you omit CLOSE, it will reuse OPEN."
 ;;;
 ;;; revert-buffer
 (global-set-key (kbd "s-v") 'revert-buffer)
-
