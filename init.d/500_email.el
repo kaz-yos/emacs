@@ -346,6 +346,9 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   ;; Flyspell
   (add-hook 'mu4e-compose-mode-hook 'turn-on-flyspell)
   ;;
+  ;; Whether to include a date header when starting to draft
+  (setq mu4e-compose-auto-include-date t)
+  ;;
   ;; org-mode's table editor minor mode
   ;; This hijack RET binding. It makes RET in flyspell popup correction unresponsive.
   ;; http://orgmode.org/manual/Orgtbl-mode.html
