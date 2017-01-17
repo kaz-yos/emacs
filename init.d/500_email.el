@@ -138,13 +138,12 @@
      ;;
      ;; Otherwise,
      (t
-      ;; Conduct thorough operations
-      (setq mu4e-hide-index-messages nil)
+      ;; Conduct thorough operations without messages
+      (setq mu4e-hide-index-messages t)
       (setq mu4e-cache-maildir-list nil)
       (setq mu4e-index-cleanup t)
       (setq mu4e-index-lazy-check nil)
       ;; All boxes
-
       (if (executable-find "timelimit")
           (setq mu4e-get-mail-command "timelimit -t 180 mbsync all")
         (setq mu4e-get-mail-command "mbsync all")))))
