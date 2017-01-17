@@ -37,6 +37,8 @@
                 ;; (helm-attrset 'follow 1 helm-source-mark-ring)
                 ))
   ;;
+  ;; Restrict what to show in helm-for-files
+  (setq helm-for-files-preferred-list '(helm-source-buffers-list helm-source-recentf))
   ;; Disabled because it was giving an error 2013-11-22
   (setq helm-locate-command "")
   ;;
