@@ -4,7 +4,9 @@
   :config
   (setq recentf-save-file  "~/.emacs.d/recentf")
   (setq recentf-max-saved-items 3000)
-  (setq recentf-exclude '(".*\\.maildir.*"
+  (setq recentf-exclude '("recentf$"
+                          ".*\\.maildir.*"
+                          "/var/folders/.*"
                           ".*company-statistics.*"))
   ;; Define when to automatically cleanup the recent list.
   ;; - `mode'
