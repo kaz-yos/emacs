@@ -4,8 +4,7 @@
   :config
   (setq recentf-save-file  "~/.emacs.d/recentf")
   (setq recentf-max-saved-items 3000)
-  (setq recentf-exclude '(".*recentf"
-                          ".*\\.maildir.*"
+  (setq recentf-exclude '(".*\\.maildir.*"
                           ".*company-statistics.*"))
   ;; Define when to automatically cleanup the recent list.
   ;; - `mode'
@@ -16,10 +15,11 @@
   ;; Cleanup each time Emacs has been idle that number of seconds.
   ;; - A time string
   ;; Cleanup at specified time string, for example at "11:00pm".
-  (setq recentf-auto-cleanup '10)
+  (setq recentf-auto-cleanup 'mode)
   ;; Auto save when idle
   ;; (run-with-idle-timer SECS REPEAT FUNCTION &rest ARGS)
-  (run-with-idle-timer 15 t 'recentf-save-list))
+  (run-with-idle-timer 15 t '(lambda ()
+                               (with-suppressed-message (recentf-save-list)))))
 
 
 ;;; recentf-ext.el
