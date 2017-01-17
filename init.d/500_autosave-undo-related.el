@@ -35,6 +35,12 @@
 ;; https://github.com/bbatsov/super-save
 (use-package super-save
   :config
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
+  (defun quiet-super-save-command (orig-fun)
+    (with-suppressed-message (funcall orig-fun)))
+  (advice-add 'super-save-command
+              :around
+              #'quiet-super-save-command)
   ;; Only when idle for some time
   ;; This is active in ssh buffers, too
   (setq super-save-auto-save-when-idle t)
