@@ -77,6 +77,7 @@
 ;; https://github.com/nonsequitur/git-gutter-fringe-plus
 ;; fringe-helper.el is required.
 (use-package git-gutter-fringe+
+  :if (display-graphic-p)
   :init
   ;; Configure fringe for git-gutter 2014-02-02
   ;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs

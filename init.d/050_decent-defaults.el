@@ -3,8 +3,9 @@
 
 ;;;
 ;;; Taken from ESS/Emacs distribution
-;; Activate mouse scrolling
-(mouse-wheel-mode t)
+;; Activate mouse scrolling if in a graphical system
+(when (display-graphic-p)
+  (mouse-wheel-mode t))
 ;; Syntax highlighting everywhere
 (global-font-lock-mode t)
 ;; When enabled, the region is highlighted whenever the mark is active
@@ -65,7 +66,8 @@
 ;; http://www.emacswiki.org/emacs/FullScreen#toc7
 (menu-bar-mode t)
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
+(when (display-graphic-p)
+  (scroll-bar-mode -1))
 
 
 ;;;
