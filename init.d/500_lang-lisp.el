@@ -86,47 +86,42 @@
 
 ;;;
 ;;; SLIME for non-elisp lisps
-;;; slime.el
+
+;;;  slime-company.el
+;; https://github.com/anwyn/slime-company
+(use-package slime-company
+  :commands (slime-company))
+
+;;;  slime.el
 ;;
 ;; http://www.common-lisp.net/project/slime/
 ;; http://dev.ariel-networks.com/wp/archives/462
 (use-package slime
   :commands (slime)
+  ;;
   :config
-  (slime-setup '(slime-repl slime-fancy slime-banner))
+  ;; Setup Emacs so that lisp-mode buffers always use SLIME.
+  (slime-setup '(slime-repl slime-fancy slime-banner slime-company))
   ;;
   ;; Common Lisp hyperspec via homebrew
   ;; http://www.lispworks.com/documentation/common-lisp.html
-  ;; (setq common-lisp-hyperspec-root
-  ;;       "/usr/local/share/doc/hyperspec/HyperSpec/")
   (setq common-lisp-hyperspec-root
-        "http://www.harlequin.com/education/books/HyperSpec/")
+        "/usr/local/share/doc/hyperspec/HyperSpec/")
   (setq common-lisp-hyperspec-symbol-table
         (concat common-lisp-hyperspec-root "Data/Map_Sym.txt"))
   (setq common-lisp-hyperspec-issuex-table
         (concat common-lisp-hyperspec-root "Data/Map_IssX.txt"))
   ;;
-  ;; 2.5.2 Multiple Lisps (first one is the default)
+  ;; 2.5.2 Multiple Lisps (The first one serves as the default.)
   ;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
   ;; (NAME (PROGRAM PROGRAM-ARGS...) &key CODING-SYSTEM INIT INIT-FUNCTION ENV)
   ;; NAME is a symbol and is used to identify the program.
   ;; PROGRAM is the filename of the program. Note that the filename can contain spaces.
   ;; PROGRAM-ARGS is a list of command line arguments.
-  ;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)x
-  ;;
-  ;; first one is the default
+  ;; CODING-SYSTEM the coding system for the connection. (see slime-net-coding-system)
   (setq slime-lisp-implementations
-        '((sbcl   ("/usr/local/bin/sbcl"))
-          (clisp  ("/usr/local/bin/clisp"))))
-  ;;
-  ;;
-;;; auto-complete for SLIME 2014-02-25
-  (when (require 'ac-slime nil 'noerror)
-    (add-hook 'slime-mode-hook      'set-up-slime-ac)
-    (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-    (eval-after-load "auto-complete"
-      '(add-to-list 'ac-modes 'slime-repl-mode))))
-
+        '((clisp  ("/usr/local/bin/clisp"))
+          (sbcl   ("/usr/local/bin/sbcl")))))
 
 
 ;;;
