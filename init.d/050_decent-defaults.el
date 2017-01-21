@@ -20,6 +20,13 @@
 
 
 ;;;
+;;; Safe-guard against quiting.
+(global-set-key (kbd "C-x C-c") #'(lambda ()
+                                    (interactive)
+                                    (message "Use M-x save-buffers-kill-terminal")))
+
+
+;;;
 ;;; Fewer garbage collection
 ;; Number of bytes of consing between garbage collections.
 (setq garbage-collection-messages t)
