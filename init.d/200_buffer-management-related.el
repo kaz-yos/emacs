@@ -9,15 +9,21 @@
 
 
 ;;;
-;;; auto-revert buffers globally
-;; Active in all buffers
-(setq global-auto-revert-mode nil)
-;; Even in non-file buffers
-(setq global-auto-revert-non-file-buffers t)
-;; VC status change is also captured
-(setq auto-revert-check-vc-info t)
-;; No ARev in mode-line
-;; (setq auto-revert-mode-text "")
+;;; autorevert.el
+(use-package autorevert
+  :commands (auto-revert-mode)
+  ;;
+  :config
+  ;; Active in all buffers
+  (setq global-auto-revert-mode nil)
+  ;; Even in non-file buffers
+  (setq global-auto-revert-non-file-buffers t)
+  ;; VC status change is also captured
+  (setq auto-revert-check-vc-info t)
+  ;; No ARev in mode-line
+  ;; (setq auto-revert-mode-text "")
+  )
+
 
 
 ;;;
