@@ -98,16 +98,16 @@ Dependency: ace-swap-window"
   ;; Modify the default ibuffer-formats	; git support and size formatting
   ;; http://unix.stackexchange.com/questions/35830/change-column-width-in-an-emacs-ibuffer-on-the-fly
   (setq ibuffer-formats
-        '((mark modified read-only	; Three flags without spaces in between.
-                " "			;
-                (name 18 18 :left :elide)	; Buffer name
-                " "			;
-                git-status-mini		; ibuffer-git short status
-                " "			;
-                (size-h 9 -1 :right)	; size-h defined at the end
-                ;;(size 9 -1 :right)	; original size in bytes
-                " "			;
-                (mode 10 10 :left :elide)	; Mode
+        '((mark modified read-only        ; Three flags without spaces in between.
+                " "                       ;
+                (name 18 18 :left :elide) ; Buffer name
+                " "                       ;
+                git-status-mini           ; ibuffer-git short status
+                " "                       ;
+                (size-h 9 -1 :right)      ; size-h defined at the end
+                ;;(size 9 -1 :right)      ; original size in bytes
+                " "                       ;
+                (mode 10 10 :left :elide) ; Mode
                 " "
                 filename-and-process)))
   ;;
