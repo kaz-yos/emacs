@@ -3,10 +3,7 @@
 
 ;;;
 ;;; Unique buffer names
-;; ;; rubikitch book p84
-;; ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
-;; (require 'uniquify)
-;; ;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)	; rubikitch
+;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-ignore-buffers-re "*[^*]+*")
 
@@ -23,87 +20,99 @@
 ;; (setq auto-revert-mode-text "")
 
 
-
 ;;;
 ;;; ibuffer.el
 ;; http://www.emacswiki.org/emacs/IbufferMode
 ;; http://ergoemacs.org/emacs/emacs_buffer_management.html
 (defalias 'list-buffers 'ibuffer)
-;; Switching to ibuffer puts the cursor on the most recent buffer	; Not useful 2014-01-25
-;; http://www.emacswiki.org/emacs/IbufferMode#toc13
-;; (defadvice ibuffer (around ibuffer-point-to-most-recent) ()
-;;   "Open ibuffer with cursor pointed to most recent buffer name"
-;;   (let ((recent-buffer-name (buffer-name)))
-;;     ad-do-it
-;;     (ibuffer-jump-to-buffer recent-buffer-name)))
-;; (ad-activate 'ibuffer)
 ;;
-;; Sorting
+;;;  Sorting
 ;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
 ;; (setq ibuffer-default-sorting-mode 'major-mode)
 ;; https://github.com/pd/dotfiles/blob/master/emacs.d/pd/core.el
-(setq ibuffer-default-sorting-mode 'filename/process	; Sort by filename/process
-      ibuffer-show-empty-filter-groups nil)		; Don't show empty groups
+(setq ibuffer-default-sorting-mode 'filename/process)
+;; Drop empty groups
+(setq ibuffer-show-empty-filter-groups nil)
 ;;
-;;; ibuffer classification
+;;;  Grouping
 ;; http://www.emacswiki.org/emacs/IbufferMode#toc6
+;; An alist of filtering groups to switch between.
+;; This variable should look like (("STRING" QUALIFIERS)
+;;                                 ("STRING" QUALIFIERS) ...), where
+;; QUALIFIERS is a list of the same form as `ibuffer-filtering-qualifiers'.
 (setq ibuffer-saved-filter-groups
-      (quote (("default"
-	       ("DIRED" (mode . dired-mode))
-	       ("EMACS" (or
-			 (name . "^\\*scratch\\*$")
-			 (name . "^\\*Messages\\*$")
-			 (name . "^\\*Packages\\*$")
-			 ))
-	       ("ESS"   (or
-			 (mode . ess-mode)
-			 (mode . inferior-ess-mode)
-			 (mode . Rd-mode)))
-	       ("ELISP"	(or
-			 (mode . emacs-lisp-mode)
-			 (mode . list-mode)
-			 (name . "^\\*ielm")))
-	       ("CLOJURE" (or
-			   (mode . clojure-mode)
-			   (name . "^\\*cider-")
-			   (name . "^\\*nrepl-")))
-	       ("SLIME" (or
-			 (mode . lisp-mode)
-			 (name . "^\\*slime")
-			 (name . "*inferior-lisp*")))
-	       ("SCHEME" (or
-			  (mode . scheme-mode)
-			  (mode . inferior-scheme-mode)
-			  (mode . geiser-repl-mode)))
-	       ("HASKELL" (or
-                           (mode . haskell-mode)
-                           (mode . inferior-haskell-mode)))
-	       ("PYTHON" (or
-			  (mode . python-mode)
-			  (mode . inferior-python-mode)
-                          (mode . ein:notebooklist-mode)
-                          (mode . ein:notebook-multilang-mode)))
-	       ("ML" (or
-                      (mode . sml-mode)
-                      (mode . inferior-sml-mode)))
-               ("RUBY" (or
-                      (mode . ruby-mode)
-                      (mode . inf-ruby-mode)))
-	       ("SHELL"  (or
-			  (mode . sh-mode)
-			  (mode . shell-mode)
-			  (mode . ssh-mode)
-			  (mode . eshell-mode)))
-	       ("SQL"  (or
-			(mode . sql-mode)
-			(mode . sql-interactive-mode)))
-	       ("TeX"    (or
-			  (mode . TeX-mode)
-			  (mode . LaTeX-mode)))
-	       ("MAGIT"  (or
-			  (mode . magit-mode)
-			  (name . "^\\*magit")))))))
-;; Group for the remaning unclassified buffers.
+      '(("default"
+         ;; Directories
+         ("DIRED" (mode . dired-mode))
+         ;; Authoring
+         ("ORG" (mode . org-mode))
+         ("TeX"    (or
+                    (mode . TeX-mode)
+                    (mode . LaTeX-mode)))
+         ;; Programming languages
+         ("ESS"   (or
+                   (mode . ess-mode)
+                   (mode . inferior-ess-mode)
+                   (mode . Rd-mode)))
+         ("CLOJURE" (or
+                     (mode . clojure-mode)
+                     (name . "^\\*cider-")
+                     (name . "^\\*nrepl-")))
+         ("SLIME" (or
+                   (mode . lisp-mode)
+                   (name . "^\\*slime")
+                   (name . "*inferior-lisp*")))
+         ("SCHEME" (or
+                    (mode . scheme-mode)
+                    (mode . inferior-scheme-mode)
+                    (mode . geiser-repl-mode)))
+         ("HASKELL" (or
+                     (mode . haskell-mode)
+                     (mode . inferior-haskell-mode)))
+         ("PYTHON" (or
+                    (mode . python-mode)
+                    (mode . inferior-python-mode)
+                    (mode . ein:notebooklist-mode)
+                    (mode . ein:notebook-multilang-mode)))
+         ("ML" (or
+                (mode . sml-mode)
+                (mode . inferior-sml-mode)))
+         ("RUBY" (or
+                  (mode . ruby-mode)
+                  (mode . inf-ruby-mode)))
+         ("SQL"  (or
+                  (mode . sql-mode)
+                  (mode . sql-interactive-mode)))
+         ;; Email
+         ("EMAIL" (name . "^\\*mu4e"))
+         ;; Shells
+         ("SHELL"  (or
+                    (mode . sh-mode)
+                    (mode . shell-mode)
+                    (mode . ssh-mode)
+                    (mode . eshell-mode)
+                    (mode . term-mode)))
+         ;; Emacs related
+         ("ELISP" (or
+                   (mode . emacs-lisp-mode)
+                   (mode . list-mode)
+                   (mode . inferior-emacs-lisp-mode)))
+         ("EMACS" (or
+                   (name . "^\\*scratch\\*$")
+                   (name . "^\\*Messages\\*$")
+                   (name . "^\\*Packages\\*$")))
+         ;; Version control
+         ("MAGIT"  (or
+                    (mode . magit-mode)
+                    (name . "^\\*magit")))
+         ;; Services
+         ("PRODIGY"  (or
+                      (mode . prodigy-mode)
+                      (name . "^\\*prodigy")))
+         ;; All others
+         ("OTHERS" (name . ".*")))))
+;;
+;; Set this buffer’s filter groups to saved version with NAME.
 (add-hook 'ibuffer-mode-hook
-	  (lambda ()
-	    (ibuffer-switch-to-saved-filter-groups "default")))
+          (lambda ()
+            (ibuffer-switch-to-saved-filter-groups "default")))
