@@ -334,14 +334,6 @@ The optional and unused msg argument is to fit into mu4e's action framework."
 ;;;  Editor view configuration
   ;; Do not drop myself from cc list
   (setq mu4e-compose-keep-self-cc t)
-  ;; Always CC myself
-  ;; http://www.djcbsoftware.nl/code/mu/mu4e/Compose-hooks.html
-  (add-hook 'mu4e-compose-mode-hook
-            (defun my-add-header ()
-              "Add CC: and Bcc: to myself header."
-              (save-excursion (message-add-header
-                               (concat "CC: " "\n")
-                               (concat "Bcc: " user-mail-address "\n")))))
   ;; Flyspell
   (add-hook 'mu4e-compose-mode-hook 'turn-on-flyspell)
   ;;
