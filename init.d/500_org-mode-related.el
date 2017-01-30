@@ -102,6 +102,8 @@
      (julia . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html
      (clojure . t)
+     ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-lisp.html
+     (lisp . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
      (python . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html
