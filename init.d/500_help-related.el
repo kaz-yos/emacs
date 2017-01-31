@@ -17,13 +17,12 @@
 
 
 ;;;
-;;; Use default eldoc (loaded automatically)
-;; (require 'eldoc)
+;;; Use default eldoc
 ;; eldoc-extension
 ;; http://d.hatena.ne.jp/rubikitch/20090207/1233936430
 (use-package eldoc-extension
   :config
-  (setq eldoc-idle-delay 0)
+  (setq eldoc-idle-delay 0.5)
   (setq eldoc-echo-area-use-multiline-p t)
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
   (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
