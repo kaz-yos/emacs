@@ -56,6 +56,7 @@
 ;;;  slime
 ;; This does not work unless there is a slime process already running (not possible in async).
 ;; https://lists.gnu.org/archive/html/emacs-orgmode/2010-07/msg01237.html
+;; (setq org-babel-lisp-eval-fn #'sly-eval)
 (setq inferior-lisp-program (executable-find "sbcl"))
 ;;
 ;;;  ditaa diagram language
