@@ -90,7 +90,9 @@
                   (mode . sql-mode)
                   (mode . sql-interactive-mode)))
          ;; Email
-         ("EMAIL" (name . "^\\*mu4e"))
+         ("EMAIL" (or
+                   (name . "^\\*mu4e")
+                   (mode . mu4e:compose)))
          ;; Shells
          ("SHELL"  (or
                     (mode . sh-mode)
@@ -98,6 +100,8 @@
                     (mode . ssh-mode)
                     (mode . eshell-mode)
                     (mode . term-mode)))
+         ;; PDF
+         ("PDF" (mode . pdf-view-mode))
          ;; Emacs related
          ("ELISP" (or
                    (mode . emacs-lisp-mode)
