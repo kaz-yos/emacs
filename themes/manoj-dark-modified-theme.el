@@ -85,7 +85,7 @@
  '(font-lock-regexp-grouping-construct ((t (:bold t :weight bold))))
  '(font-lock-variable-name-face ((t (:foreground "Aquamarine"))))
  '(font-lock-function-name-face ((t (:foreground "mediumspringgreen"
-                                                 :weight bold :height 1.1))))
+                                                 :weight bold :height 1.0))))
  '(font-lock-string-face        ((t (:foreground "RosyBrown1"))))
  '(font-lock-comment-face       ((t (:italic t :slant oblique :foreground "chocolate1"))))
  '(font-lock-comment-delimiter-face ((t (:foreground "Salmon"))))
@@ -532,13 +532,6 @@
 
  '(holiday ((t (:background "chocolate4"))))
  '(holiday-face ((t (:background "chocolate4"))))
-;;; ibuffer
- '(ibuffer-dired-buffer-face ((t (:foreground "mediumspringgreen" :weight bold :height 1.1))))
- '(ibuffer-help-buffer-face  ((t (:italic t :slant oblique :foreground "chocolate1"))))
- '(ibuffer-hidden-buffer-face  ((t (:bold t :foreground "Pink" :weight bold))))
- '(ibuffer-occur-match-face ((t (:bold t :foreground "Pink" :weight bold))))
- '(ibuffer-read-only-buffer-face ((t (:foreground "SteelBlue1"))))
- '(ibuffer-special-buffer-face ((t (:foreground "SteelBlue1"))))
 
  '(ido-first-match ((t (:bold t :weight bold))))
  '(ido-incomplete-regexp ((t (:bold t :weight bold :foreground "Pink"))))
