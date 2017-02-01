@@ -338,11 +338,10 @@ _d_: subtree
   ;; Delay in seconds before guide buffer is displayed.
   (setq guide-key/idle-delay 1.0)
   ;; Set font size (negative for smaller)
-  (setq guide-key/text-scale-amount 0.1)
-  ;; Show at the bottom
-  ;; http://shibayu36.hatenablog.com/entry/2013/08/05/214023
+  (setq guide-key/text-scale-amount 0.2)
+  ;; Positioning
   (setq guide-key/popup-window-position 'left)
-  ;; Guide everything
+  ;; Set this variable to `t' to enable for any key sequence.
   (setq guide-key/guide-key-sequence t)
   ;; Guide specific sequences
   ;; (setq guide-key/guide-key-sequence '("C-x" "C-c"))
