@@ -4,9 +4,12 @@
 (use-package projectile
   :config
   ;; Simpler lighter
-  (setq projectile-mode-line '(:eval
-                               (format " [%s]"
-                                       (projectile-project-name))))
+  ;; (setq projectile-mode-line '(:eval
+  ;;                              (format " [%s]"
+  ;;                                      (projectile-project-name))))
+  ;; Static lighter with no evaluation
+  (setq projectile-mode-line " Pjtl")
+  ;;
   ;; Enable Projectile globally
   ;; 2015-01-01 error *** Eval error ***  End of file during parsing
   ;; 2015-01-11 Solved by deleting .emacs.d/projectile-bookmarks.eld
