@@ -145,7 +145,7 @@
       (setq mu4e-index-lazy-check nil)
       ;; All boxes
       (if (executable-find "timelimit")
-          (setq mu4e-get-mail-command "timelimit -t 180 mbsync all")
+          (setq mu4e-get-mail-command "timelimit -t 300 mbsync all")
         (setq mu4e-get-mail-command "mbsync all")))))
   ;; :before advice to mainpulate mu4e-get-mail-command variable
   (advice-add 'mu4e-update-mail-and-index :before #'modify-mu4e-get-mail-command)
@@ -161,7 +161,7 @@
     (setq mu4e-index-lazy-check nil)
     ;; All boxes
     (if (executable-find "timelimit")
-        (setq mu4e-get-mail-command "timelimit -t 180 mbsync all")
+        (setq mu4e-get-mail-command "timelimit -t 300 mbsync all")
       (setq mu4e-get-mail-command "mbsync all"))
     ;; This is the body of mu4e-update-mail-and-index to avoid advice.
     (if (and (buffer-live-p mu4e~update-buffer)
@@ -184,7 +184,7 @@
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-change-filenames-when-moving t)
   ;; Update interval
-  (setq mu4e-update-interval (* 60 8))
+  (setq mu4e-update-interval (* 60 5))
   ;; Do not occupy the minibuffer with "Indexing..."
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-hide-index-messages nil)
