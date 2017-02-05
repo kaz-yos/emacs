@@ -330,6 +330,7 @@ _d_: subtree
 ;; http://www.kaichan.info/blog/2013-12-22-emacs-advent-calendar-2013-22.html
 ;; http://www.kaichan.info/blog/2012-12-03-emacs-advent-calendar-2012-03.html
 (use-package guide-key
+  :disabled t
   :commands (guide-key-mode)
   :init
   ;; Activate on start up
@@ -352,9 +353,11 @@ _d_: subtree
 ;;;
 ;;; which-key.el
 ;; https://github.com/justbur/emacs-which-key
-;; Vertical alignment breaks down by default, giving an ugly look.
 (use-package which-key
-  :disabled t
+  :commands (which-key-mode)
+  :init
+  ;; Activate on start up
+  (add-hook 'after-init-hook 'which-key-mode)
   :config
   (setq which-key-popup-type 'side-window)
   (setq which-key-side-window-location 'left))
