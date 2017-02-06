@@ -38,9 +38,13 @@
   :bind (("s-g" . my-magit-status)
          ("C-c g" . magit-status))
   :config
-  ;;
+  ;; Avoid key binding conflict
   (define-key magit-status-mode-map (kbd "S-<tab>") 'magit-section-cycle)
   (define-key magit-status-mode-map (kbd "C-<tab>") nil)
+  ;;
+  ;; Show hash
+  (setq magit-status-show-hashes-in-headers t)
+  ;;
   ;; Word-level diff
   ;; https://magit.vc/manual/magit/Diff-options.html
   ;; http://html-color-codes.info
@@ -58,12 +62,8 @@
                (not buffer-read-only))
       (delete-trailing-whitespace)
       (save-buffer))
-    ;; Invoke the true worker function (change tramp scp because it's slow)
-    (magit-status)
-    ;; (magit-status (replace-regexp-in-string "^/scp"
-    ;;                                         "/ssh"
-    ;;                                         default-directory))
-    )
+    ;; Finally call magit-status
+    (magit-status))
   ;; Improve cursor movement when using n
   (advice-add 'magit-section-forward
               :after 'my-recenter-top)
