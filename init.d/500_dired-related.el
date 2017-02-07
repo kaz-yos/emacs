@@ -198,7 +198,7 @@ from the current buffer."
 (use-package all-the-icons-dired
   :commands (all-the-icons-dired-mode)
   :init
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  ;; (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
   ;; Face
   (defface all-the-icons-dired-dir-face
     '((((background dark)) :foreground "gray50")
