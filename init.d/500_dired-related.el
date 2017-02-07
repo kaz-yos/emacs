@@ -188,3 +188,20 @@ from the current buffer."
   :demand t
   :config
   (dired-async-mode 1))
+
+
+;;;
+;;; all-the-icons-dired.el
+;; https://github.com/domtronn/all-the-icons.el
+;; Need to install fonts on the github repo.
+;; https://github.com/jtbm37/all-the-icons-dired
+(use-package all-the-icons-dired
+  :commands (all-the-icons-dired-mode)
+  :init
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  ;; Face
+  (defface all-the-icons-dired-dir-face
+    '((((background dark)) :foreground "gray50")
+      (((background light)) :foreground "black"))
+    "Face for the directory icon"
+    :group 'all-the-icons-faces))
