@@ -325,32 +325,6 @@ _d_: subtree
 
 
 ;;;
-;;; guide-key.el
-;; https://github.com/kai2nenobu/guide-key
-;; http://www.kaichan.info/blog/2013-12-22-emacs-advent-calendar-2013-22.html
-;; http://www.kaichan.info/blog/2012-12-03-emacs-advent-calendar-2012-03.html
-(use-package guide-key
-  :disabled t
-  :commands (guide-key-mode)
-  :init
-  ;; Activate on start up
-  (add-hook 'after-init-hook 'guide-key-mode)
-  :config
-  ;; Delay in seconds before guide buffer is displayed.
-  (setq guide-key/idle-delay 1.0)
-  ;; Set font size (negative for smaller)
-  (setq guide-key/text-scale-amount 0.2)
-  ;; Positioning
-  (setq guide-key/popup-window-position 'left)
-  ;; Set this variable to `t' to enable for any key sequence.
-  (setq guide-key/guide-key-sequence t)
-  ;; Guide specific sequences
-  ;; (setq guide-key/guide-key-sequence '("C-x" "C-c"))
-  ;; Check an input key sequence recursively.
-  (setq guide-key/recursive-key-sequence-flag t))
-
-
-;;;
 ;;; which-key.el
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
