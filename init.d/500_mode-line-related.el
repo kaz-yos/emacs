@@ -6,7 +6,7 @@
 ;; https://github.com/milkypostman/powerline
 ;; http://shibayu36.hatenablog.com/entry/2014/02/11/160945
 (use-package powerline
-  :disabled t
+  ;; :disabled t
   :config
   ;; https://github.com/shibayu36/emacs/blob/8376ba4e4b4d5cb4668e848c9a494b287232ea6f/emacs.d/inits/01-mode-line.el
   (set-face-attribute 'mode-line nil
@@ -30,7 +30,7 @@
 ;; Powerline theme from Spacemacs
 ;; https://github.com/TheBB/spaceline
 (use-package spaceline
-  ;; :disabled t
+  :disabled t
   :config
   ;; https://github.com/TheBB/spaceline#the-default-themes
   (require 'spaceline-config)
