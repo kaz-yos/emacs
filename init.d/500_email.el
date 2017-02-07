@@ -273,6 +273,10 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (setq mu4e-view-show-addresses t)
   (setq mu4e-view-date-format "%Y-%m-%d %H:%M:%S")
   ;;
+  ;; Modify keys
+  (define-key mu4e-view-mode-map (kbd "G") 'mu4e-view-go-to-url)
+  (define-key mu4e-view-mode-map (kbd "g") 'mu4e-headers-rerun-search)
+  ;;
   ;; Displaying rich-text messages
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
   (setq mu4e-view-prefer-html nil)
