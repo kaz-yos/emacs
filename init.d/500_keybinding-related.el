@@ -359,8 +359,15 @@ _d_: subtree
   ;; Activate on start up
   (add-hook 'after-init-hook 'which-key-mode)
   :config
+  ;; Delay (in seconds) for which-key buffer to popup.
+  (setq which-key-idle-delay 1.0)
+  ;; Type: minibuffer, side-window, frame, and custom.
   (setq which-key-popup-type 'side-window)
-  (setq which-key-side-window-location 'left))
+  ;; Location
+  (setq which-key-side-window-location 'left)
+  ;; Max size
+  (setq which-key-side-window-max-height 0.5)
+  (setq which-key-side-window-max-width 0.5))
 
 
 ;;;

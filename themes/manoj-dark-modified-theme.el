@@ -694,6 +694,9 @@
  '(avy-lead-face-2 ((t (:background "black" :foreground "white"))))
 ;;; ace-window
  '(aw-leading-char-face ((t (:foreground "gray90" :height 5.0))))
+;;; which-key
+ '(which-key-command-description-face ((t (:foreground "gray95"))))
+ '(which-key-key-face ((t (:foreground "white"))))
 ;;; bm
  '(bm-face ((t (:background "DarkOrange3" :foreground "Black"))))
 ;;; company
