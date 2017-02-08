@@ -114,7 +114,7 @@
      ;; If interactive,
      ((called-interactively-p 'interactive)
       ;; Conduct abbreviated operations.
-      (setq mu4e-hide-index-messages nil)
+      (setq mu4e-hide-index-messages t)
       (setq mu4e-cache-maildir-list t)
       (setq mu4e-index-cleanup nil)
       (setq mu4e-index-lazy-check t)
@@ -127,7 +127,7 @@
      ;; This happens even if update is running non-interactively.
      ((mu4e-buffer-visible-p)
       ;; Conduct abbreviated operations.
-      (setq mu4e-hide-index-messages nil)
+      (setq mu4e-hide-index-messages t)
       (setq mu4e-cache-maildir-list t)
       (setq mu4e-index-cleanup nil)
       (setq mu4e-index-lazy-check t)
@@ -155,7 +155,7 @@
   (defun mu4e-update-mail-and-index-all (run-in-background)
     "Update email with more extensive folder syncing"
     (interactive "P")
-    (setq mu4e-hide-index-messages nil)
+    (setq mu4e-hide-index-messages t)
     (setq mu4e-cache-maildir-list nil)
     (setq mu4e-index-cleanup t)
     (setq mu4e-index-lazy-check nil)
