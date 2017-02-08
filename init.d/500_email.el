@@ -336,6 +336,8 @@ The optional and unused msg argument is to fit into mu4e's action framework."
           ("tag"                . mu4e-action-retag-message)))
   ;;
 ;;;  Editor view configuration
+  ;; New frame for a new message.
+  (setq mu4e-compose-in-new-frame t)
   ;; Do not drop myself from cc list
   (setq mu4e-compose-keep-self-cc t)
   ;; Flyspell
