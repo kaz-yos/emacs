@@ -338,6 +338,31 @@ The optional and unused msg argument is to fit into mu4e's action framework."
 ;;;  Editor view configuration
   ;; New frame for a new message.
   (setq mu4e-compose-in-new-frame t)
+  ;; Create an elscreen screen instead of a frame on opening.
+  (defun mu4e~draft-open-file (path)
+    "Open the the draft file at PATH."
+    (if mu4e-compose-in-new-frame
+        (elscreen-find-file path)
+      (find-file path)))
+  ;; Drop an elscreen screen instead of a frame on sending.
+  (defun mu4e-message-kill-buffer ()
+    "Wrapper around `message-kill-buffer'.
+It restores mu4e window layout after killing the compose-buffer."
+    (interactive)
+    (let ((current-buffer (current-buffer)))
+      (message-kill-buffer)
+      ;; Compose buffer killed
+      (when (not (equal current-buffer (current-buffer)))
+        ;; Restore mu4e
+        (if mu4e-compose-in-new-frame
+            (elscreen-kill)
+          (if (buffer-live-p mu4e~view-buffer)
+              (switch-to-buffer mu4e~view-buffer)
+            (if (buffer-live-p mu4e~headers-buffer)
+                (switch-to-buffer mu4e~headers-buffer)
+              ;; if all else fails, back to the main view
+              (when (fboundp 'mu4e) (mu4e))))))))
+  ;;
   ;; Do not drop myself from cc list
   (setq mu4e-compose-keep-self-cc t)
   ;; Flyspell
