@@ -75,6 +75,18 @@
 
 
 ;;;
+;;; dired-narrow.el
+;; https://github.com/Fuco1/dired-hacks#dired-narrow
+;; http://pragmaticemacs.com/emacs/dynamically-filter-directory-listing-with-dired-narrow/
+(use-package dired-narrow
+  :commands (dired-narrow
+             dired-narrow-regexp
+             dired-narrow-fuzzy)
+  :bind (:map dired-mode-map
+              ("/" . dired-narrow-regexp)))
+
+
+;;;
 ;;; runner.el
 ;; Flexible file type specific shell command in dired
 ;;
