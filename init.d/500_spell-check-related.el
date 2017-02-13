@@ -127,6 +127,7 @@
 ;;
 ;;;  flyspell-popup.el
 ;; https://github.com/xuchunyang/flyspell-popup
+;; https://github.com/d12frosted/flyspell-correct
 (use-package flyspell-popup
   :commands (flyspell-popup-correct)
   :bind ("s-c" . flyspell-popup-correct)
