@@ -188,7 +188,15 @@ searched. If there is no symbol, empty search box is started."
 ;; http://d.hatena.ne.jp/sandai/20120304/p2
 (use-package color-moccur
   :commands (moccur-grep)
-  :bind (("s-m" . moccur-grep))
+  :bind (("s-m" . moccur-grep)
+         ;; https://github.com/jwiegley/use-package#the-basics
+         :map isearch-mode-map
+         ("M-o" . isearch-moccur)
+         ("M-O" . isearch-moccur-all))
+  ;;
+  :init
+  (setq isearch-lazy-highlight t)
+  ;;
   :config
   ;; Editing moccur buffer
   ;; Usage:
