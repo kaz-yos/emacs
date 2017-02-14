@@ -153,6 +153,22 @@ from the current buffer."
   (unless (string-match-p "&[ \t]*\\'" command)
     (setq command (concat command " &")))
   (dired-do-shell-command command arg file-list))
+;;
+;; One for the regular dired-do-async-shell-command
+;; Kill the *Runner Output* buffer before running an async shell command.
+;; This is somehow necessary when running over TRAMP.
+(defun kill-runner-output (&optional command arg file-list)
+  "Kill the *Runner Output* buffer if it exists."
+  (interactive)
+  (let ((buffer-name-list (mapcar #'buffer-name (buffer-list)))
+        (regexp "*Runner Output*"))
+    (when (-filter
+           #'(lambda (elt) (string-match regexp elt))
+           buffer-name-list)
+      (kill-buffer regexp))))
+;; (advice-add 'dired-do-async-shell-command
+;;             :before #'kill-runner-output)
+;; (advice-remove 'dired-do-async-shell-command #'kill-runner-output)
 
 
 ;;;
