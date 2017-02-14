@@ -1,28 +1,6 @@
-;;; dired-plus 2014-02-04
-;; http://www.emacswiki.org/emacs/DiredPlus
-;; http://ergoemacs.org/emacs/emacs_diredplus_mode.html
-(use-package dired+
-  :demand t)
-;;
-;;  Hide/Show Details
-;;  -----------------
-;;  Starting with Emacs 24.4, listing details are hidden by default.
-;;  Use `(' anytime to toggle this hiding.  You can use option
-;;  `diredp-hide-details-initially-flag' to change the default/initial
-;;  state.  See also option `diredp-hide-details-propagate-flag'.
-;;
-;;  If you have an Emacs version older than 24.4, you can use library
-;;  `dired-details+.el' (plus `dired-details.el') to get similar
-;;  behavior.
-;;
-;; Show details by default in 24.4 (does not work here? configure in dired config)
-;; (setq diredp-hide-details-initially-flag nil)
-;;
-;; Other dired inherit the current setting
-;; (setq diredp-hide-details-propagate-flag t)
-;;
+;;; 500_dired-related.el ---                         -*- lexical-binding: t; -*-
 
-
+;;;
 ;;; Use rsync in dired.el
 ;; https://github.com/abo-abo/oremacs/blob/2011da0874d27058d3ce8bded5cd8817314c27be/auto.el#L225-L247
 ;; https://www.reddit.com/r/emacs/comments/58zieq/still_cant_get_over_how_powerful_tramp_is/
@@ -50,6 +28,32 @@
     (other-window 1)))
 ;; Bind to Y
 (define-key dired-mode-map "Y" 'ora-dired-rsync)
+
+
+;;;
+;;; dired+.el
+;; http://www.emacswiki.org/emacs/DiredPlus
+;; http://ergoemacs.org/emacs/emacs_diredplus_mode.html
+(use-package dired+
+  :demand t)
+;;
+;;  Hide/Show Details
+;;  -----------------
+;;  Starting with Emacs 24.4, listing details are hidden by default.
+;;  Use `(' anytime to toggle this hiding.  You can use option
+;;  `diredp-hide-details-initially-flag' to change the default/initial
+;;  state.  See also option `diredp-hide-details-propagate-flag'.
+;;
+;;  If you have an Emacs version older than 24.4, you can use library
+;;  `dired-details+.el' (plus `dired-details.el') to get similar
+;;  behavior.
+;;
+;; Show details by default in 24.4 (does not work here? configure in dired config)
+;; (setq diredp-hide-details-initially-flag nil)
+;;
+;; Other dired inherit the current setting
+;; (setq diredp-hide-details-propagate-flag t)
+;;
 
 
 ;;;
