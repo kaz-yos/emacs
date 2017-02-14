@@ -17,7 +17,8 @@
 ;;
 (defvar server-buffer-clients)
 ;;
-(when (and (fboundp 'server-start) (string-equal (getenv "TERM") 'xterm))
+(when (and (fboundp 'server-start)
+           (string-equal (getenv "TERM") 'xterm))
   (server-start)
   (defun fp-kill-server-with-buffer-routine ()
     (and server-buffer-clients (server-done)))
