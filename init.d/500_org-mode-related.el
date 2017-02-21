@@ -90,6 +90,7 @@
   ;; http://orgmode.org/worg/org-contrib/babel/intro.html
   ;; Babel Languages
   ;; http://orgmode.org/worg/org-contrib/babel/languages.html
+;;;  Declare languages to load.
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-LaTeX.html
@@ -132,6 +133,13 @@
   ;; Language specific settings
   ;; ditaa diagram language (git repo org-mode has necessary scripts)
   (setq org-ditaa-jar-path "~/.emacs.d/packages/org-mode/contrib/scripts/ditaa.jar")
+  ;;
+;;;  ob-async.el
+  ;; Not on melpa as of 2017-02-21.
+  ;; https://github.com/astahlman/ob-async
+  (use-package ob-async
+    :config
+    (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block))
   ;;
   ;;
 ;;;
