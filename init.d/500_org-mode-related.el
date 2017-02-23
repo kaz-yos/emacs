@@ -14,11 +14,14 @@
 ;; Load org
 (use-package org
   :mode ("\\.org" . org-mode)
-  ;; If using downloaded version
   :init
+  ;; https://github.com/jwiegley/use-package#extending-the-load-path
   ;; If using manually installed org-mode.
-  ;; (add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
-  ;; (add-to-list 'load-path "~/.emacs.d/packages/org-mode/contrib/lisp")
+  (add-to-list 'load-path
+               ;; We need a wild card as a MELPA package keeps changing the folder name.
+               ;; http://emacs.stackexchange.com/questions/9768/elisp-files-in-load-path-are-not-loaded-on-emacs-start
+               ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/List-Elements.html
+               (car (last (file-expand-wildcards "~/.emacs.d/elpa/org-plus-contrib*"))))
   ;;
   :config
   ;; Suggested bindings for global
