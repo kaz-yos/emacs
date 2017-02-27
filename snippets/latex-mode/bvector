@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: bvector
+# key: vec
+# binding: direct-keybinding
+# --
+\begin{bmatrix}
+  1 `(concat "\\" "\\")`
+  0 `(concat "\\" "\\")`
+\end{bmatrix}$0
