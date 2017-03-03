@@ -13,6 +13,11 @@
 
 ;;;
 ;;; Configure org-mode
+(add-to-list 'load-path
+             ;; We need a wild card as a MELPA package keeps changing the folder name.
+             ;; http://emacs.stackexchange.com/questions/9768/elisp-files-in-load-path-are-not-loaded-on-emacs-start
+             ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/List-Elements.html
+             (car (last (file-expand-wildcards "~/.emacs.d/elpa/org-plus-contrib*"))))
 (require 'org)
 (require 'org-ref)
 ;;; Load exporters
