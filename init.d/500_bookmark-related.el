@@ -77,7 +77,7 @@
         (setq regexp "^### \\|^## \\|^# "))
        ;; org-mode
        ((equal major-mode 'org-mode)
-        (setq regexp "^\\* \\|^\\*\\* \\|^\\*\\*\\* "))
+        (setq regexp "^\\* \\|^\\*\\* \\|^\\*\\*\\* \\|^\\*\\*\\*\\* "))
        ;; ESS R package mode
        ((bound-and-true-p ess-r-package-mode)
         (setq regexp "^### \\|^###$\\|^test_that(\\|^context("))
