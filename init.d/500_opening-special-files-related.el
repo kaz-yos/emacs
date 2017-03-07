@@ -32,6 +32,9 @@
 ;; pdf-tools package using Emacs package system. If things get messed
 ;; up, just do 'brew uninstall pdf-tools', wipe out the elpa
 ;; pdf-tools package and reinstall both as at the start.
+;;
+;; Homebrew recipe moved to:
+;; https://github.com/dunn/homebrew-emacs
 (use-package pdf-tools
   ;; The deferring configuration was take from the following repository.
   ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-pdf.el
