@@ -60,7 +60,7 @@
 #+LATEX_HEADER: %% \linespread{2}
 #+LATEX_HEADER: %% Paragraph Indentation
 #+LATEX_HEADER: \usepackage{indentfirst}
-#+LATEX_HEADER: \setlength{\parindent}{4em}
+#+LATEX_HEADER: \setlength{\parindent}{0em}
 #+LATEX_HEADER: %% Spacing after headings
 #+LATEX_HEADER: %% http://tex.stackexchange.com/questions/53338/reducing-spacing-after-headings
 #+LATEX_HEADER: \usepackage{titlesec}
