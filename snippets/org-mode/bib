@@ -2,7 +2,7 @@
 # name: bib
 # --
    :PROPERTIES:
-   :BEAMER_opt: allowframebreaks,label=
+   :BEAMER_opt: allowframebreaks,label=,t
    :END:
 \tiny
 bibliographystyle:apalike

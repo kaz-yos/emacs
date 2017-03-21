@@ -3,5 +3,5 @@
 # key: break
 # --
    :PROPERTIES:
-   :BEAMER_opt: allowframebreaks,label=
+   :BEAMER_opt: allowframebreaks,label=,t
    :END:
