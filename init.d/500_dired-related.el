@@ -228,3 +228,12 @@ from the current buffer."
       (((background light)) :foreground "black"))
     "Face for the directory icon"
     :group 'all-the-icons-faces))
+
+
+;;;
+;;; dired-quick-sort.el
+;; https://gitlab.com/xuhdev/dired-quick-sort
+(use-package dired-quick-sort
+  :commands (dired-quick-sort-setup)
+  :init
+  (add-hook 'after-init-hook 'dired-quick-sort-setup))
