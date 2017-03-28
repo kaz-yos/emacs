@@ -212,6 +212,12 @@
           ;; String insertion for setting options
           "\\tolerance=1000"))
   ;;
+;;;  org-edit-latex.el
+  ;; https://github.com/et2010/org-edit-latex
+  (use-package org-edit-latex
+    :config
+    (add-hook 'org-mode-hook 'org-edit-latex-mode))
+  ;;
   ;;
 ;;;
 ;;; org-mode citation management by org-ref
