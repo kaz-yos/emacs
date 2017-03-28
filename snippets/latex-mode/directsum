@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: directsum
+# key: dsum
+# --
+\oplus $0
