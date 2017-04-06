@@ -11,6 +11,15 @@
 (defalias 'defstruct 'cl-defstruct)
 (package-initialize)
 
+
+;;;
+;;; No emacs-default autosave or backup
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Auto-Save-Control.html
+(setq auto-save-default nil)
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Backup.html
+(setq make-backup-files nil)
+
+
 ;;;
 ;;; Configure org-mode
 (add-to-list 'load-path
