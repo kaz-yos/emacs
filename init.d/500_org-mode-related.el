@@ -146,100 +146,6 @@
   ;;
   ;;
 ;;;
-;;; LaTeX in org-mode
-  ;; The Org-article LaTeX class
-  ;; http://orgmode.org/worg/org-contrib/babel/examples/article-class.html
-  ;; 12.7.5 LaTeX specific attributes
-  ;; http://orgmode.org/manual/LaTeX-specific-attributes.html
-  ;;
-  (setq org-highlight-latex-fragments-and-specials t)
-  ;; http://stackoverflow.com/questions/17239273/org-mode-buffer-latex-syntax-highlighting
-  ;; ‘latex’    Highlight LaTeX snippets and environments. (not full LaTeX syntax highlighting)
-  ;; ‘script’   Highlight subscript and superscript.
-  ;; ‘entities’ Highlight entities.
-  (setq org-highlight-latex-and-related '(latex
-                                          script
-                                          entities))
-  ;;
-  ;; org-latex-classes
-  ;; Alist of LaTeX classes and associated header and structure.
-  ;; If #+LATEX_CLASS is set in the buffer, use its value and the
-  ;; associated information.  Here is the structure of each cell:
-  ;;
-  ;; Japanese article configuration
-  ;; http://d.hatena.ne.jp/mokimokisan/20120624/1340558857
-  ;; http://fjyuu.info/blog/org-export-pdf/
-  ;; https://texwiki.texjp.org/?Emacs%2FOrg%20mode#a97921ad
-  ;; http://qiita.com/kawabata@github/items/1b56ec8284942ff2646b
-  ;; https://ryogan.org/blog/2015/12/31/emacs-org-mode-から-latex-export-する/
-  (add-to-list 'org-latex-classes
-               '("jsarticle"
-                 "\\documentclass[a4j]{jsarticle}"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-  ;;
-  ;; Additional font locks
-  ;; (add-hook 'org-mode-hook
-  ;;           (lambda ()
-  ;;             ;; (font-lock-add-keywords MODE KEYWORDS &optional HOW)
-  ;;             (font-lock-add-keywords nil
-  ;;                                     '(("\\\\" 1
-  ;;                                        font-latex-warning-face t)))))
-  ;;
-  ;; ‘org-latex-default-packages-alist’ contains required packages
-  ;; The packages in this list are needed by one part or another of
-  ;; Org mode to function properly:
-  ;; - inputenc, fontenc:  for basic font and character selection
-  ;; - graphicx: for including images
-  ;; - grffile: allow periods and spaces in graphics file names
-  ;; - longtable: For multipage tables
-  ;; - wrapfig: for figure placement
-  ;; - rotating: for sideways figures and tables
-  ;; - ulem: for underline and strike-through
-  ;; - amsmath: for subscript and superscript and math environments
-  ;; - textcomp, amssymb: for various symbols used
-  ;; for interpreting the entities in ‘org-entities’.  You can skip
-  ;; some of these packages if you don’t use any of their symbols.
-  ;; - capt-of: for captions outside of floats
-  ;; - hyperref: for cross references
-  ;;
-  ;; A cell is of the format ("options" "package" SNIPPET-FLAG COMPILERS)
-  ;; The default is configured as follows
-  ;; (setq org-latex-default-packages-alist '(("AUTO" "inputenc" t ("pdflatex"))
-  ;;                                          ("T1" "fontenc" t ("pdflatex"))
-  ;;                                          ("" "graphicx" t)
-  ;;                                          ("" "grffile" t)
-  ;;                                          ("" "longtable" nil)
-  ;;                                          ("" "wrapfig" nil)
-  ;;                                          ("" "rotating" nil)
-  ;;                                          ("normalem" "ulem" t)
-  ;;                                          ("" "amsmath" t)
-  ;;                                          ("" "textcomp" t)
-  ;;                                          ("" "amssymb" t)
-  ;;                                          ("" "capt-of" nil)
-  ;;                                          ("" "hyperref" nil)))
-  ;;
-  ;; Alist of packages to be inserted in every LaTeX header.
-  ;; These will be inserted after ‘org-latex-default-packages-alist’.
-  ;; Each element is either a cell or a string.
-  ;; A cell is of the format: ("options" "package" SNIPPET-FLAG)
-  ;; A string will be inserted as-is in the header of the document.
-  (setq org-latex-packages-alist
-        '(("" "tikz" t )
-          ;; String insertion for setting options
-          "\\tolerance=1000"))
-  ;;
-;;;  org-edit-latex.el
-  ;; https://github.com/et2010/org-edit-latex
-  (use-package org-edit-latex
-    :config
-    (add-hook 'org-mode-hook 'org-edit-latex-mode))
-  ;;
-  ;;
-;;;
 ;;; org-mode citation management by org-ref
   ;; https://github.com/jkitchin/org-ref
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
@@ -341,6 +247,98 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   ;;
   ;; auto-revert in org-stack-mode
   (add-hook 'org-export-stack-mode-hook #'turn-on-auto-revert-mode)
+  ;;
+;;;  LaTeX in org-mode
+  ;; The Org-article LaTeX class
+  ;; http://orgmode.org/worg/org-contrib/babel/examples/article-class.html
+  ;; 12.7.5 LaTeX specific attributes
+  ;; http://orgmode.org/manual/LaTeX-specific-attributes.html
+  ;;
+  (setq org-highlight-latex-fragments-and-specials t)
+  ;; http://stackoverflow.com/questions/17239273/org-mode-buffer-latex-syntax-highlighting
+  ;; ‘latex’    Highlight LaTeX snippets and environments. (not full LaTeX syntax highlighting)
+  ;; ‘script’   Highlight subscript and superscript.
+  ;; ‘entities’ Highlight entities.
+  (setq org-highlight-latex-and-related '(latex
+                                          script
+                                          entities))
+  ;;
+  ;; org-latex-classes
+  ;; Alist of LaTeX classes and associated header and structure.
+  ;; If #+LATEX_CLASS is set in the buffer, use its value and the
+  ;; associated information.  Here is the structure of each cell:
+  ;;
+  ;; Japanese article configuration
+  ;; http://d.hatena.ne.jp/mokimokisan/20120624/1340558857
+  ;; http://fjyuu.info/blog/org-export-pdf/
+  ;; https://texwiki.texjp.org/?Emacs%2FOrg%20mode#a97921ad
+  ;; http://qiita.com/kawabata@github/items/1b56ec8284942ff2646b
+  ;; https://ryogan.org/blog/2015/12/31/emacs-org-mode-から-latex-export-する/
+  (add-to-list 'org-latex-classes
+               '("jsarticle"
+                 "\\documentclass[a4j]{jsarticle}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  ;;
+  ;; Additional font locks
+  ;; (add-hook 'org-mode-hook
+  ;;           (lambda ()
+  ;;             ;; (font-lock-add-keywords MODE KEYWORDS &optional HOW)
+  ;;             (font-lock-add-keywords nil
+  ;;                                     '(("\\\\" 1
+  ;;                                        font-latex-warning-face t)))))
+  ;;
+  ;; ‘org-latex-default-packages-alist’ contains required packages
+  ;; The packages in this list are needed by one part or another of
+  ;; Org mode to function properly:
+  ;; - inputenc, fontenc:  for basic font and character selection
+  ;; - graphicx: for including images
+  ;; - grffile: allow periods and spaces in graphics file names
+  ;; - longtable: For multipage tables
+  ;; - wrapfig: for figure placement
+  ;; - rotating: for sideways figures and tables
+  ;; - ulem: for underline and strike-through
+  ;; - amsmath: for subscript and superscript and math environments
+  ;; - textcomp, amssymb: for various symbols used
+  ;; for interpreting the entities in ‘org-entities’.  You can skip
+  ;; some of these packages if you don’t use any of their symbols.
+  ;; - capt-of: for captions outside of floats
+  ;; - hyperref: for cross references
+  ;;
+  ;; A cell is of the format ("options" "package" SNIPPET-FLAG COMPILERS)
+  ;; The default is configured as follows
+  ;; (setq org-latex-default-packages-alist '(("AUTO" "inputenc" t ("pdflatex"))
+  ;;                                          ("T1" "fontenc" t ("pdflatex"))
+  ;;                                          ("" "graphicx" t)
+  ;;                                          ("" "grffile" t)
+  ;;                                          ("" "longtable" nil)
+  ;;                                          ("" "wrapfig" nil)
+  ;;                                          ("" "rotating" nil)
+  ;;                                          ("normalem" "ulem" t)
+  ;;                                          ("" "amsmath" t)
+  ;;                                          ("" "textcomp" t)
+  ;;                                          ("" "amssymb" t)
+  ;;                                          ("" "capt-of" nil)
+  ;;                                          ("" "hyperref" nil)))
+  ;;
+  ;; Alist of packages to be inserted in every LaTeX header.
+  ;; These will be inserted after ‘org-latex-default-packages-alist’.
+  ;; Each element is either a cell or a string.
+  ;; A cell is of the format: ("options" "package" SNIPPET-FLAG)
+  ;; A string will be inserted as-is in the header of the document.
+  (setq org-latex-packages-alist
+        '(("" "tikz" t )
+          ;; String insertion for setting options
+          "\\tolerance=1000"))
+  ;;
+;;;   org-edit-latex.el
+  ;; https://github.com/et2010/org-edit-latex
+  (use-package org-edit-latex
+    :config
+    (add-hook 'org-mode-hook 'org-edit-latex-mode))
   ;;
 ;;;  Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
