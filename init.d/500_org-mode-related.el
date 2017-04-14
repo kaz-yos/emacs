@@ -161,6 +161,26 @@
                                           script
                                           entities))
   ;;
+  ;; org-latex-classes
+  ;; Alist of LaTeX classes and associated header and structure.
+  ;; If #+LATEX_CLASS is set in the buffer, use its value and the
+  ;; associated information.  Here is the structure of each cell:
+  ;;
+  ;; Japanese article configuration
+  ;; http://d.hatena.ne.jp/mokimokisan/20120624/1340558857
+  ;; http://fjyuu.info/blog/org-export-pdf/
+  ;; https://texwiki.texjp.org/?Emacs%2FOrg%20mode#a97921ad
+  ;; http://qiita.com/kawabata@github/items/1b56ec8284942ff2646b
+  ;; https://ryogan.org/blog/2015/12/31/emacs-org-mode-から-latex-export-する/
+  (add-to-list 'org-latex-classes
+               '("jsarticle"
+                 "\\documentclass[a4j]{jsarticle}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  ;;
   ;; Additional font locks
   ;; (add-hook 'org-mode-hook
   ;;           (lambda ()
@@ -240,11 +260,17 @@
   ;; %f: full file name
   ;; %b: file base name
   ;; %o: base directory
+  ;; latexmk can handle Japanese.
   (setq org-latex-pdf-process
-        '("pdflatex -interaction nonstopmode -output-directory %o %f"
+        '("latexmk %f"
           "bibtex %b"
-          "pdflatex -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -interaction nonstopmode -output-directory %o %f"))
+          "latexmk %f"
+          "latexmk %f"))
+  ;; (setq org-latex-pdf-process
+  ;;       '("pdflatex -interaction nonstopmode -output-directory %o %f"
+  ;;         "bibtex %b"
+  ;;         "pdflatex -interaction nonstopmode -output-directory %o %f"
+  ;;         "pdflatex -interaction nonstopmode -output-directory %o %f"))
   ;;
   (add-hook 'org-mode-hook 'zotelo-minor-mode)
   ;;
