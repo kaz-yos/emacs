@@ -61,10 +61,19 @@
 ;; %b: file base name
 ;; %o: base directory
 (setq org-latex-pdf-process
-      '("pdflatex -interaction nonstopmode -output-directory %o %f"
+      '("latexmk %f"
         "bibtex %b"
-        "pdflatex -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -interaction nonstopmode -output-directory %o %f"))
+        "latexmk %f"
+        "latexmk %f"))
+;; Support jsarticle
+(add-to-list 'org-latex-classes
+             '("jsarticle"
+               "\\documentclass[a4j]{jsarticle}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 ;;
 ;;;  R
 (setq inferior-R-args "--no-restore-history --no-save ")
