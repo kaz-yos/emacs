@@ -41,7 +41,7 @@
   ;; (define-key org-mode-map (kbd "s-b") 'helm-org-in-buffer-headings)
   ;;
   ;; This is taken by icicle. Reclaim.
-  (define-key org-mode-map (kbd "C-c '") 'org-edit-src-code)
+  (define-key org-mode-map (kbd "C-c '") 'org-edit-special)
   ;;
   ;; Arrow key replacement for HHKB
   (define-key org-mode-map (kbd "A-M-i") 'org-metaup)
