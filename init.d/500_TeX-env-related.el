@@ -148,8 +148,9 @@
 ;; ln -sf ~/Documents/.latexmkrc ~/.latexmkrc
 ;; C-c C-c LatexMk to use
 (use-package auctex-latexmk
-  :commands (auctex-latexmk-setup))
-(add-hook 'LaTeX-mode-hook 'auctex-latexmk-setup)
+  :commands (auctex-latexmk-setup)
+  :init
+  (add-hook 'LaTeX-mode-hook 'auctex-latexmk-setup))
 
 
 ;;;
@@ -177,8 +178,10 @@
 ;;; company-auctex.el
 ;; https://github.com/alexeyr/company-auctex
 (use-package company-auctex
-  :commands (company-auctex-init))
-(add-hook 'LaTeX-mode-hook 'company-auctex-init)
+  :commands (company-auctex-init)
+  :init
+  (add-hook 'LaTeX-mode-hook 'company-auctex-init))
+
 ;;
 ;;; company-math.el
 ;; https://github.com/vspinu/company-math
