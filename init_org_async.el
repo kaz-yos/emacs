@@ -62,6 +62,9 @@
 ;; %o: base directory
 (setq org-latex-pdf-process
       '("latexmk -f %f"))
+;; Remove additional temporary files.
+(setq org-latex-logfiles-extensions
+      (append '("dvi" "bbl") org-latex-logfiles-extensions))
 ;; Support jsarticle
 (add-to-list 'org-latex-classes
              '("jsarticle"

@@ -160,15 +160,6 @@
   ;; bibliographystyle:unsrt
   ;; bibliography:file_name.bib
   ;;
-  ;; PDF processing with correct bibtex handling
-  ;; http://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html
-  ;; %f: full file name
-  ;; %b: file base name
-  ;; %o: base directory
-  ;; latexmk is a high-level tool to integrate low-level tools like platex and bibtex.
-  (setq org-latex-pdf-process
-        '("latexmk -f %f"))
-  ;;
   (add-hook 'org-mode-hook 'zotelo-minor-mode)
   ;;
   ;;
@@ -244,6 +235,19 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   ;; http://orgmode.org/worg/org-contrib/babel/examples/article-class.html
   ;; 12.7.5 LaTeX specific attributes
   ;; http://orgmode.org/manual/LaTeX-specific-attributes.html
+  ;;
+  ;; PDF processing with correct bibtex handling
+  ;; http://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html
+  ;; %f: full file name
+  ;; %b: file base name
+  ;; %o: base directory
+  ;; latexmk is a high-level tool to integrate low-level tools like platex and bibtex.
+  (setq org-latex-pdf-process
+        '("latexmk -f %f"))
+  ;;
+  ;; Remove additional temporary files.
+  (setq org-latex-logfiles-extensions
+        (append '("dvi" "bbl") org-latex-logfiles-extensions))
   ;;
   (setq org-highlight-latex-fragments-and-specials t)
   ;; http://stackoverflow.com/questions/17239273/org-mode-buffer-latex-syntax-highlighting
