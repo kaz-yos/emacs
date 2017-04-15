@@ -6,7 +6,7 @@
 %% http://www.matthiaspospiech.de/latex/vorlagen/beamer/preambel/
 %% Using knitr in beamer slides
 %% http://yihui.name/knitr/demo/beamer/
-\documentclass[10pt]{beamer}
+\documentclass[dvipdfmx,10pt]{beamer}
 \setbeamertemplate{navigation symbols}{} %remove navigation symbols
 \setbeamertemplate{footline}[frame number]
 \setbeamertemplate{frametitle}[default][center]

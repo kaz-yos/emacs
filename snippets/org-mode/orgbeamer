@@ -15,7 +15,7 @@
 #+OPTIONS: ^:{}
 #+STARTUP: beamer
 #+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LaTeX_CLASS_OPTIONS: [dvipdfmx,bigger]
 #+LATEX_HEADER: %% No navigation bar
 #+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
 #+LATEX_HEADER: %% Page number with current/total format
