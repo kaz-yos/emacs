@@ -150,8 +150,7 @@
   ;; https://github.com/jkitchin/org-ref
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
-  (use-package org-ref
-    :commands (org-ref-helm-insert-cite-link))
+  (use-package org-ref)
   (define-key org-mode-map (kbd "C-A-a") 'org-ref-helm-insert-cite-link)
   ;;
   ;; Need to put these configurations within the org file.
@@ -166,17 +165,9 @@
   ;; %f: full file name
   ;; %b: file base name
   ;; %o: base directory
-  ;; latexmk can handle Japanese.
+  ;; latexmk is a high-level tool to integrate low-level tools like platex and bibtex.
   (setq org-latex-pdf-process
-        '("latexmk %f"
-          "bibtex %b"
-          "latexmk %f"
-          "latexmk %f"))
-  ;; (setq org-latex-pdf-process
-  ;;       '("pdflatex -interaction nonstopmode -output-directory %o %f"
-  ;;         "bibtex %b"
-  ;;         "pdflatex -interaction nonstopmode -output-directory %o %f"
-  ;;         "pdflatex -interaction nonstopmode -output-directory %o %f"))
+        '("latexmk -f %f"))
   ;;
   (add-hook 'org-mode-hook 'zotelo-minor-mode)
   ;;

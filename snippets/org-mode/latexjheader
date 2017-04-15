@@ -1,10 +1,11 @@
 # -*- mode: snippet -*-
-# name: latexheader
-# key: head
+# name: latexjheader
+# key: jhead
 # expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
 # --
 # LaTeX configurations
-#+LaTeX_CLASS_OPTIONS: [dvipdfmx,10pt]
+#+LaTeX_CLASS: jsarticle
+#+LaTeX_CLASS_OPTIONS: [dvipdfmx]
 #+LATEX_HEADER: %% Margin
 #+LATEX_HEADER: %% \usepackage[margin=1.5cm]{geometry}
 #+LATEX_HEADER: \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm, headsep=4pt]{geometry}

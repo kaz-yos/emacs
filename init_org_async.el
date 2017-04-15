@@ -61,10 +61,7 @@
 ;; %b: file base name
 ;; %o: base directory
 (setq org-latex-pdf-process
-      '("latexmk %f"
-        "bibtex %b"
-        "latexmk %f"
-        "latexmk %f"))
+      '("latexmk -f %f"))
 ;; Support jsarticle
 (add-to-list 'org-latex-classes
              '("jsarticle"
