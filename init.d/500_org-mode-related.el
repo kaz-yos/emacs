@@ -26,10 +26,10 @@
   :config
   ;; Suggested bindings for global
   ;; http://orgmode.org/manual/Activation.html#Activation
-  (global-set-key "\C-cl" 'org-store-link)
-  (global-set-key "\C-ca" 'org-agenda)
-  (global-set-key "\C-cc" 'org-capture)
-  (global-set-key "\C-cb" 'org-iswitchb)
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (global-set-key (kbd "C-c b") 'org-iswitchb)
   ;; Key bindings
   (define-key org-mode-map (kbd "<C-tab>") 'other-window-or-split)
   (define-key org-mode-map (kbd "<A-tab>") 'org-global-cycle)
