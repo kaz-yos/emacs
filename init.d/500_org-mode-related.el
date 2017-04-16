@@ -223,9 +223,16 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
     (interactive)
     (save-buffer)
     (org-beamer-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST))
+  ;;
+  (defun org-latex-export-to-latex-save ()
+    "Export to latex .tex file after saving."
+    (interactive)
+    (save-buffer)
+    (org-latex-export-to-latex))
   ;; Keys
   (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf-async)
   (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf-async)
+  (define-key org-mode-map (kbd "A-l") 'org-latex-export-to-latex-save)
   ;;
   ;; auto-revert in org-stack-mode
   (add-hook 'org-export-stack-mode-hook #'turn-on-auto-revert-mode)
