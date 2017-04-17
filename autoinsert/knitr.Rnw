@@ -13,7 +13,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{wasysym}
-\newcommand{\ind}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
 %% Allow new page within align
 \allowdisplaybreaks
 \usepackage{cancel}
