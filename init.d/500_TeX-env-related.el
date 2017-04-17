@@ -68,7 +68,7 @@
                (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
   ;;
   ;;
-;;;  Add commands
+;;;  TeX-command-list
   ;; 4.1.2 Selecting and Executing a Command
   ;; https://www.gnu.org/software/auctex/manual/auctex/Selecting-a-Command.html
   ;; %s becomes the file name without .tex, but .Rnw is not removed correctly.
@@ -81,44 +81,30 @@
   ;; 4. if nil directly executed
   ;; 5. if t, appears in all modes
   (add-hook 'LaTeX-mode-hook
-            (function (lambda ()
-                        (add-to-list 'TeX-command-list
-                                     '("Preview" "/usr/bin/open -a Preview.app %s.pdf"
-                                       TeX-run-discard-or-function nil t :help "Run Preview"))
-                        (add-to-list 'TeX-command-list
-                                     '("Skim" "/usr/bin/open -a Skim.app %s.pdf"
-                                       TeX-run-discard-or-function nil t :help "Run Skim"))
-                        ;; Replace original View
-                        (add-to-list 'TeX-command-list
-                                     '("View" "/usr/bin/open -a Skim.app %s.pdf"
-                                       TeX-run-discard-or-function nil t :help "Run Skim"))
-                        ;; Original BibTeX
-                        (add-to-list 'TeX-command-list
-                                     '("BibTeX" "bibtex %s"
-                                       TeX-run-BibTeX nil t :help "Run BibTeX"))
-                        ;; BibTeX alternative
-                        (add-to-list 'TeX-command-list
-                                     '("alt-BibTeX" "/Library/TeX/texbin/bibtex %s"
-                                       TeX-run-discard-or-function nil t :help "Run BibTeX (alternative)"))
-                        ;;
-                        (add-to-list 'TeX-command-list
-                                     '("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %s.pdf \"%b\""
-                                       TeX-run-discard-or-function t t :help "Forward search with Skim"))
-                        ;; TeXShop for PDF
-                        ;; Source - Configure for External Editor
-                        ;; Preview - Automatic Preview Update
-                        (add-to-list 'TeX-command-list
-                                     '("TeXShop" "/usr/bin/open -a TeXShop.app %s.pdf"
-                                       TeX-run-discard-or-function t t :help "Run TeXShop"))
-                        (add-to-list 'TeX-command-list
-                                     '("TeXworks" "/usr/bin/open -a TeXworks.app %s.pdf"
-                                       TeX-run-discard-or-function t t :help "Run TeXworks"))
-                        (add-to-list 'TeX-command-list
-                                     '("Firefox" "/usr/bin/open -a Firefox.app %s.pdf"
-                                       TeX-run-discard-or-function t t :help "Run Mozilla Firefox"))
-                        (add-to-list 'TeX-command-list
-                                     '("AdobeReader" "/usr/bin/open -a \"Adobe Reader.app\" %s.pdf"
-                                       TeX-run-discard-or-function t t :help "Run Adobe Reader")))))
+            (function
+             (lambda ()
+               (add-to-list 'TeX-command-list
+                            '("Preview" "/usr/bin/open -a Preview.app %s.pdf"
+                              TeX-run-discard-or-function nil t :help "Run Preview"))
+               (add-to-list 'TeX-command-list
+                            '("Skim" "/usr/bin/open -a Skim.app %s.pdf"
+                              TeX-run-discard-or-function nil t :help "Run Skim"))
+               ;; Replace original View
+               (add-to-list 'TeX-command-list
+                            '("View" "/usr/bin/open -a Skim.app %s.pdf"
+                              TeX-run-discard-or-function nil t :help "Run Skim"))
+               ;; Original BibTeX
+               (add-to-list 'TeX-command-list
+                            '("BibTeX" "bibtex %s"
+                              TeX-run-BibTeX nil t :help "Run BibTeX"))
+               ;; BibTeX alternative
+               (add-to-list 'TeX-command-list
+                            '("alt-BibTeX" "/Library/TeX/texbin/bibtex %s"
+                              TeX-run-discard-or-function nil t :help "Run BibTeX (alternative)"))
+               ;;
+               (add-to-list 'TeX-command-list
+                            '("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %s.pdf \"%b\""
+                              TeX-run-discard-or-function t t :help "Forward search with Skim")))))
   ;;
   ;;
 ;;;  Japanese setting
