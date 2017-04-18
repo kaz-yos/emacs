@@ -40,3 +40,4 @@ url/
 /packages/
 snippets/text-mode/peer
 /misc/hunspell.en
+/init.d/000_misc.el
