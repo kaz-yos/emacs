@@ -69,7 +69,15 @@
               :after 'my-recenter-top)
   (advice-add 'magit-section-forward-sibling
               :after 'my-recenter-top)
-  )
+  ;;
+;;;  magit-gitflow.el
+  ;; https://github.com/jtatarik/magit-gitflow
+  (use-package magit-gitflow
+    :config
+    (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
+
+
+
 
 
 ;;; git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
