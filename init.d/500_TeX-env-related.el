@@ -10,7 +10,15 @@
 ;; https://github.com/jwiegley/use-package/issues/379
 (use-package tex
   :defines (latex-help-cmd-alist latex-help-file)
+  :commands (my-tex-insert-backslash
+             my-tex-insert-forwardslash
+             my-tex-insert-semicolon)
   :mode ("\\.tex\\'" . TeX-latex-mode)
+  :init
+  (add-hook 'LaTeX-mode-hook
+            '(lambda ()
+               (local-set-key (kbd   ";") 'my-tex-insert-backslash)
+               (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
   :config
   ;; Automatically save style information when saving the buffer.
   (setq TeX-auto-save t)
@@ -62,10 +70,6 @@
   (defun my-tex-insert-semicolon ()
     (interactive)
     (insert ";"))
-  (add-hook 'LaTeX-mode-hook
-            '(lambda ()
-               (local-set-key (kbd   ";") 'my-tex-insert-backslash)
-               (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
   ;;
   ;;
 ;;;  TeX-command-list
