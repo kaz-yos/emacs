@@ -73,6 +73,8 @@
 ;;;  magit-gitflow.el
   ;; https://github.com/jtatarik/magit-gitflow
   (use-package magit-gitflow
+    :init
+    (setq magit-gitflow-popup-key "C-c f")
     :config
     (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
 
