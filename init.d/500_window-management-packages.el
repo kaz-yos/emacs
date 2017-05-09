@@ -1,6 +1,14 @@
 ;;; 500_window-management-packages.el ---            -*- lexical-binding: t; -*-
 
 ;;;
+;;; sticky-windows.el
+(use-package sticky-windows
+  :commands (sticky-window-keep-window-visible
+             sticky-window-delete-window
+             sticky-window-delete-other-windows))
+
+
+;;;
 ;;; windresize for M-x windresize
 ;; M-x windresize, arrows, C-g for cancel, RET to save
 (use-package windresize
