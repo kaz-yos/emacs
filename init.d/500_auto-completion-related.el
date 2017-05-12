@@ -107,6 +107,23 @@
   (setq company-selection-wrap-around t)
   ;; Now donwcasing
   (setq company-dabbrev-downcase nil)
+  ;;
+  ;; Avoid completing Japanese letters in company-dabbrev
+  ;; http://qiita.com/wktkshn/items/3ac46671d1c242a59f7e
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Syntax-Tables.html
+  ;; http://emacs.rubikitch.com/syntax-table-beginner/
+  (defun edit-category-table-for-company-dabbrev (&optional table)
+    "Create a syntax table consisting only of ascii letters for company dabbrev."
+    (define-category ?s "word constituents for company-dabbrev" table)
+    (let ((i 0))
+      (while (< i 128)
+        (if (equal ?w (char-syntax i))
+            (modify-category-entry i ?s table)
+          (modify-category-entry i ?s table t))
+        (setq i (1+ i)))))
+  (edit-category-table-for-company-dabbrev)
+  (setq company-dabbrev-char-regexp "\\cs")
+  ;;
   ;; Keys
   (global-set-key (kbd "A-<tab>") 'company-complete)
   (global-set-key (kbd "A-i") 'company-complete)
