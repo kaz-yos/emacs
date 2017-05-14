@@ -41,6 +41,8 @@
   (add-hook 'scheme-mode-hook     'rainbow-delimiters-mode)
   (add-hook 'ess-mode-hook        'rainbow-delimiters-mode)
   (add-hook 'hy-mode-hook         'rainbow-delimiters-mode)
+  (add-hook 'c-mode-hook          'rainbow-delimiters-mode)
+  (add-hook 'c++-mode-hook        'rainbow-delimiters-mode)
   ;;
   :config
   ;; http://ergoemacs.org/misc/emacs_rainbow-delimiters-mode.html
