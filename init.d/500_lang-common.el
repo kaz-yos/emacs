@@ -97,3 +97,14 @@
   (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
   (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
   (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history))
+
+
+
+;;;
+;;; dumb-jump.el
+;; https://github.com/jacktasia/dumb-jump
+(use-package dumb-jump
+  :config
+  ;; https://github.com/jacktasia/dumb-jump#emacs-options
+  (setq dumb-jump-selector 'ivy)
+  (setq dumb-jump-use-visible-window t))
