@@ -725,7 +725,7 @@
  '(magit-branch-current ((t (:inherit magit-branch-local :box (:line-width 2) :height 1.3 :weight ultra-bold))))
  '(magit-head ((t (:inherit magit-branch-current))))
  '(magit-branch-remote ((t (:foreground "DarkSeaGreen2" :box (:line-width 1)))))
- '(magit-tag ((t (:foreground "Gray30" :background "LightGoldenrod2"))))
+ '(magit-tag ((t (:background "DarkGoldenrod4" :foreground "LightGoldenrod2" :box (:line-width 1)))))
  '(magit-diff-context-highlight ((t (:foreground nil :background nil))))
  '(magit-diff-added ((t (:foreground "SpringGreen3"))))
  '(magit-diff-added-highlight ((t (:foreground "SpringGreen3"))))
