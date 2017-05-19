@@ -108,3 +108,13 @@
   ;; https://github.com/jacktasia/dumb-jump#emacs-options
   (setq dumb-jump-selector 'ivy)
   (setq dumb-jump-use-visible-window t))
+
+
+;;;
+;;; Save and compile function
+;; http://stackoverflow.com/questions/2062492/save-and-compile-automatically
+(defun save-all-and-compile ()
+  "Save buffers with changes before compiling"
+  (interactive)
+  (save-some-buffers 1)
+  (compile compile-command))
