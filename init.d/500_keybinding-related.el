@@ -167,7 +167,7 @@ This should be run after running multiple-cursors"
   ;;
 ;;;  SML
   (defun smartchr-sml-mode-set ()
-    (local-set-key (kbd "=") (smartchr '(" = " " => " "=")))
+    (local-set-key (kbd "=") (smartchr '("=" " = " " => ")))
     (local-set-key (kbd ":") (smartchr '(" : " "::"))))
   (add-hook 'sml-mode-hook 'smartchr-sml-mode-set)
   (fset 'smartchr-sml-mode-unset (smartchr-construct-unsetter 'smartchr-sml-mode-set))
@@ -200,7 +200,7 @@ This should be run after running multiple-cursors"
   ;;
 ;;;  Haskell
   (defun smartchr-haskell-mode-set ()
-    (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
+    (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
     (local-set-key (kbd "+") (smartchr '(" + " " ++ " "+")))
     (local-set-key (kbd "-") (smartchr '(" - " " -> " "-")))
     (local-set-key (kbd ":") (smartchr '(" : " " :: " ":"))))
@@ -209,9 +209,16 @@ This should be run after running multiple-cursors"
   ;;
 ;;;  Ruby
   (defun smartchr-ruby-mode-set ()
-    (local-set-key (kbd "=") (smartchr '(" = " " == " "="))))
+    (local-set-key (kbd "=") (smartchr '("=" " = " " == "))))
   (add-hook 'ruby-mode-hook 'smartchr-ruby-mode-set)
   (fset 'smartchr-ruby-mode-unset (smartchr-construct-unsetter 'smartchr-ruby-mode-set))
+  ;;
+;;;  C++
+  (defun smartchr-c++-mode-set ()
+    (local-set-key (kbd "=") (smartchr '("=" " = " " == "))))
+  (add-hook 'c++-mode-hook 'smartchr-c++-mode-set)
+  (fset 'smartchr-c++-mode-unset (smartchr-construct-unsetter 'smartchr-c++-mode-set))
+  ;;
   ;;
   ;; Define an auto-loadable function
   :commands (smartchr))
