@@ -68,6 +68,9 @@
        ;; SML
        ((or (equal major-mode 'sml-mode))
         (setq regexp "^(\\*\\*"))
+       ;; C++
+       ((or (equal major-mode 'c++-mode))
+        (setq regexp "^///"))
        ;; LaTeX
        ((or (equal major-mode 'latex-mode)
             (equal major-mode 'tex-mode))
