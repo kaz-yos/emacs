@@ -8,7 +8,7 @@
   ;;                              (format " [%s]"
   ;;                                      (projectile-project-name))))
   ;; Static lighter with no evaluation
-  (setq projectile-mode-line " Pjtl")
+  (setq projectile-mode-line " Prj")
   ;;
   ;; Enable Projectile globally
   ;; 2015-01-01 error *** Eval error ***  End of file during parsing
