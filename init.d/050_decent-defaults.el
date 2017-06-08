@@ -35,11 +35,14 @@
 (defun set-gc-cons-threshold-max ()
   "Set gc-cons-threshold to maximum"
   (setq gc-cons-threshold most-positive-fixnum))
+(set-gc-cons-threshold-max)
+;;;
 (defun set-gc-cons-threshold-normal ()
-  "Set gc-cons-threshold to 80MB"
-  (setq gc-cons-threshold 80000000))
-(add-hook 'minibuffer-setup-hook #'set-gc-cons-threshold-max)
-(add-hook 'minibuffer-exit-hook #'set-gc-cons-threshold-normal)
+  "Set gc-cons-threshold to some reasonable value"
+  (setq gc-cons-threshold 8000000))
+(add-hook 'after-init-hook 'set-gc-cons-threshold-normal)
+;; (add-hook 'minibuffer-setup-hook #'set-gc-cons-threshold-max)
+;; (add-hook 'minibuffer-exit-hook #'set-gc-cons-threshold-normal)
 
 
 ;;;
