@@ -32,6 +32,7 @@
 
 ;;;
 ;;; help-fns+.el
+;; https://www.emacswiki.org/emacs/help-fns%2B.el
 (use-package help-fns+
   :commands (describe-buffer
              describe-command
@@ -42,3 +43,17 @@
              describe-file
              describe-keymap
              find-function-on-key))
+
+
+;;;
+;;; helpful.el
+;; https://github.com/Wilfred/helpful
+(use-package helpful
+  ;; This does not work, and breaks other C-S-h bindings
+  ;; :bind (("C-S-h f" . helpful-functions))
+  :commands (helpful-mode
+             helpful-macro
+             helpful-update
+             helpful-command
+             helpful-functions
+             helpful-visit-reference))
