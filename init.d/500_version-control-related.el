@@ -72,6 +72,8 @@
   ;;
 ;;;  magit-gitflow.el
   ;; https://github.com/jtatarik/magit-gitflow
+  ;; Need to install gitflow-avh (brew install git-flow-avh).
+  ;; https://github.com/petervanderdoes/gitflow-avh
   (use-package magit-gitflow
     :init
     (setq magit-gitflow-popup-key "C-c f")
