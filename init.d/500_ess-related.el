@@ -15,7 +15,8 @@
   ;;
   ;; https://github.com/jwiegley/use-package#modes-and-interpreters
   :mode (("\\.R\\'" . r-mode)
-         ("\\.sas\\'" . sas-mode))
+         ("\\.sas\\'" . sas-mode)
+         ("\\.jags\\'" . ess-jags-mode))
   :interpreter (("R" . r-mode)
                 ("SAS" . sas-mode))
   ;;
