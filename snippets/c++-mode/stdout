@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: stdout
+# key: out
+# --
+std::cout << $0

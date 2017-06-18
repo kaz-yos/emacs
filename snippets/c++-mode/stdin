@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: stdin
+# key: stdin
+# --
+std::cin >> $0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pdb
+# key: pdb
+# --
+if (pdb$1) {std::cout << "\n";}
