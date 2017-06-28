@@ -191,13 +191,21 @@
 ;; Book by rubikitch p59
 ;; http://www.emacswiki.org/emacs/SaveHist
 (savehist-mode 1)
+;; https://stackoverflow.com/questions/1229142/how-can-i-save-my-mini-buffer-history-in-emacs
+(setq savehist-file (concat user-emacs-directory
+                            "history"
+                            "_"
+                            system-name))
 
 
 ;;;
 ;;; Remeber the cursor position in a file
 (use-package saveplace
   :config
-  (setq save-place-file "~/.emacs.d/emacs-places")
+  (setq save-place-file (concat user-emacs-directory
+                                "emacs-places"
+                                "_"
+                                system-name))
   ;; New in 25.1
   (save-place-mode t))
 

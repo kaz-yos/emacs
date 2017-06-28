@@ -2,7 +2,11 @@
 ;; https://www.emacswiki.org/emacs/RecentFiles
 (use-package recentf
   :config
-  (setq recentf-save-file  "~/.emacs.d/recentf")
+  ;; Make machine-specific
+  (setq recentf-save-file (concat user-emacs-directory
+                                  "recentf"
+                                  "_"
+                                  system-name))
   (setq recentf-max-saved-items 3000)
   (setq recentf-exclude '("recentf$"
                           ".*\\.maildir.*"
