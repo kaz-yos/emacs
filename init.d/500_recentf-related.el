@@ -6,7 +6,7 @@
   (setq recentf-save-file (concat user-emacs-directory
                                   "recentf"
                                   "_"
-                                  system-name))
+                                  (system-name-sans-domain)))
   (setq recentf-max-saved-items 3000)
   (setq recentf-exclude '("recentf$"
                           ".*\\.maildir.*"

@@ -187,6 +187,15 @@
 
 
 ;;;
+;;; Define system-name-sans-domain
+;; https://groups.google.com/forum/#!topic/gnu.emacs.help/pGzHlR2GByY
+(defun system-name-sans-domain ()
+  "name of computer, sans domain name (use system-name for the FQDN)"
+  (let ((n (system-name)))
+    (substring n 0 (string-match "\\." n))))
+
+
+;;;
 ;;; Retain history between sessions
 ;; Book by rubikitch p59
 ;; http://www.emacswiki.org/emacs/SaveHist
@@ -195,7 +204,7 @@
 (setq savehist-file (concat user-emacs-directory
                             "history"
                             "_"
-                            system-name))
+                            (system-name-sans-domain)))
 
 
 ;;;
@@ -205,7 +214,7 @@
   (setq save-place-file (concat user-emacs-directory
                                 "emacs-places"
                                 "_"
-                                system-name))
+                                (system-name-sans-domain)))
   ;; New in 25.1
   (save-place-mode t))
 
