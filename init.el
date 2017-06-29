@@ -20,22 +20,22 @@
 ;; You may delete these explanatory comments.
 ;; (package-initialize)
 
-(let ((default-directory "~/.emacs.d/elpa/"))
+(let ((default-directory (concat user-emacs-directory "elpa/")))
   (normal-top-level-add-subdirs-to-load-path))
 ;;
 ;; el-get.el package system 2013-02-26 (additional configuration further below)
 ;; https://github.com/dimitri/el-get
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get/")
+(add-to-list 'load-path (concat user-emacs-directory "el-get/el-get/"))
 ;;
 ;; Packages added by auto-install (put no subfolders)
-(add-to-list 'load-path "~/.emacs.d/auto-install/")
+(add-to-list 'load-path (concat user-emacs-directory "auto-install/"))
 ;;
 ;; Packages added manually (intentionally not recursive)
-(add-to-list 'load-path "~/.emacs.d/plugins/")
+(add-to-list 'load-path (concat user-emacs-directory "plugins/"))
 ;;
 ;; Configure the custom theme directory
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Creating-Custom-Themes.html#Creating-Custom-Themes
-(setq custom-theme-directory "~/.emacs.d/themes/")
+(setq custom-theme-directory (concat user-emacs-directory "themes/"))
 
 ;;; initchart.el start up process visualizer
 ;; (require 'initchart)
@@ -52,7 +52,7 @@
 ;; Always report errors and logs (default t)
 (setq init-loader-show-log-after-init t)
 ;; Load appropriate files in this directory
-(init-loader-load "~/.emacs.d/init.d")
+(init-loader-load (concat user-emacs-directory "init.d"))
 ;;
 ;; Note that not all files in the directory are loaded.  Each file is
 ;; examined that if it is a .el or .elc file and, it has a valid name
