@@ -8,7 +8,8 @@
                                   "_"
                                   (system-name-sans-domain)))
   (setq recentf-max-saved-items 3000)
-  (setq recentf-exclude '("recentf$"
+  (setq recentf-exclude '("recentf_.*$"
+                          ".*/elpa/.*"
                           ".*\\.maildir.*"
                           "/var/folders/.*"
                           ".*company-statistics.*"))
