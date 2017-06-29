@@ -121,14 +121,12 @@
 (use-package swiper-helm
   :commands (swiper
              swiper-helm
-             swiper-helm-at-point
              swiper-helm-from-isearch)
   :bind (("s-s" . swiper-helm-at-point)
          ("C-s-s" . swiper-helm))
   :bind (:map isearch-mode-map
               ("s-s" . swiper-helm-from-isearch))
-  ;; Configuration
-  :config
+  :init
   ;; Newly defined
   (defun swiper-helm-at-point ()
     "Custom function to pick up a thing at a point for swiper-helm
@@ -139,12 +137,15 @@ searched. If there is no symbol, empty search box is started."
     (interactive)
     (swiper-helm (cond
                   ;; If there is selection use it
-                  ((and transient-mark-mode mark-active (not (eq (mark) (point))))
+                  ((and transient-mark-mode mark-active
+                        (not (eq (mark) (point))))
                    (buffer-substring-no-properties (mark) (point)))
                   ;; Otherwise, use symbol at point or empty
                   (t (format "%s"
                              (or (thing-at-point 'symbol)
-                                 "")))))))
+                                 ""))))))
+  ;; Configuration
+  :config)
 
 
 ;;;
