@@ -17,10 +17,10 @@
 
 ;;; Show last several messages in the mini-buffer.
 ;; http://mbork.pl/2017-05-01_show-some-last-messages
-(defcustom default-messages-to-show 4
-  "Default number of messages for `show-some-last-messages'.")
+(defcustom default-messages-to-show 10
+  "Default number of messages for `show-last-several-messages'.")
 ;;
-(defun show-some-last-messages (count)
+(defun show-last-several-messages (count)
   "Show COUNT last lines of the `*Messages*' buffer."
   (interactive "P")
   (setq count (if count (prefix-numeric-value count)
