@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: logit
+# key: logit
+# --
+\log \left( \frac{$1}{1 - $1} \right)$0
