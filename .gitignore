@@ -46,3 +46,4 @@ company-statistics-cache_*.el
 snippets/text-mode/peer
 /misc/hunspell.en
 /init.d/000_misc.el
+/mc-lists.el
