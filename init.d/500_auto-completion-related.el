@@ -154,8 +154,17 @@
 ;; Sort completion candidates by previous completion choices
 ;; https://github.com/company-mode/company-statistics
 (use-package company-statistics
-  :commands (company-statistics-mode))
-(add-hook 'company-mode-hook 'company-statistics-mode)
+  :init
+  (add-hook 'company-mode-hook 'company-statistics-mode)
+  ;;
+  :commands (company-statistics-mode)
+  ;;
+  :config
+  (setq company-statistics-file (concat user-emacs-directory
+                                        "company-statistics-cache"
+                                        "_"
+                                        (system-name-sans-domain)
+                                        ".el")))
 ;;
 ;;
 ;;; company-quickhelp.el
