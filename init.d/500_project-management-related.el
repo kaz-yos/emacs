@@ -10,6 +10,17 @@
   ;; Static lighter with no evaluation
   (setq projectile-mode-line " Prj")
   ;;
+  ;; Machine specific cache files
+  (setq projectile-cache-file (concat user-emacs-directory
+                                      "projectile-cache"
+                                      "_"
+                                      (system-name-sans-domain)))
+  (setq projectile-known-projects-file (concat user-emacs-directory
+                                               "projectile-bookmarks"
+                                               "_"
+                                               (system-name-sans-domain)
+                                               ".eld"))
+  ;;
   ;; Enable Projectile globally
   ;; 2015-01-01 error *** Eval error ***  End of file during parsing
   ;; 2015-01-11 Solved by deleting .emacs.d/projectile-bookmarks.eld
