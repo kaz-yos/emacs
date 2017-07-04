@@ -8,7 +8,7 @@
   :ensure t
   :diminish helm-mode
   :init
-  (require 'helm-config)
+  (use-package helm-config)
   :bind (("M-x" .     helm-M-x)
          ;; ("C-M-x" .   execute-extended-command)
          ("C-z" .     helm-for-files)
@@ -28,7 +28,7 @@
   :config
   ;; Make helm-mark-ring follow
   ;; https://groups.google.com/forum/#!topic/emacs-helm/US8FWnfRu5o
-  (require 'helm-ring)
+  (use-package helm-ring)
   (add-hook 'helm-before-initialize-hook
             #'(lambda ()
                 ;; Set follow attribute to 1 (yes) for helm-source-mark-ring
@@ -168,3 +168,11 @@
              helm-hunks-staged-current-buffer)
   :config
   (add-hook 'helm-hunks-refresh-hook 'git-gutter+-refresh))
+
+
+;;; helm-git-grep.el
+;; https://github.com/yasuyk/helm-git-grep
+(use-package helm-git-grep
+  :commands (helm-git-grep
+             helm-git-grep-from-isearch
+             helm-git-grep-from-helm))
