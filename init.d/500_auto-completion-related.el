@@ -189,6 +189,9 @@
 ;;; ivy.el
 (use-package ivy
   :config
+  ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "%d/%d ")
   ;; Additional keys
   ;; ivy-immediate-done finishes without completion
   (define-key ivy-minibuffer-map (kbd "C-<return>") 'ivy-immediate-done)
