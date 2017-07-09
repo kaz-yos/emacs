@@ -112,20 +112,48 @@
              phi-search-backward))
 
 
-;;;
-;;; swiper.el / swiper-helm.el
+
+;;; SWIPER-RELATED
+;;;  swiper.el
 ;; https://github.com/abo-abo/swiper
-;; https://github.com/abo-abo/swiper-helm
 ;; http://pragmaticemacs.com/emacs/dont-search-swipe/
 ;; http://pragmaticemacs.com/emacs/search-or-swipe-for-the-current-word/
-(use-package swiper-helm
-  :commands (swiper
-             swiper-helm
-             swiper-helm-from-isearch)
-  :bind (("s-s" . swiper-helm-at-point)
-         ("C-s-s" . swiper-helm))
+(use-package swiper
+  :commands (swiper)
+  :bind (("s-s" . swiper-at-point)
+         ("C-s-s" . swiper))
   :bind (:map isearch-mode-map
-              ("s-s" . swiper-helm-from-isearch))
+              ("s-s" . swiper-from-isearch))
+  :init
+  ;; Newly defined
+  (defun swiper-at-point ()
+    "Custom function to pick up a thing at a point for swiper
+
+If a selected region exists, it will be searched for by swiper
+If there is a symbol at the current point, its textual representation is
+searched. If there is no symbol, empty search box is started."
+    (interactive)
+    (swiper (cond
+             ;; If there is selection use it
+             ((and transient-mark-mode mark-active
+                   (not (eq (mark) (point))))
+              (buffer-substring-no-properties (mark) (point)))
+             ;; Otherwise, use symbol at point or empty
+             (t (format "%s"
+                        (or (thing-at-point 'symbol)
+                            ""))))))
+  ;;
+  :config)
+;;
+;;;  swiper-helm.el
+;; https://github.com/abo-abo/swiper-helm
+(use-package swiper-helm
+  :commands (swiper-helm
+             swiper-helm-from-isearch)
+  ;; :bind (("s-s" . swiper-helm-at-point)
+  ;;        ("C-s-s" . swiper-helm))
+  ;; :bind (:map isearch-mode-map
+  ;;             ("s-s" . swiper-helm-from-isearch))
   :init
   ;; Newly defined
   (defun swiper-helm-at-point ()
