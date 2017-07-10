@@ -208,15 +208,16 @@ searched. If there is no symbol, empty search box is started."
 ;; (advice-add :around )
 
 
-
 ;;;
-;;; moccur-edit.el
+;;; MULTIPLE FILE GREP AND EDIT RELATED
+;;;  color-moccur.el/moccur-edit.el
 ;; Requires color-moccur.el (elpa)
 ;; http://www.bookshelf.jp/elc/moccur-edit.el
 ;; http://d.hatena.ne.jp/higepon/20061226/1167098839
 ;; http://d.hatena.ne.jp/sandai/20120304/p2
 (use-package color-moccur
-  :commands (moccur-grep)
+  :commands (moccur-grep
+             moccur-grep-find)
   :bind (("s-m" . moccur-grep)
          ;; https://github.com/jwiegley/use-package#the-basics
          :map isearch-mode-map
@@ -231,33 +232,44 @@ searched. If there is no symbol, empty search box is started."
   ;; Usage:
   ;; M-x moccur-grep to enter Moccur-grep, then objectName .R$
   ;; r/C-x C-q/C-c C-i to enter Moccur-edit. C-x C-s to save, C-c C-k
-  (require 'moccur-edit)
-  ;; Modified buffers are saved automatically.
-  (defadvice moccur-edit-change-file
-      (after save-after-moccur-edit-buffer activate)
-    (save-buffer)))
+  (use-package moccur-edit
+    :config
+    ;; Modified buffers are saved automatically.
+    (defadvice moccur-edit-change-file
+        (after save-after-moccur-edit-buffer activate)
+      (save-buffer))))
 
-
-;;;
-;;; ag.el and wgrep-ag.el. Faster replacement for moccur-edit.el 2014-01-14
-;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
+;;;  ag.el/wgrep-ag.el.
 ;; https://github.com/Wilfred/ag.el
+;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
 ;; ag.el
 (use-package ag
   :commands (ag)
+  ;;
   :config
-  (setq ag-arguments '("--smart-case" "--group" "--column" "--"))	; grouping is better.
+  ;; grouping is better.
+  (setq ag-arguments '("--smart-case" "--group" "--column" "--"))
   (setq ag-highlight-search t)
   (setq ag-reuse-buffers t)
   (setq ag-reuse-window t)
   ;;
-  ;; Editing
-  (require 'wgrep-ag)
-  (add-hook 'ag-mode-hook 'wgrep-ag-setup)
-  ;; r/C-x C-q/C-c C-i to enter edit mode. C-x C-s to save, C-c C-k
-  (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
-  (define-key ag-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode)
-  (define-key ag-mode-map (kbd "C-c C-i") 'wgrep-change-to-wgrep-mode))
+  ;; Editing via wgrep-ag.el
+  (use-package wgrep-ag
+    :config
+    (add-hook 'ag-mode-hook 'wgrep-ag-setup)
+    ;; r/C-x C-q/C-c C-i to enter edit mode. C-x C-s to save, C-c C-k
+    (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
+    (define-key ag-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode)
+    (define-key ag-mode-map (kbd "C-c C-i") 'wgrep-change-to-wgrep-mode)))
+
+;;;  rg.el
+;; https://github.com/dajva/rg.el
+(use-package rg
+  :commands (rg)
+  ;;
+  :config
+  ;; wgrep compatibility (requires wgrep-ag.el)
+  (add-hook 'rg-mode-hook 'wgrep-ag-setup))
 
 
 ;;;
@@ -360,7 +372,7 @@ searched. If there is no symbol, empty search box is started."
 
 ;;;
 ;;; AVY-RELATED
-;;; avy.el
+;;;  avy.el
 ;; More powerful reimplementation of ace-jump-mode
 ;; https://github.com/abo-abo/avy
 ;; http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/
@@ -515,7 +527,7 @@ This function obeys `avy-all-windows' setting."
   )
 ;;
 ;;
-;;; ace-window.el
+;;;  ace-window.el
 ;; Window selection using avy.el (no dependency on ace-jump-mode.el)
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
@@ -534,7 +546,7 @@ This function obeys `avy-all-windows' setting."
   )
 ;;
 ;;
-;;; ace-jump-helm-line.el
+;;;  ace-jump-helm-line.el
 ;; Depends on avy.el not ace-jump-mode.el
 ;; https://github.com/cute-jumper/ace-jump-helm-line
 (use-package ace-jump-helm-line
