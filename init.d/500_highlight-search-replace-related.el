@@ -119,11 +119,14 @@
 ;; http://pragmaticemacs.com/emacs/dont-search-swipe/
 ;; http://pragmaticemacs.com/emacs/search-or-swipe-for-the-current-word/
 (use-package swiper
-  :commands (swiper)
-  :bind (("s-s" . swiper-at-point)
-         ("C-s-s" . swiper))
-  :bind (:map isearch-mode-map
-              ("s-s" . swiper-from-isearch))
+  :commands (swiper
+             swiper-at-point)
+  :bind (("H-s" . swiper-at-point)
+         ("C-s-s" . swiper)
+         ;; Add bindings to isearch-mode
+         ;; :map isearch-mode-map
+         ;; ("s-s" . swiper-from-isearch)
+         )
   :init
   ;; Newly defined
   (defun swiper-at-point ()
