@@ -105,9 +105,12 @@
 ;; https://github.com/syohex/emacs-helm-ag
 ;; http://qiita.com/l3msh0@github/items/97909d6e2c92af3acc00
 (use-package helm-ag
-  :commands (helm-ag helm-ag-this-file)
+  :commands (helm-ag
+             helm-ag-this-file)
   :config
-  (setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
+  ;; No grouping makes more sense with narrowing by helm.
+  (setq helm-ag-base-command "ag --smart-case --nogroup --column")
+  ;; -t --all-text: Search all text files. This doesn't include hidden files.
   (setq helm-ag-command-option "--all-text")
   (setq helm-ag-thing-at-point 'symbol))
 
