@@ -48,6 +48,7 @@
   (define-key org-mode-map (kbd "A-M-k") 'org-metadown)
   (define-key org-mode-map (kbd "A-M-l") 'org-metaright)
   (define-key org-mode-map (kbd "A-M-j") 'org-metaleft)
+  ;; These are not working?
   (define-key org-mode-map (kbd "A-S-M-i") 'org-shiftmetaup)
   (define-key org-mode-map (kbd "A-S-M-k") 'org-shiftmetadown)
   (define-key org-mode-map (kbd "A-S-M-l") 'org-shiftmetaright)
@@ -150,23 +151,25 @@
   ;; https://github.com/jkitchin/org-ref
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
-  (use-package org-ref)
-  (define-key org-mode-map (kbd "C-A-a") 'org-ref-helm-insert-cite-link)
-  ;;
-  ;; Need to put these configurations within the org file.
-  ;; https://github.com/jkitchin/org-ref#screenshots
-  ;; https://www.sharelatex.com/learn/Bibtex_bibliography_styles
-  ;; http://sites.stat.psu.edu/~surajit/present/bib.htm
-  ;; bibliographystyle:unsrt
-  ;; bibliography:file_name.bib
-  ;;
-  (add-hook 'org-mode-hook 'zotelo-minor-mode)
+  (use-package org-ref
+    :init
+    (define-key org-mode-map (kbd "C-A-a") 'org-ref-helm-insert-cite-link)
+    ;;
+    ;; Need to put these configurations within the org file.
+    ;; https://github.com/jkitchin/org-ref#screenshots
+    ;; https://www.sharelatex.com/learn/Bibtex_bibliography_styles
+    ;; http://sites.stat.psu.edu/~surajit/present/bib.htm
+    ;; bibliographystyle:unsrt
+    ;; bibliography:file_name.bib
+    ;;
+    (add-hook 'org-mode-hook 'zotelo-minor-mode)
+    :config)
   ;;
   ;;
 ;;;
 ;;; Exporter configurations
   ;; ox.el --- Export Framework for Org Mode
-  (require 'ox)
+  (use-package ox)
   ;;
   ;; Asynchronous export is explained in ox.el
   ;; `org-export-in-background'
@@ -344,7 +347,7 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   ;;
 ;;;  Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
-  (require 'ox-beamer)
+  (use-package ox-beamer)
   ;; bold is bold not \alert{} (can appear as red text)
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html#export-filters
   (defun my-beamer-bold (contents backend info)
@@ -353,21 +356,21 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
   ;;
 ;;;  Regular markdown exporter
-  (require 'ox-md)
+  (use-package ox-md)
   ;;
 ;;;  Qiita-Markdown exporter
   ;; http://qiita.com/0x60df/items/3cde67967e3db30d9afe
-  (require 'ox-qmd)
+  (use-package ox-qmd)
   ;;
 ;;;  Publishing Org-mode files to HTML
   ;; http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
-  (require 'ox-publish)
+  (use-package ox-publish)
   ;;
-;;; org2jekyll.el
+;;;  org2jekyll.el
   ;; https://github.com/ardumont/org2jekyll#installsetup
   ;; jekyll installation
   ;; https://jekyllrb.com/docs/troubleshooting/#jekyll-amp-mac-os-x-1011
-  (require 'org2jekyll)
+  (use-package org2jekyll)
   ;; org2jekyll is about:
   ;;  - writing comfortably leveraging org-mode
   ;;  - converting your org-mode blog or page to html leveraging org-publish
@@ -457,5 +460,5 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   ;;
   ;; Pretty bullets
   ;; https://github.com/sabof/org-bullets
-  (require 'org-bullets)
+  (use-package org-bullets)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
