@@ -144,7 +144,7 @@
 
 ;;; helm-swoop.el
 (use-package helm-swoop
-  :bind (("s-s" . helm-swoop)
+  :bind (("H-s" . helm-swoop)
          ;; Give swoop additional bindings
          :map helm-swoop-map
          ("C-s" . swoop-action-goto-line-next)
