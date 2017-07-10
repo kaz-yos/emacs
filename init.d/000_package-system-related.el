@@ -65,7 +65,3 @@
 ;;
 ;;;  Packages installed via el-get
 ;;;   smartchr
-;;
-;; essh no longer on el-get as of 2015-10-05. Installed from emacswiki
-;; moccur-edit no longer on el-get as of 2015-10-05. Installed from emacswiki
-;; highlight-sexp no longer on el-get as of 2015-10-05. Installed from emacswiki
