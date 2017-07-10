@@ -2,4 +2,4 @@
 # name: pdb
 # key: pdb
 # --
-if (pdb$1) {std::cout << "\n";}
+if (pdb$1) {std::cout << "$0\n";}
