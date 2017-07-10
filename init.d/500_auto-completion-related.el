@@ -9,7 +9,7 @@
 
 ;;;
 ;;; AUTO-COMPLETE
-;;; auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
+;;;  auto-complete.el, auto-complete-config.el, fuzzy.el, popup.el downloaded from below URL
 ;; https://github.com/auto-complete/auto-complete
 ;; http://cx4a.org/software/auto-complete/manual.html
 (use-package auto-complete
@@ -82,7 +82,7 @@
 
 ;;;
 ;;; COMPANY-MODE (COMPlete ANYthing)
-;;; company.el
+;;;  company.el
 ;; Modular in-buffer completion framework for Emacs
 ;; http://company-mode.github.io
 ;; http://www.emacswiki.org/CompanyMode
@@ -150,7 +150,7 @@
 ;; auto-complete-like color setting
 ;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
 ;;
-;;; company-statistics.el
+;;;  company-statistics.el
 ;; Sort completion candidates by previous completion choices
 ;; https://github.com/company-mode/company-statistics
 (use-package company-statistics
@@ -167,7 +167,7 @@
                                         ".el")))
 ;;
 ;;
-;;; company-quickhelp.el
+;;;  company-quickhelp.el
 ;; Documentation popup for Company
 ;; https://github.com/expez/company-quickhelp
 (use-package company-quickhelp
@@ -175,7 +175,7 @@
   :config
   (company-quickhelp-mode 1))
 ;;
-;;; company-try-hard.el
+;;;  company-try-hard.el
 ;; https://github.com/Wilfred/company-try-hard
 (use-package company-try-hard
   :commands (company-try-hard)
@@ -186,7 +186,7 @@
 ;;;
 ;;; IVY-RELATED
 ;;
-;;; ivy.el
+;;;  ivy.el
 (use-package ivy
   :config
   ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
@@ -198,8 +198,15 @@
   ;; Activate
   (ivy-mode 1))
 ;;
-;;; counsel.el
+;;;  counsel.el
 (use-package counsel)
+
+
+;;;
+;;; git-complete.el
+;; Yet another completion engine powered by git grep
+;; https://github.com/zk-phi/git-complete
+(use-package git-complete)
 
 
 ;;;
