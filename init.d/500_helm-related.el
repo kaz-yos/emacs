@@ -186,3 +186,11 @@
 (use-package helm-elscreen
   :commands (helm-elscreen)
   :bind ("C-; h" . helm-elscreen))
+
+
+;;;  helm-directory.el
+;; https://github.com/masasam/emacs-helm-directory
+(use-package helm-directory
+  :commands (helm-directory)
+  :config
+  (setq helm-directory-basedir "~"))
