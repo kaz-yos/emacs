@@ -76,7 +76,7 @@
 ;;;
 ;;; Optional helm packages
 ;;
-;;; helm-descbinds.el
+;;;  helm-descbinds.el
 ;; Replace describe-bindings with helm interface
 ;; http://emacs-jp.github.io/packages/helm/helm-descbinds.html
 ;; http://d.hatena.ne.jp/buzztaiki/20081115/1226760184 (anything version)
@@ -86,7 +86,7 @@
   (helm-descbinds-mode))
 
 
-;;; helm-migemo.el
+;;;  helm-migemo.el
 ;; https://github.com/emacs-jp/helm-migemo
 ;; http://sleepboy-zzz.blogspot.com/2013/02/helm-migemo.html
 (use-package helm-migemo
@@ -95,13 +95,13 @@
   :if (eq system-type 'darwin))
 
 
-;;; wgrep-helm.el  2014-01-14
+;;;  wgrep-helm.el  2014-01-14
 ;; Writable helm-grep-mode buffer and apply the changes to files
 (use-package wgrep-helm
   :disabled t)
 
 
-;;; helm-ag.el
+;;;  helm-ag.el
 ;; https://github.com/syohex/emacs-helm-ag
 ;; http://qiita.com/l3msh0@github/items/97909d6e2c92af3acc00
 (use-package helm-ag
@@ -116,7 +116,7 @@
 
 
 
-;;; helm-open-github
+;;;  helm-open-github
 ;;  2014-02-01 OAutho required
 ;; http://shibayu36.hatenablog.com/entry/2013/01/18/211428
 (use-package helm-open-github
@@ -125,7 +125,7 @@
              helm-open-github-from-issues))
 
 
-;;; helm-mode-manager.el
+;;;  helm-mode-manager.el
 ;; Select and toggle major and minor modes with helm
 ;; https://github.com/istib/helm-mode-manager
 (use-package helm-mode-manager
@@ -134,7 +134,7 @@
              helm-disable-minor-mode))
 
 
-;;; helm-dash.el
+;;;  helm-dash.el
 ;; http://fukuyama.co/helm-dash
 ;; http://kapeli.com/dash
 (use-package helm-dash
@@ -142,7 +142,7 @@
              helm-dash-at-point))
 
 
-;;; helm-swoop.el
+;;;  helm-swoop.el
 (use-package helm-swoop
   :bind (("H-s" . helm-swoop)
          ;; Give swoop additional bindings
@@ -150,19 +150,19 @@
          ("C-s" . swoop-action-goto-line-next)
          ("C-r" . swoop-action-goto-line-prev)))
 
-;;; helm-bm.el
+;;;  helm-bm.el
 ;; https://github.com/jixiuf/helm-bm
 (use-package helm-bm
   :commands (helm-bm))
 
 
-;;; helm-google.el
+;;;  helm-google.el
 ;; https://github.com/steckerhalter/helm-google
 (use-package helm-google
   :commands (helm-google))
 
 
-;;; helm-hunks.el
+;;;  helm-hunks.el
 ;; https://github.com/torgeir/helm-hunks.el/blob/master/readme.md
 (use-package helm-hunks
   :commands (helm-hunks
@@ -173,9 +173,16 @@
   (add-hook 'helm-hunks-refresh-hook 'git-gutter+-refresh))
 
 
-;;; helm-git-grep.el
+;;;  helm-git-grep.el
 ;; https://github.com/yasuyk/helm-git-grep
 (use-package helm-git-grep
   :commands (helm-git-grep
              helm-git-grep-from-isearch
              helm-git-grep-from-helm))
+
+
+;;;  helm-elscreen.el
+;; https://github.com/emacs-helm/helm-elscreen
+(use-package helm-elscreen
+  :commands (helm-elscreen)
+  :bind ("C-; h" . helm-elscreen))
