@@ -194,3 +194,9 @@
   :commands (helm-directory)
   :config
   (setq helm-directory-basedir "~"))
+
+
+;;;  helm-tramp.el
+;; https://github.com/masasam/emacs-helm-tramp
+(use-package helm-tramp
+  :commands (helm-tramp))
