@@ -1,5 +1,7 @@
 ;;; 500_lang-clang.el ---                            -*- lexical-binding: t; -*-
 
+;;;
+;;; cc-mode.el
 (use-package cc-mode
   :config
   ;; Indentation
@@ -26,3 +28,12 @@
                " -lm -o "
                (file-name-sans-extension buffer-file-name)))))
   (add-hook 'c++-mode-hook #'c++compile-command-setter))
+
+
+;;;
+;;; company-c-headers.el
+;; https://github.com/randomphrase/company-c-headers
+(use-package company-c-headers
+  :commands (company-c-headers)
+  :init
+  (add-to-list 'company-backends 'company-c-headers))
