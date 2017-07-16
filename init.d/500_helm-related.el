@@ -38,8 +38,21 @@
   ;;
   ;; Restrict what to show in helm-for-files
   (setq helm-for-files-preferred-list '(helm-source-buffers-list helm-source-recentf))
-  ;; Disabled because it was giving an error 2013-11-22
-  (setq helm-locate-command "")
+  ;;
+  ;; locate command
+  ;; https://github.com/emacs-helm/helm/wiki/Locate
+  ;; https://github.com/syl20bnr/spacemacs/issues/3280
+  (setq helm-locate-command
+        (case system-type
+          ('gnu/linux "locate -i -r %s")
+          ('berkeley-unix "locate -i %s")
+          ('windows-nt "es %s")
+          ('darwin "mdfind -name %s %s")
+          (t "locate %s")))
+  (setq helm-locate-fuzzy-match
+        (case system-type
+          ('darwin nil)
+          (t 't)))
   ;;
   (setq helm-idle-delay 0.3)
   (setq helm-input-idle-delay 0.3)
