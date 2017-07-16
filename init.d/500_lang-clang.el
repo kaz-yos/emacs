@@ -34,6 +34,39 @@
 ;;; company-c-headers.el
 ;; https://github.com/randomphrase/company-c-headers
 (use-package company-c-headers
+  :disabled t
   :commands (company-c-headers)
+  ;;
   :init
-  (add-to-list 'company-backends 'company-c-headers))
+  (eval-after-load 'company
+    (add-to-list 'company-backends 'company-c-headers)))
+
+
+;;;
+;;; IRONY-RELATED
+;;;  irony-mode.el
+;; https://github.com/Sarcasm/irony-mode
+(use-package irony-mode
+  :commands (irony-mode)
+  ;;
+  :init
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'objc-mode-hook 'irony-mode))
+
+
+;;;  company-irony.el
+;; https://github.com/Sarcasm/company-irony/
+(use-package company-irony
+  :commands (company-irony)
+  ;;
+  :init
+  (eval-after-load 'company
+    '(add-to-list 'company-backends 'company-irony)))
+
+
+;;;  irony-eldoc.el
+(use-package irony-eldoc
+  :commands (irony-eldoc)
+  :init
+  (add-hook 'irony-mode-hook #'irony-eldoc))
