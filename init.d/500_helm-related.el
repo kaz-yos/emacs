@@ -22,6 +22,7 @@
          ;; ("C-;" .     helm-resume)
          ;; ("s-c" .     helm-occur)
          ("A-m" .     helm-mark-ring)
+         ("A-l" .     helm-locate)
          ;; ("M-z" .     helm-do-grep)
          ;; ("C-S-h" .   helm-descbinds)
          )
