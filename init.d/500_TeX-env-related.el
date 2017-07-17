@@ -20,10 +20,13 @@
                (local-set-key (kbd   ";") 'my-tex-insert-backslash)
                (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
   :config
-  ;; Automatically save style information when saving the buffer.
-  (setq TeX-auto-save t)
+  ;; 5.3 Automatic Parsing of TeX Files
+  ;; https://www.gnu.org/software/auctex/manual/auctex/Parsing-Files.html
   ;; Parse file after loading it if no style hook is found for it.
-  (setq TeX-parse-self t)
+  (setq TeX-parse-self nil)
+  ;; Automatically save style information when saving the buffer.
+  (setq TeX-auto-save nil)
+  ;;
   ;; If non-nil, show output of TeX compilation in other window.
   (setq TeX-show-compilation nil)
   ;; The master file associated with the current buffer.
