@@ -343,7 +343,11 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   ;; https://github.com/et2010/org-edit-latex
   (use-package org-edit-latex
     :config
-    (add-hook 'org-mode-hook 'org-edit-latex-mode))
+    (add-hook 'org-mode-hook 'org-edit-latex-mode)
+    (setq org-edit-latex-frag-master)
+    ;; whether to create a TeX-master file specified in org-edit-latex-frag-master.
+    ;; default file name "frag-master.tex".
+    (setq org-edit-latex-create-master nil))
   ;;
 ;;;  Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
