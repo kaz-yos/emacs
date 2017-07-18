@@ -24,6 +24,11 @@
                (car (last (file-expand-wildcards "~/.emacs.d/elpa/org-plus-contrib*"))))
   ;;
   :config
+  ;; Treat $ as a punctuation "." (" " for a whitespace) to avoid yasnippet malfunction.
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Syntax-Tables.html
+  ;; https://www.emacswiki.org/emacs/EmacsSyntaxTable
+  (modify-syntax-entry ?$  " "  text-mode-syntax-table)
+  ;;
   ;; Suggested bindings for global
   ;; http://orgmode.org/manual/Activation.html#Activation
   (global-set-key (kbd "C-c l") 'org-store-link)
@@ -344,7 +349,8 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   (use-package org-edit-latex
     :config
     (add-hook 'org-mode-hook 'org-edit-latex-mode)
-    (setq org-edit-latex-frag-master)
+    ;; This is default.
+    (setq org-edit-latex-frag-master "frag-master.tex")
     ;; whether to create a TeX-master file specified in org-edit-latex-frag-master.
     ;; default file name "frag-master.tex".
     (setq org-edit-latex-create-master nil))
