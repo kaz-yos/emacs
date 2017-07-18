@@ -194,13 +194,13 @@
 
 
 ;;;
-;;; Reference management
+;;; REFERENCE MANAGEMENT
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
 ;; http://www.fan.gr.jp/~ring/doc/bibtex.html
 ;; http://d.hatena.ne.jp/ckazu/20100107/1262871971
 ;; http://stackoverflow.com/questions/144639/how-do-i-order-citations-by-appearance-using-bibtex
 ;;
-;;; reftex.el
+;;;  reftex.el
 ;; part of emacs
 ;; http://www.gnu.org/software/emacs/manual/html_mono/reftex.html
 (use-package reftex
@@ -218,15 +218,16 @@
             '(lambda ()
                (local-set-key (kbd "H-c") 'reftex-citation)
                (local-set-key (kbd "A-C-a") 'reftex-citation))))
-;;
-;;
-;;; bibtex.el
+
+
+;;;  bibtex.el
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX
 ;; Getting current LaTeX document to use your .bib file
 ;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#Getting_current_LaTeX_document_to_use_your_.bib_file
 ;; (require 'bibtex)
-;;
-;;; zotelo (Zotero-Local)
+
+
+;;;  zotelo.el
 ;; https://github.com/vitoshka/zotelo
 ;; https://forums.zotero.org/discussion/19608/zotero-emacs-integration/
 (use-package zotelo
@@ -244,3 +245,12 @@
   ;; C-c z r         zotelo-reset
   ;; C-c z t         zotelo-set-translator
   )
+
+
+;;;  zotxt.el
+;; https://github.com/egh/zotxt-emacs
+;; Depends on the zotxt Zotero extension.
+;; https://gitlab.com/egh/zotxt
+(use-package zotxt
+  :commands (org-zotxt-mode
+             zotxt-easykey-mode))
