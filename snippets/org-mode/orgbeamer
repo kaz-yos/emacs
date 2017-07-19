@@ -19,6 +19,7 @@
 #+LATEX_HEADER: %% No navigation bar
 #+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
 #+LATEX_HEADER: %% Page number with current/total format
-#+LATEX_HEADER: \setbeamerfont{page number in head/foot}{size=\large}
+#+LATEX_HEADER: \setbeamerfont{page number in head/foot}{size=\footnotesize}
 #+LATEX_HEADER: \setbeamertemplate{footline}[frame number]
+#+LATEX_HEADER: \setbeamertemplate{frametitle}[default][center]
 #+LATEX_HEADER: \setbeamertemplate{bibliography item}{}
