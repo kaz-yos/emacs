@@ -137,6 +137,7 @@
 ;; C-c C-c LatexMk to use
 (use-package auctex-latexmk
   :commands (auctex-latexmk-setup)
+  ;;
   :init
   (add-hook 'LaTeX-mode-hook 'auctex-latexmk-setup))
 
@@ -144,13 +145,23 @@
 ;;;
 ;;; Auto-completion for LaTeX
 
-;;; company-auctex.el
+;;;  company-auctex.el
 ;; https://github.com/alexeyr/company-auctex
 (use-package company-auctex
   :commands (company-auctex-init)
+  ;;
   :init
   (add-hook 'LaTeX-mode-hook 'company-auctex-init))
 
+
+;;;  company-math.el
+;; https://github.com/vspinu/company-math
+(use-package company-math
+  :commands (company-math-symbols-latex)
+  ;;
+  :init
+  ;; global activation of the latex symbol completion
+  (add-to-list 'company-backends 'company-math-symbols-latex))
 
 
 ;;;
