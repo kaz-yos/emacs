@@ -170,6 +170,28 @@
           ;; for beamer preview
           (gs       . "/Library/TeX/local/bin/gs")))
   ;;
+  ;; Header to support extended notations.
+  (setq latex-math-preview-latex-template-header
+        "\\documentclass{article}
+\\pagestyle{empty}
+%% Load usual packages.
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+\\usepackage{wasysym}
+\\usepackage{cancel}
+\\usepackage{graphicx}
+\\usepackage{grffile}
+\\usepackage{tikz}
+\\usetikzlibrary{positioning,shapes.geometric}
+%% Invert colors.
+\\usepackage{xcolor}
+\\usepackage{pagecolor}
+\\pagecolor{black}
+\\color{white}
+%% Extended notations.
+\\input{\\string~/.emacs.d/misc/GrandMacros}
+")
+  ;;
   ;; Colors for dark background 2013-09-28
   (setq latex-math-preview-dvipng-color-option nil)
   (setq latex-math-preview-image-foreground-color "black")
