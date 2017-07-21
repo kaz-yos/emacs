@@ -5,5 +5,6 @@
    :BEAMER_opt: allowframebreaks,label=,t
    :END:
 \tiny
+# Following lines must be left-aligned without preceding spaces.
 bibliographystyle:apalike
 bibliography:`(concat (file-name-base) ".bib")`
