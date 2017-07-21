@@ -470,5 +470,8 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   ;;
   ;; Pretty bullets
   ;; https://github.com/sabof/org-bullets
-  (use-package org-bullets)
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (use-package org-bullets
+    :commands (org-bullets-mode)
+    ;; 
+    :init
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
