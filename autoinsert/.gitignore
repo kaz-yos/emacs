@@ -15,6 +15,14 @@
 *.bib
 *.bbl
 *.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.toc
 auto/
 figure/
 cache/
