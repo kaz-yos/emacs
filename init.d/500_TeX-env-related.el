@@ -157,11 +157,17 @@
 ;;;  company-math.el
 ;; https://github.com/vspinu/company-math
 (use-package company-math
-  :commands (company-math-symbols-latex)
+  :commands (my-company-math-setup)
   ;;
   :init
-  ;; global activation of the latex symbol completion
-  (add-to-list 'company-backends 'company-math-symbols-latex))
+  (add-hook 'TeX-mode-hook 'my-company-math-setup)
+  ;;
+  :config
+  (defun my-company-math-setup ()
+    "Add company-math-symbols-latex to company-backends"
+    (setq-local company-backends
+                (append '(company-math-symbols-latex)
+                        company-backends))))
 
 
 ;;;
