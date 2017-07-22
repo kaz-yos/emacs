@@ -20,10 +20,8 @@
 
 
 ;;;
-;;; Safe-guard against quiting.
-(global-set-key (kbd "C-x C-c") #'(lambda ()
-                                    (interactive)
-                                    (message "Use M-x save-buffers-kill-terminal")))
+;;; C-x C-c is for ending an emacsclient session.
+(global-set-key (kbd "C-x C-c") 'server-edit)
 
 
 ;;;
