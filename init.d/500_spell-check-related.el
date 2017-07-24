@@ -201,3 +201,29 @@ which has no argument of its own."
 (use-package osx-dictionary
   :commands (osx-dictionary-search-word-at-point
              osx-dictionary-search-input))
+
+
+;;;
+;;; synonymous.el
+;; https://www.emacswiki.org/emacs/ThesauriAndSynonyms
+;; https://www.emacswiki.org/emacs/synonyms.el
+(use-package synonymous
+  :commands (synonymous-synonyms))
+
+
+;;;
+;;; synosaurus.el
+;; https://github.com/hpdeifel/synosaurus
+(use-package synosaurus
+  :commands (synosaurus-mode
+             synosaurus-lookup
+             synosaurus-choose-and-replace)
+  ;;
+  :config
+  ;; synosaurus-backend-wordnet        An english offline thesaurus
+  ;; https://wordnet.princeton.edu
+  ;; $ brew install wordnet # for wn command.
+  (setq synosaurus-backend 'synosaurus-backend-wordnet)
+  ;;
+  ;; The way of querying the user for word replacements.
+  (setq synosaurus-choose-method 'popup))
