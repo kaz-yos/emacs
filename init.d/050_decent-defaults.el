@@ -195,14 +195,19 @@
 
 ;;;
 ;;; Retain history between sessions
-;; Book by rubikitch p59
 ;; http://www.emacswiki.org/emacs/SaveHist
-(savehist-mode 1)
 ;; https://stackoverflow.com/questions/1229142/how-can-i-save-my-mini-buffer-history-in-emacs
-(setq savehist-file (concat user-emacs-directory
-                            "history"
-                            "_"
-                            (system-name-sans-domain)))
+(use-package savehist
+  :config
+  ;; Need to specify the history file before enabling.
+  (setq savehist-file (concat user-emacs-directory
+                              "history"
+                              "_"
+                              (system-name-sans-domain)))
+  ;; Delete duplicated entries.
+  (setq history-delete-duplicates t)
+  ;; Finally activate.
+  (savehist-mode 1))
 
 
 ;;;
