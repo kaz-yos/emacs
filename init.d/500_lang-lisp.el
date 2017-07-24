@@ -1,12 +1,12 @@
 ;;; -*- lexical-binding: t; -*-
 ;;;
 ;;; EMACS LISP
-;;; elisp programming configurations
+;;;  elisp programming configurations
 ;; Non-nil means enter debugger if an error is signaled.
 ;; (setq debug-on-error t)
 ;;
 ;;
-;;; SLIME-like navigation for elisp
+;;;  SLIME-like navigation for elisp
 ;; https://github.com/purcell/elisp-slime-nav
 ;; This package provides Slime's convenient "M-." and "M-," navigation
 (use-package elisp-slime-nav
@@ -27,7 +27,7 @@
 ;; (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 ;;
 ;;
-;;; Auto-complete in IELM
+;;;  Auto-complete in IELM
 ;; http://www.masteringemacs.org/articles/2010/11/29/evaluating-elisp-emacs/
 ;; (defun ielm-auto-complete ()
 ;;   "Enables `auto-complete' support in \\[ielm]."
@@ -43,7 +43,7 @@
 ;; (add-hook 'emacs-lisp-mode-hook 'ielm-auto-complete)
 ;;
 ;;
-;;; Eval-result-overlays in Emacs-lisp
+;;;  Eval-result-overlays in Emacs-lisp
 ;; http://endlessparentheses.com/eval-result-overlays-in-emacs-lisp.html
 (autoload 'cider--make-result-overlay "cider-overlays")
 ;;
@@ -72,16 +72,22 @@
                (save-excursion
                  (end-of-defun)
                  (point)))))
-;;
-;;
-;;;
-;;; lispxmp.el
+
+
+;;;  lispxmp.el
 ;;
 ;; M-; M-; to insert ; =>
 ;; M-; is for paredit-comment-dwim, which is advised by lispxmp.el.
 (use-package lispxmp
   :commands (lispxmp)
   :bind (("C-c ;" . lispxmp)))
+
+
+;;;  macrostep.el
+;; https://github.com/joddie/macrostep
+(use-package macrostep
+  :commands (macrostep-mode
+             macrostep-expand))
 
 
 ;;;
@@ -135,13 +141,13 @@
 ;; Install these to make racket-mode work
 ;; $ raco pkg install rackunit
 
-;;; racket-mode.el
+;;;  racket-mode.el
 ;; https://github.com/greghendershott/racket-mode
 ;; major mode for Racket. incompatible with geiser minor mode.
 ;;
 ;; (require 'racket-mode)
 
-;;; geiser.el
+;;;  geiser.el
 ;; Geiser for Racket and Guile Scheme
 ;; Works as an add-on to the built-in scheme mode
 ;; http://www.nongnu.org/geiser/
@@ -151,7 +157,7 @@
 (use-package geiser
   :commands (geiser-mode switch-to-geiser)
   :config
-;;; ac-geiser.el
+;;;  ac-geiser.el
   (when (require 'ac-geiser nil 'noerror)
     (eval-after-load "auto-complete"
       '(add-to-list 'ac-modes 'geiser-repl-mode))
