@@ -698,7 +698,7 @@
  '(which-key-command-description-face ((t (:foreground "gray95"))))
  '(which-key-key-face ((t (:foreground "white"))))
 ;;; bm
- '(bm-face ((t (:background "DarkOrange3" :foreground "Black"))))
+ '(bm-face ((t (:background "Grey30"))))
 ;;; company
  '(company-preview ((t :background nil :foreground "dark gray")))
  '(company-preview-common ((t :background nil :foreground "dark gray")))
