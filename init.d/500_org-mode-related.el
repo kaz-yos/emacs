@@ -24,10 +24,11 @@
                (car (last (file-expand-wildcards "~/.emacs.d/elpa/org-plus-contrib*"))))
   ;;
   :config
-  ;; Treat $ as a punctuation "." (" " for a whitespace) to avoid yasnippet malfunction.
+  ;; Treat $ as a punctuation "." to avoid yasnippet malfunction.
+  ;; Treating $ as a white space " " causes trailing $ removal.
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Syntax-Tables.html
   ;; https://www.emacswiki.org/emacs/EmacsSyntaxTable
-  (modify-syntax-entry ?$  " "  text-mode-syntax-table)
+  (modify-syntax-entry ?$  "."  text-mode-syntax-table)
   ;;
   ;; Suggested bindings for global
   ;; http://orgmode.org/manual/Activation.html#Activation
@@ -472,6 +473,6 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   ;; https://github.com/sabof/org-bullets
   (use-package org-bullets
     :commands (org-bullets-mode)
-    ;; 
+    ;;
     :init
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
