@@ -29,13 +29,14 @@
   :config
   ;; Make helm-mark-ring follow
   ;; https://groups.google.com/forum/#!topic/emacs-helm/US8FWnfRu5o
-  (use-package helm-ring)
-  (add-hook 'helm-before-initialize-hook
-            #'(lambda ()
-                ;; Set follow attribute to 1 (yes) for helm-source-mark-ring
-                (helm-attrset 'follow 1 helm-source-mark-ring)
-                ;; (helm-attrset 'follow 1 helm-source-mark-ring)
-                ))
+  (use-package helm-ring
+    :config
+    (add-hook 'helm-before-initialize-hook
+              #'(lambda ()
+                  ;; Set follow attribute to 1 (yes) for helm-source-mark-ring
+                  (helm-attrset 'follow 1 helm-source-mark-ring)
+                  ;; (helm-attrset 'follow 1 helm-source-mark-ring)
+                  )))
   ;;
   ;; Restrict what to show in helm-for-files
   (setq helm-for-files-preferred-list '(helm-source-buffers-list helm-source-recentf))
