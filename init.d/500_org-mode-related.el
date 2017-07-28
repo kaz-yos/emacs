@@ -339,11 +339,30 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
   ;; These will be inserted after ‘org-latex-default-packages-alist’.
   ;; Each element is either a cell or a string.
   ;; A cell is of the format: ("options" "package" SNIPPET-FLAG)
-  ;; A string will be inserted as-is in the header of the document.
-  (setq org-latex-packages-alist
-        '(("" "tikz" t )
-          ;; String insertion for setting options
-          "\\tolerance=1000"))
+  ;; A string will be inserted as-is in the header of the document. Use two backslashes.
+  ;; Set to nil avoid a opaque setting. Non-default packages should be loaded explicitly.
+  (setq org-latex-packages-alist '())
+  ;;
+  ;;
+;;;   PDF export with syntax highlighting
+  ;; http://joat-programmer.blogspot.cl/2013/07/org-mode-version-8-and-pdf-export-with.html
+  ;; http://orgmode.org/worg/org-tutorials/org-latex-preview.html
+  ;; https://github.com/syl20bnr/spacemacs/issues/7055
+  ;; https://www.sharelatex.com/learn/Code_Highlighting_with_minted
+  ;; https://github.com/gpoore/minted/issues/9
+  ;; https://emacs.stackexchange.com/questions/24283/org-mode-converting-spaces-to-tabs-when-evaluating-source
+  ;;
+  ;; How to export source code. See the help for `org-latex-listings'.
+  ;; t for listings or 'minted for minted (depends on pygments).
+  ;; Also install pygments and give the -shell-escape option to the LaTeX engine.
+  (setq org-latex-listings 'minted)
+  ;;
+  ;; Association list of options for the latex minted package. Set in the file.
+  (setq org-latex-minted-options nil)
+  ;;
+  ;; `org-latex-minted-langs'
+  ;; Alist mapping languages to their minted language counterpart.
+  ;;
   ;;
 ;;;   org-edit-latex.el
   ;; https://github.com/et2010/org-edit-latex

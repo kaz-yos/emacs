@@ -51,6 +51,11 @@
 ;; Do not ask code execution confirmation
 (setq org-confirm-babel-evaluate nil)
 ;;
+;; Org-mode: Source block doesn't respect parent buffer indentation
+;; http://emacs.stackexchange.com/questions/9472/org-mode-source-block-doesnt-respect-parent-buffer-indentation
+(setq org-src-preserve-indentation t)
+(setq org-edit-src-content-indentation 0)
+;;
 ;;
 ;;; Language specific settings
 ;;
@@ -74,6 +79,8 @@
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+;; code highlight
+(setq org-latex-listings 'minted)
 ;;
 ;;;  R
 (setq inferior-R-args "--no-restore-history --no-save ")
