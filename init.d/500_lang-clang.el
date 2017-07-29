@@ -46,6 +46,18 @@
 ;;; IRONY-RELATED
 ;;;  irony-mode.el
 ;; https://github.com/Sarcasm/irony-mode
+;; https://github.com/Sarcasm/irony-mode/wiki/Mac-OS-X-issues-and-workaround
+;; https://github.com/Sarcasm/irony-mode/issues/351
+;; https://github.com/Golevka/emacs-clang-complete-async/issues/18
+;;
+;; Install llvm with header files.
+;; brew install --with-clang --all-targets --rtti --universal --jit llvm
+;;
+;; M-x irony-install-server
+;; Change the command to the following with additional -DLIBCLANG* options for brew's llvm.
+;; cmake -DLIBCLANG_INCLUDE_DIR\=/usr/local/opt/llvm/include/ -DLIBCLANG_LIBRARY\=/usr/local/opt/llvm/lib/libclang.dylib -DCMAKE_INSTALL_PREFIX\=/Users/kazuki/.emacs.d/irony/ /Users/kazuki/.emacs.d/elpa/irony-20170627.1045/server && cmake --build . --use-stderr --config Release --target install
+;;
+;; ~/.emacs.d/irony/bin/irony-server is installed.
 (use-package irony-mode
   :commands (irony-mode)
   ;;
