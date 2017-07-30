@@ -134,7 +134,7 @@
 ;; for Japanese tex to PDF direct conversion
 ;; http://qiita.com/tm_tn/items/cbc813028d7f5951b165
 ;; https://github.com/tom-tan/auctex-latexmk/
-;; ln -sf ~/Documents/.latexmkrc ~/.latexmkrc
+;; Configure using ~/.latexmkrc
 ;; C-c C-c LatexMk to use
 (use-package auctex-latexmk
   :commands (auctex-latexmk-setup)
