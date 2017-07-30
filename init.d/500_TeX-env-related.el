@@ -11,16 +11,11 @@
 (use-package tex
   :defines (latex-help-cmd-alist latex-help-file)
   :commands (my-tex-insert-backslash
-             my-tex-insert-forwardslash
              my-tex-insert-semicolon)
   :mode ("\\.tex\\'" . TeX-latex-mode)
   ;;
   :init
   (add-hook 'LaTeX-mode-hook
-            '(lambda ()
-               (local-set-key (kbd   ";") 'my-tex-insert-backslash)
-               (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
-  (add-hook 'tex-mode-hook
             '(lambda ()
                (local-set-key (kbd   ";") 'my-tex-insert-backslash)
                (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
@@ -163,6 +158,8 @@
 ;;;  company-math.el
 ;; https://github.com/vspinu/company-math
 (use-package company-math
+  ;; math-symbol-list-subscripts not found issue?
+  :disabled t
   :commands (my-company-math-setup)
   ;;
   :init
