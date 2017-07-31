@@ -1,35 +1,6 @@
 ;;; Auto-saving buffers
 
 ;;;
-;;; auto-save-buffers-enhanced.el
-;; 2015-02-20 freezing problem solved by turning off and then back on
-;;
-;; https://github.com/kentaro/auto-save-buffers-enhanced
-;; http://rubikitch.com/2014/11/23/auto-save-buffers-enhanced/
-;; http://qiita.com/ongaeshi/items/8cbd8d3c792476c59a11
-;; http://blog.sanojimaru.com/post/20090254216/emacs
-;;
-(use-package auto-save-buffers-enhanced
-  :disabled t
-  :config
-  ;; Only in Git, CVS, or Subversion directories
-  ;; (auto-save-buffers-enhanced-include-only-checkout-path t)
-  ;;
-  ;; Idle time in seconds required before saving
-  (setq auto-save-buffers-enhanced-interval 0.5)
-  ;; Quiet save
-  (setq auto-save-buffers-enhanced-quiet-save-p t)
-  ;;
-  ;; (setq auto-save-buffers-enhanced-include-regexps '(".+"))
-  ;; (setq auto-save-buffers-enhanced-exclude-regexps '("^not-save-file" "\\.ignore$"))
-  ;; Do not autosave over ssh to avoid slow down
-  (setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "^/scp:" "/snippets/" "Rmd"))
-  ;;
-  ;; Activate
-  (auto-save-buffers-enhanced t))
-
-
-;;;
 ;;; super-save.el
 ;; http://emacsredux.com/blog/2016/01/30/super-save/
 ;; https://github.com/bbatsov/super-save
