@@ -13,13 +13,36 @@
 ;; https://github.com/auto-complete/auto-complete
 ;; http://cx4a.org/software/auto-complete/manual.html
 (use-package auto-complete
-  :commands (auto-complete-mode)
+  :commands (auto-complete
+             auto-complete-mode)
+  ;;
   :init
   ;; Configure default sources
   (setq-default ac-sources '(ac-source-abbrev
                              ac-source-dictionary
                              ac-source-filename
                              ac-source-words-in-same-mode-buffers))
+  ;; Added to avoid ac-modes not defined errors on ess startup.
+  ;; Major modes `auto-complete-mode' can run on.
+  (setq ac-modes
+        '(emacs-lisp-mode
+          lisp-mode lisp-interaction-mode
+          slime-repl-mode
+          nim-mode c-mode cc-mode c++-mode objc-mode swift-mode go-mode
+          java-mode malabar-mode clojure-mode clojurescript-mode  scala-mode
+          scheme-mode
+          ocaml-mode tuareg-mode coq-mode haskell-mode agda-mode agda2-mode
+          perl-mode cperl-mode python-mode ruby-mode lua-mode tcl-mode
+          ecmascript-mode javascript-mode js-mode js-jsx-mode js2-mode js2-jsx-mode
+          coffee-mode php-mode css-mode scss-mode less-css-mode
+          elixir-mode
+          makefile-mode sh-mode fortran-mode f90-mode ada-mode
+          xml-mode sgml-mode web-mode
+          ts-mode
+          sclang-mode
+          verilog-mode
+          qml-mode
+          apples-mode))
   ;;
   :config
   ;; Auto-complete for ESS configuration
@@ -93,12 +116,15 @@
 ;; http://comments.gmane.org/gmane.emacs.ess.general/9037
 ;;
 (use-package company
-  :config
+  :commands (global-company-mode)
+  ;;
+  :init
   ;; company-mode everywhere
   (add-hook 'after-init-hook 'global-company-mode)
   ;; except in these modes
   ;; (setq company-global-modes '(not eshell-mode ielm-mode))
   ;;
+  :config
   ;; Delay time
   (setq company-idle-delay 0.3)
   ;; 2 letters before completion kicks in
