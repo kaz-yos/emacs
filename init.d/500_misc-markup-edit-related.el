@@ -3,8 +3,12 @@
 ;;
 (use-package markdown-mode
   :mode ("\\.md" . markdown-mode)
+  ;;
   :config
-;;; Open current file in Atom for real-time preview
+  ;; https://github.com/defunkt/markdown-mode#customization
+  (setq markdown-fontify-code-blocks-natively t)
+  ;;
+  ;; Open current file in Atom for real-time preview
   ;; http://qiita.com/takuma510/items/77489cf538580dfcc41d
   (defun open-atom ()
     (interactive)
