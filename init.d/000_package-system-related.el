@@ -31,8 +31,11 @@
 ;; 2016-01-09 latex-math-preview still depends on defstruct, and gives an error w/o it.
 (defalias 'defstruct 'cl-defstruct)
 ;;
-;; Need to be initialized.
-(package-initialize)
+;; Load Emacs Lisp packages, and activate them.
+;; (package-initialize &optional NO-ACTIVATE)
+;; If optional arg NO-ACTIVATE is non-nil, don’t activate packages.
+;; https://emacs.stackexchange.com/questions/16831/using-package-el-to-install-and-update-but-use-package-for-loading-and-configuri
+(package-initialize t)
 
 
 ;;;
