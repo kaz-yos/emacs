@@ -47,6 +47,8 @@
 ;;
 ;; (require FEATURE &optional FILENAME NOERROR)
 (require 'use-package)
+;; Whether to report about loading and configuration details.
+(setq use-package-verbose t)
 ;;
 ;; Automatic installation when packages not installed. (Don't use many errors).
 ;; https://github.com/jwiegley/use-package#for-packageel-users
@@ -62,9 +64,12 @@
 ;; Alternative Basic Setup with Installation via MELPA
 ;; https://github.com/dimitri/el-get#alternative-basic-setup-with-installation-via-melpa
 (use-package el-get
+  ;; Deferred loading unless called explicitly.
+  :commands (el-get-list-packages)
+  ;;
   :config
   (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
   (el-get 'sync))
 ;;
-;;;  Packages installed via el-get
+;;;  Packages installed via el-get. Explicitly specify their paths.
 ;;;   smartchr

@@ -51,8 +51,13 @@
 (use-package smartchr
   ;; Use init as they have to be present at the time of hook activation by major modes
   :init
+  (add-to-list 'load-path
+               (concat user-emacs-directory "el-get/smartchr"))
+  ;;
   ;; Need to require a library defining thread-first macro?
-  (require 'subr-x)
+  (use-package subr-x
+    :commands (thread-first))
+  ;;
 ;;; Define multiple-cursors work around functions
   (defun smartchr-construct-unsetter (smartchar-set-function)
     "Generate an unsetter lambda from a smartchr setter function"
