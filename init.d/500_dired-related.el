@@ -82,7 +82,6 @@
               ("/" . dired-narrow-regexp)))
 
 
-
 ;;;
 ;;; runner.el
 ;; Flexible file type specific shell command in dired
@@ -238,12 +237,3 @@ from the current buffer."
   :commands (dired-quick-sort-setup)
   :init
   (add-hook 'after-init-hook 'dired-quick-sort-setup))
-
-
-;;;
-;;; dired-hide-dotfiles.el
-(use-package dired-hide-dotfiles
-  :commands (dired-hide-dotfiles-mode)
-  :init
-  (define-key dired-mode-map "." #'dired-hide-dotfiles-mode)
-  (add-hook 'dired-mode-hook #'dired-hide-dotfiles-mode))
