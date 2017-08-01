@@ -99,7 +99,6 @@
   (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history))
 
 
-
 ;;;
 ;;; dumb-jump.el
 ;; https://github.com/jacktasia/dumb-jump
@@ -108,6 +107,17 @@
   ;; https://github.com/jacktasia/dumb-jump#emacs-options
   (setq dumb-jump-selector 'ivy)
   (setq dumb-jump-use-visible-window t))
+
+
+;;;
+;;; plur.el
+;; https://github.com/xuchunyang/plur
+;; https://emacs.stackexchange.com/questions/27135/search-replace-like-feature-for-swapping-text/27170
+;;
+;; To replace “mouse” with “cat” and “mice” with “cats” using:
+;; M-x plur-query-replace RET m{ouse,ice} RET cat{,s} RET
+(use-package plur
+  :commands (plur-query-replace))
 
 
 ;;;
