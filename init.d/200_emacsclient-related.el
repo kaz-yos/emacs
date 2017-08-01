@@ -61,7 +61,9 @@
 ;; 3879   ;; This should be used in `post-command-hook',
 ;;
 ;; Define a function to remove helm functions from post-command-hook
-(defun remove-helm-functions ()
+(defun remove-helm-from-post-command-hook ()
+  "Remove helm-related hooks from post-command-hook"
+  (interactive)
   (remove-hook 'post-command-hook 'helm--maybe-update-keymap)
   ;; 2015-07-01 The following function was also remaining in the hook.
   ;; This hook was added 14 days ago coinciding breakage.
@@ -84,6 +86,6 @@
 ;;
 ;; This hacky universal solution works.
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Command-Overview.html#Command-Overview
-;; (add-hook 'post-command-hook 'remove-helm-functions)
+;; (add-hook 'post-command-hook 'remove-helm-from-post-command-hook)
 ;; 2015-07-01 Changed to the following.
-;; (add-hook 'pre-command-hook 'remove-helm-functions)
+;; (add-hook 'pre-command-hook 'remove-helm-from-post-command-hook)
