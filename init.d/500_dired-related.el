@@ -49,24 +49,23 @@
 
 ;;;
 ;;; dired-subtree.el
-;; https://github.com/Fuco1/dired-hacks/blob/master/dired-subtree.el
+;; https://github.com/Fuco1/dired-hacks#dired-subtree
 (use-package dired-subtree
-  :config
+  :commands (dired-subtree-insert
+             dired-subtree-remove
+             dired-subtree-up-dwim)
+  ;; https://github.com/jwiegley/use-package#binding-within-local-keymaps
+  :bind (:map dired-mode-map
+              ("i" . dired-subtree-insert)
+              ("<tab>" . dired-subtree-remove)
+              ("^" . dired-subtree-up-dwim))
   ;;
-  ;; http://rubikitch.com/2014/12/22/dired-subtree/
-  ;; i is subtree
-  (define-key dired-mode-map (kbd "i") 'dired-subtree-insert)
-  ;; tab folding
-  (define-key dired-mode-map (kbd "<tab>") 'dired-subtree-remove)
-  ;; C-x n n for narrowing
-  (define-key dired-mode-map (kbd "C-x n n") 'dired-subtree-narrow)
-  ;; ^ for dired-subtree
+  :config
   (defun dired-subtree-up-dwim (&optional arg)
     "Go to parent dir or open parent dir"
     (interactive "p")
     (or (dired-subtree-up arg)
-        (dired-up-directory)))
-  (define-key dired-mode-map (kbd "^") 'dired-subtree-up-dwim))
+        (dired-up-directory))))
 
 
 ;;;
@@ -77,6 +76,7 @@
   :commands (dired-narrow
              dired-narrow-regexp
              dired-narrow-fuzzy)
+  ;; https://github.com/jwiegley/use-package#binding-within-local-keymaps
   :bind (:map dired-mode-map
               ("/" . dired-narrow-regexp)))
 
