@@ -50,7 +50,7 @@
 ;;;
 ;;; ELSCREEN-RELATED
 ;;
-;;; elscreen.el
+;;;  elscreen.el
 ;; https://github.com/knu/elscreen
 ;; http://www.emacswiki.org/emacs/EmacsLispScreen
 ;; http://rubikitch.com/2014/09/05/elscreen/
@@ -59,17 +59,23 @@
   :init
   ;; Do not set a prefix (conflict with helm)
   (setq elscreen-prefix-key (kbd "C-;"))
-  (global-set-key (kbd "C-; t") 'elscreen-toggle-display-tab)
+  ;; Set up screens nicely
+  (add-hook 'after-init-hook
+            (lambda ()
+              ;; Screen 1
+              (progn (elscreen-create)
+                     (find-file (concat user-emacs-directory "init.d"))
+                     (split-window nil nil 'left))
+              ;; Screen 2
+              (progn (elscreen-create)
+                     (find-file (if (file-exists-p "~/Documents")
+                                    "~/Documents"
+                                  "~"))
+                     (split-window nil nil 'left))
+              ;; Screen 0
+              (elscreen-goto 0)))
   ;;
   :config
-  ;; Key configs
-  ;; (global-set-key (kbd "A-1") 'elscreen-previous)
-  ;; (global-set-key (kbd "A-2") 'elscreen-next)
-  ;; ;; Cloning is more useful than fresh creation
-  ;; (global-set-key (kbd "A-c") 'elscreen-clone)
-  ;; (global-set-key (kbd "A-k") 'elscreen-kill)
-  ;; (global-set-key (kbd "A-r") 'elscreen-screen-nickname)
-  ;;
   ;; Do not show tabls to save space
   ;; Can use M-x elscreen-toggle-display-tab
   (setq elscreen-display-tab nil)
