@@ -1,6 +1,8 @@
-;;; Markdown mode
+;;;
+;;; MARKDOWN-RELATED
+;;;  markdown-mode.el
 ;; http://jblevins.org/projects/markdown-mode/
-;;
+;; https://github.com/jrblevin/markdown-mode
 (use-package markdown-mode
   :mode ("\\.md" . markdown-mode)
   ;;
@@ -16,7 +18,15 @@
      "atom" nil nil nil buffer-file-name)))
 
 
-;;; Graphviz mode
+;;;  markdown-preview-mode.el
+;; https://github.com/ancane/markdown-preview-mode
+(use-package markdown-preview-mode
+  :commands (markdown-preview-mode
+             markdown-preview-open-browser))
+
+
+;;;
+;;; graphviz-dot-mode.el
 ;; http://ppareit.github.io/graphviz-dot-mode/
 (use-package graphviz-dot-mode
   :mode ("\\.dot" . graphviz-dot-mode))
