@@ -110,10 +110,13 @@
   :if (eq system-type 'darwin))
 
 
-;;;  wgrep-helm.el  2014-01-14
-;; Writable helm-grep-mode buffer and apply the changes to files
+;;;  wgrep-helm.el
+;; https://github.com/mhayashi1120/Emacs-wgrep
 (use-package wgrep-helm
-  :disabled t)
+  :commands (wgrep-helm-setup)
+  :init
+  (add-hook 'helm-grep-mode-hook 'wgrep-helm-setup)
+  (add-hook 'helm-moccur-mode-hook 'wgrep-helm-setup))
 
 
 ;;;  helm-ag.el
