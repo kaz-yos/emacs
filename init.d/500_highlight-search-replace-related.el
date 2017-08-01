@@ -241,19 +241,51 @@ searched. If there is no symbol, empty search box is started."
         (after save-after-moccur-edit-buffer activate)
       (save-buffer))))
 
-;;;  ag.el/wgrep-ag.el.
+;;;  ag.el/wgrep-ag.el
 ;; https://github.com/Wilfred/ag.el
+;; http://agel.readthedocs.io/en/latest/index.html
+;; https://github.com/ggreer/the_silver_searcher
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
 ;; ag.el
 (use-package ag
-  :commands (ag)
+  :commands (ag
+             ag-files
+             ag-regexp
+             ag-project
+             ag-project-files
+             ag-project-regexp)
+  :bind (("s-a" . ag))
   ;;
   :config
   ;; grouping is better.
-  (setq ag-arguments '("--smart-case" "--group" "--column" "--"))
+  (setq ag-arguments '("--smart-case" "--stats" "--group" "--"))
   (setq ag-highlight-search t)
   (setq ag-reuse-buffers t)
   (setq ag-reuse-window t)
+  ;;
+  ;; Switch to *ag search* after ag.
+  ;; http://kotatu.org/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
+  (defun my/filter (condp lst)
+    (delq nil
+          (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
+  (defun my/get-buffer-window-list-regexp (regexp)
+    "Return list of windows whose buffer name matches regexp."
+    (my/filter #'(lambda (window)
+                   (string-match regexp
+                                 (buffer-name (window-buffer window))))
+               (window-list)))
+  (defun switch-to-ag (&optional _1 _2 _3)
+    "Switch to a buffer named *ag ... Arguments are ignored."
+    (select-window ; select ag buffer
+     (car (my/get-buffer-window-list-regexp "^\\*ag "))))
+  ;; Advice all user functions.
+  (loop for f in '(ag
+                   ag-files
+                   ag-regexp
+                   ag-project
+                   ag-project-files
+                   ag-project-regexp)
+        do (advice-add f :after #'switch-to-ag))
   ;;
   ;; Editing via wgrep-ag.el
   (use-package wgrep-ag
