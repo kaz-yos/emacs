@@ -46,7 +46,22 @@
             '(lambda () (define-key dired-mode-map (kbd "s-d") 'make-directory))))
 
 
-;; Opening parent folder of current buffer
+;;;
+;;; dired-x.el
+(use-package dired-x
+  :commands (dired-omit-mode)
+  :bind (:map dired-mode-map
+              ("." . dired-omit-mode))
+  :config
+  ;; Omit files with regexp
+  ;; https://www.gnu.org/software/emacs/manual/html_node/dired-x/Omitting-Files-in-Dired.html
+  (setq dired-omit-files
+        ;; Dot files
+        (concat dired-omit-files "\\|^\\..+$")))
+
+
+;;;
+;;; Opening parent folder of current buffer
 (global-set-key (kbd "s-d") #'(lambda ()
                                 (interactive)
                                 (find-file "./")))
