@@ -48,7 +48,9 @@
 
 
 ;;;
-;;; dired-subtree.el
+;;; DIRED-HACKS
+
+;;;  dired-subtree.el
 ;; https://github.com/Fuco1/dired-hacks#dired-subtree
 (use-package dired-subtree
   :commands (dired-subtree-insert
@@ -68,8 +70,7 @@
         (dired-up-directory))))
 
 
-;;;
-;;; dired-narrow.el
+;;;  dired-narrow.el
 ;; https://github.com/Fuco1/dired-hacks#dired-narrow
 ;; http://pragmaticemacs.com/emacs/dynamically-filter-directory-listing-with-dired-narrow/
 (use-package dired-narrow
@@ -79,6 +80,7 @@
   ;; https://github.com/jwiegley/use-package#binding-within-local-keymaps
   :bind (:map dired-mode-map
               ("/" . dired-narrow-regexp)))
+
 
 
 ;;;
@@ -93,12 +95,11 @@
 ;; `dired-run-shell-command' (from dired-aux.el) will be redefined.
 ;;
 (use-package runner
-  :config
-  (define-key dired-mode-map (kbd "C-c !") 'runner-add-extension))
+  :bind (:map dired-mode-map
+              ("C-c !" . runner-add-extension)))
 
 
-;;;
-;;; Use runner for current buffer file
+;;;  Use runner for current buffer file
 ;;
 ;; Explanation in dired-x.el
 ;; GUESS SHELL COMMAND
