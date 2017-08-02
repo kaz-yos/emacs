@@ -241,6 +241,14 @@ searched. If there is no symbol, empty search box is started."
         (after save-after-moccur-edit-buffer activate)
       (save-buffer))))
 
+
+;;; wgrep
+(use-package wgrep
+  :commands (wgrep-setup)
+  :init
+  (add-hook 'grep-setup-hook 'wgrep-setup))
+
+
 ;;;  ag.el/wgrep-ag.el
 ;; https://github.com/Wilfred/ag.el
 ;; http://agel.readthedocs.io/en/latest/index.html
