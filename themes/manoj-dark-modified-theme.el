@@ -688,10 +688,11 @@
 ;;; anzu
  '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
 ;;; avy
- '(avy-lead-face   ((t (:background "black" :foreground "white"))))
- '(avy-lead-face-0 ((t (:background "black" :foreground "white"))))
+ '(avy-lead-face-0 ((t (:background "black" :foreground "#c6c9ff"))))
  '(avy-lead-face-1 ((t (:background "black" :foreground "white"))))
- '(avy-lead-face-2 ((t (:background "black" :foreground "white"))))
+ '(avy-lead-face-2 ((t (:background "black" :foreground "#f99ff6"))))
+ '(avy-lead-face   ((t (:background "black" :foreground "#db8596"))))
+ '(avy-background-face   ((t (:background "black" :foreground "gray40"))))
 ;;; ace-window
  '(aw-leading-char-face ((t (:foreground "gray90" :height 5.0))))
 ;;; which-key
