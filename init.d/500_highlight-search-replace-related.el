@@ -304,9 +304,15 @@ searched. If there is no symbol, empty search box is started."
                    ag-project-regexp)
         do (advice-add f :after #'switch-to-ag))
   ;;
-  ;; Editing via wgrep-ag.el
+;;;   wgrep-ag.el
+  ;; https://github.com/mhayashi1120/Emacs-wgrep
   (use-package wgrep-ag
     :config
+    ;; To save buffer automatically when `wgrep-finish-edit'.
+    (setq wgrep-auto-save-buffer t)
+    ;; To apply all changes wheather or not buffer is read-only.
+    (setq wgrep-change-readonly-file t)
+    ;;
     (add-hook 'ag-mode-hook 'wgrep-ag-setup)
     ;; r/C-x C-q/C-c C-i to enter edit mode. C-x C-s to save, C-c C-k
     (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
