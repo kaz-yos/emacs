@@ -4,5 +4,7 @@
 # --
 ggplot(data = $1, mapping = aes(x = $2, y = $3)) +
     geom_$4() +
-    theme_bw() + theme(legend.key = element_blank())
+    theme_bw() +
+    theme(legend.key = element_blank()
+          plot.title = element_text(hjust = 0.5))
 $0
