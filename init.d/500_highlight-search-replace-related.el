@@ -274,6 +274,7 @@ searched. If there is no symbol, empty search box is started."
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
 ;; ag.el
 (use-package ag
+  :if (executable-find "ag")
   :commands (ag
              ag-files
              ag-regexp
@@ -325,6 +326,7 @@ searched. If there is no symbol, empty search box is started."
 ;;;  rg.el
 ;; https://github.com/dajva/rg.el
 (use-package rg
+  :if (executable-find "ripgrep")
   :commands (rg)
   ;;
   :config
