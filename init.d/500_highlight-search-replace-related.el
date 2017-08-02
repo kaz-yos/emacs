@@ -83,7 +83,8 @@
   :demand ; otherwise mode-line override does not work
   :init
   ;; Where to save command list
-  (setq mc/list-file "~/.emacs.d/mc-lists.el")
+  (setq mc/list-file (concat user-emacs-directory
+                             "mc-lists.el"))
   ;;
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ;; highlighting symbols only

@@ -13,7 +13,8 @@
 ;; http://pchristensen.com/blog/articles/setting-up-and-using-emacs-infomode/
 ;;
 ;; Add path (Need correctly formatted dir file with special format)
-(add-to-list 'Info-directory-list (expand-file-name "~/.emacs.d/info/"))
+(add-to-list 'Info-directory-list (expand-file-name (concat user-emacs-directory
+                                                            "info/")))
 
 
 ;;;

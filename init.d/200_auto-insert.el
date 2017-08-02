@@ -2,7 +2,8 @@
 ;;
 ;; autoinsert.el
 (auto-insert-mode)
-(setq auto-insert-directory "~/.emacs.d/autoinsert/")
+(setq auto-insert-directory (concat user-emacs-directory
+                                    "autoinsert/"))
 ;;
 ;; Definitions by the file extensions
 ;; (define-auto-insert "^ui\\.R$"      "ui.R")

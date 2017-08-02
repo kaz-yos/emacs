@@ -68,7 +68,8 @@
   :commands (el-get-list-packages)
   ;;
   :config
-  (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+  (add-to-list 'el-get-recipe-path (concat user-emacs-directory
+                                           "el-get-user/recipes"))
   (el-get 'sync))
 ;;
 ;;;  Packages installed via el-get. Explicitly specify their paths.

@@ -42,17 +42,20 @@
       (setq ispell-hunspell-dict-paths-alist
             '(("en_US" "/Library/Spelling/en_US.aff")
               ("en_US-med" "/Library/Spelling/en_US-med.aff")))
-      (setq ispell-personal-dictionary "~/.emacs.d/misc/hunspell.en"))
+      (setq ispell-personal-dictionary (concat user-emacs-directory
+                                               "misc/hunspell.en")))
      ;; aspell
      ;; install with brew install aspell --with-lang-en
      (aspell-file
       (setq ispell-program-name aspell-file)
       (setq ispell-dictionary "en_US")
-      (setq ispell-personal-dictionary "~/.emacs.d/misc/aspell.en.pws"))
+      (setq ispell-personal-dictionary (concat user-emacs-directory
+                                               "misc/aspell.en.pws")))
      ;; ispell
      (ispell-file
       (setq ispell-program-name ispell-file)
-      (setq ispell-personal-dictionary "~/.emacs.d/misc/ispell.en"))))
+      (setq ispell-personal-dictionary (concat user-emacs-directory
+                                               "misc/ispell.en")))))
   ;;
   ;; http://stackoverflow.com/questions/2376113/personal-dictionaries-in-emacs-flyspell-mode
   ;;
@@ -168,7 +171,8 @@ which has no argument of its own."
   :config
   ;; The standalone desktop version was downloaded from the following URL.
   ;; https://www.languagetool.org
-  (setq langtool-language-tool-jar "~/.emacs.d/misc/LanguageTool-3.5/languagetool-commandline.jar")
+  (setq langtool-language-tool-jar (concat user-emacs-directory
+                                           "misc/LanguageTool-3.5/languagetool-commandline.jar"))
   ;; Language name pass to LanguageTool.
   (setq langtool-default-language "en-US")
   ;; Your mothertongue Language name pass to LanguageTool.

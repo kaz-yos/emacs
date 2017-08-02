@@ -11,7 +11,8 @@
   :init
   ;; Saving bookmarks (before require)
   ;; (setq-default bm-buffer-persistence t)
-  (setq bm-repository-file "~/.emacs.d/bm-el-repository")
+  (setq bm-repository-file (concat user-emacs-directory
+                                   "bm-el-repository"))
   ;; (setq bm-restore-repository-on-load t)
   :config
   ;; No annotation column because I do not used it (after require)
@@ -119,7 +120,9 @@
 ;;; Built-in bookmarks (not used)
 ;; http://www.emacswiki.org/emacs/BookMarks#toc6
 (setq bookmark-save-flag 1)
-(setq bookmark-default-file "~/.emacs.d/bookmarks") ; save file within ~/.emacs.d
+;; save file within ~/.emacs.d
+(setq bookmark-default-file (concat user-emacs-directory
+                                    "bookmarks"))
 (defadvice bookmark-jump (after bookmark-jump activate)
   (let ((latest (bookmark-get-bookmark bookmark)))
     (setq bookmark-alist (delq latest bookmark-alist))

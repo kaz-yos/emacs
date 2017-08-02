@@ -5,7 +5,8 @@
 ;; http://www.emacswiki.org/emacs/auto-install.el
 (use-package auto-install
   :config
-  (setq auto-install-directory "~/.emacs.d/auto-install/")
+  (setq auto-install-directory (concat user-emacs-directory
+                                       "auto-install/"))
   ;;
   ;; emacs customization book by rubikitch
   ;; EmacsWiki added for auto-completion list at startup
@@ -26,5 +27,3 @@
   ;; THIS FREEZES EMACS IF EMACSWIKI IS DONW!!!!!! (not necessary)
   ;; (auto-install-update-emacswiki-package-name t)
   )
-
-

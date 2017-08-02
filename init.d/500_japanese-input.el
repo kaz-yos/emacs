@@ -20,7 +20,8 @@
   ;; Config files
   ;; http://openlab.ring.gr.jp/skk/skk-manual-git/She-Ding-huairu.html#g_t_8a2d_5b9a_30d5_30a1_30a4_30eb
   ;; Put everything under this directory.
-  (setq skk-user-directory "~/.emacs.d/skk")
+  (setq skk-user-directory (concat user-emacs-directory
+                                   "skk"))
   ;;
   ;; Dictionaries
   ;; http://openlab.ring.gr.jp/skk/wiki/wiki.cgi?page=SKK%BC%AD%BD%F1
@@ -35,18 +36,21 @@
   (setq skk-initial-search-jisyo nil)
   ;;
   ;; Personal dictionary
-  (setq skk-jisyo "~/.emacs.d/skk/skk-jisyo.utf8")
+  (setq skk-jisyo (concat user-emacs-directory
+                          "skk/skk-jisyo.utf8"))
   ;; Assume private dictionary file is being access by multiple SKK processes (safer)
   (setq skk-share-private-jisyo t)
   ;; Back up for the personal dictionary
-  (setq skk-backup-jisyo "~/.emacs.d/skk/skk-jisyo.utf8.BAK")
+  (setq skk-backup-jisyo (concat user-emacs-directory
+                                 "skk/skk-jisyo.utf8.BAK"))
   ;;
   ;; Main dictionary
   ;; Optimized file for faster access (unused by default)
   (setq skk-cdb-large-jisyo nil)
   ;; Non-optimized raw dictionary file
   (let ((aquaskk-dict "~/Library/Application Support/AquaSKK/SKK-JISYO.L")
-        (ddskk-dict "~/.emacs.d/skk/SKK-JISYO.L"))
+        (ddskk-dict (concat user-emacs-directory
+                            "skk/SKK-JISYO.L")))
     (cond
      ;; Use AquaSKK's dictionary if available.
      ((file-exists-p aquaskk-dict) (setq skk-large-jisyo aquaskk-dict))
