@@ -15,8 +15,8 @@
 #+OPTIONS: ^:{}
 #+STARTUP: beamer
 #+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
-#+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [dvipdfmx,bigger]
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [dvipdfmx,bigger]
 #+LATEX_HEADER: %% No navigation bar
 #+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
 #+LATEX_HEADER: %% Page number with current/total format

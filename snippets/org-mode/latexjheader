@@ -3,9 +3,9 @@
 # key: jhead
 # expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
 # --
-# LaTeX configurations
-#+LaTeX_CLASS: jsarticle
-#+LaTeX_CLASS_OPTIONS: [dvipdfmx]
+# LATEX configurations
+#+LATEX_CLASS: jsarticle
+#+LATEX_CLASS_OPTIONS: [dvipdfmx]
 #+LATEX_HEADER: %% Margin
 #+LATEX_HEADER: %% \usepackage[margin=1.5cm]{geometry}
 #+LATEX_HEADER: \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm, headsep=4pt]{geometry}
