@@ -84,9 +84,9 @@
   ;; http://mugijiru.seesaa.net/article/275755984.html
   ;;
   ;; Learning capability
-  (require 'skk-study)
+  (use-package skk-study)
   ;; Show hints
-  (require 'skk-hint)
+  (use-package skk-hint)
   ;; Use : as the hint key
   (setq skk-hint-start-char 58)
   (setq skk-show-annotation t)
@@ -127,13 +127,4 @@
       (setq skk-server-inhibit-startup-server t)
       ;; Host and port
       (setq skk-server-host "localhost")
-      (setq skk-server-portnum 55100)))
-  ;;
-  ;;
-;;;
-;;; ac-skk.el
-  ;; Not useful if not using auto-complete.el
-  ;; https://github.com/myuhe/ac-skk.el
-  ;; (require 'ac-skk)
-  ;; (ac-skk-enable)
-  )
+      (setq skk-server-portnum 55100))))
