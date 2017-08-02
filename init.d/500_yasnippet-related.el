@@ -1,9 +1,11 @@
-;;; YAsnippet
-;;
+;;;
+;;; TEMPLATE-RELATED
+;;;  yasnippet
 ;; https://github.com/capitaomorte/yasnippet
+;; https://joaotavora.github.io/yasnippet
+;; https://blog.alex-miller.co/emacs/spacemacs/2017/05/28/yasnippets.html/
 ;; http://fukuyama.co/yasnippet
 ;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
-;;
 (use-package yasnippet
   :config
   ;; Key-bind for expanding
@@ -16,7 +18,7 @@
   ;; Expand
   (define-key yas-minor-mode-map (kbd "A-y") 'yas-expand)
   ;;
-  ;; Use Popup isearch For Yasnippet Prompt 2014-01-??
+  ;; Use Popup isearch for Yasnippet Prompt.
   ;; http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
   (defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
     (when (featurep 'popup)
@@ -35,18 +37,9 @@
   ;;
   ;; Activate globally.
   (yas-global-mode 1))
-;;
-;;
-;;; helm-c-yasnippet.el
-;; https://github.com/emacs-jp/helm-c-yasnippet
-;; http://rubikitch.com/2015/10/05/helm-c-yasnippet/
-(use-package helm-c-yasnippet
-  :bind ("C-c y" . helm-yas-complete)
-  :config
-  (setq helm-yas-space-match-any-greedy t))
-;;
-;;
-;;; yatemplate.el
+
+
+;;;  yatemplate.el
 ;; https://github.com/mineo/yatemplate
 ;; http://emacs.rubikitch.com/yatemplate/
 ;; http://emacs.rubikitch.com/sd1602-autoinsert-yatemplate-yasnippet/
