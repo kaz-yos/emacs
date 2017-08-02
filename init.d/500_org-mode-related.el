@@ -230,7 +230,7 @@
 This is a custom version of org-latex-export-to-pdf with an async flag."
     (interactive)
     (save-buffer)
-    (if (buffer-contains-substring ": beamer")
+    (if (buffer-contains-substring "#+LATEX_CLASS: beamer")
         ;; If the header contains ": beamer", export as a beamer presentation.
         (org-beamer-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
       (org-latex-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)))
