@@ -25,9 +25,9 @@
 ;;; js3-mode.el
   ;; A chimeric fork of js2-mode and js-mode
   ;; https://github.com/thomblake/js3-mode
-  (require 'js3-mode)
+  (use-package js3-mode)
 ;;; js-comint.el
-  (require 'js-comint)
+  (use-package js-comint)
   ;; Set inferior-js-program-command to the execution command for running your javascript REPL
   ;; Use Node.js https://nodejs.org/en/
   (setq inferior-js-program-command "node --interactive"))
