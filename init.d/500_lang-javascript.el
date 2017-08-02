@@ -33,7 +33,10 @@
   (setq inferior-js-program-command "node --interactive"))
 
 
-;;; moz.el
+;;;
+;;; MOZ-RELATED
+
+;;;  moz.el
 ;; Lets current buffer interact with inferior mozilla
 ;; https://github.com/bard/mozrepl/wiki/Emacs-integration
 ;; C-c C-s: open a MozRepl interaction buffer and switch to it
@@ -43,7 +46,14 @@
 ;; C-c C-r: send the current region to MozRepl
 ;; In the interaction buffer:
 ;; C-c c: insert the current name of the REPL plus the dot operator (usually repl.)
-;;
-;;; moz-controller.el
+(use-package moz
+  :commands (inferior-moz-mode
+             moz-minor-mode))
+
+
+;;;  moz-controller.el
 ;; Control Firefox from Emacs
 ;; https://github.com/RenWenshan/emacs-moz-controller
+(use-package moz-controller
+  :commands (moz-controller-mode
+             moz-controller-global-mode))
