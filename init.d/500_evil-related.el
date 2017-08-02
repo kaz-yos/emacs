@@ -23,5 +23,6 @@
   ;;
   ;;; evil-surround.el
   ;; https://github.com/timcharper/evil-surround
-  (when (require 'evil-surround nil 'noerror)
+  (use-package evil-surround
+    :config
     (global-evil-surround-mode 1)))
