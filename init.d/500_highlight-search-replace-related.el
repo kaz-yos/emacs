@@ -210,17 +210,18 @@ searched. If there is no symbol, empty search box is started."
 ;; http://d.hatena.ne.jp/sandai/20120304/p2
 (use-package color-moccur
   :commands (moccur-grep
+             occur-by-moccur
              moccur-grep-find)
   :bind (("s-m" . moccur-grep)
+         ("C-s-m" . occur-by-moccur)
          ;; https://github.com/jwiegley/use-package#the-basics
          :map isearch-mode-map
          ("M-o" . isearch-moccur)
          ("M-O" . isearch-moccur-all))
   ;;
-  :init
-  (setq isearch-lazy-highlight t)
-  ;;
   :config
+  (setq isearch-lazy-highlight t)
+  (setq moccur-following-mode-toggle t)
   ;; Editing moccur buffer
   ;; Usage:
   ;; M-x moccur-grep to enter Moccur-grep, then objectName .R$
@@ -272,7 +273,8 @@ searched. If there is no symbol, empty search box is started."
              ag-project
              ag-project-files
              ag-project-regexp)
-  :bind (("s-a" . ag))
+  :bind (("s-a" . ag)
+         ("C-s-a" . ag-project))
   ;;
   :config
   ;; grouping is better.
