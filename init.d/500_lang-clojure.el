@@ -39,38 +39,17 @@
   (define-key clojure-mode-map (kbd "C-c a") 'auto-complete-mode)
   ;;
   ;;
-;;; ac-cider.el
-  ;; https://github.com/clojure-emacs/ac-cider
-  ;; (require 'ac-cider)
-  ;; (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-  ;; (add-hook 'cider-mode-hook 'ac-cider-setup)
-  ;; (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-  ;; (eval-after-load "auto-complete"
-  ;;   '(add-to-list 'ac-modes 'cider-mode))
-  ;; If you want to trigger auto-complete using TAB in CIDER buffers, you may
-  ;; want to use auto-complete in your `completion-at-point-functions':
-  ;; (defun set-auto-complete-as-completion-at-point-function ()
-  ;;   (setq completion-at-point-functions '(auto-complete)))
-  ;; (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
-  ;; (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
-  ;;
-  ;;
-  ;;; latest-clojure-libraries.el
+;;;  latest-clojure-libraries.el
   ;; https://github.com/AdamClements/latest-clojure-libraries/
-  (require 'latest-clojure-libraries)
+  ;; Look up the latest version of a library from clojars
+  ;; and insert it into your running session.
+  (use-package latest-clojure-libraries)
   ;;
+;;;  cider-toggle-trace
+  (use-package cider-tracing)
   ;;
-;;; cider-toggle-trace
-  (require 'cider-tracing)
-  ;;
-  ;;
-;;; clojure-cheatsheet.el
-  (require 'clojure-cheatsheet)
-  ;;
-  ;;
-;;; clojure-test-mode.el 2014-10-27 deprecated
-  ;; (require 'clojure-test-mode)
-  ;;
+;;;  clojure-cheatsheet.el
+  (use-package clojure-cheatsheet)
   ;;
 ;;; C-c C-v for help and examples
   (defun cider-help-for-symbol ()
@@ -93,7 +72,6 @@
   ;;
   (define-key clojure-mode-map (kbd "C-c C-v") 'cider-help-for-symbol)
   ;;
-  ;;
 ;;; C-c C-g for type
   (defun cider-type-for-symbol ()
     "Provide type for a symbol in the REPL."
@@ -112,39 +90,4 @@
       ;; Move back to the script window
       (select-window script-window)))
   ;;
-  (define-key clojure-mode-map (kbd "C-c C-g") 'cider-type-for-symbol)
-  ;;
-  ;;
-;;; clj-refactor.el
-  ;; (require 'clj-refactor)
-  ;; (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
-  ;;
-  ;; Setup keybindings
-  ;; All functions in clj-refactor have a two-letter mnemonic shortcut. You
-  ;; get to choose how those are bound. Here's how:
-  ;;     (cljr-add-keybindings-with-prefix "C-c C-m")
-  ;;     ;; eg. rename files with `C-c C-m rf`.
-  ;; If you would rather have a modifier key, instead of a prefix, do:
-  ;;     (cljr-add-keybindings-with-modifier "C-s-")
-  ;;     ;; eg. rename files with `C-s-r C-s-f`.
-  ;; If neither of these appeal to your sense of keyboard layout aesthetics, feel free
-  ;; to pick and choose your own keybindings with a smattering of:
-  ;;     (define-key clj-refactor-map (kbd "C-x C-r") 'cljr-rename-file)
-  ;;
-  ;;
-;;; clojure-quick-repls.el
-  ;; https://github.com/symfrog/clojure-quick-repls
-  (require 'clojure-quick-repls)
-  ;;
-  ;;
-;;; cider-profile.el
-  ;; nrepl support for thunknyc/profile
-  ;; https://github.com/thunknyc/nrepl-profile;
-  (require 'cider-profile)
-  ;;
-  ;;
-  ;;; cider-spy.el (this breaks REPL connection?)
-  ;; Lets developers share information on CIDER nREPL sessions
-  ;; https://github.com/jonpither/cider-spy
-  ;; (require 'cider-spy)
-  )
+  (define-key clojure-mode-map (kbd "C-c C-g") 'cider-type-for-symbol))
