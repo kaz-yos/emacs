@@ -242,11 +242,29 @@ searched. If there is no symbol, empty search box is started."
       (save-buffer))))
 
 
-;;; wgrep
+;;;  wgrep
+;; https://github.com/mhayashi1120/Emacs-wgrep
+;; C-c C-e : Apply the changes to file buffers.
+;; C-c C-u : All changes are unmarked and ignored.
+;; C-c C-d : Mark as delete to current line (including newline).
+;; C-c C-r : Remove the changes in the region (these changes are not
+;;           applied to the files. Of course, the remaining
+;;           changes can still be applied to the files.)
+;; C-c C-p : Toggle read-only area.
+;; C-c C-k : Discard all changes and exit.
+;; C-x C-q : Exit wgrep mode.
+;;
+;; 27.4 Searching with Grep under Emacs
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Grep-Searching.html
 (use-package wgrep
   :commands (wgrep-setup)
   :init
-  (add-hook 'grep-setup-hook 'wgrep-setup))
+  (add-hook 'grep-setup-hook 'wgrep-setup)
+  :config
+  ;; r/C-x C-q/C-c C-i to enter edit mode. C-x C-s to save, C-c C-k
+  (define-key grep-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
+  (define-key grep-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode)
+  (define-key grep-mode-map (kbd "C-c C-i") 'wgrep-change-to-wgrep-mode))
 
 
 ;;;  ag.el/wgrep-ag.el
@@ -266,7 +284,7 @@ searched. If there is no symbol, empty search box is started."
   ;;
   :config
   ;; grouping is better.
-  (setq ag-arguments '("--smart-case" "--stats" "--group" "--"))
+  (setq ag-arguments '("--smart-case" "--stats" "--group"))
   (setq ag-highlight-search t)
   (setq ag-reuse-buffers t)
   (setq ag-reuse-window t)
