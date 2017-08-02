@@ -217,6 +217,12 @@
   ;; located in ‘temporary-file-directory’.
   (setq org-export-async-debug t)
   ;;
+  ;; https://stackoverflow.com/questions/3034237/check-if-current-emacs-buffer-contains-a-string
+  (defun buffer-contains-substring (string)
+    (save-excursion
+      (save-match-data
+        (goto-char (point-min))
+        (search-forward string nil t))))
   ;; Async export with direct key bindings
   (defun org-latex-export-to-pdf-async (&optional SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
     "Export to pdf async directly
@@ -224,14 +230,10 @@
 This is a custom version of org-latex-export-to-pdf with an async flag."
     (interactive)
     (save-buffer)
-    (org-latex-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST))
-  (defun org-beamer-export-to-pdf-async (&optional SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
-    "Export to beamer async directly
-
-This is a custom version of org-beamer-export-to-pdf with an async flag."
-    (interactive)
-    (save-buffer)
-    (org-beamer-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST))
+    (if (buffer-contains-substring ": beamer")
+        ;; If the header contains ": beamer", export as a beamer presentation.
+        (org-beamer-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)
+      (org-latex-export-to-pdf t SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)))
   ;;
   (defun org-latex-export-to-latex-save ()
     "Export to latex .tex file after saving."
@@ -239,8 +241,7 @@ This is a custom version of org-beamer-export-to-pdf with an async flag."
     (save-buffer)
     (org-latex-export-to-latex))
   ;; Keys
-  (define-key org-mode-map (kbd "A-s")   'org-latex-export-to-pdf-async)
-  (define-key org-mode-map (kbd "A-C-s") 'org-beamer-export-to-pdf-async)
+  (define-key org-mode-map (kbd "A-s") 'org-latex-export-to-pdf-async)
   (define-key org-mode-map (kbd "A-l") 'org-latex-export-to-latex-save)
   ;;
   ;; auto-revert in org-stack-mode
