@@ -1,5 +1,5 @@
 ;;;
-;;; crosshairs.el: highlight current line/column using hl-line(+).el/col-highlight.el
+;;; crosshairs.el
 ;; http://www.emacswiki.org/emacs/CrosshairHighlighting
 (use-package crosshairs
   :commands (crosshairs-mode)
@@ -27,7 +27,7 @@
 
 
 ;;;
-;;; highligh-symbol for highlighting multiple occurences
+;;; highligh-symbol.el
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (use-package highlight-symbol
@@ -52,17 +52,17 @@
 
 
 ;;;
-;;; anzu.el 2014-02-01
+;;; anzu.el
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 ;; http://qiita.com/syohex/items/56cf3b7f7d9943f7a7ba
 (use-package anzu
   :demand
   :config
-  (global-anzu-mode +1)
   (setq anzu-mode-lighter "")
   (setq anzu-use-migemo t)
   (setq anzu-search-threshold 1000)
   (setq anzu-minimum-input-length 1)
+  (global-anzu-mode +1)
   ;;
   ;; Define a large face (also used for multiple-cursors.el)
   ;; This was done in custom-set-faces.
@@ -101,18 +101,8 @@
         `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)
                                 (mc/num-cursors))))))
 
+
 ;;;
-;;; phi-search.el
-;; another incremental search command, compatible with “multiple-cursors”
-;; https://github.com/zk-phi/phi-search
-;; https://www.youtube.com/watch?v=JSTO674y6Hcp
-;; http://rubikitch.com/2014/11/11/phi-search/
-(use-package phi-search
-  :commands (phi-search
-             phi-search-backward))
-
-
-
 ;;; SWIPER-RELATED
 ;;;  swiper.el
 ;; https://github.com/abo-abo/swiper
@@ -364,10 +354,7 @@ searched. If there is no symbol, empty search box is started."
 ;; Add/Change/Delete pairs based on `expand-region', similar to `evil-surround'.
 ;; https://github.com/cute-jumper/embrace.el
 (use-package embrace
-  :commands (embrace-commander)
-  :bind
-  ("H-e" . embrace-commander)
-  ("s-e" . embrace-commander))
+  :commands (embrace-commander))
 
 
 ;;;
@@ -378,20 +365,22 @@ searched. If there is no symbol, empty search box is started."
 ;; Works by advising isearch-mode
 ;;
 ;; Mac-only configuration
-(when (executable-find "/usr/local/bin/cmigemo")
-  (use-package migemo
-    :commands (migemo-init)
-    :init
-    (add-hook 'after-init-hook 'migemo-init)
-    :config
-    (setq migemo-command "/usr/local/bin/cmigemo")
-    (setq migemo-options '("-q" "--emacs"))
-    (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
-    (setq migemo-user-dictionary nil)
-    (setq migemo-coding-system 'utf-8-unix)
-    (setq migemo-regex-dictionary nil)
-    ;; Advising
-    (migemo-init)))
+(use-package migemo
+  :if (executable-find "/usr/local/bin/cmigemo")
+  :commands (migemo-init)
+  ;;
+  :init
+  (add-hook 'after-init-hook 'migemo-init)
+  ;;
+  :config
+  (setq migemo-command "/usr/local/bin/cmigemo")
+  (setq migemo-options '("-q" "--emacs"))
+  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+  (setq migemo-user-dictionary nil)
+  (setq migemo-coding-system 'utf-8-unix)
+  (setq migemo-regex-dictionary nil)
+  ;; Advising
+  (migemo-init))
 
 
 ;;;
