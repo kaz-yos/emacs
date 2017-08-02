@@ -441,8 +441,14 @@ searched. If there is no symbol, empty search box is started."
              avy-goto-word-1
              avy-goto-word-or-subword-1)
   :config
-  ;; Darken background
+  ;; Darken background.
   (setq avy-background t)
+  ;; Highlight the first decision char with `avy-lead-face-0'.
+  ;; https://github.com/abo-abo/avy/wiki/defcustom#avy-highlight-first
+  (setq avy-highlight-first t)
+  ;; The default method of displaying the overlays.
+  ;; https://github.com/abo-abo/avy/wiki/defcustom#avy-style
+  (setq avy-style 'at-full)
   ;;
   ;; Time out for *-timer functions
   (setq avy-timeout-seconds 0.3)
