@@ -33,6 +33,9 @@
 ;; up, just do 'brew uninstall pdf-tools', wipe out the elpa
 ;; pdf-tools package and reinstall both as at the start.
 ;;
+;; When dysfunctional, try uninstalling and installing again.
+;; brew uninstall pdf-tools; brew install pdf-tools
+;;
 ;; Homebrew recipe moved to:
 ;; https://github.com/dunn/homebrew-emacs
 (use-package pdf-tools
@@ -50,8 +53,9 @@
   ;;
   ;; Install PDF-Tools in all current and future PDF buffers.
   (pdf-tools-install)
-  ;;
-  (add-hook 'pdf-view-mode-hook #'turn-on-auto-revert-mode))
+  ;; Auto-revert
+  ;; (add-hook 'pdf-view-mode-hook #'turn-on-auto-revert-mode)
+  )
 
 
 ;;;
