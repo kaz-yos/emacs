@@ -263,3 +263,18 @@
 ;;; Add the system clipboard to the emacs kill-ring
 ;; http://pragmaticemacs.com/emacs/add-the-system-clipboard-to-the-emacs-kill-ring/
 (setq save-interprogram-paste-before-kill t)
+
+
+;;;
+;;; Network Security Manager
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Network-Security.html
+;; nsm-query-user is the function that queries "Continue connecting? (No, Session only, Always) "
+;; ?n, ?s, ?a are the valid responses.
+(use-package nsm
+  :config
+  ;; How secure the network should be.
+  (setq network-security-level 'medium)
+  ;; The file the security manager settings will be stored in.
+  (setq nsm-settings-file (expand-file-name
+                           (concat user-emacs-directory
+                                   "network-security.data"))))
