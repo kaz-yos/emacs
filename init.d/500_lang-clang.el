@@ -34,12 +34,11 @@
 ;;; company-c-headers.el
 ;; https://github.com/randomphrase/company-c-headers
 (use-package company-c-headers
-  :disabled t
   :commands (company-c-headers)
   ;;
   :init
-  (eval-after-load 'company
-    (add-to-list 'company-backends 'company-c-headers)))
+  (add-hook 'global-company-mode-hook '(lambda ()
+                                         (add-to-list 'company-backends 'company-c-headers))))
 
 
 ;;;
