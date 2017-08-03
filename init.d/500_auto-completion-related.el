@@ -238,7 +238,9 @@
   :commands (counsel-ag
              counsel-git-grep)
   :bind (("s-q". counsel-ag)
-         ("C-s-q" . counsel-git-grep))
+         ("C-s-q" . counsel-git-grep)
+         :map org-mode-map
+         ("s-z" . counsel-org-goto))
   ;;
   :config
   ;; Make counsel-ag default to
