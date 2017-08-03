@@ -145,10 +145,10 @@
   (setq org-ditaa-jar-path "~/.emacs.d/packages/org-mode/contrib/scripts/ditaa.jar")
   ;;
 ;;;  ob-async.el
-  ;; Not on melpa as of 2017-02-21.
   ;; https://github.com/astahlman/ob-async
   (use-package ob-async
-    :config
+    :commands (ob-async-org-babel-execute-src-block)
+    :init
     (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block))
   ;;
   ;;
@@ -389,7 +389,8 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
 ;;;  Regular markdown exporter
   (use-package ox-md)
   ;;
-;;;  Qiita-Markdown exporter
+;;;  Qiita Markdown Back-End for Org Export Engine
+  ;; https://github.com/0x60df/ox-qmd
   ;; http://qiita.com/0x60df/items/3cde67967e3db30d9afe
   (use-package ox-qmd)
   ;;
