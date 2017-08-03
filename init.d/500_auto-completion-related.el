@@ -237,8 +237,8 @@
 (use-package counsel
   :commands (counsel-ag
              counsel-git-grep)
-  :bind (("s-q". counsel-ag)
-         ("C-s-q" . counsel-git-grep)
+  :bind (("s-q". counsel-git-grep)
+         ("C-s-q" . counsel-ag)
          :map org-mode-map
          ("s-z" . counsel-org-goto))
   ;;
