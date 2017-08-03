@@ -86,10 +86,10 @@
 
 ;;;
 ;;; Start up related
-;;; No start up message
+;;;  No start up message
 (setq inhibit-startup-message t)
 ;;
-;;; Screen maximization and full-screen
+;;;  Screen maximization and full-screen
 ;; http://www.emacswiki.org/emacs/FullScreen
 (setq initial-frame-alist
       '((fullscreen . maximized)))
