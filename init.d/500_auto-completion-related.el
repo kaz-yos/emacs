@@ -235,7 +235,23 @@
 ;; https://oremacs.com/2015/04/09/counsel-completion/
 ;; http://cestlaz.github.io/posts/using-emacs-6-swiper/#.WYKJHa2ZOEI
 (use-package counsel
-  :commands (counsel-ag))
+  :commands (counsel-ag
+             counsel-git-grep)
+  :bind (("s-q". counsel-ag)
+         ("C-s-q" . counsel-git-grep))
+  ;;
+  :config
+  ;; Make counsel-ag default to
+  ;; https://github.com/abo-abo/swiper/issues/583
+  (defun counsel-ag-advice (args)
+    "Make counsel-ag aware of project root.
+
+Modify INITIAL-DIRECTORY to projectile-project-root."
+    ;; (setcar CELL NEWCAR)
+    (setcar (nthcdr 1 args) (projectile-project-root)))
+  ;; (advice-add 'counsel-ag :filter-args #'counsel-ag-advice)
+  ;; (advice-remove 'counsel-ag #'counsel-ag-advice)
+  )
 
 
 ;;;
