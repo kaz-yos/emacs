@@ -258,7 +258,8 @@ Modify INITIAL-DIRECTORY to projectile-project-root."
 ;;; git-complete.el
 ;; Yet another completion engine powered by git grep
 ;; https://github.com/zk-phi/git-complete
-(use-package git-complete)
+(use-package git-complete
+  :commands (git-complete))
 
 
 ;;;
