@@ -213,11 +213,17 @@
 ;;; IVY-RELATED
 ;;
 ;;;  ivy.el
+;; https://github.com/abo-abo/swiper
+;; http://oremacs.com/swiper/
+;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
+;; https://www.reddit.com/r/emacs/comments/5453d4/what_does_your_ivyswiper_configuration_look_like/
 (use-package ivy
   :config
   ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "%d/%d ")
+  (setq ivy-height 20)
+  ;;
   ;; Additional keys
   ;; ivy-immediate-done finishes without completion
   (define-key ivy-minibuffer-map (kbd "C-<return>") 'ivy-immediate-done)
@@ -225,7 +231,11 @@
   (ivy-mode 1))
 ;;
 ;;;  counsel.el
-(use-package counsel)
+;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html#org2d4e119
+;; https://oremacs.com/2015/04/09/counsel-completion/
+;; http://cestlaz.github.io/posts/using-emacs-6-swiper/#.WYKJHa2ZOEI
+(use-package counsel
+  :commands (counsel-ag))
 
 
 ;;;
