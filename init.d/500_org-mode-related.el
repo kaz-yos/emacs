@@ -242,7 +242,9 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
     (org-latex-export-to-latex))
   ;; Keys
   (define-key org-mode-map (kbd "A-s") 'org-latex-export-to-pdf-async)
+  (define-key org-mode-map (kbd "H-s") 'org-latex-export-to-pdf-async)
   (define-key org-mode-map (kbd "A-l") 'org-latex-export-to-latex-save)
+  (define-key org-mode-map (kbd "H-l") 'org-latex-export-to-latex-save)
   ;;
   ;; auto-revert in org-stack-mode
   (add-hook 'org-export-stack-mode-hook #'turn-on-auto-revert-mode)

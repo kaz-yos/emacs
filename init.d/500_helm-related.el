@@ -166,11 +166,11 @@
 
 ;;;  helm-swoop.el
 (use-package helm-swoop
-  :bind (("H-s" . helm-swoop)
+  :bind (;; ("H-s" . helm-swoop)
          ;; Give swoop additional bindings
          :map helm-swoop-map
-         ("C-s" . swoop-action-goto-line-next)
-         ("C-r" . swoop-action-goto-line-prev)))
+              ("C-s" . swoop-action-goto-line-next)
+              ("C-r" . swoop-action-goto-line-prev)))
 
 ;;;  helm-bm.el
 ;; https://github.com/jixiuf/helm-bm
