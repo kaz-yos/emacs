@@ -363,7 +363,13 @@ _d_: subtree
 ;; Use this to see what remaining keys are available.
 ;; Use bind-key.el describe-personal-keybindings for used keys.
 (use-package free-keys
-  :commands (free-keys))
+  :commands (free-keys)
+  ;;
+  :config
+  ;; List of modifiers that can be used in front of keys.
+  (setq free-keys-modifiers '(""
+                              "C" "A" "M" "s" "H"
+                              "C-M" "A-C" "C-s" "A-M")))
 
 
 ;;;
