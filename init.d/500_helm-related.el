@@ -126,10 +126,14 @@
   :commands (helm-ag
              helm-ag-this-file)
   :config
+  ;; Keymap
+  ;; https://github.com/syohex/emacs-helm-ag#keymap
   ;; No grouping makes more sense with narrowing by helm.
-  (setq helm-ag-base-command "ag --smart-case --nogroup --column")
+  (setq helm-ag-base-command "ag --smart-case --nogroup")
   ;; -t --all-text: Search all text files. This doesn't include hidden files.
   (setq helm-ag-command-option "--all-text")
+  ;; Save buffers you edit at completed. (C-x C-q to edit. C-c C-c to complete.)
+  (setq helm-ag-edit-save t)
   (setq helm-ag-thing-at-point 'symbol))
 
 
