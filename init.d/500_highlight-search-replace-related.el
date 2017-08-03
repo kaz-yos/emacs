@@ -324,11 +324,18 @@ searched. If there is no symbol, empty search box is started."
 
 ;;;  rg.el
 ;; https://github.com/dajva/rg.el
+;; https://github.com/BurntSushi/ripgrep
+;; https://github.com/BurntSushi/ripgrep#installation (binary is called rg)
+;; $ brew install ripgrep
 (use-package rg
-  :if (executable-find "ripgrep")
+  :if (executable-find "rg")
   :commands (rg)
   ;;
   :config
+  ;; List of command line flags for rg.
+  (setq rg-command-line-flags '())
+  ;; Group matches in the same file together.
+  (setq rg-group-result t)
   ;; wgrep compatibility (requires wgrep-ag.el)
   (add-hook 'rg-mode-hook 'wgrep-ag-setup))
 
