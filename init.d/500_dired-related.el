@@ -172,6 +172,8 @@ from the current buffer."
   (unless (string-match-p "&[ \t]*\\'" command)
     (setq command (concat command " &")))
   (dired-do-shell-command command arg file-list))
+;; https://github.com/jwiegley/use-package/blob/master/bind-key.el
+(bind-key "H-d" 'buffer-do-async-shell-command)
 ;;
 ;; One for the regular dired-do-async-shell-command
 ;; Kill the *Runner Output* buffer before running an async shell command.
