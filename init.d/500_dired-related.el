@@ -93,9 +93,28 @@
 ;; The functions `dired-guess-default' (from dired-x.el) and
 ;; `dired-run-shell-command' (from dired-aux.el) will be redefined.
 ;;
+;; These are used ind dired.
+;; M-x runner-add-file
+;; M-x runner-add-extension
+;; M-x runner-edit-file-at-point
+;;
+;; These can be called anywhere.
+;; M-x runner-add-empty
+;; M-x runner-edit
+;; M-x runner-delete
 (use-package runner
+  ;; This has to be available for buffer-do-async-shell-command.
+  :demand t
+  :commands (runner-add-empty
+             runner-edit
+             runner-delete)
   :bind (:map dired-mode-map
-              ("C-c !" . runner-add-extension)))
+              ("C-c !" . runner-add-extension))
+  ;;
+  :config
+  (setq runner-init-file (concat user-emacs-directory
+                                 "runner-conf.el"))
+  (setq runner-show-label t))
 
 
 ;;;  Use runner for current buffer file
