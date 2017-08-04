@@ -53,7 +53,10 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 ;; (package-initialize)
+;; Whether to activate installed packages when Emacs starts.
+(setq package-enable-at-startup nil)
 
+;; Recursively add all subdirectories of ‘default-directory’ to ‘load-path’.
 (let ((default-directory (concat user-emacs-directory "elpa/")))
   (normal-top-level-add-subdirs-to-load-path))
 ;;
