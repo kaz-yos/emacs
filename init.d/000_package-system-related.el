@@ -41,9 +41,8 @@
 ;;;
 ;;; use-package.el for clean package loading
 ;; https://github.com/jwiegley/use-package
-;; http://knmsyk.github.io/blog/2015-05-25-clean-.emacs-with-use-package-and-init-loader.html
-;; http://proglab.blog.fc2.com/blog-entry-4.html
-;; http://qiita.com/kai2nenobu/items/5dfae3767514584f5220
+;; emacs-use-package-fast
+;; https://github.com/nilcons/emacs-use-package-fast
 ;;
 ;; (require FEATURE &optional FILENAME NOERROR)
 (require 'use-package)
