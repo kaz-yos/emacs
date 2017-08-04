@@ -43,6 +43,14 @@
   ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-pdf.el
   :mode (("\\.pdf\\'" . pdf-view-mode))
   ;;
+  :init
+  ;; Add the path to the MELPA version to avoid loading the Homebrew version.
+  (add-to-list 'load-path
+               ;; We need a wild card as a MELPA package keeps changing the folder name.
+               ;; http://emacs.stackexchange.com/questions/9768/elisp-files-in-load-path-are-not-loaded-on-emacs-start
+               ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/List-Elements.html
+               (car (last (file-expand-wildcards "~/.emacs.d/elpa/pdf-tools*"))))
+  ;;
   :config
   ;; Whether PDF Tools should handle upgrading itself.
   ;; Up grading should be via Homebrew
@@ -52,6 +60,11 @@
   (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
   ;;
   ;; Install PDF-Tools in all current and future PDF buffers.
+  ;; https://github.com/politza/pdf-tools/issues/72
+  (use-package pdf-occur
+    ;; These are required by pdf-tools-install.
+    :commands (pdf-occur-global-minor-mode))
+  ;;
   (pdf-tools-install)
   ;; Auto-revert
   ;; (add-hook 'pdf-view-mode-hook #'turn-on-auto-revert-mode)
