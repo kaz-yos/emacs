@@ -1,10 +1,44 @@
 ;; ~/.emacs.d/init.el
 ;; Managed with init-loader.el: https://github.com/emacs-jp/init-loader
 
+
+;;;
+;;; Emacs installation
+;;;  macOS binary (stable and release candidates)
+;; https://emacsformacosx.com
+;;
+;;;  macOS Homebrew emacs-plus (stable or develop)
+;; https://github.com/d12frosted/homebrew-emacs-plus
+;; https://github.com/syl20bnr/spacemacs#macos (Recommended for Spacemacs)
+;; Homebrew formulae do not build "proper" `.app` (including all elements).
+;; $ brew tap d12frosted/emacs-plus
+;; $ brew install emacs-plus --with-natural-title-bar --HEAD # for the development version
+;; $ brew linkapps emacs-plus # Warning: `brew linkapps` has been deprecated
+;;
+;;;  macOS Homebrew Cask (stable, pre-test, and old nightly)
+;; http://wikemacs.org/wiki/Installing_Emacs_on_OS_X
+;; $ brew cask search emacs # to check what's available.
+;;
+;;;  macOS source install
+;; https://www.emacswiki.org/emacs/EmacsForMacOS#toc4
+;; http://stuff-things.net/2015/10/13/building-emacs-on-os-x-el-capitan/
+;; $ cd src
+;; $ git clone git://git.savannah.gnu.org/emacs.git
+;; $ cd emacs
+;; $ make configure
+;; $ ./configure --with-ns
+;; $ make install
+;; $ open -R nextstep/Emacs.app # to find the .app.
+;;
+;;;  Windows binary by Vincent Goule (stable)
+;; https://vigou3.github.io/emacs-modified-windows/
+
+
 ;; Find what causes a package to be loaded.
 ;; (eval-after-load "hydra"
 ;;   '(debug))
 
+;;;
 ;;; No garbage collection during loading.
 (setq gc-cons-threshold most-positive-fixnum)
 
