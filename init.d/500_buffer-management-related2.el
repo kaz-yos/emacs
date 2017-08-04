@@ -34,21 +34,15 @@ Dependency: ace-swap-window"
 
 ;;;
 ;;; reveal-in-finder.el
-;; Mac-only configuration
-(when (eq system-type 'darwin)
-
+;; https://github.com/kaz-yos/elisp
+(use-package reveal-in-osx-finder
+  :if (eq system-type 'darwin)
   ;; Add path to developmental repo
   ;; (when (file-exists-p "~/Documents/programming/emacs-lisp-repos/reveal-in-osx-finder")
   ;;   (add-to-list 'load-path "~/Documents/programming/emacs-lisp-repos/reveal-in-osx-finder"))
-
-  ;; https://github.com/kaz-yos/elisp
-  (require 'reveal-in-osx-finder)
-  ;; autoload test
-  ;; (autoload 'reveal-in-finder "reveal-in-finder")
-  (global-set-key (kbd "C-c z") 'reveal-in-osx-finder)
-  (add-hook 'LaTeX-mode-hook
-            '(lambda ()
-               (local-set-key (kbd "C-c z z") 'reveal-in-osx-finder))))
+  :commands (reveal-in-osx-finder)
+  :bind (("H-z" . reveal-in-osx-finder))
+  )
 
 
 ;; ;;;
