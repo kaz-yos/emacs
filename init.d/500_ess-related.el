@@ -5,12 +5,18 @@
 ;; Some condigurations were taken from vgoulet Emacs distribution configuration files
 ;; https://svn.fsg.ulaval.ca/svn-pub/vgoulet/emacs-modified/macos/tags/
 (use-package ess-site
-  :commands (R R-mode r-mode)
-  :bind (:map ess-noweb-minor-mode-map
-              ("A-s " . ess-swv-weave-PDF)
+  :commands (R
+             R-mode
+             r-mode)
+  :bind (:map ess-mode-map
+              ("A-s" . buffer-do-async-shell-command)
+              ;;
+              :map ess-noweb-minor-mode-map
+              ("A-s" . ess-swv-weave-PDF)
               ("A-p" . ess-swv-PDF)
+              ;;
               :map poly-noweb+r-mode-map
-              ("A-s " . ess-swv-weave-PDF)
+              ("A-s" . ess-swv-weave-PDF)
               ("A-p" . ess-swv-PDF))
   ;;
   ;; https://github.com/jwiegley/use-package#modes-and-interpreters
