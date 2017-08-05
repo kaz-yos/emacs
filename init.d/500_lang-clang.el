@@ -57,7 +57,7 @@
 ;; cmake -DLIBCLANG_INCLUDE_DIR\=/usr/local/opt/llvm/include/ -DLIBCLANG_LIBRARY\=/usr/local/opt/llvm/lib/libclang.dylib -DCMAKE_INSTALL_PREFIX\=/Users/kazuki/.emacs.d/irony/ /Users/kazuki/.emacs.d/elpa/irony-20170627.1045/server && cmake --build . --use-stderr --config Release --target install
 ;;
 ;; ~/.emacs.d/irony/bin/irony-server is installed.
-(use-package irony-mode
+(use-package irony
   :commands (irony-mode)
   ;;
   :init
