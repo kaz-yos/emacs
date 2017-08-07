@@ -17,6 +17,13 @@
          ("s-j" . skk-mode))
   ;;
   :config
+;;;  ccc.el --- buffer local cursor color control library
+  ;; https://github.com/skk-dev/ddskk/blob/master/ccc.el
+  ;; https://github.com/skk-dev/ddskk/issues/3
+  (use-package ccc
+    ;; ccc-setup is called in the main file, skk.el.
+    :commands (ccc-setup))
+  ;;
   ;; Config files
   ;; http://openlab.ring.gr.jp/skk/skk-manual-git/She-Ding-huairu.html#g_t_8a2d_5b9a_30d5_30a1_30a4_30eb
   ;; Put everything under this directory.
