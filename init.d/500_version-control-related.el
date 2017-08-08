@@ -21,25 +21,13 @@
 ;;;
 ;;; In-buffer highlighting of changes
 
-;;;  diff-hl.el
-;; https://github.com/dgutov/diff-hl
-;; Requires vc-mode
-(use-package diff-hl
-  :disabled t
-  :commands (diff-hl-magit-post-refresh
-             global-diff-hl-mode)
-  :init
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-  :config
-  (global-diff-hl-mode))
-
-
 ;;;  git-gutter.el
 ;; https://github.com/syohex/emacs-git-gutter
 (use-package git-gutter
   ;; Use in CLI.
   :if (not (display-graphic-p))
   :config
+  ;; Hook run after refreshing in `magit-refresh'.
   (add-hook 'magit-post-refresh-hook 'git-gutter:update-all-windows)
   ;; Activate everywhere.
   (global-git-gutter-mode))
@@ -51,9 +39,11 @@
   ;; Use in GUI.
   :if (display-graphic-p)
   :config
+  ;; Keys
+  (bind-key "A-p" 'git-gutter:previous-hunk)
+  (bind-key "A-n" 'git-gutter:next-hunk)
   ;; On the right.
   (setq git-gutter-fr:side 'right-fringe)
-  ;; Updating.
   ;; Hook run after refreshing in `magit-refresh'.
   (add-hook 'magit-post-refresh-hook 'git-gutter:update-all-windows)
   ;; Activate everywhere.
@@ -118,67 +108,6 @@
     (setq magit-gitflow-popup-key "C-c f")
     :config
     (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
-
-
-
-
-
-
-;;;  git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
-;; Does not work in .emacs.d (not elisp in general) 2014-03-01
-;; https://github.com/nonsequitur/git-gutter-fringe-plus
-;; fringe-helper.el is required.
-(use-package git-gutter-fringe+
-  ;; Incompatible with 26.0.50's tramp? aref on list?
-  :disabled t
-  :if (display-graphic-p)
-  :init
-  ;; Configure fringe for git-gutter 2014-02-02
-  ;; http://stackoverflow.com/questions/11373826/how-to-disable-fringe-in-emacs
-  ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fringes.html
-  (set-fringe-mode '(0 . 1))
-  (fringe-mode)
-  ;; Mute the mode-line
-  (setq git-gutter+-lighter "")
-  ;; Show on the right side
-  (setq git-gutter-fr+-side 'right-fringe)
-  ;;
-  :config
-  ;; active everywhere
-  (global-git-gutter+-mode)
-  ;;
-  ;; Moving between hunks
-  (global-set-key (kbd "A-p") 'git-gutter+-previous-hunk)
-  (global-set-key (kbd "A-n") 'git-gutter+-next-hunk)
-  ;;
-  ;; Enhance emacs-git-gutter with ivy-mode
-  ;; http://blog.binchen.org/posts/enhance-emacs-git-gutter-with-ivy-mode.html
-  ;; Helper
-  (defun my-reshape-git-gutter (gutter)
-    "Re-shape gutter for `ivy-read'."
-    (let* ((lineno (aref gutter 3))
-           line)
-      (save-excursion
-        (goto-line lineno)
-        (setq line (buffer-substring (line-beginning-position)
-                                     (line-end-position))))
-      ;; build (key . lineno)
-      (cons (format "%s %d: %s"
-                    (if (eq 'deleted (aref gutter 1)) "-" "+")
-                    lineno
-                    (replace-regexp-in-string "^[ \t]*" "" line))
-            lineno)))
-  ;; User function
-  (defun my-goto-git-gutter ()
-    (interactive)
-    (if git-gutter+-diffinfos
-        (let* ((collection (mapcar 'my-reshape-git-gutter
-                                   git-gutter+-diffinfos)))
-          (ivy-read "git-gutters:"
-                    collection
-                    :action (lambda (lineno)
-                              (goto-line lineno))))
-      (message "NO git-gutters!"))))
 
 
 ;;;  git-timemachine.el
