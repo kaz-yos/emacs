@@ -121,6 +121,24 @@
 
 
 ;;;
+;;; outshine.el
+;; https://github.com/alphapapa/outshine
+(use-package outshine
+  :commands (outshine-hook-function)
+  :init
+  ;; Hook outline-minor-mode.
+  (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+  ;; Use outline-minor-mode
+  (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
+  (add-hook 'ess-mode-hook 'outline-minor-mode)
+  (add-hook 'ledger-mode-hook 'outline-minor-mode)
+  (add-hook 'message-mode-hook 'outline-minor-mode)
+  ;;
+  :config
+  )
+
+
+;;;
 ;;; Save and compile function
 ;; http://stackoverflow.com/questions/2062492/save-and-compile-automatically
 (defun save-all-and-compile ()
