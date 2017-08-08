@@ -1,8 +1,11 @@
+;;;
 ;;; polymode.el
 ;; Versatile multiple modes with extensive literate programming support
 ;; https://github.com/vitoshka/polymode
-;;
-;;; R-RELATED
+;; https://github.com/vspinu/polymode/blob/master/readme.md#basic-usage
+
+
+;;;  R-RELATED
 (use-package poly-R
   ;; Do not defer as it is required by ess config
   :demand
@@ -16,8 +19,8 @@
   ;; Key config
   (bind-key "C-c n" 'polymode-next-chunk-same-type     polymode-mode-map)
   (bind-key "C-c p" 'polymode-previous-chunk-same-type polymode-mode-map))
-;;
-;;
-;;; MARKDOWN-related
+
+
+;;;  MARKDOWN-RELATED
 (use-package poly-markdown
   :mode ("\\.md" . poly-markdown-mode))
