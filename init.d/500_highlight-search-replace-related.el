@@ -31,7 +31,17 @@
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (use-package highlight-symbol
-  :bind ("C-." . highlight-symbol-at-point)
+  :commands (highlight-symbol-at-point
+             highlight-symbol-remove-all
+             my-highlight-symbol-next
+             my-highlight-symbol-prev)
+  ;;
+  :bind (("C-." . highlight-symbol-at-point)
+         ("C-\}" . my-highlight-symbol-next)
+         ("C-\{" . my-highlight-symbol-prev)
+         ("A-]" . my-highlight-symbol-next)
+         ("A-[" . my-highlight-symbol-prev))
+  ;;
   :config
   (setq highlight-symbol-idle-delay 0)
   ;;
@@ -44,11 +54,12 @@
     (interactive)
     (highlight-symbol-next)
     (recenter))
-  ;;
-  (global-set-key (kbd "C-\}") 'my-highlight-symbol-next)
-  (global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
-  (global-set-key (kbd "A-]") 'my-highlight-symbol-next)
-  (global-set-key (kbd "A-[") 'my-highlight-symbol-prev))
+  ;; ;;
+  ;; (global-set-key (kbd "C-\}") 'my-highlight-symbol-next)
+  ;; (global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
+  ;; (global-set-key (kbd "A-]") 'my-highlight-symbol-next)
+  ;; (global-set-key (kbd "A-[") 'my-highlight-symbol-prev)
+  )
 
 
 ;;;
