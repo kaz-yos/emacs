@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: pipe
-# key: >
+# name: TRUE
+# key: T
 # --
-%>%$0
+TRUE$0
