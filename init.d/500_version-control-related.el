@@ -22,8 +22,8 @@
 
 
 ;;;
-;;; Git
-;;; magit.el
+;;; GIT-RELATED
+;;;  magit.el
 ;; e for ediff!
 ;; Magit User Manual: http://magit.github.io/magit/magit.html
 ;; emacs wiki magit: http://www.emacswiki.org/emacs/Magit
@@ -70,7 +70,7 @@
   (advice-add 'magit-section-forward-sibling
               :after 'my-recenter-top)
   ;;
-;;;  magit-gitflow.el
+;;;   magit-gitflow.el
   ;; https://github.com/jtatarik/magit-gitflow
   ;; Need to install gitflow-avh (brew install git-flow-avh).
   ;; https://github.com/petervanderdoes/gitflow-avh
@@ -84,11 +84,13 @@
 
 
 
-;;; git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
+;;;  git-gutter-fringe+ (fringe version. depends on git-gutter+) 2014-02-02
 ;; Does not work in .emacs.d (not elisp in general) 2014-03-01
 ;; https://github.com/nonsequitur/git-gutter-fringe-plus
 ;; fringe-helper.el is required.
 (use-package git-gutter-fringe+
+  ;; Incompatible with 26.0.50's tramp? aref on list?
+  :disabled t
   :if (display-graphic-p)
   :init
   ;; Configure fringe for git-gutter 2014-02-02
@@ -139,7 +141,7 @@
       (message "NO git-gutters!"))))
 ;;
 ;;
-;;; git-timemachine.el
+;;;  git-timemachine.el
 ;; Use git-timemachine to browse historic versions of a file with p
 ;; (previous) and n (next).
 (use-package git-timemachine
@@ -147,7 +149,7 @@
              git-timemachine))
 ;;
 ;;
-;;; github-browse-file.el
+;;;  github-browse-file.el
 ;; https://github.com/osener/github-browse-file
 (use-package github-browse-file
   :commands (github-browse-file
@@ -155,7 +157,7 @@
              github-browse-commit))
 ;;
 ;;
-;;; git-messenger.el
+;;;  git-messenger.el
 ;; https://github.com/syohex/emacs-git-messenger
 (use-package git-messenger
   :commands (git-messenger:popup-message
