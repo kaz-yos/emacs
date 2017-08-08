@@ -1,6 +1,7 @@
-;;; projectile.el		; Project Interaction Library for Emacs
+;;; projectile.el
 ;; https://github.com/bbatsov/projectile
 ;; https://github.com/bbatsov/projectile#interactive-commands
+;; https://projectile.readthedocs.io/en/latest/usage/
 (use-package projectile
   :config
   ;; Simpler lighter
