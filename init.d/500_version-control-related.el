@@ -21,6 +21,19 @@
 ;; (modeline-git-branch-mode 1)
 
 
+;;; diff-hl.el
+;; https://github.com/dgutov/diff-hl
+(use-package diff-hl
+  :disabled t
+  :commands (diff-hl-magit-post-refresh
+             global-diff-hl-mode)
+  :init
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  :config
+  (global-diff-hl-mode))
+
+
+
 ;;;
 ;;; GIT-RELATED
 ;;;  magit.el
@@ -139,24 +152,24 @@
                     :action (lambda (lineno)
                               (goto-line lineno))))
       (message "NO git-gutters!"))))
-;;
-;;
+
+
 ;;;  git-timemachine.el
 ;; Use git-timemachine to browse historic versions of a file with p
 ;; (previous) and n (next).
 (use-package git-timemachine
   :commands (git-timemachine-toggle
              git-timemachine))
-;;
-;;
+
+
 ;;;  github-browse-file.el
 ;; https://github.com/osener/github-browse-file
 (use-package github-browse-file
   :commands (github-browse-file
              github-browse-file-blame
              github-browse-commit))
-;;
-;;
+
+
 ;;;  git-messenger.el
 ;; https://github.com/syohex/emacs-git-messenger
 (use-package git-messenger
