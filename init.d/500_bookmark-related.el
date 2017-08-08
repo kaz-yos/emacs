@@ -65,7 +65,7 @@
             (equal major-mode 'scheme-mode)
             (equal major-mode 'clojure-mode)
             (equal major-mode 'hy-mode))
-        (setq regexp "^;;; \\|^;;;$"))
+        (setq regexp "^;;; \\|^;;;; \\|^;;;;; \\|^;;;;;; \\|^;;;$"))
        ;; SML
        ((or (equal major-mode 'sml-mode))
         (setq regexp "^(\\*\\*"))
