@@ -1,4 +1,7 @@
-;;; projectile.el
+;;;
+;;; PROJECTILE-RELATED
+
+;;;; projectile.el
 ;; https://github.com/bbatsov/projectile
 ;; https://github.com/bbatsov/projectile#interactive-commands
 ;; https://projectile.readthedocs.io/en/latest/usage/
@@ -43,18 +46,8 @@
   (setq projectile-switch-project-action 'projectile-dired)
   (setq projectile-find-dir-includes-top-level t))
 
-;;
-;;
-;;
-;;; helm-projectile.el		; Helm plugin for projectile
+;;;; helm-projectile.el
 ;; http://tuhdo.github.io/helm-projectile.html
 (use-package helm-projectile
   :commands (helm-projectile)
   :bind ("C-M-z" . helm-projectile))
-
-;;
-;;
-;;; helm-projectile-all.el
-;; https://github.com/spatz/helm-projectile-all
-(use-package helm-projectile-all
-  :commands (helm-projectile-all))
