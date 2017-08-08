@@ -13,12 +13,16 @@
   ;; So include the same thing in ess-site :mode
   :mode (("\\.Rnw" . poly-noweb+r-mode)
          ("\\.Rmd" . poly-markdown+r-mode))
+  :bind (:map polymode-mode-map
+              ("C-c n" . polymode-next-chunk-same-type)
+              ("C-c p" . polymode-previous-chunk-same-type)
+              ("A-n" . polymode-next-chunk-same-type)
+              ("A-p" . polymode-previous-chunk-same-type)
+              ("A-s" . polymode-export))
+  ;;
   :config
   ;; Auto revert for .Rmd
-  (add-hook 'poly-markdown+r-mode-hook 'turn-on-auto-revert-mode)
-  ;; Key config
-  (bind-key "C-c n" 'polymode-next-chunk-same-type     polymode-mode-map)
-  (bind-key "C-c p" 'polymode-previous-chunk-same-type polymode-mode-map))
+  (add-hook 'poly-markdown+r-mode-hook 'turn-on-auto-revert-mode))
 
 
 ;;;  MARKDOWN-RELATED
