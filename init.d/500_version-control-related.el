@@ -1,13 +1,13 @@
 ;;; Version control configurations
 
-
+;;;
 ;;; ediff for visual diff
 ;; Show in the same frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 ;; Show them side by side
 (setq ediff-split-window-function 'split-window-horizontally)
 
-
+;;;
 ;;; Default VC system (turned off)
 ;; Do not use the default vc-mode (mode-line cleaner) 2014-02-14
 ;; http://qiita.com/acple@github/items/3709174ab24c5d82423a
@@ -15,14 +15,15 @@
 ;; Turn off related hooks
 (remove-hook 'find-file-hook   'vc-find-file-hook)
 (remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook)
-;;
-;; ;; modeline-git-branch.el (auto-install) 2014-02-14. Switch not fast enough.
-;; (require 'modeline-git-branch)
-;; (modeline-git-branch-mode 1)
 
 
-;;; diff-hl.el
+
+;;;
+;;; In-buffer highlighting of changes
+
+;;;  diff-hl.el
 ;; https://github.com/dgutov/diff-hl
+;; Requires vc-mode
 (use-package diff-hl
   :disabled t
   :commands (diff-hl-magit-post-refresh
@@ -32,6 +33,31 @@
   :config
   (global-diff-hl-mode))
 
+
+;;;  git-gutter.el
+;; https://github.com/syohex/emacs-git-gutter
+(use-package git-gutter
+  ;; Use in CLI.
+  :if (not (display-graphic-p))
+  :config
+  (add-hook 'magit-post-refresh-hook 'git-gutter:update-all-windows)
+  ;; Activate everywhere.
+  (global-git-gutter-mode))
+
+
+;;;  git-gutter-fringe.el
+;; https://github.com/syohex/emacs-git-gutter-fringe
+(use-package git-gutter-fringe
+  ;; Use in GUI.
+  :if (display-graphic-p)
+  :config
+  ;; On the right.
+  (setq git-gutter-fr:side 'right-fringe)
+  ;; Updating.
+  ;; Hook run after refreshing in `magit-refresh'.
+  (add-hook 'magit-post-refresh-hook 'git-gutter:update-all-windows)
+  ;; Activate everywhere.
+  (global-git-gutter-mode))
 
 
 ;;;
@@ -92,6 +118,7 @@
     (setq magit-gitflow-popup-key "C-c f")
     :config
     (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
+
 
 
 
