@@ -3,10 +3,7 @@
 ;;;
 ;;; vlf: View Large Files
 ;; https://github.com/m00natic/vlfi
-(use-package vlf
-  :commands (vlf)
-  :config
-  (vlf-setup))
+(use-package vlf-setup)
 
 
 ;;;
