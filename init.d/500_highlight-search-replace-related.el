@@ -137,15 +137,7 @@ If a selected region exists, it will be searched for by swiper
 If there is a symbol at the current point, its textual representation is
 searched. If there is no symbol, empty search box is started."
     (interactive)
-    (swiper (cond
-             ;; If there is selection use it
-             ((and transient-mark-mode mark-active
-                   (not (eq (mark) (point))))
-              (buffer-substring-no-properties (mark) (point)))
-             ;; Otherwise, use symbol at point or empty
-             (t (format "%s"
-                        (or (thing-at-point 'symbol)
-                            ""))))))
+    (swiper (selection-or-thing-at-point)))
   ;;
   :config)
 ;;
@@ -167,15 +159,7 @@ If a selected region exists, it will be searched for by swiper-helm
 If there is a symbol at the current point, its textual representation is
 searched. If there is no symbol, empty search box is started."
     (interactive)
-    (swiper-helm (cond
-                  ;; If there is selection use it
-                  ((and transient-mark-mode mark-active
-                        (not (eq (mark) (point))))
-                   (buffer-substring-no-properties (mark) (point)))
-                  ;; Otherwise, use symbol at point or empty
-                  (t (format "%s"
-                             (or (thing-at-point 'symbol)
-                                 ""))))))
+    (swiper-helm (selection-or-thing-at-point)))
   ;; Configuration
   :config)
 
@@ -200,14 +184,7 @@ searched. If there is no symbol, empty search box is started."
 ;; (defun isearch-selection-advice (old-fun &optional regexp-p no-recursive-edit)
 ;;   "Use selection for isearch"
 ;;   (interactive)
-;;   (old-fun (cond
-;;             ;; If there is selection use it
-;;             ((and transient-mark-mode mark-active (not (eq (mark) (point))))
-;;              (buffer-substring-no-properties (mark) (point)))
-;;             ;; Otherwise, use symbol at point or empty
-;;             (t (format "%s"
-;;                        (or (thing-at-point 'symbol)
-;;                            ""))))))
+;;   (old-fun (selection-or-thing-at-point)))
 ;; ;; Define around advice
 ;; (advice-add :around )
 
