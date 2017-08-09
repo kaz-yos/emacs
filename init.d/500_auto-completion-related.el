@@ -237,7 +237,7 @@
 (use-package counsel
   :commands (counsel-ag
              counsel-git-grep)
-  :bind (("s-q". counsel-git-grep)
+  :bind (("s-q". counsel-git-grep-at-point)
          ("C-s-q" . counsel-ag)
          :map org-mode-map
          ("s-z" . counsel-org-goto))
@@ -253,7 +253,12 @@ Modify INITIAL-DIRECTORY to projectile-project-root."
     (setcar (nthcdr 1 args) (projectile-project-root)))
   ;; (advice-add 'counsel-ag :filter-args #'counsel-ag-advice)
   ;; (advice-remove 'counsel-ag #'counsel-ag-advice)
-  )
+  ;;
+  ;; https://github.com/abo-abo/swiper/issues/66
+  (defun counsel-git-grep-at-point ()
+    (interactive)
+    (counsel-git-grep nil
+                      (selection-or-thing-at-point))))
 
 
 ;;;
