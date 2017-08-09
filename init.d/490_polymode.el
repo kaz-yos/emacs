@@ -26,17 +26,10 @@
   ;;
   ;; Execute all R chunks at once from an Rmd document
   ;; https://stackoverflow.com/questions/40894202/execute-all-r-chunks-at-once-from-an-rmd-document
-  (eval-when-compile
-    (require 'polymode-core)
-    (defvar pm/chunkmode))
-  ;;
-  (declare-function pm-map-over-spans "polymode-core")
-  (declare-function pm-narrow-to-span "polymode-core")
-  ;;
   (defun rmd-send-chunk ()
     "Send current R chunk to ess process."
     (interactive)
-    (and (eq (oref pm/chunkmode :mode) 'r-mode) ;;'
+    (and (eq (oref pm/chunkmode :mode) 'r-mode)
          (pm-with-narrowed-to-span nil
            (goto-char (point-min))
            (forward-line)
