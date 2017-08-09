@@ -68,6 +68,7 @@ If you omit CLOSE, it will reuse OPEN."
 
 
 
+;;;
 ;;; Suppress messages
 ;; http://qiita.com/itiut@github/items/d917eafd6ab255629346
 ;; http://emacs.stackexchange.com/questions/14706/suppress-message-in-minibuffer-when-a-buffer-is-saved
@@ -76,3 +77,18 @@ If you omit CLOSE, it will reuse OPEN."
   (declare (indent 0))
   (let ((message-log-max nil))
     `(with-temp-message (or (current-message) "") ,@body)))
+
+
+
+;;;
+;;; Define a function to retrieve the selected string or symbol at the point if any.
+(defun selection-or-thing-at-point ()
+  (cond
+   ;; If there is selection use it
+   ((and transient-mark-mode mark-active
+         (not (eq (mark) (point))))
+    (buffer-substring-no-properties (mark) (point)))
+   ;; Otherwise, use symbol at point or empty
+   (t (format "%s"
+              (or (thing-at-point 'symbol)
+                  "")))))
