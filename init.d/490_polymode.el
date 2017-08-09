@@ -22,7 +22,34 @@
   ;;
   :config
   ;; Auto revert for .Rmd
-  (add-hook 'poly-markdown+r-mode-hook 'turn-on-auto-revert-mode))
+  (add-hook 'poly-markdown+r-mode-hook 'turn-on-auto-revert-mode)
+  ;;
+  ;; Execute all R chunks at once from an Rmd document
+  ;; https://stackoverflow.com/questions/40894202/execute-all-r-chunks-at-once-from-an-rmd-document
+  (eval-when-compile
+    (require 'polymode-core)
+    (defvar pm/chunkmode))
+  ;;
+  (declare-function pm-map-over-spans "polymode-core")
+  (declare-function pm-narrow-to-span "polymode-core")
+  ;;
+  (defun rmd-send-chunk ()
+    "Send current R chunk to ess process."
+    (interactive)
+    (and (eq (oref pm/chunkmode :mode) 'r-mode) ;;'
+         (pm-with-narrowed-to-span nil
+           (goto-char (point-min))
+           (forward-line)
+           (ess-eval-region (point) (point-max) nil nil 'R))))
+  ;;
+  (defun rmd-send-chunks-above ()
+    "Send all R code chunks above point."
+    (interactive)
+    (save-restriction
+      (widen)
+      (save-excursion
+        (pm-map-over-spans
+         'rmd-send-chunk (point-min) (point))))))
 
 
 ;;;  MARKDOWN-RELATED
