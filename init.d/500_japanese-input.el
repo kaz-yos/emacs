@@ -19,24 +19,8 @@
   :config
 ;;;  Define autoloads necessary when using (package-initialize t) (no activation)
   ;; Taken from the body of `package-initialize'
+  ;; Activate the ddskk package only.
   (package-activate 'ddskk)
-;;;   ccc.el --- buffer local cursor color control library
-  ;; https://github.com/skk-dev/ddskk/blob/master/ccc.el
-  ;; https://github.com/skk-dev/ddskk/issues/3
-  (use-package ccc
-    ;; ccc-setup is called in the main file, skk.el.
-    :commands (ccc-setup
-               ccc-update-buffer-local-frame-params))
-;;;   skk-cus.el SKK Customization
-  (use-package skk-cus
-    :commands (skk-cus-setup))
-;;;   skk-cursor.el --- SKK cursor control
-  (use-package skk-cursor
-    :commands (skk-cursor-set-1
-               skk-cursor-off-1))
-  (use-package skk-tankan
-    :commands (skk-tankan-search))
-  ;;
   ;;
   ;; Config files
   ;; http://openlab.ring.gr.jp/skk/skk-manual-git/She-Ding-huairu.html#g_t_8a2d_5b9a_30d5_30a1_30a4_30eb
