@@ -289,4 +289,4 @@
   (dotimes (i (abs n))
     (yank)))
 ;; Replace cua-paste, which takes the argument as the register number.
-(bind-key "C-y" 'paste-n-times)
+(bind-key "C-c y" 'paste-n-times)
