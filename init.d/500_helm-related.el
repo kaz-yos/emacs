@@ -181,7 +181,16 @@
 ;;;  helm-google.el
 ;; https://github.com/steckerhalter/helm-google
 (use-package helm-google
-  :commands (helm-google))
+  :commands (helm-google
+             helm-google-at-point)
+  :config
+  (defun helm-google-at-point ()
+    (interactive)
+    (helm :sources 'helm-source-google
+          :prompt "Google: "
+          :input (selection-or-thing-at-point)
+          :buffer "*helm google*"
+          :history 'helm-google-input-history)))
 
 
 ;;;  helm-hunks.el
