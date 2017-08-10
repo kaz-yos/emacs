@@ -437,6 +437,7 @@ searched. If there is no symbol, empty search box is started."
              avy-goto-char-2
              avy-goto-word-1
              avy-goto-word-or-subword-1)
+  :bind (("s-l" . avy-goto-line))
   :config
   ;; Darken background.
   (setq avy-background t)
