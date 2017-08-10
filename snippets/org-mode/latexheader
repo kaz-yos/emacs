@@ -21,7 +21,7 @@
 #+LATEX_HEADER: \usepackage{listings}
 #+LATEX_HEADER: \usepackage{courier}
 #+LATEX_HEADER: \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
-#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usepackage[cache=false]{minted}
 #+LATEX_HEADER: \usemintedstyle{bw}
 #+LATEX_HEADER: %% Graphics
 #+LATEX_HEADER: \usepackage{graphicx}
