@@ -278,3 +278,15 @@
   (setq nsm-settings-file (expand-file-name
                            (concat user-emacs-directory
                                    "network-security.data"))))
+
+
+;;;
+;;; Enhance paste
+;; Re: copy and paste multiple times
+;; https://lists.gnu.org/archive/html/help-gnu-emacs/2012-01/msg00276.html
+(defun paste-n-times (n)
+  (interactive "p")
+  (dotimes (i (abs n))
+    (yank)))
+;; Replace cua-paste, which takes the argument as the register number.
+(bind-key "C-y" 'paste-n-times)
