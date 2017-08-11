@@ -117,6 +117,19 @@
 ;;
 (use-package company
   :commands (global-company-mode)
+  :bind (("A-<tab>" . company-complete)
+         ("A-i" . company-complete)
+         ;;
+         ;; Keymap that is enabled during an active completion.
+         :map company-active-map
+         ("C-n" . company-select-next)
+         ("C-p" . company-select-previous)
+         ("C-s" . company-filter-candidates)
+         ;;
+         ;; Keymap used for incrementally searching the completion candidates.
+         :map company-search-map
+         ("C-n" . company-select-next)
+         ("C-p" . company-select-previous))
   ;;
   :init
   ;; company-mode everywhere
@@ -149,17 +162,6 @@
         (setq i (1+ i)))))
   (edit-category-table-for-company-dabbrev)
   (setq company-dabbrev-char-regexp "\\cs")
-  ;;
-  ;; Keys
-  (global-set-key (kbd "A-<tab>") 'company-complete)
-  (global-set-key (kbd "A-i") 'company-complete)
-  ;; Selection
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous)
-  (define-key company-search-map (kbd "C-n") 'company-select-next)
-  (define-key company-search-map (kbd "C-p") 'company-select-previous)
-  ;; Narrowing
-  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
   ;;
   ;; Backends (Adding globally is also ok; backends are context-aware)
   ;; http://emacs.stackexchange.com/questions/17537/best-company-backends-lists
