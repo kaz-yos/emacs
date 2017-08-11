@@ -31,7 +31,7 @@
 ;; pdf-tools package and reinstall both as at the start.
 ;;
 ;; When dysfunctional, try uninstalling and installing again.
-;; brew uninstall pdf-tools; brew install pdf-tools
+;; $ brew reinstall pdf-tools
 ;;
 ;; Homebrew recipe moved to:
 ;; https://github.com/dunn/homebrew-emacs
