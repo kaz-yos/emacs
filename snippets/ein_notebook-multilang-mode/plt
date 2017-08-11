@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: plt
+# key: plt
+# binding: direct-keybinding
+# --
+plt.figure(facecolor = "white")
+plt.ylabel("$1")
+plt.xlabel("$0")
