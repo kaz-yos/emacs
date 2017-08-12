@@ -207,8 +207,8 @@
 ;; https://github.com/Wilfred/company-try-hard
 (use-package company-try-hard
   :commands (company-try-hard)
-  :bind
-  ("A-C-<tab>" . company-try-hard))
+  :bind (("A-M-<tab>" . company-try-hard)
+         ("A-M-i" . company-try-hard)))
 
 
 ;;;
