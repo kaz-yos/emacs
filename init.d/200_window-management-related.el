@@ -74,7 +74,8 @@
 ;;;
 ;;; Scroll window with C-t/C-v
 ;; transpose-char changed to cua-scroll-down
-(global-set-key (kbd "C-t") 'cua-scroll-down)	; C-t to scroll down, C-v to scroll up
+;; C-t to scroll down, C-v to scroll u
+(bind-key* "C-t" 'cua-scroll-down)
 ;;
 ;; Scroll just one line when hitting bottom of window
 ;; http://www.emacswiki.org/emacs/SmoothScrolling
