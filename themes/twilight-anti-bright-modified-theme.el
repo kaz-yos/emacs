@@ -66,7 +66,7 @@
 (deftheme twilight-anti-bright-modified
   "Minor modification of a soothing light-on-dark theme.")
 
-(let ((background "#14191f")
+(let ((background "black")
       (foreground "#dcdddd")
       (selection "#313c4d")
       (hl-line "#1b2129")

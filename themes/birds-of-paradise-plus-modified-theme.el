@@ -56,7 +56,7 @@
    'birds-of-paradise-plus-modified
 
    ;; Basics
-   `(default ((t (:background ,brown-1 :foreground ,white-1))))
+   `(default ((t (:background "black" :foreground ,white-1))))
    `(cursor ((t (:foreground ,brown-2 :background ,white-1))))
    `(highlight ((t (:background ,black-1 :foreground ,white-1))))
    `(hl-line ((t (:background ,brown-7))))
