@@ -406,8 +406,8 @@
                            :underline nil
                            :weight bold
                            :box (:line-width -1 :style released-button)))))
-   `(helm-selection ((,class (:background ,cyberpunk-bg+1 :underline nil))))
-   `(helm-selection-line ((,class (:background ,cyberpunk-bg+1))))
+   `(helm-selection ((,class (:background ,cyberpunk-bg-05 :underline nil))))
+   `(helm-selection-line ((,class (:background ,cyberpunk-bg-05))))
    `(helm-visible-mark ((,class (:foreground ,cyberpunk-bg :background ,cyberpunk-yellow-2))))
    `(helm-candidate-number ((,class (:foreground ,cyberpunk-green+4 :background ,cyberpunk-bg-1))))
 
