@@ -594,7 +594,7 @@
    `(mumamo-background-chunk-submode4 ((,class (:background ,cyberpunk-bg+1))))
 
    ;; org-mode
-   `(org-document-title ((,class (:foreground ,cyberpunk-blue-3 :background ,cyberpunk-black :weight bold :height 1.5))))
+   `(org-document-title ((,class (:foreground ,cyberpunk-blue-3 :background ,cyberpunk-black :weight bold))))
    `(org-document-info ((,class (:foreground ,cyberpunk-blue-3 :background ,cyberpunk-black :weight bold))))
    `(org-document-info-keyword ((,class (:foreground ,cyberpunk-gray-2 :background ,cyberpunk-black))))
    `(org-agenda-date-today
@@ -609,9 +609,9 @@
                               :box (:line-width 1 :style none)))))
    `(org-todo ((,class (:bold t :foreground ,cyberpunk-orange :weight bold
                               :box (:line-width 1 :style none)))))
-   `(org-level-1 ((,class (:foreground ,cyberpunk-pink-1 :height 1.3))))
-   `(org-level-2 ((,class (:foreground ,cyberpunk-yellow :height 1.2))))
-   `(org-level-3 ((,class (:foreground ,cyberpunk-blue-5 :height 1.1))))
+   `(org-level-1 ((,class (:foreground ,cyberpunk-pink-1))))
+   `(org-level-2 ((,class (:foreground ,cyberpunk-yellow))))
+   `(org-level-3 ((,class (:foreground ,cyberpunk-blue-5))))
    `(org-level-4 ((,class (:foreground ,cyberpunk-green))))
    `(org-level-5 ((,class (:foreground ,cyberpunk-orange))))
    `(org-level-6 ((,class (:foreground ,cyberpunk-pink))))
