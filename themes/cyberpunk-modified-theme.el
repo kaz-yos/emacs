@@ -783,6 +783,23 @@
    ;; yascroll
    `(yascroll:thumb-text-area ((,class (:background ,cyberpunk-bg-1))))
    `(yascroll:thumb-fringe ((,class (:background ,cyberpunk-bg-1 :foreground ,cyberpunk-bg-1))))
+
+;;;
+;;; Additional
+;;;  bm
+   '(bm-face ((t (:background "Grey20"))))
+
+;;;  company
+   '(company-preview ((t :background nil :foreground "dark gray")))
+   '(company-preview-common ((t :background nil :foreground "dark gray")))
+   '(company-scrollbar-bg ((t :background "gray")))
+   '(company-scrollbar-fg ((t :background "OrangeRed1")))
+   '(company-tooltip ((t :background "light gray" :foreground "black")))
+   '(company-tooltip-common ((t :background "light gray" :foreground "black")))
+   '(company-tooltip-common-selection ((t t :background "lightgray" :foreground "black")))
+   '(company-tooltip-mouse ((t :background "red" :foreground "white")))
+   '(company-tooltip-selection ((t :background "red4" :foreground "white")))
+
    )
 
   ;;; custom theme variables
