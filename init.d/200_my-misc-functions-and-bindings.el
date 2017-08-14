@@ -100,15 +100,19 @@ If you omit CLOSE, it will reuse OPEN."
 ;; Only when in macOS GUI
 (when (and (eq system-type 'darwin)
            (window-system))
-  (defun custom-color--choose-action (widget &optional _event) ; this function is only needed if you want to use color-picker in Easy Customization
-    "customize `widget-color--chose-action' to not split the screen"
+  ;;
+  (defun custom-color--choose-action (widget &optional _event)
+    "Color-picker widget.
+customize `widget-color--chose-action' to not split the screen.
+This function is only needed if you want to use color-picker
+in Easy Customization"
     (list-colors-display
      nil nil
      `(lambda (color)
         (when (buffer-live-p ,(current-buffer))
 	  (widget-value-set ',(widget-get widget :parent) color)
           (pop-to-buffer ,(current-buffer))))))
-
+  ;;
   (defun nscolor2hex (color)
     "Converts colors from `NSColor' format to hex values"
     (concat "#"                           ; Add # at the front
@@ -119,7 +123,7 @@ If you omit CLOSE, it will reuse OPEN."
                                         (format "0%x" col)
                                       (format "%x" col))))
                                (split-string (s-replace "\"" "" color) ",")) "")))
-
+  ;;
   (defun color-picker (&optional list buffer-name callback)
     "Calls OS X color picker and insert the chosen color. It is really messy because of applyscript"
     (interactive)
@@ -139,7 +143,7 @@ end tell")))
           (funcall callback (nscolor2hex result))
         (insert (nscolor2hex result)))
       (do-applescript "tell application \"Emacs\" to activate")))
-
+  ;;
   ;; If you want to use `color-picker' in Easy Customization add these
   (defalias 'list-colors-display 'color-picker)
   (defalias 'widget-color--choose-action 'custom-color--choose-action))
