@@ -145,5 +145,6 @@ end tell")))
       (do-applescript "tell application \"Emacs\" to activate")))
   ;;
   ;; If you want to use `color-picker' in Easy Customization add these
-  (defalias 'list-colors-display 'color-picker)
-  (defalias 'widget-color--choose-action 'custom-color--choose-action))
+  ;; (defalias 'list-colors-display 'color-picker)
+  ;; (defalias 'widget-color--choose-action 'custom-color--choose-action)
+  )
