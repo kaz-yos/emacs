@@ -58,7 +58,7 @@
        (selection "#555555") ;; tab-control-dirty-tab-close-button
        (secondary-selection "#bf616a") ;; tab-control-hover-tab-close-button
        (foreground "#ffffff")
-       (comment "#b0bec5") ;; table-row
+       (comment "#Ee9a00") ;; table-row
        (red "#f36c60") ;; tab-control-hover-tab-close-button
        (orange "#ff9800") ;; darker tab-control-dirty-tab-close-butto
        (yellow "#fff59d") ;; tab-control-dirty-tab-close-button
@@ -839,7 +839,15 @@
    `(rpm-spec-package-face ((,class (:foreground ,red))))
    `(rpm-spec-section-face ((,class (:foreground ,yellow))))
    `(rpm-spec-tag-face ((,class (:foreground ,blue))))
-   `(rpm-spec-var-face ((,class (:foreground ,red)))))
+   `(rpm-spec-var-face ((,class (:foreground ,red))))
+
+;;; Additional
+;;;  anzu
+   '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
+;;;  bm
+   '(bm-face ((t (:background "Grey30"))))
+   ;; 
+   )
 
   (custom-theme-set-variables
    'material-modified
@@ -880,10 +888,5 @@
                (file-name-as-directory (file-name-directory load-file-name))))
 
 (provide-theme 'material-modified)
-
-;; Local Variables:
-;; rainbow-mode: t
-;; hl-sexp-mode: nil
-;; End:
 
 ;;; material-modified-theme.el ends here
