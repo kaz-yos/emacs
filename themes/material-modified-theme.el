@@ -192,7 +192,7 @@
    `(ahs-plugin-whole-buffer-face ((,class (:foreground ,foreground :background ,green))))
 
    ;; Anzu
-   `(anzu-mode-line ((,class (:foreground ,orange))))
+   `(anzu-mode-line ((,class (:foreground ,orange :weight ultra-bold :height 2.0))))
    `(anzu-replace-highlight ((,class (:inherit isearch-lazy-highlight-face))))
    `(anzu-replace-to ((,class (:inherit isearch))))
 
@@ -842,11 +842,9 @@
    `(rpm-spec-var-face ((,class (:foreground ,red))))
 
 ;;; Additional
-;;;  anzu
-   '(anzu-mode-line ((t (:foreground "dark blue" :weight ultra-bold :height 2.0))))
 ;;;  bm
    '(bm-face ((t (:background "Grey30"))))
-   ;; 
+   ;;
    )
 
   (custom-theme-set-variables

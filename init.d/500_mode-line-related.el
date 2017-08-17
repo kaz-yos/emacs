@@ -30,7 +30,7 @@
 ;; Powerline theme from Spacemacs
 ;; https://github.com/TheBB/spaceline
 (use-package spaceline
-  ;; :disabled t
+  :disabled t
   :config
   ;; https://github.com/TheBB/spaceline#the-default-themes
   (require 'spaceline-config)
