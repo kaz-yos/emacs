@@ -23,8 +23,9 @@
   ;; Setup stay-in view-mode.
   (viewer-stay-in-setup)
   ;; Change mode-line color
-  (setq viewer-modeline-color-unwritable "tomato"
-        viewer-modeline-color-view "salmon")
+  (setq viewer-modeline-color-unwritable "tomato")
+  (setq viewer-modeline-color-view "#9d5700")
+  ;; Set up
   (viewer-change-modeline-color-setup))
 
 
