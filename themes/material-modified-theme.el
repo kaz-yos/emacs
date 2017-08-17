@@ -843,7 +843,7 @@
 
 ;;; Additional
 ;;;  bm
-   '(bm-face ((t (:background "Grey30"))))
+   '(bm-face ((t (:background "Grey20"))))
    ;;
    )
 
