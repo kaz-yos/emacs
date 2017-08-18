@@ -158,7 +158,7 @@
    `(clojure-java-call ((,class (:foreground ,purple))))
 
    ;; Rainbow-delimiters
-   `(rainbow-delimiters-depth-1-face ((,class (:foreground ,"#e91e63"))))
+   `(rainbow-delimiters-depth-1-face ((,class (:foreground ,"#Eaeaea"))))
    `(rainbow-delimiters-depth-2-face ((,class (:foreground ,"#2196F3"))))
    `(rainbow-delimiters-depth-3-face ((,class (:foreground ,"#EF6C00"))))
    `(rainbow-delimiters-depth-4-face ((,class (:foreground ,"#B388FF"))))
