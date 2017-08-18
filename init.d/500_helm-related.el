@@ -9,22 +9,27 @@
   :diminish helm-mode
   :init
   (use-package helm-config)
-  :bind (("M-x" .     helm-M-x)
-         ;; ("C-M-x" .   execute-extended-command)
-         ("C-z" .     helm-for-files)
+  :bind (("M-x" . helm-M-x)
+         ;; Escape hatches
+         ("A-M-x" . execute-extended-command)
+         ("C-M-x" . execute-extended-command)
+         ("s-e" . execute-extended-command)
+         ("H-x" . execute-extended-command)
+         ;;
+         ("C-z" . helm-for-files)
          ;; This does not support jump to package on a package name
          ;; ("C-x C-f" . helm-find-files)
-         ("M-y" .     helm-show-kill-ring)
-         ;; ("C-x b" .   helm-buffers-list)
+         ("M-y" . helm-show-kill-ring)
+         ;; ("C-x b" . helm-buffers-list)
          ("C-x C-r" . helm-recentf)
-         ;; ("C-^" .     helm-c-apropos)
+         ;; ("C-^" . helm-c-apropos)
          ;; This brings back the last helm used
-         ;; ("C-;" .     helm-resume)
-         ;; ("s-c" .     helm-occur)
-         ("A-m" .     helm-mark-ring)
-         ("A-l" .     helm-locate)
-         ;; ("M-z" .     helm-do-grep)
-         ;; ("C-S-h" .   helm-descbinds)
+         ;; ("C-;" . helm-resume)
+         ;; ("s-c" . helm-occur)
+         ("A-m" . helm-mark-ring)
+         ("A-l" . helm-locate)
+         ;; ("M-z" . helm-do-grep)
+         ;; ("C-S-h" . helm-descbinds)
          )
   :config
   ;; Make helm-mark-ring follow
@@ -39,7 +44,8 @@
                   )))
   ;;
   ;; Restrict what to show in helm-for-files
-  (setq helm-for-files-preferred-list '(helm-source-buffers-list helm-source-recentf))
+  (setq helm-for-files-preferred-list '(helm-source-buffers-list
+                                        helm-source-recentf))
   ;;
   ;; locate command
   ;; https://github.com/emacs-helm/helm/wiki/Locate
