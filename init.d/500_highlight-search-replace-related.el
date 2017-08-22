@@ -449,6 +449,8 @@ searched. If there is no symbol, empty search box is started."
   ;; The default method of displaying the overlays.
   ;; https://github.com/abo-abo/avy/wiki/defcustom#avy-style
   (setq avy-style 'at-full)
+  ;; Keys to be used. Use a-z.
+  (setq avy-keys (loop for c from ?a to ?z collect c))
   ;;
   ;; Time out for *-timer functions
   (setq avy-timeout-seconds 0.3)
