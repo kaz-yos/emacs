@@ -127,11 +127,11 @@
 (use-package swiper
   :commands (swiper
              swiper-at-point)
-  ;; :bind (("H-s" . swiper-at-point)
-  ;;        ("C-s-s" . swiper)
-  ;;        ;; Add bindings to isearch-mode
-  ;;        :map isearch-mode-map
-  ;;        ("s-s" . swiper-from-isearch))
+  :bind (("s-s" . swiper-at-point)
+         ("C-s-s" . swiper)
+         ;; Add bindings to isearch-mode
+         :map isearch-mode-map
+         ("s-s" . swiper-from-isearch))
   :init
   ;; Newly defined
   (defun swiper-at-point ()
@@ -150,10 +150,10 @@ searched. If there is no symbol, empty search box is started."
 (use-package swiper-helm
   :commands (swiper-helm
              swiper-helm-from-isearch)
-  :bind (("s-s" . swiper-helm-at-point)
-         ("C-s-s" . swiper-helm)
-         :map isearch-mode-map
-         ("s-s" . swiper-helm-from-isearch))
+  ;; :bind (("s-s" . swiper-helm-at-point)
+  ;;        ("C-s-s" . swiper-helm)
+  ;;        :map isearch-mode-map
+  ;;        ("s-s" . swiper-helm-from-isearch))
   :init
   ;; Newly defined
   (defun swiper-helm-at-point ()
