@@ -23,7 +23,7 @@
 #+LATEX_HEADER: \setbeamerfont{page number in head/foot}{size=\footnotesize}
 #+LATEX_HEADER: \setbeamertemplate{footline}[frame number]
 #+LATEX_HEADER: \setbeamertemplate{frametitle}[default][center]
-#+LATEX_HEADER: # With item labels
+#+LATEX_HEADER: %% With item labels
 #+LATEX_HEADER: \setbeamertemplate{bibliography item}{\insertbiblabel}
-#+LATEX_HEADER: # Without item labels
-#+LATEX_HEADER: #\setbeamertemplate{bibliography item}{}
+#+LATEX_HEADER: %% Without item labels
+#+LATEX_HEADER: %% \setbeamertemplate{bibliography item}{}
