@@ -42,7 +42,9 @@
          ("A-]" . my-highlight-symbol-next)
          ("A-[" . my-highlight-symbol-prev)
          ("A-M-n" . my-highlight-symbol-next)
-         ("A-M-p" . my-highlight-symbol-prev))
+         ("A-M-p" . my-highlight-symbol-prev)
+         ("A-M-]" . my-highlight-symbol-next)
+         ("A-M-[" . my-highlight-symbol-prev))
   ;;
   :config
   (setq highlight-symbol-idle-delay 0)
