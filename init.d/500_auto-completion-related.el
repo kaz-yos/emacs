@@ -238,6 +238,7 @@
 ;; http://cestlaz.github.io/posts/using-emacs-6-swiper/#.WYKJHa2ZOEI
 (use-package counsel
   :commands (counsel-ag
+             counsel-rg
              counsel-git-grep)
   :bind (("s-q". counsel-git-grep-at-point)
          ("C-s-q" . counsel-ag)
@@ -254,19 +255,19 @@ The directory is detected by projectile-project-root."
     (counsel-ag (selection-or-thing-at-point)
                 (projectile-project-root)))
   ;;
-  ;; Make counsel-ag default to
-  ;; https://github.com/abo-abo/swiper/issues/583
-  (defun counsel-ag-advice (args)
-    "Make counsel-ag aware of project root.
+  (defun counsel-rg-at-point ()
+    "counsel-rg with at-point and project root enhancement
 
-Modify INITIAL-DIRECTORY to projectile-project-root."
-    ;; (setcar CELL NEWCAR)
-    (setcar (nthcdr 1 args) (projectile-project-root)))
-  ;; (advice-add 'counsel-ag :filter-args #'counsel-ag-advice)
-  ;; (advice-remove 'counsel-ag #'counsel-ag-advice)
-  ;;
+The initial string is produced by selection-or-thing-at-point.
+The directory is detected by projectile-project-root."
+    (interactive)
+    (counsel-rg (selection-or-thing-at-point)
+                (projectile-project-root)))
   ;; https://github.com/abo-abo/swiper/issues/66
   (defun counsel-git-grep-at-point ()
+    "counsel-git-grep with at-point enhancement
+
+The initial string is produced by selection-or-thing-at-point."
     (interactive)
     (counsel-git-grep nil
                       (selection-or-thing-at-point))))
