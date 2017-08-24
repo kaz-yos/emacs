@@ -213,7 +213,7 @@
 
 ;;;
 ;;; IVY-RELATED
-;;
+
 ;;;  ivy.el
 ;; https://github.com/abo-abo/swiper
 ;; http://oremacs.com/swiper/
@@ -222,8 +222,11 @@
 (use-package ivy
   :config
   ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
+  ;; Add recent files and bookmarks to the ivy-switch-buffer
   (setq ivy-use-virtual-buffers t)
+  ;; Set this to "(%d/%d) " to display both the index and the count.
   (setq ivy-count-format "%d/%d ")
+  ;; Number of lines for the minibuffer window.
   (setq ivy-height 20)
   ;;
   ;; Additional keys
@@ -231,7 +234,7 @@
   (define-key ivy-minibuffer-map (kbd "C-<return>") 'ivy-immediate-done)
   ;; Activate
   (ivy-mode 1))
-;;
+
 ;;;  counsel.el
 ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html#org2d4e119
 ;; https://oremacs.com/2015/04/09/counsel-completion/
@@ -240,7 +243,7 @@
   :commands (counsel-ag
              counsel-rg
              counsel-git-grep)
-  :bind (("s-q". counsel-git-grep-at-point)
+  :bind (("s-q". counsel-ag-at-point)
          ("C-s-q" . counsel-ag)
          :map org-mode-map
          ("s-z" . counsel-org-goto))
