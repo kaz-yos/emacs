@@ -128,9 +128,7 @@
                ))
   ;;
   ;;
-;;; ess-trace-bug.el		; filtering ++++ > ??? Not working
-  ;; http://code.google.com/p/ess-tracebug/
-  ;; (require 'ess-tracebug)	; Now included in ESS
+;;; ess-trace-bug.el
   (setq ess-use-tracebug t)	; permanent activation
   ;;
 ;;; Tooltip included in ESS
@@ -256,16 +254,9 @@
 
 
 ;;;
-;;; STAN support 2014-01-15
+;;; stan-mode.el
 (use-package stan-mode
   :mode ("\\.stan\\'" . stan-mode))
-;;
-;; Other potentially useful packages
-;; stan-snippets.el
-;; (require 'stan-snippets)
-;; flymake-stan.el
-;; (require 'flymake-stan)
-
 
 ;;;
 ;;; julia-mode.el
