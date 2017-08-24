@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: max
+# key: max
+# --
+std::numeric_limits<$1>::max()$0

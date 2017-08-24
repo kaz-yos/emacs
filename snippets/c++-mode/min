@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: min
+# key: min
+# --
+std::numeric_limits<$1>::min()$0
