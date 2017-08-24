@@ -2,28 +2,7 @@
 ;;; crosshairs.el
 ;; http://www.emacswiki.org/emacs/CrosshairHighlighting
 (use-package crosshairs
-  :commands (crosshairs-mode)
-  :config
-  ;; (toggle-crosshairs-when-idle t) ; No need for crosshairs when idle
-  ;; (col-highlight-set-interval 60)
-  ;;
-  ;; hl-line+.el: highlight current line only (no column)
-  ;; http://www.emacswiki.org/emacs/HighlightCurrentLine#toc3
-  ;; (require 'hl-line+)                ; required by crosshairs already
-  ;; (toggle-hl-line-when-idle t)       ; turned on line highlight when idle
-  ;; (toggle-hl-line-when-idle nil)     ; turned off line highlight when idle
-  (hl-line-when-idle-interval 60)
-  ;;
-  ;; To customize the background color
-  ;; (setq my-highlight-color "light goldenrod yellow")
-  (setq my-highlight-color "dark red")
-  (set-face-background 'hl-line my-highlight-color) ; Line color
-  (set-face-background 'col-highlight my-highlight-color) ; Column color
-  ;; (set-face-background 'hl-line "light goldenrod yellow")            ; Line color
-  ;; (set-face-background 'col-highlight "light goldenrod yellow")      ; Column color
-  ;; (set-face-background 'hl-line "lemon chiffon")                     ; Line color
-  ;; (set-face-background 'col-highlight "lemon chiffon")               ; Column color
-  )
+  :commands (crosshairs-mode))
 
 
 ;;;
@@ -77,14 +56,7 @@
   (setq anzu-use-migemo t)
   (setq anzu-search-threshold 1000)
   (setq anzu-minimum-input-length 1)
-  (global-anzu-mode +1)
-  ;;
-  ;; Define a large face (also used for multiple-cursors.el)
-  ;; This was done in custom-set-faces.
-  ;;
-  ;; (global-set-key (kbd "C-c r") 'anzu-query-replace)
-  ;; (global-set-key (kbd "C-c R") 'anzu-query-replace-regexp)
-  )
+  (global-anzu-mode +1))
 
 
 ;;;
@@ -93,14 +65,12 @@
 ;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
 ;; http://emacsrocks.com/e13.html (video)
 ;; http://rubikitch.com/2014/11/10/multiple-cursors/
-;;
 (use-package multiple-cursors
   :demand ; otherwise mode-line override does not work
   :init
   ;; Where to save command list
   (setq mc/list-file (concat user-emacs-directory
                              "mc-lists.el"))
-  ;;
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ;; highlighting symbols only
          ("C-M->" . mc/mark-next-symbol-like-this)
