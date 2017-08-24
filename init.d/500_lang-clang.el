@@ -54,7 +54,7 @@
 ;;
 ;; M-x irony-install-server
 ;; Change the command to the following with additional -DLIBCLANG* options for brew's llvm.
-;; cmake -DLIBCLANG_INCLUDE_DIR\=/usr/local/opt/llvm/include/ -DLIBCLANG_LIBRARY\=/usr/local/opt/llvm/lib/libclang.dylib -DCMAKE_INSTALL_PREFIX\=/Users/kazuki/.emacs.d/irony/ /Users/kazuki/.emacs.d/elpa/irony-20170627.1045/server && cmake --build . --use-stderr --config Release --target install
+;; -DLIBCLANG_INCLUDE_DIR\=/usr/local/opt/llvm/include/ -DLIBCLANG_LIBRARY\=/usr/local/opt/llvm/lib/libclang.dylib
 ;;
 ;; How to selectively remove entries from the CMake cache from the command line
 ;; https://blogs.kde.org/2011/02/05/how-selectively-remove-entries-cmake-cache-command-line
