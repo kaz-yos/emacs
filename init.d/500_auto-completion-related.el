@@ -245,6 +245,15 @@
          ("s-z" . counsel-org-goto))
   ;;
   :config
+  (defun counsel-ag-at-point ()
+    "counsel-ag with at-point and project root enhancement
+
+The initial string is produced by selection-or-thing-at-point.
+The directory is detected by projectile-project-root."
+    (interactive)
+    (counsel-ag (selection-or-thing-at-point)
+                (projectile-project-root)))
+  ;;
   ;; Make counsel-ag default to
   ;; https://github.com/abo-abo/swiper/issues/583
   (defun counsel-ag-advice (args)
