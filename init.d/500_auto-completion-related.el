@@ -1,5 +1,4 @@
-;;; Auto-completion related configurations
-;; Configure ac-* in respective files. Keep this file minimum.
+;;; 500_auto-completion-related.el ---               -*- lexical-binding: t; -*-
 
 ;;;
 ;;; hippie-expand (built-in)
