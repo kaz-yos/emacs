@@ -290,3 +290,10 @@
     (yank)))
 ;; Replace cua-paste, which takes the argument as the register number.
 (bind-key "C-c y" 'paste-n-times)
+
+
+;;;
+;;; Allow recursive mini-buffer
+;; 19.13 Recursive Minibuffers
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Recursive-Mini.html
+(setq enable-recursive-minibuffers t)
