@@ -14,7 +14,6 @@
              highlight-symbol-remove-all
              my-highlight-symbol-next
              my-highlight-symbol-prev)
-  ;;
   :bind (("C-." . highlight-symbol-at-point)
          ("C-\}" . my-highlight-symbol-next)
          ("C-\{" . my-highlight-symbol-prev)
@@ -36,13 +35,7 @@
   (defun my-highlight-symbol-next ()
     (interactive)
     (highlight-symbol-next)
-    (recenter))
-  ;; ;;
-  ;; (global-set-key (kbd "C-\}") 'my-highlight-symbol-next)
-  ;; (global-set-key (kbd "C-\{") 'my-highlight-symbol-prev)
-  ;; (global-set-key (kbd "A-]") 'my-highlight-symbol-next)
-  ;; (global-set-key (kbd "A-[") 'my-highlight-symbol-prev)
-  )
+    (recenter)))
 
 
 ;;;
@@ -137,7 +130,10 @@ searched. If there is no symbol, empty search box is started."
 ;;; isearch the selected word 2014-02-01
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 (defadvice isearch-mode (around isearch-mode-default-string (forward &optional regexp op-fun recursive-edit word-p) activate)
-  (if (and transient-mark-mode mark-active (not (eq (mark) (point))))
+  (if (and transient-mark-mode
+           mark-active
+           (not (eq (mark) (point))))
+      ;; If true
       (progn
         (isearch-update-ring (buffer-substring-no-properties (mark) (point)))
         (deactivate-mark)
@@ -146,16 +142,8 @@ searched. If there is no symbol, empty search box is started."
             (isearch-repeat-backward)
           (goto-char (mark))
           (isearch-repeat-forward)))
+    ;; If false
     ad-do-it))
-;;
-;; ;; Modern version (incomplete)
-;; ;; Define function
-;; (defun isearch-selection-advice (old-fun &optional regexp-p no-recursive-edit)
-;;   "Use selection for isearch"
-;;   (interactive)
-;;   (old-fun (selection-or-thing-at-point)))
-;; ;; Define around advice
-;; (advice-add :around )
 
 
 ;;;
@@ -191,7 +179,7 @@ searched. If there is no symbol, empty search box is started."
       (save-buffer))))
 
 
-;;;  wgrep
+;;;  wgrep.el
 ;; https://github.com/mhayashi1120/Emacs-wgrep
 ;; C-c C-e : Apply the changes to file buffers.
 ;; C-c C-u : All changes are unmarked and ignored.
@@ -216,7 +204,7 @@ searched. If there is no symbol, empty search box is started."
   (define-key grep-mode-map (kbd "C-c C-i") 'wgrep-change-to-wgrep-mode))
 
 
-;;;  ag.el/wgrep-ag.el
+;;;  ag.el
 ;; https://github.com/Wilfred/ag.el
 ;; http://agel.readthedocs.io/en/latest/index.html
 ;; https://github.com/ggreer/the_silver_searcher
@@ -267,17 +255,16 @@ searched. If there is no symbol, empty search box is started."
 ;;;   wgrep-ag.el
   ;; https://github.com/mhayashi1120/Emacs-wgrep
   (use-package wgrep-ag
+    :bind (:map ag-mode-map
+                ("C-x C-q" . wgrep-change-to-wgrep-mode))
     :config
     ;; To save buffer automatically when `wgrep-finish-edit'.
     (setq wgrep-auto-save-buffer t)
     ;; To apply all changes wheather or not buffer is read-only.
     (setq wgrep-change-readonly-file t)
     ;;
-    (add-hook 'ag-mode-hook 'wgrep-ag-setup)
-    ;; r/C-x C-q/C-c C-i to enter edit mode. C-x C-s to save, C-c C-k
-    (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
-    (define-key ag-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode)
-    (define-key ag-mode-map (kbd "C-c C-i") 'wgrep-change-to-wgrep-mode)))
+    (add-hook 'ag-mode-hook 'wgrep-ag-setup)))
+
 
 ;;;  rg.el
 ;; https://github.com/dajva/rg.el
@@ -339,14 +326,14 @@ searched. If there is no symbol, empty search box is started."
 ;;
 ;; Mac-only configuration
 (use-package migemo
-  :if (executable-find "/usr/local/bin/cmigemo")
+  :if (executable-find "cmigemo")
   :commands (migemo-init)
   ;;
   :init
   (add-hook 'after-init-hook 'migemo-init)
   ;;
   :config
-  (setq migemo-command "/usr/local/bin/cmigemo")
+  (setq migemo-command (executable-find "cmigemo"))
   (setq migemo-options '("-q" "--emacs"))
   (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
   (setq migemo-user-dictionary nil)
@@ -375,7 +362,6 @@ searched. If there is no symbol, empty search box is started."
 ;; http://julien.danjou.info/projects/emacs-packages
 (use-package rainbow-mode
   :commands (rainbow-mode))
-;; PaleVioletRed1 orange1 turquoise4
 
 
 ;;;
@@ -559,32 +545,20 @@ This function obeys `avy-all-windows' setting."
   ;; eg, A-s-x will activate (avy-goto-word-1 ?x), ie, all words starting with x
   (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word))
   )
-;;
-;;
+
 ;;;  ace-window.el
 ;; Window selection using avy.el (no dependency on ace-jump-mode.el)
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
   :commands (ace-select-window
              ace-swap-window)
-  :bind ("s-5" . ace-window)
-  :config
-  (global-set-key (kbd "s-5") 'ace-window)
-  ;;
-  ;; Face configuration (Do it in init-customize.el)
-  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Attribute-Functions.html
-  ;; (set-face-attribute FACE FRAME &rest ARGS)
-  ;; FRAME nil for all existing frames.
-  ;; (set-face-attribute 'aw-leading-char-face nil
-  ;;                     :foreground "red" :height 5.0)
-  )
-;;
-;;
+  :bind ("s-5" . ace-window))
+
 ;;;  ace-jump-helm-line.el
 ;; Depends on avy.el not ace-jump-mode.el
 ;; https://github.com/cute-jumper/ace-jump-helm-line
 (use-package ace-jump-helm-line
   :commands (ace-jump-helm-line)
-  :config
-  (eval-after-load "helm"
-    '(define-key helm-map (kbd "C-'") 'ace-jump-helm-line)))
+  :bind (:map helm-map
+              ("s-l" . ace-jump-helm-line)
+              ("C-'" . ace-jump-helm-line)))
