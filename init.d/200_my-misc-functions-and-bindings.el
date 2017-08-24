@@ -85,9 +85,13 @@ If you omit CLOSE, it will reuse OPEN."
 (defun selection-or-thing-at-point ()
   (cond
    ;; If there is selection use it
-   ((and transient-mark-mode mark-active
+   ((and transient-mark-mode
+         mark-active
          (not (eq (mark) (point))))
-    (buffer-substring-no-properties (mark) (point)))
+    (let ((mark-saved (mark))
+          (point-saved (point)))
+      (deactivate-mark)
+      (buffer-substring-no-properties mark-saved point-saved)))
    ;; Otherwise, use symbol at point or empty
    (t (format "%s"
               (or (thing-at-point 'symbol)
