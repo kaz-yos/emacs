@@ -132,8 +132,8 @@
          ;; Add bindings to isearch-mode
          :map isearch-mode-map
          ("s-s" . swiper-from-isearch))
-  :init
-  ;; Newly defined
+  ;;
+  :config
   (defun swiper-at-point ()
     "Custom function to pick up a thing at a point for swiper
 
@@ -141,10 +141,8 @@ If a selected region exists, it will be searched for by swiper
 If there is a symbol at the current point, its textual representation is
 searched. If there is no symbol, empty search box is started."
     (interactive)
-    (swiper (selection-or-thing-at-point)))
-  ;;
-  :config)
-;;
+    (swiper (selection-or-thing-at-point))))
+
 ;;;  swiper-helm.el
 ;; https://github.com/abo-abo/swiper-helm
 (use-package swiper-helm
@@ -154,8 +152,7 @@ searched. If there is no symbol, empty search box is started."
   ;;        ("C-s-s" . swiper-helm)
   ;;        :map isearch-mode-map
   ;;        ("s-s" . swiper-helm-from-isearch))
-  :init
-  ;; Newly defined
+  :config
   (defun swiper-helm-at-point ()
     "Custom function to pick up a thing at a point for swiper-helm
 
@@ -163,9 +160,7 @@ If a selected region exists, it will be searched for by swiper-helm
 If there is a symbol at the current point, its textual representation is
 searched. If there is no symbol, empty search box is started."
     (interactive)
-    (swiper-helm (selection-or-thing-at-point)))
-  ;; Configuration
-  :config)
+    (swiper-helm (selection-or-thing-at-point))))
 
 
 ;;;
