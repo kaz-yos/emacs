@@ -31,4 +31,14 @@
 ;;; command-log-mode.el
 ;; https://github.com/lewang/command-log-mode
 (use-package command-log-mode
-  :commands (clm/open-command-log-buffer))
+  :commands (command-log-mode
+             global-command-log-mode)
+  :config
+  ;; No enlarging
+  (setq command-log-mode-window-font-size 1.0)
+  ;; Does opening the command log turn on the mode?
+  (setq command-log-mode-open-log-turns-on-mode t)
+  ;; Global activation
+  (setq command-log-mode-is-global t)
+  ;; Show the command-log window or frame automatically.
+  (setq command-log-mode-auto-show t))
