@@ -85,7 +85,7 @@
 (defun default-font-size (size)
   "Set default font size in current frame (effective in all buffers)"
   (interactive "sEnter font size in points: ")
-  (let ((ht (* (string-to-int size) 10)))
+  (let ((ht (* (string-to-number size) 10)))
     (set-face-attribute 'default nil :height ht)
     ;; Call fontset updater to reinstall Japanese setting
     (update-current-frame-fontset)))
