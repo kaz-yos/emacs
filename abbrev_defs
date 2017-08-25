@@ -45,6 +45,10 @@
 
 (define-abbrev-table 'ag-mode-abbrev-table '())
 
+(define-abbrev-table 'awk-mode-abbrev-table
+  '(
+   ))
+
 (define-abbrev-table 'biblio-selection-mode-abbrev-table '())
 
 (define-abbrev-table 'bibtex-mode-abbrev-table '())
@@ -52,6 +56,14 @@
 (define-abbrev-table 'bookmark-bmenu-mode-abbrev-table '())
 
 (define-abbrev-table 'bookmark-edit-annotation-mode-abbrev-table '())
+
+(define-abbrev-table 'c++-mode-abbrev-table
+  '(
+   ))
+
+(define-abbrev-table 'c-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'calendar-mode-abbrev-table '())
 
@@ -113,11 +125,21 @@
 
 (define-abbrev-table 'ibuffer-mode-abbrev-table '())
 
+(define-abbrev-table 'idl-mode-abbrev-table '())
+
 (define-abbrev-table 'image-dired-display-image-mode-abbrev-table '())
 
 (define-abbrev-table 'image-dired-thumbnail-mode-abbrev-table '())
 
 (define-abbrev-table 'inferior-julia-mode-abbrev-table '())
+
+(define-abbrev-table 'ivy-occur-grep-mode-abbrev-table '())
+
+(define-abbrev-table 'ivy-occur-mode-abbrev-table '())
+
+(define-abbrev-table 'java-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'julia-mode-abbrev-table '())
 
@@ -139,11 +161,27 @@
 
 (define-abbrev-table 'magit-log-mode-abbrev-table '())
 
+(define-abbrev-table 'magit-log-select-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-merge-preview-mode-abbrev-table '())
+
 (define-abbrev-table 'magit-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-popup-mode-abbrev-table '())
 
 (define-abbrev-table 'magit-process-mode-abbrev-table '())
 
 (define-abbrev-table 'magit-reflog-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-refs-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-repolist-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-revision-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-stash-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-stashes-mode-abbrev-table '())
 
 (define-abbrev-table 'magit-status-mode-abbrev-table '())
 
@@ -157,6 +195,10 @@
 
 (define-abbrev-table 'mu4e~update-mail-mode-abbrev-table '())
 
+(define-abbrev-table 'objc-mode-abbrev-table
+  '(
+   ))
+
 (define-abbrev-table 'occur-edit-mode-abbrev-table '())
 
 (define-abbrev-table 'occur-mode-abbrev-table '())
@@ -169,6 +211,12 @@
 
 (define-abbrev-table 'package-menu-mode-abbrev-table '())
 
+(define-abbrev-table 'pdf-occur-buffer-mode-abbrev-table '())
+
+(define-abbrev-table 'pike-mode-abbrev-table
+  '(
+   ))
+
 (define-abbrev-table 'plain-tex-mode-abbrev-table '())
 
 (define-abbrev-table 'poly-fallback-mode-abbrev-table '())
@@ -177,11 +225,17 @@
 
 (define-abbrev-table 'process-menu-mode-abbrev-table '())
 
+(define-abbrev-table 'prodigy-mode-abbrev-table '())
+
+(define-abbrev-table 'prodigy-view-mode-abbrev-table '())
+
 (define-abbrev-table 'prog-mode-abbrev-table '())
 
 (define-abbrev-table 'ruby-mode-abbrev-table '())
 
 (define-abbrev-table 'select-tags-table-mode-abbrev-table '())
+
+(define-abbrev-table 'sh-mode-abbrev-table '())
 
 (define-abbrev-table 'shell-mode-abbrev-table '())
 
@@ -193,6 +247,8 @@
 
 (define-abbrev-table 'speedbar-mode-abbrev-table '())
 
+(define-abbrev-table 'tablist-mode-abbrev-table '())
+
 (define-abbrev-table 'tabulated-list-mode-abbrev-table '())
 
 (define-abbrev-table 'tar-mode-abbrev-table '())
@@ -202,6 +258,10 @@
 (define-abbrev-table 'tex-shell-abbrev-table '())
 
 (define-abbrev-table 'text-mode-abbrev-table '())
+
+(define-abbrev-table 'tuareg-interactive-mode-abbrev-table '())
+
+(define-abbrev-table 'tuareg-mode-abbrev-table '())
 
 (define-abbrev-table 'url-cookie-mode-abbrev-table '())
 
