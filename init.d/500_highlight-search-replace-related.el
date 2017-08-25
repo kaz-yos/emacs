@@ -213,6 +213,7 @@ searched. If there is no symbol, empty search box is started."
 (use-package ag
   :if (executable-find "ag")
   :commands (ag
+             ag-dired
              ag-files
              ag-regexp
              ag-project
@@ -391,8 +392,13 @@ searched. If there is no symbol, empty search box is started."
   :commands (avy-goto-char
              avy-goto-char-2
              avy-goto-word-1
-             avy-goto-word-or-subword-1)
-  :bind (("s-l" . avy-goto-line))
+             avy-goto-word-or-subword-1
+             avy-isearch)
+  :bind (("s-l" . avy-goto-line)
+         ("H-t" . avy-goto-char-timer)
+         :map isearch-mode-map
+         ("s-a" . avy-isearch)
+         ("C-'" . avy-isearch))
   :config
   ;; Darken background.
   (setq avy-background t)
@@ -545,6 +551,21 @@ This function obeys `avy-all-windows' setting."
   ;; eg, A-s-x will activate (avy-goto-word-1 ?x), ie, all words starting with x
   (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word))
   )
+
+;;;  avy-migemo.el
+;; https://github.com/momomo5717/avy-migemo
+;; http://dev.classmethod.jp/tool/emacs-avy-migemo/
+(use-package avy-migemo
+  :commands (avy-migemo-goto-char
+             avy-migemo-goto-char-2
+             avy-migemo-goto-char-in-line
+             avy-migemo-goto-char-timer
+             avy-migemo-goto-subword-1
+             avy-migemo-goto-word-1
+             avy-migemo-isearch
+             avy-migemo--overlay-at
+             avy-migemo--overlay-at-full
+             avy-migemo--read-candidates))
 
 ;;;  ace-window.el
 ;; Window selection using avy.el (no dependency on ace-jump-mode.el)
