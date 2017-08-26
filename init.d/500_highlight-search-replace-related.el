@@ -460,6 +460,7 @@ searched. If there is no symbol, empty search box is started."
 ;; Depends on avy.el not ace-jump-mode.el
 ;; https://github.com/cute-jumper/ace-jump-helm-line
 (use-package ace-jump-helm-line
+  :commands (ace-jump-helm-line)
   :bind (:map helm-map
-              ("s-l" . ace-jump-helm-line)
-              ("C-'" . ace-jump-helm-line)))
+              ("C-'" . ace-jump-helm-line)
+              ("s-l" . ace-jump-helm-line)))
