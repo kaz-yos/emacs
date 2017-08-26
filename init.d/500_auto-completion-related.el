@@ -245,7 +245,8 @@
   :bind (("s-q". counsel-ag-at-point)
          ("C-s-q" . counsel-ag)
          :map org-mode-map
-         ("s-z" . counsel-org-goto))
+         ("s-z" . counsel-org-goto)
+         ("C-c C-x C-f" . counsel-find-file-at-point))
   ;;
   :config
   (defun counsel-ag-at-point ()
