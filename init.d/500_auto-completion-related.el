@@ -249,6 +249,16 @@
          ("C-c C-x C-f" . counsel-find-file-at-point))
   ;;
   :config
+  (defun counsel-ag-at-point-this-file ()
+    "counsel-ag with at-point and project root enhancement
+
+The initial string is produced by selection-or-thing-at-point.
+The directory is detected by projectile-project-root."
+    (interactive)
+    (counsel-ag (selection-or-thing-at-point)
+                default-directory
+                (file-relative-name (buffer-file-name))))
+  ;;
   (defun counsel-ag-at-point ()
     "counsel-ag with at-point and project root enhancement
 
