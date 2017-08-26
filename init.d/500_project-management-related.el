@@ -12,7 +12,7 @@
   ;;                              (format " [%s]"
   ;;                                      (projectile-project-name))))
   ;; Static lighter with no evaluation
-  (setq projectile-mode-line " Prj")
+  (setq projectile-mode-line " ")
   ;;
   ;; Machine specific cache files
   (setq projectile-cache-file (concat user-emacs-directory
@@ -46,8 +46,19 @@
   (setq projectile-switch-project-action 'projectile-dired)
   (setq projectile-find-dir-includes-top-level t))
 
+
 ;;;; helm-projectile.el
 ;; http://tuhdo.github.io/helm-projectile.html
 (use-package helm-projectile
   :commands (helm-projectile)
   :bind ("C-M-z" . helm-projectile))
+
+
+;;; counsel-projectile.el
+;; https://github.com/ericdanan/counsel-projectile
+(use-package counsel-projectile
+  :after (projectile)
+  :bind (:map projectile-command-map
+              ("SPC" . counsel-projectile))
+  :config
+  (counsel-projectile-on))
