@@ -249,15 +249,20 @@
          ("C-c C-x C-f" . counsel-find-file-at-point))
   ;;
   :config
-  (defun counsel-ag-at-point-this-file ()
-    "counsel-ag with at-point and project root enhancement
+  ;; Project directory advise.
+  (defun counsel-ag-arg2-to-project-root (args)
+    "Swap the second argument to the project root directory.
 
-The initial string is produced by selection-or-thing-at-point.
-The directory is detected by projectile-project-root."
-    (interactive)
-    (counsel-ag (selection-or-thing-at-point)
-                default-directory
-                (file-relative-name (buffer-file-name))))
+ARGS is a list of arguments."
+    ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
+    `(,(car args)
+      ;; New second element
+      ,(projectile-project-root)
+      ,@(cddr args)))
+  ;;
+  (advice-add #'counsel-ag
+              :filter-args
+              #'counsel-ag-arg2-to-project-root)
   ;;
   (defun counsel-ag-at-point ()
     "counsel-ag with at-point and project root enhancement
@@ -266,6 +271,7 @@ The initial string is produced by selection-or-thing-at-point.
 The directory is detected by projectile-project-root."
     (interactive)
     (counsel-ag (selection-or-thing-at-point)
+                ;; This will be replaced by the above advice anyway.
                 (projectile-project-root)))
   ;;
   (defun counsel-rg-at-point ()
@@ -275,6 +281,7 @@ The initial string is produced by selection-or-thing-at-point.
 The directory is detected by projectile-project-root."
     (interactive)
     (counsel-rg (selection-or-thing-at-point)
+                ;; This will be replaced by the above advice anyway.
                 (projectile-project-root)))
   ;; https://github.com/abo-abo/swiper/issues/66
   (defun counsel-git-grep-at-point ()
