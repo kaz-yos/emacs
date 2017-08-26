@@ -53,7 +53,7 @@
 ;; brew install --with-clang --all-targets --rtti --universal --jit llvm
 ;;
 ;; M-x irony-install-server
-;; Change the command to the following with additional -DLIBCLANG* options for brew's llvm.
+;; Add the following -DLIBCLANG* options for brew's llvm.
 ;; -DLIBCLANG_INCLUDE_DIR\=/usr/local/opt/llvm/include/ -DLIBCLANG_LIBRARY\=/usr/local/opt/llvm/lib/libclang.dylib
 ;;
 ;; How to selectively remove entries from the CMake cache from the command line
