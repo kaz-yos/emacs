@@ -162,28 +162,6 @@
              helm-disable-minor-mode))
 
 
-;;;  helm-dash.el
-;; http://fukuyama.co/helm-dash
-;; http://kapeli.com/dash
-(use-package helm-dash
-  :commands (helm-dash
-             helm-dash-at-point))
-
-
-;;;  helm-swoop.el
-(use-package helm-swoop
-  :bind (;; ("H-s" . helm-swoop)
-         ;; Give swoop additional bindings
-         :map helm-swoop-map
-              ("C-s" . swoop-action-goto-line-next)
-              ("C-r" . swoop-action-goto-line-prev)))
-
-;;;  helm-bm.el
-;; https://github.com/jixiuf/helm-bm
-(use-package helm-bm
-  :commands (helm-bm))
-
-
 ;;;  helm-google.el
 ;; https://github.com/steckerhalter/helm-google
 (use-package helm-google
@@ -208,29 +186,6 @@
              helm-hunks-staged-current-buffer)
   :config
   (add-hook 'helm-hunks-refresh-hook 'git-gutter+-refresh))
-
-
-;;;  helm-git-grep.el
-;; https://github.com/yasuyk/helm-git-grep
-(use-package helm-git-grep
-  :commands (helm-git-grep
-             helm-git-grep-from-isearch
-             helm-git-grep-from-helm))
-
-
-;;;  helm-elscreen.el
-;; https://github.com/emacs-helm/helm-elscreen
-(use-package helm-elscreen
-  :commands (helm-elscreen)
-  :bind ("C-; h" . helm-elscreen))
-
-
-;;;  helm-directory.el
-;; https://github.com/masasam/emacs-helm-directory
-(use-package helm-directory
-  :commands (helm-directory)
-  :config
-  (setq helm-directory-basedir "~"))
 
 
 ;;;  helm-tramp.el
