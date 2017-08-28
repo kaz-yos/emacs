@@ -144,6 +144,7 @@
 ;;   If a command is used successfully then it is stored permanently in
 ;;   `dired-shell-command-history'.
 ;;
+;;;   Define buffer-do-async-shell-command
 (defun buffer-do-async-shell-command (command &optional arg file-list)
   "Run a shell command COMMAND on the current buffer file asynchronously
 
@@ -187,9 +188,35 @@ from the current buffer."
            #'(lambda (elt) (string-match regexp elt))
            buffer-name-list)
       (kill-buffer regexp))))
-;; (advice-add 'dired-do-async-shell-command
-;;             :before #'kill-runner-output)
+;; (advice-add 'dired-do-async-shell-command :before #'kill-runner-output)
 ;; (advice-remove 'dired-do-async-shell-command #'kill-runner-output)
+;;
+;;;   Redefine dired-do-async-shell-command
+(defun dired-do-async-shell-command (command &optional arg file-list)
+  "dired-do-async-shell-command that kills existing *Runner Output*
+
+This is the same as dired-do-async-shell-command except for its
+action to kill *Runner Output* before execution."
+  ;;
+  (interactive
+   (let ((files (dired-get-marked-files t current-prefix-arg)))
+     (list
+      ;; Want to give feedback whether this file or marked files are used:
+      (dired-read-shell-command "& on %s: " current-prefix-arg files)
+      current-prefix-arg
+      files)))
+  ;;
+  ;; Kill the ouput buffer. This appears necessary when using over ssh
+  (let ((buffer-name-list (mapcar (function buffer-name) (buffer-list)))
+        (regexp "*Runner Output*"))
+    (when (-filter
+           #'(lambda (elt) (string-match regexp elt))
+           buffer-name-list)
+      (kill-buffer regexp)))
+  ;;
+  (unless (string-match-p "&[ \t]*\\'" command)
+    (setq command (concat command " &")))
+  (dired-do-shell-command command arg file-list))
 
 
 ;;;
