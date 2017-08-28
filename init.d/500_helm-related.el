@@ -186,9 +186,3 @@
              helm-hunks-staged-current-buffer)
   :config
   (add-hook 'helm-hunks-refresh-hook 'git-gutter+-refresh))
-
-
-;;;  helm-tramp.el
-;; https://github.com/masasam/emacs-helm-tramp
-(use-package helm-tramp
-  :commands (helm-tramp))
