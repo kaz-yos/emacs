@@ -4,9 +4,10 @@
 ;;;  elisp programming configurations
 ;; Non-nil means enter debugger if an error is signaled.
 ;; (setq debug-on-error t)
-;;
-;;
-;;;  SLIME-like navigation for elisp
+
+
+;;;  elisp-slime-nav.el
+;; SLIME-like navigation for elisp
 ;; https://github.com/purcell/elisp-slime-nav
 ;; This package provides Slime's convenient "M-." and "M-," navigation
 (use-package elisp-slime-nav
@@ -15,8 +16,8 @@
   :init
   (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
     (add-hook hook 'turn-on-elisp-slime-nav-mode)))
-;;
-;;
+
+
 ;; ;;; Auto byte-compile .el files at saving
 ;; ;; http://www.emacswiki.org/emacs/auto-async-byte-compile.el
 ;; ;; http://d.hatena.ne.jp/rubikitch/20100423/bytecomp
@@ -25,24 +26,8 @@
 ;; ;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|init.el\\|/init.d/\\|/programming/")
 ;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/\\|/programming/")
 ;; (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
-;;
-;;
-;;;  Auto-complete in IELM
-;; http://www.masteringemacs.org/articles/2010/11/29/evaluating-elisp-emacs/
-;; (defun ielm-auto-complete ()
-;;   "Enables `auto-complete' support in \\[ielm]."
-;;   (setq ac-sources '(ac-source-functions
-;;                      ac-source-variables
-;;                      ac-source-features
-;;                      ac-source-symbols
-;;                      ac-source-words-in-same-mode-buffers))
-;;   (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
-;;   (auto-complete-mode 1))
-;;
-;; (add-hook 'ielm-mode-hook 'ielm-auto-complete)
-;; (add-hook 'emacs-lisp-mode-hook 'ielm-auto-complete)
-;;
-;;
+
+
 ;;;  Eval-result-overlays in Emacs-lisp
 ;; http://endlessparentheses.com/eval-result-overlays-in-emacs-lisp.html
 (autoload 'cider--make-result-overlay "cider-overlays")
@@ -88,6 +73,13 @@
 (use-package macrostep
   :commands (macrostep-mode
              macrostep-expand))
+
+
+;;;  nameless.el
+;; https://github.com/Malabarba/Nameless
+;; http://endlessparentheses.com/nameless-less-is-more.html
+(use-package nameless
+  :commands (nameless-mode))
 
 
 ;;;
