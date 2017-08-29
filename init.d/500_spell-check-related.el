@@ -225,6 +225,8 @@ which has no argument of its own."
   :bind ("s-x" . synosaurus-choose-and-replace)
   ;;
   :config
+  (use-package synosaurus-wordnet
+    :commands (synosaurus-backend-wordnet))
   ;; synosaurus-backend-wordnet        An english offline thesaurus
   ;; https://wordnet.princeton.edu
   ;; $ brew install wordnet # for wn command.
