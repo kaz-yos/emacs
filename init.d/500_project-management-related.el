@@ -6,16 +6,16 @@
 ;; https://github.com/bbatsov/projectile#interactive-commands
 ;; https://projectile.readthedocs.io/en/latest/usage/
 (use-package projectile
-  ;; C-c p s should always work even before entering into a project
-  :bind (("C-c p s" . projectile-switch-project))
+  :commands (;; This is used elsewhere
+             projectile-project-root)
   ;;
   :config
   ;; Simpler lighter
-  ;; (setq projectile-mode-line '(:eval
-  ;;                              (format " [%s]"
-  ;;                                      (projectile-project-name))))
+  (setq projectile-mode-line '(:eval
+                               (format " [%s]"
+                                       (projectile-project-name))))
   ;; Static lighter with no evaluation
-  (setq projectile-mode-line " ")
+  ;; (setq projectile-mode-line " ")
   ;;
   ;; Machine specific cache files
   (setq projectile-cache-file (concat user-emacs-directory
