@@ -14,6 +14,44 @@
 ;; Load org
 (use-package org
   :mode ("\\.org" . org-mode)
+
+  :bind (;; Suggested bindings for global
+         ;; http://orgmode.org/manual/Activation.html#Activation
+         ("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         ("C-c b" . org-iswitchb)
+         :map org-mode-map
+         ;; Key bindings
+         ("<C-tab>" . other-window-or-split)
+         ("<A-tab>" . org-global-cycle)
+         ;; Backslash
+         (  ";" . my-tex-insert-backslash)
+         ("A-;" . my-tex-insert-semicolon)
+         ;;
+         ;; bm.el-like function
+         ;; ("s-b" . helm-org-in-buffer-headings)
+         ;;
+         ;; This is taken by icicle. Reclaim.
+         ("C-c '" . org-edit-special)
+         ;;
+         ;; Arrow key replacement for HHKB
+         ("A-M-i" . org-metaup)
+         ("A-M-k" . org-metadown)
+         ("A-M-l" . org-metaright)
+         ("A-M-j" . org-metaleft)
+         ;; These are not working?
+         ("A-S-M-i" . org-shiftmetaup)
+         ("A-S-M-k" . org-shiftmetadown)
+         ("A-S-M-l" . org-shiftmetaright)
+         ("A-S-M-j" . org-shiftmetaleft)
+         ;;
+         ;; This breaks other behaviors?
+         ;; ("<return>" . org-meta-return)
+         ;; Swap these keys
+         ;; ("<return>" . org-return-indent)
+         ;; ("C-j" . org-return)
+         )
   :init
   ;; https://github.com/jwiegley/use-package#extending-the-load-path
   ;; If using manually installed org-mode.
@@ -29,42 +67,6 @@
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Syntax-Tables.html
   ;; https://www.emacswiki.org/emacs/EmacsSyntaxTable
   (modify-syntax-entry ?$  "."  text-mode-syntax-table)
-  ;;
-  ;; Suggested bindings for global
-  ;; http://orgmode.org/manual/Activation.html#Activation
-  (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-c a") 'org-agenda)
-  (global-set-key (kbd "C-c c") 'org-capture)
-  (global-set-key (kbd "C-c b") 'org-iswitchb)
-  ;; Key bindings
-  (define-key org-mode-map (kbd "<C-tab>") 'other-window-or-split)
-  (define-key org-mode-map (kbd "<A-tab>") 'org-global-cycle)
-  ;; Backslash
-  (define-key org-mode-map (kbd   ";") 'my-tex-insert-backslash)
-  (define-key org-mode-map (kbd "A-;") 'my-tex-insert-semicolon)
-  ;;
-  ;; bm.el-like function
-  ;; (define-key org-mode-map (kbd "s-b") 'helm-org-in-buffer-headings)
-  ;;
-  ;; This is taken by icicle. Reclaim.
-  (define-key org-mode-map (kbd "C-c '") 'org-edit-special)
-  ;;
-  ;; Arrow key replacement for HHKB
-  (define-key org-mode-map (kbd "A-M-i") 'org-metaup)
-  (define-key org-mode-map (kbd "A-M-k") 'org-metadown)
-  (define-key org-mode-map (kbd "A-M-l") 'org-metaright)
-  (define-key org-mode-map (kbd "A-M-j") 'org-metaleft)
-  ;; These are not working?
-  (define-key org-mode-map (kbd "A-S-M-i") 'org-shiftmetaup)
-  (define-key org-mode-map (kbd "A-S-M-k") 'org-shiftmetadown)
-  (define-key org-mode-map (kbd "A-S-M-l") 'org-shiftmetaright)
-  (define-key org-mode-map (kbd "A-S-M-j") 'org-shiftmetaleft)
-  ;;
-  ;; This breaks other behaviors?
-  ;; (define-key org-mode-map (kbd "<return>") 'org-meta-return)
-  ;; Swap these keys
-  ;; (define-key org-mode-map (kbd "<return>") 'org-return-indent)
-  ;; (define-key org-mode-map (kbd "C-j") 'org-return)
   ;;
   ;; Company mode
   ;; https://github.com/company-mode/company-mode/issues/50
