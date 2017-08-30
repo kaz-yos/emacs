@@ -6,6 +6,7 @@
 ;; https://github.com/bbatsov/projectile#interactive-commands
 ;; https://projectile.readthedocs.io/en/latest/usage/
 (use-package projectile
+  :demand t
   :commands (;; This is used elsewhere
              projectile-project-root)
   ;;
