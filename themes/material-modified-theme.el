@@ -679,8 +679,8 @@
    `(font-latex-sedate-face               ((t (:foreground ,green))))
    `(font-latex-slide-title-face          ((t (:inherit font-lock-type-face :weight bold :height 1.2))))
    `(font-latex-string-face               ((t (:inherit font-lock-string-face))))
-   `(font-latex-subscript-face            ((t (:height 0.8))))
-   `(font-latex-superscript-face          ((t (:height 0.8))))
+   ;; `(font-latex-subscript-face            ((t (:height 0.8))))
+   ;; `(font-latex-superscript-face          ((t (:height 0.8))))
    `(font-latex-warning-face              ((t (:inherit font-lock-warning-face))))
 
    ;; mu4e
