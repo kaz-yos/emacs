@@ -4,12 +4,12 @@
 ;;; winner-mode to restore previous window configurations
 ;; http://www.emacswiki.org/emacs/WinnerMode
 ;; Default: C-c <left> to undo window rearragement. C-c <right> to redo.
-(winner-mode t)
-(global-set-key (kbd "M-<left>") 'winner-undo)		; M-<left>  to undo
-(global-set-key (kbd "M-<right>") 'winner-redo)		; M-<right> to redo
-;; alt biding
-(global-set-key (kbd "A-b") 'winner-undo)
-(global-set-key (kbd "A-f") 'winner-redo)
+(use-package winner
+  :demand
+  :bind (("M-<left>" . winner-undo)
+         ("M-<left>" . winner-undo))
+  :config
+  (winner-mode t))
 
 
 ;;;
@@ -91,7 +91,8 @@
 
 
 ;;;
-;;; Scroll other window with M-up/M-down	; Conflict with paredit. Use C-M-(S)-v
+;;; Scroll other window with M-up/M-down
+;; Conflict with paredit. Use C-M-(S)-v
 ;; (global-set-key [M-up]   'scroll-other-window-down)
 ;; (global-set-key [M-down] 'scroll-other-window)
 (global-set-key (kbd "M-<up>")   'scroll-other-window-down)
