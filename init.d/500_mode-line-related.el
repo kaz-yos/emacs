@@ -37,4 +37,5 @@
           (when (eq mode major-mode)
             (setq mode-name mode-str)))))
 ;;
-(add-hook 'after-change-major-mode-hook 'clean-mode-line)
+;; (add-hook 'after-change-major-mode-hook 'clean-mode-line)
+;; (remove-hook 'after-change-major-mode-hook 'clean-mode-line)
