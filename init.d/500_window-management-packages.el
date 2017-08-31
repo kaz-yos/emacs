@@ -19,7 +19,9 @@
 ;;; window-number.el for direct movement to windows
 (use-package window-number
   :config
-  (window-number-mode 1)
+  ;; No need to show numbers in the mode-line.
+  ;; (window-number-mode 1)
+  ;;
   (defun my-window-number-select (number)
     "Selects the nth window."
     (interactive "P")
