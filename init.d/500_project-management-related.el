@@ -6,9 +6,11 @@
 ;; https://github.com/bbatsov/projectile#interactive-commands
 ;; https://projectile.readthedocs.io/en/latest/usage/
 (use-package projectile
-  :demand t
   :commands (;; This is used elsewhere
-             projectile-project-root)
+             projectile-project-root
+             projectile-switch-project
+             projectile-commander)
+  :bind (("C-c p p" . projectile-switch-project))
   ;;
   :config
   ;; Simpler lighter
@@ -28,6 +30,9 @@
                                                "_"
                                                (system-name-sans-domain)
                                                ".eld"))
+  ;; Load saved projects from `projectile-known-projects-file'.
+  ;; Also set `projectile-known-projects'.
+  (projectile-load-known-projects)
   ;;
   ;; Enable Projectile globally
   ;; 2015-01-01 error *** Eval error ***  End of file during parsing
@@ -45,22 +50,17 @@
   ;; Switching
   ;; https://github.com/bbatsov/projectile#switching-projects
   (setq projectile-switch-project-action 'projectile-dired)
-  (setq projectile-find-dir-includes-top-level t))
-
-
-;;;; helm-projectile.el
-;; http://tuhdo.github.io/helm-projectile.html
-(use-package helm-projectile
-  :after (projectile)
-  :commands (helm-projectile)
-  :bind ("C-M-z" . helm-projectile))
-
-
-;;; counsel-projectile.el
-;; https://github.com/ericdanan/counsel-projectile
-(use-package counsel-projectile
-  :after (projectile)
-  :bind (:map projectile-command-map
-              ("SPC" . counsel-projectile))
-  :config
-  (counsel-projectile-on))
+  (setq projectile-find-dir-includes-top-level t)
+  ;;
+;;;  helm-projectile.el
+  ;; http://tuhdo.github.io/helm-projectile.html
+  (use-package helm-projectile
+    :bind ("C-M-z" . helm-projectile))
+  ;;
+;;;  counsel-projectile.el
+  ;; https://github.com/ericdanan/counsel-projectile
+  (use-package counsel-projectile
+    :bind (:map projectile-command-map
+                ("SPC" . counsel-projectile))
+    :config
+    (counsel-projectile-on)))
