@@ -49,12 +49,12 @@
 ;;;
 ;;; helpful.el
 ;; https://github.com/Wilfred/helpful
+;; http://www.wilfred.me.uk/blog/2017/08/30/helpful-adding-contextual-help-to-emacs/
 (use-package helpful
-  ;; This does not work, and breaks other C-S-h bindings
-  ;; :bind (("C-S-h f" . helpful-functions))
-  :commands (helpful-mode
-             helpful-macro
-             helpful-update
-             helpful-command
-             helpful-functions
-             helpful-visit-reference))
+  :bind (("C-h c" . helpful-command)
+         ("C-h f" . helpful-function)
+         ("C-h v" . helpful-variable))
+  :commands (helpful-command
+             helpful-function
+             helpful-variable
+             helpful-macro))
