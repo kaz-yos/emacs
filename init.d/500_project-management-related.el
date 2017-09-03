@@ -10,7 +10,8 @@
              projectile-project-root
              projectile-switch-project
              projectile-commander)
-  :bind (("C-c p p" . projectile-switch-project))
+  :bind (("C-c p p" . projectile-switch-project)
+         ("C-c p f" . projectile-find-file))
   ;;
   :config
   ;; Simpler lighter
