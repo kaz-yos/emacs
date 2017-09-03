@@ -20,6 +20,7 @@
     (super-save-mode        . "")
     (undo-tree-mode         . "")
     (yas-minor-mode         . "")
+    (elisp-slime-nav-mode   . "")
     ;;
     ;; Major modes
     (dired-mode             . "Dir")
@@ -47,9 +48,15 @@
 ;; https://emacs.stackexchange.com/questions/3712/display-in-the-mode-line-the-number-of-characters-in-the-selection
 (defun count-lines-and-chars ()
   (if mark-active
-      (format "%d lines,%d chars "
+      ;; If active, show
+      (format "%d lines, %d words, %d chars "
+              ;; Number of lines
               (count-lines (region-beginning) (region-end))
+              ;; Number of words
+              (count-words (region-beginning) (region-end))
+              ;; Number of characters
               (- (region-end) (region-beginning)))
+    ;; If not active, empty.
     ""))
 ;;
 (add-to-list 'mode-line-format
