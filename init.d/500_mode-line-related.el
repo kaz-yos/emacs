@@ -39,3 +39,18 @@
 ;;
 ;; (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 ;; (remove-hook 'after-change-major-mode-hook 'clean-mode-line)
+
+
+;;;
+;;; Count lines and characters in selected region
+;; http://d.hatena.ne.jp/sonota88/20110224/1298557375
+;; https://emacs.stackexchange.com/questions/3712/display-in-the-mode-line-the-number-of-characters-in-the-selection
+(defun count-lines-and-chars ()
+  (if mark-active
+      (format "%d lines,%d chars "
+              (count-lines (region-beginning) (region-end))
+              (- (region-end) (region-beginning)))
+    ""))
+;;
+(add-to-list 'mode-line-format
+             '(:eval (count-lines-and-chars)))
