@@ -15,11 +15,13 @@
   ;;
   :config
   ;; Simpler lighter
-  (setq projectile-mode-line '(:eval
-                               (format " [%s]"
-                                       (projectile-project-name))))
+  ;; (setq projectile-mode-line '(:eval
+  ;;                              (format " [%s]"
+  ;;                                      (projectile-project-name))))
   ;; Static lighter with no evaluation
-  ;; (setq projectile-mode-line " ")
+  ;; This does not slow tramp.
+  ;; https://emacs.stackexchange.com/questions/17543/tramp-mode-is-much-slower-than-using-terminal-to-ssh
+  (setq projectile-mode-line " ")
   ;;
   ;; Machine specific cache files
   (setq projectile-cache-file (concat user-emacs-directory
