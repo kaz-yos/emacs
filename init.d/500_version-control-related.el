@@ -3,9 +3,13 @@
 ;;;
 ;;; ediff for visual diff
 ;; Show in the same frame
+;; https://www.gnu.org/software/emacs/manual/html_node/ediff/Window-and-Frame-Configuration.html
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+;;;
 ;; Show them side by side
+;; https://www.gnu.org/software/emacs/manual/html_node/ediff/Miscellaneous.html
 (setq ediff-split-window-function 'split-window-horizontally)
+
 
 ;;;
 ;;; Default VC system (turned off)
