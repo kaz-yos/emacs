@@ -42,3 +42,12 @@
   (setq command-log-mode-is-global t)
   ;; Show the command-log window or frame automatically.
   (setq command-log-mode-auto-show t))
+
+
+;;;
+;;;
+;; https://github.com/Malabarba/paradox
+(use-package paradox
+  :commands (paradox-enable)
+  :init
+  (add-hook 'after-init-hook 'paradox-enable))
