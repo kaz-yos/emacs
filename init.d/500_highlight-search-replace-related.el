@@ -75,10 +75,23 @@
          ("C-*" . mc/mark-all-like-this))
   :config
   ;; What to display in the mode line while multiple-cursors-mode is active.
-  (setq mc/mode-line
-        ;; This requires anzu.el
-        `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)
-                                (mc/num-cursors))))))
+  ;; Do not show anything at the minor mode part.
+  (setq mc/mode-line nil)
+  ;; (setq mc/mode-line
+  ;;       ;; This requires anzu.el
+  ;;       `(" mc:" (:eval (format ,(propertize "%d" 'face 'anzu-mode-line)
+  ;;                               (mc/num-cursors)))))
+  (defun mode-line-mc-num-cursors ()
+    ;; Non-nil if Multiple-Cursors mode is enabled.
+    (if multiple-cursors-mode
+        ;; If active, show
+        `("mc:" ,(format (propertize "%d" 'face 'anzu-mode-line)
+                         (mc/num-cursors)))
+      ;; If not active, empty.
+      ""))
+  ;;
+  (add-to-list 'mode-line-format
+               '(:eval (mode-line-mc-num-cursors))))
 
 
 ;;;
