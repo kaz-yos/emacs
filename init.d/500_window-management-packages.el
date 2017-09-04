@@ -78,6 +78,8 @@
               (elscreen-goto 0)))
   ;;
   :config
+  ;; Non-nil to display the number of current screen in the mode line.
+  (setq elscreen-display-screen-number nil)
   ;; Do not show tabls to save space
   ;; Can use M-x elscreen-toggle-display-tab
   (setq elscreen-display-tab nil)
