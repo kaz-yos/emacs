@@ -5,7 +5,7 @@
 ;; http://emacsredux.com/blog/2016/01/30/super-save/
 ;; https://github.com/bbatsov/super-save
 (use-package super-save
-  :diminish t
+  :diminish super-save-mode
   :config
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
   (defun quiet-super-save-command (orig-fun)
@@ -26,8 +26,9 @@
 ;; http://www.emacswiki.org/emacs/UndoTree
 ;; C-/ for undo. C-? (C-S-/) for redo.
 (use-package undo-tree
+  :diminish undo-tree-mode
   :config
-  ;; Mute the mode-line 2014-02-02
-  (setq undo-tree-mode-lighter "")
+  ;; ;; Mute the mode-line 2014-02-02
+  ;; (setq undo-tree-mode-lighter "")
   ;; Active everywhere
   (global-undo-tree-mode))
