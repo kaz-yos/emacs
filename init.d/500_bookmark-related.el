@@ -7,7 +7,11 @@
   :commands (my-bm-show
              my-bm-next
              my-bm-previous)
-  :bind ("s-b" . my-bm-show)
+  :bind (("M-SPC" . bm-toggle)
+         ("M-]" . my-bm-next)
+         ("M-[" . my-bm-previous)
+         ("C-c b" . my-bm-show)
+         ("s-b" . my-bm-show))
   :init
   ;; Saving bookmarks (before require)
   ;; (setq-default bm-buffer-persistence t)
@@ -39,14 +43,18 @@
   ;;                               (bm-repository-save)))
   ;;
   ;; Define functions to do bm-previous/next and recenter
+  (defun recenter-top ()
+    (recenter "Top"))
+  (advice-add 'bm-show-goto-bookmark
+              :after 'recenter-top)
   (defun my-bm-next ()
     (interactive)
     (bm-next)
-    (recenter "Top"))
+    (recenter-top))
   (defun my-bm-previous ()
     (interactive)
     (bm-previous)
-    (recenter "Top"))
+    (recenter-top))
   ;;
   ;; Define a function to automatically bookmark by major-mode-specific regexp
   (defun my-bm-bookmark-auto ()
@@ -103,16 +111,7 @@
   (defun my-bm-show ()
     (interactive)
     (my-bm-bookmark-auto)
-    (bm-show))
-  ;;
-  ;; Keyboard
-  (global-set-key (kbd "M-SPC") 'bm-toggle) ; Conflict with IM. Use ESC-SPC, which is the same
-  ;; (global-set-key (kbd "M-]") 'bm-next)
-  ;; (global-set-key (kbd "M-[") 'bm-previous)
-  (global-set-key (kbd "M-]") 'my-bm-next)
-  (global-set-key (kbd "M-[") 'my-bm-previous)
-  (global-set-key (kbd "C-c b") 'my-bm-show)
-  (global-set-key (kbd "s-b") 'my-bm-show))
+    (bm-show)))
 
 
 
