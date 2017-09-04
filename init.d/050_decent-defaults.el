@@ -39,8 +39,8 @@
   "Set gc-cons-threshold in MB"
   (setq gc-cons-threshold (round (* mb 1000 1000))))
 (add-hook 'after-init-hook #'(lambda () (set-gc-cons-threshold-normal 8)))
-(add-hook 'minibuffer-setup-hook #'set-gc-cons-threshold-max)
-(add-hook 'minibuffer-exit-hook #'(lambda () (set-gc-cons-threshold-normal 8)))
+;; (add-hook 'minibuffer-setup-hook #'set-gc-cons-threshold-max)
+;; (add-hook 'minibuffer-exit-hook #'(lambda () (set-gc-cons-threshold-normal 8)))
 
 
 ;;;
