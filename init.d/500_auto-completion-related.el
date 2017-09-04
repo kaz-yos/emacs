@@ -246,6 +246,7 @@
          ("C-s-q" . counsel-ag)
          :map org-mode-map
          ("s-z" . counsel-org-goto)
+         ("s-;" . counsel-org-goto)
          ("C-c C-x C-f" . counsel-find-file-at-point))
   ;;
   :config
