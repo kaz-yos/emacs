@@ -90,8 +90,9 @@
       ;; If not active, empty.
       ""))
   ;;
-  (add-to-list 'mode-line-format
-               '(:eval (mode-line-mc-num-cursors))))
+  (setq-default mode-line-format
+                (cons '(:eval (mode-line-mc-num-cursors))
+                      mode-line-format)))
 
 
 ;;;
