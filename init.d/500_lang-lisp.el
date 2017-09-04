@@ -11,6 +11,7 @@
 ;; https://github.com/purcell/elisp-slime-nav
 ;; This package provides Slime's convenient "M-." and "M-," navigation
 (use-package elisp-slime-nav
+  :diminish elisp-slime-nav-mode
   :commands (turn-on-elisp-slime-nav-mode)
   ;; Hook
   :init

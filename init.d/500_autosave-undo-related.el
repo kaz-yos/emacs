@@ -28,7 +28,5 @@
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
-  ;; ;; Mute the mode-line 2014-02-02
-  ;; (setq undo-tree-mode-lighter "")
   ;; Active everywhere
   (global-undo-tree-mode))

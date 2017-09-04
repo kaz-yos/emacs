@@ -26,6 +26,7 @@
 (use-package git-gutter
   ;; Use in CLI.
   :if (not (display-graphic-p))
+  :diminish git-gutter-mode
   :config
   ;; Hook run after refreshing in `magit-refresh'.
   (add-hook 'magit-post-refresh-hook 'git-gutter:update-all-windows)
@@ -38,6 +39,7 @@
 (use-package git-gutter-fringe
   ;; Use in GUI.
   :if (display-graphic-p)
+  :diminish git-gutter-mode
   :config
   ;; Keys
   (bind-key "A-p" 'git-gutter:previous-hunk)
