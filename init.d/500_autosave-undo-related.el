@@ -5,6 +5,7 @@
 ;; http://emacsredux.com/blog/2016/01/30/super-save/
 ;; https://github.com/bbatsov/super-save
 (use-package super-save
+  :diminish t
   :config
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
   (defun quiet-super-save-command (orig-fun)
