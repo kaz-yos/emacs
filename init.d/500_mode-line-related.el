@@ -49,11 +49,13 @@
 ;; setq-default to change the default value to avoid being overriden by subsequent changes.
 ;; http://www.holgerschurig.de/en/emacs-tayloring-the-built-in-mode-line/
 (defun count-lines-and-chars ()
-  (if mark-active
+  (if (and mark-active
+           ;; Do not show if in mc mode.
+           (not multiple-cursors-mode))
       ;; If active, show
       (let ((beg (region-beginning))
             (end (region-end)))
-        (format "%d Ln %d Wd %d Ch "
+        (format " %d Ln %d Wd %d Ch "
                 ;; Number of lines
                 (count-lines beg end)
                 ;; Number of words
