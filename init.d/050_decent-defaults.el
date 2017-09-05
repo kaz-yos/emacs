@@ -304,6 +304,7 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Format.html
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Variables.html
 ;; https://www.gnu.org/software/emacs/manual/html_node/eintr/Mode-Line.html
+;; http://www.holgerschurig.de/en/emacs-tayloring-the-built-in-mode-line/
 (setq-default mode-line-format
               '("%e"
                 mode-line-front-space
