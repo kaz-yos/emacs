@@ -115,6 +115,7 @@
 ;; http://comments.gmane.org/gmane.emacs.ess.general/9037
 ;;
 (use-package company
+  :diminish (company-mode)
   :commands (global-company-mode)
   :bind (("A-<tab>" . company-complete)
          ("A-i" . company-complete)
