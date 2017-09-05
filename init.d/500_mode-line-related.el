@@ -55,7 +55,7 @@
       ;; If active, show
       (let ((beg (region-beginning))
             (end (region-end)))
-        (format " %d Ln %d Wd %d Ch "
+        (format " %dLn %dWd %dCh "
                 ;; Number of lines
                 (count-lines beg end)
                 ;; Number of words
