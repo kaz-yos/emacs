@@ -220,6 +220,7 @@
 ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
 ;; https://www.reddit.com/r/emacs/comments/5453d4/what_does_your_ivyswiper_configuration_look_like/
 (use-package ivy
+  :diminish ivy-mode
   :config
   ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
   ;; Add recent files and bookmarks to the ivy-switch-buffer
