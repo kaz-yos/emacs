@@ -10,13 +10,11 @@
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (use-package highlight-symbol
-  :commands (highlight-symbol-at-point
+  :commands (highlight-symbol
              highlight-symbol-remove-all
              my-highlight-symbol-next
              my-highlight-symbol-prev)
-  :bind (("C-." . highlight-symbol-at-point)
-         ("C-\}" . my-highlight-symbol-next)
-         ("C-\{" . my-highlight-symbol-prev)
+  :bind (("C-." . highlight-symbol)
          ("A-]" . my-highlight-symbol-next)
          ("A-[" . my-highlight-symbol-prev)
          ("A-M-n" . my-highlight-symbol-next)
@@ -25,7 +23,13 @@
          ("A-M-[" . my-highlight-symbol-prev))
   ;;
   :config
-  (setq highlight-symbol-idle-delay 0)
+  (setq highlight-symbol-idle-delay 1.5)
+  (highlight-symbol-mode 1)
+  ;;
+  (setq highlight-symbol-highlight-single-occurrence t)
+  (setq highlight-symbol-colors
+        '("yellow" "DeepPink" "cyan" "MediumPurple1" "SpringGreen1"
+          "DarkOrange" "HotPink1" "RoyalBlue1" "OliveDrab"))
   ;;
   ;; Define highlight-symbol-prev/next and recenter
   (defun my-highlight-symbol-prev ()
