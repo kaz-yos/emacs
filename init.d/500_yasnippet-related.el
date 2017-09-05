@@ -7,6 +7,7 @@
 ;; http://fukuyama.co/yasnippet
 ;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
 (use-package yasnippet
+  :diminish  yas-minor-mode
   :config
   ;; Key-bind for expanding
   ;; Insert default snippet
