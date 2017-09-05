@@ -297,3 +297,28 @@
 ;; 19.13 Recursive Minibuffers
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Recursive-Mini.html
 (setq enable-recursive-minibuffers t)
+
+
+;;;
+;;; default mode-line-format
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Format.html
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Variables.html
+;; https://www.gnu.org/software/emacs/manual/html_node/eintr/Mode-Line.html
+(setq-default mode-line-format
+              '("%e"
+                mode-line-front-space
+                mode-line-mule-info
+                mode-line-client
+                mode-line-modified
+                mode-line-remote
+                mode-line-frame-identification
+                mode-line-buffer-identification
+                " "
+                mode-line-position
+                (vc-mode vc-mode)
+                " "
+                mode-line-modes
+                mode-line-misc-info
+                mode-line-end-spaces))
+;; Check the default value.
+;; (default-value 'mode-line-format)
