@@ -115,6 +115,8 @@
   ;; How to display the list of screens on the frame-title of my Emacs?
   ;; This is broken. get-alist should be changed to alist-get
   ;; https://www.emacswiki.org/emacs/EmacsLispScreen#toc8
+  ;; elscreen-fr.el is a package that does a similar thing.
+  ;; https://github.com/rocher/elscreen-fr
   ;;
   (defvar *elscreen-tab-truncate-length*
     20 "Number of characters to truncate tab names in frame title")
