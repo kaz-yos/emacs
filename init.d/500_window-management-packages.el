@@ -66,6 +66,7 @@
             (lambda ()
               ;; Screen 1
               (progn (elscreen-create)
+                     (elscreen-screen-nickname "init.d")
                      (find-file (concat user-emacs-directory "init.d"))
                      (split-window nil nil 'left))
               ;; Screen 2
