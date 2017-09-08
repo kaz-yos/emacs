@@ -9,7 +9,7 @@
 
 ;;; Initialize packages so that they can be auto-loaded.
 (defalias 'defstruct 'cl-defstruct)
-(package-initialize t)
+(package-initialize)
 
 
 ;;;
