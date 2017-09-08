@@ -119,7 +119,8 @@
   ;; https://github.com/rocher/elscreen-fr
   ;;
   (defvar *elscreen-tab-truncate-length*
-    20 "Number of characters to truncate tab names in frame title")
+    20
+    "Number of characters to truncate tab names in frame title")
   ;;
   (defun elscreen-tabs-as-string ()
     "Return a string representation of elscreen tab names
@@ -132,7 +133,7 @@ Set name truncation length in ELSCREEN-TRUNCATE-LENGTH"
        (lambda (screen)
          (format (if (string-equal "+" (elscreen-status-label screen))
                      ;; Current screen format
-                     "# [ %d ] %s #"
+                     "<< [%d] %s >>"
                    ;; Others
                    "(%d) %s")
                  ;; screen number: replaces %d (integer)
@@ -145,10 +146,11 @@ Set name truncation length in ELSCREEN-TRUNCATE-LENGTH"
        ;; Screen numbers (keys for alist)
        screen-list
        ;; Separator
-       " | ")))
+       "    ")))
   ;;
   (defvar *elscreen-tabs-as-string*
-    "" "Variable to hold curent elscreen tab names as a string")
+    ""
+    "Variable to hold curent elscreen tab names as a string")
   ;;
   (defun update-elscreen-tabs-as-string ()
     "Update *elscreen-tabs-as-string* variable"
