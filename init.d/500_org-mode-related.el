@@ -149,6 +149,7 @@
 ;;;  ob-async.el
   ;; https://github.com/astahlman/ob-async
   (use-package ob-async
+    :disabled t
     :commands (ob-async-org-babel-execute-src-block)
     :init
     (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block))
