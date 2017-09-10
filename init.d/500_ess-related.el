@@ -39,6 +39,9 @@
   (define-key ess-mode-map (kbd "s-w") 'ess-nuke-trailing-whitespace)
   (global-set-key (kbd "s-w") 'ess-nuke-trailing-whitespace)
   ;;
+  ;; If t ess will try to use ido completion whenever possible.
+  (setq ess-use-ido nil)
+  ;;
   ;; Underscore preservation in ESS
   ;; http://www.r-bloggers.com/a-small-customization-of-ess/
   (setq ess-S-assign-key (kbd "C-="))	; C-= gives <-
