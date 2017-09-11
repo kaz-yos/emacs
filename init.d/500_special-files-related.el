@@ -63,9 +63,18 @@
     :commands (pdf-occur-global-minor-mode))
   ;;
   (pdf-tools-install)
+  ;;
   ;; Auto-revert
   ;; (add-hook 'pdf-view-mode-hook #'turn-on-auto-revert-mode)
   )
+
+
+;;;
+;;; ePUB-related
+;;; nov.el
+;; https://github.com/wasamasa/nov.el
+(use-package nov
+  :mode (("\\.epub\\'" . nov-mode)))
 
 
 ;;;
