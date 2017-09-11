@@ -14,7 +14,6 @@
 ;; Load org
 (use-package org
   :mode ("\\.org" . org-mode)
-
   :bind (;; Suggested bindings for global
          ;; http://orgmode.org/manual/Activation.html#Activation
          ("C-c l" . org-store-link)
@@ -160,6 +159,7 @@
   ;; https://github.com/jkitchin/org-ref
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
+  ;; org-ref-pdf.el requires pdf-tools.el
   (use-package org-ref
     :init
     (define-key org-mode-map (kbd "C-A-a") 'org-ref-helm-insert-cite-link)
@@ -171,8 +171,7 @@
     ;; bibliographystyle:unsrt
     ;; bibliography:file_name.bib
     ;;
-    (add-hook 'org-mode-hook 'zotelo-minor-mode)
-    :config)
+    (add-hook 'org-mode-hook 'zotelo-minor-mode))
   ;;
   ;;
 ;;;
