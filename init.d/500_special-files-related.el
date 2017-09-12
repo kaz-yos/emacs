@@ -63,6 +63,9 @@
 ;; https://github.com/dunn/homebrew-emacs/issues
 ;;
 ;; $ brew switch poppler 0.57.0_1 # This fixed the above issue.
+;;
+;; poppler development information.
+;; https://poppler.freedesktop.org
 (use-package pdf-tools
   ;; The deferring configuration was take from the following repository.
   ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-pdf.el
