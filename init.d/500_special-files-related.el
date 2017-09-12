@@ -17,10 +17,10 @@
 ;;;
 ;;; pdf-tools.el
 ;; https://github.com/politza/pdf-tools
-;; brew install poppler automake
+;; $ brew install poppler automake
 ;; Although OS X is not officially supported, it has been reported to have been
 ;; successfully compiled. You will need to install poppler which you can get with
-;; homebrew via brew install poppler automake (recipe below takes care of this)
+;; homebrew via $ brew install poppler automake (recipe below takes care of this)
 ;;
 ;; http://emacs.stackexchange.com/questions/13314/install-pdf-tools-on-emacs-macosx
 ;; Install epdfinfo via 'brew install homebrew/emacs/pdf-tools' and then install the
@@ -35,6 +35,34 @@
 ;;
 ;; Homebrew recipe moved to:
 ;; https://github.com/dunn/homebrew-emacs
+;;
+;;;  poppler compatibility issue
+;; $ brew install pdf-tools
+;; Updating Homebrew...
+;; ==> Installing pdf-tools from dunn/emacs
+;; ==> Downloading https://github.com/politza/pdf-tools/archive/v0.70.tar.gz
+;; Already downloaded: /Users/kazuki/Library/Caches/Homebrew/pdf-tools-0.70.tar.gz
+;; ==> make server/epdfinfo
+;; Last 15 lines from /Users/kazuki/Library/Logs/Homebrew/pdf-tools/01.make:
+;; configure.ac:11: installing './compile'
+;; configure.ac:6: installing './install-sh'
+;; configure.ac:6: installing './missing'
+;; Makefile.am: installing './depcomp'
+;; cd server && ./configure -q
+;; configure: WARNING: Annot.h: present but cannot be compiled
+;; configure: WARNING: Annot.h:     check for missing prerequisite headers?
+;; configure: WARNING: Annot.h: see the Autoconf documentation
+;; configure: WARNING: Annot.h:     section "Present But Cannot Be Compiled"
+;; configure: WARNING: Annot.h: proceeding with the compiler's result
+;; configure: WARNING:     ## ---------------------------------- ##
+;; configure: WARNING:     ## Report this to politza@fh-trier.de ##
+;; configure: WARNING:     ## ---------------------------------- ##
+;; configure: error: cannot find necessary  poppler-private header (see README.org)
+;; make: *** [server/Makefile] Error 1
+;; If reporting this issue please do so at (not Homebrew/brew or Homebrew/core):
+;; https://github.com/dunn/homebrew-emacs/issues
+;;
+;; $ brew switch poppler 0.57.0_1 # This fixed the above issue.
 (use-package pdf-tools
   ;; The deferring configuration was take from the following repository.
   ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-pdf.el
@@ -46,7 +74,10 @@
                ;; We need a wild card as a MELPA package keeps changing the folder name.
                ;; http://emacs.stackexchange.com/questions/9768/elisp-files-in-load-path-are-not-loaded-on-emacs-start
                ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/List-Elements.html
-               (car (last (file-expand-wildcards "~/.emacs.d/elpa/pdf-tools*"))))
+               (car
+                (last
+                 (file-expand-wildcards
+                  (concat user-emacs-directory "elpa/pdf-tools*")))))
   ;;
   :config
   ;; Whether PDF Tools should handle upgrading itself.
