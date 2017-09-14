@@ -9,7 +9,8 @@
   :commands (;; This is used elsewhere
              projectile-project-root
              projectile-switch-project
-             projectile-commander)
+             projectile-commander
+             projectile-project-p)
   :bind (("C-c p p" . projectile-switch-project)
          ("C-c p f" . projectile-find-file))
   ;;
