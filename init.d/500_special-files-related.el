@@ -108,7 +108,7 @@
 ;;; nov.el
 ;; https://github.com/wasamasa/nov.el
 (use-package nov
-  :mode (("\\.epub\\'" . nov-mode)))
+  :mode (("\\.epub" . nov-mode)))
 
 
 ;;;
