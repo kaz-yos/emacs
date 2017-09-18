@@ -27,3 +27,23 @@
 #+LATEX_HEADER: \setbeamertemplate{bibliography item}{\insertbiblabel}
 #+LATEX_HEADER: %% Without item labels
 #+LATEX_HEADER: %% \setbeamertemplate{bibliography item}{}
+#+LATEX_HEADER:
+#+LATEX_HEADER: %% Math
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{amssymb}
+#+LATEX_HEADER: \usepackage{wasysym}
+#+LATEX_HEADER: %% Allow new page within align
+#+LATEX_HEADER: \allowdisplaybreaks
+#+LATEX_HEADER: \usepackage{cancel}
+#+LATEX_HEADER: % % Code
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{courier}
+#+LATEX_HEADER: \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
+#+LATEX_HEADER: \usepackage[cache=false]{minted}
+#+LATEX_HEADER: \usemintedstyle{bw}
+#+LATEX_HEADER: %% Graphics
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{grffile}
+#+LATEX_HEADER: %% DAG
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{positioning,shapes.geometric}
