@@ -28,6 +28,15 @@
   ;; -a show dotfiles; -l detail; -h human-readable
   (setq dired-listing-switches "-alh")
   ;;
+  ;; Open read-only using an advice.
+  (defun read-only-mode-on ()
+    (read-only-mode +1))
+  ;; Add to both of these.
+  (advice-add 'dired-find-file
+              :after 'read-only-mode-on)
+  (advice-add 'dired-find-file-other-window
+              :after 'read-only-mode-on)
+  ;;
   ;; If there are two dired open side by side, copy destination is the other.
   (setq dired-dwim-target t)
   ;; Recursively copy directories.
