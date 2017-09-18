@@ -90,6 +90,10 @@
   ;; note    Prompt for a note and add it with template ‘org-log-note-headings’
   (setq org-log-done 'time)
   ;;
+  ;; Agenda related
+  ;; http://mbork.pl/2017-09-18_How_to_hide_repeating_entries_from_the_Org_agenda
+  (setq org-agenda-show-future-repeats nil)
+  ;;
   ;;
 ;;;
 ;;; Org-Babel
