@@ -197,6 +197,7 @@
 ;;; Retain history between sessions
 ;; http://www.emacswiki.org/emacs/SaveHist
 ;; https://stackoverflow.com/questions/1229142/how-can-i-save-my-mini-buffer-history-in-emacs
+;; https://emacs.stackexchange.com/questions/9925/persistent-shell-command-history
 (use-package savehist
   :config
   ;; Need to specify the history file before enabling.
@@ -204,6 +205,8 @@
                               "history"
                               "_"
                               (system-name-sans-domain)))
+  ;; The interval between autosaves of minibuffer history.
+  (setq savehist-autosave-interval 300)
   ;; Delete duplicated entries.
   (setq history-delete-duplicates t)
   ;; Finally activate.
@@ -219,7 +222,7 @@
                                 "_"
                                 (system-name-sans-domain)))
   ;; New in 25.1
-  (save-place-mode t))
+  (save-place-mode 1))
 
 
 ;;;
