@@ -66,7 +66,11 @@
 #+LATEX_HEADER: \setlength{\parindent}{0em}
 #+LATEX_HEADER: %% Spacing after headings
 #+LATEX_HEADER: %% http://tex.stackexchange.com/questions/53338/reducing-spacing-after-headings
+#+LATEX_HEADER: %% https://qiita.com/roaming_south/items/ea39b9554167fcaba882
 #+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \titleformat*{\section}{\normalsize\bfseries}
+#+LATEX_HEADER: \titleformat*{\subsection}{\normalsize\bfseries}
+#+LATEX_HEADER: \titleformat*{\subsubsection}{\normalsize\bfseries}
 #+LATEX_HEADER: \titlespacing      \section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
 #+LATEX_HEADER: \titlespacing   \subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
 #+LATEX_HEADER: \titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
