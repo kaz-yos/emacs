@@ -11,6 +11,7 @@
   (use-package helm-config)
   :bind (("M-x" . helm-M-x)
          ;; Escape hatches
+         ("A-x" . execute-extended-command)
          ("A-M-x" . execute-extended-command)
          ("C-M-x" . execute-extended-command)
          ("s-e" . execute-extended-command)
