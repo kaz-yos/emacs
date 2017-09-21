@@ -35,7 +35,7 @@
              global-command-log-mode)
   :config
   ;; No enlarging
-  (setq command-log-mode-window-font-size 1.0)
+  (setq command-log-mode-window-font-size 1)
   ;; Does opening the command log turn on the mode?
   (setq command-log-mode-open-log-turns-on-mode t)
   ;; Global activation
