@@ -273,6 +273,7 @@
 ;; https://github.com/vitoshka/zotelo
 ;; https://forums.zotero.org/discussion/19608/zotero-emacs-integration/
 (use-package zotelo
+  :disabled t
   :commands (zotelo-set-collection
              zotelo-update-database
              zotelo-minor-mode)
@@ -292,5 +293,6 @@
 ;; Depends on the zotxt Zotero extension.
 ;; https://gitlab.com/egh/zotxt
 (use-package zotxt
+  :disabled t
   :commands (org-zotxt-mode
              zotxt-easykey-mode))
