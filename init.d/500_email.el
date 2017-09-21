@@ -79,7 +79,7 @@
   ;; tell mu4e where my Maildir is
   (setq mu4e-maildir "~/.maildir")
   ;; mu binary (backend)
-  (setq mu4e-mu-binary "/usr/local/bin/mu")
+  (setq mu4e-mu-binary (executable-find "mu"))
   ;;
   ;;
 ;;;  Syncing
