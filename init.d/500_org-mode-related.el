@@ -50,7 +50,7 @@
          ;; Swap these keys
          ;; ("<return>" . org-return-indent)
          ;; ("C-j" . org-return)
-         )
+         ("A-s" . my-latex-math-preview))
   :init
   ;; https://github.com/jwiegley/use-package#extending-the-load-path
   ;; If using manually installed org-mode.
@@ -376,6 +376,7 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
 ;;;   org-edit-latex.el
   ;; https://github.com/et2010/org-edit-latex
   (use-package org-edit-latex
+    :diminish org-edit-latex-mode
     :config
     (add-hook 'org-mode-hook 'org-edit-latex-mode)
     ;; This is default.
