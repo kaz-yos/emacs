@@ -24,7 +24,7 @@
   ;;
   :config
   (setq highlight-symbol-idle-delay 1.5)
-  (highlight-symbol-mode 1)
+  ;; (highlight-symbol-mode 1)
   ;;
   (setq highlight-symbol-highlight-single-occurrence t)
   (setq highlight-symbol-colors
