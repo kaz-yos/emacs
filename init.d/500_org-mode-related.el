@@ -20,6 +20,7 @@
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c b" . org-iswitchb)
+         ;;
          :map org-mode-map
          ;; Key bindings
          ("<C-tab>" . other-window-or-split)
@@ -50,7 +51,11 @@
          ;; Swap these keys
          ;; ("<return>" . org-return-indent)
          ;; ("C-j" . org-return)
-         ("A-s" . my-latex-math-preview))
+         ;; Keys
+         ("A-s" . org-latex-export-to-pdf-async)
+         ("H-s" . org-latex-export-to-pdf-async)
+         ("A-l" . org-latex-export-to-latex-save)
+         ("H-l" . org-latex-export-to-latex-save))
   :init
   ;; https://github.com/jwiegley/use-package#extending-the-load-path
   ;; If using manually installed org-mode.
@@ -251,11 +256,6 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
     (interactive)
     (save-buffer)
     (org-latex-export-to-latex))
-  ;; Keys
-  (define-key org-mode-map (kbd "A-s") 'org-latex-export-to-pdf-async)
-  (define-key org-mode-map (kbd "H-s") 'org-latex-export-to-pdf-async)
-  (define-key org-mode-map (kbd "A-l") 'org-latex-export-to-latex-save)
-  (define-key org-mode-map (kbd "H-l") 'org-latex-export-to-latex-save)
   ;;
   ;; auto-revert in org-stack-mode
   (add-hook 'org-export-stack-mode-hook #'turn-on-auto-revert-mode)
