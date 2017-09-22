@@ -61,6 +61,11 @@
                (car (last (file-expand-wildcards "~/.emacs.d/elpa/org-plus-contrib*"))))
   ;;
   :config
+  (defun read-only-mode-off (&optional arg)
+    (read-only-mode -1))
+  (advice-add 'org-edit-special
+              :before 'read-only-mode-off)
+  ;;
   ;; Treat $ as a punctuation "." to avoid yasnippet malfunction.
   ;; Treating $ as a white space " " causes trailing $ removal.
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Syntax-Tables.html
