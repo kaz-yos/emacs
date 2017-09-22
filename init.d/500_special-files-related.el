@@ -83,6 +83,9 @@
                   (concat user-emacs-directory "elpa/pdf-tools*")))))
   ;;
   :config
+  (use-package pdf-history
+    :commands (pdf-history-minor-mode))
+  ;;
   ;; Whether PDF Tools should handle upgrading itself.
   ;; Up grading should be via Homebrew
   (setq pdf-tools-handle-upgrades nil)
