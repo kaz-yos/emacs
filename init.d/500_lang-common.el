@@ -110,17 +110,6 @@
 
 
 ;;;
-;;; plur.el
-;; https://github.com/xuchunyang/plur
-;; https://emacs.stackexchange.com/questions/27135/search-replace-like-feature-for-swapping-text/27170
-;;
-;; To replace “mouse” with “cat” and “mice” with “cats” using:
-;; M-x plur-query-replace RET m{ouse,ice} RET cat{,s} RET
-(use-package plur
-  :commands (plur-query-replace))
-
-
-;;;
 ;;; outshine.el
 ;; https://github.com/alphapapa/outshine
 (use-package outshine
