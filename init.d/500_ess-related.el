@@ -10,6 +10,8 @@
              r-mode)
   :bind (:map ess-mode-map
               ("A-s" . buffer-do-async-shell-command)
+              ("C-c C-b" . ess-eval-buffer)
+              ("C-c C-u" . ess-eval-buffer-from-beg-to-here)
               ;;
               :map ess-noweb-minor-mode-map
               ("A-s" . ess-swv-weave-PDF)
