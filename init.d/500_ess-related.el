@@ -30,7 +30,7 @@
   ;;
   :init
   ;; The org-mode exporter for Julia requires this variable.
-  (setq inferior-julia-program-name "/usr/local/bin/julia")
+  (setq inferior-julia-program-name (executable-find "julia"))
   ;;
   :config
   ;; No history, no saving!
