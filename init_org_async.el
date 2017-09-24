@@ -84,6 +84,8 @@
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 ;; code highlight
 (setq org-latex-listings 'minted)
+(setq org-latex-minted-options
+      '(("bgcolor" "bg") ("frame" "lines")))
 ;;
 ;;;  R
 (setq inferior-R-args "--no-restore-history --no-save ")

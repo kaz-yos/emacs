@@ -375,7 +375,12 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   (setq org-latex-listings 'minted)
   ;;
   ;; Association list of options for the latex minted package. Set in the file.
-  (setq org-latex-minted-options nil)
+  ;; These options are supplied within square brackets in
+  ;; \begin{minted} environments.  Each element of the alist should
+  ;; be a list containing two strings: the name of the option, and the
+  ;; value.  For example,
+  (setq org-latex-minted-options
+        '(("bgcolor" "bg") ("frame" "lines")))
   ;;
   ;; `org-latex-minted-langs'
   ;; Alist mapping languages to their minted language counterpart.
