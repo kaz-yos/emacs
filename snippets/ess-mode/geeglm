@@ -8,5 +8,4 @@
           data      = ,
           weights   = ,
           corstr    = "exchangeable",
-          scale.fix = FALSE
-          )
+          scale.fix = FALSE)

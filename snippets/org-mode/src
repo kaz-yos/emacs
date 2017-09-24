@@ -3,6 +3,8 @@
 # key: src
 # binding: C-c c
 # --
+\scriptsize
 #+BEGIN_SRC $1
 $0
 #+END_SRC
+\normalsize
