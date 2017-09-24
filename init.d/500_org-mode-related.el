@@ -158,6 +158,9 @@
   ;; Language specific settings
   ;; ditaa diagram language (git repo org-mode has necessary scripts)
   (setq org-ditaa-jar-path "~/.emacs.d/packages/org-mode/contrib/scripts/ditaa.jar")
+  ;; R interweaving code and results.
+  ;; https://lists.gnu.org/archive/html/emacs-orgmode/2010-08/msg00785.html
+  (setq org-babel-R-command "R --silent --no-save")
   ;;
 ;;;  ob-async.el
   ;; https://github.com/astahlman/ob-async

@@ -50,6 +50,9 @@
 ;;
 ;; Do not ask code execution confirmation
 (setq org-confirm-babel-evaluate nil)
+;; R interweaving code and results.
+;; https://lists.gnu.org/archive/html/emacs-orgmode/2010-08/msg00785.html
+(setq org-babel-R-command "R --silent --no-save")
 ;;
 ;; Org-mode: Source block doesn't respect parent buffer indentation
 ;; http://emacs.stackexchange.com/questions/9472/org-mode-source-block-doesnt-respect-parent-buffer-indentation
