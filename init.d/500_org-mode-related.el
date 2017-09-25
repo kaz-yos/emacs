@@ -377,10 +377,11 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; Association list of options for the latex minted package. Set in the file.
   ;; These options are supplied within square brackets in
   ;; \begin{minted} environments.  Each element of the alist should
-  ;; be a list containing two strings: the name of the option, and the
-  ;; value.  For example,
+  ;; be a list containing two strings: the name of the option, and the value.
+  ;; http://ctan.sharelatex.com/tex-archive/macros/latex/contrib/minted/minted.pdf
   (setq org-latex-minted-options
-        '(("bgcolor" "bg") ("frame" "lines")))
+        '(("frame" "lines")
+          ("linenos" "false")))
   ;;
   ;; `org-latex-minted-langs'
   ;; Alist mapping languages to their minted language counterpart.

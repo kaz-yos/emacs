@@ -85,7 +85,8 @@
 ;; code highlight
 (setq org-latex-listings 'minted)
 (setq org-latex-minted-options
-      '(("bgcolor" "bg") ("frame" "lines")))
+      '(("frame" "lines")
+        ("linenos" "false")))
 ;;
 ;;;  R
 (setq inferior-R-args "--no-restore-history --no-save ")
