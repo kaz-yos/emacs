@@ -188,7 +188,8 @@
     ;; bibliographystyle:unsrt
     ;; bibliography:file_name.bib
     ;;
-    (add-hook 'org-mode-hook 'zotelo-minor-mode))
+    ;; (add-hook 'org-mode-hook 'zotelo-minor-mode)
+    )
   ;;
   ;;
 ;;;
