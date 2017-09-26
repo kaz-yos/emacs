@@ -345,6 +345,7 @@ _d_: subtree
   ;; Activate on start up
   (add-hook 'after-init-hook 'which-key-mode)
   :config
+  (setq which-key-lighter "")
   ;; Delay (in seconds) for which-key buffer to popup.
   (setq which-key-idle-delay 1.0)
   ;; Type: minibuffer, side-window, frame, and custom.
