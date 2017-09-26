@@ -40,7 +40,7 @@
 #+LATEX_HEADER: \usepackage{courier}
 #+LATEX_HEADER: \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
 #+LATEX_HEADER: \usepackage[cache=false]{minted}
-#+LATEX_HEADER: \usemintedstyle{bw}
+#+LATEX_HEADER: \usemintedstyle{vs}
 #+LATEX_HEADER: %% Graphics
 #+LATEX_HEADER: \usepackage{graphicx}
 #+LATEX_HEADER: \usepackage{grffile}
