@@ -32,8 +32,8 @@
   (defun read-only-mode-on ()
     (read-only-mode +1))
   ;; Add to both of these.
-  (advice-add 'dired-find-file
-              :after 'read-only-mode-on)
+  ;; (advice-add 'dired-find-file
+  ;;             :after 'read-only-mode-on)
   (advice-add 'dired-find-file-other-window
               :after 'read-only-mode-on)
   ;;
