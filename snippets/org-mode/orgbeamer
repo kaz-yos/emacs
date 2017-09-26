@@ -47,3 +47,6 @@
 #+LATEX_HEADER: %% DAG
 #+LATEX_HEADER: \usepackage{tikz}
 #+LATEX_HEADER: \usetikzlibrary{positioning,shapes.geometric}
+#+LATEX_HEADER: %% Allow URL embedding
+#+LATEX_HEADER: \usepackage{url}
+#+LATEX_HEADER: \input{\string~/.emacs.d/misc/GrandMacros}
