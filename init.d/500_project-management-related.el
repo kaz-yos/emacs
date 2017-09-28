@@ -12,17 +12,18 @@
              projectile-commander
              projectile-project-p)
   :bind (("C-c p p" . projectile-switch-project)
-         ("C-c p f" . projectile-find-file))
+         ("C-c p f" . projectile-find-file)
+         ("C-c p SPC" . counsel-projectile))
   ;;
   :config
   ;; Simpler lighter
-  (setq projectile-mode-line '(:eval
-                               (format " [%s]"
-                                       (projectile-project-name))))
-  ;; A static lighter with no evaluation should not be slow over TRAMP.
-  ;; https://github.com/bbatsov/projectile/issues/657
+  ;; (setq projectile-mode-line '(:eval
+  ;;                              (format " [%s]"
+  ;;                                      (projectile-project-name))))
+  ;; Static lighter with no evaluation
+  ;; This does not slow tramp.
   ;; https://emacs.stackexchange.com/questions/17543/tramp-mode-is-much-slower-than-using-terminal-to-ssh
-  ;; (setq projectile-mode-line " ")
+  (setq projectile-mode-line " ")
   ;;
   ;; Machine specific cache files
   (setq projectile-cache-file (concat user-emacs-directory
@@ -64,7 +65,8 @@
 ;;;  counsel-projectile.el
   ;; https://github.com/ericdanan/counsel-projectile
   (use-package counsel-projectile
-    :bind (:map projectile-command-map
-                ("SPC" . counsel-projectile))
+    :demand t
     :config
+    ;; Turn on counsel-projectile key bindings.
+    ;; Remap keys to counsel-projectile-defined commands.
     (counsel-projectile-on)))
