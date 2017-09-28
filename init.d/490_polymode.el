@@ -18,7 +18,8 @@
               ("C-c p" . polymode-previous-chunk-same-type)
               ("A-n" . polymode-next-chunk-same-type)
               ("A-p" . polymode-previous-chunk-same-type)
-              ("A-s" . polymode-export))
+              ("A-s" . polymode-export)
+              ("M-s M-s" . polymode-export))
   ;;
   :config
   ;; Auto revert for .Rmd
