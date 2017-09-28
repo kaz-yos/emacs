@@ -16,6 +16,11 @@
          ("C-c p SPC" . counsel-projectile))
   ;;
   :config
+  (setq projectile-keymap-prefix (kbd "C-c p"))
+  ;; Also use M-p-*
+  ;; https://github.com/bbatsov/projectile/issues/991
+  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+  ;;
   ;; Simpler lighter
   ;; (setq projectile-mode-line '(:eval
   ;;                              (format " [%s]"
