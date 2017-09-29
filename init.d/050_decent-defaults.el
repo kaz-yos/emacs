@@ -326,3 +326,14 @@
                 mode-line-end-spaces))
 ;; Check the default value.
 ;; (default-value 'mode-line-format)
+
+
+;;;
+;;; Create my-key-map for C-c m
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Prefix-Keys.html
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Prefix-Keymaps.html
+;; https://www.emacswiki.org/emacs/PrefixKey
+;; http://ergoemacs.org/emacs/emacs_keybinding_power_of_keys_sequence.html
+(define-prefix-command 'my-key-map)
+;; bind-key* overrides any mode-specific bindings.
+(bind-key* "C-c m" 'my-key-map)
