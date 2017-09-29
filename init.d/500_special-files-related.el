@@ -3,7 +3,12 @@
 ;;;
 ;;; vlf: View Large Files
 ;; https://github.com/m00natic/vlfi
-(use-package vlf-setup)
+(use-package vlf-setup
+  :config
+  ;; Maximum size of file above which a confirmation is requested.
+  (setq large-file-warning-threshold 10000000)
+  ;; Determines when `vlf' will be offered on opening files.
+  (setq vlf-application 'ask))
 
 
 ;;;
