@@ -58,7 +58,7 @@
   (use-package subr-x
     :commands (thread-first))
   ;;
-;;; Define multiple-cursors work around functions
+;;;  Define multiple-cursors work around functions
   (defun smartchr-construct-unsetter (smartchar-set-function)
     "Generate an unsetter lambda from a smartchr setter function"
     ;; Extract instructions in the body of the setterr
@@ -143,10 +143,10 @@ This should be run after running multiple-cursors"
   (setq multiple-cursors-mode-disabled-hook 'smartchr-set-after-mc)
   ;;
   ;;
-;;; Define major-mode specific setters and unsetters
+;;;  Define major-mode specific setters and unsetters
   ;; fset: This function stores definition in the function cell of symbol.
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
-;;;  ESS
+;;;   ESS
   (defun smartchr-ess-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
     (local-set-key (kbd "+") (smartchr '("+" " + ")))
@@ -159,7 +159,7 @@ This should be run after running multiple-cursors"
   (add-hook 'inferior-ess-mode-hook 'smartchr-ess-mode-set)
   (fset 'smartchr-ess-mode-unset (smartchr-construct-unsetter 'smartchr-ess-mode-set))
   ;;
-;;;  Python
+;;;   Python
   (defun smartchr-python-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
     (local-set-key (kbd "+") (smartchr '("+" " + ")))
@@ -170,21 +170,21 @@ This should be run after running multiple-cursors"
   (add-hook 'inferior-python-mode-hook        'smartchr-python-mode-set)
   (fset 'smartchr-python-mode-unset (smartchr-construct-unsetter 'smartchr-python-mode-set))
   ;;
-;;;  SML
+;;;   SML
   (defun smartchr-sml-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " => ")))
     (local-set-key (kbd ":") (smartchr '(" : " "::"))))
   (add-hook 'sml-mode-hook 'smartchr-sml-mode-set)
   (fset 'smartchr-sml-mode-unset (smartchr-construct-unsetter 'smartchr-sml-mode-set))
   ;;
-;;;  LaTeX
+;;;   LaTeX
   (defun smartchr-LaTeX-mode-set ()
     (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
     (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
   (add-hook 'LaTeX-mode-hook 'smartchr-LaTeX-mode-set)
   (fset 'smartchr-LaTeX-mode-unset (smartchr-construct-unsetter 'smartchr-LaTeX-mode-set))
   ;;
-;;;  Org
+;;;   Org
   (defun smartchr-org-mode-set ()
     (local-set-key (kbd "^") (smartchr '("^{`!!'}" "^")))
     (local-set-key (kbd "_") (smartchr '("_{`!!'}" "_" "_`!!'_")))
@@ -197,13 +197,13 @@ This should be run after running multiple-cursors"
   (add-hook 'org-mode-hook 'smartchr-org-mode-set)
   (fset 'smartchr-org-mode-unset (smartchr-construct-unsetter 'smartchr-org-mode-set))
   ;;
-;;;  Emacs Lisp
+;;;   Emacs Lisp
   (defun smartchr-emacs-lisp-mode-set ()
     (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"))))
   (add-hook 'emacs-lisp-mode-hook 'smartchr-emacs-lisp-mode-set)
   (fset 'smartchr-emacs-lisp-mode-unset (smartchr-construct-unsetter 'smartchr-emacs-lisp-mode-set))
   ;;
-;;;  Haskell
+;;;   Haskell
   (defun smartchr-haskell-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
     (local-set-key (kbd "+") (smartchr '(" + " " ++ " "+")))
@@ -212,13 +212,13 @@ This should be run after running multiple-cursors"
   (add-hook 'haskell-mode-hook 'smartchr-haskell-mode-set)
   (fset 'smartchr-haskell-mode-unset (smartchr-construct-unsetter 'smartchr-haskell-mode-set))
   ;;
-;;;  Ruby
+;;;   Ruby
   (defun smartchr-ruby-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == "))))
   (add-hook 'ruby-mode-hook 'smartchr-ruby-mode-set)
   (fset 'smartchr-ruby-mode-unset (smartchr-construct-unsetter 'smartchr-ruby-mode-set))
   ;;
-;;;  C++
+;;;   C++
   (defun smartchr-c++-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == "))))
   (add-hook 'c++-mode-hook 'smartchr-c++-mode-set)
