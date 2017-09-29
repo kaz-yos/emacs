@@ -12,6 +12,8 @@
 ;;; autorevert.el
 (use-package autorevert
   :commands (auto-revert-mode)
+  :bind (:map my-key-map
+              ("a" . auto-revert-mode))
   ;;
   :config
   ;; Active in all buffers
