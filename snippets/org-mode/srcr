@@ -4,7 +4,7 @@
 # --
 \scriptsize
 #+header: :width 3.5 :height 3
-#+BEGIN_SRC R :session *R* :results output ${1:$$(yas-choose-value '("" "graphics :file ./source/figure.pdf"))} :exports both
+#+BEGIN_SRC R :session *R* :results output${1:$$(yas-choose-value '("" " graphics :file ./source/figure.pdf"))} :exports both
 $0
 #+END_SRC
 \normalsize
