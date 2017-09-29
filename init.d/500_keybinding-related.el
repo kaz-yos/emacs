@@ -394,3 +394,22 @@ _d_: subtree
   (drop-Alt-letter-from-key-translation-map "u")
   ;; This gets translated to small o at the top.
   (drop-Alt-letter-from-key-translation-map "o"))
+
+
+;;;
+;;; key-chord.el (modified)
+;; https://github.com/zk-phi/key-chord/
+;; https://qiita.com/zk_phi/items/e70bc4c69b5a4755edd6
+(use-package key-chord
+  ;; (concat user-emacs-directory "auto-install/")
+  :load-path "~/.emacs.d/auto-install/"
+  :config
+  ;; Timing adjustment.
+  (setq key-chord-two-keys-delay 0.15)
+  (setq key-chord-safety-interval-backward 0.1)
+  (setq key-chord-safety-interval-forward 0.25)
+  ;;
+  (key-chord-define-global "ro" 'read-only-mode)
+  ;;
+  ;; Activate
+  (key-chord-mode 1))
