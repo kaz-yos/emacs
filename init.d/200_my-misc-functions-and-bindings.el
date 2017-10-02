@@ -65,6 +65,7 @@ If you omit CLOSE, it will reuse OPEN."
 ;;;
 ;;; revert-buffer
 (global-set-key (kbd "s-v") 'revert-buffer)
+(bind-key "v" 'revert-buffer 'my-key-map)
 
 
 
