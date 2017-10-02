@@ -46,6 +46,12 @@
 ;;
 ;; (require FEATURE &optional FILENAME NOERROR)
 (require 'use-package)
+;; This does the following.
+;; (require 'bind-key)
+;; (require 'bytecomp)
+;; (require 'diminish nil t)
+;; (require 'bytecomp)
+;;
 ;; Whether to report about loading and configuration details.
 (setq use-package-verbose t)
 ;;
