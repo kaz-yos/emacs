@@ -7,18 +7,18 @@
 ;; http://fukuyama.co/yasnippet
 ;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
 (use-package yasnippet
+  :demand t
   :diminish  yas-minor-mode
+  :bind (:map yas-minor-mode-map
+              ;; Insert with a menu
+              ("C-x i i" . yas-insert-snippet)
+              ;; Expand at point
+              ("C-x i e" . yas-expand)
+              ;; Open a buffer to create a new snippet
+              ("C-x i n" . yas-new-snippet)
+              ;; View/edit snippets
+              ("C-x i v" . yas-visit-snippet-file))
   :config
-  ;; Key-bind for expanding
-  ;; Insert default snippet
-  (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
-  ;; Open a buffer to create a new snippet
-  (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
-  ;; View/edit snippets
-  (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
-  ;; Expand
-  (define-key yas-minor-mode-map (kbd "A-y") 'yas-expand)
-  ;;
   ;; Use Popup isearch for Yasnippet Prompt.
   ;; http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
   (defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
