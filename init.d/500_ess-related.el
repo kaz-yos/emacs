@@ -77,6 +77,14 @@
   ;; http://emacs.1067599.n8.nabble.com/turning-off-ess-r-package-mode-td406874.html
   (setq ess-r-package-auto-set-evaluation-env nil)
   ;;
+  (setq ess-roxy-template-alist
+        '(("description" .  ".. content for \\description{} (no empty lines) ..")
+          ("details" . ".. content for \\details{} ..")
+          ("" . "")
+          ("param" .  "")
+          ("return" . "")
+          ("author" . ess-user-full-name)))
+  ;;
   ;; R buffer name manipulation
   ;; https://stat.ethz.ch/pipermail/ess-help/2012-December/008426.html
   ;; http://t7331.codeinpro.us/q/51502552e8432c0426273040
