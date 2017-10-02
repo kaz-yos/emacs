@@ -337,3 +337,11 @@
 (define-prefix-command 'my-key-map)
 ;; bind-key* overrides any mode-specific bindings.
 (bind-key* "C-c m" 'my-key-map)
+
+
+;;;
+;;; Wide cursor for tab
+;; http://pragmaticemacs.com/emacs/adaptive-cursor-width/
+;; For example, if a block cursor is over a tab, it will be drawn as
+;; wide as that tab on the display.
+(setq x-stretch-cursor t)
