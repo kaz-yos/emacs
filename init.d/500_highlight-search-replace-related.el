@@ -195,7 +195,8 @@ searched. If there is no symbol, empty search box is started."
     (defadvice moccur-edit-change-file
         (after save-after-moccur-edit-buffer activate)
       (save-buffer))))
-
+;; For regular occur mode.
+(bind-key "C-x C-q" 'occur-edit-mode occur-mode-map)
 
 ;;;  wgrep.el
 ;; https://github.com/mhayashi1120/Emacs-wgrep
