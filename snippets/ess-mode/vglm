@@ -2,6 +2,6 @@
 # name: vglm
 # key: vglm
 # --
-resVglm <- vglm(formula = ,
-                data    = ,
-                family  = cumulative(link = "logit", parallel = FALSE, reverse = TRUE))
+vglm1 <- vglm(formula = ,
+              data    = ,
+              family  = cumulative(link = "logit", parallel = FALSE, reverse = TRUE))
