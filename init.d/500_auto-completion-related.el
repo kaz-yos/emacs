@@ -232,6 +232,11 @@
   ;; Number of lines for the minibuffer window.
   (setq ivy-height 20)
   ;;
+  ;; Out of order matching
+  ;; https://oremacs.com/2015/05/23/swiper-0.5.0/
+  (setq ivy-re-builders-alist
+        '((t . ivy--regex-ignore-order)))
+  ;;
   ;; Additional keys
   ;; ivy-immediate-done finishes without completion
   (define-key ivy-minibuffer-map (kbd "C-<return>") 'ivy-immediate-done)
