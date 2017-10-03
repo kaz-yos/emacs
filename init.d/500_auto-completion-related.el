@@ -207,8 +207,10 @@
 ;; https://github.com/Wilfred/company-try-hard
 (use-package company-try-hard
   :commands (company-try-hard)
-  :bind (("A-M-<tab>" . company-try-hard)
-         ("A-M-i" . company-try-hard)))
+  :bind (("s-i" . company-try-hard)
+         ("s-t" . company-try-hard)
+         :map my-key-map
+         ("t" . company-try-hard)))
 
 
 ;;;
