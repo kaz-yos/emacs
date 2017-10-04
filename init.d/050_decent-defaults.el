@@ -181,7 +181,7 @@
 (when (eq system-type 'darwin)
   ;; Mac-only
   (setq delete-by-moving-to-trash t
-	trash-directory "~/.Trash/emacs"))
+        trash-directory "~/.Trash/emacs"))
 
 
 ;;;
