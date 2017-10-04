@@ -128,3 +128,12 @@
 (add-hook 'ibuffer-mode-hook
           (lambda ()
             (ibuffer-switch-to-saved-filter-groups "default")))
+
+
+;;;
+;;; Kill process buffer without confirmation?
+;; https://emacs.stackexchange.com/questions/14509/kill-process-buffer-without-confirmation
+(setq kill-buffer-query-functions
+      ;; Delete members of LIST which are eq to ELT, and return the result.
+      (delq 'process-kill-buffer-query-function
+            kill-buffer-query-functions))
