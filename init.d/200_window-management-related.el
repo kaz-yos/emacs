@@ -13,7 +13,7 @@
 
 
 ;;;
-;;; Useful shortcuts
+;;; Useful window shortcuts
 ;; http://stackoverflow.com/questions/2901198/useful-keyboard-shortcuts-and-tips-for-ess-r
 ;; C-tab to switch to other window.
 ;; (global-set-key [C-tab] 'other-window)
@@ -29,9 +29,6 @@
 ;; Reversal
 ;; http://stackoverflow.com/questions/143072/in-emacs-what-is-the-opposite-function-of-other-window-c-x-o
 (global-set-key (kbd "<C-S-tab>") 'previous-multiframe-window)
-;;
-;; other-frame with C-x o, instead of other-window
-(global-set-key (kbd "C-x o") 'other-frame)
 ;;
 ;; Select the previously-selected window in emacs
 ;; http://stackoverflow.com/questions/7937395/select-the-previously-selected-window-in-emacs
@@ -67,8 +64,6 @@
           (set-window-buffer (next-window) next-win-buffer)
           (select-window first-win)
           (if this-win-2nd (other-window 1))))))
-;;;
-(global-set-key (kbd "C-x |") 'toggle-window-split)
 
 
 ;;;
