@@ -75,6 +75,7 @@
 ;;; flyspell.el
 ;;
 (use-package flyspell
+  :diminish flyspell-mode
   :commands (flyspell-goto-next-error
              flyspell-mode
              turn-on-flyspell
