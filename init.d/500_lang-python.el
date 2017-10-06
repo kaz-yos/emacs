@@ -41,6 +41,7 @@
 (use-package hy-mode
   :mode "\\.hy"
   :config
+  (setq hy-mode-inferior-lisp-command (executable-find "hy"))
   ;; Activate auto-complete-mode
   (add-hook 'hy-mode-hook
             '(lambda ()
