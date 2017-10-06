@@ -276,7 +276,8 @@ searched. If there is no symbol, empty search box is started."
   ;; https://github.com/mhayashi1120/Emacs-wgrep
   (use-package wgrep-ag
     :bind (:map ag-mode-map
-                ("C-x C-q" . wgrep-change-to-wgrep-mode))
+                ("C-x C-q" . wgrep-change-to-wgrep-mode)
+                ("C-c C-c" . wgrep-finish-edit))
     :config
     ;; To save buffer automatically when `wgrep-finish-edit'.
     (setq wgrep-auto-save-buffer t)
