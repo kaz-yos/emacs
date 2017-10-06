@@ -172,12 +172,7 @@
     (add-hook hook '(lambda ()
                       (add-to-list (make-local-variable 'company-backends)
                                    'company-elisp)))))
-;;
-;; Color configuration (done in init-customize.el)
-;; http://www.emacswiki.org/CompanyMode#toc6
-;; auto-complete-like color setting
-;; https://github.com/tungd/dotfiles/blob/9af85f57fa0a31e7edd0b9c8c8ddf6a2061b6550/emacs/themes/custom-theme.el#L36-L46
-;;
+
 ;;;  company-statistics.el
 ;; Sort completion candidates by previous completion choices
 ;; https://github.com/company-mode/company-statistics
@@ -193,8 +188,7 @@
                                         "_"
                                         (system-name-sans-domain)
                                         ".el")))
-;;
-;;
+
 ;;;  company-quickhelp.el
 ;; Documentation popup for Company
 ;; https://github.com/expez/company-quickhelp
@@ -202,7 +196,7 @@
   :disabled t
   :config
   (company-quickhelp-mode 1))
-;;
+
 ;;;  company-try-hard.el
 ;; https://github.com/Wilfred/company-try-hard
 (use-package company-try-hard
@@ -211,6 +205,25 @@
          ("s-t" . company-try-hard)
          :map my-key-map
          ("t" . company-try-hard)))
+
+;;;  company-ngram.el
+;; https://github.com/kshramt/company-ngram
+(use-package company-ngram
+  :disabled t
+  :config
+  ;; ~/data/ngram/*.txt are used as data
+  (setq company-ngram-data-dir
+        (concat user-emacs-directory
+                "~/data/ngram"))
+  ;; company-ngram supports python 3 or newer
+  (setq company-ngram-python "python3")
+  ;; Initiate use
+  (company-ngram-init)
+  (cons 'company-ngram-backend company-backends)
+  ;; save the cache of candidates
+  (run-with-idle-timer 7200 t
+                       (lambda ()
+                         (company-ngram-command "save_cache"))))
 
 
 ;;;
