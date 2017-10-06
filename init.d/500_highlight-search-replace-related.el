@@ -228,7 +228,25 @@ searched. If there is no symbol, empty search box is started."
 ;; http://agel.readthedocs.io/en/latest/index.html
 ;; https://github.com/ggreer/the_silver_searcher
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
-;; ag.el
+;;
+;; Running a search
+;; You will now have the following interactive commands available for performing searches:
+;; ag
+;; ag-files
+;; ag-regexp
+;; ag-project
+;; ag-project-files
+;; ag-project-regexp
+;;
+;; *-project commands automatically choose the directory to search, automatically detecting git, Subversion and Mercurial project roots.
+;; *-regexp commands allow you to specify a PCRE pattern for your search term.
+;; *-files commands allow you to specify a PCRE pattern for file names to search in. By default, ag searches in all files. Note that in both cases, ag ignores files that are ignored by your VCS (e.g. things mentioned in .gitignore).
+;;
+;; Search for file names
+;; ag-dired
+;; ag-dired-regexp
+;; ag-project-dired
+;; ag-project-dired-regexp
 (use-package ag
   :if (executable-find "ag")
   :commands (ag
