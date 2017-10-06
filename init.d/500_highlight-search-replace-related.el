@@ -228,36 +228,25 @@ searched. If there is no symbol, empty search box is started."
 ;; http://agel.readthedocs.io/en/latest/index.html
 ;; https://github.com/ggreer/the_silver_searcher
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
-;;
-;; Running a search
-;; You will now have the following interactive commands available for performing searches:
-;; ag
-;; ag-files
-;; ag-regexp
-;; ag-project
-;; ag-project-files
-;; ag-project-regexp
-;;
-;; *-project commands automatically choose the directory to search, automatically detecting git, Subversion and Mercurial project roots.
-;; *-regexp commands allow you to specify a PCRE pattern for your search term.
-;; *-files commands allow you to specify a PCRE pattern for file names to search in. By default, ag searches in all files. Note that in both cases, ag ignores files that are ignored by your VCS (e.g. things mentioned in .gitignore).
-;;
-;; Search for file names
-;; ag-dired
-;; ag-dired-regexp
-;; ag-project-dired
-;; ag-project-dired-regexp
 (use-package ag
   :if (executable-find "ag")
   :commands (ag
-             ag-dired
+             ;; *-files commands allow you to specify a PCRE pattern for file names to search in.
              ag-files
+             ;; *-regexp commands allow you to specify a PCRE pattern for your search term.
              ag-regexp
+             ;; *-project commands automatically choose the directory to search
              ag-project
              ag-project-files
-             ag-project-regexp)
-  :bind (("s-a" . ag)
-         ("C-s-a" . ag-project))
+             ag-project-regexp
+             ;;
+             ;; Search for file names
+             ag-dired
+             ag-dired-regexp
+             ag-project-dired
+             ag-project-dired-regexp)
+  :bind (("s-a" . ag-files)
+         ("C-s-a" . ag-project-files))
   ;;
   :config
   ;; grouping is better.
@@ -268,19 +257,17 @@ searched. If there is no symbol, empty search box is started."
   ;;
   ;; Switch to *ag search* after ag.
   ;; http://kotatu.org/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
-  (defun my/filter (condp lst)
-    (delq nil
-          (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
-  (defun my/get-buffer-window-list-regexp (regexp)
+  (defun my--get-buffer-window-list-regexp (regexp)
     "Return list of windows whose buffer name matches regexp."
-    (my/filter #'(lambda (window)
-                   (string-match regexp
-                                 (buffer-name (window-buffer window))))
-               (window-list)))
+    ;; -filter in dash.el
+    (-filter #'(lambda (window)
+                 (string-match regexp
+                               (buffer-name (window-buffer window))))
+             (window-list)))
   (defun switch-to-ag (&optional _1 _2 _3)
     "Switch to a buffer named *ag ... Arguments are ignored."
     (select-window ; select ag buffer
-     (car (my/get-buffer-window-list-regexp "^\\*ag "))))
+     (car (my--get-buffer-window-list-regexp "^\\*ag "))))
   ;; Advice all user functions.
   (loop for f in '(ag
                    ag-files
@@ -293,6 +280,8 @@ searched. If there is no symbol, empty search box is started."
 ;;;   wgrep-ag.el
   ;; https://github.com/mhayashi1120/Emacs-wgrep
   (use-package wgrep-ag
+    ;; Nested within ag.el configuration.
+    :demand t
     :bind (:map ag-mode-map
                 ("C-x C-q" . wgrep-change-to-wgrep-mode)
                 ("C-c C-c" . wgrep-finish-edit))
