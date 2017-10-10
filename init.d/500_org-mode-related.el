@@ -93,6 +93,8 @@
   (setq org-startup-folded nil)
   ;; Indent at startup. This causes some strange behavior.
   ;; (setq org-startup-indented t)
+  ;; Non-nil means when yanking subtrees, fold them.
+  (setq org-yank-folded-subtrees nil)
   ;;
   ;; TODO related
   ;; Information to record when a task moves to the DONE state.
