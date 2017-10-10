@@ -12,7 +12,7 @@
   :commands (flycheck-mode
              global-flycheck-mode)
   :init
-  (add-hook 'after-init-hook 'global-flycheck-mode)
+  ;; (add-hook 'after-init-hook 'global-flycheck-mode)
   ;;
   :config
   ;;; flycheck-pos-tip.el
