@@ -409,7 +409,8 @@ _d_: subtree
   (setq key-chord-safety-interval-backward 0.1)
   (setq key-chord-safety-interval-forward 0.25)
   ;;
-  (key-chord-define-global "ro" 'read-only-mode)
+  ;; This conflict with "or" as in and or
+  ;; (key-chord-define-global "ro" 'read-only-mode)
   ;;
   ;; Activate
   (key-chord-mode 1))
