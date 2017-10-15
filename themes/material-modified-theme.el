@@ -221,11 +221,11 @@
    `(highlight ((,class (:inverse-video nil :background ,current-line))))
    `(hl-line ((,class (:inverse-video nil :background ,current-line))))
    `(gui-element ((,class (:background ,current-line :foreground ,foreground))))
-   `(mode-line ((,class (:foreground ,foreground :background "gray30"))))
+   `(mode-line ((,class (:foreground ,foreground :background "#64873c"))))
    `(mode-line-buffer-id ((,class (:foreground ,foreground :background nil :weight bold))))
    `(mode-line-inactive ((,class (:inherit mode-line
                                            :foreground ,subtle
-                                           :background "gray15"
+                                           :background "#455e29"
                                            :weight normal
                                            :box nil))))
    `(mode-line-emphasis ((,class (:foreground ,foreground :slant italic))))
