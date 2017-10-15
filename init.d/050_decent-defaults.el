@@ -27,7 +27,7 @@
 ;;;
 ;;; Fewer garbage collection
 ;; Number of bytes of consing between garbage collections.
-(setq garbage-collection-messages t)
+(setq garbage-collection-messages nil)
 ;; Set different gc-cons-threshold values depending on the context.
 ;; http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
 (defun set-gc-cons-threshold-max ()
@@ -38,7 +38,7 @@
 (defun set-gc-cons-threshold-normal (mb)
   "Set gc-cons-threshold in MB"
   (setq gc-cons-threshold (round (* mb 1000 1000))))
-(add-hook 'after-init-hook #'(lambda () (set-gc-cons-threshold-normal 80)))
+(add-hook 'after-init-hook #'(lambda () (set-gc-cons-threshold-normal 8)))
 ;; (add-hook 'minibuffer-setup-hook #'set-gc-cons-threshold-max)
 ;; (add-hook 'minibuffer-exit-hook #'(lambda () (set-gc-cons-threshold-normal 8)))
 ;;
