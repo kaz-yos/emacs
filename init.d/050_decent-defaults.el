@@ -38,9 +38,13 @@
 (defun set-gc-cons-threshold-normal (mb)
   "Set gc-cons-threshold in MB"
   (setq gc-cons-threshold (round (* mb 1000 1000))))
-(add-hook 'after-init-hook #'(lambda () (set-gc-cons-threshold-normal 8)))
+(add-hook 'after-init-hook #'(lambda () (set-gc-cons-threshold-normal 80)))
 ;; (add-hook 'minibuffer-setup-hook #'set-gc-cons-threshold-max)
 ;; (add-hook 'minibuffer-exit-hook #'(lambda () (set-gc-cons-threshold-normal 8)))
+;;
+;; GC on losing focus
+;; https://www.reddit.com/r/emacs/comments/4j828f/til_setq_gcconsthreshold_100000000/?st=j8t2pj66&sh=efe26f70
+(add-hook 'focus-out-hook #'garbage-collect)
 
 
 ;;;
