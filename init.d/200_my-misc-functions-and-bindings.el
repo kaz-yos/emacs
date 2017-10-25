@@ -56,15 +56,17 @@ If you omit CLOSE, it will reuse OPEN."
   (if (and transient-mark-mode mark-active)
       (flush-lines "^ *$" start end)))
 ;; key
-(global-set-key (kbd "s-f") 'flush-empty-lines)
+(bind-key "s-f" 'flush-empty-lines)
+(bind-key "f" 'flush-empty-lines 'my-key-map)
 
 ;;;
 ;;; just-one-space
-(global-set-key (kbd "s-o") 'just-one-space)
+(bind-key "s-o" 'just-one-space)
+(bind-key "o" 'just-one-space 'my-key-map)
 
 ;;;
 ;;; revert-buffer
-(global-set-key (kbd "s-v") 'revert-buffer)
+(bind-key "s-v" 'revert-buffer)
 (bind-key "v" 'revert-buffer 'my-key-map)
 
 
