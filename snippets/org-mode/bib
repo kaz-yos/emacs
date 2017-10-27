@@ -1,5 +1,6 @@
 # key: bib
 # name: bib
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
    :PROPERTIES:
    :BEAMER_opt: allowframebreaks,label=,t
@@ -7,4 +8,4 @@
 \tiny
 # Following lines must be left-aligned without preceding spaces.
 bibliographystyle:apalike
-bibliography:`(concat (file-name-base) ".bib")`
+bibliography:~/.emacs.d/misc/zotero.bib
