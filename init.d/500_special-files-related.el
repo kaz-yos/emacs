@@ -61,6 +61,12 @@
   ;; https://github.com/politza/pdf-tools/issues/72
   (pdf-tools-install)
   ;;
+  ;; http://pragmaticemacs.com/emacs/view-and-annotate-pdfs-in-emacs-with-pdf-tools/
+  ;; open pdfs scaled to fit page
+  (setq-default pdf-view-display-size 'fit-page)
+  ;; automatically annotate highlights
+  ;; (setq pdf-annot-activate-created-annotations t)
+  ;;
   ;; Auto-revert
   ;; (add-hook 'pdf-view-mode-hook #'turn-on-auto-revert-mode)
   )
