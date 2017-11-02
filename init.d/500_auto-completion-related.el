@@ -323,7 +323,9 @@ The initial string is produced by selection-or-thing-at-point."
 (use-package git-complete
   :commands (git-complete)
   :bind (("A-c" . git-complete)
-         ("H-c" . git-complete)))
+         ("H-c" . git-complete)
+         :map my-key-map
+         ("g" . git-complete)))
 
 
 ;;;
