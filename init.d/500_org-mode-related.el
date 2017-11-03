@@ -165,6 +165,24 @@
   ;; https://lists.gnu.org/archive/html/emacs-orgmode/2010-08/msg00785.html
   (setq org-babel-R-command "R --silent --no-save")
   ;;
+  ;; Remove Every Source Block Results
+  ;; https://www.wisdomandwonder.com/article/10597/remove-every-source-block-results
+  (defconst help/org-special-pre "^\s*#[+]")
+  (defun help/org-2every-src-block (fn)
+    "Visit every Source-Block and evaluate `FN'."
+    (interactive)
+    (save-excursion
+      (goto-char (point-min))
+      (let ((case-fold-search t))
+        (while (re-search-forward (concat help/org-special-pre "BEGIN_SRC") nil t)
+          (let ((element (org-element-at-point)))
+            (when (eq (org-element-type element) 'src-block)
+              (funcall fn element)))))
+      (save-buffer)))
+  (define-key org-mode-map (kbd "s-]") (lambda () (interactive)
+                                         (help/org-2every-src-block
+                                          'org-babel-remove-result)))
+  ;;
 ;;;  ob-async.el
   ;; https://github.com/astahlman/ob-async
   (use-package ob-async
