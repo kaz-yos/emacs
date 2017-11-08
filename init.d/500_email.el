@@ -284,9 +284,6 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (setq mu4e-view-prefer-html nil)
   ;; html converters use first one that exists
   (cond
-   ;; html2text is slow for heavy html messages.
-   ;; ((executable-find "/usr/local/bin/html2text")
-   ;;  (setq mu4e-html2text-command "/usr/local/bin/html2text -utf8 -nobs -width 72"))
    ((executable-find "w3m")
     (setq mu4e-html2text-command "w3m -T text/html"))
    ((executable-find "textutil")
