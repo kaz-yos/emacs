@@ -45,6 +45,10 @@
   ;; The deferring configuration was take from the following repository.
   ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-pdf.el
   :mode (("\\.pdf\\'" . pdf-view-mode))
+  :bind (:map pdf-view-mode-map
+              ("h" . pdf-annot-add-highlight-markup-annotation)
+              ("t" . pdf-annot-add-text-annotation)
+              ("D" . pdf-annot-delete))
   ;;
   :config
   ;; These are necessary to create autoloads if not using (package-initialize)
@@ -62,10 +66,17 @@
   (pdf-tools-install)
   ;;
   ;; http://pragmaticemacs.com/emacs/view-and-annotate-pdfs-in-emacs-with-pdf-tools/
+  ;; http://pragmaticemacs.com/emacs/more-pdf-tools-tweaks/
   ;; open pdfs scaled to fit page
   (setq-default pdf-view-display-size 'fit-page)
   ;; automatically annotate highlights
-  ;; (setq pdf-annot-activate-created-annotations t)
+  (setq pdf-annot-activate-created-annotations t)
+  ;; use normal isearch
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+  ;; turn off cua so copy works
+  (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
+  ;; more fine-grained zooming
+  (setq pdf-view-resize-factor 1.1)
   ;;
   ;; Auto-revert
   ;; (add-hook 'pdf-view-mode-hook #'turn-on-auto-revert-mode)
