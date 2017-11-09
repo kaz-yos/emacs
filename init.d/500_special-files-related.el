@@ -109,3 +109,24 @@
 ;; https://github.com/johanclaesson/picpocket
 (use-package picpocket
   :commands (picpocket))
+
+
+;;;
+;;; COMPRESSED FILE-RELATED
+;;;  jka-compr.el
+;; https://github.com/emacs-mirror/emacs/blob/master/lisp/jka-compr.el
+;; https://www.emacswiki.org/emacs/MacOSXPlist
+(use-package jka-compr
+  :config
+  ;; Allow editing of binary .plist files.
+  (add-to-list 'jka-compr-compression-info-list
+               ["\\.plist$"
+                "converting text XML to binary plist"
+                "plutil"
+                ("-convert" "binary1" "-o" "-" "-")
+                "converting binary plist to text XML"
+                "plutil"
+                ("-convert" "xml1" "-o" "-" "-")
+                nil nil "bplist"])
+  ;; It is necessary to perform an update!
+  (jka-compr-update))
