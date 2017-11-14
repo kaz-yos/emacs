@@ -13,6 +13,7 @@
              global-flycheck-mode)
   :init
   ;; (add-hook 'after-init-hook 'global-flycheck-mode)
+  ;; (add-hook 'c++-mode-hook 'flycheck-mode)
   ;;
   :config
   ;;; flycheck-pos-tip.el
