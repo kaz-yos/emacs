@@ -106,6 +106,16 @@
   ;; Agenda related
   ;; http://mbork.pl/2017-09-18_How_to_hide_repeating_entries_from_the_Org_agenda
   (setq org-agenda-show-future-repeats nil)
+;;;
+;;; Org-Capture
+  ;; https://github.com/alphapapa/org-protocol-capture-html
+  (unless nil
+    (require 'org-capture)
+    (require 'org-protocol)
+    (setq org-capture-templates
+          '(("w" "Web site" entry
+             (file "")
+             "* %a :website:\n\n%U %?\n\n%:initial"))))
   ;;
   ;;
 ;;;
