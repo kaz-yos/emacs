@@ -3,13 +3,12 @@
 ;;;
 ;;; cc-mode.el
 (use-package cc-mode
+  :bind (:map c++-mode-map
+              ("A-s" . save-all-and-compile)
+              ("M-s M-s" . save-all-and-compile))
   :config
   ;; Indentation
   (setq c-basic-offset 4)
-  ;;
-  ;; Keys
-  (define-key c++-mode-map (kbd "A-c") #'save-all-and-compile)
-  (define-key c++-mode-map (kbd "A-s") #'save-all-and-compile)
   ;;
   ;; using the current buffer's file name in M-x compile
   ;; http://stackoverflow.com/questions/12756531/using-the-current-buffers-file-name-in-m-x-compile
