@@ -77,6 +77,11 @@
   (define-key magit-status-mode-map (kbd "S-<tab>") 'magit-section-cycle)
   (define-key magit-status-mode-map (kbd "C-<tab>") nil)
   ;;
+  ;;
+  (setq git-commit-mode-hook '(turn-on-flyspell
+                               (lambda ()
+                                 (set-fill-column 1024))))
+  ;;
   ;; Show hash
   (setq magit-status-show-hashes-in-headers t)
   ;;
