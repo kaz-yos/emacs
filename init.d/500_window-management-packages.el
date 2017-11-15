@@ -170,12 +170,3 @@ Set name truncation length in ELSCREEN-TRUNCATE-LENGTH"
   ;;
   ;; It has to kick in.
   (elscreen-start))
-
-
-;;;
-;;; hiwin.el
-;; https://github.com/yoshida-mediba/hiwin-mode
-(use-package hiwin
-  :config
-  (set-face-background 'hiwin-face "gray10")
-  (hiwin-activate))
