@@ -264,8 +264,8 @@
   :commands (counsel-ag
              counsel-rg
              counsel-git-grep)
-  :bind (("s-q". counsel-ag-at-point)
-         ("C-s-q" . counsel-ag)
+  :bind (("s-w". counsel-ag-at-point)
+         ("C-s-w" . counsel-ag)
          :map org-mode-map
          ("s-z" . counsel-org-goto)
          ("s-;" . counsel-org-goto)
