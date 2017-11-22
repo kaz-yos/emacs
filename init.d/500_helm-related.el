@@ -31,6 +31,8 @@
          ("A-l" . helm-locate)
          ;; ("M-z" . helm-do-grep)
          ;; ("C-S-h" . helm-descbinds)
+         :map my-key-map
+         ("z" . helm-for-files)
          )
   :config
   ;; Make helm-mark-ring follow

@@ -64,6 +64,7 @@
 ;; Execute the following before first invocation
 ;; mu index --maildir=~/.maildir
 (use-package mu4e
+  :if (executable-find "mu")
   :commands (mu4e)
   :bind (:map my-key-map
               ("m" . mu4e))

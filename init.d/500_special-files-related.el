@@ -42,6 +42,7 @@
 ;; $ cd /usr/local/opt/poppler/lib/
 ;; $ ln -s libpoppler.71.dylib libpoppler.70.dylib
 (use-package pdf-tools
+  :if (display-graphic-p)
   ;; The deferring configuration was take from the following repository.
   ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-pdf.el
   :mode (("\\.pdf\\'" . pdf-view-mode))
@@ -108,6 +109,7 @@
 ;;;  picpocket.el
 ;; https://github.com/johanclaesson/picpocket
 (use-package picpocket
+  :if (display-graphic-p)
   :commands (picpocket))
 
 

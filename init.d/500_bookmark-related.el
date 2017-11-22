@@ -11,7 +11,9 @@
          ("M-]" . my-bm-next)
          ("M-[" . my-bm-previous)
          ("C-c b" . my-bm-show)
-         ("s-b" . my-bm-show))
+         ("s-b" . my-bm-show)
+         :map my-key-map
+         ("b" . my-bm-show))
   :init
   ;; Saving bookmarks (before require)
   ;; (setq-default bm-buffer-persistence t)

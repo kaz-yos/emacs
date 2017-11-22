@@ -39,9 +39,10 @@
       ;; This is then looked for in the alist below.
       (setq ispell-dictionary "en_US")
       ;; This is the real configuration.
-      (setq ispell-hunspell-dict-paths-alist
-            '(("en_US" "/Library/Spelling/en_US.aff")
-              ("en_US-med" "/Library/Spelling/en_US-med.aff")))
+      (when (eq system-type 'darwin)
+        (setq ispell-hunspell-dict-paths-alist
+              '(("en_US" "/Library/Spelling/en_US.aff")
+                ("en_US-med" "/Library/Spelling/en_US-med.aff"))))
       (setq ispell-personal-dictionary (concat user-emacs-directory
                                                "misc/hunspell.en")))
      ;; aspell

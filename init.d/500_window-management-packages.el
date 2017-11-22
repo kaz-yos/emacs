@@ -59,8 +59,10 @@
 (use-package elscreen
   :commands (elscreen-toggle-display-tab)
   :init
-  ;; Do not set a prefix (conflict with helm)
-  (setq elscreen-prefix-key (kbd "C-;"))
+  ;; Condition on environment
+  (setq elscreen-prefix-key (if (display-graphic-p)
+                                (kbd "C-;")
+                              (kbd "C-c m ;")))
   ;; Set up screens nicely
   (add-hook 'after-init-hook
             (lambda ()

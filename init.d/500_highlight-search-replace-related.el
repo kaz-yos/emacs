@@ -50,7 +50,7 @@
   :demand
   :config
   (setq anzu-mode-lighter "")
-  (setq anzu-use-migemo t)
+  (setq anzu-use-migemo (executable-find "cmigemo"))
   (setq anzu-search-threshold 1000)
   (setq anzu-minimum-input-length 1)
   (global-anzu-mode +1))
