@@ -16,10 +16,10 @@
   :mode ("\\.org" . org-mode)
   :bind (;; Suggested bindings for global
          ;; http://orgmode.org/manual/Activation.html#Activation
-         ("C-c l" . org-store-link)
-         ("C-c a" . org-agenda)
-         ("C-c c" . org-capture)
-         ("C-c b" . org-iswitchb)
+         ;; ("C-c l" . org-store-link)
+         ;; ("C-c a" . org-agenda)
+         ;; ("C-c c" . org-capture)
+         ;; ("C-c b" . org-iswitchb)
          ;;
          :map org-mode-map
          ;; Key bindings
