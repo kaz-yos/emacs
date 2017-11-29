@@ -77,6 +77,12 @@
   (define-key magit-status-mode-map (kbd "S-<tab>") 'magit-section-cycle)
   (define-key magit-status-mode-map (kbd "C-<tab>") nil)
   ;;
+  ;; Do not show recent commits
+  ;; https://github.com/magit/magit/issues/3230
+  ;; https://github.com/magit/magit/issues/3147
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-unpulled-from-upstream
+                          'replace)
   ;;
   (setq git-commit-mode-hook '(turn-on-flyspell
                                (lambda ()
