@@ -37,11 +37,6 @@
   ;; No history, no saving!
   (setq-default inferior-R-args "--no-restore-history --no-save ")
   ;;
-  ;; Key assignment for delete trailing whitespace
-  (add-hook 'ess-mode-hook (setq ess-nuke-trailing-whitespace-p t))
-  (define-key ess-mode-map (kbd "s-w") 'ess-nuke-trailing-whitespace)
-  (global-set-key (kbd "s-w") 'ess-nuke-trailing-whitespace)
-  ;;
   ;; If t ess will try to use ido completion whenever possible.
   (setq ess-use-ido nil)
   ;;
