@@ -14,9 +14,16 @@
              my-tex-insert-semicolon)
   :mode ("\\.tex\\'" . TeX-latex-mode)
   ;;
+  ;; This does not work.
+  ;; :bind (:map latex-mode-map
+  ;;             ("M-s M-s" . TeX-command-master)
+  ;;             (";" . my-tex-insert-backslash)
+  ;;             ("A-;" . my-tex-insert-semicolon))
+  ;;
   :init
   (add-hook 'LaTeX-mode-hook
             '(lambda ()
+               (local-set-key (kbd "M-s M-s") 'TeX-command-master)
                (local-set-key (kbd   ";") 'my-tex-insert-backslash)
                (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
   ;;
