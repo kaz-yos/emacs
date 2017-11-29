@@ -326,7 +326,7 @@ searched. If there is no symbol, empty search box is started."
   ;; (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
   ;; (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
   ;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
-  (global-set-key (kbd "s-x") 'highlight-sexp-mode))
+  )
 
 
 ;;;
