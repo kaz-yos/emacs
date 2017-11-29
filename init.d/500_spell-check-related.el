@@ -224,7 +224,7 @@ which has no argument of its own."
   :commands (synosaurus-mode
              synosaurus-lookup
              synosaurus-choose-and-replace)
-  :bind ("s-x" . synosaurus-choose-and-replace)
+  ;; :bind ("s-x" . synosaurus-choose-and-replace)
   ;;
   :config
   (use-package synosaurus-wordnet
