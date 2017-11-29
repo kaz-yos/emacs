@@ -260,6 +260,7 @@
 ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html#org2d4e119
 ;; https://oremacs.com/2015/04/09/counsel-completion/
 ;; http://cestlaz.github.io/posts/using-emacs-6-swiper/#.WYKJHa2ZOEI
+;; https://oremacs.com/2017/11/18/dired-occur/
 (use-package counsel
   :commands (counsel-ag
              counsel-rg
