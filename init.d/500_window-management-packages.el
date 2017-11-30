@@ -178,6 +178,7 @@ Set name truncation length in ELSCREEN-TRUNCATE-LENGTH"
 ;;; window-purpose.el
 ;; https://github.com/bmag/emacs-purpose
 (use-package window-purpose
+  :commands (purpose-mode)
   :config
   ;; Purpose Configuration:
   ;; Customize `purpose-user-mode-purposes', `purpose-user-name-purposes',
@@ -198,4 +199,4 @@ Set name truncation length in ELSCREEN-TRUNCATE-LENGTH"
   ;;    `switch-buffer-without-purpose'.
   ;;
   ;; Activate
-  (purpose-mode))
+  (purpose-mode -1))
