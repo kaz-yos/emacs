@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org_center
+# key: center
+# --
+#+BEGIN_CENTER
+$0
+#+END_CENTER

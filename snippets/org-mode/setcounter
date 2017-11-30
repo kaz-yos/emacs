@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: setcounter
+# key: count
+# --
+\setcounter{section}{-1}
+\nbsp{}
+\hline
+$0

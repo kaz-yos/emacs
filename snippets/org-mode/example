@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: example
+# key: example
+# --
+\scriptsize
+#+BEGIN_EXAMPLE
+$0
+#+END_EXAMPLE
+\normalsize
