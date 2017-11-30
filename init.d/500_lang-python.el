@@ -34,6 +34,12 @@
                (local-set-key (kbd "C-c c") 'python-check))))
 
 
+;;;  ein.el
+(use-package ein-loaddefs
+  :commands (ein:jupyterhub-connect
+             ein:connect-to-notebook))
+
+
 
 ;;;  hy-mode.el
 ;; https://github.com/hylang/hy-mode
