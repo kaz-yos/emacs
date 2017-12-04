@@ -12,7 +12,7 @@
 ;; https://github.com/syl20bnr/spacemacs#macos (Recommended for Spacemacs)
 ;; Homebrew formulae do not build "proper" `.app` (including all elements).
 ;; $ brew tap d12frosted/emacs-plus
-;; $ brew install emacs-plus --with-natural-title-bar --HEAD # for the development version
+;; $ brew install emacs-plus --without-spacemacs-icon --with-natural-title-bar --HEAD # for the development version
 ;; $ brew linkapps emacs-plus # Warning: `brew linkapps` has been deprecated
 ;;
 ;;;  macOS Homebrew Cask (stable, pre-test, and old nightly)
