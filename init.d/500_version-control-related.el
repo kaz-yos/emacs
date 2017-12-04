@@ -71,7 +71,9 @@
 (use-package magit
   :commands (magit-status)
   :bind (("s-g" . my-magit-status)
-         ("C-c g" . magit-status))
+         ("C-c g" . my-magit-status)
+         :map my-key-map
+         ("g" . my-magit-status))
   :config
   ;; Avoid key binding conflict
   (define-key magit-status-mode-map (kbd "S-<tab>") 'magit-section-cycle)
