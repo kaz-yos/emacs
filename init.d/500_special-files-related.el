@@ -45,11 +45,15 @@
   :if (display-graphic-p)
   ;; The deferring configuration was take from the following repository.
   ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-pdf.el
+  :commands (my-revert-pdf)
   :mode (("\\.pdf\\'" . pdf-view-mode))
   :bind (:map pdf-view-mode-map
+              ("g" . my-revert-pdf)
               ("h" . pdf-annot-add-highlight-markup-annotation)
               ("t" . pdf-annot-add-text-annotation)
-              ("D" . pdf-annot-delete))
+              ("D" . pdf-annot-delete)
+              ;; use normal isearch
+              ("C-s" . isearch-forward))
   ;;
   :config
   ;; These are necessary to create autoloads if not using (package-initialize)
@@ -72,16 +76,28 @@
   (setq-default pdf-view-display-size 'fit-page)
   ;; automatically annotate highlights
   (setq pdf-annot-activate-created-annotations t)
-  ;; use normal isearch
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+
   ;; turn off cua so copy works
   (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
   ;; more fine-grained zooming
   (setq pdf-view-resize-factor 1.1)
   ;;
-  ;; Auto-revert
-  ;; (add-hook 'pdf-view-mode-hook #'turn-on-auto-revert-mode)
-  )
+  (defun kill-file-associated-buffer-and-reopen-file ()
+    "Kill the buffer if its file associated, and reopen the file."
+    (let ((file buffer-file-name))
+      (when file
+        (kill-buffer)
+        (find-file file))))
+  ;;
+  (defun my-revert-pdf ()
+    "Revert if local. Kill and reopen if remote."
+    (interactive)
+    (cond
+     ;; If remote kill buffer and reopen.
+     ((file-remote-p buffer-file-name)
+      (kill-file-associated-buffer-and-reopen-file))
+     ;; If not remote, just revert
+     (t (revert-buffer)))))
 
 
 ;;;
