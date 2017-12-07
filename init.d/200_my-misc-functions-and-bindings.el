@@ -155,3 +155,13 @@ end tell")))
   ;; (defalias 'list-colors-display 'color-picker)
   ;; (defalias 'widget-color--choose-action 'custom-color--choose-action)
   )
+
+
+;;;
+;;; git-log-last-commit-date
+(defun git-log-last-commit-date ()
+  "Obtain the last commit date for the buffer file."
+  (interactive)
+  (when buffer-file-name
+    (shell-command (concat "git log -n 1 --pretty=format:%cd --date=short -- "
+                           buffer-file-name))))
