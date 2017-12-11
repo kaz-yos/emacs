@@ -110,6 +110,17 @@
 
 
 ;;;
+;;; smart-jump.el
+;; https://github.com/jojojames/smart-jump
+(use-package smart-jump
+  :config
+  ;; Bind M-.  and M-, upon registering `smart-jump'.
+  (setq smart-jump-bind-keys t)
+  ;; smart-jump-default-mode-list defines modes for the following.
+  (smart-jump-setup-default-registers))
+
+
+;;;
 ;;; outshine.el
 ;; https://github.com/alphapapa/outshine
 (use-package outshine
