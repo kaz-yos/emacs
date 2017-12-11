@@ -47,6 +47,7 @@
   (setq ess-S-assign-key (kbd "C-="))	; C-= gives <-
   (ess-toggle-S-assign-key t)		; enable above key definition
   (ess-toggle-underscore nil)		; leave my underscore key alone!
+  (define-key ess-mode-map (kbd "_") nil)
   ;;
   ;; Smart TAB completion in R scripts, similar to iESS behavior.
   (setq ess-tab-complete-in-script   nil)	; Trying out nil 2013-03-03
