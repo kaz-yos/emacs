@@ -36,8 +36,13 @@
 
 ;;;  ein.el
 (use-package ein-loaddefs
-  :commands (ein:jupyterhub-connect
-             ein:connect-to-notebook))
+  :commands (ein:jupyter-server-start
+             ein:jupyter-server-login-and-open
+             ein:jupyterhub-connect
+             ;; This is for old iPython Notebook
+             ein:connect-to-notebook)
+  :config
+  (setq ein:notebook-autosave-frequency 10))
 
 
 
