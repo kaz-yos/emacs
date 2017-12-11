@@ -26,7 +26,7 @@
 ;; http://www.emacswiki.org/emacs/UndoTree
 ;; C-/ for undo. C-? (C-S-/) for redo.
 (use-package undo-tree
-  :diminish undo-tree-mode
   :config
+  (setq undo-tree-mode-lighter "")
   ;; Active everywhere
   (global-undo-tree-mode))

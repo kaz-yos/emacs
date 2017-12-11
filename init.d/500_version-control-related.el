@@ -30,8 +30,9 @@
 (use-package git-gutter
   ;; Use in CLI.
   :if (not (display-graphic-p))
-  :diminish git-gutter-mode
   :config
+  ;; No lighter (This variable is defined in git-gutter.el).
+  (setq git-gutter:lighter "")
   ;; Hook run after refreshing in `magit-refresh'.
   (add-hook 'magit-post-refresh-hook 'git-gutter:update-all-windows)
   ;; Activate everywhere.
@@ -43,11 +44,12 @@
 (use-package git-gutter-fringe
   ;; Use in GUI.
   :if (display-graphic-p)
-  :diminish git-gutter-mode
   :config
   ;; Keys
   (bind-key "A-p" 'git-gutter:previous-hunk)
   (bind-key "A-n" 'git-gutter:next-hunk)
+  ;; No lighter (This variable is defined in git-gutter.el).
+  (setq git-gutter:lighter "")
   ;; On the right.
   (setq git-gutter-fr:side 'right-fringe)
   ;; Hook run after refreshing in `magit-refresh'.
