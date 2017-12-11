@@ -51,10 +51,14 @@
 ;; https://github.com/Wilfred/helpful
 ;; http://www.wilfred.me.uk/blog/2017/08/30/helpful-adding-contextual-help-to-emacs/
 (use-package helpful
-  :bind (("C-h c" . helpful-command)
-         ("C-h f" . helpful-function)
-         ("C-h v" . helpful-variable))
-  :commands (helpful-command
-             helpful-function
+  :bind (:map help-map
+              ("a" . helpful-at-point)
+              ("f" . helpful-callable)
+              ("v" . helpful-variable))
+  :commands (helpful-function
+             helpful-command
+             helpful-key
+             helpful-macro
+             helpful-callable
              helpful-variable
-             helpful-macro))
+             helpful-at-point))
