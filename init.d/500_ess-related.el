@@ -13,8 +13,6 @@
               ("M-s M-s" . buffer-do-async-shell-command)
               ("C-c C-b" . ess-eval-buffer)
               ("C-c C-u" . ess-eval-buffer-from-beg-to-here)
-              ("M-." . smart-jump-go)
-              ("M-," . smart-jump-back)
               ;;
               :map ess-noweb-minor-mode-map
               ("A-s" . ess-swv-weave-PDF)
@@ -41,6 +39,11 @@
   ;;
   ;; If t ess will try to use ido completion whenever possible.
   (setq ess-use-ido nil)
+  ;;
+  ;; Bind key at the time of loading.
+  ;; Then this calls smart-jump-go/back autoloads elsewhere.
+  (bind-key "M-." 'smart-jump-go ess-mode-map)
+  (bind-key "M-," 'smart-jump-back ess-mode-map)
   ;;
   ;; Underscore preservation in ESS
   ;; http://www.r-bloggers.com/a-small-customization-of-ess/

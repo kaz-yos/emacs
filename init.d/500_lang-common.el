@@ -113,6 +113,8 @@
 ;;; smart-jump.el
 ;; https://github.com/jojojames/smart-jump
 (use-package smart-jump
+  :commands (smart-jump-go
+             smart-jump-back)
   :bind (("M-." . smart-jump-go)
          ("M-," . smart-jump-back))
   :config
