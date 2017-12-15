@@ -8,10 +8,6 @@
 (global-set-key (kbd "A-h") 'help-command)
 
 
-;;; C-m for newline-and-indent
-(global-set-key (kbd "C-m") 'newline-and-indent)
-
-
 ;;; Mac-only configuration to use command and options keys
 (when (eq system-type 'darwin)
   ;; Mac-only
