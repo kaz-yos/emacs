@@ -30,14 +30,14 @@ library(doParallel)
 ## Reproducible parallelization
 library(doRNG)
 ## Detect core count
-nCores <- min(parallel::detectCores(), 8)
+n_cores <- min(parallel::detectCores(), 8)
 ## Used by parallel::mclapply() as default
-options(mc.cores = nCores)
+options(mc.cores = n_cores)
 ## Used by doParallel as default
-options(cores = nCores)
+options(cores = n_cores)
 ## Register doParallel as the parallel backend for foreach
 ## http://stackoverflow.com/questions/28989855/the-difference-between-domc-and-doparallel-in-r
-doParallel::registerDoParallel(cores = nCores)
+doParallel::registerDoParallel(cores = n_cores)
 ## Report multicore use
 cat("### Using", foreach::getDoParWorkers(), "cores\n")
 cat("### Using", foreach::getDoParName(), "as backend\n")
