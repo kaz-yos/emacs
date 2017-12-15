@@ -113,6 +113,8 @@
 ;;; smart-jump.el
 ;; https://github.com/jojojames/smart-jump
 (use-package smart-jump
+  ;; Need to demand to activate configuration.
+  :demand t
   :commands (smart-jump-go
              smart-jump-back)
   :bind (("M-." . smart-jump-go)
