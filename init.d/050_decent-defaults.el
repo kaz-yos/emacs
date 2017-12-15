@@ -334,6 +334,7 @@
 
 ;;;
 ;;; Create my-key-map for C-c m
+;; Define this early for subsequent use.
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Prefix-Keys.html
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Prefix-Keymaps.html
 ;; https://www.emacswiki.org/emacs/PrefixKey

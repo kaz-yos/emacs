@@ -1,6 +1,7 @@
 ;;; Keyboard modification
 ;; http://www.masteringemacs.org/articles/2011/02/08/mastering-key-bindings-emacs/
 
+;;;
 ;;; C-h for delete (backspace)
 ;; http://www.emacswiki.org/emacs-en/BackspaceKey
 (define-key key-translation-map [?\C-h] [?\C-?])
@@ -8,6 +9,17 @@
 (global-set-key (kbd "A-h") 'help-command)
 
 
+;;;
+;;; Alt, Super, and Hyper for terminal use
+;; https://emacs.stackexchange.com/questions/18245/making-terminal-emacs-treat-apps-aka-menu-key-as-super-modifier
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Translation-Keymaps.html#Translation-Keymaps
+;;
+(bind-key* "C-c a" '(lambda () (event-apply-alt-modifier nil)))
+(bind-key* "C-c s" '(lambda () (event-apply-super-modifier nil)))
+(bind-key* "C-c h" '(lambda () (event-apply-hyper-modifier nil)))
+
+
+;;;
 ;;; Mac-only configuration to use command and options keys
 (when (eq system-type 'darwin)
   ;; Mac-only
@@ -38,7 +50,7 @@
   ;; setting to nil allows the OS to assign values
   )
 
-
+;;;
 ;;; Windows only configuration
 ;; http://ergoemacs.org/emacs/emacs_hyper_super_keys.html
 (when (eq system-type 'w32)
