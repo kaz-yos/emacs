@@ -14,7 +14,10 @@
 (use-package skk
   :commands (skk-mode)
   :bind (("A-j" . skk-mode)
-         ("s-j" . skk-mode))
+         ("s-j" . skk-mode)
+         ("C-c j" . skk-mode)
+         :map my-key-map
+         ("j" . skk-mode))
   ;;
   :config
 ;;;  Define autoloads necessary when using (package-initialize t) (no activation)
