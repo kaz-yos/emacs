@@ -72,6 +72,6 @@
   (use-package counsel-projectile
     :demand t
     :config
-    ;; Turn on counsel-projectile key bindings.
-    ;; Remap keys to counsel-projectile-defined commands.
-    (counsel-projectile-on)))
+    ;; Turn on mode
+    ;; https://github.com/ericdanan/counsel-projectile#upgrading-from-previous-version
+    (counsel-projectile-mode +1)))
