@@ -355,6 +355,7 @@
 ;;;
 ;;; Transparent titlebar
 ;; https://github.com/d12frosted/homebrew-emacs-plus/blob/master/Formula/emacs-plus.rb#L98
-(when (memq window-system '(mac ns))
-  (add-to-list 'default-frame-alist '(ns-appearance . 'nil))
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
+;; https://github.com/d12frosted/homebrew-emacs-plus/issues/55
+;; (when (memq window-system '(mac ns))
+;;   (add-to-list 'default-frame-alist '(ns-appearance . 'nil))
+;;   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
