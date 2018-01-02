@@ -164,11 +164,18 @@ Set name truncation length in ELSCREEN-TRUNCATE-LENGTH"
   (add-hook 'elscreen-screen-update-hook 'update-elscreen-tabs-as-string)
   ;;
   ;; Set frame title format as combination of current elscreen tabs and buffer/path
-  (setq frame-title-format '(:eval (concat *elscreen-tabs-as-string*
-                                           "    ||    "
-                                           (if buffer-file-name
-                                               (abbreviate-file-name buffer-file-name)
-                                             "%b"))))
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Properties-in-Mode.html#Properties-in-Mode
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Changing-Properties.html
+  ;; http://kitchingroup.cheme.cmu.edu/blog/2014/09/14/Colorized-text-in-Emacs/
+  (setq frame-title-format '(:eval (propertize
+                                    ;; String
+                                    (concat *elscreen-tabs-as-string*
+                                            "    ||    "
+                                            (if buffer-file-name
+                                                (abbreviate-file-name buffer-file-name)
+                                              "%b"))
+                                    ;; Properties: a sequence of PROPERTY VALUE pairs for text
+                                    'face '(:foreground "white"))))
   ;;
   ;; It has to kick in.
   (elscreen-start))
