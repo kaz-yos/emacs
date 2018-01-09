@@ -6,6 +6,8 @@
    :BEAMER_opt: allowframebreaks,label=,t
    :END:
 \tiny
+# To remove "References" section header
+\renewcommand{\section}[2]{}
 # Following lines must be left-aligned without preceding spaces.
 bibliographystyle:apalike
 bibliography:~/.emacs.d/misc/zotero.bib
