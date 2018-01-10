@@ -26,9 +26,11 @@
   (when (one-window-p) (split-window-horizontally)) ; When there's only one window, split horizontally.
   (other-window 1))
 (global-set-key (kbd "<C-tab>") 'other-window-or-split)
+(bind-key "<tab>" 'other-window-or-split my-key-map)
 ;; Reversal
 ;; http://stackoverflow.com/questions/143072/in-emacs-what-is-the-opposite-function-of-other-window-c-x-o
 (global-set-key (kbd "<C-S-tab>") 'previous-multiframe-window)
+(bind-key "<backtab>" 'previous-multiframe-window my-key-map)
 ;;
 ;; Select the previously-selected window in emacs
 ;; http://stackoverflow.com/questions/7937395/select-the-previously-selected-window-in-emacs
