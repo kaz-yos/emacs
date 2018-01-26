@@ -160,6 +160,7 @@
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
 ;; http://stackoverflow.com/questions/3750332/how-do-i-force-a-binding-in-emacs
 (use-package cua-base
+  :disabled t
   :config
   ;; <C-S-return> for rectangle
   (setq cua-rectangle-mark-key (kbd "<C-S-return>"))

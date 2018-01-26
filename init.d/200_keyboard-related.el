@@ -6,11 +6,11 @@
 ;; https://www.emacswiki.org/emacs/BackspaceKey
 (define-key key-translation-map [?\C-h] [?\C-?])
 ;; A-h ? will bring up what's available
-(global-set-key (kbd "A-h") 'help-command)
-(bind-key "A-h" 'help-command)
-(bind-key "C-S-h" 'help-command)
-(bind-key "h" 'help-command my-key-map)
-(bind-key "C-h" 'delete-backward-char)
+;; (global-set-key (kbd "A-h") 'help-command)
+;; (bind-key "A-h" 'help-command)
+;; (bind-key "C-S-h" 'help-command)
+;; (bind-key "h" 'help-command my-key-map)
+;; (bind-key "C-h" 'delete-backward-char)
 
 
 ;;;
