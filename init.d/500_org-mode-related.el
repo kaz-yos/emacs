@@ -29,12 +29,7 @@
          (  ";" . my-tex-insert-backslash)
          ("A-;" . my-tex-insert-semicolon)
          ;;
-         ;; Fix for funny bindings (This comes from TeX-special-mode-map in auctex/text-buf.el)
-         ;; Keymap for `org-mode'.
-         ;; key             binding
-         ;; ---             -------
-         ;; SPC             scroll-up-command
-         ;; DEL             scroll-down-command
+         ;; Fix for funny bindings
          ;; The following is mysteriously added to org-mode-map.
          ;; keymap
          ;; (103 . revert-buffer)
@@ -59,8 +54,26 @@
          ;; (45 . negative-argument)
          ;; (remap keymap
          ;;        (self-insert-command . undefined))
-         ;; ("SPC" . org-self-insert-command)
-         ;; ("DEL" . org-delete-backward-char)
+         ;; Confirmed these are not from auctex, pdf-tools, cider-overlay
+         ;; Fix by hard-coding for now.
+         ("g" . org-self-insert-command)
+         ("<" . org-self-insert-command)
+         (">" . org-self-insert-command)
+         ("h" . org-self-insert-command)
+         ("?" . org-self-insert-command)
+         ("SPC" . org-self-insert-command)
+         ("DEL" . org-delete-backward-char)
+         ("0" . org-self-insert-command)
+         ("1" . org-self-insert-command)
+         ("2" . org-self-insert-command)
+         ("3" . org-self-insert-command)
+         ("4" . org-self-insert-command)
+         ("5" . org-self-insert-command)
+         ("6" . org-self-insert-command)
+         ("7" . org-self-insert-command)
+         ("8" . org-self-insert-command)
+         ("9" . org-self-insert-command)
+         ("-" . org-self-insert-command)
          ;;
          ;; bm.el-like function
          ;; ("s-b" . helm-org-in-buffer-headings)
