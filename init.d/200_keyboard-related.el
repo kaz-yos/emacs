@@ -7,8 +7,10 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 ;; A-h ? will bring up what's available
 (global-set-key (kbd "A-h") 'help-command)
+(bind-key "A-h" 'help-command)
+(bind-key "C-S-h" 'help-command)
 (bind-key "h" 'help-command my-key-map)
-(global-set-key (kbd "C-h") 'delete-backward-char)
+(bind-key "C-h" 'delete-backward-char)
 
 
 ;;;
