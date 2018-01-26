@@ -29,6 +29,39 @@
          (  ";" . my-tex-insert-backslash)
          ("A-;" . my-tex-insert-semicolon)
          ;;
+         ;; Fix for funny bindings (This comes from TeX-special-mode-map in auctex/text-buf.el)
+         ;; Keymap for `org-mode'.
+         ;; key             binding
+         ;; ---             -------
+         ;; SPC             scroll-up-command
+         ;; DEL             scroll-down-command
+         ;; The following is mysteriously added to org-mode-map.
+         ;; keymap
+         ;; (103 . revert-buffer)
+         ;; (60 . beginning-of-buffer)
+         ;; (62 . end-of-buffer)
+         ;; (104 . describe-mode)
+         ;; (63 . describe-mode)
+         ;; (127 . scroll-down-command)
+         ;; (33554464 . scroll-down-command)
+         ;; (32 . scroll-up-command)
+         ;; (113 . quit-window)
+         ;; (57 . digit-argument)
+         ;; (56 . digit-argument)
+         ;; (55 . digit-argument)
+         ;; (54 . digit-argument)
+         ;; (53 . digit-argument)
+         ;; (52 . digit-argument)
+         ;; (51 . digit-argument)
+         ;; (50 . digit-argument)
+         ;; (49 . digit-argument)
+         ;; (48 . digit-argument)
+         ;; (45 . negative-argument)
+         ;; (remap keymap
+         ;;        (self-insert-command . undefined))
+         ("SPC" . org-self-insert-command)
+         ("DEL" . org-delete-backward-char)
+         ;;
          ;; bm.el-like function
          ;; ("s-b" . helm-org-in-buffer-headings)
          ;;
