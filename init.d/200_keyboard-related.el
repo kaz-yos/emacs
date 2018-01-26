@@ -3,11 +3,12 @@
 
 ;;;
 ;;; C-h for delete (backspace)
-;; http://www.emacswiki.org/emacs-en/BackspaceKey
+;; https://www.emacswiki.org/emacs/BackspaceKey
 (define-key key-translation-map [?\C-h] [?\C-?])
 ;; A-h ? will bring up what's available
 (global-set-key (kbd "A-h") 'help-command)
 (bind-key "h" 'help-command my-key-map)
+(global-set-key (kbd "C-h") 'delete-backward-char)
 
 
 ;;;

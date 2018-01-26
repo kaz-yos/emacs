@@ -159,10 +159,17 @@
 ;; http://tech.kayac.com/archive/emacs-rectangle.html
 ;; http://trey-jackson.blogspot.com/2008/10/emacs-tip-26-cua-mode-specifically.html
 ;; http://stackoverflow.com/questions/3750332/how-do-i-force-a-binding-in-emacs
-(setq cua-rectangle-mark-key (kbd "<C-S-return>")) ; <C-S-return> for rectangle
-(cua-mode t)
-(setq cua-enable-cua-keys nil)			; C-x C-c C-v left intact
-;; (setq cua-keep-region-after-copy t)		; Keep selection after copying (Mac/Win-like)
+(use-package cua-base
+  :config
+  ;; <C-S-return> for rectangle
+  (setq cua-rectangle-mark-key (kbd "<C-S-return>"))
+  ;; C-x C-c C-v left intact
+  (setq cua-enable-cua-keys nil)
+  ;; Keep selection after copying (Mac/Win-like)
+  ;; (setq cua-keep-region-after-copy t)
+  ;;
+  ;; Activate
+  (cua-mode t))
 
 
 ;;;
@@ -358,5 +365,5 @@
 ;; https://github.com/d12frosted/homebrew-emacs-plus/issues/55
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Properties-in-Mode.html#Properties-in-Mode
 ;; (when (memq window-system '(mac ns))
-;;   (add-to-list 'default-frame-alist '(ns-appearance . 'nil))
+;;   (add-to-list 'default-frame-alist '(ns-appearance . 'dark))
 ;;   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))

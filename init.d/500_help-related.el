@@ -54,7 +54,8 @@
   :bind (:map help-map
               ("a" . helpful-at-point)
               ("f" . helpful-callable)
-              ("v" . helpful-variable))
+              ("v" . helpful-variable)
+              ("k" . helpful-key))
   :commands (helpful-function
              helpful-command
              helpful-key
