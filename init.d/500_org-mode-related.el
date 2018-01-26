@@ -59,8 +59,8 @@
          ;; (45 . negative-argument)
          ;; (remap keymap
          ;;        (self-insert-command . undefined))
-         ("SPC" . org-self-insert-command)
-         ("DEL" . org-delete-backward-char)
+         ;; ("SPC" . org-self-insert-command)
+         ;; ("DEL" . org-delete-backward-char)
          ;;
          ;; bm.el-like function
          ;; ("s-b" . helm-org-in-buffer-headings)
@@ -455,6 +455,7 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
 ;;;   org-edit-latex.el
   ;; https://github.com/et2010/org-edit-latex
   (use-package org-edit-latex
+    :disabled t
     :diminish org-edit-latex-mode
     :config
     (add-hook 'org-mode-hook 'org-edit-latex-mode)
