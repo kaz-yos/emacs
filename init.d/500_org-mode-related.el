@@ -85,11 +85,8 @@
          ;; ("<return>" . org-return-indent)
          ;; ("C-j" . org-return)
          ;; Keys
-         ("A-s" . org-latex-export-to-pdf-async)
          ("M-s M-s" . org-latex-export-to-pdf-async)
-         ("H-s" . org-latex-export-to-pdf-async)
-         ("A-l" . org-latex-export-to-latex-save)
-         ("H-l" . org-latex-export-to-latex-save))
+         ("M-s M-l" . org-latex-export-to-latex-save))
   :init
   ;; https://github.com/jwiegley/use-package#extending-the-load-path
   ;; If using manually installed org-mode.
