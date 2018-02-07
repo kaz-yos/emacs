@@ -61,6 +61,7 @@
          (">" . org-self-insert-command)
          ("h" . org-self-insert-command)
          ("?" . org-self-insert-command)
+         ("q" . org-self-insert-command)
          ("SPC" . org-self-insert-command)
          ("DEL" . org-delete-backward-char)
          ("0" . org-self-insert-command)
