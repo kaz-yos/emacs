@@ -31,6 +31,12 @@
 (require 'org-ref)
 ;;; Load exporters
 (require 'ox-beamer)
+;; bold is bold not \alert{} (can appear as red text)
+;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html#export-filters
+(defun my-beamer-bold (contents backend info)
+  (when (eq backend 'beamer)
+    (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+(add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
 ;;
 ;;
 ;;; Enable languages
