@@ -35,7 +35,7 @@
 #+LATEX_HEADER: %% Allow new page within align
 #+LATEX_HEADER: \allowdisplaybreaks
 #+LATEX_HEADER: \usepackage{cancel}
-#+LATEX_HEADER: % % Code
+#+LATEX_HEADER: %% Code
 #+LATEX_HEADER: \usepackage{listings}
 #+LATEX_HEADER: \usepackage{courier}
 #+LATEX_HEADER: \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
@@ -49,4 +49,14 @@
 #+LATEX_HEADER: \usetikzlibrary{positioning,shapes.geometric}
 #+LATEX_HEADER: %% Allow URL embedding
 #+LATEX_HEADER: \usepackage{url}
+#+LATEX_HEADER: %% Do not count backup slides.
+#+LATEX_HEADER: %% https://tex.stackexchange.com/questions/70448/dont-count-backup-slides
+#+LATEX_HEADER: \newcommand{\backupbegin}{
+#+LATEX_HEADER:    \newcounter{finalframe}
+#+LATEX_HEADER:    \setcounter{finalframe}{\value{framenumber}}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \newcommand{\backupend}{
+#+LATEX_HEADER:    \setcounter{framenumber}{\value{finalframe}}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: %% Include convenient commands.
 #+LATEX_HEADER: \input{\string~/.emacs.d/misc/GrandMacros}
