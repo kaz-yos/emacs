@@ -1,11 +1,4 @@
 ;;;
-;;; crosshairs.el
-;; http://www.emacswiki.org/emacs/CrosshairHighlighting
-(use-package crosshairs
-  :commands (crosshairs-mode))
-
-
-;;;
 ;;; highligh-symbol.el
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word

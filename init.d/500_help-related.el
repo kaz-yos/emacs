@@ -32,21 +32,6 @@
 
 
 ;;;
-;;; help-fns+.el
-;; https://www.emacswiki.org/emacs/help-fns%2B.el
-(use-package help-fns+
-  :commands (describe-buffer
-             describe-command
-             describe-option
-             describe-key-briefly
-             describe-option-of-type
-             describe-copying
-             describe-file
-             describe-keymap
-             find-function-on-key))
-
-
-;;;
 ;;; helpful.el
 ;; https://github.com/Wilfred/helpful
 ;; http://www.wilfred.me.uk/blog/2017/08/30/helpful-adding-contextual-help-to-emacs/

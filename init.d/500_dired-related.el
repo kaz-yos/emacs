@@ -31,23 +31,6 @@
 
 
 ;;;
-;;; dired+.el
-;; http://www.emacswiki.org/emacs/DiredPlus
-;; http://ergoemacs.org/emacs/emacs_diredplus_mode.html
-(use-package dired+
-  :init
-  ;;  Hide/Show Details
-  ;;  -----------------
-  ;;  Starting with Emacs 24.4, listing details are hidden by default.
-  ;;  Use `(' anytime to toggle this hiding.  You can use option
-  ;;  `diredp-hide-details-initially-flag' to change the default/initial
-  ;;  state.  See also option `diredp-hide-details-propagate-flag'.
-  (setq diredp-hide-details-initially-flag nil)
-  ;; Other dired inherit the current setting
-  (setq diredp-hide-details-propagate-flag t))
-
-
-;;;
 ;;; DIRED-HACKS
 
 ;;;  dired-subtree.el
