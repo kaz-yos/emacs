@@ -1,0 +1,4 @@
+# key: lower
+# name: lower
+# --
+<lower=${1:$$(yas-choose-value '("0" "1"))}>$0
