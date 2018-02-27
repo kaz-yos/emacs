@@ -1,5 +1,14 @@
 ;;; 500_dired-related.el ---                         -*- lexical-binding: t; -*-
 
+
+;;; diredfl
+;; https://github.com/purcell/diredfl
+(use-package diredfl
+  :init
+  (add-hook 'dired-mode-hook 'diredfl-mode)
+  :commands (diredfl-mode))
+
+
 ;;;
 ;;; Use rsync in dired.el
 ;; https://github.com/abo-abo/oremacs/blob/2011da0874d27058d3ce8bded5cd8817314c27be/auto.el#L225-L247
