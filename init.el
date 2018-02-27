@@ -34,10 +34,6 @@
 ;; https://vigou3.github.io/emacs-modified-windows/
 
 
-;; Find what causes a package to be loaded.
-;; (eval-after-load "hydra"
-;;   '(debug))
-
 ;;;
 ;;; No garbage collection during loading.
 (setq gc-cons-threshold most-positive-fixnum)

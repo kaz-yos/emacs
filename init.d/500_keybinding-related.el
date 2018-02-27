@@ -212,23 +212,6 @@ This should be run after running multiple-cursors"
 
 
 ;;;
-;;; smartrep.el
-;; https://github.com/myuhe/smartrep.el
-;; http://sheephead.homelinux.org/2011/12/19/6930/
-(use-package smartrep
-  :disabled t
-  :config
-  ;; org-mode
-  (eval-after-load "org"
-    '(progn
-       (smartrep-define-key
-        org-mode-map "C-c" '(("C-n" . (lambda ()
-                                        (outline-next-visible-heading 1)))
-                             ("C-p" . (lambda ()
-                                        (outline-previous-visible-heading 1))))))))
-
-
-;;;
 ;;; hydra.el
 ;; https://github.com/abo-abo/hydra
 ;; https://github.com/abo-abo/hydra/wiki/Emacs
