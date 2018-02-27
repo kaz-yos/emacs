@@ -23,24 +23,6 @@
 
 
 ;;;
-;;; electric-operator.el
-;; https://github.com/davidshepherd7/electric-operator
-;; http://rubikitch.com/tag/emacs-key-combo/
-(use-package electric-operator
-  :disabled t
-  :config
-  (electric-operator-add-rules-for-mode
-   'ess-mode
-   (cons "#" "# ")
-   (cons "##" "## ")
-   (cons "###" "### ")
-   (cons "####" "################################################################################"))
-  ;;
-  ;; hooks
-  (add-hook 'ess-mode-hook #'electric-operator-mode))
-
-
-;;;
 ;;; smartchr.el
 ;; https://github.com/imakado/emacs-smartchr
 ;; http://tech.kayac.com/archive/emacs-tips-smartchr.html
