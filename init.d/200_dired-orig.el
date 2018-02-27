@@ -27,7 +27,7 @@
   ;; http://unix.stackexchange.com/questions/44858/change-view-in-emacs-dired-mode
   ;; -a show dotfiles; -l detail; -h human-readable
   ;; https://www.safematix.com/system/linux/ls-date-format/
-  (setq dired-listing-switches "-alh --time-style=+%F_%H:%M")
+  (setq dired-listing-switches "-alh --time-style=long-iso")
   ;;
   ;; Open read-only using an advice.
   (defun read-only-mode-on ()
