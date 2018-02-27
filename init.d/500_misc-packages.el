@@ -1,11 +1,4 @@
 ;;;
-;;; minor-mode-hack.el
-;; M-x show-minor-mode-map-priority to see minor mode priority
-(use-package minor-mode-hack
-  :commands (show-minor-mode-map-priority))
-
-
-;;;
 ;;; manage-minor-mode.el
 ;; http://fukuyama.co/manage-minor-mode
 (use-package manage-minor-mode

@@ -12,7 +12,7 @@
          ("M-c" . seq-cmd--capitalize-backward-word)
          ("M-l" . seq-cmd--downcase-backward-word))
   :config
-  (require 'sequential-command-config)
+  (use-package sequential-command-config)
   (sequential-command-setup-keys)
   ;; (global-set-key (kbd "C-a") 'seq-home)
   ;; (global-set-key (kbd "C-e") 'seq-end)
