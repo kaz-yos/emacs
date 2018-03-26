@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: subsubsection
-# key: sss
+# key: sssec
 # --
 \subsubsection{$0}
