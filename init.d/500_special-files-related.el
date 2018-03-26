@@ -41,6 +41,11 @@
 ;; Solved by creating a symlink.
 ;; $ cd /usr/local/opt/poppler/lib/
 ;; $ ln -s libpoppler.71.dylib libpoppler.70.dylib
+;;
+;; Permission issue
+;; /bin/sh: /Users/kazuki/.emacs.d/elpa/pdf-tools-20180109.1234/build/server/autobuild: Permission denied
+;; Executable permission was not granted.
+;; chmod u+x /Users/kazuki/.emacs.d/elpa/pdf-tools-20180109.1234/build/server/autobuild
 (use-package pdf-tools
   :if (display-graphic-p)
   ;; The deferring configuration was take from the following repository.
