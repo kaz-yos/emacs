@@ -15,6 +15,14 @@
 
 ;;;
 ;;; Alt, Super, and Hyper for terminal use
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Modifier-Keys.html
+;; C-x @ S event-apply-shift-modifier
+;; C-x @ a event-apply-alt-modifier
+;; C-x @ c event-apply-control-modifier
+;; C-x @ h event-apply-hyper-modifier
+;; C-x @ m event-apply-meta-modifier
+;; C-x @ s event-apply-super-modifier
+;;
 ;; https://emacs.stackexchange.com/questions/18245/making-terminal-emacs-treat-apps-aka-menu-key-as-super-modifier
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Translation-Keymaps.html#Translation-Keymaps
 ;;
