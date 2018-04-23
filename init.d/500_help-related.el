@@ -12,9 +12,12 @@
 ;; Setting Up and Using Emacs InfoMode
 ;; http://pchristensen.com/blog/articles/setting-up-and-using-emacs-infomode/
 ;;
-;; Add path (Need correctly formatted dir file with special format)
-(add-to-list 'Info-directory-list (expand-file-name (concat user-emacs-directory
-                                                            "info/")))
+;; Add path (Need correctly formatted dir file with special FORMAT)
+(use-package info
+  :commands (info)
+  :config
+  (add-to-list 'Info-directory-list (expand-file-name (concat user-emacs-directory
+                                                              "info/"))))
 
 
 ;;;
