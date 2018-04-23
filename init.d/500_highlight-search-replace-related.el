@@ -434,8 +434,8 @@ searched. If there is no symbol, empty search box is started."
          ("s-a" . avy-isearch)
          ("C-'" . avy-isearch))
   :config
-  ;; Darken background.
-  (setq avy-background t)
+  ;; Darken background in GUI only.
+  (setq avy-background (display-graphic-p))
   ;; Highlight the first decision char with `avy-lead-face-0'.
   ;; https://github.com/abo-abo/avy/wiki/defcustom#avy-highlight-first
   (setq avy-highlight-first t)
