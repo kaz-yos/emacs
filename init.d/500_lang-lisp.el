@@ -55,8 +55,7 @@
 ;; M-; M-; to insert ; =>
 ;; M-; is for paredit-comment-dwim, which is advised by lispxmp.el.
 (use-package lispxmp
-  :commands (lispxmp)
-  :bind (("C-c ;" . lispxmp)))
+  :commands (lispxmp))
 
 
 ;;;  macrostep.el

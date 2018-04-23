@@ -62,7 +62,7 @@
   ;; Condition on environment
   (setq elscreen-prefix-key (if (display-graphic-p)
                                 (kbd "C-;")
-                              (kbd "C-c m ;")))
+                              (kbd "C-c ;")))
   ;; Set up screens nicely
   (add-hook 'after-init-hook
             (lambda ()
@@ -85,7 +85,7 @@
   (setq elscreen-display-screen-number nil)
   ;; Do not show tabls to save space
   ;; Can use M-x elscreen-toggle-display-tab
-  (setq elscreen-display-tab nil)
+  (setq elscreen-display-tab (not (display-graphic-p)))
   ;; No preceding [X] for closing
   (setq elscreen-tab-display-kill-screen nil)
   ;; No [<->] at the beginning
