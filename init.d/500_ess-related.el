@@ -11,6 +11,7 @@
   :bind (:map ess-mode-map
               ("A-s" . buffer-do-async-shell-command)
               ("M-s M-s" . buffer-do-async-shell-command)
+              ("C-c C-e" . ess-eval-region-or-line-and-step)
               ("C-c C-b" . ess-eval-buffer)
               ("C-c C-u" . ess-eval-buffer-from-beg-to-here)
               ;;
@@ -47,14 +48,17 @@
   ;;
   ;; Underscore preservation in ESS
   ;; http://www.r-bloggers.com/a-small-customization-of-ess/
-  (setq ess-S-assign-key (kbd "C-="))	; C-= gives <-
-  (ess-toggle-S-assign-key t)		; enable above key definition
-  (ess-toggle-underscore nil)		; leave my underscore key alone!
+  ;; C-= gives <-
+  (setq ess-S-assign-key (kbd "C-="))
+  ;; enable above key definition
+  (ess-toggle-S-assign-key t)
+  ;; leave my underscore key alone!
+  (ess-toggle-underscore nil)
   (define-key ess-mode-map (kbd "_") nil)
   ;;
   ;; Smart TAB completion in R scripts, similar to iESS behavior.
-  (setq ess-tab-complete-in-script   nil)	; Trying out nil 2013-03-03
-  (setq ess-first-tab-never-complete nil)	; Trying out nil 2013-03-01
+  (setq ess-tab-complete-in-script nil)
+  (setq ess-first-tab-never-complete nil)
   ;;
   ;; Must-haves for ESS
   ;; http://www.emacswiki.org/emacs/CategoryESS
