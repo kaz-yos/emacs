@@ -16,7 +16,6 @@
   :bind (("A-j" . skk-mode)
          ("A-SPC" . skk-mode)
          ("s-j" . skk-mode)
-         ("C-c j" . skk-mode)
          :map my-key-map
          ("j" . skk-mode))
   ;;

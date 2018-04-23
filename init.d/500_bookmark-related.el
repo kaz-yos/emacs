@@ -10,7 +10,6 @@
   :bind (("M-SPC" . bm-toggle)
          ("M-]" . my-bm-next)
          ("M-[" . my-bm-previous)
-         ("C-c b" . my-bm-show)
          ("s-b" . my-bm-show)
          :map my-key-map
          ("b" . my-bm-show))

@@ -22,13 +22,12 @@ The format is yyyymmdd if a universal argument is given."
   (insert (if u-arg
               (format-time-string "%Y%m%d")
             (format-time-string "%Y-%m-%d"))))
-(global-set-key (kbd "C-c d") 'my-insert-date)
+(bind-key "C-c d" 'my-insert-date)
 
 
 ;;;
 ;;; replace (kbd "C-c r")
-(global-set-key (kbd "C-c r") 'replace-string)
-(global-set-key (kbd "s-r") 'replace-string)
+(bind-key "s-r" 'replace-string)
 
 
 ;;;
