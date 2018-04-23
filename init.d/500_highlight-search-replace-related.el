@@ -464,7 +464,7 @@ searched. If there is no symbol, empty search box is started."
   ;;
   ;; Assing key bindings for all characters
   (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
-  (loop for c from ?! to ?~ do (add-keys-to-avy "H-M-" c))
+  (loop for c from ?! to ?~ do (add-keys-to-avy "H-" c))
   (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word)))
 
 ;;;  avy-migemo.el
@@ -499,7 +499,7 @@ searched. If there is no symbol, empty search box is started."
   ;;
   ;; Assing key bindings for all characters
   (loop for c from ?! to ?~ do (add-keys-to-avy-migemo "M-s-" c))
-  (loop for c from ?! to ?~ do (add-keys-to-avy-migemo "H-M-" c))
+  (loop for c from ?! to ?~ do (add-keys-to-avy-migemo "H-" c))
   (loop for c from ?! to ?~ do (add-keys-to-avy-migemo "C-M-s-" c 'word)))
 
 ;;;  ace-window.el
