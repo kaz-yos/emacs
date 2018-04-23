@@ -59,7 +59,11 @@
     "Go to parent dir or open parent dir"
     (interactive "p")
     (or (dired-subtree-up arg)
-        (dired-up-directory))))
+        (dired-up-directory)))
+  ;;
+  ;; No background in terminal.
+  (unless (display-graphic-p)
+    (set-face-background 'dired-subtree-depth-1-face nil)))
 
 
 ;;;  dired-narrow.el
