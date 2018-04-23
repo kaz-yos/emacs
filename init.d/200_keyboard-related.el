@@ -23,12 +23,15 @@
 ;; C-x @ m event-apply-meta-modifier
 ;; C-x @ s event-apply-super-modifier
 ;;
-;; https://emacs.stackexchange.com/questions/18245/making-terminal-emacs-treat-apps-aka-menu-key-as-super-modifier
-;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Translation-Keymaps.html#Translation-Keymaps
+;; These were taken from simple.el.gz and modified
+;; (define-key function-key-map [?\C-c ?a] 'event-apply-alt-modifier)
+;; (define-key function-key-map [?\C-c ?s] 'event-apply-super-modifier)
+;; (define-key function-key-map [?\C-c ?h] 'event-apply-hyper-modifier)
 ;;
-(bind-key* "C-c a" '(lambda () (event-apply-alt-modifier nil)))
-(bind-key* "C-c s" '(lambda () (event-apply-super-modifier nil)))
-(bind-key* "C-c h" '(lambda () (event-apply-hyper-modifier nil)))
+;; bind-key version
+(bind-key "C-c a" 'event-apply-alt-modifier function-key-map)
+(bind-key "C-c s" 'event-apply-super-modifier function-key-map)
+(bind-key "C-c h" 'event-apply-hyper-modifier function-key-map)
 
 
 ;;;
