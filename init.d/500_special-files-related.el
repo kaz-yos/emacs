@@ -30,7 +30,7 @@
 ;; When it's not working try running epdfinfo directly to look for errors.
 ;; $ epdfinfo
 ;;
-;; Issue with poppler 0.60.1
+;;;  Issue with poppler 0.60.1
 ;; /usr/local/Cellar/poppler/0.60.1 (443 files, 18.4MB) *
 ;; Poured from bottle on 2017-10-06 at 12:35:58
 ;; $ epdfinfo
@@ -42,10 +42,42 @@
 ;; $ cd /usr/local/opt/poppler/lib/
 ;; $ ln -s libpoppler.71.dylib libpoppler.70.dylib
 ;;
-;; Permission issue
+;;;  Permission issue
 ;; /bin/sh: /Users/kazuki/.emacs.d/elpa/pdf-tools-20180109.1234/build/server/autobuild: Permission denied
 ;; Executable permission was not granted.
 ;; chmod u+x /Users/kazuki/.emacs.d/elpa/pdf-tools-20180109.1234/build/server/autobuild
+;;
+;;;  Issue with poppler 0.64.0
+;; /Users/kazuki/.emacs.d/elpa/pdf-tools-20180109.1234/build/server/autobuild -i /usr/local/bin/
+;; ...
+;; ---------------------------
+;;  Configuring and compiling
+;; ---------------------------
+;; ./configure -q --bindir=/usr/local/bin/ && make -s
+;;
+;; Is case-sensitive searching enabled ?     yes
+;; Is modifying text annotations enabled ?   yes
+;; Is modifying markup annotations enabled ? yes
+;;
+;; poppler-hack.cc:88:16: error: cannot initialize a variable of type 'GooString *' with an rvalue of type 'const GooString *'
+;;     GooString *state = a->annot->getAppearState ();
+;;                ^       ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; poppler-hack.cc:108:19: error: assigning to 'GooString *' from incompatible type 'const GooString *'
+;;     text = annot->getDate ();
+;;            ~~~~~~~^~~~~~~~~~
+;; 2 errors generated.
+;; make[1]: *** [epdfinfo-poppler-hack.o] Error 1
+;; make: *** [all] Error 2
+;; ===========================
+;;      Build failed.  ;o(
+;; ===========================
+;; Note: maybe try the '-d' option.
+;;
+;; brew switch poppler 0.63.0_1
+;; /Users/kazuki/.emacs.d/elpa/pdf-tools-20180109.1234/build/server/autobuild -i /usr/local/bin/
+;; ===========================
+;;    Build succeeded. :O)
+;; ===========================
 (use-package pdf-tools
   :if (display-graphic-p)
   ;; The deferring configuration was take from the following repository.
