@@ -26,6 +26,7 @@
 ;; successfully compiled. You will need to install poppler which you can get with
 ;; homebrew via
 ;; $ brew install poppler automake
+;; Note: When using elpa pdf-tools, there is not need to install Homebrew pdf-tools.
 ;;
 ;; When it's not working try running epdfinfo directly to look for errors.
 ;; $ epdfinfo
