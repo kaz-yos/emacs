@@ -1,7 +1,6 @@
 # -*- mode: snippet -*-
 # name: frac
-# key: frac
-# binding: C-c f
+# key: fr
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
 \frac{$1}{$0}

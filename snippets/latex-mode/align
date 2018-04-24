@@ -1,7 +1,6 @@
 # -*- mode: snippet -*-
 # name: align
-# key: align
-# binding: C-c a
+# key: al
 # --
 \begin{align*}
 $0
