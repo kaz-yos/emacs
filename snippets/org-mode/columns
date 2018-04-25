@@ -2,17 +2,17 @@
 # name: columns
 # key: col
 # --
-*** column1                                                         :B_block:
+*** \nbsp{}                                                   :B_block:BMCOL:
     :PROPERTIES:
     :BEAMER_col: 0.45
-    :BEAMER_env: block
+    :BEAMER_env: block,ignoreheading
     :END:
     body1
 
-*** column2                                                         :B_block:
+*** \nbsp{}                                                   :B_block:BMCOL:
     :PROPERTIES:
     :BEAMER_col: 0.45
-    :BEAMER_env: block
+    :BEAMER_env: block,ignoreheading
     :END:
     body2
 
