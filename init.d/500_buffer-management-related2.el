@@ -41,8 +41,8 @@ Dependency: ace-swap-window"
   ;; (when (file-exists-p "~/Documents/programming/emacs-lisp-repos/reveal-in-osx-finder")
   ;;   (add-to-list 'load-path "~/Documents/programming/emacs-lisp-repos/reveal-in-osx-finder"))
   :commands (reveal-in-osx-finder)
-  :bind (("H-z" . reveal-in-osx-finder))
-  )
+  :bind (:map my-key-map
+              ("r" . reveal-in-osx-finder)))
 
 
 ;;;
