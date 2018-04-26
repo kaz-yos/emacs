@@ -6,7 +6,8 @@
   "Recenter to the top"
   (interactive)
   (recenter "Top"))
-(global-set-key (kbd "C-S-l") 'my-recenter-top)
+(bind-key "C-S-l" 'my-recenter-top)
+(bind-key "l" 'my-recenter-top my-key-map)
 
 
 ;;;

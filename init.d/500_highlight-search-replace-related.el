@@ -13,7 +13,9 @@
          ("A-M-n" . my-highlight-symbol-next)
          ("A-M-p" . my-highlight-symbol-prev)
          ("A-M-]" . my-highlight-symbol-next)
-         ("A-M-[" . my-highlight-symbol-prev))
+         ("A-M-[" . my-highlight-symbol-prev)
+         :map my-key-map
+         ("." . highlight-symbol))
   ;;
   :config
   (setq highlight-symbol-idle-delay 1.5)
@@ -69,7 +71,12 @@
          ;; highlighting all
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
-         ("C-*" . mc/mark-all-like-this))
+         ("C-*" . mc/mark-all-like-this)
+         ;;
+         :map my-key-map
+         (">" . mc/mark-next-like-this)
+         ("<" . mc/mark-previous-like-this)
+         ("*" . mc/mark-all-like-this))
   :config
   ;; What to display in the mode line while multiple-cursors-mode is active.
   ;; Do not show anything at the minor mode part.
