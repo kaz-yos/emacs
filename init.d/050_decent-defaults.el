@@ -2,6 +2,18 @@
 
 
 ;;;
+;;; Create my-key-map for C-c m
+;; Define this early for subsequent use.
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Prefix-Keys.html
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Prefix-Keymaps.html
+;; https://www.emacswiki.org/emacs/PrefixKey
+;; http://ergoemacs.org/emacs/emacs_keybinding_power_of_keys_sequence.html
+(define-prefix-command 'my-key-map)
+;; bind-key* overrides any mode-specific bindings.
+(bind-key* "C-c m" 'my-key-map)
+
+
+;;;
 ;;; Taken from ESS/Emacs distribution
 ;; Activate mouse scrolling if in a graphical system
 (when (display-graphic-p)
@@ -267,7 +279,8 @@
 ;;; Killing buffers and frames
 ;; http://pragmaticemacs.com/emacs/dont-kill-buffer-kill-this-buffer-instead/
 ;; (global-set-key (kbd "C-x k") 'kill-this-buffer)
-(global-set-key (kbd "A-k") 'kill-this-buffer)
+(bind-key "A-k" 'kill-this-buffer)
+(bind-key "k" 'kill-this-buffer my-key-map)
 ;; http://pragmaticemacs.com/emacs/a-better-shortcut-for-delete-frame/
 (global-set-key (kbd "C-x w") 'delete-frame)
 ;; Prevent killing emacs accidentaly
@@ -338,18 +351,6 @@
                 mode-line-end-spaces))
 ;; Check the default value.
 ;; (default-value 'mode-line-format)
-
-
-;;;
-;;; Create my-key-map for C-c m
-;; Define this early for subsequent use.
-;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Prefix-Keys.html
-;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Prefix-Keymaps.html
-;; https://www.emacswiki.org/emacs/PrefixKey
-;; http://ergoemacs.org/emacs/emacs_keybinding_power_of_keys_sequence.html
-(define-prefix-command 'my-key-map)
-;; bind-key* overrides any mode-specific bindings.
-(bind-key* "C-c m" 'my-key-map)
 
 
 ;;;
