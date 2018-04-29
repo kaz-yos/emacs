@@ -10,8 +10,8 @@
 ;;
 ;;;  MELPA Stable
 ;; http://stable.melpa.org/#/getting-started
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+;; (add-to-list 'package-archives
+;;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 ;;
 ;; Marmalade repository (not active)
 ;; http://www.emacswiki.org/emacs/Marmalade
