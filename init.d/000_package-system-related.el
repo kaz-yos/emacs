@@ -35,7 +35,7 @@
 ;; (package-initialize &optional NO-ACTIVATE)
 ;; If optional arg NO-ACTIVATE is non-nil, don’t activate packages.
 ;; https://emacs.stackexchange.com/questions/16831/using-package-el-to-install-and-update-but-use-package-for-loading-and-configuri
-(package-initialize t)
+;; (package-initialize t)
 
 
 ;;;
