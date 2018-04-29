@@ -48,9 +48,6 @@
 ;;;  cider-toggle-trace
   (use-package cider-tracing)
   ;;
-;;;  clojure-cheatsheet.el
-  (use-package clojure-cheatsheet)
-  ;;
 ;;; C-c C-v for help and examples
   (defun cider-help-for-symbol ()
     "Provide help for a symbol in the REPL."
