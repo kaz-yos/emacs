@@ -1,6 +1,8 @@
 ;;; recentf.el
 ;; https://www.emacswiki.org/emacs/RecentFiles
 (use-package recentf
+  ;; https://blog.d46.us/advanced-emacs-startup/
+  :defer 1
   :config
   ;; Make machine-specific
   (setq recentf-save-file (concat user-emacs-directory
@@ -36,6 +38,7 @@
 ;; ‘dired’ buffers can be handled.
 ;; Switching to file buffer considers it as most recent file.
 (use-package recentf-ext
+  :defer 2
   :config
   ;; Activate recentf-mode
   (recentf-mode 1))
