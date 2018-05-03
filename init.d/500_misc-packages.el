@@ -20,3 +20,11 @@
   (setq command-log-mode-is-global t)
   ;; Show the command-log window or frame automatically.
   (setq command-log-mode-auto-show t))
+
+
+;;;
+;;; ESUP - Emacs Start Up Profiler
+;; https://github.com/jschaf/esup
+;; https://blog.d46.us/advanced-emacs-startup/
+(use-package esup
+  :commands (esup))
