@@ -4,6 +4,10 @@
 ;; http://www.emacswiki.org/AutoInstall
 ;; http://www.emacswiki.org/emacs/auto-install.el
 (use-package auto-install
+  :commands (auto-install-from-url
+             auto-install-from-emacswiki
+             auto-install-from-gist)
+  ;;
   :config
   (setq auto-install-directory (concat user-emacs-directory
                                        "auto-install/"))
