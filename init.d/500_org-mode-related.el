@@ -13,6 +13,7 @@
 ;;
 ;; Load org
 (use-package org
+  :defer t
   :mode ("\\.org" . org-mode)
   :bind (;; Suggested bindings for global
          ;; http://orgmode.org/manual/Activation.html#Activation
@@ -111,6 +112,9 @@
                (car (last (file-expand-wildcards "~/.emacs.d/elpa/org-plus-contrib*"))))
   ;;
   :config
+  ;;
+  (message "org-mode was just loaded.")
+  ;;
   ;; Swap dimension specification
   (defun my-reverse-org-table-dimension (size)
     (let* ((split (org-split-string size " *x *"))
@@ -194,13 +198,13 @@ When calling non-interactively SIZE should be a string Columns x Rows."
 ;;;
 ;;; Org-Capture
   ;; https://github.com/alphapapa/org-protocol-capture-html
-  (unless nil
-    (require 'org-capture)
-    (require 'org-protocol)
-    (setq org-capture-templates
-          '(("w" "Web site" entry
-             (file "")
-             "* %a :website:\n\n%U %?\n\n%:initial"))))
+  ;; (when nil
+  ;;   (use-package org-capture)
+  ;;   (use-package org-protocol)
+  ;;   (setq org-capture-templates
+  ;;         '(("w" "Web site" entry
+  ;;            (file "")
+  ;;            "* %a :website:\n\n%U %?\n\n%:initial"))))
   ;;
   ;;
 ;;;
