@@ -298,8 +298,10 @@ When calling non-interactively SIZE should be a string Columns x Rows."
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
   ;; org-ref-pdf.el requires pdf-tools.el
   (use-package org-ref
-    :init
-    (define-key org-mode-map (kbd "C-A-a") 'org-ref-helm-insert-cite-link)
+    :bind (:map org-mode-map
+                ("C-A-a" . org-ref-helm-insert-cite-link))
+    :config
+    (message "org-ref has just been loaded.")
     ;;
     ;; Need to put these configurations within the org file.
     ;; https://github.com/jkitchin/org-ref#screenshots
