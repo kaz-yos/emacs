@@ -75,7 +75,7 @@
       (add-to-list 'load-path mu4e-dir)))
   ;; Start mu4e after init.
   (defun mu4e-background () (mu4e t))
-  (add-hook 'after-init-hook 'mu4e-background)
+  ;; (add-hook 'after-init-hook 'mu4e-background)
   ;;
   :config
   ;; tell mu4e where my Maildir is
