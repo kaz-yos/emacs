@@ -11,15 +11,6 @@
 (use-package csv-mode
   :mode ("\\.csv" . csv-mod))
 
-
-;;;
-;;; demo-it.el
-;; https://github.com/howardabrams/demo-it
-(use-package demo-it
-  :commands (demo-it-mode
-             demo-it-start))
-
-
 ;;;
 ;;; command-log-mode.el
 ;; https://github.com/lewang/command-log-mode
