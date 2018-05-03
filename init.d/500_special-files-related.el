@@ -150,16 +150,6 @@
 ;;; IMAGE-RELATED
 ;; https://emacs.stackexchange.com/questions/2433/shrink-zoom-scale-images-in-image-mode
 
-;;;  eimp.el
-;; https://www.emacswiki.org/emacs/eimp.el
-;; Beaware this immediately manipulates the original image if used with auto-save.
-(use-package eimp
-  :disabled t
-  :commands (eimp-mode)
-  :init
-  (add-hook 'image-mode-hook 'eimp-mode))
-
-
 ;;;  picpocket.el
 ;; https://github.com/johanclaesson/picpocket
 (use-package picpocket
@@ -186,3 +176,12 @@
                 nil nil "bplist"])
   ;; It is necessary to perform an update!
   (jka-compr-update))
+
+
+;;;
+;;; csv-mode.el
+;; http://emacswiki.org/emacs/CsvMode
+(use-package csv-mode
+  :mode ("\\.csv" . csv-mod))
+
+

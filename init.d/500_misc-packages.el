@@ -6,12 +6,6 @@
 
 
 ;;;
-;;; csv-mode.el
-;; http://emacswiki.org/emacs/CsvMode
-(use-package csv-mode
-  :mode ("\\.csv" . csv-mod))
-
-;;;
 ;;; command-log-mode.el
 ;; https://github.com/lewang/command-log-mode
 (use-package command-log-mode
