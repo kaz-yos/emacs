@@ -1,7 +1,7 @@
 ;;; 500_dired-related.el ---                         -*- lexical-binding: t; -*-
 
 
-;;; diredfl
+;;; diredfl.el
 ;; https://github.com/purcell/diredfl
 (use-package diredfl
   :init
@@ -10,33 +10,10 @@
 
 
 ;;;
-;;; Use rsync in dired.el
-;; https://github.com/abo-abo/oremacs/blob/2011da0874d27058d3ce8bded5cd8817314c27be/auto.el#L225-L247
-;; https://www.reddit.com/r/emacs/comments/58zieq/still_cant_get_over_how_powerful_tramp_is/
-(defun ora-dired-rsync (dest)
-  (interactive
-   (list (expand-file-name
-          (read-file-name "Rsync to:" (dired-dwim-target-directory)))))
-  ;; store all selected files into "files" list
-  (let ((files (dired-get-marked-files nil current-prefix-arg))
-        ;; the rsync command
-        (tmtxt/rsync-command "rsync -arvz --progress "))
-    ;; add all selected file names as arguments to the rsync command
-    (dolist (file files)
-      (setq tmtxt/rsync-command
-            (concat tmtxt/rsync-command
-                    (shell-quote-argument file)
-                    " ")))
-    ;; append the destination
-    (setq tmtxt/rsync-command
-          (concat tmtxt/rsync-command
-                  (shell-quote-argument dest)))
-    ;; run the async shell command
-    (async-shell-command tmtxt/rsync-command "*rsync*")
-    ;; finally, switch to that window
-    (other-window 1)))
-;; Bind to Y
-(define-key dired-mode-map "Y" 'ora-dired-rsync)
+;;; dired-rsync.el
+;; https://github.com/stsquad/dired-rsync
+(use-package dired-rsync
+  :commands (dired-rsync))
 
 
 ;;;
