@@ -7,7 +7,7 @@
 ;; http://fukuyama.co/yasnippet
 ;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
 (use-package yasnippet
-  :demand t
+  :defer 2
   :diminish  yas-minor-mode
   :bind (:map yas-minor-mode-map
               ;; Insert with a menu
@@ -46,6 +46,7 @@
 ;; http://emacs.rubikitch.com/sd1602-autoinsert-yatemplate-yasnippet/
 ;; https://github.com/fommil/dotfiles/tree/master/.emacs.d/templates
 (use-package yatemplate
+  :disabled t
   :config
   ;; Template folder (default)
   (setq yatemplate-dir "~/.emacs.d/templates/")
