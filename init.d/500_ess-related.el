@@ -26,15 +26,55 @@
   ;; https://github.com/jwiegley/use-package#modes-and-interpreters
   :mode (("\\.R\\'" . r-mode)
          ("\\.sas\\'" . sas-mode)
-         ("\\.jags\\'" . ess-jags-mode))
+         ("\\.jags\\'" . ess-jags-mode)
+         ("\\.Rnw" . poly-noweb+r-mode)
+         ("\\.Rmd" . poly-markdown+r-mode))
   :interpreter (("R" . r-mode)
                 ("SAS" . sas-mode))
+  ;;
   ;;
   :init
   ;; The org-mode exporter for Julia requires this variable.
   (setq inferior-julia-program-name (executable-find "julia"))
   ;;
+  ;;
   :config
+;;;  poly-R.el
+  (use-package poly-R
+    ;; These mode association is overwritten by ess-site
+    ;; So include the same thing in ess-site :mode
+    :bind (:map polymode-mode-map
+                ("C-c n" . polymode-next-chunk-same-type)
+                ("C-c p" . polymode-previous-chunk-same-type)
+                ("A-n" . polymode-next-chunk-same-type)
+                ("A-p" . polymode-previous-chunk-same-type)
+                ("A-s" . polymode-export)
+                ("M-s M-s" . polymode-export))
+    ;;
+    :config
+    ;; Auto revert for .Rmd
+    (add-hook 'poly-markdown+r-mode-hook 'turn-on-auto-revert-mode)
+    ;;
+    ;; Execute all R chunks at once from an Rmd document
+    ;; https://stackoverflow.com/questions/40894202/execute-all-r-chunks-at-once-from-an-rmd-document
+    (defun rmd-send-chunk ()
+      "Send current R chunk to ess process."
+      (interactive)
+      (and (eq (oref pm/chunkmode :mode) 'r-mode)
+           (pm-with-narrowed-to-span nil
+             (goto-char (point-min))
+             (forward-line)
+             (ess-eval-region (point) (point-max) nil nil 'R))))
+    ;;
+    (defun rmd-send-chunks-above ()
+      "Send all R code chunks above point."
+      (interactive)
+      (save-restriction
+        (widen)
+        (save-excursion
+          (pm-map-over-spans
+           'rmd-send-chunk (point-min) (point))))))
+  ;;
   ;; No history, no saving!
   (setq-default inferior-R-args "--no-restore-history --no-save ")
   ;;
