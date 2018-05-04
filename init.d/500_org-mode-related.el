@@ -303,7 +303,10 @@ When calling non-interactively SIZE should be a string Columns x Rows."
     :bind (:map org-mode-map
                 ("C-A-a" . org-ref-helm-insert-cite-link))
     :config
+    ;; To track when loading is occurring.
     (message "org-ref has just been loaded.")
+    ;; https://github.com/jkitchin/org-ref/issues/468
+    (setq org-ref-show-broken-links nil)
     ;;
     ;; Need to put these configurations within the org file.
     ;; https://github.com/jkitchin/org-ref#screenshots
