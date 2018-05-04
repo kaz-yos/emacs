@@ -298,6 +298,8 @@ When calling non-interactively SIZE should be a string Columns x Rows."
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
   ;; org-ref-pdf.el requires pdf-tools.el
   (use-package org-ref
+    ;; https://github.com/jwiegley/use-package#hooks
+    :hook (org-mode . (lambda () (require 'org-ref)))
     :bind (:map org-mode-map
                 ("C-A-a" . org-ref-helm-insert-cite-link))
     :config
