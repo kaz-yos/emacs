@@ -19,9 +19,7 @@
               ("A-s" . ess-swv-weave-PDF)
               ("A-p" . ess-swv-PDF)
               ;;
-              :map poly-noweb+r-mode-map
-              ("A-s" . ess-swv-weave-PDF)
-              ("A-p" . ess-swv-PDF))
+              )
   ;;
   ;; https://github.com/jwiegley/use-package#modes-and-interpreters
   :mode (("\\.R\\'" . r-mode)
@@ -41,6 +39,8 @@
   :config
 ;;;  poly-R.el
   (use-package poly-R
+    :commands (poly-noweb+r-mode
+               poly-markdown+r-mode)
     ;; These mode association is overwritten by ess-site
     ;; So include the same thing in ess-site :mode
     :bind (:map polymode-mode-map
@@ -49,7 +49,11 @@
                 ("A-n" . polymode-next-chunk-same-type)
                 ("A-p" . polymode-previous-chunk-same-type)
                 ("A-s" . polymode-export)
-                ("M-s M-s" . polymode-export))
+                ("M-s M-s" . polymode-export)
+                ;;
+                :map poly-noweb+r-mode-map
+                ("A-s" . ess-swv-weave-PDF)
+                ("A-p" . ess-swv-PDF))
     ;;
     :config
     ;; Auto revert for .Rmd
@@ -61,10 +65,11 @@
       "Send current R chunk to ess process."
       (interactive)
       (and (eq (oref pm/chunkmode :mode) 'r-mode)
-           (pm-with-narrowed-to-span nil
-             (goto-char (point-min))
-             (forward-line)
-             (ess-eval-region (point) (point-max) nil nil 'R))))
+           (pm-with-narrowed-to-span
+            nil
+            (goto-char (point-min))
+            (forward-line)
+            (ess-eval-region (point) (point-max) nil nil 'R))))
     ;;
     (defun rmd-send-chunks-above ()
       "Send all R code chunks above point."
