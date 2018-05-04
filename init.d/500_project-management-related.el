@@ -6,14 +6,14 @@
 ;; https://github.com/bbatsov/projectile#interactive-commands
 ;; https://projectile.readthedocs.io/en/latest/usage/
 (use-package projectile
-  :commands (;; This is used elsewhere
+  :commands (;; These commands are used elsewhere.
              projectile-project-root
              projectile-switch-project
              projectile-commander
              projectile-project-p)
-  :bind (("C-c p p" . projectile-switch-project)
-         ("C-c p f" . projectile-find-file)
-         ("C-c p SPC" . counsel-projectile))
+  :bind-keymap  ("C-c p" . projectile-command-map)
+  :bind (:map projectile-command-map
+              ("SPC" . counsel-projectile))
   ;;
   :config
   (setq projectile-keymap-prefix (kbd "C-c p"))
