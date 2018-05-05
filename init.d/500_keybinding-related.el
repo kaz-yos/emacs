@@ -311,9 +311,8 @@ _d_: subtree
 ;;; which-key.el
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
+  :defer 5
   :commands (which-key-mode)
-  ;; https://github.com/jwiegley/use-package#hooks
-  :hook ((after-init . which-key-mode))
   ;;
   :config
   (setq which-key-lighter "")
