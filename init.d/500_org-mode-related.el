@@ -8,10 +8,6 @@
 ;; git repository. Contains scripts.
 ;; $ git clone git://orgmode.org/org-mode.git
 ;; $ make autoloads
-;;
-;; To inactivate org that came with emacs. Delete the folder (e.g., in Emacs.app).
-;;
-;; Load org
 (use-package org
   :defer t
   :mode ("\\.org" . org-mode)

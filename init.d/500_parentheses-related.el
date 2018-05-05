@@ -14,7 +14,8 @@
   (add-hook 'scheme-mode-hook             'enable-paredit-mode)
   (add-hook 'hy-mode-hook                 'enable-paredit-mode)
   ;; (add-hook 'ielm-mode-hook            'enable-paredit-mode)
-  ;; (add-hook 'ess-mode-hook 'enable-paredit-mode)		; paredit for ESS. too restrictive
+  ;; paredit for ESS. too restrictive
+  ;; (add-hook 'ess-mode-hook 'enable-paredit-mode)
   :config
   (setq paredit-lighter "")
   ;; No space when inserted after a word
