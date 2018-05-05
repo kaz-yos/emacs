@@ -42,7 +42,7 @@
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 ;; http://qiita.com/syohex/items/56cf3b7f7d9943f7a7ba
 (use-package anzu
-  :demand
+  :defer 2
   :config
   (setq anzu-mode-lighter "")
   (setq anzu-use-migemo (executable-find "cmigemo"))
@@ -58,7 +58,8 @@
 ;; http://emacsrocks.com/e13.html (video)
 ;; http://rubikitch.com/2014/11/10/multiple-cursors/
 (use-package multiple-cursors
-  :demand ; otherwise mode-line override does not work
+  ;; Need to load at start up. Otherwise, mode-line override does not work.
+  :defer 2
   :init
   ;; Where to save command list
   (setq mc/list-file (concat user-emacs-directory
@@ -125,25 +126,6 @@ If there is a symbol at the current point, its textual representation is
 searched. If there is no symbol, empty search box is started."
     (interactive)
     (swiper (selection-or-thing-at-point))))
-
-;;;  swiper-helm.el
-;; https://github.com/abo-abo/swiper-helm
-(use-package swiper-helm
-  :commands (swiper-helm
-             swiper-helm-from-isearch)
-  ;; :bind (("s-s" . swiper-helm-at-point)
-  ;;        ("C-s-s" . swiper-helm)
-  ;;        :map isearch-mode-map
-  ;;        ("s-s" . swiper-helm-from-isearch))
-  :config
-  (defun swiper-helm-at-point ()
-    "Custom function to pick up a thing at a point for swiper-helm
-
-If a selected region exists, it will be searched for by swiper-helm
-If there is a symbol at the current point, its textual representation is
-searched. If there is no symbol, empty search box is started."
-    (interactive)
-    (swiper-helm (selection-or-thing-at-point))))
 
 
 ;;;
@@ -382,19 +364,6 @@ searched. If there is no symbol, empty search box is started."
   (setq migemo-regex-dictionary nil)
   ;; Advising
   (migemo-init))
-
-
-;;;
-;;; selected.el
-;; https://github.com/Kungsgeten/selected.el
-(use-package selected
-  :commands selected-minor-mode
-  :bind (:map selected-keymap
-              ("q" . selected-off)
-              ("u" . upcase-region)
-              ("d" . downcase-region)
-              ("w" . count-words-region)
-              ("m" . apply-macro-to-region-lines)))
 
 
 ;;;
