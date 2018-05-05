@@ -292,10 +292,13 @@ The initial string is produced by selection-or-thing-at-point.
 The directory is detected by projectile-project-root."
     (interactive "P")
     (if u-arg
+        ;; This command detects the current-prefix-arg. If t, it ask for a directory and arguments.
         (counsel-ag)
       (counsel-ag (selection-or-thing-at-point)
-                  ;; This will be replaced by the above advice anyway.
-                  (projectile-project-root))))
+                  ;; This will be replaced if counsel-ag-arg2-to-project-root advice is used.
+                  (let
+                      ((projectile-require-project-root nil))
+                    (projectile-project-root)))))
   ;;
   (defun counsel-rg-at-point (u-arg)
     "counsel-rg with at-point and project root enhancement
@@ -304,10 +307,13 @@ The initial string is produced by selection-or-thing-at-point.
 The directory is detected by projectile-project-root."
     (interactive "P")
     (if u-arg
+        ;; This command detects the current-prefix-arg. If t, it ask for a directory and arguments.
         (counsel-rg)
       (counsel-rg (selection-or-thing-at-point)
-                  ;; This will be replaced by the above advice anyway.
-                  (projectile-project-root))))
+                  ;; This will be replaced if counsel-ag-arg2-to-project-root advice is used.
+                  (let
+                      ((projectile-require-project-root nil))
+                    (projectile-project-root)))))
   ;; https://github.com/abo-abo/swiper/issues/66
   (defun counsel-git-grep-at-point (u-arg)
     "counsel-git-grep with at-point enhancement
@@ -315,7 +321,7 @@ The directory is detected by projectile-project-root."
 The initial string is produced by selection-or-thing-at-point."
     (interactive "P")
     (if u-arg
-        (counsel-git-grep)
+        (counsel-git-grep nil)
       (counsel-git-grep nil
                         (selection-or-thing-at-point)))))
 
