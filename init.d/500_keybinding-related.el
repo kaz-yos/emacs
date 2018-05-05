@@ -303,9 +303,9 @@ _d_: subtree
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
   :commands (which-key-mode)
-  :init
-  ;; Activate on start up
-  (add-hook 'after-init-hook 'which-key-mode)
+  ;; https://github.com/jwiegley/use-package#hooks
+  :hook ((after-init . which-key-mode))
+  ;;
   :config
   (setq which-key-lighter "")
   ;; Delay (in seconds) for which-key buffer to popup.
