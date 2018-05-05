@@ -26,9 +26,12 @@
          ;; Key bindings
          ("<C-tab>" . other-window-or-split)
          ("<A-tab>" . org-global-cycle)
-         ;; Backslash
+         ;; Backslash for LaTeX editing
          (  ";" . my-tex-insert-backslash)
          ("A-;" . my-tex-insert-semicolon)
+         ;; sequential-command
+         ("C-a" . org-seq-cmd--home)
+         ("C-e" . org-seq-cmd--end)
          ;;
          ;; Fix for funny bindings
          ;; The following is mysteriously added to org-mode-map.
@@ -114,6 +117,11 @@
   :config
   ;;
   (message "org-mode was just loaded.")
+  ;; sequential-command
+  (define-sequential-command org-seq-cmd--home
+    org-beginning-of-line beginning-of-buffer seq-return)
+  (define-sequential-command org-seq-cmd--end
+    org-end-of-line end-of-buffer seq-return)
   ;;
   ;; Swap dimension specification
   (defun my-reverse-org-table-dimension (size)

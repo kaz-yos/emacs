@@ -1,9 +1,8 @@
 ;;; Sequential key binding related
 
 ;;;
-;;; sequential-command.el for C-a C-a etc
-;; Book by rubikitch p76. M-x auto-install-batch sequential-command (two files, one -config)
-;; http://d.hatena.ne.jp/rubikitch/20090219/sequential_command
+;;; sequential-command.el
+;; https://www.emacswiki.org/emacs/sequential-command-config.el
 (use-package sequential-command
   :commands (define-sequential-command)
   :bind (("C-a" . seq-cmd--home)
@@ -12,10 +11,20 @@
          ("M-c" . seq-cmd--capitalize-backward-word)
          ("M-l" . seq-cmd--downcase-backward-word))
   :config
-  (use-package sequential-command-config
-    :commands (seq-cmd--upcase-backward-word
-               seq-cmd--capitalize-backward-word
-               seq-cmd--downcase-backward-word)))
+  (define-sequential-command seq-cmd--home
+    beginning-of-line beginning-of-buffer seq-return)
+  (define-sequential-command seq-cmd--end
+    end-of-line end-of-buffer seq-return)
+  ;;
+  (defun seq-cmd--upcase-backward-word ()
+    (interactive)
+    (upcase-word (- (1+ (seq-count*)))))
+  (defun seq-cmd--capitalize-backward-word ()
+    (interactive)
+    (capitalize-word (- (1+ (seq-count*)))))
+  (defun seq-cmd--downcase-backward-word ()
+    (interactive)
+    (downcase-word (- (1+ (seq-count*))))))
 
 
 ;;;
