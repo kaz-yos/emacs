@@ -281,9 +281,9 @@ ARGS is a list of arguments."
       ,(projectile-project-root)
       ,@(cddr args)))
   ;;
-  (advice-add #'counsel-ag
-              :filter-args
-              #'counsel-ag-arg2-to-project-root)
+  ;; (advice-add #'counsel-ag
+  ;;             :filter-args
+  ;;             #'counsel-ag-arg2-to-project-root)
   ;;
   (defun counsel-ag-at-point (u-arg)
     "counsel-ag with at-point and project root enhancement
