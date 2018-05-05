@@ -267,11 +267,7 @@
              counsel-git-grep)
   :bind (("s-w". counsel-ag-at-point)
          ("C-s-w" . counsel-ag)
-         ("C-c C-w" . counsel-ag)
-         :map org-mode-map
-         ("s-z" . counsel-org-goto)
-         ("s-;" . counsel-org-goto)
-         ("C-c C-x C-f" . counsel-find-file-at-point))
+         ("C-c C-w" . counsel-ag))
   ;;
   :config
   ;; Project directory advise.
