@@ -265,7 +265,7 @@
   :commands (counsel-ag
              counsel-rg
              counsel-git-grep)
-  :bind (("s-w". counsel-ag-at-point)
+  :bind (("s-w" . counsel-ag-at-point)
          ("C-s-w" . counsel-ag)
          ("C-c C-w" . counsel-ag))
   ;;
@@ -285,33 +285,39 @@ ARGS is a list of arguments."
               :filter-args
               #'counsel-ag-arg2-to-project-root)
   ;;
-  (defun counsel-ag-at-point ()
+  (defun counsel-ag-at-point (u-arg)
     "counsel-ag with at-point and project root enhancement
 
 The initial string is produced by selection-or-thing-at-point.
 The directory is detected by projectile-project-root."
-    (interactive)
-    (counsel-ag (selection-or-thing-at-point)
-                ;; This will be replaced by the above advice anyway.
-                (projectile-project-root)))
+    (interactive "P")
+    (if u-arg
+        (counsel-ag)
+      (counsel-ag (selection-or-thing-at-point)
+                  ;; This will be replaced by the above advice anyway.
+                  (projectile-project-root))))
   ;;
-  (defun counsel-rg-at-point ()
+  (defun counsel-rg-at-point (u-arg)
     "counsel-rg with at-point and project root enhancement
 
 The initial string is produced by selection-or-thing-at-point.
 The directory is detected by projectile-project-root."
-    (interactive)
-    (counsel-rg (selection-or-thing-at-point)
-                ;; This will be replaced by the above advice anyway.
-                (projectile-project-root)))
+    (interactive "P")
+    (if u-arg
+        (counsel-rg)
+      (counsel-rg (selection-or-thing-at-point)
+                  ;; This will be replaced by the above advice anyway.
+                  (projectile-project-root))))
   ;; https://github.com/abo-abo/swiper/issues/66
-  (defun counsel-git-grep-at-point ()
+  (defun counsel-git-grep-at-point (u-arg)
     "counsel-git-grep with at-point enhancement
 
 The initial string is produced by selection-or-thing-at-point."
-    (interactive)
-    (counsel-git-grep nil
-                      (selection-or-thing-at-point))))
+    (interactive "P")
+    (if u-arg
+        (counsel-git-grep)
+      (counsel-git-grep nil
+                        (selection-or-thing-at-point)))))
 
 
 ;;;

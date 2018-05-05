@@ -118,14 +118,16 @@
          ("C-c C-s" . swiper-from-isearch))
   ;;
   :config
-  (defun swiper-at-point ()
+  (defun swiper-at-point (u-arg)
     "Custom function to pick up a thing at a point for swiper
 
 If a selected region exists, it will be searched for by swiper
 If there is a symbol at the current point, its textual representation is
 searched. If there is no symbol, empty search box is started."
-    (interactive)
-    (swiper (selection-or-thing-at-point))))
+    (interactive "P")
+    (if u-arg
+        (swiper)
+      (swiper (selection-or-thing-at-point)))))
 
 
 ;;;
