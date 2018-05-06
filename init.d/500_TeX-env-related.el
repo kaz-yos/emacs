@@ -253,9 +253,22 @@
 
 ;;;  zotxt.el
 ;; https://github.com/egh/zotxt-emacs
+;;
 ;; Depends on the zotxt Zotero extension.
 ;; https://gitlab.com/egh/zotxt
+;; https://github.com/egh/zotxt
+;;
+;; Installation
+;; 1. Visit https://github.com/egh/zotxt/releases
+;; 2. Download the latest .xpi file.
+;; 3. Start Zotero standalone.
+;; 4. In Zotero, select Tools -> Add-ons -> Gear (upper right) -> Install Add-On from file, and install the downloaded xpi file.
+;; It is recommended that you also install Better BibTeX for Zotero, which provides excellent citation key management.
+;; The Zotxt API is exposed via http://127.0.0.1:23119/zotxt/.
 (use-package zotxt
-  :disabled t
-  :commands (org-zotxt-mode
-             zotxt-easykey-mode))
+  :commands (zotxt-easykey-mode))
+;;
+;;;   org-zotxt.el
+;; Interface org-mode with Zotero via the zotxt extension
+(use-package org-zotxt
+  :commands (org-zotxt-mode))
