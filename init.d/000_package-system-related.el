@@ -39,18 +39,15 @@
 
 
 ;;;
-;;; use-package.el for clean package loading
+;;; use-package.el
 ;; https://github.com/jwiegley/use-package
 ;; emacs-use-package-fast
 ;; https://github.com/nilcons/emacs-use-package-fast
 ;;
+;; ;; Package-Requires: ((emacs "24.3") (bind-key "2.4"))
+;;
 ;; (require FEATURE &optional FILENAME NOERROR)
 (require 'use-package)
-;; This does the following.
-;; (require 'bind-key)
-;; (require 'bytecomp)
-;; (require 'diminish nil t)
-;; (require 'bytecomp)
 ;;
 ;; Whether to report about loading and configuration details.
 (setq use-package-verbose t)
