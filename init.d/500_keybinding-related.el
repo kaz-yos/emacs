@@ -312,7 +312,6 @@ _d_: subtree
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
   :defer 5
-  :commands (which-key-mode)
   ;;
   :config
   (setq which-key-lighter "")
@@ -324,7 +323,9 @@ _d_: subtree
   (setq which-key-side-window-location 'left)
   ;; Max size
   (setq which-key-side-window-max-height 0.5)
-  (setq which-key-side-window-max-width 0.5))
+  (setq which-key-side-window-max-width 0.5)
+  ;;
+  (which-key-mode 1))
 
 
 ;;;
