@@ -62,11 +62,6 @@
   (setq projectile-switch-project-action 'projectile-dired)
   (setq projectile-find-dir-includes-top-level t)
   ;;
-;;;  helm-projectile.el
-  ;; http://tuhdo.github.io/helm-projectile.html
-  (use-package helm-projectile
-    :bind ("C-M-z" . helm-projectile))
-  ;;
 ;;;  counsel-projectile.el
   ;; https://github.com/ericdanan/counsel-projectile
   (use-package counsel-projectile
