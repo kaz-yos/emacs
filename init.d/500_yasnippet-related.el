@@ -38,20 +38,3 @@
   ;;
   ;; Activate globally.
   (yas-global-mode 1))
-
-
-;;;  yatemplate.el
-;; https://github.com/mineo/yatemplate
-;; http://emacs.rubikitch.com/yatemplate/
-;; http://emacs.rubikitch.com/sd1602-autoinsert-yatemplate-yasnippet/
-;; https://github.com/fommil/dotfiles/tree/master/.emacs.d/templates
-(use-package yatemplate
-  :disabled t
-  :config
-  ;; Template folder (default)
-  (setq yatemplate-dir "~/.emacs.d/templates/")
-  ;; Filename separator (Avoid : in macOS)
-  (setq yatemplate-separator ";")
-  ;; Fill auto-insert-alist
-  ;; auto-insert-alist: A list specifying text to insert by default into a new file.
-  (yatemplate-fill-alist))
