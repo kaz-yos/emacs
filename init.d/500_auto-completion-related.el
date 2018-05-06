@@ -189,14 +189,6 @@
                                         (system-name-sans-domain)
                                         ".el")))
 
-;;;  company-quickhelp.el
-;; Documentation popup for Company
-;; https://github.com/expez/company-quickhelp
-(use-package company-quickhelp
-  :disabled t
-  :config
-  (company-quickhelp-mode 1))
-
 ;;;  company-try-hard.el
 ;; https://github.com/Wilfred/company-try-hard
 (use-package company-try-hard
