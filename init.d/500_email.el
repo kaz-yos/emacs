@@ -14,16 +14,6 @@
 (setq message-sendmail-extra-arguments '("--read-envelope-from"))
 (setq message-sendmail-f-is-evil 't)
 
-;;;  smtpmail-async.el
-;; https://github.com/jwiegley/emacs-async
-;; https://www.djcbsoftware.nl/code/mu/mu4e/Writing-messages.html
-;; DO NOT USE THIS. SENDING CAN FAIL AND GO UNNOTICED.
-(use-package smtpmail-async
-  :disabled t
-  :config
-  (setq send-mail-function 'async-smtpmail-send-it)
-  (setq message-send-mail-function 'async-smtpmail-send-it))
-
 
 ;;;
 ;;; mu4e-related
