@@ -270,5 +270,11 @@
 ;;
 ;;;   org-zotxt.el
 ;; Interface org-mode with Zotero via the zotxt extension
+;; https://github.com/egh/zotxt-emacs
+;;
+;; M-x org-zotxt-mode
+;; Then select one or more items in the Zotero.app pane. Finally, in emacs, use: C-c " i to insert these items as citations. This inserts a zotero link with descriptive link text.
+;; This will insert something like:
+;; [[zotero://select/items/1_I5J7BX76][Yoshida, Kazuki, Yasuharu Tokuda, Hideto Oshikawa, Masako Utsunomiya, Tatsuo Kobayashi, Makiko Kimura, Gautam A. Deshpande, Kazuo Matsui, and Mitsumasa Kishimoto. “An Observational Study of Tocilizumab and TNF-α Inhibitor Use in a Japanese Community Hospital: Different Remission Rates, Similar Drug Survival and Safety.” Rheumatology (Oxford, England) 50, no. 11 (November 2011): 2093–99. https://doi.org/10.1093/rheumatology/ker295.]]
 (use-package org-zotxt
   :commands (org-zotxt-mode))
