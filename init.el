@@ -69,9 +69,13 @@
 
 ;;; initchart.el
 ;; https://github.com/yuttie/initchart
-;; (require 'initchart)
-;; (initchart-record-execution-time-of load file)
-;; (initchart-record-execution-time-of require feature)
+;;
+;; See the *initchart* buffer for inofrmation.
+;; Evaluate the following to save a chart.
+;; (initchart-visualize-init-sequence (concat user-emacs-directory "misc/initchart.svg"))
+(require 'initchart)
+(initchart-record-execution-time-of load file)
+(initchart-record-execution-time-of require feature)
 
 
 ;;; init-loader.el
