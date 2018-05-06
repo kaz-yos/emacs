@@ -36,10 +36,6 @@
 ;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;;
 (use-package smartchr
-  ;; Use init as they have to be present at the time of hook activation by major modes
-  :init
-  (add-to-list 'load-path
-               (concat user-emacs-directory "el-get/smartchr"))
   ;;
   ;; Need to require a library defining thread-first macro?
   (use-package subr-x

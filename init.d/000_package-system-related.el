@@ -55,24 +55,3 @@
 ;; Automatic installation when packages not installed. (Don't use many errors).
 ;; https://github.com/jwiegley/use-package#for-packageel-users
 ;; (setq use-package-always-ensure t)
-
-
-;;;
-;;; el-get.el package system
-;; https://github.com/dimitri/el-get
-;;
-;; The load-path is configured at the top of init.el.
-;;
-;; Alternative Basic Setup with Installation via MELPA
-;; https://github.com/dimitri/el-get#alternative-basic-setup-with-installation-via-melpa
-(use-package el-get
-  ;; Deferred loading unless called explicitly.
-  :commands (el-get-list-packages)
-  ;;
-  :config
-  (add-to-list 'el-get-recipe-path (concat user-emacs-directory
-                                           "el-get-user/recipes"))
-  (el-get 'sync))
-;;
-;;;  Packages installed via el-get. Explicitly specify their paths.
-;;;   smartchr

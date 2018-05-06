@@ -56,10 +56,6 @@
 (let ((default-directory (concat user-emacs-directory "elpa/")))
   (normal-top-level-add-subdirs-to-load-path))
 ;;
-;; el-get.el package system 2013-02-26 (additional configuration further below)
-;; https://github.com/dimitri/el-get
-(add-to-list 'load-path (concat user-emacs-directory "el-get/el-get/"))
-;;
 ;; Packages added by auto-install (put no subfolders)
 (add-to-list 'load-path (concat user-emacs-directory "auto-install/"))
 ;;
