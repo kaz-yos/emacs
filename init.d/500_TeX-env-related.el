@@ -162,24 +162,6 @@
   (add-hook 'LaTeX-mode-hook 'company-auctex-init))
 
 
-;;;  company-math.el
-;; https://github.com/vspinu/company-math
-(use-package company-math
-  ;; math-symbol-list-subscripts not found issue?
-  :disabled t
-  :commands (my-company-math-setup)
-  ;;
-  :init
-  (add-hook 'TeX-mode-hook 'my-company-math-setup)
-  ;;
-  :config
-  (defun my-company-math-setup ()
-    "Add company-math-symbols-latex to company-backends"
-    (setq-local company-backends
-                (append '(company-math-symbols-latex)
-                        company-backends))))
-
-
 ;;;
 ;;; latex-math-preview.el
 ;; http://www.emacswiki.org/emacs/LaTeXMathPreview
