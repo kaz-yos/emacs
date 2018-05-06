@@ -251,32 +251,6 @@
                (local-set-key (kbd "A-C-a") 'reftex-citation))))
 
 
-;;;  bibtex.el
-;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX
-;; Getting current LaTeX document to use your .bib file
-;; http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#Getting_current_LaTeX_document_to_use_your_.bib_file
-;; (require 'bibtex)
-
-
-;;;  zotelo.el
-;; https://github.com/vitoshka/zotelo
-;; https://forums.zotero.org/discussion/19608/zotero-emacs-integration/
-(use-package zotelo
-  :disabled t
-  :commands (zotelo-set-collection
-             zotelo-update-database
-             zotelo-minor-mode)
-  :init
-  (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
-  ;;
-  :config
-  (setq zotelo-use-journal-abbreviation nil)
-  ;;
-  ;; zotelo-set-collection uses the ido interface by default.
-  ;; If you don't like it, set `zotelo-use-ido' to nil.
-  (setq zotelo-use-ido nil))
-
-
 ;;;  zotxt.el
 ;; https://github.com/egh/zotxt-emacs
 ;; Depends on the zotxt Zotero extension.
