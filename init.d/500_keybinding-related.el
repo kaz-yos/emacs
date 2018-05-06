@@ -36,7 +36,8 @@
 ;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;;
 (use-package smartchr
-  ;;
+  ;; Use init as they have to be present at the time of hook activation by major modes
+  :init
   ;; Need to require a library defining thread-first macro?
   (use-package subr-x
     :commands (thread-first))
