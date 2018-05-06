@@ -8,9 +8,11 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Prefix-Keymaps.html
 ;; https://www.emacswiki.org/emacs/PrefixKey
 ;; http://ergoemacs.org/emacs/emacs_keybinding_power_of_keys_sequence.html
-(define-prefix-command 'my-key-map)
-;; bind-key* overrides any mode-specific bindings.
-(bind-key* "C-c m" 'my-key-map)
+;;
+;; https://github.com/jwiegley/use-package/blob/master/bind-key.el
+;; To set up a prefix map, use `:prefix-map' and `:prefix' arguments
+(bind-keys* :prefix-map my-key-map
+            :prefix "C-c m")
 
 
 ;;;
