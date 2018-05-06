@@ -201,12 +201,11 @@
 ;;;  company-ngram.el
 ;; https://github.com/kshramt/company-ngram
 (use-package company-ngram
-  :disabled t
   :config
-  ;; ~/data/ngram/*.txt are used as data
+  ;; ngram/*.txt are used as data
   (setq company-ngram-data-dir
         (concat user-emacs-directory
-                "~/data/ngram"))
+                "misc/ngram"))
   ;; company-ngram supports python 3 or newer
   (setq company-ngram-python "python3")
   ;; Initiate use
