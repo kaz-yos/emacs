@@ -233,10 +233,8 @@
 ;; Sort completion candidates by previous completion choices
 ;; https://github.com/company-mode/company-statistics
 (use-package company-statistics
-  :init
-  (add-hook 'company-mode-hook 'company-statistics-mode)
-  ;;
   :commands (company-statistics-mode)
+  :hook (company-mode . company-statistics-mode)
   ;;
   :config
   (setq company-statistics-file (concat user-emacs-directory
