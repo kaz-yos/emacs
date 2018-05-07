@@ -163,8 +163,63 @@
   (edit-category-table-for-company-dabbrev)
   (setq company-dabbrev-char-regexp "\\cs")
   ;;
-  ;; Backends (Adding globally is also ok; backends are context-aware)
+;;;   Backends
+  ;; Adding globally is also ok. Backends are context-aware.
+  ;;
+  ;; Writing backends
+  ;; https://github.com/company-mode/company-mode/wiki/Writing-backends
+  ;; Company Mode Backends
+  ;; https://www.emacswiki.org/emacs/CompanyModeBackends
+  ;; Best company-backends lists
   ;; http://emacs.stackexchange.com/questions/17537/best-company-backends-lists
+  ;;
+  ;; Default list of symbols for backends.
+  (defcustom company-backends `(;; Emacs Lisp
+                                ;; In newer versions of Emacs, company-capf is used instead.
+                                ,@(unless (version< "24.3.51" emacs-version)
+                                    (list 'company-elisp))
+                                ;; BBDB https://www.emacswiki.org/emacs/CategoryBbdb
+                                company-bbdb
+                                ;; nxml-mode
+                                ;; In Emacs >= 26, company-capf is used instead.
+                                ,@(unless (version<= "26" emacs-version)
+                                    (list 'company-nxml))
+                                ;; css-mode
+                                ;; In Emacs >= 26, company-capf is used instead.
+                                ,@(unless (version<= "26" emacs-version)
+                                    (list 'company-css))
+                                ;; Eclim provides access to Eclipse Java IDE features for other editors
+                                company-eclim
+                                ;; CEDET Semantic
+                                company-semantic
+                                ;; Clang is a parser for C and ObjC.
+                                company-clang
+                                ;; completion backend for Xcode projects
+                                company-xcode
+                                ;; CMake is a cross-platform, open-source make system.
+                                company-cmake
+                                ;; The CAPF back-end provides a bridge to the standard
+                                ;; `completion-at-point-functions' facility, and thus can support any major mode
+                                ;; that defines a proper completion function, including emacs-lisp-mode,
+                                ;; css-mode and nxml-mode.
+                                company-capf
+                                ;; Completions works for proper absolute and relative files paths.
+                                company-files
+                                ;; Grouped backends
+                                (;; The backend looks for all symbols in the current buffer that aren't
+                                 ;; in comments or strings.
+                                 company-dabbrev-code
+                                 ;; backend for GNU Global
+                                 company-gtags
+                                 ;; backend for etags
+                                 company-etags
+                                 ;; backend for programming language keywords
+                                 company-keywords)
+                                ;; backend for `oddmuse-mode'
+                                company-oddmuse
+                                ;; dabbrev-like `company-mode' completion backend.
+                                company-dabbrev)
+    "Copied from melpa/company-20180501.11/company.el")
   ;; Emacs lisp (one of default backends; somehow not included originally)
   ;; The following adds company-elisp globally.
   ;; (add-to-list 'company-backends 'company-elisp)
