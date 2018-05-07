@@ -119,6 +119,8 @@
   :commands (global-company-mode)
   :bind (("A-<tab>" . company-complete)
          ("A-i" . company-complete)
+         :map my-key-map
+         ("c" . company-complete)
          ;;
          ;; Keymap that is enabled during an active completion.
          :map company-active-map
@@ -204,6 +206,7 @@
                                 ;; `completion-at-point-functions' facility, and thus can support any major mode
                                 ;; that defines a proper completion function, including emacs-lisp-mode,
                                 ;; css-mode and nxml-mode.
+                                ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Completion-in-Buffers.html
                                 company-capf
                                 ;; Completions works for proper absolute and relative files paths.
                                 company-files

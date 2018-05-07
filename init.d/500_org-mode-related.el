@@ -171,12 +171,14 @@ When calling non-interactively SIZE should be a string Columns x Rows."
   ;; https://www.emacswiki.org/emacs/EmacsSyntaxTable
   (modify-syntax-entry ?$  "."  text-mode-syntax-table)
   ;;
-  ;; Company mode fix
+  ;; company-mode
   ;; company in org-mode not working #50
   ;; https://github.com/company-mode/company-mode/issues/50
   (defun add-pcomplete-to-capf ()
     (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
   (add-hook 'org-mode-hook #'add-pcomplete-to-capf)
+  ;; Company-mode completion for Org keywords
+  ;; https://emacs.stackexchange.com/questions/21171/company-mode-completion-for-org-keywords
   ;;
   ;; Linewrap in Org-mode of Emacs
   ;; http://superuser.com/questions/299886/linewrap-in-org-mode-of-emacs
