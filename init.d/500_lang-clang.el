@@ -33,11 +33,16 @@
 ;;; company-c-headers.el
 ;; https://github.com/randomphrase/company-c-headers
 (use-package company-c-headers
-  :commands (company-c-headers)
-  ;;
-  :init
-  (add-hook 'global-company-mode-hook '(lambda ()
-                                         (add-to-list 'company-backends 'company-c-headers))))
+  :commands (company-c-headers
+             company-c-headers-setup)
+  :hook ((c++-mode . company-c-headers-setup)
+         (c-mode . company-c-headers-setup)
+         (objc-mode . company-c-headers-setup))
+  :config
+  (defun company-c-headers-setup ()
+    "Add company-c-headers to company-backends buffer-locally."
+    (add-to-list (make-local-variable 'company-backends)
+                 'company-c-headers)))
 
 
 ;;;
@@ -62,24 +67,27 @@
 (use-package irony
   :commands (irony-mode)
   ;;
-  :init
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'objc-mode-hook 'irony-mode))
+  :hook ((c++-mode . irony-mode)
+         (c-mode . irony-mode)
+         (objc-mode . irony-mode)))
 
 
 ;;;  company-irony.el
 ;; https://github.com/Sarcasm/company-irony/
 (use-package company-irony
-  :commands (company-irony)
-  ;;
-  :init
-  (eval-after-load 'company
-    '(add-to-list 'company-backends 'company-irony)))
+  :commands (company-irony
+             company-irony-setup)
+  :hook ((c++-mode . company-irony-setup)
+         (c-mode . company-irony-setup)
+         (objc-mode . company-irony-setup))
+  :config
+  (defun company-irony-setup ()
+    "Add company-irony to company-backends buffer-locally."
+    (add-to-list (make-local-variable 'company-backends)
+                 'company-irony)))
 
 
 ;;;  irony-eldoc.el
 (use-package irony-eldoc
   :commands (irony-eldoc)
-  :init
-  (add-hook 'irony-mode-hook #'irony-eldoc))
+  :hook (irony-mode . irony-eldoc))
