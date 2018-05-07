@@ -8,7 +8,6 @@
   '(;; For minor-mode, first char is 'space'
     (abbrev-mode            . "")
     (anzu-mode              . "")
-    (company-mode           . "")
     (eldoc-mode             . "")
     (elisp-slime-nav-mode   . "")
     (flymake-mode           . "")
