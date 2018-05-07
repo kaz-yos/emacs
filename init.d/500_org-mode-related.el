@@ -171,7 +171,8 @@ When calling non-interactively SIZE should be a string Columns x Rows."
   ;; https://www.emacswiki.org/emacs/EmacsSyntaxTable
   (modify-syntax-entry ?$  "."  text-mode-syntax-table)
   ;;
-  ;; Company mode
+  ;; Company mode fix
+  ;; company in org-mode not working #50
   ;; https://github.com/company-mode/company-mode/issues/50
   (defun add-pcomplete-to-capf ()
     (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
