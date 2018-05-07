@@ -166,8 +166,9 @@
   ;; Backends (Adding globally is also ok; backends are context-aware)
   ;; http://emacs.stackexchange.com/questions/17537/best-company-backends-lists
   ;; Emacs lisp (one of default backends; somehow not included originally)
-  ;; (add-to-list 'company-backends 'company-elisp) ; adding globally
-  ;; Add locally
+  ;; The following adds company-elisp globally.
+  ;; (add-to-list 'company-backends 'company-elisp)
+  ;; The following adds company-elisp locally to emacs-lisp-mode and ielm.
   (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
     (add-hook hook '(lambda ()
                       (add-to-list (make-local-variable 'company-backends)
