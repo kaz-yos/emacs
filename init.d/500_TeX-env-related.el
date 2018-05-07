@@ -156,10 +156,41 @@
 ;;;  company-auctex.el
 ;; https://github.com/alexeyr/company-auctex
 (use-package company-auctex
-  :commands (company-auctex-init)
-  ;;
-  :init
-  (add-hook 'LaTeX-mode-hook 'company-auctex-init))
+  :commands (my-company-auctex-init)
+  :hook ((LaTeX-mode . my-company-auctex-init)
+         (org-mode . my-company-auctex-init))
+  :config
+  (defun my-company-auctex-init ()
+    "Configure company-auctex buffer-locally."
+    (add-to-list (make-local-variable 'company-backends)
+                 'company-auctex-labels)
+    (add-to-list (make-local-variable 'company-backends)
+                 'company-auctex-bibs)
+    (add-to-list (make-local-variable 'company-backends)
+                 '(company-auctex-macros company-auctex-symbols company-auctex-environments))))
+
+;;;
+;; Completion back-ends for for math unicode symbols and latex tags
+;; https://github.com/vspinu/company-math
+;; This add-on defines three company-mode backends:
+;;  company-math-symbols-latex - math latex tags (by default, active only on latex math faces) symbols
+;;  company-math-symbols-unicode - math unicode symbols and sub(super)scripts (by default, active everywhere except math faces)
+;;  company-latex-commands - latex commands
+;; Only company-math-symbols-latex is useful for my use case.
+(use-package company-math
+  :commands (my-company-math-init)
+  :hook ((LaTeX-mode . my-company-math-init)
+         (org-mode . my-company-math-init))
+  :config
+  (defun my-company-math-init ()
+    "Configure company-math buffer-locally."
+    (add-to-list (make-local-variable 'company-backends)
+                 'company-math-symbols-latex)
+    ;; (add-to-list (make-local-variable 'company-backends)
+    ;;              'company-math-symbols-unicode)
+    ;; (add-to-list (make-local-variable 'company-backends)
+    ;;              'company-latex-commands)
+    ))
 
 
 ;;;
