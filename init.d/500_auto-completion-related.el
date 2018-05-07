@@ -125,15 +125,17 @@
          ("C-n" . company-select-next)
          ("C-p" . company-select-previous)
          ("C-s" . company-filter-candidates)
+         ("C-d" . company-show-doc-buffer)
+         ("M-." . company-show-location)
          ;;
          ;; Keymap used for incrementally searching the completion candidates.
          :map company-search-map
          ("C-n" . company-select-next)
          ("C-p" . company-select-previous))
   ;;
-  :init
   ;; company-mode everywhere
-  (add-hook 'after-init-hook 'global-company-mode)
+  :hook (after-init . global-company-mode)
+  :init
   ;; except in these modes
   ;; (setq company-global-modes '(not eshell-mode ielm-mode))
   ;;
