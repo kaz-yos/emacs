@@ -35,7 +35,10 @@
 ;; (package-initialize &optional NO-ACTIVATE)
 ;; If optional arg NO-ACTIVATE is non-nil, don’t activate packages.
 ;; https://emacs.stackexchange.com/questions/16831/using-package-el-to-install-and-update-but-use-package-for-loading-and-configuri
-;; (package-initialize t)
+;; This is no longer necessary in emacs 27.
+;; https://github.com/jkitchin/scimax/issues/194
+(when (version< emacs-version "27.0")
+  (package-initialize t))
 
 
 ;;;
