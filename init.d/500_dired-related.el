@@ -28,6 +28,7 @@
   ;; https://github.com/jwiegley/use-package#binding-within-local-keymaps
   :bind (:map dired-mode-map
               ("i" . dired-subtree-insert)
+              (";" . dired-subtree-remove)
               ("<tab>" . dired-subtree-remove)
               ("^" . dired-subtree-up-dwim))
   ;;
