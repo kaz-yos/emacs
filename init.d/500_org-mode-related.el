@@ -545,18 +545,44 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
       (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
   (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
   ;;
-;;;  Regular markdown exporter
+;;;  ox-md.el
+  ;; Regular markdown exporter
   (use-package ox-md)
   ;;
-;;;  Qiita Markdown Back-End for Org Export Engine
+;;;  ox-qmd.el
+  ;; Qiita Markdown Back-End for Org Export Engine
   ;; https://github.com/0x60df/ox-qmd
   ;; http://qiita.com/0x60df/items/3cde67967e3db30d9afe
   (use-package ox-qmd)
   ;;
-;;;  Publishing Org-mode files to HTML
+;;;  ox-publish
+  ;; Publishing Org-mode files to HTML
   ;; http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
   (use-package ox-publish)
   ;;
+;;;  org2blog.el
+  ;; blog from org-mode to wordpress
+  ;; https://github.com/org2blog/org2blog
+  ;; Blogging with Org Mode (Only)
+  ;; http://irreal.org/blog/?p=4940
+  ;; Mathematics in a Blog Post
+  ;; http://irreal.org/blog/?p=3018
+  (use-package org2blog
+    ;; Without an universal argument (C-u), these only publish a draft.
+    :commands (org2blog/wp-post-buffer
+               org2blog/wp-post-buffer-as-page)
+    ;;
+    :config
+    ;; Configure sites
+    ;; Association list to set information for each blog.
+    ;; Each element of the alist is a blog name.  The CAR of each
+    ;; element is a string, uniquely identifying the project.  The CDR
+    ;; of each element is a well-formed property list with an even
+    ;; number of elements, alternating keys and values, specifying
+    ;; parameters for the blog.
+    ;; (:property value :property value ... )
+    ;; org2blog/wp-blog-alist is configured elsewhere.
+    )
   ;;
   ;;
 ;;;
