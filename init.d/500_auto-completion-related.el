@@ -3,7 +3,7 @@
 ;;;
 ;;; hippie-expand (built-in)
 ;; hippie-expand instead of less functional dabbrev-expand
-(global-set-key (kbd "M-/") 'hippie-expand)
+(bind-key* "M-/" 'hippie-expand)
 
 
 ;;;
