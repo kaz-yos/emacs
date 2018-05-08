@@ -14,6 +14,14 @@
 (use-package auto-complete
   :commands (auto-complete
              auto-complete-mode)
+  :bind (:map ac-menu-map
+              ("C-n" . ac-next)
+              ("C-p" . ac-previous)
+              ("<tab>" . ac-next)
+              ("<S-tab>" . ac-previous)
+              :map ac-completing-map
+              ("<tab>" . ac-complete)
+              ("<return>" . ac-complete))
   ;;
   :init
   ;; Configure default sources
@@ -78,14 +86,6 @@
   ;; Non-nil means a special keymap `ac-menu-map' on completing menu will be used.
   ;; http://cx4a.org/software/auto-complete/manual.html#Not_to_complete_automatically
   (setq ac-use-menu-map t)
-  (define-key ac-menu-map (kbd "C-n")     'ac-next)
-  (define-key ac-menu-map (kbd "C-p")     'ac-previous)
-  (define-key ac-menu-map (kbd "<tab>")   'ac-next)
-  (define-key ac-menu-map (kbd "<S-tab>") 'ac-previous)
-  ;;
-  ;; http://www.emacswiki.org/emacs/ESSAuto-complete
-  (define-key ac-completing-map (kbd "<tab>")    'ac-complete)
-  (define-key ac-completing-map (kbd "<return>") 'ac-complete)
   ;;
   ;; Trigger key
   ;; http://cx4a.org/software/auto-complete/manual.html#Trigger_Key
