@@ -1,6 +1,4 @@
-;;;
-;;; TEMPLATE-RELATED
-;;;  yasnippet
+;;; yasnippet.el
 ;; https://github.com/capitaomorte/yasnippet
 ;; https://joaotavora.github.io/yasnippet
 ;; https://blog.alex-miller.co/emacs/spacemacs/2017/05/28/yasnippets.html/
@@ -17,7 +15,9 @@
               ;; Open a buffer to create a new snippet
               ("C-x i n" . yas-new-snippet)
               ;; View/edit snippets
-              ("C-x i v" . yas-visit-snippet-file))
+              ("C-x i v" . yas-visit-snippet-file)
+              ;; Display snippets for each table.
+              ("C-x i d" . yas-describe-tables))
   :config
   ;; Use Popup isearch for Yasnippet Prompt.
   ;; http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
