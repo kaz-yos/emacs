@@ -624,10 +624,8 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
              (org2blog/wp-server-blogid (or (plist-get (cdr org2blog/wp-blog) :id) "1"))
              (org2blog/wp-server-pass (or
                                        (plist-get (cdr org2blog/wp-blog) :password)
-                                       (read-passwd (format "%s Weblog password? " org2blog/wp-blog-name))))
-             (org2blog/wp-logged-in t))
+                                       (read-passwd (format "%s Weblog password? " org2blog/wp-blog-name)))))
         ;; Body
-        (message "Logged in")
         ;; Directly post as a draft
         (metaweblog-new-post org2blog/wp-server-xmlrpc-url
                              org2blog/wp-server-userid
@@ -644,7 +642,12 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
     :commands (org-html-paragraph
                org-html-src-block)
     :config
-    ;; Redefine html paragraph parser
+    ;; Output type to be used by htmlize when formatting code snippets.
+    ;; https://emacs.stackexchange.com/questions/7629/the-syntax-highlight-and-indentation-of-source-code-block-in-exported-html-file
+    ;; Do not format.
+    (setq org-html-htmlize-output-type nil)
+    ;;
+    ;; Redefine html paragraph parser to avoid unnecessary <p> </p>.
     (defun org-html-paragraph (paragraph contents info)
       "Transcode a PARAGRAPH element from Org to HTML.
 CONTENTS is the contents of the paragraph, as a string.  INFO is
@@ -689,6 +692,22 @@ the plist used as a communication channel."
          (t (format "%s" contents)))))
     ;;
     ;; Emphasize example.
+    (defun org-html-example-block (example-block _contents info)
+      "Transcode a EXAMPLE-BLOCK element from Org to HTML.
+CONTENTS is nil.  INFO is a plist holding contextual
+information."
+      (let ((attributes (org-export-read-attribute :attr_html example-block)))
+        (if (plist-get attributes :textarea)
+	    (org-html--textarea-block example-block)
+          (format "<pre class=\"example\"%s><em>\n%s</em></pre>"
+	          (let* ((name (org-element-property :name example-block))
+		         (a (org-html--make-attribute-string
+			     (if (or (not name) (plist-member attributes :id))
+			         attributes
+			       (plist-put attributes :id name)))))
+		    (if (org-string-nw-p a) (concat " " a) ""))
+	          (org-html-format-code example-block info)))))
+    ;;
     ;; This is not working.
     (defun org-html-src-block (src-block _contents info)
       "Transcode a SRC-BLOCK element from Org to HTML.
