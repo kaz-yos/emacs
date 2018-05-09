@@ -262,27 +262,6 @@
       ;; Flush shell to prevent heavy log from staying around
       (ess-flush-shell)))
   ;;
-;;; Send X to ESS buffer
-  (defun ess-send-X ()
-    "Send X to ESS buffer to resolve LaTeX error"
-    (interactive)
-    ;;
-    (let* ((script-window (selected-window)))
-      ;; Go to inferior process
-      (ess-switch-to-ESS t)
-      ;;
-      (insert "X")
-      ;; Return key
-      (inferior-ess-send-input)
-      ;; Come back to script
-      (select-window script-window)))
-  ;;
-  ;; Give A-x (close to A-s for knitting)
-  (define-key ess-noweb-minor-mode-map (kbd "A-x") 'ess-send-X)
-  (define-key ess-noweb-minor-mode-map (kbd "H-x") 'ess-send-X)
-  (define-key poly-noweb+r-mode-map (kbd "A-x") 'ess-send-X)
-  (define-key poly-noweb+r-mode-map (kbd "H-x") 'ess-send-X)
-  ;;
 ;;;
 ;;; ESS SAS configuration
   ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
