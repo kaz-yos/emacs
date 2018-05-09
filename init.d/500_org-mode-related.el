@@ -582,7 +582,129 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
     ;; parameters for the blog.
     ;; (:property value :property value ... )
     ;; org2blog/wp-blog-alist is configured elsewhere.
-    )
+    ;;
+    ;; M-x org2blog/wp-post-buffer errors as wp.getPageList method requires edit access.
+    ;;
+    ;; Backtrace
+    ;; Debugger entered--Lisp error: (error "XML-RPC fault ‘Sorry, you are not allowed to edit pages.’")
+    ;; signal(error ("XML-RPC fault ‘Sorry, you are not allowed to edit pages.’"))
+    ;; error("XML-RPC fault `%s'" "Sorry, you are not allowed to edit pages.")
+    ;; xml-rpc-xml-to-response(((methodResponse nil (fault nil (value nil (struct nil (member nil (name nil "faultCode") (value nil (int nil "401"))) (member nil (name nil "faultString") (value nil (string nil "Sorry, you are not allowed to edit pages.")))))))))
+    ;; xml-rpc-method-call("https://some_url.com/xmlrpc.php" "wp.getPageList" "1" "username" "password_string\n")
+    ;; wp-get-pagelist("https://some_url.com/xmlrpc.php" "username" "password_string\n" "1")
+    ;; org2blog/wp-login(nil)
+    ;; org2blog/wp-correctly-login()
+    ;; org2blog/wp-post-buffer(nil)
+    ;; funcall-interactively(org2blog/wp-post-buffer nil)
+    ;; call-interactively(org2blog/wp-post-buffer record nil)
+    ;; command-execute(org2blog/wp-post-buffer record)
+    ;; helm-M-x(nil "org2blog/wp-post-buffer")
+    ;; funcall-interactively(helm-M-x nil "org2blog/wp-post-buffer")
+    ;; call-interactively(helm-M-x nil nil)
+    ;; command-execute(helm-M-x)
+    ;;
+    ;; Define a function that avoids (org2blog/wp-correctly-login) entirely.
+    (defun my-wp-directly-post-as-draft ()
+      "Directly post as a draft."
+      (interactive)
+      (metaweblog-new-post org2blog/wp-server-xmlrpc-url
+                           org2blog/wp-server-userid
+                           org2blog/wp-server-pass
+                           org2blog/wp-server-blogid
+                           ;; Convert current buffer as post.
+                           (org2blog/wp--export-as-post nil)
+                           ;; Do not publish (draft only).
+                           nil)))
+  ;;
+  ;; ox-html.el
+  ;; ox-wp delegates most work to ox-html.el
+  (use-package ox-html
+    :config
+    ;; Redefine html paragraph parser
+    (defun org-html-paragraph (paragraph contents info)
+      "Transcode a PARAGRAPH element from Org to HTML.
+CONTENTS is the contents of the paragraph, as a string.  INFO is
+the plist used as a communication channel."
+      (let* ((parent (org-export-get-parent paragraph))
+	     (parent-type (org-element-type parent))
+	     (style '((footnote-definition " class=\"footpara\"")
+		      (org-data " class=\"footpara\"")))
+	     (attributes (org-html--make-attribute-string
+		          (org-export-read-attribute :attr_html paragraph)))
+	     (extra (or (cadr (assq parent-type style)) "")))
+        (cond
+         ((and (eq parent-type 'item)
+	       (not (org-export-get-previous-element paragraph info))
+	       (let ((followers (org-export-get-next-element paragraph info 2)))
+	         (and (not (cdr followers))
+		      (memq (org-element-type (car followers)) '(nil plain-list)))))
+          ;; First paragraph in an item has no tag if it is alone or
+          ;; followed, at most, by a sub-list.
+          contents)
+         ((org-html-standalone-image-p paragraph info)
+          ;; Standalone image.
+          (let ((caption
+	         (let ((raw (org-export-data
+			     (org-export-get-caption paragraph) info))
+		       (org-html-standalone-image-predicate
+		        #'org-html--has-caption-p))
+	           (if (not (org-string-nw-p raw)) raw
+		     (concat "<span class=\"figure-number\">"
+			     (format (org-html--translate "Figure %d:" info)
+				     (org-export-get-ordinal
+				      (org-element-map paragraph 'link
+				        #'identity info t)
+				      info nil #'org-html-standalone-image-p))
+			     " </span>"
+			     raw))))
+	        (label (and (org-element-property :name paragraph)
+			    (org-export-get-reference paragraph info))))
+	    (org-html--wrap-image contents info caption label)))
+         ;; Regular paragraph.
+         ;; Do not use <p> </p>
+         (t (format "%s" contents)
+            ))))
+    ;; Emphasize example.
+    (defun org-html-src-block (src-block _contents info)
+      "Transcode a SRC-BLOCK element from Org to HTML.
+CONTENTS holds the contents of the item.  INFO is a plist holding
+contextual information."
+      (if (org-export-read-attribute :attr_html src-block :textarea)
+          (org-html--textarea-block src-block)
+        (let* ((lang (org-element-property :language src-block))
+	       (code (org-html-format-code src-block info))
+	       (label (let ((lbl (and (org-element-property :name src-block)
+				      (org-export-get-reference src-block info))))
+		        (if lbl (format " id=\"%s\"" lbl) "")))
+	       (klipsify  (and  (plist-get info :html-klipsify-src)
+                                (member lang '("javascript" "js"
+					       "ruby" "scheme" "clojure" "php" "html")))))
+          (if (not lang) (format "<pre class=\"example\"%s><em>\n%s</em></pre>" label code)
+	    (format "<div class=\"org-src-container\">\n%s%s\n</div>"
+		    ;; Build caption.
+		    (let ((caption (org-export-get-caption src-block)))
+		      (if (not caption) ""
+		        (let ((listing-number
+			       (format
+			        "<span class=\"listing-number\">%s </span>"
+			        (format
+			         (org-html--translate "Listing %d:" info)
+			         (org-export-get-ordinal
+			          src-block info nil #'org-html--has-caption-p)))))
+		          (format "<label class=\"org-src-name\">%s%s</label>"
+			          listing-number
+			          (org-trim (org-export-data caption info))))))
+		    ;; Contents.
+		    (if klipsify
+		        (format "<pre><code class=\"src src-%s\"%s%s>%s</code></pre>"
+			        lang
+			        label
+			        (if (string= lang "html")
+				    " data-editor-type=\"html\""
+			          "")
+			        code)
+		      (format "<pre class=\"src src-%s\"%s>%s</pre>"
+                              lang label code))))))))
   ;;
   ;;
 ;;;
