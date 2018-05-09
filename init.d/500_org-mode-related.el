@@ -619,6 +619,8 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; ox-html.el
   ;; ox-wp delegates most work to ox-html.el
   (use-package ox-html
+    :commands (org-html-paragraph
+               org-html-src-block)
     :config
     ;; Redefine html paragraph parser
     (defun org-html-paragraph (paragraph contents info)
@@ -662,9 +664,10 @@ the plist used as a communication channel."
 	    (org-html--wrap-image contents info caption label)))
          ;; Regular paragraph.
          ;; Do not use <p> </p>
-         (t (format "%s" contents)
-            ))))
+         (t (format "%s" contents)))))
+    ;;
     ;; Emphasize example.
+    ;; This is not working.
     (defun org-html-src-block (src-block _contents info)
       "Transcode a SRC-BLOCK element from Org to HTML.
 CONTENTS holds the contents of the item.  INFO is a plist holding
@@ -679,6 +682,7 @@ contextual information."
 	       (klipsify  (and  (plist-get info :html-klipsify-src)
                                 (member lang '("javascript" "js"
 					       "ruby" "scheme" "clojure" "php" "html")))))
+          ;; Use <em> </em> for example
           (if (not lang) (format "<pre class=\"example\"%s><em>\n%s</em></pre>" label code)
 	    (format "<div class=\"org-src-container\">\n%s%s\n</div>"
 		    ;; Build caption.
