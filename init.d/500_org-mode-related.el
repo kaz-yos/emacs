@@ -570,7 +570,8 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   (use-package org2blog
     ;; Without an universal argument (C-u), these only publish a draft.
     :commands (org2blog/wp-post-buffer
-               org2blog/wp-post-buffer-as-page)
+               org2blog/wp-post-buffer-as-page
+               my-wp-directly-post-as-draft)
     ;;
     :config
     ;; Configure sites
@@ -607,14 +608,35 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
     (defun my-wp-directly-post-as-draft ()
       "Directly post as a draft."
       (interactive)
-      (metaweblog-new-post org2blog/wp-server-xmlrpc-url
-                           org2blog/wp-server-userid
-                           org2blog/wp-server-pass
-                           org2blog/wp-server-blogid
-                           ;; Convert current buffer as post.
-                           (org2blog/wp--export-as-post nil)
-                           ;; Do not publish (draft only).
-                           nil)))
+      (let* ((org2blog/wp-blog-name (or
+                                     ;; OR Use the only entry in alist
+                                     (and (equal (length org2blog/wp-blog-alist) 1)
+                                          (car (car org2blog/wp-blog-alist)))
+                                     ;; OR Prompt user
+                                     (completing-read
+                                      "Blog to login into? ([Tab] to see list): "
+                                      (mapcar 'car org2blog/wp-blog-alist) nil t)))
+             (dummy-variable (unless (> (length org2blog/wp-blog-name) 1)
+                               (error "Invalid blog name")))
+             (org2blog/wp-blog (assoc org2blog/wp-blog-name org2blog/wp-blog-alist))
+             (org2blog/wp-server-xmlrpc-url (plist-get (cdr org2blog/wp-blog) :url))
+             (org2blog/wp-server-userid (plist-get (cdr org2blog/wp-blog) :username))
+             (org2blog/wp-server-blogid (or (plist-get (cdr org2blog/wp-blog) :id) "1"))
+             (org2blog/wp-server-pass (or
+                                       (plist-get (cdr org2blog/wp-blog) :password)
+                                       (read-passwd (format "%s Weblog password? " org2blog/wp-blog-name))))
+             (org2blog/wp-logged-in t))
+        ;; Body
+        (message "Logged in")
+        ;; Directly post as a draft
+        (metaweblog-new-post org2blog/wp-server-xmlrpc-url
+                             org2blog/wp-server-userid
+                             org2blog/wp-server-pass
+                             org2blog/wp-server-blogid
+                             ;; Convert current buffer as post.
+                             (org2blog/wp--export-as-post nil)
+                             ;; Do not publish (draft only).
+                             nil))))
   ;;
   ;; ox-html.el
   ;; ox-wp delegates most work to ox-html.el
