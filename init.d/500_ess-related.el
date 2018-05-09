@@ -51,9 +51,11 @@
                 ("A-s" . polymode-export)
                 ("M-s M-s" . polymode-export)
                 ;;
-                :map poly-noweb+r-mode-map
-                ("A-s" . ess-swv-weave-PDF)
-                ("A-p" . ess-swv-PDF))
+                ;; This map no longer exists?
+                ;; :map poly-noweb+r-mode-map
+                ;; ("A-s" . ess-swv-weave-PDF)
+                ;; ("A-p" . ess-swv-PDF)
+                )
     ;;
     :config
     ;; Auto revert for .Rmd
