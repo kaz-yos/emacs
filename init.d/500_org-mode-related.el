@@ -330,7 +330,16 @@ When calling non-interactively SIZE should be a string Columns x Rows."
   ;; https://github.com/jkitchin/org-ref/tree/master/citeproc
   ;; http://kitchingroup.cheme.cmu.edu/blog/2015/12/03/Exporting-numbered-citations-in-html-with-unsorted-numbered-bibliography/
   (use-package org-ref-citeproc
-    :commands (orcp-citeproc))
+    :commands (orcp-citeproc
+               org-html-export-to-html-citeproc)
+    :config
+    (defun org-html-export-to-html-citeproc ()
+      "Export as an html file after citeproc."
+      (interactive)
+      (when (file-exists-p (concat (file-name-base buffer-file-name) ".html"))
+        (delete-file (concat (file-name-base buffer-file-name) ".html")))
+      (let ((org-export-before-parsing-hook '(orcp-citeproc)))
+        (browse-url (org-html-export-to-html)))))
   ;;
   ;;
 ;;;
