@@ -646,9 +646,6 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
     (defun my-wp-directly-post-as-draft-citeproc ()
       "Directly post as a draft after processing citations."
       (interactive)
-      ;; html file is deleted up front.
-      (when (file-exists-p (concat (file-name-base buffer-file-name) ".html"))
-        (delete-file (concat (file-name-base buffer-file-name) ".html")))
       ;; orcp-citeproc is done before parsing html.
       (let ((org-export-before-parsing-hook '(orcp-citeproc)))
         (my-wp-directly-post-as-draft))))
