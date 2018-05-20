@@ -299,7 +299,7 @@ When calling non-interactively SIZE should be a string Columns x Rows."
   ;;
   ;;
 ;;;
-;;; org-mode citation management by org-ref
+;;; org-ref.el
   ;; https://github.com/jkitchin/org-ref
   ;; https://github.com/jkitchin/org-ref/blob/master/org-ref.org
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
@@ -324,6 +324,13 @@ When calling non-interactively SIZE should be a string Columns x Rows."
     ;;
     ;; (add-hook 'org-mode-hook 'zotelo-minor-mode)
     )
+  ;;
+;;;  org-ref-citeproc.el
+  ;; Citation processor for org-mode
+  ;; https://github.com/jkitchin/org-ref/tree/master/citeproc
+  ;; http://kitchingroup.cheme.cmu.edu/blog/2015/12/03/Exporting-numbered-citations-in-html-with-unsorted-numbered-bibliography/
+  (use-package org-ref-citeproc
+    :commands (orcp-citeproc))
   ;;
   ;;
 ;;;
@@ -626,7 +633,7 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
                                        (plist-get (cdr org2blog/wp-blog) :password)
                                        (read-passwd (format "%s Weblog password? " org2blog/wp-blog-name)))))
         ;; Body
-        ;; Directly post as a draft
+        ;; Directly post as a draft to avoid a failed login.
         (metaweblog-new-post org2blog/wp-server-xmlrpc-url
                              org2blog/wp-server-userid
                              org2blog/wp-server-pass
@@ -634,7 +641,17 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
                              ;; Convert current buffer as post.
                              (org2blog/wp--export-as-post nil)
                              ;; Do not publish (draft only).
-                             nil))))
+                             nil)))
+    ;;
+    (defun my-wp-directly-post-as-draft-citeproc ()
+      "Directly post as a draft after processing citations."
+      (interactive)
+      ;; html file is deleted up front.
+      (when (file-exists-p (concat (file-name-base buffer-file-name) ".html"))
+        (delete-file (concat (file-name-base buffer-file-name) ".html")))
+      ;; orcp-citeproc is done before parsing html.
+      (let ((org-export-before-parsing-hook '(orcp-citeproc)))
+        (my-wp-directly-post-as-draft))))
   ;;
   ;; ox-html.el
   ;; ox-wp delegates most work to ox-html.el
