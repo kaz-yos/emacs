@@ -339,7 +339,19 @@ When calling non-interactively SIZE should be a string Columns x Rows."
       (when (file-exists-p (concat (file-name-base buffer-file-name) ".html"))
         (delete-file (concat (file-name-base buffer-file-name) ".html")))
       (let ((org-export-before-parsing-hook '(orcp-citeproc)))
-        (browse-url (org-html-export-to-html)))))
+        (browse-url (org-html-export-to-html))))
+    ;;
+    ;; Advice the function that inserts the bibliography text to remove junk.
+    (defun orcp-formatted-bibliography-clean-zotero-junk (orig-fun)
+      ;; Invoke (orcp-formatted-bibliography), which will contain Zotero-related junks.
+      ;; https://forums.zotero.org/discussion/61715/prevent-extra-braces-in-bibtex-export
+      ;; https://forums.zotero.org/discussion/29127/triple-curly-braces-around-capauthor-in-bibtex-export
+      (let ((res (funcall orig-fun)))
+        ;; Clean it up
+        (replace-regexp-in-string "{\\|}\\|*\\|\\\\'\\|\\\\" "" res)))
+    ;;
+    (advice-add 'orcp-formatted-bibliography
+                :around #'orcp-formatted-bibliography-clean-zotero-junk))
   ;;
   ;;
 ;;;
