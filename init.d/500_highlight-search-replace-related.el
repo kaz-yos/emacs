@@ -200,13 +200,15 @@ searched. If there is no symbol, empty search box is started."
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Grep-Searching.html
 (use-package wgrep
   :commands (wgrep-setup)
-  :init
-  (add-hook 'grep-setup-hook 'wgrep-setup)
+  :hook (grep-setup . wgrep-setup)
+  :bind (:map grep-mode-map
+              ;; r/C-x C-q/C-c C-i to enter edit mode. C-x C-s to save, C-c C-k
+              ("r" . wgrep-change-to-wgrep-mode)
+              ("C-x C-q" . wgrep-change-to-wgrep-mode)
+              ("C-c C-i" . wgrep-change-to-wgrep-mode))
   :config
-  ;; r/C-x C-q/C-c C-i to enter edit mode. C-x C-s to save, C-c C-k
-  (define-key grep-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
-  (define-key grep-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode)
-  (define-key grep-mode-map (kbd "C-c C-i") 'wgrep-change-to-wgrep-mode))
+  ;; Non-nil means do save-buffer automatically while wgrep-finish-edit.
+  (setq wgrep-auto-save-buffer t))
 
 
 ;;;  ag.el
