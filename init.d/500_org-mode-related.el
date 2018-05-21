@@ -606,7 +606,8 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
     ;; Without an universal argument (C-u), these only publish a draft.
     :commands (org2blog/wp-post-buffer
                org2blog/wp-post-buffer-as-page
-               my-wp-directly-post-as-draft)
+               my-wp-directly-post-as-draft
+               my-wp-directly-post-as-draft-citeproc)
     ;;
     :config
     ;; Do not convert LaTeX to WP latex blocks.
