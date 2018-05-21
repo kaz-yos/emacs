@@ -349,9 +349,16 @@ When calling non-interactively SIZE should be a string Columns x Rows."
       (let ((res (funcall orig-fun)))
         ;; Clean it up
         (replace-regexp-in-string "{\\|}\\|*\\|\\\\'\\|\\\\" "" res)))
-    ;;
     (advice-add 'orcp-formatted-bibliography
-                :around #'orcp-formatted-bibliography-clean-zotero-junk))
+                :around #'orcp-formatted-bibliography-clean-zotero-junk)
+    ;;
+    ;;
+    (defun orcp-doi-empty (_orig-fun _entry)
+      "Always return an empty doi. I do not use doi."
+      ;; Just return an empty string always.
+      "")
+    (advice-add 'orcp-doi
+                :around #'orcp-doi-empty))
   ;;
   ;;
 ;;;
@@ -602,6 +609,8 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
                my-wp-directly-post-as-draft)
     ;;
     :config
+    ;; Do not convert LaTeX to WP latex blocks.
+    (setq org2blog/wp-use-wp-latex nil)
     ;; Configure sites
     ;; Association list to set information for each blog.
     ;; Each element of the alist is a blog name.  The CAR of each
