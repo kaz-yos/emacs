@@ -678,7 +678,21 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
       (interactive)
       ;; orcp-citeproc is done before parsing html.
       (let ((org-export-before-parsing-hook '(orcp-citeproc)))
-        (my-wp-directly-post-as-draft))))
+        (my-wp-directly-post-as-draft)))
+    ;;
+    ;; Connect code and result for datascienceplus.com
+    (defun org2blog/wp--export-as-html-ds+ (html)
+      "Clean up for DS+."
+      (replace-regexp-in-string "</pre>
+</div>
+
+<pre class=\"example\">"
+                                ""
+                                html
+                                nil 'literal))
+    (advice-add 'org2blog/wp--export-as-html
+                :filter-return #'org2blog/wp--export-as-html-ds+)
+    )
   ;;
   ;; ox-html.el
   ;; ox-wp delegates most work to ox-html.el
