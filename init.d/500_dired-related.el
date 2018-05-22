@@ -93,109 +93,88 @@
   (setq runner-init-file (concat user-emacs-directory
                                  "runner-conf.el"))
   ;; When active hide all output buffers created by `dired-do-shell-command' except when the command string contains `{run:out}'.
-  (setq runner-run-in-background t))
+  (setq runner-run-in-background t)
+  ;;
+  ;; Avoid "Text is read-only" when working over tramp.
+  (defun dired-run-shell-command-buffer-remove (command)
+    "Remove corresponding output buffer before DIRED-RUN-SHELL-COMMAND.
 
-
+This always kills the output buffer for a fresh start.
+A running process is killed. This avoids Text is read-only
+issue that happens when running over TRAMP."
+    (let (keep-output)
+      (while (string-match "{run:out} ?" command)
+        (setq command (replace-match "" t t command))
+        (setq keep-output t))
+      ;;
+      (if keep-output
+          ;; Limit the buffer name length to 100 to avoid cluttering
+          ;; the buffer list
+          (let ((outbuf (concat "*Runner Command*: "
+                                (if (> (length command) 100)
+                                    (concat (substring command 0 100) " ...")
+                                  command))))
+            ;; If it exists, remove
+            ;; https://stackoverflow.com/questions/586735/how-can-i-check-if-a-current-buffer-exists-in-emacs
+            (when (get-buffer outbuf)
+              (kill-buffer outbuf)))
+        ;; If not keeping output
+        (when (get-buffer "*Runner Output*")
+          (kill-buffer "*Runner Output*")))))
+  ;; See help for add-function
+  (advice-add 'dired-run-shell-command
+              :before #'dired-run-shell-command-buffer-remove)
+  ;;
 ;;;  Use runner for current buffer file
-;;
-;; Explanation in dired-x.el
-;; GUESS SHELL COMMAND
-;; Brief Description:
-;;
-;; * `dired-do-shell-command' is bound to `!' by dired.el.
-;;
-;; * `dired-guess-shell-command' provides smarter defaults for
-;;    dired-aux.el's `dired-read-shell-command'.
-;;
-;; * `dired-guess-shell-command' calls `dired-guess-default' with list of
-;;    marked files.
-;;
-;; * Parse `dired-guess-shell-alist-user' and
-;;   `dired-guess-shell-alist-default' (in that order) for the first REGEXP
-;;   that matches the first file in the file list.
-;;
-;; * If the REGEXP matches all the entries of the file list then evaluate
-;;   COMMAND, which is either a string or a Lisp expression returning a
-;;   string.  COMMAND may be a list of commands.
-;;
-;; * Return this command to `dired-guess-shell-command' which prompts user
-;;   with it.  The list of commands is put into the list of default values.
-;;   If a command is used successfully then it is stored permanently in
-;;   `dired-shell-command-history'.
-;;
-;;;   Define buffer-do-async-shell-command
-(defun buffer-do-async-shell-command (command &optional arg file-list)
-  "Run a shell command COMMAND on the current buffer file asynchronously
+  ;;
+  ;; Explanation in dired-x.el
+  ;; GUESS SHELL COMMAND
+  ;; Brief Description:
+  ;;
+  ;; * `dired-do-shell-command' is bound to `!' by dired.el.
+  ;;
+  ;; * `dired-guess-shell-command' provides smarter defaults for
+  ;;    dired-aux.el's `dired-read-shell-command'.
+  ;;
+  ;; * `dired-guess-shell-command' calls `dired-guess-default' with list of
+  ;;    marked files.
+  ;;
+  ;; * Parse `dired-guess-shell-alist-user' and
+  ;;   `dired-guess-shell-alist-default' (in that order) for the first REGEXP
+  ;;   that matches the first file in the file list.
+  ;;
+  ;; * If the REGEXP matches all the entries of the file list then evaluate
+  ;;   COMMAND, which is either a string or a Lisp expression returning a
+  ;;   string.  COMMAND may be a list of commands.
+  ;;
+  ;; * Return this command to `dired-guess-shell-command' which prompts user
+  ;;   with it.  The list of commands is put into the list of default values.
+  ;;   If a command is used successfully then it is stored permanently in
+  ;;   `dired-shell-command-history'.
+  ;;
+  (defun buffer-do-async-shell-command (command &optional arg file-list)
+    "Run a shell command COMMAND on the current buffer file asynchronously
 
 Modifed version of dired-do-async-shell-command in dired-aux.el
 Instead of obtaining file names from dired, gets a file name
 from the current buffer."
-  (interactive
-   ;; Obtain the file name (no path) for the current buffer
-   (let ((files `(,(file-name-nondirectory buffer-file-name))))
-     (list
-      ;; Want to give feedback whether this file or marked files are used:
-      (dired-read-shell-command "& on %s: " current-prefix-arg files)
-      current-prefix-arg
-      files)))
-  ;; Save buffer to avoid executing older code
-  (save-buffer)
-  ;;
-  ;; Kill the ouput buffer. This appears necessary when using over ssh
-  (let ((buffer-name-list (mapcar (function buffer-name) (buffer-list)))
-        (regexp "*Runner Output*"))
-    (when (-filter
-           #'(lambda (elt) (string-match regexp elt))
-           buffer-name-list)
-      (kill-buffer regexp)))
-  ;;
-  (unless (string-match-p "&[ \t]*\\'" command)
-    (setq command (concat command " &")))
-  (dired-do-shell-command command arg file-list))
-;; https://github.com/jwiegley/use-package/blob/master/bind-key.el
-(bind-key "H-d" 'buffer-do-async-shell-command)
-;;
-;; One for the regular dired-do-async-shell-command
-;; Kill the *Runner Output* buffer before running an async shell command.
-;; This is somehow necessary when running over TRAMP.
-(defun kill-runner-output (&optional command arg file-list)
-  "Kill the *Runner Output* buffer if it exists."
-  (interactive)
-  (let ((buffer-name-list (mapcar #'buffer-name (buffer-list)))
-        (regexp "*Runner Output*"))
-    (when (-filter
-           #'(lambda (elt) (string-match regexp elt))
-           buffer-name-list)
-      (kill-buffer regexp))))
-;; (advice-add 'dired-do-async-shell-command :before #'kill-runner-output)
-;; (advice-remove 'dired-do-async-shell-command #'kill-runner-output)
-;;
-;;;   Redefine dired-do-async-shell-command
-(defun dired-do-async-shell-command (command &optional arg file-list)
-  "dired-do-async-shell-command that kills existing *Runner Output*
-
-This is the same as dired-do-async-shell-command except for its
-action to kill *Runner Output* before execution."
-  ;;
-  (interactive
-   (let ((files (dired-get-marked-files t current-prefix-arg)))
-     (list
-      ;; Want to give feedback whether this file or marked files are used:
-      (dired-read-shell-command "& on %s: " current-prefix-arg files)
-      current-prefix-arg
-      files)))
-  ;;
-  ;; Kill the ouput buffer. This appears necessary when using over ssh
-  (let ((buffer-name-list (mapcar (function buffer-name) (buffer-list)))
-        (regexp "*Runner Output*"))
-    (when (-filter
-           #'(lambda (elt) (string-match regexp elt))
-           buffer-name-list)
-      (kill-buffer regexp)))
-  ;;
-  (unless (string-match-p "&[ \t]*\\'" command)
-    (setq command (concat command " &")))
-  (dired-do-shell-command command arg file-list))
+    (interactive
+     ;; Obtain the file name (no path) for the current buffer
+     (let ((files `(,(file-name-nondirectory buffer-file-name))))
+       (list
+        ;; Want to give feedback whether this file or marked files are used:
+        (dired-read-shell-command "& on %s: " current-prefix-arg files)
+        current-prefix-arg
+        files)))
+    ;; Save buffer to avoid executing older code
+    (save-buffer)
+    ;; Run
+    (unless (string-match-p "&[ \t]*\\'" command)
+      (setq command (concat command " &")))
+    ;; Functions dired-run-shell-command and dired-shell-stuff-it do the
+    ;; actual work and can be redefined for customization.
+    ;; dired-run-shell-command is advised above to kill the output buffer.
+    (dired-do-shell-command command arg file-list)))
 
 
 ;;;
