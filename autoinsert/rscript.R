@@ -1,4 +1,5 @@
-#!/usr/local/bin/Rscript
+#!/usr/bin/env Rscriptee
+## Rscriptee: Rscript $@ 2>&1 | tee ${OUTPUT_FILE}
 
 ################################################################################
 ###
