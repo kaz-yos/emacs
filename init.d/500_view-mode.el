@@ -1,10 +1,5 @@
 ;;; view-mode			; C-x C-r to open in view-mode. Requires viewer.el
 ;; http://www.emacswiki.org/emacs/ViewMode
-;;
-;; Book by rubikitch p214-
-;; http://d.hatena.ne.jp/rubikitch/20081104/1225745862
-;; http://d.hatena.ne.jp/syohex/20110114/1294958917
-;;
 (global-set-key (kbd "A-o") 'read-only-mode)
 
 
