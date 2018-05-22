@@ -64,15 +64,13 @@
 ;;;
 ;;; runner.el
 ;; Flexible file type specific shell command in dired
-;;
 ;; https://github.com/thamer/runner
-;; http://rubikitch.com/2015/01/13/runner-3/
+;; 5 Shell Command Guessing
 ;; https://www.gnu.org/software/emacs/manual/html_node/dired-x/Shell-Command-Guessing.html
-;;
 ;; The functions `dired-guess-default' (from dired-x.el) and
 ;; `dired-run-shell-command' (from dired-aux.el) will be redefined.
 ;;
-;; These are used ind dired.
+;; These are used in dired.
 ;; M-x runner-add-file
 ;; M-x runner-add-extension
 ;; M-x runner-edit-file-at-point
@@ -91,9 +89,11 @@
               ("C-c !" . runner-add-extension))
   ;;
   :config
+  ;; Name of file used to save pattern and command database.
   (setq runner-init-file (concat user-emacs-directory
                                  "runner-conf.el"))
-  (setq runner-show-label t))
+  ;; When active hide all output buffers created by `dired-do-shell-command' except when the command string contains `{run:out}'.
+  (setq runner-run-in-background t))
 
 
 ;;;  Use runner for current buffer file
