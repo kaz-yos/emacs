@@ -44,6 +44,8 @@ cat("### Using", foreach::getDoParName(), "as backend\n")
 
 ## Load packages
 library(tidyverse)
+## https://github.com/tidyverse/tibble/issues/395
+options(crayon.enabled = FALSE)
 
 
 cat("
