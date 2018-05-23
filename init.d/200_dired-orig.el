@@ -3,6 +3,9 @@
 ;;;
 ;;; dired (native dired) configurations
 (use-package dired
+  :demand
+  :bind (:map dired-mode-map
+              ("s-d" . make-directory))
   :config
   ;; ls does not support --dired; see `dired-use-ls-dired' for more details.
   ;; This occurs because Mac's ls does not support "--dired" option although there is "-dired"
@@ -50,17 +53,16 @@
   (add-hook 'dired-mode-hook 'turn-on-auto-revert-mode)
   ;; Allow file permission rewrite
   ;; (setq wdired-allow-to-change-permissions t)
-  ;;
-  ;; Additional key configuration
-  (add-hook 'dired-mode-hook
-            '(lambda () (define-key dired-mode-map (kbd "s-d") 'make-directory))))
+  )
 
 
 ;;;
 ;;; dired-x.el
 (use-package dired-x
-  :commands (dired-omit-mode)
+  :commands (dired-omit-mode
+             dired-jump)
   :bind (:map dired-mode-map
+              ("s-d" . dired-jump)
               ("." . dired-omit-mode))
   :config
   ;; Omit files with regexp
@@ -68,10 +70,3 @@
   (setq dired-omit-files
         ;; Dot files
         (concat dired-omit-files "\\|^\\..+$")))
-
-
-;;;
-;;; Opening parent folder of current buffer
-(global-set-key (kbd "s-d") #'(lambda ()
-                                (interactive)
-                                (find-file "./")))
