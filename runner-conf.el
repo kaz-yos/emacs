@@ -30,3 +30,6 @@
  ("ext-sh" 0 "sh"
   (("sh" "{run:out} sh" 0)
    ("bash" "{run:out} bash" 5))))
+
+;;; Run these after reconfiguring.
+;; (progn (runner-settings-load) (runner-reset))
