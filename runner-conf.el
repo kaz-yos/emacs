@@ -1,7 +1,8 @@
 ;;; runner-names
 ;; List holding the names of file types as strings
 ("ext-R"
- "ext-pdf")
+ "ext-pdf"
+ "ext-sh")
 
 ;;; runner-alist
 ;;
@@ -24,4 +25,8 @@
  ;;
  ("ext-pdf" 0 "pdf"
   (("open command" "open" 0)
-   ("Skim" "open -a /Applications/Skim.app" 5))))
+   ("Skim" "open -a /Applications/Skim.app" 5)))
+ ;;
+ ("ext-sh" 0 "sh"
+  (("sh" "{run:out} sh" 0)
+   ("bash" "{run:out} bash" 5))))
