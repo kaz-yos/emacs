@@ -125,40 +125,23 @@
            (pos1 (nth 1 split))
            (pos0 (car split)))
       (concat pos1 "x" pos0)))
-  ;; Redefine for Rows x Columns specification when querying.
-  (defun org-table-create (&optional size)
+  ;; Wrapper to fix the dimension
+  (defun org-table-create-reverse-table-dimension (old-fun &optional size)
     "Query for a size and insert a table skeleton.
 SIZE is a string Rows x Columns like for example \"2x3\".
-When calling non-interactively SIZE should be a string Columns x Rows."
+When calling non-interactively SIZE should be a string Columns x Rows
+to conform the org-mode convention."
     (interactive "P")
     (unless size
       (setq size (my-reverse-org-table-dimension
                   (read-string
-		   (concat "Table size Rows x Columns [e.g. "
-			   (my-reverse-org-table-dimension org-table-default-size) "]: ")
-		   "" nil (my-reverse-org-table-dimension org-table-default-size)))))
-
-    (let* ((pos (point))
-	   (indent (make-string (current-column) ?\ ))
-	   (split (org-split-string size " *x *"))
-	   (rows (string-to-number (nth 1 split)))
-	   (columns (string-to-number (car split)))
-	   (line (concat (apply 'concat indent "|" (make-list columns "  |"))
-		         "\n")))
-      (if (string-match "^[ \t]*$" (buffer-substring-no-properties
-				    (point-at-bol) (point)))
-	  (beginning-of-line 1)
-        (newline))
-      ;; (mapcar (lambda (x) (insert line)) (make-list rows t))
-      (dotimes (_ rows) (insert line))
-      (goto-char pos)
-      (if (> rows 1)
-	  ;; Insert a hline after the first row.
-	  (progn
-	    (end-of-line 1)
-	    (insert "\n|-")
-	    (goto-char pos)))
-      (org-table-align)))
+                   (concat "Table size Rows x Columns [e.g. "
+                           (my-reverse-org-table-dimension org-table-default-size) "]: ")
+                   "" nil (my-reverse-org-table-dimension org-table-default-size)))))
+    (funcall old-fun size))
+  ;; Advice org-table-create
+  (advice-add 'org-table-create
+              :around #'org-table-create-reverse-table-dimension)
   ;;
   (defun read-only-mode-off (&optional arg)
     (read-only-mode -1))
