@@ -59,11 +59,12 @@
 ;;;
 ;;; dired-x.el
 (use-package dired-x
+  :after dired
   :commands (dired-omit-mode
              dired-jump)
-  :bind (:map dired-mode-map
-              ("s-d" . dired-jump)
-              ("." . dired-omit-mode))
+  :bind (("s-d" . dired-jump)
+         :map dired-mode-map
+         ("." . dired-omit-mode))
   :config
   ;; Omit files with regexp
   ;; https://www.gnu.org/software/emacs/manual/html_node/dired-x/Omitting-Files-in-Dired.html
