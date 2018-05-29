@@ -2,10 +2,10 @@
 
 
 ;;; diredfl.el
+;; Extra Emacs font lock rules for a more colourful dired
 ;; https://github.com/purcell/diredfl
 (use-package diredfl
-  :init
-  (add-hook 'dired-mode-hook 'diredfl-mode)
+  :hook (dired-mode . diredfl-mode)
   :commands (diredfl-mode))
 
 
@@ -13,11 +13,14 @@
 ;;; dired-rsync.el
 ;; https://github.com/stsquad/dired-rsync
 (use-package dired-rsync
-  :commands (dired-rsync))
+  :commands (dired-rsync)
+  :bind (:map dired-mode-map
+              ("Y" . dired-rsync)))
 
 
 ;;;
 ;;; DIRED-HACKS
+;; https://github.com/Fuco1/dired-hacks
 
 ;;;  dired-subtree.el
 ;; https://github.com/Fuco1/dired-hacks#dired-subtree
@@ -178,62 +181,12 @@ from the current buffer."
 
 
 ;;;
-;;; neotree.el
-;; https://github.com/jaypei/emacs-neotree
-;; https://www.emacswiki.org/emacs/NeoTree
-;; http://kiririmode.hatenablog.jp/entry/20150806/1438786800
-(use-package neotree
-  :commands (neotree)
-  :config
-  (setq neo-show-hidden-files t)
-  (setq neo-create-file-auto-open t)
-  (setq neo-persist-show t)
-  (setq neo-keymap-style 'concise)
-  (setq neo-smart-open t)
-  ;; Projectile support
-  (setq projectile-switch-project-action 'neotree-projectile-action))
-
-
-
-;;;
-;;; peep-dired.el
-;; https://github.com/asok/peep-dired
-;; http://pragmaticemacs.com/emacs/quickly-preview-images-and-other-files-with-peep-dired/
-(use-package peep-dired
-  :ensure t
-  :defer t ; don't access `dired-mode-map' until `peep-dired' is loaded
-  :bind (:map dired-mode-map
-              ("P" . peep-dired))
-  :config
-  (setq peep-dired-cleanup-eagerly t)
-  ;; (setq peep-dired-cleanup-on-disable t)
-  (setq peep-dired-ignored-extensions '("mkv" "iso" "mp4")))
-
-
-;;;
 ;;; Async dired
 ;; https://github.com/jwiegley/emacs-async
 (use-package dired-async
   :demand t
   :config
   (dired-async-mode 1))
-
-
-;;;
-;;; all-the-icons-dired.el
-;; https://github.com/domtronn/all-the-icons.el
-;; Need to install fonts on the github repo.
-;; https://github.com/jtbm37/all-the-icons-dired
-(use-package all-the-icons-dired
-  :commands (all-the-icons-dired-mode)
-  :init
-  ;; (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-  ;; Face
-  (defface all-the-icons-dired-dir-face
-    '((((background dark)) :foreground "gray50")
-      (((background light)) :foreground "black"))
-    "Face for the directory icon"
-    :group 'all-the-icons-faces))
 
 
 ;;;
