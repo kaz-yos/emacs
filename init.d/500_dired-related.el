@@ -184,7 +184,7 @@ from the current buffer."
 ;;; Async dired
 ;; https://github.com/jwiegley/emacs-async
 (use-package dired-async
-  :demand t
+  :after dired
   :config
   (dired-async-mode 1))
 
@@ -193,6 +193,11 @@ from the current buffer."
 ;;; dired-quick-sort.el
 ;; https://gitlab.com/xuhdev/dired-quick-sort
 (use-package dired-quick-sort
-  :commands (dired-quick-sort-setup)
-  :init
-  (add-hook 'after-init-hook 'dired-quick-sort-setup))
+  :after dired
+  ;; ls-lisp-use-insert-directory-program must be non-nil
+  :if ls-lisp-use-insert-directory-program
+  ;; Automatically use the sorting defined by dired-quick-sort in dired.
+  :hook (dired-mode . dired-quick-sort)
+  ;; Invoke the dired-quick-sort hydra.
+  :bind (:map dired-mode-map
+              ("s" . hydra-dired-quick-sort/body)))
