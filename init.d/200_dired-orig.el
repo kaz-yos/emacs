@@ -42,6 +42,7 @@
               :after 'read-only-mode-on)
   ;;
   ;; If there are two dired open side by side, copy destination is the other.
+  ;; M-n shows other candidates including the current directory.
   (setq dired-dwim-target t)
   ;; Recursively copy directories.
   (setq dired-recursive-copies 'always)
@@ -58,6 +59,7 @@
 
 ;;;
 ;;; dired-x.el
+;; Extra Dired functionality
 (use-package dired-x
   :after dired
   :commands (dired-omit-mode
