@@ -321,8 +321,8 @@ searched. If there is no symbol, empty search box is started."
 ;;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
 (use-package expand-region
-  :bind (("C-," . er/expand-region)
-         ("C-M-," . er/contract-region)))
+  :bind* (("C-," . er/expand-region)
+          ("C-M-," . er/contract-region)))
 
 
 ;;;
