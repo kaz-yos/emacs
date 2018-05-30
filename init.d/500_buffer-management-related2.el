@@ -51,7 +51,7 @@ Dependency: ace-swap-window"
 ;;
 ;;;  ibuffer-git to add git support
 (use-package ibuffer-git
-  :demand
+  :disabled t
   :config
   ;; Choose the column width for the long status
   ;; (setq ibuffer-git-column-length 8)	; default is 8.
