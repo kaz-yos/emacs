@@ -82,15 +82,3 @@ Dependency: ace-swap-window"
      ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
      ((> (buffer-size) 1000) (format "%7.1fK" (/ (buffer-size) 1000.0)))
      (t (format "%8d" (buffer-size))))))
-
-
-;;;
-;;; elscreen-separate-buffer-list.el
-;; separate buffer list for each elscreen
-;; https://github.com/wamei/elscreen-separate-buffer-list
-(use-package elscreen-separate-buffer-list
-  :demand
-  :config
-  (elscreen-separate-buffer-list-mode))
-;; Less safe alternative
-;; https://github.com/jeffgran/elscreen-buffer-group
