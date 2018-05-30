@@ -1,5 +1,4 @@
-;;; mini-buffer configuration
-
+;;; 200_minibuffer-related.el ---                    -*- lexical-binding: t; -*-
 
 ;;; Larger font size
 (defun my-minibuffer-setup ()
