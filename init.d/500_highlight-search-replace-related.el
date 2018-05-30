@@ -257,13 +257,13 @@ searched. If there is no symbol, empty search box is started."
     (select-window ; select ag buffer
      (car (my--get-buffer-window-list-regexp "^\\*ag "))))
   ;; Advice all user functions.
-  (loop for f in '(ag
-                   ag-files
-                   ag-regexp
-                   ag-project
-                   ag-project-files
-                   ag-project-regexp)
-        do (advice-add f :after #'switch-to-ag))
+  (cl-loop for f in '(ag
+                      ag-files
+                      ag-regexp
+                      ag-project
+                      ag-project-files
+                      ag-project-regexp)
+           do (advice-add f :after #'switch-to-ag))
   ;;
 ;;;   wgrep-ag.el
   ;; https://github.com/mhayashi1120/Emacs-wgrep
@@ -423,7 +423,7 @@ searched. If there is no symbol, empty search box is started."
   ;; https://github.com/abo-abo/avy/wiki/defcustom#avy-style
   (setq avy-style 'at-full)
   ;; Keys to be used. Use a-z.
-  (setq avy-keys (loop for c from ?a to ?z collect c))
+  (setq avy-keys (cl-loop for c from ?a to ?z collect c))
   ;;
   ;; Time out for *-timer functions
   (setq avy-timeout-seconds 0.3)
@@ -443,9 +443,9 @@ searched. If there is no symbol, empty search box is started."
                   ,c))))
   ;;
   ;; Assing key bindings for all characters
-  (loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
-  (loop for c from ?! to ?~ do (add-keys-to-avy "H-" c))
-  (loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word)))
+  (cl-loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
+  (cl-loop for c from ?! to ?~ do (add-keys-to-avy "H-" c))
+  (cl-loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word)))
 
 ;;;  avy-migemo.el
 ;; https://github.com/momomo5717/avy-migemo
@@ -478,9 +478,9 @@ searched. If there is no symbol, empty search box is started."
                   ,c))))
   ;;
   ;; Assing key bindings for all characters
-  (loop for c from ?! to ?~ do (add-keys-to-avy-migemo "M-s-" c))
-  (loop for c from ?! to ?~ do (add-keys-to-avy-migemo "H-" c))
-  (loop for c from ?! to ?~ do (add-keys-to-avy-migemo "C-M-s-" c 'word)))
+  (cl-loop for c from ?! to ?~ do (add-keys-to-avy-migemo "M-s-" c))
+  (cl-loop for c from ?! to ?~ do (add-keys-to-avy-migemo "H-" c))
+  (cl-loop for c from ?! to ?~ do (add-keys-to-avy-migemo "C-M-s-" c 'word)))
 
 ;;;  ace-window.el
 ;; Window selection using avy.el (no dependency on ace-jump-mode.el)
