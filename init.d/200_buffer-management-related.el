@@ -27,7 +27,6 @@
   )
 
 
-
 ;;;
 ;;; ibuffer.el
 ;; http://www.emacswiki.org/emacs/IbufferMode
@@ -36,6 +35,7 @@
   :commands (ibuffer)
   :init
   (defalias 'list-buffers 'ibuffer)
+  ;;
   :config
 ;;;  Sorting
   ;; http://mytechrants.wordpress.com/2010/03/25/emacs-tip-of-the-day-start-using-ibuffer-asap/
@@ -44,6 +44,12 @@
   (setq ibuffer-default-sorting-mode 'filename/process)
   ;; Drop empty groups
   (setq ibuffer-show-empty-filter-groups nil)
+  ;;
+;;;  ibuffer-vc.el
+  ;; https://github.com/purcell/ibuffer-vc
+  ;; To include vc status info in the ibuffer list, add either
+  ;; vc-status-mini or vc-status to `ibuffer-formats':
+  (use-package ibuffer-vc)
   ;;
 ;;;  Format
   ;; A list of ways to display buffer lines.
@@ -84,6 +90,9 @@
                 " "
                 ;; Mode
                 (mode 10 10 :left :elide)
+                " "
+                ;; vc-status is defined in ibuffer-vc.el
+                (vc-status 16 16 :left)
                 " "
                 filename-and-process)))
 ;;;   Human readable buffer size entry
