@@ -208,9 +208,4 @@ Dependency: ace-swap-window"
                         (mode . prodigy-mode)
                         (name . "^\\*prodigy")))
            ;; All others
-           ("OTHERS" (name . ".*")))))
-  ;;
-  ;; Set this buffer’s filter groups to saved version with NAME.
-  (add-hook 'ibuffer-mode-hook
-            (lambda ()
-              (ibuffer-switch-to-saved-filter-groups "default"))))
+           ("OTHERS" (name . ".*"))))))
