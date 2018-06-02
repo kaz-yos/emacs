@@ -12,17 +12,6 @@
 
 
 ;;;
-;;; Default VC system (turned off)
-;; Do not use the default vc-mode (mode-line cleaner) 2014-02-14
-;; http://qiita.com/acple@github/items/3709174ab24c5d82423a
-(setq vc-handled-backends nil)
-;; Turn off related hooks
-(remove-hook 'find-file-hook   'vc-find-file-hook)
-(remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook)
-
-
-
-;;;
 ;;; In-buffer highlighting of changes
 
 ;;;  git-gutter.el
