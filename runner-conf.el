@@ -20,8 +20,8 @@
 ;;     PRIORITY  ;; Priority of processing this command. Default is 5.
 (("ext-R" 0 "R"
   (("Original Rscript" "{run:out} Rscript" 5)
-   ("Project-specific Rscript with tee" "{run:out} ./Rscriptee" 1)
-   ("Global Rscript with tee" "{run:out} Rscriptee" 0)))
+   ("Global Rscript with tee" "{run:out} Rscriptee" 3)
+   ("Project-specific Rscript with tee" "{run:out} ./Rscriptee" 0)))
  ;;
  ("ext-pdf" 0 "pdf"
   (("open command" "open" 0)
