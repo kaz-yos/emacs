@@ -19,7 +19,7 @@
   ;; Global limit for number of candidates displayed.
   (setq helm-candidate-number-limit 200)
   ;; Always use the other window for helm (below if no other window exists)
-  (setq helm-split-window-default-side 'other)
+  (setq helm-split-window-default-side 'below)
   ;; Emulate `kill-line' in helm minibuffer
   ;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688
   (setq helm-delete-minibuffer-contents-from-point t)
