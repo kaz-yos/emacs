@@ -51,20 +51,18 @@
 ;;;  helm-locate.el
   (use-package helm-locate
     :config
-    ;; For case macro
-    (use-package cl-macs)
     ;; locate command
     ;; https://github.com/emacs-helm/helm/wiki/Locate
     ;; https://github.com/syl20bnr/spacemacs/issues/3280
     (setq helm-locate-command
-          (case system-type
+          (cl-case system-type
             ('gnu/linux "locate -i -r %s")
             ('berkeley-unix "locate -i %s")
             ('windows-nt "es %s")
             ('darwin "mdfind -name %s %s")
             (t "locate %s")))
     (setq helm-locate-fuzzy-match
-          (case system-type
+          (cl-case system-type
             ('darwin nil)
             (t 't))))
   ;;
