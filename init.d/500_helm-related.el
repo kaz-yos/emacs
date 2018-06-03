@@ -18,6 +18,9 @@
   :config
   ;; Global limit for number of candidates displayed.
   (setq helm-candidate-number-limit 200)
+  ;; Use current the entire current frame for helm.
+  ;; Takes precedence to helm-split-window-default-side.
+  (setq helm-full-frame t)
   ;; Always use the other window for helm (below if no other window exists)
   (setq helm-split-window-default-side 'below)
   ;; Emulate `kill-line' in helm minibuffer
