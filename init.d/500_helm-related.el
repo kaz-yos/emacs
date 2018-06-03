@@ -13,8 +13,7 @@
          :map my-key-map
          ("z" . helm-for-files)
          ;; Original M-x
-         ("x" . execute-extended-command)
-         )
+         ("x" . execute-extended-command))
   :config
   ;; Global limit for number of candidates displayed.
   (setq helm-candidate-number-limit 200)
