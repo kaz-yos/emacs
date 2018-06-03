@@ -41,6 +41,13 @@
     :hook (helm-before-initialize . (lambda ()
                                       ;; Set follow attribute to 1 (yes) for helm-source-mark-ring
                                       (helm-attrset 'follow 1 helm-source-mark-ring))))
+  ;;
+;;;  helm-buffers.el
+  (use-package helm-buffers
+    :config
+    ;; Max length of buffer names before truncate.
+    (setq helm-buffer-max-length nil))
+  ;;
 ;;;  helm-for-files.el
   (use-package helm-for-files
     :config
@@ -72,12 +79,6 @@
     :config
     ;; helm-M-x Save command in extended-command-history even when it fail.
     (setq helm-M-x-always-save-history t))
-
-  ;;;  helm-buffers.el
-  (use-package helm-buffers
-    :config
-    ;; Max length of buffer names before truncate.
-    (setq helm-buffer-max-length nil))
   ;;
 ;;;  helm-files.el
   (use-package helm-files
