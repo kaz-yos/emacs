@@ -274,9 +274,8 @@
   ;; https://github.com/myuhe/ess-R-object-popup.el
   (use-package ess-R-object-popup
     :commands (ess-R-object-popup)
-    :init
-    ;; key config always provide
-    (define-key ess-mode-map (kbd "C-c C-g") 'ess-R-object-popup)
+    :bind (:map ess-mode-map
+                ("C-c C-g" . ess-R-object-popup))
     :config
     ;; Configuration for different objects
     (setq ess-R-object-popup-alist
