@@ -406,10 +406,8 @@ The initial string is produced by selection-or-thing-at-point."
 ;; https://github.com/zk-phi/git-complete
 (use-package git-complete
   :commands (git-complete)
-  :bind (("A-c" . git-complete)
-         ("H-c" . git-complete)
-         :map my-key-map
-         ("G" . git-complete)))
+  :bind (:map my-key-map
+              ("G" . git-complete)))
 
 
 ;;;
