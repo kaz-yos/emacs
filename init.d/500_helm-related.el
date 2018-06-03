@@ -1,6 +1,5 @@
 ;;; 500_helm-related.el ---                          -*- lexical-binding: t; -*-
 
-
 ;;;
 ;;; Helm
 ;; https://emacs-helm.github.io/helm/
@@ -72,9 +71,3 @@
   (defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
     "Emulate `kill-line' in helm minibuffer"
     (kill-new (buffer-substring (point) (field-end)))))
-;;
-;;
-;;; debug
-;; (defvar *helm for files*) in helm.el
-;; 2014-09-21 Add the following to test how auctex works with this
-;; (setq helm-buffer "*helm for files*")
