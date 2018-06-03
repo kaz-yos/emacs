@@ -304,6 +304,9 @@
   (setq ivy-count-format "%d/%d ")
   ;; Number of lines for the minibuffer window.
   (setq ivy-height 20)
+  ;; List of regexps or functions matching buffer names to ignore.
+  ;; https://github.com/abo-abo/swiper/issues/644
+  (setq ivy-ignore-buffers '("\\` " "\\`\\*helm"))
   ;;
   ;; Out of order matching
   ;; https://oremacs.com/2015/05/23/swiper-0.5.0/
