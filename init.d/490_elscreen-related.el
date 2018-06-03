@@ -9,7 +9,9 @@
 ;; https://github.com/wamei/elscreen-separate-buffer-list
 (use-package elscreen-separate-buffer-list
   ;; This is called just before elscreen activation.
-  :commands (elscreen-separate-buffer-list-mode))
+  :commands (elscreen-separate-buffer-list-mode
+             ;; Used in my-ivy-switch-buffers
+             esbl-get-separate-buffer-list))
 ;; Less safe alternative
 ;; https://github.com/jeffgran/elscreen-buffer-group
 

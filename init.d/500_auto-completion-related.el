@@ -289,6 +289,12 @@
 ;; https://www.reddit.com/r/emacs/comments/5453d4/what_does_your_ivyswiper_configuration_look_like/
 (use-package ivy
   :diminish ivy-mode
+  :demand t
+  :commands (my-ivy-switch-buffer)
+  :bind (("C-x b" . my-ivy-switch-buffer)
+         :map ivy-minibuffer-map
+         ;; ivy-immediate-done finishes without completion
+         ("C-<return>" . ivy-immediate-done))
   :config
   ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
   ;; Add recent files and bookmarks to the ivy-switch-buffer
@@ -303,9 +309,20 @@
   (setq ivy-re-builders-alist
         '((t . ivy--regex-ignore-order)))
   ;;
-  ;; Additional keys
-  ;; ivy-immediate-done finishes without completion
-  (define-key ivy-minibuffer-map (kbd "C-<return>") 'ivy-immediate-done)
+  ;;
+  (defun my-ivy-switch-buffer ()
+    "Switch to another buffer via ivy from a filtered list of buffers."
+    (interactive)
+    (ivy-read "Switch to buffer: "
+              ;; Collection string of the separate buffer list.
+              ;; Filtered by the elscreen-separate-buffer-list package.
+              (mapcar 'buffer-name (esbl-get-separate-buffer-list))
+              :matcher #'ivy--switch-buffer-matcher
+              :preselect (buffer-name (other-buffer (current-buffer)))
+              :action #'ivy--switch-buffer-action
+              :keymap ivy-switch-buffer-map
+              :caller 'ivy-switch-buffer))
+  ;;
   ;; Activate
   (ivy-mode 1))
 
