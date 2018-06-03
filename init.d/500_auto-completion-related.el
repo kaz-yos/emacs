@@ -297,8 +297,9 @@
          ("C-<return>" . ivy-immediate-done))
   :config
   ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
-  ;; Add recent files and bookmarks to the ivy-switch-buffer
-  (setq ivy-use-virtual-buffers t)
+  ;; Add recent files and bookmarks to the ivy-switch-buffer.
+  ;; Does not work with my-ivy-switch-buffer.
+  (setq ivy-use-virtual-buffers nil)
   ;; Set this to "(%d/%d) " to display both the index and the count.
   (setq ivy-count-format "%d/%d ")
   ;; Number of lines for the minibuffer window.
