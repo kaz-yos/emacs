@@ -51,7 +51,7 @@
 ;;;  helm-locate.el
   (use-package helm-locate
     :config
-    ;; locate command
+    ;; A list of arguments for locate program.
     ;; https://github.com/emacs-helm/helm/wiki/Locate
     ;; https://github.com/syl20bnr/spacemacs/issues/3280
     (setq helm-locate-command
@@ -61,12 +61,13 @@
             ('windows-nt "es %s")
             ('darwin "mdfind -name %s %s")
             (t "locate %s")))
+    ;; Enable fuzzy matching in helm-locate.
     (setq helm-locate-fuzzy-match
           (cl-case system-type
             ('darwin nil)
             (t 't))))
   ;;
-;;;  helm-command.el.
+;;;  helm-command.el
   (use-package helm-command
     :config
     ;; helm-M-x Save command in extended-command-history even when it fail.
