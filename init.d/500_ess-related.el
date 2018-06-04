@@ -49,20 +49,11 @@
                 ("A-n" . polymode-next-chunk-same-type)
                 ("A-p" . polymode-previous-chunk-same-type)
                 ("A-s" . polymode-export)
-                ("M-s M-s" . polymode-export)
-                ;;
-                ;; This map no longer exists?
-                ;; :map poly-noweb+r-mode-map
-                ;; ("A-s" . ess-swv-weave-PDF)
-                ;; ("A-p" . ess-swv-PDF)
-                )
-    ;;
-;;;  Remaining config
-    ;; If non-nil activate flymake in ess-mode buffers.
-    (setq ess-use-flymake nil)
+                ("M-s M-s" . polymode-export))
+    ;; Config for poly-R.
+    :config
     ;; Auto revert for .Rmd
     (add-hook 'poly-markdown+r-mode-hook 'turn-on-auto-revert-mode)
-    ;;
     ;; Execute all R chunks at once from an Rmd document
     ;; https://stackoverflow.com/questions/40894202/execute-all-r-chunks-at-once-from-an-rmd-document
     (defun rmd-send-chunk ()
@@ -74,7 +65,6 @@
             (goto-char (point-min))
             (forward-line)
             (ess-eval-region (point) (point-max) nil nil 'R))))
-    ;;
     (defun rmd-send-chunks-above ()
       "Send all R code chunks above point."
       (interactive)
@@ -84,9 +74,11 @@
           (pm-map-over-spans
            'rmd-send-chunk (point-min) (point))))))
   ;;
+;;;  Remaining config
+  ;; If non-nil activate flymake in ess-mode buffers.
+  (setq ess-use-flymake nil)
   ;; No history, no saving!
   (setq-default inferior-R-args "--no-restore-history --no-save ")
-  ;;
   ;; If t ess will try to use ido completion whenever possible.
   (setq ess-use-ido nil)
   ;;
