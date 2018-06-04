@@ -1,4 +1,13 @@
-;;; SYNTAX CHECKER RELATED
+;;; 500_lang-syntax-checker-related.el ---           -*- lexical-binding: t; -*-
+
+
+;;; flymake.el
+(use-package flymake
+  :commands (flymake-mode
+             flymake-mode-on
+             flymake-mode-off
+             global-flycheck-mode)
+  :config)
 
 ;;;
 ;;; fly-check.el
