@@ -201,3 +201,13 @@ from the current buffer."
   ;; Invoke the dired-quick-sort hydra.
   :bind (:map dired-mode-map
               ("s" . hydra-dired-quick-sort/body)))
+
+
+;;;
+;;; dired-recent.el
+;; https://github.com/vifon/dired-recent.el/tree/22104c87593f24ec513dfdf97fc4c8c91defec33
+;; Press C-x C-d to select a previously visited directory to open.
+(use-package dired-recent
+  :after dired
+  :config
+  (dired-recent-mode 1))
