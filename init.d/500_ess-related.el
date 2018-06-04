@@ -57,7 +57,9 @@
                 ;; ("A-p" . ess-swv-PDF)
                 )
     ;;
-    :config
+;;;  Remaining config
+    ;; If non-nil activate flymake in ess-mode buffers.
+    (setq ess-use-flymake nil)
     ;; Auto revert for .Rmd
     (add-hook 'poly-markdown+r-mode-hook 'turn-on-auto-revert-mode)
     ;;
