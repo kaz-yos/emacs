@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: tidy
+# key: tidy
+# --
+## https://github.com/tidyverse/tibble/issues/395
+options(crayon.enabled = FALSE)
+library(tidyverse)
