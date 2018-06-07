@@ -30,7 +30,19 @@
   ;; Put everything under this directory.
   (setq skk-user-directory (concat user-emacs-directory
                                    "skk"))
-  ;;
+  ;; Initialization file. skk-restart will read this.
+  (setq skk-init-file (concat user-emacs-directory
+                              "skk/skk"))
+  ;; Some files for adaptation
+  (setq skk-study-file (concat user-emacs-directory
+                               "skk/skk-study"))
+  (setq skk-studybackup-file (concat user-emacs-directory
+                                     "skk/skk-study.bak"))
+  (setq skk-record-file (concat user-emacs-directory
+                                "skk/skk-record"))
+  ;; Record emacs id of SKK instance that recently accessed skk-jisyo-file.
+  (setq skk-emacs-id-file (concat user-emacs-directory
+                                  "skk/skk-emacs-id"))
   ;; Dictionaries
   ;; http://openlab.ring.gr.jp/skk/wiki/wiki.cgi?page=SKK%BC%AD%BD%F1
   ;; http://openlab.ring.gr.jp/skk/skk-manual-git/Zui-moJi-Ben-De-naShe-Ding-.html#g_t_6700_3082_57fa_672c_7684_306a_8a2d_5b9a
