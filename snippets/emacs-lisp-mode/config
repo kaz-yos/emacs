@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: config
+# key: config
+# --
+(concat user-emacs-directory
+        "$1"
+        "_"
+        (system-name-sans-domain))
