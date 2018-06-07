@@ -165,3 +165,26 @@ end tell")))
   (when buffer-file-name
     (shell-command (concat "git log -n 1 --pretty=format:%cd --date=short -- "
                            buffer-file-name))))
+
+
+;;;
+;;; Put some variable value into the kill ring.
+;; http://emacs.1067599.n8.nabble.com/Filename-of-buffer-into-kill-ring-functionality-td62106.html
+(defun my-kill-new-string-variable (variable)
+  "Make the string value of VARIABLE the latest kill in the kill ring."
+  (interactive (let ((current-buffer (current-buffer)))
+                 (intern (completing-read "Variable: " obarray
+                                          (lambda (symbol)
+                                            (with-current-buffer current-buffer
+                                              (and (boundp symbol)
+                                                   (stringp
+                                                    (symbol-value symbol)))))
+                                          t))))
+  ;; Let symbol-value and kill-new signal errors for unbound variables
+  ;; and non-string values, respectively:
+  (kill-new (symbol-value variable)))
+;;
+(defun my-kill-new-buffer-file-name ()
+  "Put current `buffer-filename' into the kill ring."
+  (interactive)
+  (my-kill-new-string-variable 'buffer-file-name))
