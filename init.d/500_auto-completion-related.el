@@ -350,7 +350,8 @@
 ;; http://cestlaz.github.io/posts/using-emacs-6-swiper/#.WYKJHa2ZOEI
 ;; https://oremacs.com/2017/11/18/dired-occur/
 (use-package counsel
-  :commands (counsel-ag
+  :commands (counsel-find-file
+             counsel-ag
              counsel-rg
              counsel-git-grep)
   :bind (("s-w" . counsel-ag-at-point)

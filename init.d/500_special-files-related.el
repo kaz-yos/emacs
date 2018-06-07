@@ -14,9 +14,34 @@
 ;;;
 ;;; open-junk-file.el for creation of permanent test files
 (use-package open-junk-file
-  :bind (("C-x C-z" . open-junk-file))
+  :if (or (file-exists-p "~/junk/")
+          (file-exists-p "~/Dropbox/junk/"))
+  ;; Use the version with counsel.
+  :bind (("C-x C-z" . my-open-junk-file))
   :config
-  (setq open-junk-file-directory "~/junk/%Y/%m/%d-%H%M%S."))
+  ;; This work around is necessary when ivy is used.
+  ;; Taken from spacemacs.
+  ;; https://github.com/syl20bnr/spacemacs/blob/582f9aa45c2c90bc6ec98bccda33fc428e4c6d48/layers/%2Bspacemacs/spacemacs-ui/packages.el#L157
+  (defun my-open-junk-file (&optional arg)
+    "Open junk file using ivy.
+When ARG is non-nil search in junk files."
+    (interactive "P")
+    (let* ((fname (format-time-string open-junk-file-format (current-time)))
+           (rel-fname (file-name-nondirectory fname))
+           (junk-dir (file-name-directory fname))
+           ;; Name of default directory of current buffer.
+           ;; This must be replaced with the junk-dir for counsel to work correctly.
+           (default-directory junk-dir))
+      (counsel-find-file rel-fname)))
+  ;;
+  ;; File format to put junk files with directory.
+  (cond
+   ((file-exists-p "~/junk/")
+    (setq open-junk-file-format "~/junk/%Y/%m/%d-%H%M%S."))
+   ((file-exists-p "~/Dropbox/junk/")
+    (setq open-junk-file-format "~/Dropbox/junk/%Y/%m/%d-%H%M%S.")))
+  ;; Whether to immediately create a directory for the junk file
+  (setq open-junk-file-make-directory t))
 
 
 ;;;
@@ -183,5 +208,3 @@
 ;; http://emacswiki.org/emacs/CsvMode
 (use-package csv-mode
   :mode ("\\.csv" . csv-mod))
-
-
