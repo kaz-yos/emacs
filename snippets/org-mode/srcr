@@ -6,7 +6,7 @@
 # https://orgmode.org/manual/Exporting-code-blocks.html
 \scriptsize
 #+HEADER: :width 3.5 :height 3
-#+BEGIN_SRC R :session *R* :results output${1:$$(yas-choose-value '("" " graphics :file ./source/figure.pdf"))} :exports ${2:$$(yas-choose-value '("both" "results" "code" "none"))}
+#+BEGIN_SRC R :session *R-org* :results output${1:$$(yas-choose-value '("" " graphics :file ./source/figure.pdf"))} :exports ${2:$$(yas-choose-value '("both" "results" "code" "none"))}
 $0
 #+END_SRC
 \normalsize

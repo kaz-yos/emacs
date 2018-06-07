@@ -1,0 +1,6 @@
+# key: srcr
+# name: srcrplain
+# --
+#+BEGIN_SRC R :session *R-org* :results output :exports both
+$0
+#+END_SRC
