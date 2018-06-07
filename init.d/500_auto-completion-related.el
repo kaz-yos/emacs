@@ -1,9 +1,24 @@
 ;;; 500_auto-completion-related.el ---               -*- lexical-binding: t; -*-
 
+
 ;;;
-;;; hippie-expand (built-in)
-;; hippie-expand instead of less functional dabbrev-expand
-(bind-key* "M-/" 'hippie-expand)
+;;; hippie-exp.el
+;; https://www.gnu.org/software/emacs/manual/html_node/autotype/Hippie-Expand.html#Hippie-Expand
+(use-package hippie-exp
+  ;; hippie-expand instead of less functional dabbrev-expand
+  :bind* (("M-/" . hippie-expand)))
+
+
+;;;
+;;; abbrev.el
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Abbrevs.html
+(use-package abbrev
+  :config
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Abbrev-Files.html#Abbrev-Files
+  (setq abbrev-file-name (concat user-emacs-directory
+                                 "abbrev_defs"
+                                 "_"
+                                 (system-name-sans-domain))))
 
 
 ;;;
