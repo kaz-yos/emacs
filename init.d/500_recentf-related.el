@@ -27,8 +27,12 @@
   (setq recentf-auto-cleanup 'mode)
   ;; Auto save when idle
   ;; (run-with-idle-timer SECS REPEAT FUNCTION &rest ARGS)
-  (run-with-idle-timer 15 t '(lambda ()
-                               (with-suppressed-message (recentf-save-list)))))
+  ;; This function returns a timer object which you can use in cancel-timer.
+  (defvar recentf-save-list-timer)
+  ;; Capture the timer object for canceling purpose.
+  (setq recentf-save-list-timer
+        (run-with-idle-timer 60 t '(lambda ()
+                                     (with-suppressed-message (recentf-save-list))))))
 
 
 ;;; recentf-ext.el
@@ -38,7 +42,7 @@
 ;; ‘dired’ buffers can be handled.
 ;; Switching to file buffer considers it as most recent file.
 (use-package recentf-ext
-  :defer 2
+  :after recentf
   :config
   ;; Activate recentf-mode
   (recentf-mode 1))
