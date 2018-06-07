@@ -5,6 +5,8 @@
 ;; Extra Emacs font lock rules for a more colourful dired
 ;; https://github.com/purcell/diredfl
 (use-package diredfl
+  ;; Use in GUI.
+  :if (display-graphic-p)
   :hook (dired-mode . diredfl-mode)
   :commands (diredfl-mode))
 
@@ -210,4 +212,8 @@ from the current buffer."
 (use-package dired-recent
   :after dired
   :config
+  (setq dired-recent-directories-file (concat user-emacs-directory
+                                              "dired-history"
+                                              "_"
+                                              (system-name-sans-domain)))
   (dired-recent-mode 1))
