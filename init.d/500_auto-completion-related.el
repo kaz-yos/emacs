@@ -137,11 +137,10 @@
   ;;
   ;; company-mode everywhere
   :hook (after-init . global-company-mode)
-  :init
-  ;; except in these modes
-  ;; (setq company-global-modes '(not eshell-mode ielm-mode))
   ;;
   :config
+  ;; Non-nil to offer completions in comments and strings.
+  (setq company-dabbrev-code-everywhere t)
   ;; Delay time
   (setq company-idle-delay 0.3)
   ;; 2 letters before completion kicks in
