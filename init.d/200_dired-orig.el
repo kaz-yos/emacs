@@ -59,6 +59,7 @@
 
 ;;;
 ;;; dired-x.el
+;; https://www.gnu.org/software/emacs/manual/html_node/dired-x/index.html#Top
 ;; Extra Dired functionality
 (use-package dired-x
   :after dired
@@ -73,3 +74,12 @@
   (setq dired-omit-files
         ;; Dot files
         (concat dired-omit-files "\\|^\\..+$")))
+
+
+;;;
+;;; dired-aux.el
+;; https://github.com/emacs-mirror/emacs/blob/master/lisp/dired-aux.el
+(use-package dired-aux
+  :commands (dired-do-async-shell-command)
+  :bind (:map dired-mode-map
+              ("M-s M-s" . dired-do-async-shell-command)))
