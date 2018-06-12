@@ -14,6 +14,7 @@
               ("C-c C-e" . ess-eval-region-or-line-and-step)
               ("C-c C-b" . ess-eval-buffer)
               ("C-c C-u" . ess-eval-buffer-from-beg-to-here)
+              ("C-c C-c" . ess-eval-region-or-function-or-paragraph)
               ;;
               :map ess-noweb-minor-mode-map
               ("A-s" . ess-swv-weave-PDF)
@@ -61,10 +62,10 @@
       (interactive)
       (and (eq (oref pm/chunkmode :mode) 'r-mode)
            (pm-with-narrowed-to-span
-            nil
-            (goto-char (point-min))
-            (forward-line)
-            (ess-eval-region (point) (point-max) nil nil 'R))))
+               nil
+             (goto-char (point-min))
+             (forward-line)
+             (ess-eval-region (point) (point-max) nil nil 'R))))
     (defun rmd-send-chunks-above ()
       "Send all R code chunks above point."
       (interactive)
