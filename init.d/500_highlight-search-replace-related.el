@@ -79,6 +79,11 @@
          ("<" . mc/mark-previous-like-this)
          ("*" . mc/mark-all-like-this))
   :config
+  (setq mc/list-file (concat user-emacs-directory
+                             "mc-lists"
+                             "_"
+                             (system-name-sans-domain)
+                             ".el"))
   ;; What to display in the mode line while multiple-cursors-mode is active.
   ;; Do not show anything at the minor mode part.
   (setq mc/mode-line nil)
