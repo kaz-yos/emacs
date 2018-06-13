@@ -198,6 +198,22 @@ to conform the org-mode convention."
   ;;
   ;;
 ;;;
+;;; org-src.el
+  ;; Non-nil means turn `auto-save-mode' on when editing a source block.
+  (setq org-edit-src-turn-on-auto-save nil)
+  ;; When 0 (the default), don't auto-save.
+  (setq org-edit-src-auto-save-idle-delay 0)
+  ;; This prevents activation of auto-save-timer by `org-src-mode'.
+  ;; The timer seems to be the cause of the following error.
+  ;; This malformed timer gets into `timer-idle-list'.
+  ;; Debugger entered--Lisp error: (wrong-type-argument timerp nil)
+  ;; signal(wrong-type-argument (timerp nil))
+  ;; cancel-timer(nil)
+  ;; #f(compiled-function () #<bytecode 0x5b5493f9>)()
+  ;; apply(#f(compiled-function () #<bytecode 0x5b5493f9>) nil)
+  ;; timer-event-handler([t 0 5 0 t #f(compiled-function () #<bytecode 0x5b5493f9>) nil idle 0])
+  (setq-default org-src--auto-save-timer t)
+;;;
 ;;; Org-Babel
   ;; org-mode manual 14 Working with source code
   ;; http://orgmode.org/manual/Working-With-Source-Code.html#Working-With-Source-Code
