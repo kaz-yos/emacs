@@ -157,6 +157,15 @@ configuration when invoked to evaluate a line."
               ("<C-return>" . eir-eval-in-javascript)))
 
 
+;;;  octave support
+(use-package eval-in-repl-octave
+  :load-path "~/Documents/programming/emacs-lisp-repos/eval-in-repl"
+  :after octave
+  :commands eir-eval-in-octave
+  :bind (:map octave-mode-map
+              ("<C-return>" . eir-eval-in-octave)))
+
+
 ;;;
 ;;; org-babel-eval-in-repl.el
 ;; https://github.com/diadochos/org-babel-eval-in-repl
