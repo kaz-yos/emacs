@@ -69,6 +69,8 @@ Dependency: ace-swap-window"
   ;; vc-status-mini or vc-status to `ibuffer-formats':
   (use-package ibuffer-vc
     :config
+    ;; If non-nil, don't query the VC status of remote files.
+    (setq ibuffer-vc-skip-if-remote t)
     (add-hook 'ibuffer-hook
               (lambda ()
                 (ibuffer-vc-set-filter-groups-by-vc-root)
