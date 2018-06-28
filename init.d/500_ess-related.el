@@ -88,16 +88,6 @@
   (bind-key "M-." 'smart-jump-go ess-mode-map)
   (bind-key "M-," 'smart-jump-back ess-mode-map)
   ;;
-  ;; Underscore preservation in ESS
-  ;; http://www.r-bloggers.com/a-small-customization-of-ess/
-  ;; C-= gives <-
-  (setq ess-S-assign-key (kbd "C-="))
-  ;; enable above key definition
-  (ess-toggle-S-assign-key t)
-  ;; leave my underscore key alone!
-  (ess-toggle-underscore nil)
-  (define-key ess-mode-map (kbd "_") nil)
-  ;;
   ;; Smart TAB completion in R scripts, similar to iESS behavior.
   (setq ess-tab-complete-in-script nil)
   (setq ess-first-tab-never-complete nil)
