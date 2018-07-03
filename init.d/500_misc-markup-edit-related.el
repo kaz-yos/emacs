@@ -35,3 +35,14 @@
 ;; same commands as other modes, M-; .  You can compile a file using
 ;; M-x compile or C-c c, after that M-x next-error will also work.
 ;; There is support for viewing an generated image with C-c p.
+
+
+;;;
+;;; tagedit.el
+;; A collection of paredit-like functions for editing in html-mode.
+;; https://github.com/magnars/tagedit
+(use-package tagedit
+  :after sgml-mode
+  :hook ((html . (lambda () (tagedit-mode 1))))
+  :config
+  (tagedit-add-paredit-like-keybindings))
