@@ -19,7 +19,7 @@ This function also prevents running remotely."
   ;; Only when idle for some time
   ;; This is active in ssh buffers, too
   (setq super-save-auto-save-when-idle t)
-  (setq super-save-idle-duration 5)
+  (setq super-save-idle-duration 1)
   ;;
   ;; Activate
   (super-save-mode +1))
