@@ -14,12 +14,14 @@
               ("C-c C-e" . ess-eval-region-or-line-and-step)
               ("C-c C-b" . ess-eval-buffer)
               ("C-c C-u" . ess-eval-buffer-from-beg-to-here)
+              ("C-=" . ess-insert-assign)
               ;;
               :map ess-noweb-minor-mode-map
               ("A-s" . ess-swv-weave-PDF)
               ("A-p" . ess-swv-PDF)
               ;;
-              )
+              :map inferior-ess-mode-map
+              ("C-=" . ess-insert-assign))
   ;;
   ;; https://github.com/jwiegley/use-package#modes-and-interpreters
   :mode (("\\.R\\'" . r-mode)
@@ -37,6 +39,10 @@
   ;;
   ;;
   :config
+  ;; Unbind keys
+  (unbind-key "_" ess-mode-map)
+  (unbind-key "_" inferior-ess-mode-map)
+  ;;
 ;;;  poly-R.el
   (use-package poly-R
     :commands (poly-noweb+r-mode
