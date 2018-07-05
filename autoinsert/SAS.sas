@@ -5,4 +5,4 @@
 /**/
 
 /** Set libname */
-libname dir1 '//psf/Home/Documents/statistics/';
+libname w './';
