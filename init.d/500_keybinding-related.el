@@ -209,6 +209,12 @@ This should be run after running multiple-cursors"
   (add-hook 'c++-mode-hook 'smartchr-c++-mode-set)
   (fset 'smartchr-c++-mode-unset (smartchr-construct-unsetter 'smartchr-c++-mode-set))
   ;;
+;;;   octave
+  (defun smartchr-ocvate-set ()
+    (local-set-key (kbd "=") (smartchr '("=" " = " " == "))))
+  (add-hook 'ocvate-mode-hook 'smartchr-ocvate-set)
+  (fset 'smartchr-ocvate-unset (smartchr-construct-unsetter 'smartchr-ocvate-set))
+  ;;
   ;;
   ;; Define an auto-loadable function
   :commands (smartchr))
