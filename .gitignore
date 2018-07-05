@@ -1,11 +1,9 @@
+.gitignore
 *~
 *(from*
 .DS_Store
 snippets/.DS_Store
 autoinsert/.gitignore
-.Rhistory
-.juliahistory
-.mc-lists.el
 *.info
 ac-comphist.dat
 auto-install/
@@ -31,9 +29,7 @@ projectile-bookmarks.eld
 projectile-bookmarks_*.eld
 projectile-cache_*
 *.elc
-/pomodoro.org
 /.python-environments/
-*SugarSyncTemp
 /ido.last
 /skk/
 /misc/aspell.en.pws
