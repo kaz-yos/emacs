@@ -2,7 +2,8 @@
 ;; List holding the names of file types as strings
 ("ext-R"
  "ext-pdf"
- "ext-sh")
+ "ext-sh"
+ "ext-sas")
 
 ;;; runner-alist
 ;;
@@ -29,7 +30,12 @@
  ;;
  ("ext-sh" 0 "sh"
   (("sh" "{run:out} sh" 0)
-   ("bash" "{run:out} bash" 5))))
+   ("bash" "{run:out} bash" 5)))
+ ;;
+ ("ext-sas" 0 "sas"
+  (("channing-sas" "qbs" 0)
+   ("channing-sas 50GB disk" "qbs -o disksize=50G" 0)
+   ("sas" "{run:out} sas" 5))))
 
 ;;; Run these after reconfiguring.
 ;; (progn (runner-settings-load) (runner-reset))
