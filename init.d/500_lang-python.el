@@ -42,9 +42,19 @@
 
 
 ;;;  ein.el
+;; https://github.com/millejoh/emacs-ipython-notebook
+;; http://millejoh.github.io/emacs-ipython-notebook/
+;; http://millejoh.github.io/emacs-ipython-notebook/#usage
+;; https://github.com/millejoh/emacs-ipython-notebook/wiki/Tips
+;; ein:notebooklist-open fails #154 (token support)
+;; https://github.com/millejoh/emacs-ipython-notebook/issues/154
 (use-package ein-loaddefs
-  :commands (ein:jupyter-server-start
+  :commands (;; Start the jupyter notebook server at the given path.
+             ein:jupyter-server-start
+             ;; Log in and open a notebooklist buffer for a running jupyter notebook server.
              ein:jupyter-server-login-and-open
+             ;; Log on to a jupyterhub server using PAM authentication.
+             ;; Requires jupyterhub version 0.8 or greater.
              ein:jupyterhub-connect
              ;; This is for old iPython Notebook
              ein:connect-to-notebook)
