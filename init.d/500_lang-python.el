@@ -48,7 +48,7 @@
 ;; https://github.com/millejoh/emacs-ipython-notebook/wiki/Tips
 ;; ein:notebooklist-open fails #154 (token support)
 ;; https://github.com/millejoh/emacs-ipython-notebook/issues/154
-(use-package ein-loaddefs
+(use-package ein
   :commands (;; Start the jupyter notebook server at the given path.
              ein:jupyter-server-start
              ;; Log in and open a notebooklist buffer for a running jupyter notebook server.
@@ -59,6 +59,12 @@
              ;; This is for old iPython Notebook
              ein:connect-to-notebook)
   :config
+  ;; http://millejoh.github.io/emacs-ipython-notebook/#quick-try
+  (use-package ein-loaddefs)
+  (use-package ein-notebook)
+  (use-package ein-subpackages)
+  ;;
+  ;; Sets the frequency (in seconds) at which the notebook is automatically saved.
   (setq ein:notebook-autosave-frequency 10))
 
 
