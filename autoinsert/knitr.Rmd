@@ -28,9 +28,7 @@ options(width = 116, scipen = 5)
 ## Load packages
 
 ```{r}
-
 library(tidyverse)
-
 ```
 
 ##
@@ -42,4 +40,4 @@ library(tidyverse)
 
 --------------------
 - Top Page: http://rpubs.com/kaz_yos/
-- github: https://github.com/kaz-yos
+- Github: https://github.com/kaz-yos
