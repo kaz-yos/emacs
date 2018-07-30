@@ -198,9 +198,13 @@ from the current buffer."
   :after dired
   ;; ls-lisp-use-insert-directory-program must be non-nil
   :if ls-lisp-use-insert-directory-program
+  ;;
+  ;; This is incompatible with remote macOS over TRAMP.
+  ;; Wait for explicit invocation with a key to avoid this issue.
   ;; Automatically use the sorting defined by dired-quick-sort in dired.
-  :hook (dired-mode . dired-quick-sort)
-  ;; Invoke the dired-quick-sort hydra.
+  ;; :hook (dired-mode . dired-quick-sort)
+  ;;
+  ;; Invoke the dired-quick-sort hydra with a key.
   :bind (:map dired-mode-map
               ("s" . hydra-dired-quick-sort/body)))
 
