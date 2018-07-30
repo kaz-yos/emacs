@@ -18,8 +18,8 @@
   ;; http://qiita.com/maangie/items/5a80ae50c13d14368a72
   (setq ls-lisp-use-insert-directory-program t)
   ;; Check existance of gls and use it if it exists
-  (let ((gls "/usr/local/bin/gls"))
-    (when (file-exists-p gls)
+  (let ((gls (executable-find "gls")))
+    (when gls
       (setq insert-directory-program gls)))
   ;;
   ;; lisp implementation of ls is used in systems without ls
