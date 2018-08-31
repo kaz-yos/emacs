@@ -30,6 +30,9 @@
 (require 'org)
 (require 'org-ref)
 ;;; Load exporters
+;; https://emacs.stackexchange.com/questions/9492/is-it-possible-to-export-content-of-subtrees-without-their-headings
+(require 'ox-extra)
+(ox-extras-activate '(ignore-headlines))
 (require 'ox-beamer)
 ;; bold is bold not \alert{} (can appear as red text)
 ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html#export-filters

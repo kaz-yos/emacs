@@ -363,7 +363,13 @@ to conform the org-mode convention."
 ;;;
 ;;; Exporter configurations
   ;; ox.el --- Export Framework for Org Mode
-  (use-package ox)
+  (use-package ox
+    :config
+    (use-package ox-extra
+      :config
+      ;; Activate :ignore: tag
+      ;; https://emacs.stackexchange.com/questions/9492/is-it-possible-to-export-content-of-subtrees-without-their-headings
+      (ox-extras-activate '(ignore-headlines))))
   ;;
   ;; Asynchronous export is explained in ox.el
   ;; `org-export-in-background'
@@ -541,6 +547,7 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; How to export source code. See the help for `org-latex-listings'.
   ;; t for listings or 'minted for minted (depends on pygments).
   ;; Also install pygments and give the -shell-escape option to the LaTeX engine.
+  ;; conda install pygments
   (setq org-latex-listings 'minted)
   ;;
   ;; Association list of options for the latex minted package. Set in the file.
