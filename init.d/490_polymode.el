@@ -1,6 +1,7 @@
 ;;;
 ;;; polymode.el
-;; Versatile multiple modes with extensive literate programming support
+;; Polymode is a framework for multiple major modes (MMM) inside a single Emacs buffer.
+;; https://polymode.github.io
 ;; https://github.com/vitoshka/polymode
 ;; https://github.com/vspinu/polymode/blob/master/readme.md#basic-usage
 
