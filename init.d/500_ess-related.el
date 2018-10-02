@@ -1,13 +1,12 @@
 ;;; Emacs Speaks Statistics (ESS) for emacs
-;; http://www.emacswiki.org/emacs/EmacsSpeaksStatistics
+;; http://ess.r-project.org
 ;; Now installed via elpa
-;;
-;; Some condigurations were taken from vgoulet Emacs distribution configuration files
-;; https://svn.fsg.ulaval.ca/svn-pub/vgoulet/emacs-modified/macos/tags/
 (use-package ess-site
+  ;; :demand t
   :commands (R
              R-mode
              r-mode)
+  ;; https://github.com/jwiegley/use-package#binding-within-local-keymaps
   :bind (:map ess-mode-map
               ("A-s" . buffer-do-async-shell-command)
               ("M-s M-s" . buffer-do-async-shell-command)
@@ -41,6 +40,8 @@
   ;;
   ;;
   :config
+  (message "ess config being run!!")
+  ;;
 ;;;  poly-R.el
   (use-package poly-R
     :commands (poly-noweb+r-mode
