@@ -24,6 +24,8 @@
   :commands (elscreen-create
              my-elscreen-setup)
   :hook ((after-init . my-elscreen-setup))
+  :bind (:map elscreen-map
+              ("o" . my-open-current-buffer-in-new-elscreen))
   ;;
   :config
   (defun my-elscreen-setup ()
@@ -41,6 +43,13 @@
            (split-window nil nil 'left))
     ;; Screen 0
     (elscreen-goto 0))
+  ;;
+  (defun my-open-current-buffer-in-new-elscreen ()
+    "Open current buffer as a single window in a new elscreen"
+    (interactive)
+    (let ((current-buffer-name (buffer-name)))
+      (elscreen-create)
+      (switch-to-buffer current-buffer-name)))
   ;;
   ;; Prefix condition on environment
   (setq elscreen-prefix-key (if (display-graphic-p)
