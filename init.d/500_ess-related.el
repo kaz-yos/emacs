@@ -79,18 +79,6 @@
            'rmd-send-chunk (point-min) (point))))))
   ;;
 ;;;  Remaining config
-  ;; https://emacs.stackexchange.com/questions/37420/ess-mode-library-name-auto-complete
-  ;; insert R library line using helm
-  (defun helm-ess-R-library-name-insert ()
-    "Insert a library name."
-    (interactive)
-    (let
-        ((lib-name (helm :sources (helm-build-in-buffer-source "R-library"
-                                    :data (ess-get-words-from-vector
-                                           "print(.packages(T), max=1e6)\n"))
-                         :buffer "*R library*")))
-      (when (not (string= lib-name nil))
-        (insert (format "%s" lib-name)))))
   ;;
   ;; If non-nil activate flymake in ess-mode buffers.
   (setq ess-use-flymake nil)
