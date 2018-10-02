@@ -2,7 +2,7 @@
 ;; http://ess.r-project.org
 ;; Now installed via elpa
 (use-package ess-site
-  ;; :demand t
+  :demand t
   :commands (R
              R-mode
              r-mode)
