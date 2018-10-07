@@ -78,6 +78,9 @@
              ein:notebooklist-open)
   ;;
   :config
+  ;; Use auto-complete for ein
+  (add-hook 'ein:notebook-multilang-mode-hook '(lambda () (company-mode -1)))
+  (add-hook 'ein:notebook-multilang-mode-hook '(lambda () (auto-complete-mode -1)))
   ;; http://millejoh.github.io/emacs-ipython-notebook/#quick-try
   (use-package ein-loaddefs)
   ;;
