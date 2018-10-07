@@ -2,5 +2,5 @@
 # name: orgimage
 # key: image
 # --
-#+ATTR_LATEX: :width \textwidth :options page=1
-[[$1]]$0
+#+ATTR_LATEX: :height $1\textheight :width $1\textwidth :options page=1,keepaspectratio :center t
+[[$2]]$0

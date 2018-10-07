@@ -51,12 +51,12 @@
 #+LATEX_HEADER: \usepackage{url}
 #+LATEX_HEADER: %% Do not count backup slides.
 #+LATEX_HEADER: %% https://tex.stackexchange.com/questions/70448/dont-count-backup-slides
-#+LATEX_HEADER: \newcommand{\backupbegin}{
-#+LATEX_HEADER:    \newcounter{finalframe}
-#+LATEX_HEADER:    \setcounter{finalframe}{\value{framenumber}}
-#+LATEX_HEADER: }
-#+LATEX_HEADER: \newcommand{\backupend}{
-#+LATEX_HEADER:    \setcounter{framenumber}{\value{finalframe}}
+#+LATEX_HEADER: \usepackage{appendixnumberbeamer}
+#+LATEX_HEADER: %% https://www.sharelatex.com/learn/Hyperlinks
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER:     colorlinks = true,
+#+LATEX_HEADER:     linkcolor= blue
 #+LATEX_HEADER: }
 #+LATEX_HEADER: %% Include convenient commands.
 #+LATEX_HEADER: \input{\string~/.emacs.d/misc/GrandMacros}
