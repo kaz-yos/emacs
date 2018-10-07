@@ -119,6 +119,16 @@
   (define-sequential-command org-seq-cmd--end
     org-end-of-line end-of-buffer seq-return)
   ;;
+  (defun open-org-pdf-in-app ()
+    (interactive)
+    (let ((pdf-file (concat (file-name-sans-extension (buffer-file-name))
+                            ".pdf"))
+          (pdf-app "/Applications/Skim.app"))
+      (shell-command (concat "open -a "
+                             pdf-app
+                             " "
+                             pdf-file))))
+  ;;
   ;; Swap dimension specification
   (defun my-reverse-org-table-dimension (size)
     (let* ((split (org-split-string size " *x *"))
