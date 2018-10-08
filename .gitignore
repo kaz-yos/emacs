@@ -51,3 +51,6 @@ snippets/text-mode/peer
 /misc/rsync_odyssey.sh
 *.aff
 *.dic
+abbrev_defs_*
+mc-lists_*
+dired-history_*
