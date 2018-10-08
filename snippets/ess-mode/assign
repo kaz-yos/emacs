@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: assign
+# key: as
+# --
+$1 <- $1 %>%$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pdb
+# key: pdb
+# --
+if (pdb) display($1) endif;$0
