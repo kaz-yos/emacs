@@ -49,3 +49,5 @@ snippets/text-mode/peer
 /misc/rsync_dope-r.sh
 /misc/rsync_o2.sh
 /misc/rsync_odyssey.sh
+*.aff
+*.dic
