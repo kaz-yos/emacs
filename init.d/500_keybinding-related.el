@@ -164,8 +164,10 @@ This should be run after running multiple-cursors"
   ;;
 ;;;   LaTeX
   (defun smartchr-LaTeX-mode-set ()
-    (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
-    (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))))
+    ;; This $ one has conflict with poly-markdown.el where first $ invokes latex-mode.
+    ;; (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
+    ;; (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")))
+    )
   (add-hook 'LaTeX-mode-hook 'smartchr-LaTeX-mode-set)
   (fset 'smartchr-LaTeX-mode-unset (smartchr-construct-unsetter 'smartchr-LaTeX-mode-set))
   ;;
