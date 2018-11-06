@@ -2,4 +2,4 @@
 # name: link
 # key: link
 # --
-[name]($1)
+[name$2]($1)
