@@ -90,6 +90,19 @@
                                  "\""
                                  buffer-file-name
                                  "\""
+                                 ")'")))))
+    (defun rmd-unname-all-chunks ()
+      "Unname all chunks in current RMarkdown file."
+      (interactive)
+      (let ((buffer-file-extension (file-name-extension (buffer-file-name))))
+        (when (string= buffer-file-extension "Rmd")
+          (shell-command (concat "Rscript"
+                                 " -e "
+                                 "'"
+                                 "namer::unname_all_chunks("
+                                 "\""
+                                 buffer-file-name
+                                 "\""
                                  ")'"))))))
   ;;
 ;;;  Remaining config
