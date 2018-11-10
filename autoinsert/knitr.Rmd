@@ -57,12 +57,12 @@ library(tidyverse)
 print(sessionInfo())
 ## Record execution time
 end_time <- Sys.time()
-cat("\n### Started  ", as.character(start_time), "\n")
-cat("### Finished ", as.character(end_time), "\n")
+cat("\n Started  ", as.character(start_time), "\n")
+cat(" Finished ", as.character(end_time), "\n")
 print(end_time - start_time)
 ## Report multicore use
-cat("### Used", foreach::getDoParWorkers(), "cores\n")
-cat("### Used", foreach::getDoParName(), "as backend\n")
+cat(" Used", foreach::getDoParWorkers(), "cores\n")
+cat(" Used", foreach::getDoParName(), "as backend\n")
 ```
 
 --------------------
