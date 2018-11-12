@@ -39,8 +39,9 @@ options(cores = n_cores)
 ## http://stackoverflow.com/questions/28989855/the-difference-between-domc-and-doparallel-in-r
 doParallel::registerDoParallel(cores = n_cores)
 ## Report multicore use
-cat("### Using", foreach::getDoParWorkers(), "cores\n")
-cat("### Using", foreach::getDoParName(), "as backend\n")
+cat("### Using ", foreach::getDoParWorkers(), " cores\n",
+    "### Using ", foreach::getDoParName(), " as backend\n",
+    sep = "")
 
 ## https://github.com/tidyverse/tibble/issues/395
 options(crayon.enabled = FALSE)
@@ -61,8 +62,12 @@ cat("
 ### Record package versions etc
 ################################################################################\n")
 print(sessionInfo())
-## Record execution time
+## Record execution time and multicore use
 end_time <- Sys.time()
-cat("\n### Started  ", as.character(start_time), "\n")
-cat("### Finished ", as.character(end_time), "\n")
-print(end_time - start_time)
+diff_time <- difftime(end_time, start_time, units = "auto")
+cat("Started  ", as.character(start_time), "\n",
+    "Finished ", as.character(end_time), "\n",
+    "Time difference of ", diff_time, " ", attr(diff_time, "units"), "\n",
+    "Used ", foreach::getDoParWorkers(), " cores\n",
+    "Used ", foreach::getDoParName(), " as backend\n",
+    sep = "")

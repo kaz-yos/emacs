@@ -24,7 +24,6 @@ options(width = 116, scipen = 5)
 
 ## Record start time
 start_time <- Sys.time()
-cat("### Started ", as.character(start_time), "\n")
 
 ## Configure parallelization
 ## Parallel backend for foreach (also loads foreach and parallel; includes doMC)
@@ -55,14 +54,15 @@ library(tidyverse)
 
 ```{r}
 print(sessionInfo())
-## Record execution time
+## Record execution time and multicore use
 end_time <- Sys.time()
-cat("Started  ", as.character(start_time), "\n")
-cat("Finished ", as.character(end_time), "\n")
-print(end_time - start_time)
-## Report multicore use
-cat("Used", foreach::getDoParWorkers(), "cores\n")
-cat("Used", foreach::getDoParName(), "as backend\n")
+diff_time <- difftime(end_time, start_time, units = "auto")
+cat("Started  ", as.character(start_time), "\n",
+    "Finished ", as.character(end_time), "\n",
+    "Time difference of ", diff_time, " ", attr(diff_time, "units"), "\n",
+    "Used ", foreach::getDoParWorkers(), " cores\n",
+    "Used ", foreach::getDoParName(), " as backend\n",
+    sep = "")
 ```
 
 --------------------
