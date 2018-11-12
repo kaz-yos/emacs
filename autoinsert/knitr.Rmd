@@ -18,13 +18,10 @@ opts_chunk$set(comment = "##", error= TRUE, warning = showWarning, message = sho
 ## knit_hooks$set(rgl = hook_rgl, webgl = hook_webgl)
 ## for animation
 opts_knit$set(animation.fun = hook_ffmpeg_html)
-
 ## R configuration
 options(width = 116, scipen = 5)
-
 ## Record start time
 start_time <- Sys.time()
-
 ## Configure parallelization
 ## Parallel backend for foreach (also loads foreach and parallel; includes doMC)
 library(doParallel)
