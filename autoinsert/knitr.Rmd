@@ -50,7 +50,9 @@ library(tidyverse)
 ```
 
 
-## Session information
+--------------------
+- Top Page: http://rpubs.com/kaz_yos/
+- Github: https://github.com/kaz-yos
 
 ```{r}
 print(sessionInfo())
@@ -64,7 +66,3 @@ cat("Started  ", as.character(start_time), "\n",
     "Used ", foreach::getDoParName(), " as backend\n",
     sep = "")
 ```
-
---------------------
-- Top Page: http://rpubs.com/kaz_yos/
-- Github: https://github.com/kaz-yos
