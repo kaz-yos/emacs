@@ -59,6 +59,17 @@
     :config
     ;; Auto revert for .Rmd
     (add-hook 'poly-markdown+r-mode-hook 'turn-on-auto-revert-mode)
+    ;;
+    ;; For some reason beginning-of-line appears in the post-self-insert-hook while editing latex in Rmd.
+    (defun remove-beginning-of-line-from-post-self-insert-hook ()
+      "Remove beginning-of-line from post-self-insert-hook."
+      (interactive)
+      (remove-hook 'post-self-insert-hook 'beginning-of-line))
+    (defun clear-post-self-insert-hook ()
+      "Wipe out post-self-insert-hook."
+      (interactive)
+      (setq post-self-insert-hook '()))
+    ;;
     ;; Execute all R chunks at once from an Rmd document
     ;; https://stackoverflow.com/questions/40894202/execute-all-r-chunks-at-once-from-an-rmd-document
     (defun rmd-send-chunk ()
