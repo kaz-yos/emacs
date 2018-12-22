@@ -54,7 +54,7 @@
   ;; Prefix condition on environment
   (setq elscreen-prefix-key (if (display-graphic-p)
                                 (kbd "C-;")
-                              (kbd "C-c ;")))
+                              (kbd "C-c m ;")))
   ;; Non-nil to display the number of current screen in the mode line.
   (setq elscreen-display-screen-number nil)
   ;; Do not show tabls to save space
