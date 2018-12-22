@@ -16,10 +16,6 @@
               ("C-=" . ess-insert-assign)
               ("_" . nil)
               ;;
-              :map ess-noweb-minor-mode-map
-              ("A-s" . ess-swv-weave-PDF)
-              ("A-p" . ess-swv-PDF)
-              ;;
               :map inferior-ess-mode-map
               ("C-=" . ess-insert-assign)
               ("_" . nil))
@@ -77,10 +73,10 @@
       (interactive)
       (and (eq (oref pm/chunkmode :mode) 'r-mode)
            (pm-with-narrowed-to-span
-               nil
-             (goto-char (point-min))
-             (forward-line)
-             (ess-eval-region (point) (point-max) nil nil 'R))))
+            nil
+            (goto-char (point-min))
+            (forward-line)
+            (ess-eval-region (point) (point-max) nil nil 'R))))
     (defun rmd-send-chunks-above ()
       "Send all R code chunks above point."
       (interactive)
