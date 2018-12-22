@@ -3,6 +3,6 @@
 # key: for
 # binding: direct-keybinding
 # --
-  for (i in 1:N) {
-   $0 
-  }
+for (i in 1:N) {
+ $0
+}
