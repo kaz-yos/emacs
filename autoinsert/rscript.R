@@ -43,8 +43,6 @@ cat("### Using ", foreach::getDoParWorkers(), " cores\n",
     "### Using ", foreach::getDoParName(), " as backend\n",
     sep = "")
 
-## https://github.com/tidyverse/tibble/issues/395
-options(crayon.enabled = FALSE)
 ## Load packages
 library(tidyverse)
 
