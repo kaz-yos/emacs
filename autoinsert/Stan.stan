@@ -16,7 +16,7 @@ parameters {
 
 transformed parameters {
     real<lower=0> sigma;
-    sigma <- sqrt(sigma_sq);
+    sigma = sqrt(sigma_sq);
 }
 
 model {
