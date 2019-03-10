@@ -116,7 +116,7 @@
   ;; This creates a new fontset rather than overwriting the default fontset.
   (let* ((my-fontset-name "myfonts")
          ;; Font size one of [9/10/12/14/15/17/19/20/...]
-         (my-default-font-size 14)
+         (my-default-font-size 16)
          ;;
          ;; Ascii font name (pick from (font-family-list))
          (my-ascii-font "Menlo")
