@@ -457,6 +457,7 @@ searched. If there is no symbol, empty search box is started."
 ;; https://github.com/momomo5717/avy-migemo
 ;; http://dev.classmethod.jp/tool/emacs-avy-migemo/
 (use-package avy-migemo
+  :disabled t
   :if (executable-find "cmigemo")
   ;; :commands (avy-migemo-goto-char
   ;;            avy-migemo-goto-char-2
