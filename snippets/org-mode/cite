@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cite
+# key: cite
+# --
+\footnotesize $0 \normalsize

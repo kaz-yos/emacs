@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: toc
+# key: toc
+# --
+\sloppy
+\nbsp{}
+\hline
+\setcounter{page}{0}
+\newpage

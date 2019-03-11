@@ -1,0 +1,4 @@
+# key: tar
+# name: target
+# --
+target += $0
