@@ -27,6 +27,15 @@
                (local-set-key (kbd   ";") 'my-tex-insert-backslash)
                (local-set-key (kbd "A-;") 'my-tex-insert-semicolon)))
   ;;
+  ;; Alist of built-in viewer specifications.
+  ;; Nullified in terminal to avoid dbus error on calling
+  ;; TeX-view-program-select-evince from these lines.
+  ;; ("Evince" ,(TeX-view-program-select-evince "gnome" "evince") "evince")
+  ;; ("Atril" ,(TeX-view-program-select-evince "mate" "atril") "atril")
+  ;; ("Xreader" ,(TeX-view-program-select-evince "x" "reader") "xreader")
+  (unless (display-graphic-p)
+    (setq TeX-view-program-list-builtin nil))
+  ;;
   :config
   ;; 5.3 Automatic Parsing of TeX Files
   ;; https://www.gnu.org/software/auctex/manual/auctex/Parsing-Files.html
