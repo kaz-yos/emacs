@@ -113,6 +113,12 @@
                                  ")'"))))))
   ;;
 ;;;  Remaining config
+  (defun my-ess-bring-up-inferior-ess ()
+    (interactive)
+    ;; Move to iESS
+    (ess-switch-to-inferior-or-script-buffer nil)
+    ;; Move back
+    (ess-switch-to-inferior-or-script-buffer nil))
   ;;
   ;; If non-nil activate flymake in ess-mode buffers.
   (setq ess-use-flymake nil)
