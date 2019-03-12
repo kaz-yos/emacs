@@ -58,5 +58,6 @@
 #+LATEX_HEADER:     colorlinks = true,
 #+LATEX_HEADER:     linkcolor= blue
 #+LATEX_HEADER: }
+#+LATEX_HEADER: \usepackage{fontawesome}
 #+LATEX_HEADER: %% Include convenient commands.
 #+LATEX_HEADER: \input{\string~/.emacs.d/misc/GrandMacros}

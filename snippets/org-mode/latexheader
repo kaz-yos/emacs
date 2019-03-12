@@ -73,4 +73,5 @@
 #+LATEX_HEADER: \usepackage{float}
 #+LATEX_HEADER: %% Allow URL embedding
 #+LATEX_HEADER: \usepackage{url}
+#+LATEX_HEADER: \usepackage{fontawesome}
 #+LATEX_HEADER: \input{\string~/.emacs.d/misc/GrandMacros}
