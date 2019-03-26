@@ -5,8 +5,8 @@
 ;; Extra Emacs font lock rules for a more colourful dired
 ;; https://github.com/purcell/diredfl
 (use-package diredfl
-  ;; Use in GUI.
-  :if (display-graphic-p)
+  ;; Use in GUI or xterm-256color. Otherwise harder to see.
+  ;; :if (display-graphic-p)
   :hook (dired-mode . diredfl-mode)
   :commands (diredfl-mode))
 
