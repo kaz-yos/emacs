@@ -323,6 +323,14 @@ to conform the org-mode convention."
     (message "org-ref has just been loaded.")
     ;; https://github.com/jkitchin/org-ref/issues/468
     (setq org-ref-show-broken-links nil)
+    ;; Set the format for menu.
+    (use-package helm-bibtex
+      :config
+      ;; Alist of format strings for displaying entries in the results list.
+      ;; "${author:N}" is truncated to a width of N characters
+      ;; "${title:*}" is truncated to the remaining width in the results
+      (setq bibtex-completion-display-formats
+            '((t . "${author:36} ${title:72} ${year:4} ${journal:18}"))))
     ;;
     ;; Need to put these configurations within the org file.
     ;; https://github.com/jkitchin/org-ref#screenshots

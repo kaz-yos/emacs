@@ -245,6 +245,27 @@
   (setq latex-math-preview-dvipng-color-option nil)
   (setq latex-math-preview-image-foreground-color "black")
   (setq latex-math-preview-image-background-color "white")
+  ;; Math expressions
+  (setq
+   latex-math-preview-match-expression
+   '(;; \[...\]
+     (1 . "[^\\\\]\\(\\\\\\[\\(.\\|\n\\)*?\\\\]\\)")
+     ;; \(...\)
+     (0 . "\\\\(\\(.\\|\n\\)*?\\\\)")
+     ;; \begin{math}...\end{math}
+     (0 . "\\\\begin{math}\\(\\(.\\|\n\\)*?\\)\\\\end{math}")
+     ;; \begin{displaymath}...\end{displaymath}
+     (0 . "\\\\begin{displaymath}\\(\\(.\\|\n\\)*?\\)\\\\end{displaymath}")
+     ;; \begin{equation}...\end{equation}
+     (0 . "\\\\begin{equation\\(\\|\\*\\)}\\(\\(.\\|\n\\)*?\\)\\\\end{equation\\(\\|\\*\\)}")
+     ;; \begin{gather}...\end{gather}
+     (0 . "\\\\begin{gather\\(\\|\\*\\)}\\(\\(.\\|\n\\)*?\\)\\\\end{gather\\(\\|\\*\\)}")
+     ;; \begin{align}...\end{align}
+     (0 . "\\\\begin{align\\(\\|\\*\\)}\\(\\(.\\|\n\\)*?\\)\\\\end{align\\(\\|\\*\\)}")
+     ;; \begin{alignat}...\end{alignat}
+     (0 . "\\\\begin{alignat\\(\\|\\*\\)}\\(\\(.\\|\n\\)*?\\)\\\\end{alignat\\(\\|\\*\\)}")
+     ;; \begin{tikzpicture}...\end{tikzpicture}
+     (0 . "\\\\begin{tikzpicture\\(\\|\\*\\)}\\(\\(.\\|\n\\)*?\\)\\\\end{tikzpicture\\(\\|\\*\\)}")))
   ;;
   ;; Function to preview math expression and shift focus after preview
   (defun my-latex-math-preview ()
