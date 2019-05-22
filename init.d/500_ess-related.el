@@ -67,24 +67,11 @@
       (setq post-self-insert-hook '()))
     ;;
     ;; Execute all R chunks at once from an Rmd document
+    ;; https://polymode.github.io/usage/#evaluation-of-chunks
     ;; https://stackoverflow.com/questions/40894202/execute-all-r-chunks-at-once-from-an-rmd-document
-    (defun rmd-send-chunk ()
-      "Send current R chunk to ess process."
-      (interactive)
-      (and (eq (oref pm/chunkmode :mode) 'r-mode)
-           (pm-with-narrowed-to-span
-            nil
-            (goto-char (point-min))
-            (forward-line)
-            (ess-eval-region (point) (point-max) nil nil 'R))))
-    (defun rmd-send-chunks-above ()
-      "Send all R code chunks above point."
-      (interactive)
-      (save-restriction
-        (widen)
-        (save-excursion
-          (pm-map-over-spans
-           'rmd-send-chunk (point-min) (point)))))
+    ;; https://github.com/polymode/poly-R/issues/3
+    ;;
+    ;; Naming chunks
     (defun rmd-name-chunks ()
       "Name chunks in current RMarkdown file."
       (interactive)
