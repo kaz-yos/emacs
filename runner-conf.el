@@ -35,6 +35,7 @@
  ;;
  ("ext-sas" 0 "sas"
   (("channing-sas" "qbs" 0)
+   ("channing-sas 1G mem 60GB disk" "qbs -q l -o lx,memsize=10000M,disksize=60G" 0)
    ("channing-sas 50GB disk" "qbs -o disksize=50G" 0)
    ("sas" "{run:out} sas" 5))))
 
