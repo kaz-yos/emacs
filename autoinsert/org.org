@@ -1,3 +1,4 @@
+\sloppy
 * Meta-data                                                        :noexport:
 #+TITLE:
 #+AUTHOR: Kazuki Yoshida
