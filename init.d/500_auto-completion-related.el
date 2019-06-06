@@ -269,29 +269,6 @@
          :map my-key-map
          ("t" . company-try-hard)))
 
-;;;  company-ngram.el
-;; A company backend for N-gram based completion.
-;; https://github.com/kshramt/company-ngram
-(use-package company-ngram
-  :disabled t
-  :config
-  ;; ngram/*.txt are used as data
-  (setq company-ngram-data-dir
-        (concat user-emacs-directory
-                "misc/ngram"))
-  ;; company-ngram supports python 3 or newer
-  (setq company-ngram-python "python3")
-  ;; Initiate use
-  (company-ngram-init)
-  ;; Add to company-backends globally
-  ;; (add-to-list 'company-backends 'company-ngram-backend)
-  ;; or use `M-x turn-on-company-ngram' and
-  ;; `M-x turn-off-company-ngram' on individual buffers
-  ;; save the cache of candidates
-  (run-with-idle-timer 7200 t
-                       (lambda ()
-                         (company-ngram-command "save_cache"))))
-
 
 ;;;
 ;;; IVY-RELATED
