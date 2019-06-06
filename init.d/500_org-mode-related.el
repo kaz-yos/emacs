@@ -100,7 +100,11 @@
          ;; ("C-j" . org-return)
          ;; Keys
          ("M-s M-s" . org-latex-export-to-pdf-async)
-         ("M-s M-l" . org-latex-export-to-latex-save))
+         ("M-s M-l" . org-latex-export-to-latex-save)
+         ;;
+         ;; org-src mode
+         :map org-src-mode-map
+         ("M-s M-s" . my-latex-math-preview))
   :init
   ;; https://github.com/jwiegley/use-package#extending-the-load-path
   ;; If using manually installed org-mode.
@@ -763,7 +767,7 @@ the plist used as a communication channel."
 			     (format (org-html--translate "Figure %d:" info)
 				     (org-export-get-ordinal
 				      (org-element-map paragraph 'link
-				        #'identity info t)
+				                       #'identity info t)
 				      info nil #'org-html-standalone-image-p))
 			     " </span>"
 			     raw))))
