@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: binom
+# key: binom
+# --
+\binom{${1:$$(yas-choose-value '("n" ""))}}{${2:$$(yas-choose-value '("x" ""))}}$0
