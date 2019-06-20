@@ -316,7 +316,18 @@
 ;;;
 ;;; stan-mode.el
 (use-package stan-mode
-  :mode ("\\.stan\\'" . stan-mode))
+  :mode ("\\.stan\\'" . stan-mode)
+  :commands (my-stan-comment-setup)
+  :hook (stan-mode . my-stan-comment-setup)
+  ;;
+  :config
+  ;; These variables are not directly used.
+  (setq stan-comment-start "//")
+  (setq stan-comment-end "")
+  ;; They have to be set to buffer-local comment-start/end variables.
+  (defun my-stan-comment-setup ()
+    (setq comment-start stan-comment-start)
+    (setq comment-end stan-comment-end)))
 
 ;;;
 ;;; julia-mode.el
