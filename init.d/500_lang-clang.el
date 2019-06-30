@@ -7,8 +7,9 @@
               ("A-s" . save-all-and-compile)
               ("M-s M-s" . save-all-and-compile))
   :config
-  ;; Indentation
-  (setq c-basic-offset 4)
+  ;; Indentation by two
+  ;; https://mc-stan.org/docs/2_18/stan-users-guide/white-space.html
+  (setq-default c-basic-offset 2)
   ;;
   ;; using the current buffer's file name in M-x compile
   ;; http://stackoverflow.com/questions/12756531/using-the-current-buffers-file-name-in-m-x-compile

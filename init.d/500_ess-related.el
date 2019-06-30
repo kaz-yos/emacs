@@ -317,17 +317,20 @@
 ;;; stan-mode.el
 (use-package stan-mode
   :mode ("\\.stan\\'" . stan-mode)
-  :commands (my-stan-comment-setup)
-  :hook (stan-mode . my-stan-comment-setup)
+  :commands (my-stan-setup)
+  :hook (stan-mode . my-stan-setup)
   ;;
   :config
   ;; These variables are not directly used.
   (setq stan-comment-start "//")
   (setq stan-comment-end "")
   ;; They have to be set to buffer-local comment-start/end variables.
-  (defun my-stan-comment-setup ()
+  (defun my-stan-setup ()
     (setq comment-start stan-comment-start)
-    (setq comment-end stan-comment-end)))
+    (setq comment-end stan-comment-end)
+    ;; Two-character indent.
+    ;; https://mc-stan.org/docs/2_18/stan-users-guide/white-space.html
+    (setq c-basic-offset 2)))
 
 ;;;
 ;;; julia-mode.el
