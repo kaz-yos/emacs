@@ -3,10 +3,17 @@
 # key: stan
 # binding: direct-keybinding
 # --
-## Load Stan file
-fileName <- "./"
-stan_code <- readChar(fileName, file.info(fileName)$size)
-cat(stan_code)
-## Run Stan
-resStan <- stan(model_code = stan_code, data = dat,
-                chains = 3, iter = 3000, warmup = 500, thin = 10)
+## Check HMC diagnostics after sampling
+rstan::check_hmc_diagnostics($1)
+## Specify relevant parameters
+pars <- c("lp__")
+## Print a summary for a fitted model represented by a 'stanfit' object
+print($1, pars = pars)
+## Create a matrix of output plots from a 'stanfit' object
+pairs($1, pars = pars)
+## Markov chain traceplots
+rstan::traceplot($1, pars = pars, inc_warmup = FALSE)
+## Trace plots of MCMC draws
+regex_pars <- c()
+bayesplot::mcmc_rank_hist($1, regex_pars = regex_pars, ref_line = TRUE)
+bayesplot::mcmc_rank_overlay($1, regex_pars = regex_pars, ref_line = TRUE)
