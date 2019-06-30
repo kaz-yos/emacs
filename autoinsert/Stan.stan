@@ -1,8 +1,8 @@
 data {
-    real<lower=0> alpha;
-    real<lower=0> beta;
-    int<lower=0> N;
-    real y[N];
+  // Number of observations
+  int<lower=1> N;
+  // Whether to evaluate likelihood
+  int<lower=0,upper=1> use_lik;
 }
 
 transformed data {
@@ -10,20 +10,32 @@ transformed data {
 }
 
 parameters {
-    real mu;
-    real<lower=0> sigma_sq;
+
 }
 
 transformed parameters {
-    real<lower=0> sigma;
-    sigma = sqrt(sigma_sq);
+
 }
 
 model {
-    sigma_sq ~ inv_gamma(alpha, beta);
-    y ~ normal(mu, sigma);
+  // Priors
+
+  // Likelihood
+  if (use_lik == 1) {
+
+  }
 }
 
 generated quantities {
+  // For loo
+  vector[N] log_lik;
+  // For posterior predictive checks
+  real y_rep[N];
 
+  for (i in 1:N) {
+    // Observation level log likelihood
+    log_lik[i] = ;
+    // Prediction
+    y_rep[i] = ;
+  }
 }
