@@ -41,7 +41,6 @@ doParallel::registerDoParallel(cores = n_cores)
 ## References
 
 ## Load packages
-
 ```{r}
 library(tidyverse)
 ```
