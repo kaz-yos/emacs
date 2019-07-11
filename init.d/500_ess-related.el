@@ -404,8 +404,3 @@
       ;; 4. annotation command
       (annotation (company-stan-backend-annotation arg))))
   )
-
-;;;
-;;; julia-mode.el
-;; Official support
-;; (require 'julia-mode)
