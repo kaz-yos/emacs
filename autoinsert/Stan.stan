@@ -1,3 +1,7 @@
+functions {
+
+}
+
 data {
   // Number of observations
   int<lower=1> N;
