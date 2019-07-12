@@ -393,8 +393,8 @@
       ;;  When this is called arg holds the prefix string to be completed
       (candidates
        (cl-remove-if-not
-        ;; Retain if matching in prefix
-        (lambda (c) (string-prefix-p arg c))
+        ;; Retain if matching
+        (lambda (c) (my-company-fuzzy-match arg c))
         ;; from a long list of all stan object names.
         (append (propertize-list stan-types-list "type")
                 (propertize-list stan-function-return-types-list "function return type")
