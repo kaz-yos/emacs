@@ -163,8 +163,10 @@
   (setq company-minimum-prefix-length 2)
   ;; Wrap after the final candidate
   (setq company-selection-wrap-around t)
-  ;; Now donwcasing
+  ;; Whether to downcase the returned candidates.
   (setq company-dabbrev-downcase nil)
+  ;; Whether to align annotations to the right tooltip border.
+  (setq company-tooltip-align-annotations t)
   ;;
   ;; Fuzzy matching
   ;; http://sixty-north.com/blog/a-more-full-featured-company-mode-backend.html
