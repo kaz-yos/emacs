@@ -339,6 +339,10 @@
   ;; Writing backends for the company-mode.
   ;; https://github.com/company-mode/company-mode/wiki/Writing-backends
   ;; http://sixty-north.com/blog/series/how-to-write-company-mode-backends.html
+  ;; Definitions
+  ;; https://github.com/company-mode/company-mode/blob/master/company.el
+  ;; Example in company-math.el
+  ;; https://github.com/vspinu/company-math/blob/master/company-math.el#L210
   ;;
   ;; stan-keywords-lists.el defines the following:
   ;;  stan-types-list
