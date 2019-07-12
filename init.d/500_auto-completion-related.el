@@ -131,7 +131,8 @@
 ;;
 (use-package company
   :diminish (company-mode)
-  :commands (global-company-mode)
+  :commands (global-company-mode
+             my-company-fuzzy-match)
   :bind (("A-<tab>" . company-complete)
          ("A-i" . company-complete)
          :map my-key-map
@@ -164,6 +165,12 @@
   (setq company-selection-wrap-around t)
   ;; Now donwcasing
   (setq company-dabbrev-downcase nil)
+  ;;
+  ;; Fuzzy matching
+  ;; http://sixty-north.com/blog/a-more-full-featured-company-mode-backend.html
+  (defun my-company-fuzzy-match (prefix candidate)
+    (cl-subsetp (string-to-list prefix)
+                (string-to-list candidate)))
   ;;
   ;; Avoid completing Japanese letters in company-dabbrev
   ;; http://qiita.com/wktkshn/items/3ac46671d1c242a59f7e
