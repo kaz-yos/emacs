@@ -29,14 +29,7 @@
   :hook (stan-mode . company-stan-setup)
   ;;
   :config
-  (defun company-stan-setup ()
-    "Set up `company-stan-backend'
-
-Add `company-stan-backend' to `company-backends'
-buffer locally."
-    ;; Add company-stan-backend to the company-backends buffer-locally.
-    (add-to-list (make-local-variable 'company-backends)
-                 'company-stan-backend)))
+  )
 
 
 ;;; eldoc-stan.el
