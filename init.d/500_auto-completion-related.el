@@ -155,18 +155,23 @@
   :hook (after-init . global-company-mode)
   ;;
   :config
-  ;; Non-nil to offer completions in comments and strings.
-  (setq company-dabbrev-code-everywhere t)
   ;; Delay time
   (setq company-idle-delay 0.3)
   ;; 2 letters before completion kicks in
   (setq company-minimum-prefix-length 2)
   ;; Wrap after the final candidate
   (setq company-selection-wrap-around t)
-  ;; Whether to downcase the returned candidates.
-  (setq company-dabbrev-downcase nil)
   ;; Whether to align annotations to the right tooltip border.
   (setq company-tooltip-align-annotations t)
+  ;;
+  ;; `company-dabbrev' backend
+  ;;  Whether to downcase the returned candidates.
+  (setq company-dabbrev-downcase nil)
+  ;; `company-dabbrev-code' backend
+  ;;  Non-nil to offer completions in comments and strings.
+  (setq company-dabbrev-code-everywhere t)
+  ;;  If t, search buffers with the same major mode.
+  (setq company-dabbrev-code-other-buffers t)
   ;;
   ;; Fuzzy matching
   ;; http://sixty-north.com/blog/a-more-full-featured-company-mode-backend.html
