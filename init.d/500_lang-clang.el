@@ -31,6 +31,16 @@
 
 
 ;;;
+;;; c-eldoc.el
+;; MELPA version
+;; https://github.com/nflath/c-eldoc
+;; Version enhanced with deferred.el
+;; https://github.com/mooz/c-eldoc
+(use-package c-eldoc
+  :commands (c-eldoc-format-arguments-string))
+
+
+;;;
 ;;; company-c-headers.el
 ;; https://github.com/randomphrase/company-c-headers
 (use-package company-c-headers
