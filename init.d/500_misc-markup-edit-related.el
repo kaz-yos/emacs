@@ -4,18 +4,28 @@
 ;; http://jblevins.org/projects/markdown-mode/
 ;; https://github.com/jrblevin/markdown-mode
 (use-package markdown-mode
+  :commands (open-md-in-atom
+             open-md-in-markoff)
   :mode ("\\.md" . markdown-mode)
   ;;
   :config
   ;; https://github.com/defunkt/markdown-mode#customization
   (setq markdown-fontify-code-blocks-natively t)
   ;;
-  ;; Open current file in Atom for real-time preview
   ;; http://qiita.com/takuma510/items/77489cf538580dfcc41d
-  (defun open-atom ()
+  (defun open-md-in-atom ()
+    "Open current file in Atom for real-time preview"
     (interactive)
     (call-process
-     "atom" nil nil nil buffer-file-name)))
+     "atom" nil nil nil buffer-file-name))
+  ;;
+  (defun open-md-in-markoff ()
+    "Open current markdown file "
+    (interactive)
+    ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Shell.html
+    (shell-command (concat "open -a /Applications/Markoff.app"
+                           " "
+                           buffer-file-name))))
 
 
 ;;;  markdown-preview-mode.el
