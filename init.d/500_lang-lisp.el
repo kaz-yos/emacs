@@ -48,6 +48,14 @@
   :commands (nameless-mode))
 
 
+;;;  buttercup.el
+;; Behavior-Driven Emacs Lisp Testing
+;; https://github.com/jorgenschaefer/emacs-buttercup
+(use-package buttercup
+  :hook (emacs-lisp-mode . buttercup-minor-mode)
+  :commands (buttercup-minor-mode))
+
+
 ;;;
 ;;; SLIME for non-elisp lisps
 
