@@ -5,6 +5,7 @@
 ;; Non-nil means enter debugger if an error is signaled.
 ;; (setq debug-on-error t)
 
+(add-to-list 'auto-mode-alist '("Cask" . emacs-lisp-mode))
 
 ;;;  elisp-slime-nav.el
 ;; SLIME-like navigation for elisp
