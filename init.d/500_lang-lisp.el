@@ -57,6 +57,27 @@
   :commands (buttercup-minor-mode))
 
 
+;;;  let*-setq macro
+;; Crude interactive testing
+(defmacro let*-setq (&rest body)
+  "Sequentially `setq' expressions in `let*'
+
+Change
+   (let* ((a 1)
+          (b 2))
+    ...)
+to
+   (let* (let*-setq (a 1)
+                    (b 2))
+    ...)
+and evaluate the `let*-setq' expression.
+This will globally bind these variables for crude interactive testing."
+  `(progn
+     ,@(mapcar
+        (lambda (let-pair)
+          (cons 'setq let-pair))
+        body)))
+
 ;;;
 ;;; SLIME for non-elisp lisps
 
