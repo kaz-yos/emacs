@@ -3,11 +3,9 @@
 
 ;;; flymake.el
 (use-package flymake
-  :commands (flymake-mode
-             flymake-mode-on
-             flymake-mode-off
-             global-flycheck-mode)
+  :commands (flymake-mode)
   :config)
+
 
 ;;;
 ;;; fly-check.el
@@ -22,6 +20,7 @@
              global-flycheck-mode)
   ;;
   :config
+  (global-flycheck-mode +1)
   ;;; flycheck-pos-tip.el
   ;; http://qiita.com/senda-akiha/items/cddb02cfdbc0c8c7bc2b#2-5
   (use-package flycheck-pos-tip
