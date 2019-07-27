@@ -1,20 +1,22 @@
 ;;; 500_lang-syntax-checker-related.el ---           -*- lexical-binding: t; -*-
 
-
-;;; flymake.el
+;;;
+;;; FLYMAKE-RELATED
+;;;  flymake.el
 (use-package flymake
   :commands (flymake-mode)
   :config)
 
 
 ;;;
-;;; fly-check.el
+;;; FLYCHECK-RELATED
+;;;  flycheck.el
 ;; http://www.flycheck.org/en/latest/
 ;; https://github.com/flycheck/flycheck
 ;; Supported languages
-;; http://flycheck.readthedocs.org/en/latest/guide/languages.html#supported-languages
+;;  http://flycheck.readthedocs.org/en/latest/guide/languages.html#supported-languages
 ;; 3rd party extensions
-;; http://flycheck.readthedocs.org/en/latest/guide/introduction.html#rd-party-extensions
+;;  http://flycheck.readthedocs.org/en/latest/guide/introduction.html#rd-party-extensions
 (use-package flycheck
   :commands (flycheck-mode
              global-flycheck-mode)
@@ -27,3 +29,10 @@
     :config
     (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
     (flycheck-pos-tip-mode +1)))
+
+
+;;;  flycheck-package.el
+;; Flycheck checker for elisp package metadata
+;; https://github.com/purcell/flycheck-package
+(use-package flycheck-package
+  :commands (flycheck-package-setup))
