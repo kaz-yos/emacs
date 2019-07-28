@@ -87,6 +87,7 @@ This will globally bind these variables for crude interactive testing."
   :commands (buttercup-minor-mode))
 
 ;;;  package-lint.el
+;; A linting library for elisp package metadata
 ;; https://github.com/purcell/package-lint
 (use-package package-lint
   :commands (package-lint-current-buffer))
@@ -94,3 +95,12 @@ This will globally bind these variables for crude interactive testing."
 ;;;  checkdoc.el
 (use-package checkdoc
   :hook (emacs-lisp-mode . checkdoc-minor-mode))
+
+;;;  elisp-lint.el
+;; basic linting for Emacs Lisp
+;; https://github.com/gonewest818/elisp-lint
+(use-package elisp-lint
+  :commands (elisp-lint-file)
+  :config
+  ;; Alist of symbols and their indent specifiers.
+  (setq elisp-lint-indent-specs nil))
