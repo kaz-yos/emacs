@@ -5,30 +5,23 @@
 (use-package stan-mode
   :load-path "~/Documents/programming/emacs-lisp-repos/stan-mode/stan-mode"
   :mode ("\\.stan\\'" . stan-mode)
-  :commands (my-stan-setup)
-  :hook (stan-mode . my-stan-setup)
+  :hook (stan-mode . stan-mode-setup)
   ;;
   :config
-  ;; These variables are not directly used.
+  ;; These are default values.
   (setq stan-comment-start "//")
   (setq stan-comment-end "")
-  ;; Rather, they have to be set to buffer-local comment-start/end variables.
-  (defun my-stan-setup ()
-    (setq comment-start stan-comment-start)
-    (setq comment-end stan-comment-end)
-    ;; Two-character indent.
-    ;; https://mc-stan.org/docs/2_18/stan-users-guide/white-space.html
-    (setq c-basic-offset 2)))
+  (setq stan-indentation-offset 2))
 
 
 ;;; company-stan.el
 (use-package company-stan
   :load-path "~/Documents/programming/emacs-lisp-repos/stan-mode/company-stan/"
-  :commands (company-stan-backend
-             company-stan-setup)
   :hook (stan-mode . company-stan-setup)
   ;;
   :config
+  ;; Whether to use fuzzy matching in `company-stan'
+  (setq company-stan-fuzzy nil)
   )
 
 
@@ -38,10 +31,18 @@
   :hook (stan-mode . eldoc-stan-setup)
   ;;
   :config
-  (defun eldoc-stan-setup ()
-    "Set up `eldoc-stan-eldoc-documentation-function'
+  )
 
-Specify `eldoc-stan-eldoc-documentation-function' as
-`eldoc-documentation-function'"
-    (setq-local eldoc-documentation-function
-                #'eldoc-stan-eldoc-documentation-function)))
+
+(use-package stan-snippets
+  :after stan-mode
+  :load-path "~/Documents/programming/emacs-lisp-repos/stan-mode/stan-snippets/"
+  )
+
+;;; ac-stan.el
+(use-package ac-stan
+  :load-path "~/Documents/programming/emacs-lisp-repos/stan-mode/ac-stan/"
+  ;; :hook (stan-mode . stan-ac-mode-setup)
+  ;;
+  :config
+  )
