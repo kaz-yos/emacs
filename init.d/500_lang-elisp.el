@@ -16,13 +16,21 @@
 (add-to-list 'auto-mode-alist '("Cask" . emacs-lisp-mode))
 
 ;;;  cask.el
+;; Project management tool for Emacs http://cask.readthedocs.io
 ;; https://github.com/cask/cask/blob/master/cask.el
+;;
 ;; This package is not meant for direct use.
 ;; Rather it is used by the command-line cask tool.
 ;; But cask installed via Homebrew uses its own cask.el,
 ;; thus, this MELPA-installed cask.el is not used.
 ;; It is installed for reference.
 (use-package cask
+  :disabled t)
+
+;;;  package-build.el
+;; Tools for assembling a package archive https://github.com/melpa/melpa
+;; https://github.com/melpa/package-build
+(use-package package-build
   :disabled t)
 
 
