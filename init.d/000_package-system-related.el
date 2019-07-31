@@ -20,7 +20,15 @@
 ;;
 ;;;  org mode repository
 ;; http://orgmode.org/elpa.html
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/") t)
+;;
+;;;  local-melpa-stan
+(let ((local-melpa-stan
+       "~/Documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages"))
+  (when (file-exists-p local-melpa-stan)
+    (add-to-list 'package-archives
+                 `("local-melpa-stan" . ,local-melpa-stan) t)))
 ;;
 ;; Refresh contents  if no package-archive-contents available
 ;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
