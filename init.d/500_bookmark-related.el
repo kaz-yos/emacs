@@ -112,6 +112,8 @@
   (defun my-bm-show ()
     (interactive)
     (my-bm-bookmark-auto)
+    ;; https://emacs.stackexchange.com/questions/45775/how-can-i-unit-test-my-font-face-rules
+    (font-lock-ensure (point-min) (point-max))
     (bm-show)))
 
 
