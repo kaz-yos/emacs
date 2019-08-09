@@ -77,3 +77,24 @@
   (interactive)
   (save-some-buffers 1)
   (compile compile-command))
+
+
+;;;
+;;; Regular expression handling
+;;
+;;;  rx.el
+;; sexp notation for regular expressions
+;; https://www.emacswiki.org/emacs/rx
+;; https://francismurillo.github.io/2017-03-30-Exploring-Emacs-rx-Macro/
+;;
+;; Note M-x re-builder supports `rx'.
+;; https://www.masteringemacs.org/article/re-builder-interactive-regexp-builder
+(use-package rx
+  ;; There is no interactive commands.
+  :commands (rx))
+;;
+;;;  xr.el
+;; Inverse of rx: convert Emacs string regexps to rx form
+;; https://github.com/mattiase/xr
+(use-package xr
+  :commands (xr))
