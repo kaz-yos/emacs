@@ -1,6 +1,11 @@
 ;;; package.el and repositories
 (require 'package)
 ;;
+;;;  ELPA
+;; https://elpa.gnu.org/packages/
+;; https://www.reddit.com/r/emacs/comments/ccrxk9/elpa_down/
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")))
 ;;
 ;;;  MELPA repository
 ;; http://melpa.milkbox.net/#installing
