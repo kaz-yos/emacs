@@ -82,6 +82,14 @@
 ;;;
 ;;; Regular expression handling
 ;;
+;;;  re-builder.el
+(use-package re-builder
+  :commands (re-builder
+             reb-change-syntax
+             reb-quit)
+  :config
+  (setq reb-re-syntax 'rx))
+;;
 ;;;  rx.el
 ;; sexp notation for regular expressions
 ;; https://www.emacswiki.org/emacs/rx
