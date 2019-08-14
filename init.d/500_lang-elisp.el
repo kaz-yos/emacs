@@ -97,12 +97,20 @@ This will globally bind these variables for crude interactive testing."
 
 ;;;
 ;;; Good practice related
+;;;
+
 ;;;  buttercup.el
 ;; Behavior-Driven Emacs Lisp Testing
 ;; https://github.com/jorgenschaefer/emacs-buttercup
 (use-package buttercup
   :hook (emacs-lisp-mode . buttercup-minor-mode)
   :commands (buttercup-minor-mode))
+
+;;;  flycheck-buttercup.el
+;; Additional matchers. Part of flycheck.
+;; https://github.com/flycheck/flycheck/blob/master/flycheck-buttercup.el
+(use-package flycheck-buttercup
+  :after buttercup)
 
 ;;;  package-lint.el
 ;; A linting library for elisp package metadata
