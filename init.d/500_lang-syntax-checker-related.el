@@ -27,7 +27,8 @@
   ;; http://qiita.com/senda-akiha/items/cddb02cfdbc0c8c7bc2b#2-5
   (use-package flycheck-pos-tip
     :config
-    (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
+    (setq flycheck-display-errors-function
+          #'flycheck-pos-tip-error-messages)
     (flycheck-pos-tip-mode +1)))
 
 
@@ -35,4 +36,5 @@
 ;; Flycheck checker for elisp package metadata
 ;; https://github.com/purcell/flycheck-package
 (use-package flycheck-package
-  :commands (flycheck-package-setup))
+  :commands (flycheck-package-setup)
+  :hook (emacs-lisp-mode . flycheck-package-setup))
