@@ -86,9 +86,68 @@
 (use-package re-builder
   :commands (re-builder
              reb-change-syntax
-             reb-quit)
+             reb-quit
+             rx-reb-mode-backend)
+  :hook ((reb-mode . rx-reb-mode-backend-setup))
   :config
-  (setq reb-re-syntax 'rx))
+  (setq reb-re-syntax 'rx)
+  ;;
+  (defun rx-reb-mode-backend (command &optional arg &rest ignored)
+    ;; The signature (command &optional arg &rest ignored) is mandated.
+    "A company backend `rx-constituents' in `reb-mode'.
+
+COMMAND is either one of symbol `interactive',
+symbol `prefix', symbol `candidates', and symbol
+`annotation'.
+ARG is the prefix string to be completed when called
+with symbol `candidates'.  ARG is the string to extract
+the property from when called with symbol `annotation'.
+
+IGNORED is a placeholder to be ignored.
+
+This backend only comes up with predefined keywords
+in the `rx-constituents'.
+Group with other backends as necessary.
+See the help for `company-backends'."
+    ;;
+    ;; Making it interactive allows interactive testing.
+    (interactive (list 'interactive))
+    ;; (cl-case EXPR (KEYLIST BODY...)...)
+    ;; Eval EXPR and choose among clauses on that value.
+    ;; Here we decide what to do based on COMMAND.
+    ;; One of {interactive, prefix, candidates, annotation}
+    (cl-case command
+      ;; 1. interactive call
+      ;; (company-begin-backend BACKEND &optional CALLBACK)
+      ;; Start a completion at point using BACKEND.
+      (interactive (company-begin-backend 'company-stan-backend))
+      ;; 2. prefix command
+      ;;  It should return the text that is to be completed.
+      ;;  If it returns nil, this backend is not used.
+      ;;  Here we need to verify the major mode.
+      (prefix (and (eq major-mode 'reb-mode)
+                   ;; Ensure not inside a comment.
+                   ;; Parse-Partial-Sexp State at POS, defaulting to point.
+                   ;; https://emacs.stackexchange.com/questions/14269/how-to-detect-if-the-point-is-within-a-comment-area
+                   (not (nth 4 (syntax-ppss)))
+                   ;; If point is at the end of a symbol, return it for completion.
+                   ;; Otherwise, if point is not inside a symbol, return an empty string.
+                   ;; This will give the prefix to be completed.
+                   (company-grab-symbol)))
+      ;; 3. candidates command
+      ;;  This is where we actually generate a list of possible completions.
+      ;;  When this is called arg holds the prefix string to be completed
+      (candidates
+       (cl-remove-if-not
+        ;; Retain if matching
+        (lambda (c) (string-prefix-p arg c))
+        ;; from a long list of all stan object names.
+        (mapcar (lambda (elt) (symbol-name (car elt))) rx-constituents)))))
+  ;;
+  (defun rx-reb-mode-backend-setup ()
+    "Add `rx-reb-mode-backend' to `company-backends' buffer-locally."
+    (add-to-list (make-local-variable 'company-backends)
+                 'rx-reb-mode-backend)))
 ;;
 ;;;  rx.el
 ;; sexp notation for regular expressions
