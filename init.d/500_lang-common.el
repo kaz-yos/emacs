@@ -87,12 +87,12 @@
   :commands (re-builder
              reb-change-syntax
              reb-quit
-             rx-reb-mode-backend)
-  :hook ((reb-mode . rx-reb-mode-backend-setup))
+             rx-reb-mode-company-backend)
+  :hook ((reb-mode . rx-reb-mode-company-backend-setup))
   :config
   (setq reb-re-syntax 'rx)
   ;;
-  (defun rx-reb-mode-backend (command &optional arg &rest ignored)
+  (defun rx-reb-mode-company-backend (command &optional arg &rest ignored)
     ;; The signature (command &optional arg &rest ignored) is mandated.
     "A company backend `rx-constituents' in `reb-mode'.
 
@@ -144,10 +144,11 @@ See the help for `company-backends'."
         ;; from a long list of all stan object names.
         (mapcar (lambda (elt) (symbol-name (car elt))) rx-constituents)))))
   ;;
-  (defun rx-reb-mode-backend-setup ()
-    "Add `rx-reb-mode-backend' to `company-backends' buffer-locally."
+  (defun rx-reb-mode-company-backend-setup ()
+    "Add `rx-reb-mode-company-backend' to `company-backends' buffer-locally."
+    (interactive)
     (add-to-list (make-local-variable 'company-backends)
-                 'rx-reb-mode-backend)))
+                 'rx-reb-mode-company-backend)))
 ;;
 ;;;  rx.el
 ;; sexp notation for regular expressions
