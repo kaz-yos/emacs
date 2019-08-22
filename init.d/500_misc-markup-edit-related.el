@@ -34,6 +34,26 @@
   :commands (markdown-preview-mode
              markdown-preview-open-browser))
 
+;;;  grip-mode.el
+;; https://github.com/seagle0128/grip-mode
+;; https://github.com/joeyespo/grip
+;; brew install grip
+(use-package grip-mode
+  :commands (grip-mode)
+  :config
+  ;; Path to the grip binary
+  (setq grip-binary-path (executable-find "grip"))
+  ;;
+  ;; A GitHub username for API authentication
+  (setq grip-github-user "kaz-yos")
+  ;; A GitHub password or auth token for API auth (set elsewhere
+  (setq grip-github-password
+        (shell-command-to-string
+         (concat "security find-generic-password"
+                 " -a " grip-github-user
+                 " -s github-grip-markdown-for-readme "
+                 " -w "))))
+
 
 ;;;
 ;;; graphviz-dot-mode.el
