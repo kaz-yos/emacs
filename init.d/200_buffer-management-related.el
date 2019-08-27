@@ -24,6 +24,9 @@
   (setq auto-revert-check-vc-info t)
   ;; No ARev in mode-line
   ;; (setq auto-revert-mode-text "")
+  ;; http://pragmaticemacs.com/emacs/make-emacs-a-bit-quieter/
+  ;; When nil, Auto-Revert Mode does not generate any messages.
+  (setq auto-revert-verbose nil)
   )
 
 
