@@ -19,6 +19,7 @@
 ;; http://wordlist.aspell.net/hunspell-readme/
 ;; SCOWL (Spell Checker Oriented Word Lists) and Friends
 ;; http://wordlist.aspell.net
+;; http://wordlist.aspell.net/dicts/
 (use-package ispell
   :commands (ispell-word
              ispell-region
@@ -27,7 +28,9 @@
   ;; Use best program available
   (let ((hunspell-file (executable-find "hunspell"))
         (aspell-file (executable-find "aspell"))
-        (ispell-file (executable-find "ispell")))
+        (ispell-file (executable-find "ispell"))
+        (mac-dict-paths '(("en_US" "~/Library/Spelling/en_US.aff")
+                          ("en_US-med" "~/Library/Spelling/en_US-med.aff"))))
     (cond
      ;; hunspell
      ;; hunspell -D to check paths. /Library/Spelling/ was added for use.
@@ -40,10 +43,8 @@
       (setq ispell-dictionary "en_US")
       ;; This is the real configuration.
       (when (eq system-type 'darwin)
-        (setq ispell-hunspell-dict-paths-alist
-              ;; http://wordlist.aspell.net/dicts/
-              '(("en_US" "~/Library/Spelling/en_US.aff")
-                ("en_US-med" "~/Library/Spelling/en_US-med.aff"))))
+        (setq ispell-dictionary-alist mac-dict-paths)
+        (setq ispell-hunspell-dict-paths-alist mac-dict-paths))
       (setq ispell-personal-dictionary (concat user-emacs-directory
                                                "misc/hunspell.en")))
      ;; aspell
@@ -56,6 +57,8 @@
      ;; ispell
      (ispell-file
       (setq ispell-program-name ispell-file)
+      (when (eq system-type 'darwin)
+        (setq ispell-dictionary-alist mac-dict-paths))
       (setq ispell-personal-dictionary (concat user-emacs-directory
                                                "misc/ispell.en")))))
   ;;
@@ -77,6 +80,7 @@
 ;;; flyspell.el
 ;;
 (use-package flyspell
+  :disabled t
   :diminish flyspell-mode
   :commands (flyspell-goto-next-error
              flyspell-mode
