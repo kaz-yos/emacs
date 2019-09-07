@@ -112,6 +112,12 @@ This will globally bind these variables for crude interactive testing."
 (use-package flycheck-buttercup
   :after buttercup)
 
+;;;  assess.el
+;; https://github.com/phillord/assess
+(use-package assess
+  :commands (assess-with-filesystem)
+  :config)
+
 ;;;  package-lint.el
 ;; A linting library for elisp package metadata
 ;; https://github.com/purcell/package-lint
