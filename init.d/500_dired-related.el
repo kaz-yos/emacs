@@ -66,6 +66,12 @@
               ("/" . dired-narrow-regexp)))
 
 
+;;;  dired-filter.el
+;; https://github.com/Fuco1/dired-hacks/tree/master#dired-filter
+(use-package dired-filter
+  :commands (dired-filter-mode))
+
+
 ;;;
 ;;; runner.el
 ;; Flexible file type specific shell command in dired
