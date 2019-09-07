@@ -298,7 +298,21 @@ _d_: subtree
     ("z" nil "leave"))
   (global-set-key (kbd "C-c #") 'hydra-outline/body)
   (eval-after-load "org"
-    '(define-key org-mode-map (kbd "C-`") 'hydra-outline/body)))
+    '(define-key org-mode-map (kbd "C-`") 'hydra-outline/body))
+  ;;
+  ;; https://github.com/abo-abo/hydra/wiki/multiple-cursors
+  ;; Need to include the generated commands in mc/cmds-to-run-once
+  ;; in the `multiple-cursors.el' configuration.
+  (eval-after-load "multiple-cursors"
+    '(defhydra hydra-multiple-cursors (my-key-map "m")
+       "Multiple cursors: "
+       ("n"  mc/mark-next-like-this "Next like this")
+       ("p"  mc/mark-previous-like-this "Prev like this")
+       ("a"  mc/mark-all-like-this "All like this")
+       ("N"  mc/mark-next-symbol-like-this "Next symbol")
+       ("P"  mc/mark-previous-symbol-like-this "Prev symbol")
+       ("A"  mc/mark-all-symbol-like-this "All symbols")
+       ("k" nil "Cancel"))))
 
 
 ;;;

@@ -60,7 +60,6 @@
 (use-package multiple-cursors
   ;; Need to load at start up. Otherwise, mode-line override does not work.
   :defer 2
-  :init
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ;; highlighting symbols only
          ("C-M->" . mc/mark-next-symbol-like-this)
@@ -71,10 +70,12 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-*" . mc/mark-all-like-this)
          ;;
-         :map my-key-map
-         (">" . mc/mark-next-like-this)
-         ("<" . mc/mark-previous-like-this)
-         ("*" . mc/mark-all-like-this))
+         ;; These are defined in hydra.el
+         ;; :map my-key-map
+         ;; (">" . mc/mark-next-like-this)
+         ;; ("<" . mc/mark-previous-like-this)
+         ;; ("*" . mc/mark-all-like-this)
+         )
   :config
   ;; whitelisting file
   (setq mc/list-file (concat user-emacs-directory
@@ -82,7 +83,19 @@
                              "_"
                              (system-name-sans-domain)
                              ".el"))
-  ;; Disables whitelisting and always executes commands for every fake cursor.
+  ;; This force mc to assume the `mc/list-file' is loaded.
+  (setq mc--list-file-loaded t)
+  ;; Black list functions explicitly here rather than in the file.
+  (setq mc/cmds-to-run-once
+        '(
+          hydra-multiple-cursors/mc/mark-next-like-this
+          hydra-multiple-cursors/mc/mark-previous-like-this
+          hydra-multiple-cursors/mc/mark-all-like-this
+          hydra-multiple-cursors/mc/mark-next-symbol-like-this
+          hydra-multiple-cursors/mc/mark-previous-symbol-like-this
+          hydra-multiple-cursors/mc/mark-all-symbol-like-this
+          ))
+  ;; Unless black listed
   (setq mc/always-run-for-all t)
   ;;
   ;; What to display in the mode line while multiple-cursors-mode is active.
