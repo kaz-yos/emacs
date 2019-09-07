@@ -47,11 +47,13 @@ This function is intended for `re-builder'."
                    (message flycheck-rx-message 0 nil)
                    (id flycheck-rx-id 0 nil))
                  rx-constituents nil)))
+  ;;
   ;; Delay in seconds before displaying errors at point.
   (setq flycheck-display-errors-delay 0.9)
   ;;
   ;; Enable everywhere
-  (global-flycheck-mode +1))
+  ;; (global-flycheck-mode +1)
+  )
 
 ;;;  flycheck-pos-tip.el
 ;; https://github.com/flycheck/flycheck-pos-tip
