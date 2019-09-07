@@ -56,8 +56,8 @@
 (use-package mu4e
   :if (executable-find "mu")
   :commands (mu4e)
-  :bind (:map my-key-map
-              ("m" . mu4e))
+  ;; :bind (:map my-key-map
+  ;;             ("m" . mu4e))
   :init
   ;; Check for mu4e directory before invoking all the following
   (let ((mu4e-dir "/usr/local/Cellar/mu/1.0/share/emacs/site-lisp/mu/mu4e/"))
