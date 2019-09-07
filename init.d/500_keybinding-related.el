@@ -309,24 +309,25 @@ _d_: subtree
          "Multiple cursors: "
          ("n"  mc/mark-next-like-this "Next like this")
          ("p"  mc/mark-previous-like-this "Prev like this")
-         ("a"  mc/mark-all-like-this "All like this")
+         ("a"  mc/mark-all-like-this "All like this" :exit t)
          ;;
          ("N"  mc/mark-next-symbol-like-this "Next symbol")
          ("P"  mc/mark-previous-symbol-like-this "Prev symbol")
-         ("A"  mc/mark-all-symbol-like-this "All symbols")
+         ("A"  mc/mark-all-symbol-like-this "All symbols" :exit t)
          ;;
          (">"  mc/mark-next-like-this "Next like this")
          ("<"  mc/mark-previous-like-this "Prev like this")
-         ("*"  mc/mark-all-like-this "All like this")
+         ("*"  mc/mark-all-like-this "All like this" :exit t)
          ;;
          ("M->"  mc/mark-next-symbol-like-this "Next symbol")
          ("M-<"  mc/mark-previous-symbol-like-this "Prev symbol")
-         ("M-*"  mc/mark-all-symbol-like-this "All symbols")
+         ("M-*"  mc/mark-all-symbol-like-this "All symbols" :exit t)
          ;;
          ("M-n"  mc/unmark-next-like-this "Unmark next")
          ("M-p"  mc/unmark-previous-like-this "Unmark prev")
          ;;
-         ("k" nil "Cancel"))
+         ("k" nil "Cancel")
+         ("q" nil "Cancel"))
        ;;
        (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-next-like-this)
        (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-like-this)
