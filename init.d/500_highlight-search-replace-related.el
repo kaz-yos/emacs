@@ -86,15 +86,8 @@
   ;; This force mc to assume the `mc/list-file' is loaded.
   (setq mc--list-file-loaded t)
   ;; Black list functions explicitly here rather than in the file.
-  (setq mc/cmds-to-run-once
-        '(
-          hydra-multiple-cursors/mc/mark-next-like-this
-          hydra-multiple-cursors/mc/mark-previous-like-this
-          hydra-multiple-cursors/mc/mark-all-like-this
-          hydra-multiple-cursors/mc/mark-next-symbol-like-this
-          hydra-multiple-cursors/mc/mark-previous-symbol-like-this
-          hydra-multiple-cursors/mc/mark-all-symbol-like-this
-          ))
+  ;; All so add elements via `add-to-list' in other places.
+  (setq mc/cmds-to-run-once '())
   ;; Unless black listed
   (setq mc/always-run-for-all t)
   ;;
