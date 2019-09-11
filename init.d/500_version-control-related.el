@@ -116,7 +116,12 @@
     :init
     (setq magit-gitflow-popup-key "C-c f")
     :config
-    (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
+    (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
+  ;;
+;;;   magit-todos.el
+  ;; https://github.com/alphapapa/magit-todos
+  (use-package magit-todos
+    :hook (magit-mode . magit-todos-mode)))
 
 
 ;;;  git-timemachine.el
