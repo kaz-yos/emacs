@@ -336,7 +336,18 @@ _d_: subtree
        (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-symbol-like-this)
        (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-symbol-like-this)
        (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-next-like-this)
-       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-previous-like-this))))
+       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-previous-like-this)))
+  ;;
+  ;; expand-region.el
+  (eval-after-load "expand-region"
+    '(progn
+       (defhydra hydra-multiple-cursors (my-key-map "m")
+         "Expand Region: "
+         (","   er/expand-region "Expand")
+         ("M-,"  er/contract-region "Shrink")
+         ;;
+         ("k" nil "Cancel")
+         ("q" nil "Cancel")))))
 
 
 ;;;
