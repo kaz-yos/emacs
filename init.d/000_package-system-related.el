@@ -30,10 +30,15 @@
 ;;
 ;;;  local-melpa-stan
 (let ((local-melpa-stan
-       "~/Documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages"))
+       "~/Documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages")
+      (local-melpa-stan-stable
+       "~/Documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages-stable"))
   (when (file-exists-p local-melpa-stan)
     (add-to-list 'package-archives
-                 `("local-melpa-stan" . ,local-melpa-stan) t)))
+                 `("local-melpa-stan" . ,local-melpa-stan) t))
+  (when (file-exists-p local-melpa-stan-stable)
+    (add-to-list 'package-archives
+                 `("local-melpa-stan-stable" . ,local-melpa-stan-stable) t)))
 ;;
 ;; Refresh contents  if no package-archive-contents available
 ;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
