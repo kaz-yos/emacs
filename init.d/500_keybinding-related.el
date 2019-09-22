@@ -329,14 +329,14 @@ _d_: subtree
          ("k" nil "Cancel")
          ("q" nil "Cancel"))
        ;;
-       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-next-like-this)
-       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-like-this)
-       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-like-this)
-       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-next-symbol-like-this)
-       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-symbol-like-this)
-       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-symbol-like-this)
-       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-next-like-this)
-       (add-to-list mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-previous-like-this)))
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-next-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-next-symbol-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-symbol-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-symbol-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-next-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-previous-like-this)))
   ;;
   ;; expand-region.el
   (eval-after-load "expand-region"
