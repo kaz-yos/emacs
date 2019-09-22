@@ -59,7 +59,7 @@
 ;; http://rubikitch.com/2014/11/10/multiple-cursors/
 (use-package multiple-cursors
   ;; Need to load at start up. Otherwise, mode-line override does not work.
-  :defer 2
+  :demand t
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ;; highlighting symbols only
          ("C-M->" . mc/mark-next-symbol-like-this)
@@ -77,18 +77,19 @@
          ;; ("*" . mc/mark-all-like-this)
          )
   :config
-  ;; whitelisting file
+  ;; whitelisting/blacklisting file
   (setq mc/list-file (concat user-emacs-directory
                              "mc-lists"
                              "_"
                              (system-name-sans-domain)
                              ".el"))
-  ;; This force mc to assume the `mc/list-file' is loaded.
+  ;; This force mc to think the `mc/list-file' is loaded.
   (setq mc--list-file-loaded t)
   ;; Black list functions explicitly here rather than in the file.
   ;; All so add elements via `add-to-list' in other places.
   (setq mc/cmds-to-run-once '())
-  ;; Unless black listed
+  ;; Disables whitelisting and always executes commands for every fake cursor.
+  ;; `mc/cmds-to-run-once' blacklisting is still respected.
   (setq mc/always-run-for-all t)
   ;;
   ;; What to display in the mode line while multiple-cursors-mode is active.
@@ -281,7 +282,7 @@ searched. If there is no symbol, empty search box is started."
   ;; https://github.com/mhayashi1120/Emacs-wgrep
   (use-package wgrep-ag
     ;; Nested within ag.el configuration.
-    :demand t
+    :demand
     :bind (:map ag-mode-map
                 ("C-x C-q" . wgrep-change-to-wgrep-mode)
                 ("C-c C-c" . wgrep-finish-edit))
