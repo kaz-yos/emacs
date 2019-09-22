@@ -612,12 +612,6 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; Regular markdown exporter
   (use-package ox-md)
   ;;
-;;;  ox-qmd.el
-  ;; Qiita Markdown Back-End for Org Export Engine
-  ;; https://github.com/0x60df/ox-qmd
-  ;; http://qiita.com/0x60df/items/3cde67967e3db30d9afe
-  (use-package ox-qmd)
-  ;;
 ;;;  ox-publish
   ;; Publishing Org-mode files to HTML
   ;; http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
@@ -767,7 +761,7 @@ the plist used as a communication channel."
 			     (format (org-html--translate "Figure %d:" info)
 				     (org-export-get-ordinal
 				      (org-element-map paragraph 'link
-				                       #'identity info t)
+                                        #'identity info t)
 				      info nil #'org-html-standalone-image-p))
 			     " </span>"
 			     raw))))
