@@ -104,6 +104,42 @@ When ARG is non-nil search in junk files."
 ;; ===========================
 ;;    Build succeeded. :O)
 ;; ===========================
+;;
+;; pdf-tools-20190701.202/build/server/autobuild supports macOS
+;; and uses brew to satisfy dependencies.
+;; ---------------------------
+;; Configuring and compiling
+;; ---------------------------
+;; autoreconf -i
+;; configure.ac:15: installing './ar-lib'
+;; configure.ac:11: installing './compile'
+;; configure.ac:78: installing './config.guess'
+;; configure.ac:78: installing './config.sub'
+;; configure.ac:6: installing './install-sh'
+;; configure.ac:6: installing './missing'
+;; Makefile.am: installing './depcomp'
+;; ./configure -q --bindir=/Users/kazuki/.emacs.d/elpa/pdf-tools-20190701.202/ && make -s
+;; configure: error: Package requirements (poppler-glib >= 0.16.0) were not met:
+;; Package 'libffi', required by 'gobject-2.0', not found
+;; Consider adjusting the PKG_CONFIG_PATH environment variable if you
+;; installed software in a non-standard prefix.
+;; Alternatively, you may set the environment variables poppler_glib_CFLAGS
+;; and poppler_glib_LIBS to avoid the need to call pkg-config.
+;; See the pkg-config man page for more details.
+;; ===========================
+;; Build failed.  ;o(
+;; ===========================
+;; Note: maybe try the '-d' option.
+;;
+;; brew reinstall libffi
+;; Same error
+;;
+;; 2019-09-22
+;; -*- mode: compilation; default-directory: "~/.emacs.d/elpa/pdf-tools-20190918.1715/build/server/" -*-
+;; Comint started at Sun Sep 22 04:30:22
+;; /Users/kazuki/.emacs.d/elpa/pdf-tools-20190918.1715/build/server/autobuild -i /Users/kazuki/.emacs.d/elpa/pdf-tools-20190918.1715/
+;; PDFView finished at Sun Sep 22 04:30:43
+;; epdfinfo now in ~/.emacs.d/elpa/pdf-tools-20190918.1715/
 (use-package pdf-tools
   :if (display-graphic-p)
   ;; The deferring configuration was take from the following repository.
@@ -127,7 +163,13 @@ When ARG is non-nil search in junk files."
     :commands (pdf-occur-global-minor-mode))
   ;;
   ;; Filename of the epdfinfo executable.
-  (setq pdf-info-epdfinfo-program (executable-find "epdfinfo"))
+  (setq pdf-info-epdfinfo-program
+        (or (executable-find "epdfinfo")
+            (concat (car (last (file-expand-wildcards (concat
+                                                       user-emacs-directory
+                                                       "elpa/pdf-tools*"))))
+                    "/"
+                    "epdfinfo")))
   ;;
   ;; Install PDF-Tools in all current and future PDF buffers.
   ;; https://github.com/politza/pdf-tools/issues/72
