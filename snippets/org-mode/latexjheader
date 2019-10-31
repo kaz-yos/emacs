@@ -37,7 +37,7 @@
 #+LATEX_HEADER: \usepackage{fancyhdr}
 #+LATEX_HEADER: \pagestyle{fancy}
 #+LATEX_HEADER: \fancyhf{} % Erase first to supress section names
-#+LATEX_HEADER: \fancyhead[L]{Kazuki Yoshida} % LEFT
+#+LATEX_HEADER: \fancyhead[L]{} % LEFT
 #+LATEX_HEADER: \fancyhead[C]{} % CENTER
 #+LATEX_HEADER: \fancyhead[R]{\today} % RIGHT
 #+LATEX_HEADER: \fancyfoot[C]{\thepage}
