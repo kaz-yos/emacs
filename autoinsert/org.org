@@ -1,7 +1,7 @@
 \sloppy
 * Meta-data                                                        :noexport:
 #+TITLE:
-#+AUTHOR: Kazuki Yoshida
+#+AUTHOR:
 #+OPTIONS: toc:nil
 #+OPTIONS: ^:{}
 # ############################################################################ #
