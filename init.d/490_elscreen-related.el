@@ -37,8 +37,8 @@
            (split-window nil nil 'left))
     ;; Screen 2
     (progn (elscreen-create)
-           (find-file (if (file-exists-p "~/Documents")
-                          "~/Documents"
+           (find-file (if (file-exists-p "~/Dropbox/documents")
+                          "~/Dropbox/documents"
                         "~"))
            (split-window nil nil 'left))
     ;; Screen 0
