@@ -30,9 +30,9 @@
 ;;
 ;;;  local-melpa-stan
 (let ((local-melpa-stan
-       "~/Documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages")
+       "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages")
       (local-melpa-stan-stable
-       "~/Documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages-stable"))
+       "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages-stable"))
   (when (file-exists-p local-melpa-stan)
     (add-to-list 'package-archives
                  `("local-melpa-stan" . ,local-melpa-stan) t))
