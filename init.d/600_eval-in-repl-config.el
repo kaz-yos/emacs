@@ -3,9 +3,9 @@
 
 ;;; EVAL-IN-REPL-RELATED
 ;;;  Uncomment to use the local dev repo
-;; (let ((eir-repo "~/Documents/programming/emacs-lisp-repos/eval-in-repl"))
-;;   (when (file-exists-p eir-repo)
-;;     (add-to-list 'load-path eir-repo)))
+(let ((eir-repo "~/Dropbox/documents/programming/emacs-lisp-repos/eval-in-repl"))
+  (when (file-exists-p eir-repo)
+    (add-to-list 'load-path eir-repo)))
 
 
 ;;;  eval-in-repl.el
@@ -93,20 +93,11 @@
 
 ;;;  shell support
 (use-package eval-in-repl-shell
-  :after sh-mode
   :commands eir-eval-in-shell
   :bind (:map sh-mode-map
               ("C-<return>" . eir-eval-in-shell))
   :config
-  ;; Version with opposite behavior to eir-jump-after-eval configuration
-  (defun eir-eval-in-shell2 ()
-    "eval-in-repl for shell script (opposite behavior)
-
-This version has the opposite behavior to the eir-jump-after-eval
-configuration when invoked to evaluate a line."
-    (interactive)
-    (let ((eir-jump-after-eval (not eir-jump-after-eval)))
-      (eir-eval-in-shell))))
+  )
 
 
 ;;;  sml support
