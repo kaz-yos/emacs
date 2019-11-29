@@ -30,23 +30,9 @@
   :commands (flycheck-enhance-rx-buffer-locally)
   :hook (reb-mode . flycheck-enhance-rx-buffer-locally)
   :config
+  ;; To avoid Symbol’s function definition is void: pkg-info-version-info
+  (use-package pkg-info)
   ;;
-  (defun flycheck-enhance-rx-buffer-locally ()
-    "Enhances `rx' buffer locally with `flycheck' elements.
-
-`flycheck' adds keywords `line', `column', `file-name',
-`message', and `id' to `rx-constituents' defined in `rx.el'
-to handle error message parsing.
-
-This function is intended for `re-builder'."
-    (setq-local rx-constituents
-                (append
-                 `((line . ,(rx (group-n 2 (one-or-more digit))))
-                   (column . ,(rx (group-n 3 (one-or-more digit))))
-                   (file-name flycheck-rx-file-name 0 nil)
-                   (message flycheck-rx-message 0 nil)
-                   (id flycheck-rx-id 0 nil))
-                 rx-constituents nil)))
   ;;
   ;; Delay in seconds before displaying errors at point.
   (setq flycheck-display-errors-delay 0.9)
