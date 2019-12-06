@@ -161,6 +161,9 @@ When ARG is non-nil search in junk files."
   (use-package pdf-occur
     ;; These are required by pdf-tools-install.
     :commands (pdf-occur-global-minor-mode))
+  (use-package pdf-links
+    ;; This is required
+    :commands (pdf-links-minor-mode))
   ;;
   ;; Filename of the epdfinfo executable.
   (setq pdf-info-epdfinfo-program
