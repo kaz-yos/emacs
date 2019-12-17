@@ -6,7 +6,16 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/autotype/Hippie-Expand.html#Hippie-Expand
 (use-package hippie-exp
   ;; hippie-expand instead of less functional dabbrev-expand
-  :bind* (("M-/" . hippie-expand)))
+  :bind* (("M-/" . hippie-expand))
+  :config
+  ;; https://emacs.stackexchange.com/questions/4247/hippie-expand-disturbes-paredit
+  ;; Drop try-expand-line to avoid breaking parentheses.
+  ;; try-expand-line: Try to complete the current line to an entire line in the buffer.
+  ;; try-expand-list: Try to complete the current beginning of a list.
+  (dolist (f '(try-expand-line
+               try-expand-list))
+    (setq hippie-expand-try-functions-list
+          (remq f hippie-expand-try-functions-list))))
 
 
 ;;;
