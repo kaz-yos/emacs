@@ -13,6 +13,7 @@
 if (length(.script_name.) == 1) {
     cat("### Running:", paste(commandArgs()), "\n")
     options(width = 100)
+    options(echo = TRUE)
 }
 
 cat("
