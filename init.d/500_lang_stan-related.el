@@ -34,8 +34,8 @@
 
 ;;; flycheck-stan.el
 (use-package flycheck-stan
-  :hook (stan-mode . flycheck-stan-setup)
   :load-path "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/flycheck-stan/"
+  :hook (stan-mode . flycheck-stan-stanc3-setup)
   ;;
   :config
   ;; No configuration options as of now.
