@@ -14,10 +14,12 @@
               ("C-c C-e" . ess-eval-region-or-line-and-step)
               ("C-c C-b" . ess-eval-buffer)
               ("C-c C-u" . ess-eval-buffer-from-beg-to-here)
+              ("C-c z" . ess-switch-to-inferior-or-script-buffer)
               ("C-=" . ess-insert-assign)
               ("_" . nil)
               ;;
               :map inferior-ess-mode-map
+              ("C-c z" . ess-switch-to-inferior-or-script-buffer)
               ("C-=" . ess-insert-assign)
               ("_" . nil))
   ;;
