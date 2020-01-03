@@ -121,7 +121,9 @@
 ;;;   magit-todos.el
   ;; https://github.com/alphapapa/magit-todos
   (use-package magit-todos
-    :hook (magit-mode . magit-todos-mode)))
+    ;; Do not hook. Just load once.
+    ;; https://github.com/alphapapa/magit-todos/issues/28
+    ))
 
 
 ;;;  git-timemachine.el
