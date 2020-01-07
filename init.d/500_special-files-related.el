@@ -155,7 +155,13 @@ When ARG is non-nil search in junk files."
               ("C-s" . isearch-forward))
   ;;
   :config
+  (use-package pdf-view
+    :config
+    ;; Fractional amount of resizing of one resize command.
+    (setq pdf-view-resize-factor 1.05))
   ;; These are necessary to create autoloads if not using (package-initialize)
+  (use-package pdf-outline
+    :commands (pdf-outline-minor-mode))
   (use-package pdf-history
     :commands (pdf-history-minor-mode))
   (use-package pdf-occur
