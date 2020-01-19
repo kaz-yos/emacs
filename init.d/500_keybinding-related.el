@@ -138,7 +138,7 @@ This should be run after running multiple-cursors"
     (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------")))
     (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################")))
     (local-set-key (kbd "~") (smartchr '("~" " ~ ")))
-    (local-set-key (kbd "~") (smartchr '("<" " <- ")))
+    (local-set-key (kbd "<") (smartchr '("<" " <- ")))
     (local-set-key (kbd "$") (smartchr '("$" "$`!!'$")))
     (local-set-key (kbd "%") (smartchr '("%" " %`!!'% "))))
   (add-hook 'ess-mode-hook          'smartchr-ess-mode-set)
