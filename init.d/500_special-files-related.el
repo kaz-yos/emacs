@@ -160,6 +160,10 @@ When ARG is non-nil search in junk files."
     ;; Fractional amount of resizing of one resize command.
     (setq pdf-view-resize-factor 1.05))
   ;; These are necessary to create autoloads if not using (package-initialize)
+  (use-package pdf-sync
+    :commands (pdf-sync-minor-mode))
+  (use-package pdf-annot
+    :commands (pdf-annot-minor-mode))
   (use-package pdf-outline
     :commands (pdf-outline-minor-mode))
   (use-package pdf-history
