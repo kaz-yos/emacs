@@ -335,7 +335,10 @@ searched. If there is no symbol, empty search box is started."
 ;; https://github.com/magnars/expand-region.el
 (use-package expand-region
   :bind* (("C-," . er/expand-region)
-          ("C-M-," . er/contract-region)))
+          ("C-M-," . er/contract-region)
+          :map my-key-map
+          ("," . er/expand-region)
+          ("M-," . er/contract-region)))
 
 
 ;;;
