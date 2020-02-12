@@ -569,7 +569,7 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; How to export source code. See the help for `org-latex-listings'.
   ;; t for listings or 'minted for minted (depends on pygments).
   ;; Also install pygments and give the -shell-escape option to the LaTeX engine.
-  ;; conda install pygments
+  ;; $ conda install pygments
   (setq org-latex-listings 'minted)
   ;;
   ;; Association list of options for the latex minted package. Set in the file.
