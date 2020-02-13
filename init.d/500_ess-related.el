@@ -102,51 +102,55 @@
                                  "\""
                                  ")'"))))))
   ;;
-;;;  Remaining config
-  (defun my-ess-bring-up-inferior-ess ()
-    (interactive)
-    ;; Move to iESS
-    (ess-switch-to-inferior-or-script-buffer nil)
-    ;; Move back
-    (ess-switch-to-inferior-or-script-buffer nil))
+;;;  ess-custom.el
+  (use-package ess-custom
+    :config
+    ;; When non-nil, use readline in R.
+    ;; This can mess up evaluation completely.
+    (setq ess-R-readline t)
+    ;; If non-nil activate flymake in ess-mode buffers.
+    (setq ess-use-flymake nil)
+    ;; No history, no saving!
+    (setq-default inferior-R-args "--no-restore-history --no-save ")
+    ;; If t ess will try to use ido completion whenever possible.
+    (setq ess-use-ido nil)
+    ;; Smart TAB completion in R scripts, similar to iESS behavior.
+    (setq ess-tab-complete-in-script nil)
+    (setq ess-first-tab-never-complete nil)
+    ;;
+    ;; Must-haves for ESS
+    ;; http://www.emacswiki.org/emacs/CategoryESS
+    (setq ess-eval-visibly 'nowait)		; New in 12.09-1
+    (setq ess-ask-for-ess-directory nil)	; Don't ask for directory
+    ;;
+    ;; Auto-scrolling of R console to bottom and Shift key extension
+    ;; http://www.kieranhealy.org/blog/archives/2009/10/12/make-shift-enter-do-a-lot-in-ess/
+    ;; Adapted with one minor change from Felipe Salazar at
+    ;; http://www.emacswiki.org/emacs/ESSShiftEnter
+    (setq ess-local-process-name "R")
+    (setq ansi-color-for-comint-mode 'filter)
+    (setq comint-prompt-read-only t)
+    (setq comint-scroll-to-bottom-on-input t)
+    (setq comint-scroll-to-bottom-on-output t)
+    (setq comint-move-point-for-output t))
   ;;
-  ;; If non-nil activate flymake in ess-mode buffers.
-  (setq ess-use-flymake nil)
-  ;; No history, no saving!
-  (setq-default inferior-R-args "--no-restore-history --no-save ")
-  ;; If t ess will try to use ido completion whenever possible.
-  (setq ess-use-ido nil)
+;;;  Remaining config
   ;;
   ;; Bind key at the time of loading.
   ;; Then this calls smart-jump-go/back autoloads elsewhere.
   (bind-key "M-." 'smart-jump-go ess-mode-map)
   (bind-key "M-," 'smart-jump-back ess-mode-map)
   ;;
-  ;; Smart TAB completion in R scripts, similar to iESS behavior.
-  (setq ess-tab-complete-in-script nil)
-  (setq ess-first-tab-never-complete nil)
-  ;;
-  ;; Must-haves for ESS
-  ;; http://www.emacswiki.org/emacs/CategoryESS
-  (setq ess-eval-visibly 'nowait)		; New in 12.09-1
-  (setq ess-ask-for-ess-directory nil)	; Don't ask for directory
-  ;;
-  ;; Auto-scrolling of R console to bottom and Shift key extension
-  ;; http://www.kieranhealy.org/blog/archives/2009/10/12/make-shift-enter-do-a-lot-in-ess/
-  ;; Adapted with one minor change from Felipe Salazar at
-  ;; http://www.emacswiki.org/emacs/ESSShiftEnter
-  (setq ess-local-process-name "R")
-  (setq ansi-color-for-comint-mode 'filter)
-  (setq comint-prompt-read-only t)
-  (setq comint-scroll-to-bottom-on-input t)
-  (setq comint-scroll-to-bottom-on-output t)
-  (setq comint-move-point-for-output t)
   ;;
 ;;;  Package development
-  ;; Do not work in the package environment automatically.
-  ;; Can toggle with M-x ess-r-set-evaluation-env.
-  ;; http://emacs.1067599.n8.nabble.com/turning-off-ess-r-package-mode-td406874.html
-  (setq ess-r-package-auto-set-evaluation-env nil)
+  (use-package ess-r-package
+    :config
+    ;; Do not work in the package environment automatically.
+    ;; Can toggle with M-x ess-r-set-evaluation-env.
+    ;; http://emacs.1067599.n8.nabble.com/turning-off-ess-r-package-mode-td406874.html
+    ;; If non-nil, evaluation env is set to package env automatically.
+    ;; See also `ess-r-set-evaluation-env' and `ess-r-evaluation-env'.
+    (setq ess-r-package-auto-enable-namespaced-evaluation nil))
   ;;
   (setq ess-roxy-template-alist
         '(("description" .  ".. content for \\description{} (no empty lines) ..")
