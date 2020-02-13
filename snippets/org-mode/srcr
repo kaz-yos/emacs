@@ -4,9 +4,10 @@
 # --
 # https://orgmode.org/manual/results.html
 # https://orgmode.org/manual/Exporting-code-blocks.html
+# https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html#org04ba7ed
 \scriptsize
 #+HEADER: :width 3.5 :height 3
-#+BEGIN_SRC R :session *R-org* :results output${1:$$(yas-choose-value '("" " graphics :file ./source/figure.pdf"))} :exports ${2:$$(yas-choose-value '("both" "results" "code" "none"))}
+#+BEGIN_SRC R :session *R-org* :results output${1:$$(yas-choose-value '("" " graphics file :file ./source/figure.pdf"))} :exports ${2:$$(yas-choose-value '("both" "results" "code" "none"))}
 $0
 #+END_SRC
 \normalsize
