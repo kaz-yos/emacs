@@ -60,7 +60,8 @@
 ;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
 ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
 (use-package magit
-  :commands (magit-status)
+  :commands (magit-status
+             magit-init)
   :bind (("s-g" . my-magit-status)
          :map my-key-map
          ("g" . my-magit-status))
