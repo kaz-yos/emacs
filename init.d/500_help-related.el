@@ -39,11 +39,14 @@
 ;; https://github.com/Wilfred/helpful
 ;; http://www.wilfred.me.uk/blog/2017/08/30/helpful-adding-contextual-help-to-emacs/
 (use-package helpful
-  :bind (:map help-map
-              ("a" . helpful-at-point)
-              ("f" . helpful-callable)
-              ("v" . helpful-variable)
-              ("k" . helpful-key))
+  :bind (
+         :map emacs-lisp-mode-map
+         ("C-c C-v" . helpful-at-point)
+         :map help-map
+         ("a" . helpful-at-point)
+         ("f" . helpful-callable)
+         ("v" . helpful-variable)
+         ("k" . helpful-key))
   :commands (helpful-function
              helpful-command
              helpful-key
