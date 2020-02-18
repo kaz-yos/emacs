@@ -241,3 +241,13 @@ which has no argument of its own."
   ;;
   ;; The way of querying the user for word replacements.
   (setq synosaurus-choose-method 'popup))
+
+
+;;;
+;;; flycheck-grammarly.el
+;; https://github.com/jcs-elpa/flycheck-grammarly/tree/master
+(use-package flycheck-grammarly
+  :config
+  ;; The following is done in the file
+  ;; (add-to-list 'flycheck-checkers 'grammarly-checker)
+  )
