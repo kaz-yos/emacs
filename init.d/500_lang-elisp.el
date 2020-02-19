@@ -136,3 +136,14 @@ This will globally bind these variables for crude interactive testing."
   :config
   ;; Alist of symbols and their indent specifiers.
   (setq elisp-lint-indent-specs nil))
+
+
+;;;
+;;; Demonstration related
+
+;;;  demo-it.el
+(use-package demo-it
+  :config)
+
+;;;  package-demo.el
+;; https://github.com/vermiculus/package-demo
