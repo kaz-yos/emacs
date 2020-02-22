@@ -154,6 +154,9 @@
          ("C-s" . company-filter-candidates)
          ("C-d" . company-show-doc-buffer)
          ("M-." . company-show-location)
+         ;; These are defaults
+         ("TAB" . company-complete-common)
+         ("RET" . company-complete-selection)
          ;;
          ;; Keymap used for incrementally searching the completion candidates.
          :map company-search-map
