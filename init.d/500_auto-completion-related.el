@@ -142,10 +142,9 @@
   :diminish (company-mode)
   :commands (global-company-mode
              my-company-fuzzy-match)
-  :bind (("A-<tab>" . company-complete)
-         ("A-i" . company-complete)
+  :bind (;; Comment only in this line for indenttion.
          :map my-key-map
-         ("c" . company-complete)
+         ("c" . company-manual-begin)
          ;;
          ;; Keymap that is enabled during an active completion.
          :map company-active-map
