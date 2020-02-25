@@ -39,9 +39,14 @@ options(cores = n_cores)
 ## Register doParallel as the parallel backend for foreach
 ## http://stackoverflow.com/questions/28989855/the-difference-between-domc-and-doparallel-in-r
 doParallel::registerDoParallel(cores = n_cores)
+## future: Unified Parallel and Distributed Processing in R for Everyone
+## https://cran.r-project.org/web/packages/future/vignettes/future-1-overview.html
+library(future)
+future::plan(multiprocess)
 ## Report multicore use
 cat("### Using ", foreach::getDoParWorkers(), " cores\n",
     "### Using ", foreach::getDoParName(), " as backend\n",
+    "### Using ", future::availableCores(), " as future cores\n",
     sep = "")
 
 ## Load packages
