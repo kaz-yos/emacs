@@ -134,7 +134,6 @@ This should be run after running multiple-cursors"
   (defun smartchr-ess-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
     (local-set-key (kbd "+") (smartchr '("+" " + ")))
-    (local-set-key (kbd "!") (smartchr '("!" " != ")))
     (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------")))
     (local-set-key (kbd "#") (smartchr '("# " "## " "### " "################################################################################")))
     (local-set-key (kbd "~") (smartchr '("~" " ~ ")))
