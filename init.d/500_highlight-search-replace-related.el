@@ -357,7 +357,8 @@ searched. If there is no symbol, empty search box is started."
 ;; To replace “mouse” with “cat” and “mice” with “cats” using:
 ;; M-x plur-query-replace RET m{ouse,ice} RET cat{,s} RET
 (use-package plur
-  :commands (plur-query-replace))
+  :commands (plur-replace
+             plur-query-replace))
 
 
 ;;;
