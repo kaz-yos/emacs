@@ -25,9 +25,9 @@ miss_vars <- names($1)[colSums(is.na($1)) > 0]
 ## predictors (sometimes called massive imputation). Note: For
 ## two-level imputation codes '2' and '-2' are also allowed.
 ##
-predictorMatrix <- matrix(0, ncol = length(all_vars), nrow = length(all_vars))
-rownames(predictorMatrix) <- all_vars
-colnames(predictorMatrix) <- all_vars
+predictorMatrix <- matrix(0,
+                          ncol = length(all_vars), nrow = length(all_vars),
+                          dimnames = list(all_vars, all_vars))
 
 ## Avoid perfect linear dependence
 ## http://stats.stackexchange.com/questions/127104/r-mice-imputation-failing
@@ -58,7 +58,9 @@ imputed_vars <- intersect(unique(c(imputed_only_vars, imputer_vars)), miss_vars)
 imputed_vars
 imputed_matrix <- predictorMatrix
 imputed_matrix[imputed_vars,] <- 1
-
+## Cluster variable is -2
+cluster_var <- "id"
+imputer_matrix[,cluster_var] <- -2
 
 cat("
 ###  Construct a full predictor matrix (rows: imputed variables; cols: imputer variables)\n")
