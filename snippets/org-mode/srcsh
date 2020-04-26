@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: srcsh
+# key: srcsh
+# binding:
+# --
+#+BEGIN_SRC sh $1
+$0
+#+END_SRC
