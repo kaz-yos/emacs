@@ -3,7 +3,8 @@
 ("ext-R"
  "ext-pdf"
  "ext-sh"
- "ext-sas")
+ "ext-sas"
+ "ext-lsf")
 
 ;;; runner-alist
 ;;
@@ -37,7 +38,10 @@
   (("channing-sas" "qbs" 0)
    ("channing-sas 1G mem 60GB disk" "qbs -q l -o lx,memsize=10000M,disksize=60G" 0)
    ("channing-sas 50GB disk" "qbs -o disksize=50G" 0)
-   ("sas" "{run:out} sas" 5))))
+   ("sas" "{run:out} sas" 5)))
+ ;;
+ ("ext-lsf" 0 "lsf"
+  (("bsub" "{run:out} bsub < " 0))))
 
 ;;; Run these after reconfiguring.
 ;; (progn (runner-settings-load) (runner-reset))
