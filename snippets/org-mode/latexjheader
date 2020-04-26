@@ -78,4 +78,5 @@
 #+LATEX_HEADER: \usepackage{float}
 #+LATEX_HEADER: %% Allow URL embedding
 #+LATEX_HEADER: \usepackage{url}
+#+LATEX_HEADER: %% https://github.com/kaz-yos/emacs/blob/master/misc/GrandMacros.tex
 #+LATEX_HEADER: \input{\string~/.emacs.d/misc/GrandMacros}
