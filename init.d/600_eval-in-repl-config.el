@@ -3,9 +3,9 @@
 
 ;;; EVAL-IN-REPL-RELATED
 ;;;  Uncomment to use the local dev repo
-(let ((eir-repo "~/Dropbox/documents/programming/emacs-lisp-repos/eval-in-repl"))
-  (when (file-exists-p eir-repo)
-    (add-to-list 'load-path eir-repo)))
+;; (let ((eir-repo "~/Dropbox/documents/programming/emacs-lisp-repos/eval-in-repl"))
+;;   (when (file-exists-p eir-repo)
+;;     (add-to-list 'load-path eir-repo)))
 
 
 ;;;  eval-in-repl.el
