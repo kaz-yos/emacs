@@ -27,12 +27,15 @@
   :bind (;; for .el files
          :map emacs-lisp-mode-map
          ("C-<return>" . eir-eval-in-ielm)
+         ("C-c m RET" . eir-eval-in-ielm)
          ;; for *scratch*
          :map lisp-interaction-mode-map
          ("C-<return>" . eir-eval-in-ielm)
+         ("C-c m RET" . eir-eval-in-ielm)
          ;; for M-x info
          :map Info-mode-map
-         ("C-<return>" . eir-eval-in-ielm))
+         ("C-<return>" . eir-eval-in-ielm)
+         ("C-c m RET" . eir-eval-in-ielm))
   :config
   (setq eir-ielm-eval-in-current-buffer t))
 
@@ -71,8 +74,9 @@
 (use-package eval-in-repl-racket
   :after racket-mode
   :commands (eir-eval-in-racket)
-  :bind (:map racket-mode-map
-              ("C-<return>" . eir-eval-in-racket)))
+  :bind (;;
+         :map racket-mode-map
+         ("C-<return>" . eir-eval-in-racket)))
 
 
 ;;;  scheme support
@@ -94,8 +98,10 @@
 ;;;  shell support
 (use-package eval-in-repl-shell
   :commands eir-eval-in-shell
-  :bind (:map sh-mode-map
-              ("C-<return>" . eir-eval-in-shell))
+  :bind (;;
+         :map sh-mode-map
+         ("C-<return>" . eir-eval-in-shell)
+         ("C-c m RET" . eir-eval-in-shell))
   :config
   )
 
@@ -105,9 +111,10 @@
 (use-package eval-in-repl-sml
   :after sml-mode
   :commands eir-eval-in-sml
-  :bind (:map sml-mode-map
-              ("<C-return>" . eir-eval-in-sml)
-              ("C-;" . eir-send-to-sml-semicolon)))
+  :bind (;;
+         :map sml-mode-map
+         ("<C-return>" . eir-eval-in-sml)
+         ("C-;" . eir-send-to-sml-semicolon)))
 
 
 ;;;  ruby support
@@ -116,17 +123,19 @@
 (use-package eval-in-repl-ruby
   :after ruby-mode
   :commands (eir-eval-in-ruby)
-  :bind (:map ruby-mode-map
-              ("<C-return>" . eir-eval-in-ruby)))
+  :bind (;;
+         :map ruby-mode-map
+         ("<C-return>" . eir-eval-in-ruby)))
 
 
 ;;;  ocaml support
 (use-package eval-in-repl-ocaml
   :after tuareg
   :commands (eir-eval-in-ocaml)
-  :bind (:map sml-mode-map
-              ("<C-return>" . eir-eval-in-ocaml)
-              ("C-;" . eir-send-to-ocaml-semicolon)))
+  :bind (;;
+         :map sml-mode-map
+         ("<C-return>" . eir-eval-in-ocaml)
+         ("C-;" . eir-send-to-ocaml-semicolon)))
 
 
 ;;;  hy support
@@ -134,18 +143,20 @@
 (use-package eval-in-repl-hy
   :after hy-mode
   :commands (eir-eval-in-hy)
-  :bind (:map hy-mode-map
-              ("<C-return>" . eir-eval-in-hy)))
+  :bind (;;
+         :map hy-mode-map
+         ("<C-return>" . eir-eval-in-hy)))
 
 
 ;;;  javascript support
 (use-package eval-in-repl-javascript
   :after js3-mode
   :commands eir-eval-in-javascript
-  :bind (:map js3-mode-map
-              ("<C-return>" . eir-eval-in-javascript)
-              :map js2-mode-map
-              ("<C-return>" . eir-eval-in-javascript)))
+  :bind (;;
+         :map js3-mode-map
+         ("<C-return>" . eir-eval-in-javascript)
+         :map js2-mode-map
+         ("<C-return>" . eir-eval-in-javascript)))
 
 
 ;;;  octave support
@@ -153,8 +164,9 @@
   :load-path "~/Documents/programming/emacs-lisp-repos/eval-in-repl"
   :after octave
   :commands eir-eval-in-octave
-  :bind (:map octave-mode-map
-              ("<C-return>" . eir-eval-in-octave)))
+  :bind (;;
+         :map octave-mode-map
+         ("<C-return>" . eir-eval-in-octave)))
 
 
 ;;;
@@ -162,5 +174,7 @@
 ;; https://github.com/diadochos/org-babel-eval-in-repl
 (use-package org-babel-eval-in-repl
   :after ob
-  :bind (:map org-mode-map
-              ("C-<return>" . ober-eval-in-repl)))
+  :bind (;;
+         :map org-mode-map
+         ("C-<return>" . ober-eval-in-repl)
+         ("C-c m RET" . ober-eval-in-repl)))
