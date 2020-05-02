@@ -1,7 +1,7 @@
 ;;; 500_lang-ml.el ---                               -*- lexical-binding: t; -*-
 ;; Configuration for ML family of languages
 
-;;; 
+;;;
 ;;; sml-mode.el
 (use-package sml-mode
   :mode "\\.sml"
@@ -14,8 +14,9 @@
   (add-hook 'inferior-sml-mode-hook 'inferior-sml-mode-ac-setting))
 
 
-;;; 
+;;;
 ;;; tuareg.el for OCaml
 ;; http://forge.ocamlcore.org/projects/tuareg/
 (use-package tuareg
+  :ensure t
   :mode ("\\.ml" . tuareg-mode))

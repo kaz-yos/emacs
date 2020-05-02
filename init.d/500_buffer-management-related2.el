@@ -36,6 +36,7 @@ Dependency: ace-swap-window"
 ;;; reveal-in-finder.el
 ;; https://github.com/kaz-yos/elisp
 (use-package reveal-in-osx-finder
+  :ensure t
   :if (eq system-type 'darwin)
   ;; Add path to developmental repo
   ;; (when (file-exists-p "~/Documents/programming/emacs-lisp-repos/reveal-in-osx-finder")
@@ -68,6 +69,7 @@ Dependency: ace-swap-window"
   ;; To include vc status info in the ibuffer list, add either
   ;; vc-status-mini or vc-status to `ibuffer-formats':
   (use-package ibuffer-vc
+    :ensure t
     :config
     ;; If non-nil, don't query the VC status of remote files.
     (setq ibuffer-vc-skip-if-remote t)

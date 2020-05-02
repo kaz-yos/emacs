@@ -6,6 +6,7 @@
 ;;;  slime-company.el
 ;; https://github.com/anwyn/slime-company
 (use-package slime-company
+  :ensure t
   :commands (slime-company))
 
 ;;;  slime.el
@@ -13,6 +14,7 @@
 ;; http://www.common-lisp.net/project/slime/
 ;; http://dev.ariel-networks.com/wp/archives/462
 (use-package slime
+  :ensure t
   :commands (slime)
   ;;
   :config
@@ -65,6 +67,7 @@
 ;; Do $ raco pkg install compatibility-lib if installing plt-racket via Homebrew
 ;; https://github.com/jaor/geiser/issues/39
 (use-package geiser
+  :ensure t
   :commands (geiser-mode switch-to-geiser)
   :config
 ;;;  ac-geiser.el

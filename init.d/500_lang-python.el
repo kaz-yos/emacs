@@ -62,6 +62,7 @@
 ;; M-x ein:notebooklist-login (enter the token as the password)
 ;; M-x ein:notebooklist-open
 (use-package ein
+  :ensure t
   :commands (;; Start the jupyter notebook server at the given path.
              ;; This only works if jupyter is in the default conda env.
              ein:jupyter-server-start
@@ -108,6 +109,7 @@
 ;; https://github.com/hylang/hy-mode
 ;; http://docs.hylang.org/en/stable/
 (use-package hy-mode
+  :ensure t
   :mode "\\.hy"
   :commands (company-hy-setup)
   :hook (hy . company-hy-setup)

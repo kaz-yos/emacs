@@ -11,6 +11,7 @@
 ;;;  eval-in-repl.el
 ;; require the main file containing common functions
 (use-package eval-in-repl
+  :ensure t
   :config
   ;;; Default behaviors
   ;; Always delete other windows
@@ -173,6 +174,7 @@
 ;;; org-babel-eval-in-repl.el
 ;; https://github.com/diadochos/org-babel-eval-in-repl
 (use-package org-babel-eval-in-repl
+  :ensure t
   :after ob
   :bind (;;
          :map org-mode-map

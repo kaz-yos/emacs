@@ -6,6 +6,7 @@
 
 ;;; stan-mode.el
 (use-package stan-mode
+  :ensure t
   ;; :load-path "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/stan-mode"
   :mode ("\\.stan\\'" . stan-mode)
   :hook (stan-mode . stan-mode-setup)
@@ -16,6 +17,7 @@
 
 ;;; company-stan.el
 (use-package company-stan
+  :ensure t
   ;; :load-path "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/company-stan/"
   :hook (stan-mode . company-stan-setup)
   ;;
@@ -25,6 +27,7 @@
 
 ;;; eldoc-stan.el
 (use-package eldoc-stan
+  :ensure t
   ;; :load-path "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/eldoc-stan/"
   :hook (stan-mode . eldoc-stan-setup)
   ;;
@@ -34,6 +37,7 @@
 
 ;;; flycheck-stan.el
 (use-package flycheck-stan
+  :ensure t
   :load-path "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/flycheck-stan/"
   :hook (stan-mode . flycheck-stan-stanc3-setup)
   ;;
@@ -43,6 +47,7 @@
 
 ;;; stan-snippets.el
 (use-package stan-snippets
+  :ensure t
   ;; :load-path "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/stan-snippets/"
   :hook (stan-mode . stan-snippets-initialize)
   ;;

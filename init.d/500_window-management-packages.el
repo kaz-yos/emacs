@@ -12,12 +12,14 @@
 ;;; windresize for M-x windresize
 ;; M-x windresize, arrows, C-g for cancel, RET to save
 (use-package windresize
+  :ensure t
   :commands windresize)
 
 
 ;;;
 ;;; window-number.el for direct movement to windows
 (use-package window-number
+  :ensure t
   :config
   ;; No need to show numbers in the mode-line.
   ;; (window-number-mode 1)
@@ -43,6 +45,7 @@
 ;;; zoom-window.el
 ;; https://github.com/syohex/emacs-zoom-window
 (use-package zoom-window
+  :ensure t
   :commands (zoom-window-zoom)
   :config
   (setq zoom-window-use-elscreen t)
@@ -53,6 +56,7 @@
 ;;; window-purpose.el
 ;; https://github.com/bmag/emacs-purpose
 (use-package window-purpose
+  :ensure t
   :commands (purpose-mode)
   :config
   ;; Purpose Configuration:

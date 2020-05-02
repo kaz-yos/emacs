@@ -174,6 +174,7 @@ which has no argument of its own."
 ;;; langtools.el
 ;; https://github.com/mhayashi1120/Emacs-langtool
 (use-package langtool
+  :ensure t
   :commands (langtool-check)
   :config
   ;; The standalone desktop version was downloaded from the following URL.
@@ -210,6 +211,7 @@ which has no argument of its own."
 ;;; osx-dictionary.el
 ;; https://github.com/xuchunyang/osx-dictionary.el
 (use-package osx-dictionary
+  :ensure t
   :commands (osx-dictionary-search-word-at-point
              osx-dictionary-search-input))
 
@@ -219,6 +221,7 @@ which has no argument of its own."
 ;; https://www.emacswiki.org/emacs/ThesauriAndSynonyms
 ;; https://www.emacswiki.org/emacs/synonyms.el
 (use-package synonymous
+  :ensure t
   :commands (synonymous-synonyms))
 
 
@@ -226,6 +229,7 @@ which has no argument of its own."
 ;;; synosaurus.el
 ;; https://github.com/hpdeifel/synosaurus
 (use-package synosaurus
+  :ensure t
   :commands (synosaurus-mode
              synosaurus-lookup
              synosaurus-choose-and-replace)
@@ -247,6 +251,7 @@ which has no argument of its own."
 ;;; flycheck-grammarly.el
 ;; https://github.com/jcs-elpa/flycheck-grammarly/tree/master
 (use-package flycheck-grammarly
+  :ensure t
   :config
   ;; The following is done in the file
   ;; (add-to-list 'flycheck-checkers 'grammarly-checker)

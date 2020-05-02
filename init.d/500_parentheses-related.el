@@ -5,6 +5,7 @@
 ;;
 ;; M-x install-elisp http://mumble.net/~campbell/emacs/paredit.el
 (use-package paredit
+  :ensure t
   :commands (enable-paredit-mode)
   :init
   (add-hook 'emacs-lisp-mode-hook         'enable-paredit-mode)
@@ -32,6 +33,7 @@
 ;;; rainbow-delimiters.el
 ;; http://www.emacswiki.org/emacs/RainbowDelimiters
 (use-package rainbow-delimiters
+  :ensure t
   :commands (rainbow-delimiters-mode)
   :init
   ;; Activate in these modes

@@ -4,6 +4,7 @@
 ;;; Helm
 ;; https://emacs-helm.github.io/helm/
 (use-package helm
+  :ensure t
   :demand t
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)

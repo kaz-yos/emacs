@@ -11,6 +11,7 @@
 
 ;;; viewer.el
 (use-package viewer
+  :ensure t
   :commands (viewer-change-modeline-color)
   :init
   (add-hook 'view-mode-hook 'viewer-change-modeline-color)

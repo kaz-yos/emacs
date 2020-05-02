@@ -3,6 +3,7 @@
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (use-package highlight-symbol
+  :ensure t
   :commands (highlight-symbol
              highlight-symbol-remove-all
              my-highlight-symbol-next
@@ -42,6 +43,7 @@
 ;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
 ;; http://qiita.com/syohex/items/56cf3b7f7d9943f7a7ba
 (use-package anzu
+  :ensure t
   :defer 2
   :config
   (setq anzu-mode-lighter "")
@@ -58,6 +60,7 @@
 ;; http://emacsrocks.com/e13.html (video)
 ;; http://rubikitch.com/2014/11/10/multiple-cursors/
 (use-package multiple-cursors
+  :ensure t
   ;; Need to load at start up. Otherwise, mode-line override does not work.
   :demand t
   :bind (("C-S-c C-S-c" . mc/edit-lines)
@@ -120,6 +123,7 @@
 ;; http://pragmaticemacs.com/emacs/dont-search-swipe/
 ;; http://pragmaticemacs.com/emacs/search-or-swipe-for-the-current-word/
 (use-package swiper
+  :ensure t
   :commands (swiper
              swiper-at-point)
   :bind (("s-s" . swiper-at-point)
@@ -171,6 +175,7 @@ searched. If there is no symbol, empty search box is started."
 ;; http://d.hatena.ne.jp/higepon/20061226/1167098839
 ;; http://d.hatena.ne.jp/sandai/20120304/p2
 (use-package color-moccur
+  :ensure t
   :commands (moccur-grep
              occur-by-moccur
              moccur-grep-find)
@@ -189,6 +194,7 @@ searched. If there is no symbol, empty search box is started."
   ;; M-x moccur-grep to enter Moccur-grep, then objectName .R$
   ;; r/C-x C-q/C-c C-i to enter Moccur-edit. C-x C-s to save, C-c C-k
   (use-package moccur-edit
+    :ensure t
     :config
     ;; Modified buffers are saved automatically.
     (defadvice moccur-edit-change-file
@@ -212,6 +218,7 @@ searched. If there is no symbol, empty search box is started."
 ;; 27.4 Searching with Grep under Emacs
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Grep-Searching.html
 (use-package wgrep
+  :ensure t
   :commands (wgrep-setup)
   :hook (grep-setup . wgrep-setup)
   :bind (:map grep-mode-map
@@ -230,6 +237,7 @@ searched. If there is no symbol, empty search box is started."
 ;; https://github.com/ggreer/the_silver_searcher
 ;; http://yukihr.github.io/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/
 (use-package ag
+  :ensure t
   :if (executable-find "ag")
   :commands (ag
              ;; *-files commands allow you to specify a PCRE pattern for file names to search in.
@@ -281,6 +289,7 @@ searched. If there is no symbol, empty search box is started."
 ;;;   wgrep-ag.el
   ;; https://github.com/mhayashi1120/Emacs-wgrep
   (use-package wgrep-ag
+    :ensure t
     ;; Nested within ag.el configuration.
     :demand
     :bind (:map ag-mode-map
@@ -301,6 +310,7 @@ searched. If there is no symbol, empty search box is started."
 ;; https://github.com/BurntSushi/ripgrep#installation (binary is called rg)
 ;; $ brew install ripgrep
 (use-package rg
+  :ensure t
   :if (executable-find "rg")
   :commands (rg)
   ;;
@@ -318,6 +328,7 @@ searched. If there is no symbol, empty search box is started."
 ;; http://www.emacswiki.org/emacs/HighlightSexp
 ;; Color M-x list-colors-display  to check good colors
 (use-package highlight-sexp
+  :ensure t
   :commands (highlight-sexp-mode)
   :config
   ;; (setq hl-sexp-background-color "thistle1")
@@ -334,6 +345,7 @@ searched. If there is no symbol, empty search box is started."
 ;;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
 (use-package expand-region
+  :ensure t
   :bind* (("C-," . er/expand-region)
           ("C-M-," . er/contract-region)
           :map my-key-map
@@ -346,6 +358,7 @@ searched. If there is no symbol, empty search box is started."
 ;; Add/Change/Delete pairs based on `expand-region', similar to `evil-surround'.
 ;; https://github.com/cute-jumper/embrace.el
 (use-package embrace
+  :ensure t
   :commands (embrace-commander))
 
 
@@ -357,6 +370,7 @@ searched. If there is no symbol, empty search box is started."
 ;; To replace “mouse” with “cat” and “mice” with “cats” using:
 ;; M-x plur-query-replace RET m{ouse,ice} RET cat{,s} RET
 (use-package plur
+  :ensure t
   :commands (plur-replace
              plur-query-replace))
 
@@ -370,6 +384,7 @@ searched. If there is no symbol, empty search box is started."
 ;;
 ;; Mac-only configuration
 (use-package migemo
+  :ensure t
   :if (executable-find "cmigemo")
   :commands (migemo-init)
   ;;
@@ -392,6 +407,7 @@ searched. If there is no symbol, empty search box is started."
 ;; Make strings describing colors appear in colors
 ;; http://julien.danjou.info/projects/emacs-packages
 (use-package rainbow-mode
+  :ensure t
   :commands (rainbow-mode))
 
 
@@ -418,6 +434,7 @@ searched. If there is no symbol, empty search box is started."
 ;; https://github.com/abo-abo/avy
 ;; http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/
 (use-package avy
+  :ensure t
   :demand
   :commands (avy-goto-char
              avy-goto-char-2
@@ -468,6 +485,7 @@ searched. If there is no symbol, empty search box is started."
 ;; https://github.com/momomo5717/avy-migemo
 ;; http://dev.classmethod.jp/tool/emacs-avy-migemo/
 (use-package avy-migemo
+  :ensure t
   :disabled t
   :if (executable-find "cmigemo")
   ;; :commands (avy-migemo-goto-char
@@ -504,6 +522,7 @@ searched. If there is no symbol, empty search box is started."
 ;; Window selection using avy.el (no dependency on ace-jump-mode.el)
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
+  :ensure t
   :commands (ace-select-window
              ace-swap-window)
   :bind ("s-5" . ace-window))
@@ -512,6 +531,7 @@ searched. If there is no symbol, empty search box is started."
 ;; Depends on avy.el not ace-jump-mode.el
 ;; https://github.com/cute-jumper/ace-jump-helm-line
 (use-package ace-jump-helm-line
+  :ensure t
   :commands (ace-jump-helm-line)
   :bind (:map helm-map
               ("C-'" . ace-jump-helm-line)

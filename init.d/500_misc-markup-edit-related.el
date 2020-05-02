@@ -4,6 +4,7 @@
 ;; http://jblevins.org/projects/markdown-mode/
 ;; https://github.com/jrblevin/markdown-mode
 (use-package markdown-mode
+  :ensure t
   :commands (open-md-in-atom
              open-md-in-markoff)
   :mode ("\\.md" . markdown-mode)
@@ -31,6 +32,7 @@
 ;;;  markdown-preview-mode.el
 ;; https://github.com/ancane/markdown-preview-mode
 (use-package markdown-preview-mode
+  :ensure t
   :commands (markdown-preview-mode
              markdown-preview-open-browser))
 
@@ -39,6 +41,7 @@
 ;; https://github.com/joeyespo/grip
 ;; brew install grip
 (use-package grip-mode
+  :ensure t
   :commands (grip-mode)
   :config
   ;; Path to the grip binary
@@ -59,6 +62,7 @@
 ;;; graphviz-dot-mode.el
 ;; http://ppareit.github.io/graphviz-dot-mode/
 (use-package graphviz-dot-mode
+  :ensure t
   :mode ("\\.dot" . graphviz-dot-mode))
 ;; Font locking is automatic, indentation uses the same commands as
 ;; other modes, tab, M-j and C-M-q.  Insertion of comments uses the
@@ -72,6 +76,7 @@
 ;; A collection of paredit-like functions for editing in html-mode.
 ;; https://github.com/magnars/tagedit
 (use-package tagedit
+  :ensure t
   :after sgml-mode
   :hook ((html . (lambda () (tagedit-mode 1))))
   :config

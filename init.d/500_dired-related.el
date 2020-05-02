@@ -5,6 +5,7 @@
 ;; Extra Emacs font lock rules for a more colourful dired
 ;; https://github.com/purcell/diredfl
 (use-package diredfl
+  :ensure t
   ;; Use in GUI or xterm-256color. Otherwise harder to see.
   ;; :if (display-graphic-p)
   :hook (dired-mode . diredfl-mode)
@@ -15,6 +16,7 @@
 ;;; dired-rsync.el
 ;; https://github.com/stsquad/dired-rsync
 (use-package dired-rsync
+  :ensure t
   :commands (dired-rsync)
   :bind (:map dired-mode-map
               ("Y" . dired-rsync)))
@@ -27,6 +29,7 @@
 ;;;  dired-subtree.el
 ;; https://github.com/Fuco1/dired-hacks#dired-subtree
 (use-package dired-subtree
+  :ensure t
   :commands (dired-subtree-insert
              dired-subtree-remove
              dired-subtree-up-dwim)
@@ -58,6 +61,7 @@
 ;; https://github.com/Fuco1/dired-hacks#dired-narrow
 ;; http://pragmaticemacs.com/emacs/dynamically-filter-directory-listing-with-dired-narrow/
 (use-package dired-narrow
+  :ensure t
   :commands (dired-narrow
              dired-narrow-regexp
              dired-narrow-fuzzy)
@@ -69,6 +73,7 @@
 ;;;  dired-filter.el
 ;; https://github.com/Fuco1/dired-hacks/tree/master#dired-filter
 (use-package dired-filter
+  :ensure t
   :commands (dired-filter-mode))
 
 
@@ -91,6 +96,7 @@
 ;; M-x runner-edit
 ;; M-x runner-delete
 (use-package runner
+  :ensure t
   ;; This has to be available for buffer-do-async-shell-command.
   :demand t
   :commands (runner-add-empty
@@ -192,6 +198,7 @@ from the current buffer."
 ;;; Async dired
 ;; https://github.com/jwiegley/emacs-async
 (use-package dired-async
+  :ensure async
   :after dired
   :config
   (dired-async-mode 1))
@@ -201,6 +208,7 @@ from the current buffer."
 ;;; dired-quick-sort.el
 ;; https://gitlab.com/xuhdev/dired-quick-sort
 (use-package dired-quick-sort
+  :ensure t
   :after dired
   ;; ls-lisp-use-insert-directory-program must be non-nil
   :if ls-lisp-use-insert-directory-program
@@ -220,6 +228,7 @@ from the current buffer."
 ;; https://github.com/vifon/dired-recent.el/tree/22104c87593f24ec513dfdf97fc4c8c91defec33
 ;; Press C-x C-d to select a previously visited directory to open.
 (use-package dired-recent
+  :ensure t
   :after dired
   :config
   (setq dired-recent-directories-file (concat user-emacs-directory

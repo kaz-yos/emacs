@@ -1,5 +1,6 @@
 ;;; EVIL AND VIM-LIKE CONFIGURATIONS
 (use-package evil
+  :ensure t
   ;; http://www.emacswiki.org/emacs/Evil
   :commands (evil-mode)
   :config
@@ -24,5 +25,6 @@
   ;;; evil-surround.el
   ;; https://github.com/timcharper/evil-surround
   (use-package evil-surround
+    :ensure t
     :config
     (global-evil-surround-mode 1)))

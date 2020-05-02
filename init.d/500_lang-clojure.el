@@ -19,6 +19,7 @@
 (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 ;;
 (use-package cider
+  :ensure t
   :defer t
   :config
   ;; Configurations
@@ -43,10 +44,12 @@
   ;; https://github.com/AdamClements/latest-clojure-libraries/
   ;; Look up the latest version of a library from clojars
   ;; and insert it into your running session.
-  (use-package latest-clojure-libraries)
+  (use-package latest-clojure-libraries
+    :ensure t)
   ;;
 ;;;  cider-toggle-trace
-  (use-package cider-tracing)
+  (use-package cider-tracing
+    :ensure t)
   ;;
 ;;; C-c C-v for help and examples
   (defun cider-help-for-symbol ()

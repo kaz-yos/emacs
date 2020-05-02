@@ -6,6 +6,7 @@
 ;; https://github.com/bbatsov/projectile#interactive-commands
 ;; https://projectile.readthedocs.io/en/latest/usage/
 (use-package projectile
+  :ensure t
   :commands (;; These commands are used elsewhere.
              projectile-project-root
              projectile-switch-project
@@ -65,6 +66,7 @@
 ;;;  counsel-projectile.el
   ;; https://github.com/ericdanan/counsel-projectile
   (use-package counsel-projectile
+    :ensure t
     :demand t
     :config
     ;; Turn on mode

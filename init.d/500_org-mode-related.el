@@ -9,6 +9,7 @@
 ;; $ git clone git://orgmode.org/org-mode.git
 ;; $ make autoloads
 (use-package org
+  :ensure org-plus-contrib
   :defer t
   :mode ("\\.org" . org-mode)
   :bind (;; Suggested bindings for global
@@ -312,6 +313,7 @@ to conform the org-mode convention."
 ;;;  ob-async.el
   ;; https://github.com/astahlman/ob-async
   (use-package ob-async
+    :ensure t
     :disabled t
     :commands (ob-async-org-babel-execute-src-block)
     :init
@@ -325,6 +327,7 @@ to conform the org-mode convention."
   ;; https://www.youtube.com/watch?v=2t925KRBbFc&nohtml5=False
   ;; org-ref-pdf.el requires pdf-tools.el
   (use-package org-ref
+    :ensure t
     ;; https://github.com/jwiegley/use-package#hooks
     :hook (org-mode . (lambda () (require 'org-ref)))
     :bind (:map org-mode-map
@@ -336,6 +339,7 @@ to conform the org-mode convention."
     (setq org-ref-show-broken-links nil)
     ;; Set the format for menu.
     (use-package helm-bibtex
+      :ensure t
       :config
       ;; Alist of format strings for displaying entries in the results list.
       ;; "${author:N}" is truncated to a width of N characters
@@ -595,6 +599,7 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
 ;;;   org-edit-latex.el
   ;; https://github.com/et2010/org-edit-latex
   (use-package org-edit-latex
+    :ensure t
     :disabled t
     :diminish org-edit-latex-mode
     :config
@@ -632,6 +637,7 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; Mathematics in a Blog Post
   ;; http://irreal.org/blog/?p=3018
   (use-package org2blog
+    :ensure t
     ;; Without an universal argument (C-u), these only publish a draft.
     :commands (org2blog/wp-post-buffer
                org2blog/wp-post-buffer-as-page
@@ -866,6 +872,7 @@ contextual information."
   ;; Pretty bullets
   ;; https://github.com/sabof/org-bullets
   (use-package org-bullets
+    :ensure t
     :commands (org-bullets-mode)
     ;;
     :init

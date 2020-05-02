@@ -6,6 +6,7 @@
 ;;; aggressive-indent.el
 ;; https://github.com/Malabarba/aggressive-indent-mode
 (use-package aggressive-indent
+  :ensure t
   :hook (emacs-lisp-mode . aggressive-indent-mode)
   :commands (aggressive-indent-mode))
 
@@ -16,6 +17,7 @@
 ;; http://tuhdo.github.io/c-ide.html
 ;; $ brew install global # GNU GLOBAL
 (use-package helm-gtags
+  :ensure t
   :commands (helm-gtags-mode)
   ;;
   :init
@@ -46,6 +48,7 @@
 ;;; dumb-jump.el
 ;; https://github.com/jacktasia/dumb-jump
 (use-package dumb-jump
+  :ensure t
   :config
   ;; https://github.com/jacktasia/dumb-jump#emacs-options
   (setq dumb-jump-selector 'ivy)
@@ -56,6 +59,7 @@
 ;;; smart-jump.el
 ;; https://github.com/jojojames/smart-jump
 (use-package smart-jump
+  :ensure t
   ;; Need to demand to activate configuration.
   :demand t
   :commands (smart-jump-go
@@ -165,4 +169,5 @@ See the help for `company-backends'."
 ;; Inverse of rx: convert Emacs string regexps to rx form
 ;; https://github.com/mattiase/xr
 (use-package xr
+  :ensure t
   :commands (xr))

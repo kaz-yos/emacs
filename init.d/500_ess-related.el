@@ -3,6 +3,7 @@
 ;; http://ess.r-project.org
 ;; Now installed via elpa
 (use-package ess-site
+  :ensure ess
   :demand t
   :commands (R
              R-mode
@@ -43,6 +44,7 @@
   ;;
 ;;;  poly-R.el
   (use-package poly-R
+    :ensure t
     :commands (poly-noweb+r-mode
                poly-markdown+r-mode)
     ;; These mode association is overwritten by ess-site
@@ -296,6 +298,7 @@
 ;;; ess-R-object-popup.el
   ;; https://github.com/myuhe/ess-R-object-popup.el
   (use-package ess-R-object-popup
+    :ensure t
     :commands (ess-R-object-popup)
     :bind (:map ess-mode-map
                 ("C-c C-g" . ess-R-object-popup))

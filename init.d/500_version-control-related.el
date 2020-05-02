@@ -17,6 +17,7 @@
 ;;;  git-gutter.el
 ;; https://github.com/syohex/emacs-git-gutter
 (use-package git-gutter
+  :ensure t
   ;; Use in CLI.
   :if (not (display-graphic-p))
   :config
@@ -31,6 +32,7 @@
 ;;;  git-gutter-fringe.el
 ;; https://github.com/syohex/emacs-git-gutter-fringe
 (use-package git-gutter-fringe
+  :ensure t
   ;; Use in GUI.
   :if (display-graphic-p)
   :config
@@ -60,6 +62,7 @@
 ;; magit tutorial: http://ergoemacs.org/emacs/emacs_magit-mode_tutorial.html
 ;; http://qiita.com/nishikawasasaki/items/f690ee08f6a32d9d03fa
 (use-package magit
+  :ensure t
   :commands (magit-status
              magit-init)
   :bind (("s-g" . my-magit-status)
@@ -114,6 +117,7 @@
   ;; Need to install gitflow-avh (brew install git-flow-avh).
   ;; https://github.com/petervanderdoes/gitflow-avh
   (use-package magit-gitflow
+    :ensure t
     :init
     (setq magit-gitflow-popup-key "C-c f")
     :config
@@ -122,6 +126,7 @@
 ;;;   magit-todos.el
   ;; https://github.com/alphapapa/magit-todos
   (use-package magit-todos
+    :ensure t
     ;; Do not hook. Just load once.
     ;; https://github.com/alphapapa/magit-todos/issues/28
     ))
@@ -131,6 +136,7 @@
 ;; Use git-timemachine to browse historic versions of a file with p
 ;; (previous) and n (next).
 (use-package git-timemachine
+  :ensure t
   :commands (git-timemachine-toggle
              git-timemachine))
 
@@ -138,6 +144,7 @@
 ;;;  github-browse-file.el
 ;; https://github.com/osener/github-browse-file
 (use-package github-browse-file
+  :ensure t
   :commands (github-browse-file
              github-browse-file-blame
              github-browse-commit))
@@ -146,6 +153,7 @@
 ;;;  git-messenger.el
 ;; https://github.com/syohex/emacs-git-messenger
 (use-package git-messenger
+  :ensure t
   :commands (git-messenger:popup-message
              git-messenger:popup-diff)
   :config

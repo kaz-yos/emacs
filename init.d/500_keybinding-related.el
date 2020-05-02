@@ -230,6 +230,7 @@ This should be run after running multiple-cursors"
 ;; This may be outdated.
 ;; http://emacs.rubikitch.com/hydra/
 (use-package hydra
+  :ensure t
   ;; This package should be loaded without deferring.
   :config
   ;; Buffer text scaling
@@ -346,6 +347,7 @@ _d_: subtree
 ;; http://emacs.rubikitch.com/bind-key/
 ;; describe-personal-keybindings can be used to check all my bindings.
 (use-package bind-key
+  :ensure t
   :commands (bind-key
              describe-personal-keybindings))
 
@@ -354,6 +356,7 @@ _d_: subtree
 ;;; which-key.el
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
+  :ensure t
   :defer 5
   ;;
   :config
@@ -378,6 +381,7 @@ _d_: subtree
 ;; Use this to see what remaining keys are available.
 ;; Use bind-key.el describe-personal-keybindings for used keys.
 (use-package free-keys
+  :ensure t
   :commands (free-keys)
   ;;
   :config

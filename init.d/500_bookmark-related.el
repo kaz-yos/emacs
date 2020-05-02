@@ -4,6 +4,7 @@
 ;;
 ;; Load
 (use-package bm
+  :ensure t
   :commands (my-bm-show
              my-bm-next
              my-bm-previous)

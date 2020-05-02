@@ -27,6 +27,7 @@
 ;; M-x `flycheck-compile' to explicitly check the buffer file.
 ;;
 (use-package flycheck
+  :ensure t
   :commands (flycheck-enhance-rx-buffer-locally)
   :hook (reb-mode . flycheck-enhance-rx-buffer-locally)
   :config
@@ -44,6 +45,7 @@
 ;;;  flycheck-pos-tip.el
 ;; https://github.com/flycheck/flycheck-pos-tip
 (use-package flycheck-pos-tip
+  :ensure t
   :after flycheck
   :commands (flycheck-pos-tip-error-messages)
   :config
@@ -56,6 +58,7 @@
 ;; Flycheck checker for elisp package metadata
 ;; https://github.com/purcell/flycheck-package
 (use-package flycheck-package
+  :ensure t
   :after flycheck
   :commands (flycheck-package-setup)
   :config
@@ -64,6 +67,7 @@
 ;;;  flycheck-cask.el
 ;; https://github.com/flycheck/flycheck-cask
 (use-package flycheck-cask
+  :ensure t
   :after flycheck
   :commands (flycheck-cask-setup)
   :config
