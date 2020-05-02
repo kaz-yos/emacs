@@ -148,10 +148,12 @@
 (setq use-package-verbose t)
 ;;
 ;; Automatic installation when packages not installed.
-(setq use-package-always-ensure t)
+;; This fails by trying to install packages by the wrong names
+;; based on what comes after each `use-package' call.
+;; (setq use-package-always-ensure t)
 
 
-
+;;;
 ;;; init-loader.el
 ;; https://github.com/emacs-jp/init-loader
 ;; http://d.hatena.ne.jp/hiro_nemu/20140118/1390058851
