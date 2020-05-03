@@ -141,15 +141,6 @@
              git-timemachine))
 
 
-;;;  github-browse-file.el
-;; https://github.com/osener/github-browse-file
-(use-package github-browse-file
-  :ensure t
-  :commands (github-browse-file
-             github-browse-file-blame
-             github-browse-commit))
-
-
 ;;;  git-messenger.el
 ;; https://github.com/syohex/emacs-git-messenger
 (use-package git-messenger

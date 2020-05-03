@@ -230,18 +230,6 @@ When ARG is non-nil search in junk files."
 
 
 ;;;
-;;; IMAGE-RELATED
-;; https://emacs.stackexchange.com/questions/2433/shrink-zoom-scale-images-in-image-mode
-
-;;;  picpocket.el
-;; https://github.com/johanclaesson/picpocket
-(use-package picpocket
-  :ensure t
-  :if (display-graphic-p)
-  :commands (picpocket))
-
-
-;;;
 ;;; COMPRESSED FILE-RELATED
 ;;;  jka-compr.el
 ;; https://github.com/emacs-mirror/emacs/blob/master/lisp/jka-compr.el
