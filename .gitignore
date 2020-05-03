@@ -13,16 +13,28 @@ projectile-bookmarks_*.eld
 projectile-cache_*
 recentf_*
 
-# Temporary files
+# Temporary files generated automatically
 *.elc
-request
+anaconda-mode/
+irony/
+misc/zotero.bib
+request/
 tramp
-transient
-url
+transient/
+url/
 
 # https://stackoverflow.com/questions/16267830/how-to-move-cedet-auto-generated-ede-projects-el-and-srecode-map-el
 srecode-map.el
 
+# Not tracked
+snippets/text-mode/
+
+# Dictionary files for hunspell
+misc/en_US-med.aff
+misc/en_US-med.dic
+misc/en_US.aff
+misc/en_US.dic
+
 # Directories tracked elsewhere
-private/*
-skk/*
+private/
+skk/
