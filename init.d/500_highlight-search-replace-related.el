@@ -480,42 +480,6 @@ searched. If there is no symbol, empty search box is started."
   (cl-loop for c from ?! to ?~ do (add-keys-to-avy "H-" c))
   (cl-loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word)))
 
-;;;  avy-migemo.el
-;; https://github.com/momomo5717/avy-migemo
-;; http://dev.classmethod.jp/tool/emacs-avy-migemo/
-(use-package avy-migemo
-  :ensure t
-  :disabled t
-  :if (executable-find "cmigemo")
-  ;; :commands (avy-migemo-goto-char
-  ;;            avy-migemo-goto-char-2
-  ;;            avy-migemo-goto-char-in-line
-  ;;            avy-migemo-goto-char-timer
-  ;;            avy-migemo-goto-subword-1
-  ;;            avy-migemo-goto-word-1
-  ;;            avy-migemo-isearch
-  ;;            avy-migemo--overlay-at
-  ;;            avy-migemo--overlay-at-full
-  ;;            avy-migemo--read-candidates)
-  :config
-  ;; avy-migemo version of one-step activation
-  ;; https://github.com/cjohansen/.emacs.d/commit/65efe88
-  (defun add-keys-to-avy-migemo (prefix c &optional mode)
-    (define-key global-map
-      (read-kbd-macro (concat prefix (string c)))
-      `(lambda ()
-         (interactive)
-         (funcall (cond
-                   ;; Word beginning
-                   ((eq ',mode 'word)  #'avy-migemo-goto-word-1)
-                   ;; Anywhere
-                   (t                  #'avy-migemo-goto-char))
-                  ,c))))
-  ;;
-  ;; Assing key bindings for all characters
-  (cl-loop for c from ?! to ?~ do (add-keys-to-avy-migemo "M-s-" c))
-  (cl-loop for c from ?! to ?~ do (add-keys-to-avy-migemo "H-" c))
-  (cl-loop for c from ?! to ?~ do (add-keys-to-avy-migemo "C-M-s-" c 'word)))
 
 ;;;  ace-window.el
 ;; Window selection using avy.el (no dependency on ace-jump-mode.el)

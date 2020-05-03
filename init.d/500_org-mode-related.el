@@ -595,21 +595,6 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; `org-latex-minted-langs'
   ;; Alist mapping languages to their minted language counterpart.
   ;;
-  ;;
-;;;   org-edit-latex.el
-  ;; https://github.com/et2010/org-edit-latex
-  (use-package org-edit-latex
-    :ensure t
-    :disabled t
-    :diminish org-edit-latex-mode
-    :config
-    (add-hook 'org-mode-hook 'org-edit-latex-mode)
-    ;; This is default.
-    (setq org-edit-latex-frag-master "frag-master.tex")
-    ;; whether to create a TeX-master file specified in org-edit-latex-frag-master.
-    ;; default file name "frag-master.tex".
-    (setq org-edit-latex-create-master nil))
-  ;;
 ;;;  Beamer presentations using the new export engine
   ;; http://orgmode.org/worg/exporters/beamer/ox-beamer.html
   (use-package ox-beamer)
