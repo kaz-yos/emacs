@@ -22,15 +22,15 @@
 
 ;;;
 ;;; Use default eldoc
-;; eldoc-extension
-;; http://d.hatena.ne.jp/rubikitch/20090207/1233936430
-(use-package eldoc-extension
+(use-package eldoc
+  :hook (  (emacs-lisp-mode . turn-on-eldoc-mode)
+           (lisp-interaction-mode . turn-on-eldoc-mode)
+           (ielm-mode . turn-on-eldoc-mode))
   :config
+  ;; Number of seconds of idle time to wait before printing.
   (setq eldoc-idle-delay 0.5)
+  ;; Allow long ElDoc messages to resize echo area display.
   (setq eldoc-echo-area-use-multiline-p t)
-  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-  (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-  (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
   (setq eldoc-minor-mode-string ""))
 
 
@@ -39,6 +39,7 @@
 ;; https://github.com/Wilfred/helpful
 ;; http://www.wilfred.me.uk/blog/2017/08/30/helpful-adding-contextual-help-to-emacs/
 (use-package helpful
+  :ensure t
   :bind (
          :map emacs-lisp-mode-map
          ("C-c C-v" . helpful-at-point)
