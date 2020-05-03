@@ -6,12 +6,10 @@ snippets/.DS_Store
 autoinsert/.gitignore
 *.info
 ac-comphist.dat
-auto-install/
 auto-save-list/
 bm-el-repository
 bookmarks
 el-get/
-elpa/
 emacs-places
 emacs-places_*
 eshell/
