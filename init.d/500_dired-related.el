@@ -207,6 +207,7 @@ from the current buffer."
 ;;;
 ;;; dired-quick-sort.el
 ;; https://gitlab.com/xuhdev/dired-quick-sort
+;; Check gls (brew install coreutils) if this malfunctions on macOS.
 (use-package dired-quick-sort
   :ensure t
   :after dired
