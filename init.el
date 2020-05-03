@@ -167,7 +167,7 @@
   (setq init-loader-show-log-after-init t)
   ;; Load appropriate files in this directory
   (init-loader-load (concat user-emacs-directory "init.d"))
-  (init-loader-load (concat user-emacs-directory "init.d/private"))
+  (init-loader-load (concat user-emacs-directory "private"))
   ;;
   ;; Note that not all files in the directory are loaded.  Each file is
   ;; examined that if it is a .el or .elc file and, it has a valid name
