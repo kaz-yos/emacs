@@ -1,0 +1,3 @@
+[submodule "init.d/private"]
+	path = init.d/private
+	url = git@bitbucket.org:kaz-yos/.emacs.d_init.d_private.git
