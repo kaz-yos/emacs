@@ -13,7 +13,7 @@ projectile-bookmarks_*.eld
 projectile-cache_*
 recentf_*
 
-#temporary files
+# Temporary files
 *.elc
 request
 tramp
@@ -23,5 +23,6 @@ url
 # https://stackoverflow.com/questions/16267830/how-to-move-cedet-auto-generated-ede-projects-el-and-srecode-map-el
 srecode-map.el
 
-# private directory tracked elsewhere
+# Directories tracked elsewhere
 private/*
+skk/*
