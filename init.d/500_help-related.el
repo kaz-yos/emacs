@@ -14,10 +14,7 @@
 ;;
 ;; Add path (Need correctly formatted dir file with special FORMAT)
 (use-package info
-  :commands (info)
-  :config
-  (add-to-list 'Info-directory-list (expand-file-name (concat user-emacs-directory
-                                                              "info/"))))
+  :commands (info))
 
 
 ;;;
