@@ -13,6 +13,7 @@
 ;;
 (use-package skk
   :ensure ddskk
+  :if (file-exists-p (concat user-emacs-directory "skk"))
   :commands (skk-mode)
   :bind (("A-j" . skk-mode)
          ("A-SPC" . skk-mode)
