@@ -13,8 +13,10 @@
 
 
 ;;;
-;;; open-junk-file.el for creation of permanent test files
+;;; open-junk-file.el
+;; https://github.com/rubikitch/open-junk-file
 (use-package open-junk-file
+  :ensure t
   :if (or (file-exists-p "~/junk/")
           (file-exists-p "~/Dropbox/junk/"))
   ;; Use the version with counsel.

@@ -1,3 +1,5 @@
+;;; 500_recentf-related.el ---                       -*- lexical-binding: t; -*-
+
 ;;; recentf.el
 ;; https://www.emacswiki.org/emacs/RecentFiles
 (use-package recentf
@@ -35,13 +37,16 @@
                                      (with-suppressed-message (recentf-save-list))))))
 
 
+;;;
 ;;; recentf-ext.el
+;; https://github.com/rubikitch/recentf-ext
 ;; http://d.hatena.ne.jp/rubikitch/20091224/recentf
 ;; https://www.emacswiki.org/emacs/RecentFiles#toc16
 ;; Lisp:recentf-ext.el extends recentf package.
 ;; ‘dired’ buffers can be handled.
 ;; Switching to file buffer considers it as most recent file.
 (use-package recentf-ext
+  :ensure t
   :after recentf
   :config
   ;; Activate recentf-mode

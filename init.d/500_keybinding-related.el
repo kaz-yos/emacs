@@ -1,9 +1,12 @@
+;;; 500_keybinding-related.el ---                    -*- lexical-binding: t; -*-
+
 ;;; Sequential key binding related
 
 ;;;
 ;;; sequential-command.el
-;; https://www.emacswiki.org/emacs/sequential-command-config.el
+;; https://github.com/rubikitch/sequential-command
 (use-package sequential-command
+  :ensure t
   :commands (define-sequential-command)
   :bind (("C-a" . seq-cmd--home)
          ("C-e" . seq-cmd--end)

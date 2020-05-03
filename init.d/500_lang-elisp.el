@@ -56,13 +56,6 @@
   :config
   (eros-mode 1))
 
-;;;  lispxmp.el
-;; https://www.emacswiki.org/emacs/lispxmp.el
-;; M-; M-; to insert ; =>
-;; M-; is for paredit-comment-dwim, which is advised by lispxmp.el.
-(use-package lispxmp
-  :commands (lispxmp))
-
 ;;;  macrostep.el
 ;; https://github.com/joddie/macrostep
 (use-package macrostep
