@@ -262,8 +262,6 @@ to conform the org-mode convention."
      (lisp . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
      (python . t)
-     ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html
-     (ditaa . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html
      (dot . t)
      ;;
@@ -286,8 +284,6 @@ to conform the org-mode convention."
   (setq org-edit-src-auto-save-idle-delay 5)
   ;;
   ;; Language specific settings
-  ;; ditaa diagram language (git repo org-mode has necessary scripts)
-  (setq org-ditaa-jar-path "~/.emacs.d/packages/org-mode/contrib/scripts/ditaa.jar")
   ;; R interweaving code and results.
   ;; https://lists.gnu.org/archive/html/emacs-orgmode/2010-08/msg00785.html
   (setq org-babel-R-command "R --silent --no-save")
