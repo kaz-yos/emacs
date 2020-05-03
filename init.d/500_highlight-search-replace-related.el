@@ -353,15 +353,6 @@ searched. If there is no symbol, empty search box is started."
 
 
 ;;;
-;;; embrace.el
-;; Add/Change/Delete pairs based on `expand-region', similar to `evil-surround'.
-;; https://github.com/cute-jumper/embrace.el
-(use-package embrace
-  :ensure t
-  :commands (embrace-commander))
-
-
-;;;
 ;;; plur.el
 ;; https://github.com/xuchunyang/plur
 ;; https://emacs.stackexchange.com/questions/27135/search-replace-like-feature-for-swapping-text/27170
@@ -489,13 +480,3 @@ searched. If there is no symbol, empty search box is started."
   :commands (ace-select-window
              ace-swap-window)
   :bind ("s-5" . ace-window))
-
-;;;  ace-jump-helm-line.el
-;; Depends on avy.el not ace-jump-mode.el
-;; https://github.com/cute-jumper/ace-jump-helm-line
-(use-package ace-jump-helm-line
-  :ensure t
-  :commands (ace-jump-helm-line)
-  :bind (:map helm-map
-              ("C-'" . ace-jump-helm-line)
-              ("s-l" . ace-jump-helm-line)))
