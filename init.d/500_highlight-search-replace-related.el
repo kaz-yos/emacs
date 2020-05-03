@@ -169,39 +169,6 @@ searched. If there is no symbol, empty search box is started."
 
 ;;;
 ;;; MULTIPLE FILE GREP AND EDIT RELATED
-;;;  color-moccur.el/moccur-edit.el
-;; Requires color-moccur.el (elpa)
-;; http://www.bookshelf.jp/elc/moccur-edit.el
-;; http://d.hatena.ne.jp/higepon/20061226/1167098839
-;; http://d.hatena.ne.jp/sandai/20120304/p2
-(use-package color-moccur
-  :ensure t
-  :commands (moccur-grep
-             occur-by-moccur
-             moccur-grep-find)
-  :bind (("s-m" . moccur-grep)
-         ("C-s-m" . occur-by-moccur)
-         ;; https://github.com/jwiegley/use-package#the-basics
-         :map isearch-mode-map
-         ("M-o" . isearch-moccur)
-         ("M-O" . isearch-moccur-all))
-  ;;
-  :config
-  (setq isearch-lazy-highlight t)
-  (setq moccur-following-mode-toggle t)
-  ;; Editing moccur buffer
-  ;; Usage:
-  ;; M-x moccur-grep to enter Moccur-grep, then objectName .R$
-  ;; r/C-x C-q/C-c C-i to enter Moccur-edit. C-x C-s to save, C-c C-k
-  (use-package moccur-edit
-    :ensure t
-    :config
-    ;; Modified buffers are saved automatically.
-    (defadvice moccur-edit-change-file
-        (after save-after-moccur-edit-buffer activate)
-      (save-buffer))))
-;; For regular occur mode.
-(bind-key "C-x C-q" 'occur-edit-mode occur-mode-map)
 
 ;;;  wgrep.el
 ;; https://github.com/mhayashi1120/Emacs-wgrep
