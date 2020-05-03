@@ -161,6 +161,7 @@
 ;; http://shibayu36.hatenablog.com/entry/20101229/1293624201
 ;;
 (use-package init-loader
+  :ensure t
   :config
   ;; Always report errors and logs (default t)
   (setq init-loader-show-log-after-init t)

@@ -12,6 +12,7 @@
 ;; https://github.com/haskell/haskell-mode#haskell-mode-for-emacs
 ;; http://www.haskell.org/haskellwiki/Emacs/Installing_haskell-mode
 (use-package haskell-mode
+  :ensure t
   :mode ("\\.hs" . haskell-mode)
   :config
   ;; 3 mutually exclusive indent style

@@ -12,6 +12,7 @@
 ;; http://openlab.ring.gr.jp/skk/dic.html
 ;;
 (use-package skk
+  :ensure ddskk
   :commands (skk-mode)
   :bind (("A-j" . skk-mode)
          ("A-SPC" . skk-mode)

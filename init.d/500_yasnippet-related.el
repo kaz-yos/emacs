@@ -5,6 +5,7 @@
 ;; http://fukuyama.co/yasnippet
 ;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
 (use-package yasnippet
+  :ensure t
   :defer 2
   :diminish  yas-minor-mode
   :bind (:map yas-minor-mode-map

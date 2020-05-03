@@ -41,6 +41,7 @@
 ;; https://github.com/purcell/elisp-slime-nav
 ;; This package provides Slime's convenient "M-." and "M-," navigation
 (use-package elisp-slime-nav
+  :ensure t
   :diminish elisp-slime-nav-mode
   :commands (turn-on-elisp-slime-nav-mode)
   ;; Hook
@@ -51,6 +52,7 @@
 ;;;  eros.el
 ;; https://github.com/xiongtx/eros/tree/dd8910279226259e100dab798b073a52f9b4233a
 (use-package eros
+  :ensure t
   :config
   (eros-mode 1))
 
@@ -64,6 +66,7 @@
 ;;;  macrostep.el
 ;; https://github.com/joddie/macrostep
 (use-package macrostep
+  :ensure t
   :commands (macrostep-mode
              macrostep-expand))
 
@@ -71,6 +74,7 @@
 ;; https://github.com/Malabarba/Nameless
 ;; http://endlessparentheses.com/nameless-less-is-more.html
 (use-package nameless
+  :ensure t
   :commands (nameless-mode))
 
 ;;;  let*-setq macro
@@ -103,6 +107,7 @@ This will globally bind these variables for crude interactive testing."
 ;; Behavior-Driven Emacs Lisp Testing
 ;; https://github.com/jorgenschaefer/emacs-buttercup
 (use-package buttercup
+  :ensure t
   :hook (emacs-lisp-mode . buttercup-minor-mode)
   :commands (buttercup-minor-mode))
 
@@ -110,11 +115,13 @@ This will globally bind these variables for crude interactive testing."
 ;; Additional matchers. Part of flycheck.
 ;; https://github.com/flycheck/flycheck/blob/master/flycheck-buttercup.el
 (use-package flycheck-buttercup
+  :ensure flycheck
   :after buttercup)
 
 ;;;  assess.el
 ;; https://github.com/phillord/assess
 (use-package assess
+  :ensure t
   :commands (assess-with-filesystem)
   :config)
 
@@ -122,16 +129,19 @@ This will globally bind these variables for crude interactive testing."
 ;; A linting library for elisp package metadata
 ;; https://github.com/purcell/package-lint
 (use-package package-lint
+  :ensure t
   :commands (package-lint-current-buffer))
 
 ;;;  checkdoc.el
 (use-package checkdoc
+  :ensure t
   :hook (emacs-lisp-mode . checkdoc-minor-mode))
 
 ;;;  elisp-lint.el
 ;; basic linting for Emacs Lisp
 ;; https://github.com/gonewest818/elisp-lint
 (use-package elisp-lint
+  :ensure t
   :commands (elisp-lint-file)
   :config
   ;; Alist of symbols and their indent specifiers.
@@ -143,6 +153,7 @@ This will globally bind these variables for crude interactive testing."
 
 ;;;  demo-it.el
 (use-package demo-it
+  :ensure t
   :config)
 
 ;;;  package-demo.el

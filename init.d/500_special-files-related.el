@@ -4,6 +4,7 @@
 ;;; vlf: View Large Files
 ;; https://github.com/m00natic/vlfi
 (use-package vlf-setup
+  :ensure vlf
   :config
   ;; Maximum size of file above which a confirmation is requested.
   (setq large-file-warning-threshold 10000000)
@@ -141,6 +142,7 @@ When ARG is non-nil search in junk files."
 ;; PDFView finished at Sun Sep 22 04:30:43
 ;; epdfinfo now in ~/.emacs.d/elpa/pdf-tools-20190918.1715/
 (use-package pdf-tools
+  :ensure t
   :if (display-graphic-p)
   ;; The deferring configuration was take from the following repository.
   ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-pdf.el
@@ -223,6 +225,7 @@ When ARG is non-nil search in junk files."
 ;;; nov.el
 ;; https://github.com/wasamasa/nov.el
 (use-package nov
+  :ensure t
   :mode (("\\.epub" . nov-mode)))
 
 
@@ -233,6 +236,7 @@ When ARG is non-nil search in junk files."
 ;;;  picpocket.el
 ;; https://github.com/johanclaesson/picpocket
 (use-package picpocket
+  :ensure t
   :if (display-graphic-p)
   :commands (picpocket))
 
@@ -262,4 +266,5 @@ When ARG is non-nil search in junk files."
 ;;; csv-mode.el
 ;; http://emacswiki.org/emacs/CsvMode
 (use-package csv-mode
+  :ensure t
   :mode ("\\.csv" . csv-mod))

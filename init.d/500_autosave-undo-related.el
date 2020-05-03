@@ -5,6 +5,7 @@
 ;; http://emacsredux.com/blog/2016/01/30/super-save/
 ;; https://github.com/bbatsov/super-save
 (use-package super-save
+  :ensure t
   :config
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
   (defun quiet-super-save-command (orig-fun)
@@ -31,6 +32,7 @@ This function also prevents running remotely."
 ;; https://elpa.gnu.org/packages/undo-tree.html
 ;; C-/ for undo. C-? (C-S-/) for redo.
 (use-package undo-tree
+  :ensure t
   :config
   (setq undo-tree-mode-lighter "")
   ;; Active everywhere

@@ -37,6 +37,7 @@
 ;; Version enhanced with deferred.el
 ;; https://github.com/mooz/c-eldoc
 (use-package c-eldoc
+  :ensure t
   :commands (c-eldoc-format-arguments-string))
 
 
@@ -44,6 +45,7 @@
 ;;; company-c-headers.el
 ;; https://github.com/randomphrase/company-c-headers
 (use-package company-c-headers
+  :ensure t
   :commands (company-c-headers
              company-c-headers-setup)
   :hook ((c++-mode . company-c-headers-setup)
@@ -76,16 +78,17 @@
 ;;
 ;; ~/.emacs.d/irony/bin/irony-server is installed.
 (use-package irony
+  :ensure t
   :commands (irony-mode)
   ;;
   :hook ((c++-mode . irony-mode)
          (c-mode . irony-mode)
          (objc-mode . irony-mode)))
-
-
+;;
 ;;;  company-irony.el
 ;; https://github.com/Sarcasm/company-irony/
 (use-package company-irony
+  :ensure t
   :commands (company-irony
              company-irony-setup)
   :hook ((c++-mode . company-irony-setup)
@@ -96,9 +99,9 @@
     "Add company-irony to company-backends buffer-locally."
     (add-to-list (make-local-variable 'company-backends)
                  'company-irony)))
-
-
+;;
 ;;;  irony-eldoc.el
 (use-package irony-eldoc
+  :ensure t
   :commands (irony-eldoc)
   :hook (irony-mode . irony-eldoc))

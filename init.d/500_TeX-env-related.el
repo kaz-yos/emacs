@@ -9,6 +9,7 @@
 ;; jwiegley's config
 ;; https://github.com/jwiegley/use-package/issues/379
 (use-package tex
+  :ensure auctex
   :defines (latex-help-cmd-alist latex-help-file)
   :commands (my-tex-insert-backslash
              my-tex-insert-semicolon)
@@ -153,6 +154,7 @@
 ;; Configure using ~/.latexmkrc
 ;; C-c C-c LatexMk to use
 (use-package auctex-latexmk
+  :ensure t
   :commands (auctex-latexmk-setup)
   ;;
   :init
@@ -165,6 +167,7 @@
 ;;;  company-auctex.el
 ;; https://github.com/alexeyr/company-auctex
 (use-package company-auctex
+  :ensure t
   :commands (my-company-auctex-init)
   :hook ((LaTeX-mode . my-company-auctex-init)
          (org-mode . my-company-auctex-init))
@@ -187,6 +190,7 @@
 ;;  company-latex-commands - latex commands
 ;; Only company-math-symbols-latex is useful for my use case.
 (use-package company-math
+  :ensure t
   :commands (my-company-math-init)
   :hook ((LaTeX-mode . my-company-math-init)
          (org-mode . my-company-math-init))
@@ -206,6 +210,7 @@
 ;;; latex-math-preview.el
 ;; http://www.emacswiki.org/emacs/LaTeXMathPreview
 (use-package latex-math-preview
+  :ensure t
   :commands (my-latex-math-preview
              my-latex-beamer-preview)
   :config

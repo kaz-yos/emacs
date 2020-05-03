@@ -8,6 +8,7 @@
 ;; separate buffer list for each elscreen
 ;; https://github.com/wamei/elscreen-separate-buffer-list
 (use-package elscreen-separate-buffer-list
+  :ensure t
   ;; This is called just before elscreen activation.
   :commands (elscreen-separate-buffer-list-mode
              ;; Used in my-ivy-switch-buffers
@@ -21,6 +22,7 @@
 ;; http://www.emacswiki.org/emacs/EmacsLispScreen
 ;; http://rubikitch.com/2014/09/05/elscreen/
 (use-package elscreen
+  :ensure t
   :commands (elscreen-create
              my-elscreen-setup)
   :hook ((after-init . my-elscreen-setup))

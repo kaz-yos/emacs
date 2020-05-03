@@ -328,7 +328,6 @@ searched. If there is no symbol, empty search box is started."
 ;; http://www.emacswiki.org/emacs/HighlightSexp
 ;; Color M-x list-colors-display  to check good colors
 (use-package highlight-sexp
-  :ensure t
   :commands (highlight-sexp-mode)
   :config
   ;; (setq hl-sexp-background-color "thistle1")

@@ -3,4 +3,5 @@
 ;;; 
 ;;; inf-ruby.el
 (use-package inf-ruby
+  :ensure t
   :commands (inf-ruby))

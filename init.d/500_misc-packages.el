@@ -2,6 +2,7 @@
 ;;; manage-minor-mode.el
 ;; http://fukuyama.co/manage-minor-mode
 (use-package manage-minor-mode
+  :ensure t
   :commands (manage-minor-mode))
 
 
@@ -9,6 +10,7 @@
 ;;; command-log-mode.el
 ;; https://github.com/lewang/command-log-mode
 (use-package command-log-mode
+  :ensure t
   :commands (command-log-mode
              global-command-log-mode)
   :config
@@ -27,4 +29,5 @@
 ;; https://github.com/jschaf/esup
 ;; https://blog.d46.us/advanced-emacs-startup/
 (use-package esup
+  :ensure t
   :commands (esup))

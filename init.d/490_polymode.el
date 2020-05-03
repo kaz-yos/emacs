@@ -7,4 +7,5 @@
 
 ;;;  MARKDOWN-RELATED
 (use-package poly-markdown
+  :ensure t
   :mode ("\\.md" . poly-markdown-mode))

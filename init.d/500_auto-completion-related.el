@@ -36,6 +36,7 @@
 ;; https://github.com/auto-complete/auto-complete
 ;; http://cx4a.org/software/auto-complete/manual.html
 (use-package auto-complete
+  :ensure t
   :commands (auto-complete
              auto-complete-mode)
   :bind (:map ac-menu-map
@@ -139,6 +140,7 @@
 ;; http://comments.gmane.org/gmane.emacs.ess.general/9037
 ;;
 (use-package company
+  :ensure t
   :diminish (company-mode)
   :commands (global-company-mode
              my-company-fuzzy-match)
@@ -276,6 +278,7 @@
 ;; Sort completion candidates by previous completion choices
 ;; https://github.com/company-mode/company-statistics
 (use-package company-statistics
+  :ensure t
   :commands (company-statistics-mode)
   :hook (company-mode . company-statistics-mode)
   ;;
@@ -289,6 +292,7 @@
 ;;;  company-try-hard.el
 ;; https://github.com/Wilfred/company-try-hard
 (use-package company-try-hard
+  :ensure t
   :commands (company-try-hard)
   :bind (("s-i" . company-try-hard)
          ("s-t" . company-try-hard)
@@ -305,6 +309,7 @@
 ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
 ;; https://www.reddit.com/r/emacs/comments/5453d4/what_does_your_ivyswiper_configuration_look_like/
 (use-package ivy
+  :ensure t
   :diminish ivy-mode
   :demand t
   :commands (my-ivy-switch-buffer)
@@ -353,6 +358,7 @@
 ;; http://cestlaz.github.io/posts/using-emacs-6-swiper/#.WYKJHa2ZOEI
 ;; https://oremacs.com/2017/11/18/dired-occur/
 (use-package counsel
+  :ensure t
   :commands (counsel-find-file
              counsel-ag
              counsel-rg
@@ -448,6 +454,7 @@ The initial string is produced by selection-or-thing-at-point."
 ;; https://github.com/m2ym/popwin-el
 ;; http://d.hatena.ne.jp/m2ym/20110120/1295524932
 (use-package popwin
+  :ensure t
   :disabled t
   :config
   ;; Where to show
