@@ -159,25 +159,14 @@ When ARG is non-nil search in junk files."
               ("C-s" . isearch-forward))
   ;;
   :config
+  ;; Define autoloads necessary when using (package-initialize t) (no activation)
+  ;; Taken from the body of `package-initialize'
+  (package-activate 'pdf-tools)
+  ;;
   (use-package pdf-view
     :config
     ;; Fractional amount of resizing of one resize command.
     (setq pdf-view-resize-factor 1.05))
-  ;; These are necessary to create autoloads if not using (package-initialize)
-  (use-package pdf-sync
-    :commands (pdf-sync-minor-mode))
-  (use-package pdf-annot
-    :commands (pdf-annot-minor-mode))
-  (use-package pdf-outline
-    :commands (pdf-outline-minor-mode))
-  (use-package pdf-history
-    :commands (pdf-history-minor-mode))
-  (use-package pdf-occur
-    ;; These are required by pdf-tools-install.
-    :commands (pdf-occur-global-minor-mode))
-  (use-package pdf-links
-    ;; This is required
-    :commands (pdf-links-minor-mode))
   ;;
   ;; Filename of the epdfinfo executable.
   (setq pdf-info-epdfinfo-program
