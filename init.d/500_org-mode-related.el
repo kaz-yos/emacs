@@ -113,7 +113,8 @@
                ;; We need a wild card as a MELPA package keeps changing the folder name.
                ;; http://emacs.stackexchange.com/questions/9768/elisp-files-in-load-path-are-not-loaded-on-emacs-start
                ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/List-Elements.html
-               (car (last (file-expand-wildcards "~/.emacs.d/elpa/org-plus-contrib*"))))
+               (car (last (file-expand-wildcards (concat user-emacs-directory
+                                                         "elpa/org-plus-contrib*")))))
   ;;
   :config
   ;;
@@ -430,7 +431,8 @@ to conform the org-mode convention."
   ;; https://github.com/dzop/emacs.d/blob/master/core/init/init-org-mode.el
   (setq org-export-async-init-file
         ;; Need to be a full path.
-        (expand-file-name "~/.emacs.d/init_org_async.el"))
+        (expand-file-name (concat user-emacs-directory
+                                  "init_org_async.el")))
   ;; Check errors in async process with M-x org-export-stack
   ;;
   ;; `org-export-async-debug'
