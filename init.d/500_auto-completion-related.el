@@ -425,16 +425,6 @@ The initial string is produced by selection-or-thing-at-point."
 
 
 ;;;
-;;; git-complete.el
-;; Yet another completion engine powered by git grep
-;; https://github.com/zk-phi/git-complete
-(use-package git-complete
-  :commands (git-complete)
-  :bind (:map my-key-map
-              ("G" . git-complete)))
-
-
-;;;
 ;;; Handling of the tab completion buffer 2014-02-03
 ;; http://stackoverflow.com/questions/6458220/automatically-close-emacs-shell-mode-tab-completion-buffer
 (defun delete-completion-window-buffer (&optional output)
