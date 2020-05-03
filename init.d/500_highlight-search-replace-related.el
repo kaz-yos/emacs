@@ -324,23 +324,6 @@ searched. If there is no symbol, empty search box is started."
 
 
 ;;;
-;;; highlight-sexp.el
-;; http://www.emacswiki.org/emacs/HighlightSexp
-;; Color M-x list-colors-display  to check good colors
-(use-package highlight-sexp
-  :commands (highlight-sexp-mode)
-  :config
-  ;; (setq hl-sexp-background-color "thistle1")
-  ;; (setq hl-sexp-background-color "snow1")
-  ;; (setq hl-sexp-background-color "CadetBlue1") ; for light background
-  (setq hl-sexp-background-color "dark red") ; for dark background
-  ;; (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
-  ;; (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
-  ;; (add-hook 'ess-mode-hook 'highlight-sexp-mode)	; Not turned on by default use sx to toggle
-  )
-
-
-;;;
 ;;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
 (use-package expand-region
