@@ -43,10 +43,6 @@ snippets/text-mode/peer
 /mc-lists.el
 /misc/LanguageTool-3.5
 /misc/zotero*.bib
-/misc/rsync_channing.sh
-/misc/rsync_dope-r.sh
-/misc/rsync_o2.sh
-/misc/rsync_odyssey.sh
 *.aff
 *.dic
 abbrev_defs_*
