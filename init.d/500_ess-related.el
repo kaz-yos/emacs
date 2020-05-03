@@ -294,30 +294,4 @@
             '(lambda()
                ;; Unset C-tab from ESS major mode in SAS mode
                (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))
-;;;
-;;; ess-R-object-popup.el
-  ;; https://github.com/myuhe/ess-R-object-popup.el
-  (use-package ess-R-object-popup
-    :ensure t
-    :commands (ess-R-object-popup)
-    :bind (:map ess-mode-map
-                ("C-c C-g" . ess-R-object-popup))
-    :config
-    ;; Configuration for different objects
-    (setq ess-R-object-popup-alist
-          '((numeric    . "summary")
-            (logical    . "summary")
-            (factor     . "summary")
-            (integer    . "summary")
-            (lm         . "summary")
-            ;; Added
-            (glm        . "summary")
-            (gls        . "summary")
-            (lme        . "summary")
-            (glht       . "summary")
-            (survfit    . "survival:::print.survfit")
-            (survdiff   . "survival:::print.survdiff")
-            (coxph      . "survival:::print.coxph")
-            ;;
-            (other      . "str"))))
   )
