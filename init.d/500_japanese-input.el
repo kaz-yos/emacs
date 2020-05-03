@@ -21,9 +21,8 @@
          ("j" . skk-mode))
   ;;
   :config
-;;;  Define autoloads necessary when using (package-initialize t) (no activation)
+  ;; Define autoloads necessary when using (package-initialize t) (no activation)
   ;; Taken from the body of `package-initialize'
-  ;; Activate the ddskk package only.
   (package-activate 'ddskk)
   ;;
   ;; Config files
