@@ -172,43 +172,6 @@ which has no argument of its own."
 
 
 ;;;
-;;; langtools.el
-;; https://github.com/mhayashi1120/Emacs-langtool
-(use-package langtool
-  :ensure t
-  :commands (langtool-check)
-  :config
-  ;; The standalone desktop version was downloaded from the following URL.
-  ;; https://www.languagetool.org
-  (setq langtool-language-tool-jar (concat user-emacs-directory
-                                           "misc/LanguageTool-3.5/languagetool-commandline.jar"))
-  ;; Language name pass to LanguageTool.
-  (setq langtool-default-language "en-US")
-  ;; Your mothertongue Language name pass to LanguageTool.
-  (setq langtool-mother-tongue nil)
-  ;; Disabled rules pass to LanguageTool.
-  ;; String that separated by comma or list of string.
-  (setq langtool-disabled-rules '("WHITESPACE_RULE"
-                                  "EN_UNPAIRED_BRACKETS"
-                                  "COMMA_PARENTHESIS_WHITESPACE"
-                                  "EN_QUOTES"))
-  ;; Keys
-  (global-set-key (kbd "A-/") 'langtool-goto-next-error)
-  ;; Show LanguageTool report automatically by popup.
-  ;; This idea come from: http://d.hatena.ne.jp/LaclefYoshi/20150912/langtool_popup
-  (defun langtool-autoshow-detail-popup (overlays)
-    (when (require 'popup nil t)
-      ;; Do not interrupt current popup
-      (unless (or popup-instances
-                  ;; suppress popup after type `C-g` .
-                  (memq last-command '(keyboard-quit)))
-        (let ((msg (langtool-details-error-message overlays)))
-          (popup-tip msg)))))
-  (setq langtool-autoshow-message-function 'langtool-autoshow-detail-popup))
-
-
-
-;;;
 ;;; osx-dictionary.el
 ;; https://github.com/xuchunyang/osx-dictionary.el
 (use-package osx-dictionary
