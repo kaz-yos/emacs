@@ -46,21 +46,21 @@
         (setq ispell-dictionary-alist mac-dict-paths)
         (setq ispell-hunspell-dict-paths-alist mac-dict-paths))
       (setq ispell-personal-dictionary (concat user-emacs-directory
-                                               "misc/hunspell.en")))
+                                               "private/hunspell.en")))
      ;; aspell
      ;; install with brew install aspell --with-lang-en
      (aspell-file
       (setq ispell-program-name aspell-file)
       (setq ispell-dictionary "en_US")
       (setq ispell-personal-dictionary (concat user-emacs-directory
-                                               "misc/aspell.en.pws")))
+                                               "private/aspell.en.pws")))
      ;; ispell
      (ispell-file
       (setq ispell-program-name ispell-file)
       (when (eq system-type 'darwin)
         (setq ispell-dictionary-alist mac-dict-paths))
       (setq ispell-personal-dictionary (concat user-emacs-directory
-                                               "misc/ispell.en")))))
+                                               "private/ispell.en")))))
   ;;
   ;; http://stackoverflow.com/questions/2376113/personal-dictionaries-in-emacs-flyspell-mode
   ;;
