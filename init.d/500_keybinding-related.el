@@ -306,26 +306,27 @@ _d_: subtree
   ;;
   ;; https://github.com/abo-abo/hydra/wiki/multiple-cursors
   ;; Need to include the generated commands in mc/cmds-to-run-once
-  ;; in the `multiple-cursors.el' configuration.
+  ;; in the `multiple-cursors.el' configuration to avoid running
+  ;; them on all current cursors.
   (eval-after-load "multiple-cursors"
     '(progn
        (defhydra hydra-multiple-cursors (my-key-map "m")
          "Multiple cursors: "
          ("n"  mc/mark-next-like-this "Next like this")
          ("p"  mc/mark-previous-like-this "Prev like this")
-         ("a"  mc/mark-all-like-this "All like this" :exit t)
+         ("a"  mc/mark-all-like-this "All like this")
          ;;
          ("N"  mc/mark-next-symbol-like-this "Next symbol")
          ("P"  mc/mark-previous-symbol-like-this "Prev symbol")
-         ("A"  mc/mark-all-symbol-like-this "All symbols" :exit t)
+         ("A"  mc/mark-all-symbol-like-this "All symbols")
          ;;
          (">"  mc/mark-next-like-this "Next like this")
          ("<"  mc/mark-previous-like-this "Prev like this")
-         ("*"  mc/mark-all-like-this "All like this" :exit t)
+         ("*"  mc/mark-all-like-this "All like this")
          ;;
          ("M->"  mc/mark-next-symbol-like-this "Next symbol")
          ("M-<"  mc/mark-previous-symbol-like-this "Prev symbol")
-         ("M-*"  mc/mark-all-symbol-like-this "All symbols" :exit t)
+         ("M-*"  mc/mark-all-symbol-like-this "All symbols")
          ;;
          ("M-n"  mc/unmark-next-like-this "Unmark next")
          ("M-p"  mc/unmark-previous-like-this "Unmark prev")
