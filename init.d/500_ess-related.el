@@ -9,20 +9,21 @@
              R-mode
              r-mode)
   ;; https://github.com/jwiegley/use-package#binding-within-local-keymaps
-  :bind (:map ess-mode-map
-              ("A-s" . buffer-do-async-shell-command)
-              ("M-s M-s" . buffer-do-async-shell-command)
-              ("C-c C-e" . ess-eval-region-or-line-and-step)
-              ("C-c C-b" . ess-eval-buffer)
-              ("C-c C-u" . ess-eval-buffer-from-beg-to-here)
-              ("C-c z" . ess-switch-to-inferior-or-script-buffer)
-              ("C-=" . ess-insert-assign)
-              ("_" . nil)
-              ;;
-              :map inferior-ess-mode-map
-              ("C-c z" . ess-switch-to-inferior-or-script-buffer)
-              ("C-=" . ess-insert-assign)
-              ("_" . nil))
+  :bind (;;
+         :map ess-mode-map
+         ("A-s" . buffer-do-async-shell-command)
+         ("M-s M-s" . buffer-do-async-shell-command)
+         ("C-c C-e" . ess-eval-region-or-line-and-step)
+         ("C-c C-b" . ess-eval-buffer)
+         ("C-c C-u" . ess-eval-buffer-from-beg-to-here)
+         ("C-c z" . ess-switch-to-inferior-or-script-buffer)
+         ("C-=" . ess-insert-assign)
+         ("_" . nil)
+         ;;
+         :map inferior-ess-mode-map
+         ("C-c z" . ess-switch-to-inferior-or-script-buffer)
+         ("C-=" . ess-insert-assign)
+         ("_" . nil))
   ;;
   ;; https://github.com/jwiegley/use-package#modes-and-interpreters
   :mode (("\\.R\\'" . r-mode)
@@ -49,13 +50,14 @@
                poly-markdown+r-mode)
     ;; These mode association is overwritten by ess-site
     ;; So include the same thing in ess-site :mode
-    :bind (:map polymode-mode-map
-                ("C-c n" . polymode-next-chunk-same-type)
-                ("C-c p" . polymode-previous-chunk-same-type)
-                ("A-n" . polymode-next-chunk-same-type)
-                ("A-p" . polymode-previous-chunk-same-type)
-                ("A-s" . polymode-export)
-                ("M-s M-s" . polymode-export))
+    :bind (;;
+           :map polymode-mode-map
+           ("C-c n" . polymode-next-chunk-same-type)
+           ("C-c p" . polymode-previous-chunk-same-type)
+           ("A-n" . polymode-next-chunk-same-type)
+           ("A-p" . polymode-previous-chunk-same-type)
+           ("A-s" . polymode-export)
+           ("M-s M-s" . polymode-export))
     ;; Config for poly-R.
     :config
     ;; Auto revert for .Rmd

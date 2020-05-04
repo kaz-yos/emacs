@@ -363,9 +363,7 @@
              counsel-ag
              counsel-rg
              counsel-git-grep)
-  :bind (("s-w" . counsel-ag-at-point)
-         ("C-s-w" . counsel-ag)
-         ("C-c C-w" . counsel-ag))
+  :bind (("s-w" . counsel-ag-at-point))
   ;;
   :config
   ;; Project directory advise.
@@ -437,7 +435,3 @@ The initial string is produced by selection-or-thing-at-point."
 (add-hook 'comint-preoutput-filter-functions 'delete-completion-window-buffer)
 ;; http://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
 (add-hook 'minibuffer-exit-hook 'delete-completion-window-buffer)
-
-
-
-

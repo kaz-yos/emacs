@@ -127,8 +127,6 @@
   :commands (swiper
              swiper-at-point)
   :bind (("s-s" . swiper-at-point)
-         ("C-s-s" . swiper)
-         ("C-c C-s" . swiper)
          ;; Add bindings to isearch-mode
          :map isearch-mode-map
          ("s-s" . swiper-from-isearch)
