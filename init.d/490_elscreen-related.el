@@ -26,8 +26,9 @@
   :commands (elscreen-create
              my-elscreen-setup)
   :hook ((after-init . my-elscreen-setup))
-  :bind (:map elscreen-map
-              ("o" . my-open-current-buffer-in-new-elscreen))
+  :bind (
+         :map elscreen-map
+         ("o" . my-open-current-buffer-in-new-elscreen))
   ;;
   :config
   (defun my-elscreen-setup ()
@@ -56,7 +57,7 @@
   ;; Prefix condition on environment
   (setq elscreen-prefix-key (if (display-graphic-p)
                                 (kbd "C-;")
-                              (kbd "C-c m ;")))
+                              (kbd "C-c l")))
   ;; Non-nil to display the number of current screen in the mode line.
   (setq elscreen-display-screen-number nil)
   ;; Do not show tabls to save space
