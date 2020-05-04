@@ -255,7 +255,12 @@ This should be run after running multiple-cursors"
   ;;
   ;; Keyboard macro configurations
   ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Basic-Keyboard-Macro.html
-  (defhydra hydra-kmacro (global-map "<f3>" :exit t :foreign-keys nil)
+  (defhydra hydra-kmacro (;; map key
+                          global-map "<f3>"
+                          ;; hydra state ends after any body
+                          :exit t
+                          ;; Any non-body ley terminates
+                          :foreign-keys nil)
     "kmacro"
     ("3" kmacro-start-macro-or-insert-counter "Start recording")
     ("4" kmacro-end-or-call-macro "End recording or Call macro")
@@ -278,7 +283,10 @@ This should be run after running multiple-cursors"
   ;;
   ;; Extensive outline mode bindings
   ;; https://github.com/abo-abo/hydra/wiki/Emacs#outline-minor-mode
-  (defhydra hydra-outline (:color pink :hint nil)
+  (defhydra hydra-outline (;; map key
+                           global-map "C-c #"
+                           :color pink
+                           :hint nil)
     "
 ^Hide^             ^Show^           ^Move
 ^^^^^^------------------------------------------------------
@@ -310,7 +318,6 @@ _d_: subtree
     ("f" outline-forward-same-level)        ; Forward - same level
     ("b" outline-backward-same-level)       ; Backward - same level
     ("z" nil "leave"))
-  (global-set-key (kbd "C-c #") 'hydra-outline/body)
   (eval-after-load "org"
     '(define-key org-mode-map (kbd "C-`") 'hydra-outline/body))
   ;;
