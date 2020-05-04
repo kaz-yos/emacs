@@ -234,8 +234,18 @@ This should be run after running multiple-cursors"
 ;; http://emacs.rubikitch.com/hydra/
 (use-package hydra
   :ensure t
-  ;; This package should be loaded without deferring.
+  ;; This package should be loaded without deferring as the `eval-after-load'
+  ;; in the body must be set.
   :config
+  ;;
+  ;; https://github.com/abo-abo/hydra/blob/master/README.md#the-rules-of-hydra-tics
+  ;; (defhydra hydra-awesome (awesome-map awesome-binding awesome-plist)
+  ;;   awesome-docstring
+  ;;   awesome-head-1
+  ;;   awesome-head-2
+  ;;   awesome-head-3
+  ;;   ...)
+  ;;
   ;; Buffer text scaling
   ;; https://github.com/abo-abo/hydra#the-one-with-the-least-amount-of-code
   (defhydra hydra-zoom (global-map "<f2>")
