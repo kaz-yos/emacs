@@ -10,7 +10,10 @@
   :bind (("M-x" . helm-M-x)
          ("C-z" . helm-for-files)
          ("M-y" . helm-show-kill-ring)
-         ;;
+         ;; map for C-c
+         ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Keymaps.html
+         :map mode-specific-map
+         ("z" . helm-for-files)
          :map my-key-map
          ("z" . helm-for-files)
          ;; Original M-x
