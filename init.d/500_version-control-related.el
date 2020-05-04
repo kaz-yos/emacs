@@ -66,6 +66,7 @@
   :commands (magit-status
              magit-init)
   :bind (("s-g" . my-magit-status)
+         ("C-c g". my-magit-status)
          :map my-key-map
          ("g" . my-magit-status))
   :config
