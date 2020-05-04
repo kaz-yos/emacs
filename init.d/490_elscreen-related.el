@@ -26,6 +26,9 @@
   :commands (elscreen-create
              my-elscreen-setup)
   :hook ((after-init . my-elscreen-setup))
+  ;; Always use C-c l as a keymap binding
+  ;; https://github.com/jwiegley/use-package#binding-to-keymaps
+  :bind-keymap (("C-c l" . elscreen-map))
   :bind (
          :map elscreen-map
          ("o" . my-open-current-buffer-in-new-elscreen))
