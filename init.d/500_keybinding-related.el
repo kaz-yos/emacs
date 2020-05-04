@@ -327,38 +327,47 @@ _d_: subtree
   ;; them on all current cursors.
   (eval-after-load "multiple-cursors"
     '(progn
-       (defhydra hydra-multiple-cursors (my-key-map "m")
-         "Multiple cursors: "
-         ("n"  mc/mark-next-like-this "Next like this")
-         ("p"  mc/mark-previous-like-this "Prev like this")
-         ("a"  mc/mark-all-like-this "All like this")
-         ;;
-         ("N"  mc/mark-next-symbol-like-this "Next symbol")
-         ("P"  mc/mark-previous-symbol-like-this "Prev symbol")
-         ("A"  mc/mark-all-symbol-like-this "All symbols")
-         ;;
-         (">"  mc/mark-next-like-this "Next like this")
-         ("<"  mc/mark-previous-like-this "Prev like this")
-         ("*"  mc/mark-all-like-this "All like this")
-         ;;
-         ("M->"  mc/mark-next-symbol-like-this "Next symbol")
-         ("M-<"  mc/mark-previous-symbol-like-this "Prev symbol")
-         ("M-*"  mc/mark-all-symbol-like-this "All symbols")
-         ;;
-         ("M-n"  mc/unmark-next-like-this "Unmark next")
-         ("M-p"  mc/unmark-previous-like-this "Unmark prev")
-         ;;
-         ("k" nil "Cancel")
-         ("q" nil "Cancel"))
+       (defhydra hydra-multiple-cursors (;; map key
+                                         my-key-map "m"
+                                         :exit nil
+                                         :hint nil)
+         "
+ Previous^^     Next^^         All^^        Region^^     Misc^^          % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
+------------------------------------------------------------------
+ [_p_]   String [_n_]   String [_a_] String [_s_] Search [_0_] Insert numbers
+ [_P_]   Symbol [_N_]   Symbol [_A_] Symbol [_l_] Lines  [_C-g_] Quit
+ [_M-p_] Unmark [_M-n_] Unmark"
+         ;; Previous
+         ("p"   mc/mark-previous-like-this)
+         ("P"   mc/skip-to-previous-like-this)
+         ("M-p" mc/unmark-previous-like-this)
+         ;; Next
+         ("n"   mc/mark-next-like-this)
+         ("N"   mc/skip-to-next-like-this)
+         ("M-n" mc/unmark-next-like-this)
+         ;; All
+         ("a"   mc/mark-all-like-this)
+         ("A"   mc/mark-all-symbols-like-this)
+         ;; Selected region
+         ("s"   mc/mark-all-in-region-regexp)
+         ("l"   mc/edit-lines)
+         ;; Misc
+         ("0"   mc/insert-numbers)
+         ;; Quit
+         ("C-g" nil))
+       ;;
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-symbol-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-previous-like-this)
        ;;
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-next-like-this)
-       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-like-this)
-       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-like-this)
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-next-symbol-like-this)
-       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-symbol-like-this)
-       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-symbol-like-this)
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-next-like-this)
-       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/unmark-previous-like-this))))
+       ;;
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-like-this)
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-symbol-like-this)
+       ;;
+       (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/insert-numbers))))
 
 
 ;;;
