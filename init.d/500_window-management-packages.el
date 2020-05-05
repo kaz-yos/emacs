@@ -2,7 +2,7 @@
 
 
 ;;;
-;;; windresize for M-x windresize
+;;; windresize.el
 ;; M-x windresize, arrows, C-g for cancel, RET to save
 (use-package windresize
   :ensure t

@@ -13,6 +13,22 @@
 
 
 ;;;
+;;; windmove.el
+;; Built-in
+(use-package windmove
+  :bind (
+         :map mode-specific-map
+         ("o" . windmove-right))
+  :commands (windmove-left
+             windmove-right
+             windmove-up
+             windmove-down)
+  :config
+  ;; Whether movement off the edge of the frame wraps around.
+  (setq windmove-wrap-around t))
+
+
+;;;
 ;;; Useful window shortcuts
 ;; http://stackoverflow.com/questions/2901198/useful-keyboard-shortcuts-and-tips-for-ess-r
 ;; C-tab to switch to other window.
