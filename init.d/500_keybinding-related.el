@@ -321,6 +321,23 @@ _d_: subtree
   (eval-after-load "org"
     '(define-key org-mode-map (kbd "C-`") 'hydra-outline/body))
   ;;
+  (eval-after-load "highlight-symbol"
+    (defhydra hydra-highlight-symbol (;; map key
+                                      my-key-map "."
+                                      :exit nil)
+      "highlight-symbol"
+      ("." highlight-symbol "Toggle" :column "Highlight")
+      ("R" highlight-symbol-remove-all "Remove all" :column "Highlight")
+      ;;
+      ("n" highlight-symbol-next "Symbol" :column "Next")
+      ("N" highlight-symbol-next-in-defun "In defun" :column "Next")
+      ;;
+      ("p" highlight-symbol-prev "Symbol" :column "Previous")
+      ("P" highlight-symbol-prev-in-defun "In defun" :column "Previous")
+      ;;
+      ("q" nil "Quit" :column "Misc")
+      ("C-g" nil "Quit" :column "Misc")))
+  ;;
   ;; https://github.com/abo-abo/hydra/wiki/multiple-cursors
   ;; Need to include the generated commands in mc/cmds-to-run-once
   ;; in the `multiple-cursors.el' configuration to avoid running
