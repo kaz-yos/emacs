@@ -6,6 +6,7 @@
 ;; M-x windresize, arrows, C-g for cancel, RET to save
 (use-package windresize
   :ensure t
+  :bind-keymap (("C-c m w" . windresize-map))
   :commands windresize)
 
 
