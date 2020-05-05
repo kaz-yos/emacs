@@ -348,30 +348,32 @@ _d_: subtree
                                          my-key-map "m"
                                          :exit nil
                                          :hint nil)
-         "
- Previous^^     Next^^         All^^        Region^^     Misc^^          % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
-------------------------------------------------------------------
- [_p_]   String [_n_]   String [_a_] String [_s_] Search [_0_] Insert numbers
- [_P_]   Symbol [_N_]   Symbol [_A_] Symbol [_l_] Lines  [_C-g_] Quit
- [_M-p_] Unmark [_M-n_] Unmark"
+         ;;
+         "multiple-cursors: %(mc/num-cursors)"
          ;; Previous
-         ("p"   mc/mark-previous-like-this)
-         ("P"   mc/skip-to-previous-like-this)
-         ("M-p" mc/unmark-previous-like-this)
+         ("p"   mc/mark-previous-like-this "String" :column "Previous")
+         ("<"   mc/mark-previous-like-this "String" :column "Previous")
+         ("P"   mc/mark-previous-symbol-like-this "Symbol" :column "Previous")
+         ("M-<" mc/mark-previous-symbol-like-this "Symbol" :column "Previous")
+         ("M-p" mc/unmark-previous-like-this "Unmark" :column "Previous")
          ;; Next
-         ("n"   mc/mark-next-like-this)
-         ("N"   mc/skip-to-next-like-this)
-         ("M-n" mc/unmark-next-like-this)
+         ("n"   mc/mark-next-like-this "String" :column "Next")
+         (">"   mc/mark-next-like-this "String" :column "Next")
+         ("N"   mc/mark-next-symbol-like-this "Symbol" :column "Next")
+         ("M->" mc/mark-next-symbol-like-this "Symbol" :column "Next")
+         ("M-n" mc/unmark-next-like-this "Unmark" :column "Next")
          ;; All
-         ("a"   mc/mark-all-like-this)
-         ("A"   mc/mark-all-symbols-like-this)
+         ("a"   mc/mark-all-like-this "String" :column "All")
+         ("*"   mc/mark-all-like-this "String" :column "All")
+         ("A"   mc/mark-all-symbols-like-this "Symbol" :column "All")
+         ("M-*" mc/mark-all-symbols-like-this "Symbol" :column "All")
          ;; Selected region
-         ("s"   mc/mark-all-in-region-regexp)
-         ("l"   mc/edit-lines)
+         ("s"   mc/mark-all-in-region-regexp "Search" :column "Region")
+         ("l"   mc/edit-lines "Lines" :column "Region")
          ;; Misc
-         ("0"   mc/insert-numbers)
+         ("0"   mc/insert-numbers "Insert numbers" :column "Misc")
          ;; Quit
-         ("C-g" nil))
+         ("C-g" nil "Quit" :column "Misc"))
        ;;
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-like-this)
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-symbol-like-this)
