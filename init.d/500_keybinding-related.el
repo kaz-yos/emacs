@@ -338,26 +338,29 @@ _d_: subtree
       ("q" nil "Quit" :column "Misc")
       ("C-g" nil "Quit" :column "Misc")))
   ;;
-  (eval-after-load "windmove"
-    (defhydra hydra-windmove (;; map key
-                              mode-specific-map "o"
-                              :exit nil)
-      "windmove etc"
-      ("b" windmove-left "Left" :column "Left")
-      ("h" windmove-left "Left" :column "Left")
-      ;;
-      ("p" windmove-up "Up" :column "Vertical")
-      ("k" windmove-up "Left" :column "Left")
-      ("j" windmove-down "Left" :column "Left")
-      ("n" windmove-down "Down" :column "Vertical")
-      ;;
-      ("f" windmove-right "Right" :column "Right")
-      ("l" windmove-right "Right" :column "Right")
-      ;;
-      ("o" other-window "Other" :column "Other")
-      ;;
-      ("q" nil "Quit" :column "Misc")
-      ("C-g" nil "Quit" :column "Misc")))
+  ;; Window related
+  ;; https://github.com/abo-abo/hydra/wiki/Window-Management
+  (defhydra hydra-windmove (;; map key
+                            mode-specific-map "o"
+                            :exit nil
+                            :pre (require 'windmove))
+    "windmove etc"
+    ("b" windmove-left "Left" :column "Left")
+    ("h" windmove-left "Left" :column "Left")
+    ;;
+    ("p" windmove-up "Up" :column "Vertical")
+    ("k" windmove-up "Left" :column "Vertical")
+    ("j" windmove-down "Left" :column "Vertical")
+    ("n" windmove-down "Down" :column "Vertical")
+    ;;
+    ("f" windmove-right "Right" :column "Right")
+    ("l" windmove-right "Right" :column "Right")
+    ;;
+    ("o" other-window "Other" :column "Other")
+    ("O" previous-multiframe-window "Previous" :column "Other")
+    ;;
+    ("q" nil "Quit" :column "Misc")
+    ("C-g" nil "Quit" :column "Misc"))
   ;;
   ;; https://github.com/abo-abo/hydra/wiki/multiple-cursors
   ;; Need to include the generated commands in mc/cmds-to-run-once
