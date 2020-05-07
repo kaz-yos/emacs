@@ -238,6 +238,10 @@ This should be run after running multiple-cursors"
   ;; in the body must be set.
   :config
   ;;
+  ;; Binding styles
+  ;; https://github.com/abo-abo/hydra/wiki/Binding-Styles
+  ;; 1. Bind heads. 2. Bind the body.
+  ;;
   ;; https://github.com/abo-abo/hydra/blob/master/README.md#the-rules-of-hydra-tics
   ;; (defhydra hydra-awesome (awesome-map awesome-binding awesome-plist)
   ;;   awesome-docstring
