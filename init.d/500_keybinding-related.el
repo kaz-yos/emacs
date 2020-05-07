@@ -250,13 +250,6 @@ This should be run after running multiple-cursors"
   ;;   awesome-head-3
   ;;   ...)
   ;;
-  ;; Buffer text scaling
-  ;; https://github.com/abo-abo/hydra#the-one-with-the-least-amount-of-code
-  (defhydra hydra-zoom (global-map "<f2>")
-    "zoom"
-    ("g" text-scale-increase "in")
-    ("l" text-scale-decrease "out"))
-  ;;
   ;; Keyboard macro configurations
   ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Basic-Keyboard-Macro.html
   (defhydra hydra-kmacro (;; map key
