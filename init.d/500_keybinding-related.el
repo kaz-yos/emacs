@@ -234,13 +234,20 @@ This should be run after running multiple-cursors"
 ;; http://emacs.rubikitch.com/hydra/
 (use-package hydra
   :ensure t
-  ;; This package should be loaded without deferring as the `eval-after-load'
-  ;; in the body must be set.
+  ;; This package should be loaded without deferring
+  ;; as the `eval-after-load' in the body must be set.
+  :bind (;;
+         :map my-key-map
+         ("m" . hydra-multiple-cursors/body)
+         :map mode-specific-map
+         ("o" . hydra-window/body)
+         :map my-key-map
+         ("." . hydra-highlight-symbol/body))
   :config
   ;;
   ;; Binding styles
   ;; https://github.com/abo-abo/hydra/wiki/Binding-Styles
-  ;; 1. Bind heads. 2. Bind the body.
+  ;; 1. Bind heads upon defining. 2. Bind the body after defining.
   ;;
   ;; https://github.com/abo-abo/hydra/blob/master/README.md#the-rules-of-hydra-tics
   ;; (defhydra hydra-awesome (awesome-map awesome-binding awesome-plist)
@@ -293,7 +300,6 @@ _o_: other         _i_: children    _p_: previous visible
 _c_: entry         _k_: branches    _f_: forward same level
 _l_: leaves        _s_: subtree     _b_: backward same level
 _d_: subtree
-
 "
     ;; Hide
     ("q" hide-sublevels)    ; Hide everything but the top-level headings
@@ -337,10 +343,10 @@ _d_: subtree
   ;;
   ;; Window related
   ;; https://github.com/abo-abo/hydra/wiki/Window-Management
-  (defhydra hydra-windmove (;; map key
-                            mode-specific-map "o"
-                            :exit nil
-                            :pre (require 'windmove))
+  (defhydra hydra-window (;; map key
+                          mode-specific-map "o"
+                          :exit nil
+                          :pre (require 'windmove))
     "windmove etc"
     ("b" windmove-left "Left" :column "Left")
     ("h" windmove-left "Left" :column "Left")
