@@ -435,9 +435,23 @@ _d_: subtree
 ;; with functions, not keys.
 ;; Calling any of the `head' via M-x invokes hercules, which stays around.
 (use-package hercules
+  :ensure t
+  ;; Demand this package to allow for `eval-after-load'.
+  :demand t
+  ;;
   :config
-  (hercules-def :toggle-funs #'macrostep-mode
-                :keymap 'macrostep-keymap))
+  (eval-after-load "macrostep"
+    (hercules-def :toggle-funs #'macrostep-mode
+                  :keymap 'macrostep-keymap))
+  ;;
+  (eval-after-load "edebug"
+    (hercules-def :toggle-funs #'edebug-mode
+                  :keymap 'edebug-mode-map))
+  ;;
+  (eval-after-load "debug"
+    (hercules-def :toggle-funs #'debugger-mode
+                  :keymap 'debugger-mode-map))
+  )
 
 
 ;;;
