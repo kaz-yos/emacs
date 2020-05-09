@@ -431,6 +431,7 @@ _d_: subtree
 (use-package which-key
   :ensure t
   :defer 5
+  :commands (which-key-show-top-level)
   ;;
   :config
   (setq which-key-lighter "")
