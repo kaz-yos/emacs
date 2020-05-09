@@ -470,6 +470,12 @@ _d_: subtree
   (eval-after-load "debug"
     (hercules-def :toggle-funs #'debugger-mode
                   :keymap 'debugger-mode-map))
+  ;;
+  ;; 2020-05-09 This breaks bindings once bm is called.
+  ;; (eval-after-load "bm"
+  ;;   (hercules-def :toggle-funs #'bm-show-mode
+  ;;                 :keymap 'bm-show-mode-map
+  ;;                 :transient t))
   )
 
 
