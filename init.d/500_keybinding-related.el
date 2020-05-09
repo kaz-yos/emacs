@@ -239,6 +239,7 @@ This should be run after running multiple-cursors"
   :bind (;;
          :map my-key-map
          ("m" . hydra-multiple-cursors/body)
+         ("," . hydra-expand-region/body)
          :map mode-specific-map
          ("o" . hydra-window/body)
          :map my-key-map
@@ -341,6 +342,17 @@ _d_: subtree
       ("q" nil "Quit" :column "Misc")
       ("C-g" nil "Quit" :column "Misc")))
   ;;
+  (defhydra hydra-expand-region (
+                                 my-key-map ","
+                                 :exit nil)
+    "expand-region"
+    ("," er/expand-region "Expand" :column "Expand")
+    ("e" er/expand-region "Expand" :column "Expand")
+    ("." er/contract-region "Contract" :column "Contract")
+    ("c" er/contract-region "Contract" :column "Contract")
+    ("q"   nil "Quit" :column "Misc")
+    ("C-g" nil "Quit" :column "Misc"))
+  ;;
   ;; Window related
   ;; https://github.com/abo-abo/hydra/wiki/Window-Management
   (defhydra hydra-window (;; map key
@@ -400,6 +412,7 @@ _d_: subtree
          ;; Misc
          ("0"   mc/insert-numbers "Insert numbers" :column "Misc")
          ;; Quit
+         ("q"   nil "Quit" :column "Misc")
          ("C-g" nil "Quit" :column "Misc"))
        ;;
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-previous-like-this)
@@ -442,7 +455,8 @@ _d_: subtree
   ;; Type: minibuffer, side-window, frame, and custom.
   (setq which-key-popup-type 'side-window)
   ;; Location
-  (setq which-key-side-window-location 'left)
+  (setq which-key-side-window-location '(left
+                                         bottom))
   ;; Max size
   (setq which-key-side-window-max-height 0.5)
   (setq which-key-side-window-max-width 0.5)
