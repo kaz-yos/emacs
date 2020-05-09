@@ -446,6 +446,12 @@ _d_: subtree
   (setq which-key-side-window-max-height 0.5)
   (setq which-key-side-window-max-width 0.5)
   ;;
+  ;; Paging
+  ;; https://github.com/justbur/emacs-which-key/blob/master/README.org#method-1-default-using-c-h-or-help-char
+  ;; Note C-h is by default equivalent to ? in this context.
+  ;; In my configuration, C-h is DEL. Use ?-n, ?-b, etc
+  (setq which-key-use-C-h-commands t)
+  ;;
   (which-key-mode 1))
 
 ;;;  hercules.el
