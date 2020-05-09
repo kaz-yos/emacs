@@ -23,6 +23,13 @@
 ;; C-x @ m event-apply-meta-modifier
 ;; C-x @ s event-apply-super-modifier
 ;;
+;; These are functions not interactive commands. Binding needs care.
+;; https://stackoverflow.com/questions/42948542/emacs-lisp-event-apply-super-key-modifier-doesnt-work
+;; function-key-map is not meant for users, but more reliable than
+;; local-function-key-map.
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Translation-Keymaps.html
+;; https://emacs.stackexchange.com/questions/31348/local-function-key-map-gets-overwritten-by-emacsclient
+;;
 ;; These were taken from simple.el.gz and modified
 ;; (define-key function-key-map [?\C-c ?a] 'event-apply-alt-modifier)
 ;; (define-key function-key-map [?\C-c ?s] 'event-apply-super-modifier)
