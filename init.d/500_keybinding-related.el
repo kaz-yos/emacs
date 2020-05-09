@@ -1,7 +1,5 @@
 ;;; 500_keybinding-related.el ---                    -*- lexical-binding: t; -*-
 
-;;; Sequential key binding related
-
 ;;;
 ;;; sequential-command.el
 ;; https://github.com/rubikitch/sequential-command
@@ -226,7 +224,8 @@ This should be run after running multiple-cursors"
 
 
 ;;;
-;;; hydra.el
+;;; Pop-up key navigator-related
+;;;  hydra.el
 ;; https://github.com/abo-abo/hydra
 ;; https://github.com/abo-abo/hydra/wiki/Emacs
 ;; https://github.com/yangchenyun/emacs-prelude/blob/master/setup-hydra.el
@@ -427,9 +426,28 @@ _d_: subtree
        ;;
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/insert-numbers))))
 
+;;;  which-key.el
+;; https://github.com/justbur/emacs-which-key
+(use-package which-key
+  :ensure t
+  :defer 5
+  ;;
+  :config
+  (setq which-key-lighter "")
+  ;; Delay (in seconds) for which-key buffer to popup.
+  (setq which-key-idle-delay 1.0)
+  ;; Type: minibuffer, side-window, frame, and custom.
+  (setq which-key-popup-type 'side-window)
+  ;; Location
+  (setq which-key-side-window-location '(left
+                                         bottom))
+  ;; Max size
+  (setq which-key-side-window-max-height 0.5)
+  (setq which-key-side-window-max-width 0.5)
+  ;;
+  (which-key-mode 1))
 
-;;;
-;;; hercules.el
+;;;  hercules.el
 ;; https://gitlab.com/jjzmajic/hercules.el
 ;; Unlike hydra, hercules.el entry and exit points are associated
 ;; with functions, not keys.
@@ -456,37 +474,12 @@ _d_: subtree
 
 ;;;
 ;;; bind-keys.el
-;; A part of use-package.el
 ;; https://github.com/jwiegley/use-package/blob/master/bind-key.el
-;; http://emacs.rubikitch.com/bind-key/
 ;; describe-personal-keybindings can be used to check all my bindings.
 (use-package bind-key
   :ensure t
   :commands (bind-key
              describe-personal-keybindings))
-
-
-;;;
-;;; which-key.el
-;; https://github.com/justbur/emacs-which-key
-(use-package which-key
-  :ensure t
-  :defer 5
-  ;;
-  :config
-  (setq which-key-lighter "")
-  ;; Delay (in seconds) for which-key buffer to popup.
-  (setq which-key-idle-delay 1.0)
-  ;; Type: minibuffer, side-window, frame, and custom.
-  (setq which-key-popup-type 'side-window)
-  ;; Location
-  (setq which-key-side-window-location '(left
-                                         bottom))
-  ;; Max size
-  (setq which-key-side-window-max-height 0.5)
-  (setq which-key-side-window-max-width 0.5)
-  ;;
-  (which-key-mode 1))
 
 
 ;;;
