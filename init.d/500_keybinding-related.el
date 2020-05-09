@@ -230,8 +230,6 @@ This should be run after running multiple-cursors"
 ;; https://github.com/abo-abo/hydra
 ;; https://github.com/abo-abo/hydra/wiki/Emacs
 ;; https://github.com/yangchenyun/emacs-prelude/blob/master/setup-hydra.el
-;; This may be outdated.
-;; http://emacs.rubikitch.com/hydra/
 (use-package hydra
   :ensure t
   ;; This package should be loaded without deferring
@@ -427,6 +425,18 @@ _d_: subtree
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/mark-all-symbol-like-this)
        ;;
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/insert-numbers))))
+
+
+;;;
+;;; hercules.el
+;; https://gitlab.com/jjzmajic/hercules.el
+;; Unlike hydra, hercules.el entry and exit points are associated
+;; with functions, not keys.
+;; Calling any of the `head' via M-x invokes hercules, which stays around.
+(use-package hercules
+  :config
+  (hercules-def :toggle-funs #'macrostep-mode
+                :keymap 'macrostep-keymap))
 
 
 ;;;
