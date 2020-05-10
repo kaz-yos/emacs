@@ -1,6 +1,36 @@
 ;;; -*- lexical-binding: t; -*-
 
 ;;;
+;;; paredit.el
+;; smartparens appears more modern. 2014-02-03
+;; https://github.com/Fuco1/smartparens
+;;
+;; M-x install-elisp http://mumble.net/~campbell/emacs/paredit.el
+(use-package paredit
+  :ensure t
+  :commands (enable-paredit-mode)
+  :init
+  (add-hook 'emacs-lisp-mode-hook         'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook   'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook               'enable-paredit-mode)
+  (add-hook 'clojure-mode-hook            'enable-paredit-mode)
+  (add-hook 'scheme-mode-hook             'enable-paredit-mode)
+  (add-hook 'hy-mode-hook                 'enable-paredit-mode)
+  ;; (add-hook 'ielm-mode-hook            'enable-paredit-mode)
+  ;; paredit for ESS. too restrictive
+  ;; (add-hook 'ess-mode-hook 'enable-paredit-mode)
+  :config
+  (setq paredit-lighter "")
+  ;; No space when inserted after a word
+  ;; http://stackoverflow.com/questions/913449/changing-paredit-formatting
+  (defun paredit-space-for-delimiter-p (endp delimiter)
+    (and (not (if endp (eobp) (bobp)))
+         (memq (char-syntax (if endp (char-after) (char-before)))
+               (list ?\"  ;; REMOVED ?w ?_
+                     (let ((matching (matching-paren delimiter)))
+                       (and matching (char-syntax matching))))))))
+
+;;;
 ;;; SLIME for non-elisp lisps
 
 ;;;  slime-company.el

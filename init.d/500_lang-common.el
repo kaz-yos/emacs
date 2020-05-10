@@ -171,3 +171,28 @@ See the help for `company-backends'."
 (use-package xr
   :ensure t
   :commands (xr))
+
+
+;;;
+;;; rainbow-delimiters.el
+;; http://www.emacswiki.org/emacs/RainbowDelimiters
+(use-package rainbow-delimiters
+  :ensure t
+  :commands (rainbow-delimiters-mode)
+  :init
+  ;; Activate in these modes
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'lisp-mode-hook       'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook    'rainbow-delimiters-mode)
+  (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'scheme-mode-hook     'rainbow-delimiters-mode)
+  (add-hook 'ess-mode-hook        'rainbow-delimiters-mode)
+  (add-hook 'hy-mode-hook         'rainbow-delimiters-mode)
+  (add-hook 'c-mode-hook          'rainbow-delimiters-mode)
+  (add-hook 'c++-mode-hook        'rainbow-delimiters-mode)
+  (add-hook 'stan-mode-hook       'rainbow-delimiters-mode)
+  ;;
+  :config
+  ;; http://ergoemacs.org/misc/emacs_rainbow-delimiters-mode.html
+  ;; Just as an example
+  (setq delim-test (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1))))))))))))))))
