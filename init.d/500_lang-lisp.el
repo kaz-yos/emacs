@@ -31,6 +31,24 @@
                        (and matching (char-syntax matching))))))))
 
 ;;;
+;;; lispy.el
+;; https://github.com/abo-abo/lispy
+(use-package lispy
+  :ensure t
+  :hook ((emacs-lisp-mode . enable-lispy)
+         (minibuffer-setup . enable-lispy-conditionally))
+  :config
+  ;; https://github.com/abo-abo/lispy#configuration-instructions
+  (defun enable-lispy ()
+    (lispy-mode 1))
+  ;; Enable lispy for eval-expression (M-:)
+  (defun enable-lispy-conditionally ()
+    (when (eq this-command 'eval-expression)
+      (lispy-mode 1))))
+
+
+
+;;;
 ;;; SLIME for non-elisp lisps
 
 ;;;  slime-company.el
