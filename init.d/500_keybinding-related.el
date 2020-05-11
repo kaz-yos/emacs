@@ -431,6 +431,16 @@ _d_: subtree
        ;;
        (add-to-list 'mc/cmds-to-run-once 'hydra-multiple-cursors/mc/insert-numbers))))
 
+;;;  major-mode-hydra.el
+;; https://github.com/jerrypnz/major-mode-hydra.el
+(use-package major-mode-hydra
+  :ensure t
+  :bind (
+         :map my-key-map
+         ("y" . major-mode-hydra))
+  :config
+  )
+
 ;;;  which-key.el
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
