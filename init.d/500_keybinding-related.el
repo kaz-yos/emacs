@@ -371,8 +371,11 @@ _d_: subtree
     ("f" windmove-right "Right" :column "Right")
     ("l" windmove-right "Right" :column "Right")
     ;;
-    ("o" other-window "Other" :column "Other")
-    ("O" previous-multiframe-window "Previous" :column "Other")
+    ("o" other-window "Other" :column "Cycle")
+    ("O" previous-multiframe-window "Prev" :column "Cycle")
+    ;;
+    ("|" split-window-right "|New" :column "Split")
+    ("/" split-window-below "/New" :column "Split")
     ;;
     ("q" nil "Quit" :column "Misc")
     ("C-g" nil "Quit" :column "Misc"))
