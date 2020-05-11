@@ -9,16 +9,12 @@
 (use-package paredit
   :ensure t
   :commands (enable-paredit-mode)
-  :init
-  (add-hook 'emacs-lisp-mode-hook         'enable-paredit-mode)
-  (add-hook 'lisp-interaction-mode-hook   'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook               'enable-paredit-mode)
-  (add-hook 'clojure-mode-hook            'enable-paredit-mode)
-  (add-hook 'scheme-mode-hook             'enable-paredit-mode)
-  (add-hook 'hy-mode-hook                 'enable-paredit-mode)
-  ;; (add-hook 'ielm-mode-hook            'enable-paredit-mode)
-  ;; paredit for ESS. too restrictive
-  ;; (add-hook 'ess-mode-hook 'enable-paredit-mode)
+  :hook ((emacs-lisp-mode . enable-paredit-mode)
+         (lisp-interaction-mode . enable-paredit-mode)
+         (lisp-mode . enable-paredit-mode)
+         (clojure-mode . enable-paredit-mode)
+         (scheme-mode . enable-paredit-mode)
+         (hy-mode . enable-paredit-mode))
   :config
   (setq paredit-lighter "")
   ;; No space when inserted after a word
