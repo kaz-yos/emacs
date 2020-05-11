@@ -473,9 +473,10 @@ _d_: subtree
     (hercules-def :toggle-funs #'edebug-mode
                   :keymap 'edebug-mode-map))
   ;;
-  (eval-after-load "debug"
-    (hercules-def :toggle-funs #'debugger-mode
-                  :keymap 'debugger-mode-map))
+  ;; 2020-05-11 Not useful unless, configuring the exit key.
+  ;; (eval-after-load "debug"
+  ;;   (hercules-def :toggle-funs #'debugger-mode
+  ;;                 :keymap 'debugger-mode-map))
   ;;
   ;; 2020-05-09 This breaks bindings once bm is called.
   ;; (eval-after-load "bm"
