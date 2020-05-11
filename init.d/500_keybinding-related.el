@@ -326,7 +326,9 @@ _d_: subtree
   (eval-after-load "highlight-symbol"
     (defhydra hydra-highlight-symbol (;; map key
                                       my-key-map "."
-                                      :exit nil)
+                                      :exit nil
+                                      ;; run keys not covered in the body.
+                                      :foreign-keys run)
       "highlight-symbol"
       ("." highlight-symbol "Toggle" :column "Highlight")
       ("R" highlight-symbol-remove-all "Remove all" :column "Highlight")
