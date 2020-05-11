@@ -31,8 +31,10 @@
 ;; https://github.com/abo-abo/lispy
 (use-package lispy
   :ensure t
-  :hook ((emacs-lisp-mode . enable-lispy)
-         (minibuffer-setup . enable-lispy-conditionally))
+  :commands (enable-lispy)
+  ;; 2020-05-11 Interfered with Shelly's arrow keys.
+  ;; :hook ((emacs-lisp-mode . enable-lispy)
+  ;;        (minibuffer-setup . enable-lispy-conditionally))
   :config
   ;; https://github.com/abo-abo/lispy#configuration-instructions
   (defun enable-lispy ()
