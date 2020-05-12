@@ -376,6 +376,7 @@ _d_: subtree
     ;;
     ("|" split-window-right "|New" :column "Split")
     ("/" split-window-below "/New" :column "Split")
+    ("1" delete-other-windows "Only 1" :column "Split")
     ;;
     ("q" nil "Quit" :column "Misc")
     ("C-g" nil "Quit" :column "Misc"))
