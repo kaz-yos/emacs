@@ -325,7 +325,8 @@ _d_: subtree
   ;;
   (eval-after-load "highlight-symbol"
     (defhydra hydra-highlight-symbol (;; map key
-                                      my-key-map "."
+                                      ;; Bind the body
+                                      ;; my-key-map "."
                                       :exit nil
                                       ;; run keys not covered in the body.
                                       :foreign-keys run)
@@ -343,7 +344,8 @@ _d_: subtree
       ("C-g" nil "Quit" :column "Misc")))
   ;;
   (defhydra hydra-expand-region (
-                                 my-key-map ","
+                                 ;; Bind the body
+                                 ;; my-key-map ","
                                  :exit nil)
     "expand-region"
     ("," er/expand-region "Expand" :column "Expand")
@@ -356,7 +358,8 @@ _d_: subtree
   ;; Window related
   ;; https://github.com/abo-abo/hydra/wiki/Window-Management
   (defhydra hydra-window (;; map key
-                          mode-specific-map "o"
+                          ;; Bind the body
+                          ;; mode-specific-map "o"
                           :exit nil
                           :pre (require 'windmove))
     "windmove etc"
