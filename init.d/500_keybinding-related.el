@@ -440,6 +440,18 @@ _d_: subtree
          :map my-key-map
          ("y" . major-mode-hydra))
   :config
+  (major-mode-hydra-define emacs-lisp-mode nil
+    ("Eval"
+     (("b" eval-buffer "buffer")
+      ("e" eval-defun "defun")
+      ("r" eval-region "region"))
+     "REPL"
+     (("I" ielm "ielm"))
+     "Doc"
+     (("d" helpful-at-point "thing-at-pt")
+      ("f" helpful-callable "function")
+      ("v" helpful-variable "variable")
+      ("i" info-lookup-symbol "info lookup"))))
   )
 
 ;;;  which-key.el
