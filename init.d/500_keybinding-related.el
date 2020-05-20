@@ -362,7 +362,7 @@ _d_: subtree
                           ;; mode-specific-map "o"
                           :exit nil
                           :pre (require 'windmove))
-    "windmove etc"
+    "window-related"
     ("b" windmove-left "Left" :column "Left")
     ("h" windmove-left "Left" :column "Left")
     ;;
@@ -380,6 +380,9 @@ _d_: subtree
     ("|" split-window-right "|New" :column "Split")
     ("/" split-window-below "/New" :column "Split")
     ("1" delete-other-windows "Only 1" :column "Split")
+    ;;
+    ("u" winner-undo "Undo" :column "Winner")
+    ("r" winner-redo "Redo" :column "Winner")
     ;;
     ("q" nil "Quit" :column "Misc")
     ("C-g" nil "Quit" :column "Misc"))
