@@ -127,7 +127,6 @@ This will globally bind these variables for crude interactive testing."
 
 ;;;  checkdoc.el
 (use-package checkdoc
-  :ensure t
   :hook (emacs-lisp-mode . checkdoc-minor-mode))
 
 ;;;  elisp-lint.el
