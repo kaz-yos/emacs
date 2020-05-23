@@ -380,6 +380,8 @@ _d_: subtree
     ("|" split-window-right "|New" :column "Split")
     ("/" split-window-below "/New" :column "Split")
     ("1" delete-other-windows "Only 1" :column "Split")
+    ;; This is user-defined function.
+    ("t" toggle-window-split "Transpose" :column "Split")
     ;;
     ("u" winner-undo "Undo" :column "Winner")
     ("r" winner-redo "Redo" :column "Winner")
