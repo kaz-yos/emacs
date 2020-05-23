@@ -1,6 +1,18 @@
 ;;; 500_stan-related.el ---                          -*- lexical-binding: t; -*-
 
 
+;;;  local-melpa-stan
+(let ((local-melpa-stan
+       "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages")
+      (local-melpa-stan-stable
+       "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/local-melpa/packages-stable"))
+  (when (file-exists-p local-melpa-stan)
+    (add-to-list 'package-archives
+                 `("local-melpa-stan" . ,local-melpa-stan) t))
+  (when (file-exists-p local-melpa-stan-stable)
+    (add-to-list 'package-archives
+                 `("local-melpa-stan-stable" . ,local-melpa-stan-stable) t)))
+
 ;; Uncomment the line below if not required elsewhere.
 ;; (require 'use-package)
 

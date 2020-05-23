@@ -9,7 +9,7 @@
 ;; $ git clone git://orgmode.org/org-mode.git
 ;; $ make autoloads
 (use-package org
-  :ensure org-plus-contrib
+  ;; :ensure org-plus-contrib
   :defer t
   :mode ("\\.org" . org-mode)
   :bind (;; Suggested bindings for global
@@ -117,8 +117,11 @@
                                                          "elpa/org-plus-contrib*")))))
   ;;
   :config
+  ;; org mode repository
+  ;; http://orgmode.org/elpa.html
+  (add-to-list 'package-archives
+               '("org" . "http://orgmode.org/elpa/") t)
   ;;
-  (message "org-mode was just loaded.")
   ;; sequential-command
   (define-sequential-command org-seq-cmd--home
     org-beginning-of-line beginning-of-buffer seq-return)
