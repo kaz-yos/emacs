@@ -26,9 +26,6 @@ url/
 # https://stackoverflow.com/questions/16267830/how-to-move-cedet-auto-generated-ede-projects-el-and-srecode-map-el
 srecode-map.el
 
-# Not tracked
-snippets/text-mode/
-
 # Dictionary files for hunspell
 misc/en_US-med.aff
 misc/en_US-med.dic
