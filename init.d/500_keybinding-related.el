@@ -377,9 +377,10 @@ _d_: subtree
     ("o" other-window "Other" :column "Cycle")
     ("O" previous-multiframe-window "Prev" :column "Cycle")
     ;;
-    ("|" split-window-right "|New" :column "Split")
-    ("/" split-window-below "/New" :column "Split")
+    ("0" delete-window "Close" :column "Split")
     ("1" delete-other-windows "Only 1" :column "Split")
+    ("2" split-window-below "/New" :column "Split")
+    ("3" split-window-right "|New" :column "Split")
     ;; This is user-defined function.
     ("t" toggle-window-split "Transpose" :column "Split")
     ;;
