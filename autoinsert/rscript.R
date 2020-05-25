@@ -42,11 +42,10 @@ doParallel::registerDoParallel(cores = n_cores)
 ## https://cran.r-project.org/web/packages/future/vignettes/future-1-overview.html
 library(future)
 future::plan(multiprocess)
-## Report multicore use
-cat("### Using ", foreach::getDoParWorkers(), " cores\n",
-    "### Using ", foreach::getDoParName(), " as backend\n",
-    "### Using ", future::availableCores(), " as future cores\n",
-    sep = "")
+-## Report multicore use
+foreach::getDoParName()
+foreach::getDoParWorkers()
+future::availableCores()
 
 ## Load packages
 library(tidyverse)
