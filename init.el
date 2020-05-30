@@ -86,7 +86,7 @@ There are two things you can do about this warning:
 ;;;  ELPA
   ;; https://elpa.gnu.org/packages/
   ;; https://www.reddit.com/r/emacs/comments/ccrxk9/elpa_down/
-  (setq package-archives (cons "gnu" (concat protocol "://elpa.gnu.org/packages/")))
+  (setq package-archives (list (cons "gnu" (concat protocol "://elpa.gnu.org/packages/"))))
   ;;
 ;;;  MELPA repository
   ;; http://melpa.milkbox.net/#installing
