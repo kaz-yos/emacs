@@ -91,7 +91,11 @@ There are two things you can do about this warning:
 ;;;  MELPA repository
   ;; http://melpa.milkbox.net/#installing
   ;; http://melpa.milkbox.net/#/getting-started
-  (add-to-list 'package-archives (cons "melpa" (concat protocol "://melpa.org/packages/")) t))
+  (add-to-list 'package-archives (cons "melpa" (concat protocol "://melpa.org/packages/")) t)
+  ;;
+;;; orgmode
+  ;; http://orgmode.org/elpa.html
+  (add-to-list 'package-archives (cons "org" (concat protocol "://orgmode.org/elpa/")) t))
 ;;
 ;; Refresh contents  if no package-archive-contents available
 ;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
