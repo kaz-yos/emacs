@@ -117,11 +117,6 @@
                                                          "elpa/org-plus-contrib*")))))
   ;;
   :config
-  ;; org mode repository
-  ;; http://orgmode.org/elpa.html
-  (add-to-list 'package-archives
-               '("org" . "http://orgmode.org/elpa/") t)
-  ;;
   ;; sequential-command
   (define-sequential-command org-seq-cmd--home
     org-beginning-of-line beginning-of-buffer seq-return)
