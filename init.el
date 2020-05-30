@@ -80,18 +80,16 @@
 ;;;  MELPA repository
 ;; http://melpa.milkbox.net/#installing
 ;; http://melpa.milkbox.net/#/getting-started
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;;
-;;;  MELPA Stable
-;; http://stable.melpa.org/#/getting-started
-;; (add-to-list 'package-archives
-;;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-;;
-;; Marmalade repository (not active)
-;; http://www.emacswiki.org/emacs/Marmalade
-;; http://qiita.com/items/e81fca7a9797fe203e9f
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  (when no-ssl (warn "
+Your version of Emacs does not support SSL connections,
+which is unsafe because it allows man-in-the-middle attacks.
+There are two things you can do about this warning:
+1. Install an Emacs version that does support SSL and be safe.
+2. Remove this warning from your init file so you won't see it again."))
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t))
 ;;
 ;; Refresh contents  if no package-archive-contents available
 ;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
