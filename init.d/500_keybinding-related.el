@@ -363,16 +363,24 @@ _d_: subtree
                           :exit nil
                           :pre (progn
                                  (require 'windmove)
-                                 (require 'ace-window)))
+                                 (require 'ace-window)
+                                 (require 'windresize)))
     "window-related"
     ("h" windmove-left "Left" :column "Move")
     ("j" windmove-down "Down" :column "Move")
     ("k" windmove-up "Up" :column "Move")
     ("l" windmove-right "Right" :column "Move")
+    ("a" ace-window "Ace" :column "Move" :exit t)
     ;;
     ("o" other-window "Other" :column "Cycle")
     ("n" next-multiframe-window "Next" :column "Cycle")
     ("p" previous-multiframe-window "Prev" :column "Cycle")
+    ;;
+    ("w" windresize "Resize" :column "Resize" :exit t)
+    ("e" enlarge-window-horizontally "<Enlarge>" :column "Resize")
+    ("C-e" enlarge-window "Enlarge" :column "Resize")
+    ("s" shrink-window-horizontally "<Shrink>" :column "Resize")
+    ("C-s" shrink-window "Shrink" :column "Resize")
     ;;
     ("0" delete-window "Close" :column "Split")
     ("1" delete-other-windows "Only 1" :column "Split")
@@ -380,7 +388,7 @@ _d_: subtree
     ("3" split-window-right "|New" :column "Split")
     ;; This is user-defined function.
     ("t" toggle-window-split "Transpose" :column "Split")
-    ("s" ace-swap-window "Swap" :column "Split")
+    ("S" ace-swap-window "Swap" :column "Split")
     ;;
     ("u" winner-undo "Undo" :column "Winner")
     ("r" winner-redo "Redo" :column "Winner")
