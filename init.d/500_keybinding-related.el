@@ -365,19 +365,14 @@ _d_: subtree
                                  (require 'windmove)
                                  (require 'ace-window)))
     "window-related"
-    ("b" windmove-left "Left" :column "Left")
-    ("h" windmove-left "Left" :column "Left")
-    ;;
-    ("p" windmove-up "Up" :column "Vertical")
-    ("k" windmove-up "Left" :column "Vertical")
-    ("j" windmove-down "Left" :column "Vertical")
-    ("n" windmove-down "Down" :column "Vertical")
-    ;;
-    ("f" windmove-right "Right" :column "Right")
-    ("l" windmove-right "Right" :column "Right")
+    ("h" windmove-left "Left" :column "Move")
+    ("j" windmove-down "Down" :column "Move")
+    ("k" windmove-up "Up" :column "Move")
+    ("l" windmove-right "Right" :column "Move")
     ;;
     ("o" other-window "Other" :column "Cycle")
-    ("O" previous-multiframe-window "Prev" :column "Cycle")
+    ("n" next-multiframe-window "Next" :column "Cycle")
+    ("p" previous-multiframe-window "Prev" :column "Cycle")
     ;;
     ("0" delete-window "Close" :column "Split")
     ("1" delete-other-windows "Only 1" :column "Split")
