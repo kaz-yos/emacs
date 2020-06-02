@@ -361,7 +361,9 @@ _d_: subtree
                           ;; Bind the body
                           ;; mode-specific-map "o"
                           :exit nil
-                          :pre (require 'windmove))
+                          :pre (progn
+                                 (require 'windmove)
+                                 (require 'ace-window)))
     "window-related"
     ("b" windmove-left "Left" :column "Left")
     ("h" windmove-left "Left" :column "Left")
@@ -383,6 +385,7 @@ _d_: subtree
     ("3" split-window-right "|New" :column "Split")
     ;; This is user-defined function.
     ("t" toggle-window-split "Transpose" :column "Split")
+    ("s" ace-swap-window "Swap" :column "Split")
     ;;
     ("u" winner-undo "Undo" :column "Winner")
     ("r" winner-redo "Redo" :column "Winner")
