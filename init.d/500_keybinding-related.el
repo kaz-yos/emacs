@@ -12,10 +12,17 @@
          ("M-c" . seq-cmd--capitalize-backward-word)
          ("M-l" . seq-cmd--downcase-backward-word))
   :config
+  ;; sequential-command-config is not used.
+  ;; Commands are defined below.
   (define-sequential-command seq-cmd--home
-    beginning-of-line beginning-of-buffer seq-return)
+    back-to-indentation
+    beginning-of-line
+    beginning-of-buffer
+    seq-return)
   (define-sequential-command seq-cmd--end
-    end-of-line end-of-buffer seq-return)
+    end-of-line
+    end-of-buffer
+    seq-return)
   ;;
   (defun seq-cmd--upcase-backward-word ()
     (interactive)
