@@ -15,7 +15,7 @@
   ;; sequential-command-config is not used.
   ;; Commands are defined below.
   (define-sequential-command seq-cmd--home
-    back-to-indentation
+    ;; back-to-indentation
     beginning-of-line
     beginning-of-buffer
     seq-return)
