@@ -34,6 +34,7 @@ This function also prevents running remotely."
 (use-package undo-tree
   :ensure t
   :config
+  (setq undo-tree-visualizer-timestamps t)
   (setq undo-tree-mode-lighter "")
   ;; Active everywhere
   (global-undo-tree-mode))
