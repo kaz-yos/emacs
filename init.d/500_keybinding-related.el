@@ -248,7 +248,7 @@ This should be run after running multiple-cursors"
          :map mode-specific-map
          ("o" . hydra-window/body)
          :map my-key-map
-         ("." . hydra-highlight-symbol/body))
+         ("." . hydra-symbol-overlay/body))
   :config
   ;;
   ;; Binding styles
@@ -346,6 +346,26 @@ _d_: subtree
       ;;
       ("p" highlight-symbol-prev "Symbol" :column "Previous")
       ("P" highlight-symbol-prev-in-defun "In defun" :column "Previous")
+      ;;
+      ("q" nil "Quit" :column "Misc")
+      ("C-g" nil "Quit" :column "Misc")))
+  ;;
+  (eval-after-load "symbol-overlay"
+    (defhydra hydra-symbol-overlay (;; map key
+                                    ;; Bind the body
+                                    ;; my-key-map "."
+                                    :exit nil
+                                    ;; run keys not covered in the body.
+                                    :foreign-keys run)
+      "symbol-overlay"
+      ("." symbol-overlay-put "Put" :column "Overlay")
+      ("R" symbol-overlay-remove-all "Remove all" :column "Overlay")
+      ;;
+      ("n" symbol-overlay-jump-next "Symbol" :column "Next")
+      ("N" symbol-overlay-switch-forward "Switch" :column "Next")
+      ;;
+      ("p" symbol-overlay-jump-prev "Symbol" :column "Previous")
+      ("P" symbol-overlay-switch-backward "Switch" :column "Previous")
       ;;
       ("q" nil "Quit" :column "Misc")
       ("C-g" nil "Quit" :column "Misc")))

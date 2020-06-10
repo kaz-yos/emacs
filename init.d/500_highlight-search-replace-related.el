@@ -5,6 +5,7 @@
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (use-package highlight-symbol
+  :disabled t
   :ensure t
   :commands (highlight-symbol
              highlight-symbol-remove-all
@@ -38,6 +39,29 @@
     (interactive)
     (highlight-symbol-next)
     (recenter)))
+
+
+;;;
+;;; symbol-overlay.el
+;;; https://github.com/wolray/symbol-overlay
+(use-package symbol-overlay
+  :ensure t
+  ;; Do not defer until called to activate symbol-overlay-mode.
+  :defer 2
+  :commands (symbol-overlay-put
+             symbol-overlay-remove-all
+             symbol-overlay-jump-next
+             symbol-overlay-jump-prev)
+  :bind (("C-." . symbol-overlay-put)
+         ("A-]" . symbol-overlay-jump-next)
+         ("A-[" . symbol-overlay-jump-prev)
+         :map my-key-map
+         ("." . symbol-overlay-put))
+  :config
+  (setq symbol-overlay-idle-time 0.5)
+  ;;
+  ;; auto-highlighting
+  (symbol-overlay-mode +1))
 
 
 ;;;
