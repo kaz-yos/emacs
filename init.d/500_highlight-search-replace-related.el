@@ -424,7 +424,7 @@ searched. If there is no symbol, empty search box is started."
   (setq avy-keys (cl-loop for c from ?a to ?z collect c))
   ;;
   ;; Time out for *-timer functions
-  (setq avy-timeout-seconds 0.8)
+  (setq avy-timeout-seconds 0.5)
   ;;
   ;; avy version of one-step activation
   ;; https://github.com/cjohansen/.emacs.d/commit/65efe88
