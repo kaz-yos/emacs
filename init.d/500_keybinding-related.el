@@ -350,25 +350,25 @@ _d_: subtree
       ("q" nil "Quit" :column "Misc")
       ("C-g" nil "Quit" :column "Misc")))
   ;;
-  (eval-after-load "symbol-overlay"
-    (defhydra hydra-symbol-overlay (;; map key
-                                    ;; Bind the body
-                                    ;; my-key-map "."
-                                    :exit nil
-                                    ;; run keys not covered in the body.
-                                    :foreign-keys run)
-      "symbol-overlay"
-      ("." symbol-overlay-put "Put" :column "Overlay")
-      ("R" symbol-overlay-remove-all "Remove all" :column "Overlay")
-      ;;
-      ("n" symbol-overlay-jump-next "Symbol" :column "Next")
-      ("N" symbol-overlay-switch-forward "Switch" :column "Next")
-      ;;
-      ("p" symbol-overlay-jump-prev "Symbol" :column "Previous")
-      ("P" symbol-overlay-switch-backward "Switch" :column "Previous")
-      ;;
-      ("q" nil "Quit" :column "Misc")
-      ("C-g" nil "Quit" :column "Misc")))
+  (defhydra hydra-symbol-overlay (;; map key
+                                  ;; Bind the body
+                                  ;; my-key-map "."
+                                  :exit nil
+                                  ;; run keys not covered in the body.
+                                  :foreign-keys run
+                                  :pre (require 'symbol-overlay))
+    "symbol-overlay"
+    ("." symbol-overlay-put "Put" :column "Overlay")
+    ("R" symbol-overlay-remove-all "Remove all" :column "Overlay")
+    ;;
+    ("n" symbol-overlay-jump-next "Jump" :column "Next")
+    ("N" symbol-overlay-switch-forward "Switch" :column "Next")
+    ;;
+    ("p" symbol-overlay-jump-prev "Jump" :column "Previous")
+    ("P" symbol-overlay-switch-backward "Switch" :column "Previous")
+    ;;
+    ("q" nil "Quit" :column "Misc")
+    ("C-g" nil "Quit" :column "Misc"))
   ;;
   (defhydra hydra-expand-region (
                                  ;; Bind the body
