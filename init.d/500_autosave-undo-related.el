@@ -34,7 +34,13 @@ This function also prevents running remotely."
 (use-package undo-tree
   :ensure t
   :config
-  (setq undo-tree-visualizer-timestamps t)
+  ;; Do not occupy the mode-line.
   (setq undo-tree-mode-lighter "")
+  ;; When active, undoing is within the region.
+  (setq undo-tree-enable-undo-in-region t)
+  ;; display time-stamps by default
+  (setq undo-tree-visualizer-timestamps t)
+  ;; display diff by default in undo-tree visualizer.
+  (setq undo-tree-visualizer-diff t)
   ;; Active everywhere
   (global-undo-tree-mode))
