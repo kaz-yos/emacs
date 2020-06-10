@@ -1,3 +1,5 @@
+;;; 500_highlight-search-replace-related.el ---      -*- lexical-binding: t; -*-
+
 ;;;
 ;;; highligh-symbol.el
 ;; http://nschum.de/src/emacs/highlight-symbol/
