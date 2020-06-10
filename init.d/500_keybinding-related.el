@@ -327,28 +327,26 @@ _d_: subtree
     ("f" outline-forward-same-level)        ; Forward - same level
     ("b" outline-backward-same-level)       ; Backward - same level
     ("z" nil "leave"))
-  (eval-after-load "org"
-    '(define-key org-mode-map (kbd "C-`") 'hydra-outline/body))
   ;;
-  (eval-after-load "highlight-symbol"
-    (defhydra hydra-highlight-symbol (;; map key
-                                      ;; Bind the body
-                                      ;; my-key-map "."
-                                      :exit nil
-                                      ;; run keys not covered in the body.
-                                      :foreign-keys run)
-      "highlight-symbol"
-      ("." highlight-symbol "Toggle" :column "Highlight")
-      ("R" highlight-symbol-remove-all "Remove all" :column "Highlight")
-      ;;
-      ("n" highlight-symbol-next "Symbol" :column "Next")
-      ("N" highlight-symbol-next-in-defun "In defun" :column "Next")
-      ;;
-      ("p" highlight-symbol-prev "Symbol" :column "Previous")
-      ("P" highlight-symbol-prev-in-defun "In defun" :column "Previous")
-      ;;
-      ("q" nil "Quit" :column "Misc")
-      ("C-g" nil "Quit" :column "Misc")))
+  (defhydra hydra-highlight-symbol (;; map key
+                                    ;; Bind the body
+                                    ;; my-key-map "."
+                                    :exit nil
+                                    ;; run keys not covered in the body.
+                                    :foreign-keys run
+                                    :pre (require 'highlight-symbol))
+    "highlight-symbol"
+    ("." highlight-symbol "Toggle" :column "Highlight")
+    ("R" highlight-symbol-remove-all "Remove all" :column "Highlight")
+    ;;
+    ("n" highlight-symbol-next "Symbol" :column "Next")
+    ("N" highlight-symbol-next-in-defun "In defun" :column "Next")
+    ;;
+    ("p" highlight-symbol-prev "Symbol" :column "Previous")
+    ("P" highlight-symbol-prev-in-defun "In defun" :column "Previous")
+    ;;
+    ("q" nil "Quit" :column "Misc")
+    ("C-g" nil "Quit" :column "Misc"))
   ;;
   (defhydra hydra-symbol-overlay (;; map key
                                   ;; Bind the body
