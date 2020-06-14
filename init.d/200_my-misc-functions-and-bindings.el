@@ -62,7 +62,6 @@ If you omit CLOSE, it will reuse OPEN."
 ;;;
 ;;; just-one-space
 (bind-key "s-o" 'just-one-space)
-(bind-key "o" 'just-one-space 'my-key-map)
 
 ;;;
 ;;; revert-buffer
