@@ -241,7 +241,7 @@ This should be run after running multiple-cursors"
   ;; This package should be loaded without deferring
   ;; as the `eval-after-load' in the body must be set.
   :demand t
-  :bind (;;
+  :bind (("C-c #" . hydra-outline/body)
          :map my-key-map
          ("m" . hydra-multiple-cursors/body)
          ("," . hydra-expand-region/body)
@@ -269,7 +269,7 @@ This should be run after running multiple-cursors"
                           global-map "<f3>"
                           ;; hydra state ends after any body
                           :exit t
-                          ;; Any non-body ley terminates
+                          ;; Any non-body key terminates
                           :foreign-keys nil)
     "kmacro"
     ("3" kmacro-start-macro-or-insert-counter "Start recording")
@@ -294,39 +294,35 @@ This should be run after running multiple-cursors"
   ;; Extensive outline mode bindings
   ;; https://github.com/abo-abo/hydra/wiki/Emacs#outline-minor-mode
   (defhydra hydra-outline (;; map key
-                           global-map "C-c #"
-                           :color pink
-                           :hint nil)
-    "
-^Hide^             ^Show^           ^Move
-^^^^^^------------------------------------------------------
-_q_: sublevels     _a_: all         _u_: up
-_t_: body          _e_: entry       _n_: next visible
-_o_: other         _i_: children    _p_: previous visible
-_c_: entry         _k_: branches    _f_: forward same level
-_l_: leaves        _s_: subtree     _b_: backward same level
-_d_: subtree
-"
+                           ;; Bind the body
+                           ;; global-map "C-c #"
+                           ;; Do not exist
+                           :exit nil
+                           ;; Any non-body key terminates
+                           :foreign-keys nil)
+    "hydra-outline"
     ;; Hide
-    ("q" hide-sublevels)    ; Hide everything but the top-level headings
-    ("t" hide-body)         ; Hide everything but headings (all body lines)
-    ("o" hide-other)        ; Hide other branches
-    ("c" hide-entry)        ; Hide this entry's body
-    ("l" hide-leaves)       ; Hide body lines in this entry and sub-entries
-    ("d" hide-subtree)      ; Hide everything in this entry and sub-entries
+    ("q" hide-sublevels "sublevels" :column "Hide")    ; Hide everything but the top-level headings
+    ("t" hide-body "body" :column "Hide")         ; Hide everything but headings (all body lines)
+    ("o" hide-other "other" :column "Hide")        ; Hide other branches
+    ("c" hide-entry "entry" :column "Hide")        ; Hide this entry's body
+    ("l" hide-leaves "leaves" :column "Hide")       ; Hide body lines in this entry and sub-entries
+    ("d" hide-subtree "subtree" :column "Hide")      ; Hide everything in this entry and sub-entries
     ;; Show
-    ("a" show-all)          ; Show (expand) everything
-    ("e" show-entry)        ; Show this heading's body
-    ("i" show-children)     ; Show this heading's immediate child sub-headings
-    ("k" show-branches)     ; Show all sub-headings under this heading
-    ("s" show-subtree)      ; Show (expand) everything in this heading & below
+    ("a" show-all "all" :column "Show")          ; Show (expand) everything
+    ("e" show-entry "entry" :column "Show")        ; Show this heading's body
+    ("i" show-children "children" :column "Show")     ; Show this heading's immediate child sub-headings
+    ("k" show-branches "branches" :column "Show")     ; Show all sub-headings under this heading
+    ("s" show-subtree "subtree" :column "Show")      ; Show (expand) everything in this heading & below
     ;; Move
-    ("u" outline-up-heading)                ; Up
-    ("n" outline-next-visible-heading)      ; Next
-    ("p" outline-previous-visible-heading)  ; Previous
-    ("f" outline-forward-same-level)        ; Forward - same level
-    ("b" outline-backward-same-level)       ; Backward - same level
-    ("z" nil "leave"))
+    ("u" outline-up-heading "Up" :column "Move")
+    ("n" outline-next-visible-heading "Next" :column "Move")
+    ("p" outline-previous-visible-heading "Previous" :column "Move")
+    ("f" outline-forward-same-level "Forward - same level" :column "Move")
+    ("b" outline-backward-same-level "Backward - same level" :column "Move")
+    ;; Misc
+    ("z" nil "Quit" :column "Misc")
+    ("C-g" nil "Quit" :column "Misc"))
   ;;
   (defhydra hydra-highlight-symbol (;; map key
                                     ;; Bind the body
