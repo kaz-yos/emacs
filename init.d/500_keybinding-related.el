@@ -302,7 +302,7 @@ This should be run after running multiple-cursors"
                            :foreign-keys nil)
     "hydra-outline"
     ;; Hide
-    ("q" hide-sublevels "sublevels" :column "Hide")    ; Hide everything but the top-level headings
+    ("z" hide-sublevels "sublevels" :column "Hide")    ; Hide everything but the top-level headings
     ("t" hide-body "body" :column "Hide")         ; Hide everything but headings (all body lines)
     ("o" hide-other "other" :column "Hide")        ; Hide other branches
     ("c" hide-entry "entry" :column "Hide")        ; Hide this entry's body
@@ -321,7 +321,7 @@ This should be run after running multiple-cursors"
     ("f" outline-forward-same-level "Forward - same level" :column "Move")
     ("b" outline-backward-same-level "Backward - same level" :column "Move")
     ;; Misc
-    ("z" nil "Quit" :column "Misc")
+    ("q" nil "Quit" :column "Misc")
     ("C-g" nil "Quit" :column "Misc"))
   ;;
   (defhydra hydra-highlight-symbol (;; map key
