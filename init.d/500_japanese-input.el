@@ -16,6 +16,7 @@
   :if (file-exists-p (concat user-emacs-directory "skk"))
   :commands (skk-mode)
   :bind (("A-j" . skk-mode)
+         ("A-SPC" . skk-mode)
          ("M-SPC" . skk-mode)
          ("s-j" . skk-mode)
          :map my-key-map
