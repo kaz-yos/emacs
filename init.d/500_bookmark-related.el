@@ -8,7 +8,7 @@
   :commands (my-bm-show
              my-bm-next
              my-bm-previous)
-  :bind (("M-SPC" . bm-toggle)
+  :bind (;; ("M-SPC" . bm-toggle)
          ("M-]" . my-bm-next)
          ("M-[" . my-bm-previous)
          ("s-b" . my-bm-show)
