@@ -196,9 +196,21 @@ to conform the org-mode convention."
   ;; note    Prompt for a note and add it with template ‘org-log-note-headings’
   (setq org-log-done 'time)
   ;;
-  ;; Agenda related
-  ;; http://mbork.pl/2017-09-18_How_to_hide_repeating_entries_from_the_Org_agenda
-  (setq org-agenda-show-future-repeats nil)
+;;;
+;;; Agenda related
+  ;; http://www.personal.psu.edu/bam49/notebook/org-mode-for-research/
+  (use-package org-agenda
+    :config
+    ;; http://mbork.pl/2017-09-18_How_to_hide_repeating_entries_from_the_Org_agenda
+    (setq org-agenda-show-future-repeats nil)
+    ;; Add available agenda files
+    (setq org-agenda-files
+          (append
+           (when (file-exists-p "~/Dropbox/agenda/")
+             (file-expand-wildcards "~/Dropbox/agenda/*.org"))
+           (when (file-exists-p "~/agenda/")
+             (file-expand-wildcards "~/agenda/*.org")))))
+  ;;
 ;;;
 ;;; Org-Capture
   ;; https://github.com/alphapapa/org-protocol-capture-html
