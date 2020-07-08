@@ -200,6 +200,7 @@ to conform the org-mode convention."
 ;;; Agenda related
   ;; http://www.personal.psu.edu/bam49/notebook/org-mode-for-research/
   (use-package org-agenda
+    :bind ("A-a" . org-agenda)
     :config
     ;; http://mbork.pl/2017-09-18_How_to_hide_repeating_entries_from_the_Org_agenda
     (setq org-agenda-show-future-repeats nil)
