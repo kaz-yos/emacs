@@ -491,8 +491,10 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; %f: full file name
   ;; %b: file base name
   ;; %o: base directory
-  ;; latexmk is a high-level tool to integrate low-level tools like platex and bibtex.
   (setq org-latex-pdf-process
+        ;; latexmk – Fully automated LaTeX document generation
+        ;; https://www.ctan.org/pkg/latexmk/?lang=en
+        ;; -f Force latexmk to continue document processing despite errors.
         '("latexmk -f %f"))
   ;;
   ;; Remove additional temporary files.
