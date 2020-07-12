@@ -3,12 +3,15 @@
 # key: jhead
 # expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
 # --
-# LATEX configurations
-#+LATEX_CLASS: jsarticle
-#+LATEX_CLASS_OPTIONS: [dvipdfmx]
-#+LATEX_HEADER: %% Margin
+# Japanese LaTeX configurations
+# https://texwiki.texjp.org/?BXjscls
+#+LaTeX_CLASS: bxjsarticle
+#+LATEX_CLASS_OPTIONS: [10pt,a4paper,xelatex,ja=standard]
+#+LATEX_HEADER: % bxjsarticle uses geometry in the background. Use setpagelayout*
+#+LATEX_HEADER: \setpagelayout*{top=1.5cm, bottom=2cm, left=2cm, right=2cm, headsep=4pt}
+#+LATEX_HEADER: %% Margin.
 #+LATEX_HEADER: %% \usepackage[margin=1.5cm]{geometry}
-#+LATEX_HEADER: \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm, headsep=4pt]{geometry}
+#+LATEX_HEADER: %% \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm, headsep=4pt]{geometry}
 #+LATEX_HEADER: %% \addtolength{\topmargin}{0.3cm}
 #+LATEX_HEADER: %% \addtolength{\textheight}{1.75in}
 #+LATEX_HEADER: %% Math
@@ -42,11 +45,11 @@
 #+LATEX_HEADER: \fancyhead[R]{\today} % RIGHT
 #+LATEX_HEADER: \fancyfoot[C]{\thepage}
 #+LATEX_HEADER: %% \fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
-#+LATEX_HEADER: %% Section font size
-#+LATEX_HEADER: \usepackage{sectsty}
-#+LATEX_HEADER: \sectionfont{\small}
-#+LATEX_HEADER: \subsectionfont{\small}
-#+LATEX_HEADER: \subsubsectionfont{\small}
+#+LATEX_HEADER: %% Section font size Does not work with the bxjsarticle class.
+#+LATEX_HEADER: %% \usepackage{sectsty}
+#+LATEX_HEADER: %% \sectionfont{\small}
+#+LATEX_HEADER: %% \subsectionfont{\small}
+#+LATEX_HEADER: %% \subsubsectionfont{\small}
 #+LATEX_HEADER: %% Section numbering
 #+LATEX_HEADER: %% http://tex.stackexchange.com/questions/3177/how-to-change-the-numbering-of-part-chapter-section-to-alphabetical-r
 #+LATEX_HEADER: %% \renewcommand\thesection{\alph{section}}
@@ -76,6 +79,12 @@
 #+LATEX_HEADER: \titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
 #+LATEX_HEADER: %% Fix figures and tables by [H]
 #+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: % XeLaTeX
+#+LATEX_HEADER: % https://www.overleaf.com/learn/latex/Japanese#xeCJK_package_with_XeLaTeX
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setCJKmainfont{Hiragino Mincho ProN}
+#+LATEX_HEADER: \setCJKsansfont{Hiragino Sans}
+#+LATEX_HEADER: \setCJKmonofont{Hiragino Sans}
 #+LATEX_HEADER: %% Allow URL embedding
 #+LATEX_HEADER: \usepackage{url}
 #+LATEX_HEADER: %% https://github.com/kaz-yos/emacs/blob/master/misc/GrandMacros.tex
