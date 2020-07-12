@@ -129,20 +129,7 @@
                ;;
                (add-to-list 'TeX-command-list
                             '("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %s.pdf \"%b\""
-                              TeX-run-discard-or-function t t :help "Forward search with Skim")))))
-  ;;
-  ;;
-;;;  Japanese setting
-  ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?AUCTeX
-  ;; Hiragino font settings. Done in shell
-  ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Mac#i9febc9b
-  ;;
-  ;; (setq TeX-default-mode 'japanese-latex-mode)
-  ;; jsarticle as the default style
-  (setq japanese-LaTeX-default-style "jsarticle")
-  ;; For Japanese document
-  (setq kinsoku-limit 10)
-  )
+                              TeX-run-discard-or-function t t :help "Forward search with Skim"))))))
 
 
 
