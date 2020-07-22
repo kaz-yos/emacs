@@ -362,7 +362,6 @@ to conform the org-mode convention."
     ;; bibliographystyle:unsrt
     ;; bibliography:file_name.bib
     ;;
-    ;; (add-hook 'org-mode-hook 'zotelo-minor-mode)
     )
   ;;
 ;;;  org-ref-citeproc.el
