@@ -777,7 +777,7 @@ the plist used as a communication channel."
 			     (format (org-html--translate "Figure %d:" info)
 				     (org-export-get-ordinal
 				      (org-element-map paragraph 'link
-                                        #'identity info t)
+                                                       #'identity info t)
 				      info nil #'org-html-standalone-image-p))
 			     " </span>"
 			     raw))))
