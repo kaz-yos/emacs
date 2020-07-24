@@ -123,7 +123,7 @@
   (define-sequential-command org-seq-cmd--end
     org-end-of-line end-of-buffer seq-return)
   ;;
-  (defun open-org-pdf-in-app ()
+  (defun my-open-org-pdf-in-app ()
     (interactive)
     (let ((pdf-file (concat (file-name-sans-extension (buffer-file-name))
                             ".pdf"))
@@ -777,7 +777,7 @@ the plist used as a communication channel."
 			     (format (org-html--translate "Figure %d:" info)
 				     (org-export-get-ordinal
 				      (org-element-map paragraph 'link
-                                                       #'identity info t)
+                                        #'identity info t)
 				      info nil #'org-html-standalone-image-p))
 			     " </span>"
 			     raw))))
