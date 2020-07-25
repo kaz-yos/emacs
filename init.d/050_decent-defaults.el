@@ -369,3 +369,9 @@
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
+
+
+;;
+;;; Automatically Kill Running Processes on Exit
+;; https://emacsredux.com/blog/2020/07/18/automatically-kill-running-processes-on-exit/
+(setq confirm-kill-processes nil)
