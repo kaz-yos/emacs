@@ -9,6 +9,7 @@
 ;; https://github.com/wamei/elscreen-separate-buffer-list
 (use-package elscreen-separate-buffer-list
   :ensure t
+  :demand t
   ;; This is called just before elscreen activation.
   :commands (elscreen-separate-buffer-list-mode
              ;; Used in my-ivy-switch-buffers
