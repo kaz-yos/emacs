@@ -7,6 +7,17 @@
 ;;;  elscreen-separate-buffer-list.el
 ;; separate buffer list for each elscreen
 ;; https://github.com/wamei/elscreen-separate-buffer-list
+;; Less safe alternative
+;; https://github.com/jeffgran/elscreen-buffer-group
+;;
+;; 2020-08-01
+;; `helm-buffer-list' stopped using `ido-make-buffer-list',
+;; which this package hooks.
+;; https://github.com/emacs-helm/helm/commit/f7fa3a9e
+;; Thus, `helm-for-files' no longer respects the filtering
+;; `elscreen-separate-buffer-list' provides.
+;; https://github.com/wamei/elscreen-separate-buffer-list/issues/8
+;; Need to find an alternative solution.
 (use-package elscreen-separate-buffer-list
   :ensure t
   :demand t
@@ -14,8 +25,6 @@
   :commands (elscreen-separate-buffer-list-mode
              ;; Used in my-ivy-switch-buffers
              esbl-get-separate-buffer-list))
-;; Less safe alternative
-;; https://github.com/jeffgran/elscreen-buffer-group
 
 
 ;;;  elscreen.el
