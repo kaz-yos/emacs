@@ -55,7 +55,7 @@
     (setq helm-buffer-max-length nil)
     ;; Work around for elscreen-separate-buffer-list
     ;; https://github.com/wamei/elscreen-separate-buffer-list/issues/8
-    (advice-add 'helm-buffer-list-1
+    (advice-add 'helm-buffer-list
                 :filter-return #'my-esbl-buffer-name-filter))
   ;;
 ;;;  helm-for-files.el
