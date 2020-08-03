@@ -217,6 +217,11 @@
   "name of computer, sans domain name (use system-name for the FQDN)"
   (let ((n (system-name)))
     (substring n 0 (string-match "\\." n))))
+;;
+;; Overwrite with a fixed name.
+;; I am no longer Dropbox syncing .emacs.d across machines.
+(defun system-name-sans-domain ()
+  "localhost")
 
 
 ;;;
