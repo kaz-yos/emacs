@@ -46,10 +46,17 @@
 (use-package smartchr
   ;; Demand as they have to be present at the time of hook activation by major modes
   :demand t
-  :commands (smartchr)
+  :commands (smartchr
+             ;; multiple-cursors workaround
+             smartchr-construct-unsetter
+             smartchr-unset-before-mc
+             smartchr-set-after-mc)
+  ;; Used in the multiple-cursors-mode minor mode
+  ;; before and after activation.
+  :hook ((multiple-cursors-mode-enabled . smartchr-unset-before-mc)
+         (multiple-cursors-mode-disabled . smartchr-set-after-mc))
   ;;
   :config
-;;;  Define multiple-cursors work around functions
   (defun smartchr-construct-unsetter (smartchar-set-function)
     "Generate an unsetter lambda from a smartchr setter function."
     ;; Extract instructions in the body of the setterr
@@ -127,12 +134,6 @@ This should be run after running multiple-cursors"
       ('haskell-mode                (smartchr-haskell-mode-set))
       ;; Ruby
       ('ruby-mode                   (smartchr-ruby-mode-set))))
-  ;;
-  ;; Work around for smartchr.el
-  ;; https://github.com/magnars/multiple-cursors.el/blob/master/multiple-cursors-core.el#L514-L529
-  (setq multiple-cursors-mode-enabled-hook 'smartchr-unset-before-mc)
-  (setq multiple-cursors-mode-disabled-hook 'smartchr-set-after-mc)
-  ;;
   ;;
 ;;;  Define major-mode specific setters and unsetters
   ;; fset: This function stores definition in the function cell of symbol.
