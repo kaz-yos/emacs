@@ -380,3 +380,17 @@
 ;;; Automatically Kill Running Processes on Exit
 ;; https://emacsredux.com/blog/2020/07/18/automatically-kill-running-processes-on-exit/
 (setq confirm-kill-processes nil)
+
+
+;;;
+;;; subr-x.el
+(use-package subr-x
+  :commands (;;
+             thread-first
+             thread-last))
+
+;;;
+;;; seq.el
+(use-package seq
+  :commands (;;
+             seq-filter))
