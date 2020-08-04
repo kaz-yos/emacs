@@ -44,36 +44,35 @@
 ;; 2014-03-30 (mc/prompt-for-inclusion-in-whitelist 'smartchr) did not help.
 ;;
 (use-package smartchr
-  ;; Use init as they have to be present at the time of hook activation by major modes
-  :init
-  ;; Need to require a library defining thread-first macro?
-  (use-package subr-x
-    :commands (thread-first))
+  ;; Demand as they have to be present at the time of hook activation by major modes
+  :demand t
+  :commands (smartchr)
   ;;
+  :config
 ;;;  Define multiple-cursors work around functions
   (defun smartchr-construct-unsetter (smartchar-set-function)
-    "Generate an unsetter lambda from a smartchr setter function"
+    "Generate an unsetter lambda from a smartchr setter function."
     ;; Extract instructions in the body of the setterr
     ;; http://endlessparentheses.com/new-in-emacs-25-1-more-flow-control-macros.html
-    (let ((lst-instr (thread-first smartchar-set-function
-                       ;; Extract symbol’s function definition
-                       symbol-function
-                       ;; Drop first two elements (lambda nil)
-                       cddr)))
-      ;; manipulate list elements to create an unsetter
+    (let ((lst-local-set-key
+           ;; Extract ((local-set-key ...) (local-set-key ...) ...)
+           (seq-filter (lambda (elt) (and
+                                      ;; List that has local-set-key
+                                      (listp elt)
+                                      (member 'local-set-key elt)))
+                       (symbol-function smartchar-set-function))))
       ;; Commands for Binding Keys
       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
       ;; (local-unset-key key) := (define-key (current-local-map) key nil)
       ;; GNU Emacs Lisp Reference Manual: Controlling Active Maps
       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Controlling-Active-Maps.html
-      (thread-last (mapcar
-                    ;; Loop over instructions generating unset instructions
-                    (lambda (elt) (cons 'local-unset-key (list (nth 1 elt))))
-                    lst-instr)
-        ;; Add an empty argument part
-        (cons nil)
-        ;; Add lambda to generate an anonymous function
-        (cons 'lambda))))
+      `(lambda ()
+         ,(mapcar
+           ;; Loop over instructions generating unset instructions
+           ;; e.g., (local-unset-key (kbd "-"))
+           (lambda (elt) `(local-unset-key ,(list (nth 1 elt))))
+           lst-local-set-key))))
+  ;;
   ;; Assignment to the function-cell require (fset 'symbol (lambda ...))
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
   ;;
@@ -226,8 +225,7 @@ This should be run after running multiple-cursors"
   (fset 'smartchr-ocvate-unset (smartchr-construct-unsetter 'smartchr-ocvate-set))
   ;;
   ;;
-  ;; Define an auto-loadable function
-  :commands (smartchr))
+  )
 
 
 ;;;
