@@ -80,6 +80,19 @@
            (lambda (elt) `(local-unset-key ,(list (nth 1 elt))))
            lst-local-set-key))))
   ;;
+  (defmacro smartchar-fset-unsetter (smartchar-set-function)
+    "Define the corresponding unsetter."
+    ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Surprising-Local-Vars.html
+    (let ((unsetter-body (smartchr-construct-unsetter smartchar-set-function))
+          ;; String manipulate the setter symbol into the unsetter symbol.
+          (unsetter-symbol (thread-last smartchar-set-function
+                             (symbol-name)
+                             (replace-regexp-in-string "-set$" "-unset")
+                             (make-symbol))))
+      ;;
+      `(fset ,unsetter-symbol
+             ,unsetter-body)))
+  ;;
   ;; Assignment to the function-cell require (fset 'symbol (lambda ...))
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
   ;;
