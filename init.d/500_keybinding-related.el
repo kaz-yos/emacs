@@ -163,6 +163,7 @@ This should be run after running multiple-cursors"
   (add-hook 'ess-mode-hook          'smartchr-ess-mode-set)
   (add-hook 'inferior-ess-mode-hook 'smartchr-ess-mode-set)
   (fset 'smartchr-ess-mode-unset (smartchr-construct-unsetter 'smartchr-ess-mode-set))
+  (smartchar-fset-unsetter smartchr-ess-mode-set)
   ;;
 ;;;   Python
   (defun smartchr-python-mode-set ()
