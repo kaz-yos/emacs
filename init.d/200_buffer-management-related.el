@@ -4,8 +4,10 @@
 ;;;
 ;;; Unique buffer names
 ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-ignore-buffers-re "*[^*]+*")
+(use-package uniquify
+  :config
+  (setq uniquify-buffer-name-style 'forward)
+  (setq uniquify-ignore-buffers-re "*[^*]+*"))
 
 
 ;;;
