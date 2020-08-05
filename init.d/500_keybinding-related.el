@@ -102,8 +102,8 @@ This should be run before running multiple-cursors"
     ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Pattern-matching-case-statement.html#Pattern-matching-case-statement
     (pcase major-mode
       ;; ESS
-      ('ess-mode                    (smartchr-ess-mode-unset))
-      ('inferior-ess-mode           (smartchr-ess-mode-unset))
+      ('ess-r-mode                    (smartchr-ess-r-mode-unset))
+      ('inferior-ess-r-mode           (smartchr-ess-r-mode-unset))
       ;; Python
       ('ein:notebook-multilang-mode (smartchr-python-mode-unset))
       ('python-mode                 (smartchr-python-mode-unset))
@@ -128,8 +128,8 @@ This should be run after running multiple-cursors"
     ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Pattern-matching-case-statement.html#Pattern-matching-case-statement
     (pcase major-mode
       ;; ESS
-      ('ess-mode                    (smartchr-ess-mode-set))
-      ('inferior-ess-mode           (smartchr-ess-mode-set))
+      ('ess-r-mode                    (smartchr-ess-r-mode-set))
+      ('inferior-ess-r-mode           (smartchr-ess-r-mode-set))
       ;; Python
       ('ein:notebook-multilang-mode (smartchr-python-mode-set))
       ('python-mode                 (smartchr-python-mode-set))
@@ -151,7 +151,7 @@ This should be run after running multiple-cursors"
   ;; fset: This function stores definition in the function cell of symbol.
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
 ;;;   ESS
-  (defun smartchr-ess-mode-set ()
+  (defun smartchr-ess-r-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
     (local-set-key (kbd "+") (smartchr '("+" " + ")))
     (local-set-key (kbd "-") (smartchr '("-" " - " "--------------------------------------------------------------------------------")))
@@ -160,10 +160,9 @@ This should be run after running multiple-cursors"
     (local-set-key (kbd "<") (smartchr '("<" " <- ")))
     (local-set-key (kbd "$") (smartchr '("$" "$`!!'$")))
     (local-set-key (kbd "%") (smartchr '("%" " %`!!'% "))))
-  (add-hook 'ess-mode-hook          'smartchr-ess-mode-set)
-  (add-hook 'inferior-ess-mode-hook 'smartchr-ess-mode-set)
-  (fset 'smartchr-ess-mode-unset (smartchr-construct-unsetter 'smartchr-ess-mode-set))
-  (smartchar-fset-unsetter smartchr-ess-mode-set)
+  (add-hook 'ess-mode-hook          'smartchr-ess-r-mode-set)
+  (add-hook 'inferior-ess-mode-hook 'smartchr-ess-r-mode-set)
+  (fset 'smartchr-ess-r-mode-unset (smartchr-construct-unsetter 'smartchr-ess-r-mode-set))
   ;;
 ;;;   Python
   (defun smartchr-python-mode-set ()
