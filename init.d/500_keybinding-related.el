@@ -90,8 +90,7 @@
                              (replace-regexp-in-string "-set$" "-unset")
                              (make-symbol))))
       ;;
-      `(fset ',unsetter-symbol
-             ,unsetter-body)))
+      `(fset ',unsetter-symbol ,unsetter-body)))
   ;;
   ;; Assignment to the function-cell require (fset 'symbol (lambda ...))
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
