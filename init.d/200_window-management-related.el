@@ -1,5 +1,13 @@
 ;;; Window management
 
+
+;;;
+;;; window.el.gz
+;; This file does not provide a package name.
+;; https://www.reddit.com/r/emacs/comments/hzhkk1/what_simple_key_remapping_has_transformed_your/
+(bind-key "M-o" 'other-window)
+
+
 ;;;
 ;;; winner-mode to restore previous window configurations
 ;; http://www.emacswiki.org/emacs/WinnerMode
@@ -39,7 +47,9 @@
 ;; http://stackoverflow.com/questions/916797/emacs-global-set-key-to-c-tab
 (defun other-window-or-split ()
   (interactive)
-  (when (one-window-p) (split-window-horizontally)) ; When there's only one window, split horizontally.
+  (when (one-window-p)
+    ;; When there's only one window, split horizontally.
+    (split-window-horizontally))
   (other-window 1))
 (global-set-key (kbd "<C-tab>") 'other-window-or-split)
 (bind-key "<tab>" 'other-window-or-split my-key-map)
