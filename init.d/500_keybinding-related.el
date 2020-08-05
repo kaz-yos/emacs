@@ -74,11 +74,11 @@
       ;; GNU Emacs Lisp Reference Manual: Controlling Active Maps
       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Controlling-Active-Maps.html
       `(lambda ()
-         ,(mapcar
-           ;; Loop over instructions generating unset instructions
-           ;; e.g., (local-unset-key (kbd "-"))
-           (lambda (elt) `(local-unset-key ,(list (nth 1 elt))))
-           lst-local-set-key))))
+         ,@(mapcar
+            ;; Loop over instructions generating unset instructions
+            ;; e.g., (local-unset-key (kbd "-"))
+            (lambda (elt) `(local-unset-key ,(nth 1 elt)))
+            lst-local-set-key))))
   ;;
   (defmacro smartchar-fset-unsetter (smartchar-set-function)
     "Define the corresponding unsetter."
