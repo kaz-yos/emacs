@@ -394,3 +394,9 @@
 (use-package seq
   :commands (;;
              seq-filter))
+
+;;;
+;;; No frame size rounding with GUI.
+;; https://www.reddit.com/r/emacs/comments/hsszos/how_to_get_rid_of_black_border_around_emacsmacosx/
+;; If non-nil, frame sizes can increase/decrease by one pixel.
+(setq frame-resize-pixelwise t)
