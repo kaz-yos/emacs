@@ -72,13 +72,19 @@ If you omit CLOSE, it will reuse OPEN."
 
 ;;;
 ;;; Suppress messages
-;; http://qiita.com/itiut@github/items/d917eafd6ab255629346
 ;; http://emacs.stackexchange.com/questions/14706/suppress-message-in-minibuffer-when-a-buffer-is-saved
 (defmacro with-suppressed-message (&rest body)
   "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
+  ;; If a declare form appears as the first form in the body of a
+  ;; defun or defmacro form, SPECS specifies various additional
+  ;; information about the function or macro; these go into effect
+  ;; during the evaluation of the defun or defmacro form.
   (declare (indent 0))
-  (let ((message-log-max nil))
-    `(with-temp-message (or (current-message) "") ,@body)))
+  ;; If nil, disable message logging.
+  `(let ((message-log-max nil))
+     ;; The original message is restored to the echo area after BODY has finished.
+     (with-temp-message (or (current-message) "")
+       ,@body)))
 
 
 
