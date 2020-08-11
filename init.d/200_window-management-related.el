@@ -7,6 +7,11 @@
 ;; https://www.reddit.com/r/emacs/comments/hzhkk1/what_simple_key_remapping_has_transformed_your/
 (bind-key "M-o" 'other-window)
 
+;;;
+;;; frame.el
+(use-package frame
+  :bind (("C-M-o" . previous-multiframe-window)))
+
 
 ;;;
 ;;; winner-mode to restore previous window configurations
