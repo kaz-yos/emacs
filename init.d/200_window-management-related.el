@@ -9,8 +9,8 @@
 
 ;;;
 ;;; frame.el
-(use-package frame
-  :bind (("C-M-o" . previous-multiframe-window)))
+;; (use-package frame
+;;   :bind (("C-M-o" . previous-multiframe-window)))
 
 
 ;;;
