@@ -35,6 +35,16 @@
 
 
 ;;;
+;;; Programming utilities
+;;;  stream.el
+;; https://nicolas.petton.fr/blog/stream.html
+(use-package stream
+  :ensure t
+  :commands (stream-cons
+             stream-range))
+
+
+;;;
 ;;; Code navigation and evaluation
 ;;;  elisp-slime-nav.el
 ;; SLIME-like navigation for elisp
