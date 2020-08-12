@@ -9,6 +9,7 @@
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-z" . helm-for-files)
+         ("M-z" . helm-for-files)
          ("C-M-z" . helm-for-files)
          ("M-y" . helm-show-kill-ring)
          ;; map for C-c
