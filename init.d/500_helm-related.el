@@ -54,11 +54,7 @@
   (use-package helm-buffers
     :config
     ;; Max length of buffer names before truncate.
-    (setq helm-buffer-max-length nil)
-    ;; Work around for elscreen-separate-buffer-list
-    ;; https://github.com/wamei/elscreen-separate-buffer-list/issues/8
-    (advice-add 'helm-buffer-list
-                :filter-return #'my-esbl-buffer-name-filter))
+    (setq helm-buffer-max-length nil))
   ;;
 ;;;  helm-for-files.el
   (use-package helm-for-files

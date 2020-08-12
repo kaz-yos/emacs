@@ -18,24 +18,18 @@
 ;; `elscreen-separate-buffer-list' provides.
 ;; https://github.com/wamei/elscreen-separate-buffer-list/issues/8
 ;; Need to find an alternative solution.
-;; filter helm-buffer-list-1 with member esbl-separate-buffer-list
+;; filter helm-buffer-list with member esbl-separate-buffer-list
 ;; (mapcar #'buffer-name esbl-separate-buffer-list)
+;; Addressed in 20200807.1324
 (use-package elscreen-separate-buffer-list
   :ensure t
   :demand t
   ;; This is called just before elscreen activation.
   :commands (elscreen-separate-buffer-list-mode
              ;; Used in my-ivy-switch-buffers
-             esbl-get-separate-buffer-list
-             ;; For helm patching
-             my-esbl-buffer-name-filter)
+             esbl-get-separate-buffer-list)
   :config
-  (defun my-esbl-buffer-name-filter (buffer-names)
-    (let ((buffer-names-to-keep (mapcar #'buffer-name
-                                        esbl-separate-buffer-list)))
-      (seq-filter (lambda (elt)
-                    (member elt buffer-names-to-keep))
-                  buffer-names))))
+  )
 
 
 ;;;  elscreen.el
