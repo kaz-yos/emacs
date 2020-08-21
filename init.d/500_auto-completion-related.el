@@ -316,7 +316,9 @@
   :bind (("C-x b" . my-ivy-switch-buffer)
          :map ivy-minibuffer-map
          ;; ivy-immediate-done finishes without completion
-         ("C-<return>" . ivy-immediate-done))
+         ("C-<return>" . ivy-immediate-done)
+         :map ivy-occur-grep-mode-map
+         ("C-x C-q" . ivy-wgrep-change-to-wgrep-mode))
   :config
   ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
   ;; Add recent files and bookmarks to the ivy-switch-buffer.
