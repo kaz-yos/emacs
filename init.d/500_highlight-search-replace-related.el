@@ -219,7 +219,9 @@ searched. If there is no symbol, empty search box is started."
               ("C-c C-i" . wgrep-change-to-wgrep-mode))
   :config
   ;; Non-nil means do save-buffer automatically while wgrep-finish-edit.
-  (setq wgrep-auto-save-buffer t))
+  (setq wgrep-auto-save-buffer t)
+  ;; enable change read-only files.
+  (setq wgrep-change-readonly-file t))
 
 
 ;;;  ag.el
