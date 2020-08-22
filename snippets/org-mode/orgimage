@@ -3,5 +3,5 @@
 # key: image
 # expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
 # --
-#+ATTR_LATEX: :height $1\textheight :width $1\textwidth :options page=1,keepaspectratio :center t
-[[$2]]$0
+#+ATTR_LATEX: :height $1\textheight :width $2\textwidth :options page=1,keepaspectratio :center t
+[[$3]]$0
