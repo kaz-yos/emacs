@@ -8,7 +8,9 @@
               ("s-d" . make-directory)
               ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired-and-Find.html
               ("s-f" . find-name-dired)
-              ("s-g" . find-grep-dired))
+              ;; Better used for magit. Keep to remind myself.
+              ;; ("s-g" . find-grep-dired)
+              )
   :config
   ;; https://stackoverflow.com/questions/4076360/error-in-dired-sorting-on-os-x
   ;; ls does not support --dired; see `dired-use-ls-dired' for more details.
