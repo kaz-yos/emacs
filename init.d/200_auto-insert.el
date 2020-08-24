@@ -1,8 +1,10 @@
 ;;; 200_auto-insert.el ---                           -*- lexical-binding: t; -*-
 
-;;; Templates by autoinsert.el
-;;
-;; autoinsert.el
+;;;
+;;; autoinsert.el
+;; https://www.gnu.org/software/emacs/manual/html_node/autotype/Autoinserting.html
+;; https://www.emacswiki.org/emacs/AutoInsertMode
+;; https://emacs.stackexchange.com/questions/55754/how-to-run-functions-inside-auto-insert-template
 (use-package autoinsert
   :config
   ;; Directory from which auto-inserted files are taken.
