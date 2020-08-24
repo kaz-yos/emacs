@@ -1,9 +1,12 @@
+;;; 500_yasnippet-related.el ---                     -*- lexical-binding: t; -*-
+
 ;;; yasnippet.el
 ;; https://github.com/capitaomorte/yasnippet
 ;; https://joaotavora.github.io/yasnippet
 ;; https://blog.alex-miller.co/emacs/spacemacs/2017/05/28/yasnippets.html/
 ;; http://fukuyama.co/yasnippet
 ;; http://d.hatena.ne.jp/kiwanami/20110224/1298526678
+;; https://www.youtube.com/watch?v=xmBovJvQ3KU
 (use-package yasnippet
   :ensure t
   :defer 2
