@@ -419,6 +419,8 @@ This should be run after running multiple-cursors"
     ("1" delete-other-windows "Only 1" :column "Split")
     ("2" split-window-below "/New" :column "Split")
     ("3" split-window-right "|New" :column "Split")
+    ("-" split-window-below "/New" :column "Split")
+    ("|" split-window-right "|New" :column "Split")
     ;; This is user-defined function.
     ("t" toggle-window-split "Transpose" :column "Split")
     ("S" ace-swap-window "Swap" :column "Split")
