@@ -31,3 +31,12 @@
 (use-package esup
   :ensure t
   :commands (esup))
+
+
+;;;
+;;; pubmed.el
+;; https://gitlab.com/fvdbeek/emacs-pubmed
+(use-package pubmed
+  :ensure t
+  :commands (pubmed-search
+             pubmed-advanced-search))
