@@ -1,11 +1,26 @@
-;;; Window management
-
+;;; 200_window-management-related.el ---             -*- lexical-binding: t; -*-
 
 ;;;
 ;;; window.el.gz
 ;; This file does not provide a package name.
 ;; https://www.reddit.com/r/emacs/comments/hzhkk1/what_simple_key_remapping_has_transformed_your/
 (bind-key "M-o" 'other-window)
+
+
+;;;
+;;; Dedicate a window
+;; https://emacs.stackexchange.com/questions/2189/how-can-i-prevent-a-command-from-using-specific-windows
+(defun my-toggle-window-dedicated ()
+  "Control whether or not Emacs is allowed to display another
+buffer in current window."
+  (interactive)
+  (message
+   (if (let (window (get-buffer-window (current-buffer)))
+         (set-window-dedicated-p window (not (window-dedicated-p window))))
+       "%s is now dedicated."
+     "%s is up for grabs.")
+   (current-buffer)))
+
 
 ;;;
 ;;; frame.el
