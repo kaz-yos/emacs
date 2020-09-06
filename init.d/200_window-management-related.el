@@ -20,6 +20,7 @@ buffer in current window."
        "%s is now dedicated."
      "%s is up for grabs.")
    (current-buffer)))
+(bind-key "d" 'my-toggle-window-dedicated my-key-map)
 
 
 ;;;
