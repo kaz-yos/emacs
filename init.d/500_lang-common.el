@@ -9,7 +9,7 @@
 (use-package lsp-mode
   :ensure t
   :commands (lsp)
-  :hook ((r-mode . lsp)
+  :hook ((ess-r-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq lsp-keymap-prefix "s-l")
