@@ -110,8 +110,14 @@
   (use-package ess-custom
     :config
     ;; When non-nil, use readline in R.
-    ;; This can mess up evaluation completely.
-    (setq ess-R-readline t)
+    ;; nil indicates that "--no-readline " should be used as argument
+    ;; when starting R. This may very slightly speedup interaction. On
+    ;; the other hand, readline is necessary for expansion of
+    ;; "~username/" in paths. Note that readline interprets
+    ;; tabs (tabular characters) in R source files as asking for file
+    ;; name completion. This can mess up evaluation completely.
+    ;; 2020-09-08 nil fixed errors on evaluating a large chunk of code.
+    (setq ess-R-readline nil)
     ;; If non-nil activate flymake in ess-mode buffers.
     (setq ess-use-flymake nil)
     ;; No history, no saving!
