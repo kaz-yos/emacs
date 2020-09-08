@@ -301,5 +301,5 @@
   ;;
   (add-hook 'LaTeX-mode-hook
             '(lambda ()
-               (local-set-key (kbd "H-c") 'reftex-citation)
+               ;; (local-set-key (kbd "H-c") 'reftex-citation)
                (local-set-key (kbd "A-C-a") 'reftex-citation))))
