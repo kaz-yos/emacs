@@ -3,6 +3,15 @@
 
 
 ;;;
+;;; lsp-mode.el
+;; https://github.com/emacs-lsp/lsp-mode
+;; https://emacs-lsp.github.io/lsp-mode/page/installation/#use-package
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp))
+
+
+;;;
 ;;; aggressive-indent.el
 ;; https://github.com/Malabarba/aggressive-indent-mode
 (use-package aggressive-indent
