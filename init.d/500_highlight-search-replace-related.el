@@ -445,7 +445,8 @@ searched. If there is no symbol, empty search box is started."
   ;; Assing key bindings for all characters
   ;; eg, M-s-a invokes (avy-goto-char ?a), etc, for all letters.
   (cl-loop for c from ?! to ?~ do (add-keys-to-avy "M-s-" c))
-  (cl-loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word)))
+  (cl-loop for c from ?! to ?~ do (add-keys-to-avy "C-M-s-" c 'word))
+  (cl-loop for c from ?! to ?~ do (add-keys-to-avy "H-" c 'word)))
 
 
 ;;;  ace-window.el
