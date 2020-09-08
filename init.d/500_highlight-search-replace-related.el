@@ -407,9 +407,7 @@ searched. If there is no symbol, empty search box is started."
              avy-goto-word-1
              avy-goto-word-or-subword-1
              avy-isearch)
-  :bind (("s-l" . avy-goto-line)
-         ("C-'" . avy-goto-line)
-         ("C-M-s" . avy-goto-char-timer)
+  :bind (("C-M-s" . avy-goto-char-timer)
          :map isearch-mode-map
          ("s-a" . avy-isearch)
          ("C-'" . avy-isearch))
