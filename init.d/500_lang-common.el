@@ -15,12 +15,15 @@
   (setq lsp-keymap-prefix "s-l")
   ;; optionally
   (use-package lsp-ui
+    :ensure t
     :commands (lsp-ui-mode))
   ;; if you are helm user
   (use-package helm-lsp
+    :ensure t
     :commands (helm-lsp-workspace-symbol))
   ;; if you are ivy user
   (use-package lsp-ivy
+    :ensure t
     :commands (lsp-ivy-workspace-symbol))
   ;; (use-package lsp-treemacs
   ;;   :commands (lsp-treemacs-errors-list))
