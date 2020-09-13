@@ -30,7 +30,7 @@ library(doParallel)
 ## Reproducible parallelization
 library(doRNG)
 ## Detect core count (Do not use on clusters)
-n_cores <- parallel::detectCores()
+n_cores <- min(parallel::detectCores(), 4)
 ## Used by parallel::mclapply() as default
 options(mc.cores = n_cores)
 ## Used by doParallel as default
