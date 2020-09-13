@@ -2,7 +2,7 @@
 # name: ggplot
 # key: ggplot
 # --
-ggplot(data = $1, mapping = aes(x = $2, y = $3)) +
+ggplot(${1:$$(yas-choose-value '("" "data = ,"))}mapping = aes(x = $2, y = $3)) +
     geom_$4() +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5),
