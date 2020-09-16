@@ -87,10 +87,10 @@
   ;; Show hash
   (setq magit-status-show-hashes-in-headers t)
   ;;
-  ;; Word-level diff
+  ;; Whether to show word-granularity differences within diff hunks.
   ;; https://magit.vc/manual/magit/Diff-options.html
   ;; http://html-color-codes.info
-  (setq magit-diff-refine-hunk t)
+  (setq magit-diff-refine-hunk 'all)
   ;;
   ;; Just save everything when invoked
   (setq magit-save-some-buffers 'dontask)
