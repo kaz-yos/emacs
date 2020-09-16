@@ -1,4 +1,4 @@
-;;; Version control configurations
+;;; 500_version-control-related.el ---               -*- lexical-binding: t; -*-
 
 ;;;
 ;;; ediff for visual diff
