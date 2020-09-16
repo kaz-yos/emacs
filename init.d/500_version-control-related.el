@@ -1,19 +1,20 @@
 ;;; 500_version-control-related.el ---               -*- lexical-binding: t; -*-
 
 ;;;
-;;; ediff for visual diff
-;; Show in the same frame
-;; https://www.gnu.org/software/emacs/manual/html_node/ediff/Window-and-Frame-Configuration.html
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-;;;
-;; Show them side by side
-;; https://www.gnu.org/software/emacs/manual/html_node/ediff/Miscellaneous.html
-(setq ediff-split-window-function 'split-window-horizontally)
+;;; ediff-wind.el
+;; ediff for visual diff
+(use-package ediff-wind
+  :config
+  ;; Show in the same frame
+  ;; https://www.gnu.org/software/emacs/manual/html_node/ediff/Window-and-Frame-Configuration.html
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+  ;; Show them side by side
+  ;; https://www.gnu.org/software/emacs/manual/html_node/ediff/Miscellaneous.html
+  (setq ediff-split-window-function 'split-window-horizontally))
 
 
 ;;;
 ;;; In-buffer highlighting of changes
-
 ;;;  git-gutter.el
 ;; https://github.com/syohex/emacs-git-gutter
 (use-package git-gutter
@@ -27,8 +28,6 @@
   (add-hook 'magit-post-refresh-hook 'git-gutter:update-all-windows)
   ;; Activate everywhere.
   (global-git-gutter-mode))
-
-
 ;;;  git-gutter-fringe.el
 ;; https://github.com/syohex/emacs-git-gutter-fringe
 (use-package git-gutter-fringe
