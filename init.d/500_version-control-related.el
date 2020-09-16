@@ -132,6 +132,15 @@
     ))
 
 
+;;;  abridge-diff.el
+;; https://github.com/jdtsmith/abridge-diff
+(use-package abridge-diff
+  :ensure t
+  :after magit
+  :config
+  (abridge-diff-mode 1))
+
+
 ;;;  git-timemachine.el
 ;; Use git-timemachine to browse historic versions of a file with p
 ;; (previous) and n (next).
