@@ -455,3 +455,12 @@ searched. If there is no symbol, empty search box is started."
   :commands (ace-select-window
              ace-swap-window)
   :bind ("s-5" . ace-window))
+
+
+;;;
+;;; git-grep.el
+;; https://github.com/tychoish/git-grep.el
+(use-package git-grep
+  :ensure t
+  :commands (git-grep
+             git-grep-repo))
