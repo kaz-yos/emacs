@@ -303,3 +303,15 @@
                ;; Unset C-tab from ESS major mode in SAS mode
                (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))
   )
+
+
+;;;
+;;; ess-r-insert-obj.el
+;; https://github.com/ShuguangSun/ess-r-insert-obj
+(use-package ess-r-insert-obj
+  :ensure t
+  :commands (ess-r-insert-obj-dt-name
+             ess-r-insert-obj-col-name
+             ess-r-insert-obj-col-name-all
+             ess-r-insert-obj-value
+             ess-r-insert-obj-value-all))
