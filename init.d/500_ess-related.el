@@ -301,7 +301,8 @@
   (add-hook 'sas-mode-hook
             '(lambda()
                ;; Unset C-tab from ESS major mode in SAS mode
-               (local-unset-key [C-tab] 'ess-sas-backward-delete-tab)))
+               ;; Orignally ess-sas-backward-delete-tab
+               (local-unset-key [C-tab])))
   )
 
 
