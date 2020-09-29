@@ -320,6 +320,8 @@
          :map ivy-occur-grep-mode-map
          ("C-x C-q" . ivy-wgrep-change-to-wgrep-mode))
   :config
+  ;; Map commands to their minimum required input length.
+  (setq ivy-more-chars-alist '((t . 2)))
   ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
   ;; Add recent files and bookmarks to the ivy-switch-buffer.
   ;; Does not work with my-ivy-switch-buffer.
