@@ -29,8 +29,8 @@ cat("### Started ", as.character(start_time), "\n")
 library(doParallel)
 ## Reproducible parallelization
 library(doRNG)
-## Detect core count (Do not use on clusters)
-n_cores <- min(parallel::detectCores(), 4)
+## Detect core count. This supports LSF and SLURM.
+n_cores <- future::availableCores()
 ## Used by parallel::mclapply() as default
 options(mc.cores = n_cores)
 ## Used by doParallel as default
