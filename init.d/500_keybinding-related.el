@@ -257,9 +257,9 @@ This should be run after running multiple-cursors"
          ("o" . hydra-outline/body)
          ("m" . hydra-multiple-cursors/body)
          ("," . hydra-expand-region/body)
+         ("." . hydra-symbol-overlay/body)
          :map mode-specific-map
          ("o" . hydra-window/body)
-         :map my-key-map
          ("." . hydra-symbol-overlay/body))
   :config
   ;;
