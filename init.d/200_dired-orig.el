@@ -12,6 +12,7 @@
               ;; ("s-g" . find-grep-dired)
               )
   :config
+  ;; Common error: Listing directory failed but ‘access-file’ worked
   ;; https://stackoverflow.com/questions/4076360/error-in-dired-sorting-on-os-x
   ;; ls does not support --dired; see `dired-use-ls-dired' for more details.
   ;; This occurs because Mac's ls does not support "--dired" option although there is "-dired"
