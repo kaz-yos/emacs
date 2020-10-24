@@ -50,7 +50,7 @@
 ;;; flycheck-stan.el
 (use-package flycheck-stan
   :ensure t
-  :load-path "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/flycheck-stan/"
+  ;; :load-path "~/Dropbox/documents/programming/emacs-lisp-repos/stan-mode/flycheck-stan/"
   :hook (stan-mode . flycheck-stan-stanc3-setup)
   ;;
   :config
