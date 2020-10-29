@@ -196,6 +196,9 @@ to conform the org-mode convention."
   ;; note    Prompt for a note and add it with template ‘org-log-note-headings’
   (setq org-log-done 'time)
   ;;
+  ;; Non-nil means adapt indentation to outline node level.
+  (setq org-adapt-indentation nil)
+  ;;
 ;;;
 ;;; Agenda related
   ;; http://www.personal.psu.edu/bam49/notebook/org-mode-for-research/
