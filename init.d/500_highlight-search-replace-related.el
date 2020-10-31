@@ -60,6 +60,73 @@
   :config
   (setq symbol-overlay-idle-time 0.5)
   ;;
+  (defface my-symbol-overlay-face-1
+    '((t (:background "dodger blue" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-2
+    '((t (:background "hot pink" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-3
+    '((t (:background "yellow" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-4
+    '((t (:background "orchid" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-5
+    '((t (:background "red" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-6
+    '((t (:background "salmon" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-7
+    '((t (:background "spring green" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-8
+    '((t (:background "turquoise" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-9
+    '((t (:background "DeepPink" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-10
+    '((t (:background "MediumPurple1" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-11
+    '((t (:background "DarkOrange" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-12
+    '((t (:background "RoyalBlue1" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-13
+    '((t (:background "OliveDrab" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-14
+    '((t (:background "plum1" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-15
+    '((t (:background "dark magenta" :foreground "black")))
+    "Symbol Overlay candidate")
+  (defface my-symbol-overlay-face-16
+    '((t (:background "thistle1" :foreground "black")))
+    "Symbol Overlay candidate")
+  ;;
+  (setq symbol-overlay-faces
+        '(my-symbol-overlay-face-1
+          my-symbol-overlay-face-2
+          my-symbol-overlay-face-3
+          my-symbol-overlay-face-4
+          my-symbol-overlay-face-5
+          my-symbol-overlay-face-6
+          my-symbol-overlay-face-7
+          my-symbol-overlay-face-8
+          my-symbol-overlay-face-9
+          my-symbol-overlay-face-10
+          my-symbol-overlay-face-11
+          my-symbol-overlay-face-12
+          my-symbol-overlay-face-13
+          my-symbol-overlay-face-14
+          my-symbol-overlay-face-15
+          my-symbol-overlay-face-16))
+  ;;
   ;; auto-highlighting
   (symbol-overlay-mode +1))
 
