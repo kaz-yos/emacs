@@ -221,7 +221,14 @@ from the current buffer."
   ;;
   ;; Invoke the dired-quick-sort hydra with a key.
   :bind (:map dired-mode-map
-              ("s" . hydra-dired-quick-sort/body)))
+              ("s" . hydra-dired-quick-sort/body))
+  :config
+  ;; Repeating the following (also in dired config)
+  ;; as it often malfunctions.
+  ;; Check existance of gls and use it if it exists
+  (let ((gls (executable-find "gls")))
+    (when gls
+      (setq insert-directory-program gls))))
 
 
 ;;;
