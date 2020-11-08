@@ -3,4 +3,4 @@
 # key: int
 # binding: direct-keybinding
 # --
-\int_{$1}^{$2} $0 \text{d}$3
+\int_{$1}^{$2} $0 \mathrm{d}$3
