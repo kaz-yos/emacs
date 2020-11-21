@@ -19,7 +19,10 @@
   :ensure t
   :commands (dired-rsync)
   :bind (:map dired-mode-map
-              ("Y" . dired-rsync)))
+              ("Y" . dired-rsync))
+  :config
+  ;; Drop --info=progress2, which is not supported by macOS rsync.
+  (setq dired-rsync-options "-az"))
 
 
 ;;;
