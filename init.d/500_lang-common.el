@@ -102,7 +102,7 @@
   :config
   ;; Bind M-.  and M-, upon registering `smart-jump'.
   (setq smart-jump-bind-keys t)
-  ;; smart-jump-default-mode-list defines modes for the following.
+  ;; smart-jump-default-mode-list defines modes for the following function.
   (smart-jump-setup-default-registers))
 
 
