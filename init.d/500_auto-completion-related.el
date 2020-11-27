@@ -366,24 +366,12 @@
   :commands (counsel-find-file
              counsel-ag
              counsel-rg
-             counsel-git-grep)
+             counsel-git-grep
+             counsel-ag-at-point
+             counsel-rg-at-point)
   :bind (("s-w" . counsel-ag-at-point))
   ;;
   :config
-  ;; Project directory advise.
-  (defun counsel-ag-arg2-to-project-root (args)
-    "Swap the second argument to the project root directory.
-
-ARGS is a list of arguments."
-    ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
-    `(,(car args)
-      ;; New second element
-      ,(projectile-project-root)
-      ,@(cddr args)))
-  ;;
-  ;; (advice-add #'counsel-ag
-  ;;             :filter-args
-  ;;             #'counsel-ag-arg2-to-project-root)
   ;;
   (defun counsel-ag-at-point (u-arg)
     "counsel-ag with at-point and project root enhancement
@@ -391,29 +379,28 @@ ARGS is a list of arguments."
 The initial string is produced by selection-or-thing-at-point.
 The directory is detected by projectile-project-root."
     (interactive "P")
-    (if u-arg
-        ;; This command detects the current-prefix-arg. If t, it ask for a directory and arguments.
+    (if u-arg                           ; `current-prefix-arg' is passed down.
         (counsel-ag)
       (counsel-ag (selection-or-thing-at-point)
-                  ;; This will be replaced if counsel-ag-arg2-to-project-root advice is used.
                   (let
                       ((projectile-require-project-root nil))
                     (projectile-project-root)))))
-  ;;
+  ;; Make rg sorted and single-thread.
+  (setq counsel-rg-base-command
+        (append counsel-rg-base-command '("--sort-files")))
   (defun counsel-rg-at-point (u-arg)
     "counsel-rg with at-point and project root enhancement
 
 The initial string is produced by selection-or-thing-at-point.
 The directory is detected by projectile-project-root."
     (interactive "P")
-    (if u-arg
-        ;; This command detects the current-prefix-arg. If t, it ask for a directory and arguments.
+    (if u-arg                           ; `current-prefix-arg' is passed down.
         (counsel-rg)
       (counsel-rg (selection-or-thing-at-point)
-                  ;; This will be replaced if counsel-ag-arg2-to-project-root advice is used.
                   (let
                       ((projectile-require-project-root nil))
                     (projectile-project-root)))))
+  ;;
   ;; https://github.com/abo-abo/swiper/issues/66
   (defun counsel-git-grep-at-point (u-arg)
     "counsel-git-grep with at-point enhancement
