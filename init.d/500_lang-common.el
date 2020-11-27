@@ -82,10 +82,15 @@
 ;; https://github.com/jacktasia/dumb-jump
 (use-package dumb-jump
   :ensure t
+  :commands (dumb-jump-go
+             dumb-jump-back
+             dumb-jump-quick-look)
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   ;; https://github.com/jacktasia/dumb-jump#emacs-options
+  ;; Which selector to use when there is multiple choices.
   (setq dumb-jump-selector 'ivy)
+  ;; When true will jump in a visible window if that window already has the file open.
   (setq dumb-jump-use-visible-window t))
 
 
