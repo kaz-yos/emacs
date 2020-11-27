@@ -83,6 +83,7 @@
 (use-package dumb-jump
   :ensure t
   :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   ;; https://github.com/jacktasia/dumb-jump#emacs-options
   (setq dumb-jump-selector 'ivy)
   (setq dumb-jump-use-visible-window t))
