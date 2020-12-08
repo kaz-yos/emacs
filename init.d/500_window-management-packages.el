@@ -11,7 +11,8 @@
 
 
 ;;;
-;;; window-number.el for direct movement to windows
+;;; window-number.el
+;; https://github.com/nikolas/window-number/
 (use-package window-number
   :ensure t
   :config
@@ -33,3 +34,30 @@
   (global-set-key (kbd "s-2") (lambda () (interactive) (my-window-number-select 2)))
   (global-set-key (kbd "s-3") (lambda () (interactive) (my-window-number-select 3)))
   (global-set-key (kbd "s-4") (lambda () (interactive) (my-window-number-select 4))))
+
+
+;;;
+;;; shackle.el
+;; https://depp.brause.cc/shackle/
+(use-package shackle
+  :ensure t
+  :config
+  ;; When t, select every window that is already displaying the buffer
+  ;; otherwise only do that if the :select keyword is present.
+  (setq shackle-select-reused-windows nil)
+  ;; Default alignment of aligned windows.
+  (setq shackle-default-alignment 'below)
+  ;; Default size of aligned windows.
+  (setq shackle-default-size 0.4)
+  ;;
+  ;; Association list of rules what to do with windows.
+  ;; Example configuration
+  ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-shackle.el
+  (setq shackle-rules
+        '((magit-status-mode
+           :select t
+           :inhibit-window-quit t
+           :same t)))
+  ;;
+  ;; Activate
+  (shackle-mode 1))
