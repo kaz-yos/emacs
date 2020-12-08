@@ -51,7 +51,8 @@
   (setq shackle-default-size 0.4)
   ;;
   ;; Association list of rules what to do with windows.
-  ;; Example configuration
+  ;; Example configurations
+  ;; https://mullikine.github.io/posts/making-shackle-split-sensibly/
   ;; https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-shackle.el
   (setq shackle-rules
         '((magit-status-mode
