@@ -118,5 +118,10 @@ This is similar to `elscreen-clone'."
   ;; Defines where to create a new tab.
   (setq tab-bar-new-tab-to 'rightmost)
   ;;
+  ;; Buttons for the tab history.
+  (setq tab-bar-back-button "<")
+  (setq tab-bar-forward-button ">")
+  ;;
   ;; Activate
-  (tab-bar-mode +1))
+  (tab-bar-mode +1)
+  (tab-bar-history-mode +1))
