@@ -10,9 +10,11 @@
   :commands (tab-bar-new-tab
              tab-bar-switch-to-next-tab
              tab-bar-switch-to-prev-tab)
-  :bind-keymap (("C-c l" . tab-bar-map))
+  :bind-keymap (("C-c l" . tab-prefix-map))
   :bind (("C-M-o" . tab-bar-switch-to-next-tab)
-         :map tab-bar-map
+         ;; `tab-bar-map' is for mouse actions on the tab bar.
+         ;; `tab-prefix-map' is defined in subr.el.
+         :map tab-prefix-map
          ("c" . my-tab-bar-create)
          ("C" . my-tab-bar-clone)
          ("n" . tab-bar-switch-to-next-tab)
@@ -21,7 +23,6 @@
          ("K" . tab-bar-close-other-tabs)
          ("s" . tab-bar-select-tab-by-name)
          ("r" . tab-bar-rename-tab)
-         ;;
          ("1" . my-tab-bar-select-tab-1)
          ("2" . my-tab-bar-select-tab-2)
          ("3" . my-tab-bar-select-tab-3)
