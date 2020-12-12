@@ -22,6 +22,7 @@
 ;; (mapcar #'buffer-name esbl-separate-buffer-list)
 ;; Addressed in 20200807.1324
 (use-package elscreen-separate-buffer-list
+  :disabled t
   :ensure t
   :demand t
   ;; This is called just before elscreen activation.
@@ -37,6 +38,7 @@
 ;; http://www.emacswiki.org/emacs/EmacsLispScreen
 ;; http://rubikitch.com/2014/09/05/elscreen/
 (use-package elscreen
+  :disabled t
   :ensure t
   :commands (elscreen-create
              my-elscreen-setup)
