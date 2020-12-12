@@ -7,6 +7,9 @@
   ;; Available in emacs 27 and later.
   :if (not (version< emacs-version "27.0"))
   :demand t
+  :commands (tab-bar-new-tab
+             tab-bar-switch-to-next-tab
+             tab-bar-switch-to-prev-tab)
   :bind (("C-M-o" . tab-bar-switch-to-next-tab))
   ;;
   :config
@@ -21,6 +24,11 @@
       (seq-filter (lambda (elt)
                     (member elt buffer-names-to-keep))
                   buffer-names)))
+  ;;
+  ;; Defines what to show in a new tab.
+  (setq tab-bar-new-tab-choice "*scratch*")
+  ;; Defines where to create a new tab.
+  (setq tab-bar-new-tab-to 'rightmost)
   ;;
   ;; Activate
   (tab-bar-mode))
