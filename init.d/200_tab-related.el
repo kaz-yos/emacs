@@ -164,16 +164,18 @@ This is similar to `elscreen-clone'."
   (setq tab-bar-close-button-show nil)
   ;; Show absolute numbers on tabs.
   (setq tab-bar-tab-hints t)
-  ;; String that delimits tabs.
-  (setq tab-bar-separator " ")
+  ;; String that delimits tabs. More spaces are nice for the frame-title.
+  (setq tab-bar-separator (if (display-graphic-p)
+                              "    "
+                            " "))
   ;; Defines what to show in a new tab.
   (setq tab-bar-new-tab-choice "*scratch*")
   ;; Defines where to create a new tab.
   (setq tab-bar-new-tab-to 'rightmost)
   ;;
-  ;; Buttons for the tab history.
-  (setq tab-bar-back-button "<")
-  (setq tab-bar-forward-button ">")
+  ;; Buttons for the tab history. Originally < >.
+  (setq tab-bar-back-button "")
+  (setq tab-bar-forward-button "")
   ;;
   ;; Activate
   (tab-bar-mode +1)
