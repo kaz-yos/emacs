@@ -16,7 +16,20 @@
          ("c" . my-tab-bar-create)
          ("C" . my-tab-bar-clone)
          ("n" . tab-bar-switch-to-next-tab)
-         ("p" . tab-bar-switch-to-prev-tab))
+         ("p" . tab-bar-switch-to-prev-tab)
+         ("k" . tab-bar-close-tab)
+         ("K" . tab-bar-close-other-tabs)
+         ("s" . tab-bar-select-tab-by-name)
+         ;;
+         ("1" . my-tab-bar-select-tab-1)
+         ("2" . my-tab-bar-select-tab-2)
+         ("3" . my-tab-bar-select-tab-3)
+         ("4" . my-tab-bar-select-tab-4)
+         ("5" . my-tab-bar-select-tab-5)
+         ("6" . my-tab-bar-select-tab-6)
+         ("7" . my-tab-bar-select-tab-7)
+         ("8" . my-tab-bar-select-tab-8)
+         ("9" . my-tab-bar-select-tab-9))
   ;;
   :config
   ;; Define functions
@@ -59,6 +72,20 @@ This is similar to `elscreen-clone'."
     ;; before calling the command that adds a new tab.
     (let ((tab-bar-new-tab-choice nil))
       (tab-bar-new-tab arg)))
+  ;;
+  (defun my-create-tab-bar-select-tab (num)
+    `(lambda ()
+       (interactive)
+       (tab-bar-select-tab ,num)))
+  (fset 'my-tab-bar-select-tab-1 (my-create-tab-bar-select-tab 1))
+  (fset 'my-tab-bar-select-tab-2 (my-create-tab-bar-select-tab 2))
+  (fset 'my-tab-bar-select-tab-3 (my-create-tab-bar-select-tab 3))
+  (fset 'my-tab-bar-select-tab-4 (my-create-tab-bar-select-tab 4))
+  (fset 'my-tab-bar-select-tab-5 (my-create-tab-bar-select-tab 5))
+  (fset 'my-tab-bar-select-tab-6 (my-create-tab-bar-select-tab 6))
+  (fset 'my-tab-bar-select-tab-7 (my-create-tab-bar-select-tab 7))
+  (fset 'my-tab-bar-select-tab-8 (my-create-tab-bar-select-tab 8))
+  (fset 'my-tab-bar-select-tab-9 (my-create-tab-bar-select-tab 9))
   ;;
   ;; Do not show buttons.
   (setq tab-bar-new-button-show nil)
