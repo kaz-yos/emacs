@@ -10,6 +10,7 @@
   :commands (tab-bar-new-tab
              tab-bar-switch-to-next-tab
              tab-bar-switch-to-prev-tab)
+  :hook ((after-init . my-tab-bar-setup))
   :bind-keymap (("C-c l" . tab-prefix-map))
   :bind (("C-M-o" . tab-bar-switch-to-next-tab)
          ;; `tab-bar-map' is for mouse actions on the tab bar.
@@ -35,6 +36,22 @@
   ;;
   :config
   ;; Define functions
+  (defun my-tab-bar-setup ()
+    "Set up several tabs at startup."
+    ;; Create 2
+    (progn (my-tab-bar-create)
+           (tab-bar-rename-tab "init.d")
+           (find-file (concat user-emacs-directory "init.d"))
+           (split-window nil nil 'left))
+    ;; Create Tab 3
+    (progn (my-tab-bar-create)
+           (find-file (if (file-exists-p "~/Dropbox/documents")
+                          "~/Dropbox/documents"
+                        "~"))
+           (split-window nil nil 'left))
+    ;; Go back to Tab 1
+    (my-tab-bar-select-tab-1))
+  ;;
   ;; tab-bar version of separate buffer list filter
   ;; https://github.com/wamei/elscreen-separate-buffer-list/issues/8
   (defun my-tab-bar-buffer-name-filter (buffer-names)
