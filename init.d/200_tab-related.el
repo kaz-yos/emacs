@@ -24,7 +24,13 @@
       (seq-filter (lambda (elt)
                     (member elt buffer-names-to-keep))
                   buffer-names)))
-  ;;
+  ;; Do not show buttons.
+  (setq tab-bar-new-button-show nil)
+  (setq tab-bar-close-button-show nil)
+  ;; Show absolute numbers on tabs.
+  (setq tab-bar-tab-hints t)
+  ;; String that delimits tabs.
+  (setq tab-bar-separator " ")
   ;; Defines what to show in a new tab.
   (setq tab-bar-new-tab-choice "*scratch*")
   ;; Defines where to create a new tab.
