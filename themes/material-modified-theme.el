@@ -850,6 +850,10 @@
    '(elscreen-tab-current-screen-face ((t :background "gray80" :foreground "black")))
    '(elscreen-tab-other-screen-face ((t :background "gray20" :foreground "gray80")))
    ;;
+;;;  tab-bar
+   '(tab-bar-tab ((t :background "gray80" :foreground "black")))
+   '(tab-bar-tab-inactive ((t :background "gray20" :foreground "gray80")))
+   ;;
 ;;;  latex
    '(font-latex-subscript-face ((t nil)))
    '(font-latex-superscript-face ((t nil)))
