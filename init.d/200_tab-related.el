@@ -106,6 +106,32 @@ This is similar to `elscreen-clone'."
   (fset 'my-tab-bar-select-tab-8 (my-create-tab-bar-select-tab 8))
   (fset 'my-tab-bar-select-tab-9 (my-create-tab-bar-select-tab 9))
   ;;
+  (defun my-tab-bar-string ()
+    "Obtain the text version of the tab bar."
+    (let ((tab-bar-keymap (tab-bar-make-keymap-1)))
+      (thread-last tab-bar-keymap
+        ;; Drop keymap
+        (cdr)
+        ;; Keep ones that have tab as the first element
+        ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Simple-Match-Data.html
+        (seq-filter (lambda (elt)
+                      (string-match "^tab-\\|^current-tab$"
+                                    (symbol-name (car elt)))))
+        ;; Extract names with a special emphasis on the current tab.
+        (seq-map (lambda (elt)
+                   (if (not (string-match "^current-tab$"
+                                          (symbol-name (car elt))))
+                       (substring-no-properties (nth 2 elt))
+                     ;; Current tab special handling
+                     (concat
+                      "<<"
+                      (substring-no-properties (nth 2 elt))
+                      ">>"))))
+        ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html
+        ;; Outer () is necessary to ensure correct thread-last'ing
+        ((lambda (seq)
+           (mapconcat #'identity seq tab-bar-separator))))))
+  ;;
   ;; Defines when to show the tab bar.
   (setq tab-bar-show t)
   ;; Do not show buttons.
