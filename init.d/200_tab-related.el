@@ -1,4 +1,4 @@
-;;; 200_tab.el ---                                   -*- lexical-binding: t; -*-
+;;; 200_tab-related.el ---                           -*- lexical-binding: t; -*-
 
 ;;;
 ;;; tab-bar-mode.el
