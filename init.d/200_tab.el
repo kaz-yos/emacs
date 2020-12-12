@@ -4,6 +4,11 @@
 ;;; tab-bar-mode.el
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Tab-Bars.html
 (use-package tab-bar
+  ;; Available in emacs 27 and later.
+  :if (not (version< emacs-version "27.0"))
+  :demand t
+  :bind (("C-M-o" . tab-bar-switch-to-next-tab))
+  ;;
   :config
   ;; tab-bar version of separate buffer list filter
   ;; https://github.com/wamei/elscreen-separate-buffer-list/issues/8
