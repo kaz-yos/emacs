@@ -56,7 +56,7 @@
     ;; Max length of buffer names before truncate.
     (setq helm-buffer-max-length nil)
     ;; Filter helm's buffer list with the current tab's buffer list
-    (when (boundp 'my-tab-bar-buffer-name-filter)
+    (when (fboundp 'my-tab-bar-buffer-name-filter)
       (advice-add 'helm-buffer-list
                   :filter-return #'my-tab-bar-buffer-name-filter)))
   ;;
