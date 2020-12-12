@@ -20,6 +20,7 @@
          ("k" . tab-bar-close-tab)
          ("K" . tab-bar-close-other-tabs)
          ("s" . tab-bar-select-tab-by-name)
+         ("r" . tab-bar-rename-tab)
          ;;
          ("1" . my-tab-bar-select-tab-1)
          ("2" . my-tab-bar-select-tab-2)
