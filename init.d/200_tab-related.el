@@ -132,6 +132,31 @@ This is similar to `elscreen-clone'."
         ((lambda (seq)
            (mapconcat #'identity seq tab-bar-separator))))))
   ;;
+  (defvar *my-tab-bar-as-string*
+    ""
+    "Variable to hold curent tab names as a string")
+  ;;
+  (defun my-update-tab-bar-as-string ()
+    "Update *my-tab-bar-as-string* variable"
+    (interactive)
+    (setq *my-tab-bar-as-string* (my-tab-bar-string)))
+  ;; Functions called during redisplay when window configuration has changed.
+  (add-hook 'window-configuration-change-hook 'my-update-tab-bar-as-string)
+  ;;
+  ;; Set frame title format as combination of current tabs and buffer/path
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Properties-in-Mode.html#Properties-in-Mode
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Changing-Properties.html
+  ;; http://kitchingroup.cheme.cmu.edu/blog/2014/09/14/Colorized-text-in-Emacs/
+  (setq frame-title-format '(:eval (propertize
+                                    ;; String
+                                    (concat *my-tab-bar-as-string*
+                                            "    ||    "
+                                            (if buffer-file-name
+                                                (abbreviate-file-name buffer-file-name)
+                                              "%b"))
+                                    ;; Properties: a sequence of PROPERTY VALUE pairs
+                                    'face '(:foreground "white"))))
+  ;;
   ;; Defines when to show the tab bar.
   (setq tab-bar-show t)
   ;; Do not show buttons.
