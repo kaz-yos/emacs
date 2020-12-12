@@ -54,7 +54,11 @@
   (use-package helm-buffers
     :config
     ;; Max length of buffer names before truncate.
-    (setq helm-buffer-max-length nil))
+    (setq helm-buffer-max-length nil)
+    ;; Filter helm's buffer list with the current tab's buffer list
+    (when (boundp 'my-tab-bar-buffer-name-filter)
+      (advice-add 'helm-buffer-list
+                  :filter-return #'my-tab-bar-buffer-name-filter)))
   ;;
 ;;;  helm-for-files.el
   (use-package helm-for-files
