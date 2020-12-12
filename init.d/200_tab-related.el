@@ -106,6 +106,8 @@ This is similar to `elscreen-clone'."
   (fset 'my-tab-bar-select-tab-8 (my-create-tab-bar-select-tab 8))
   (fset 'my-tab-bar-select-tab-9 (my-create-tab-bar-select-tab 9))
   ;;
+  ;; Defines when to show the tab bar.
+  (setq tab-bar-show t)
   ;; Do not show buttons.
   (setq tab-bar-new-button-show nil)
   (setq tab-bar-close-button-show nil)
