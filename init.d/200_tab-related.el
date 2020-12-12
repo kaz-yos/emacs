@@ -157,6 +157,21 @@ This is similar to `elscreen-clone'."
                                     ;; Properties: a sequence of PROPERTY VALUE pairs
                                     'face '(:foreground "white"))))
   ;;
+  (defun my-add-buffer-info (tab-bar-keymap)
+    "Add an additional item to tab-bar keymap."
+    (append tab-bar-keymap
+            `((buffer-file-name menu-item
+                                ,(concat
+                                  " ||  "
+                                  (if buffer-file-name
+                                      (abbreviate-file-name buffer-file-name)
+                                    (buffer-name)))
+                                ignore))))
+  ;; Use only in terminal. It is done through frame-title-format in GUI.
+  (unless (display-graphic-p)
+    (advice-add 'tab-bar-make-keymap-1
+                :filter-return #'my-add-buffer-info))
+  ;;
   ;; Defines when to show the tab bar.
   (setq tab-bar-show t)
   ;; Do not show buttons.
