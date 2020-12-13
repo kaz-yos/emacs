@@ -38,7 +38,7 @@
   ;; Define functions
   (defun my-tab-bar-setup ()
     "Set up several tabs at startup."
-    ;; Create 2
+    ;; Create Tab 2
     (progn (my-tab-bar-create)
            (tab-bar-rename-tab "init.d")
            (find-file (concat user-emacs-directory "init.d"))
