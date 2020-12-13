@@ -58,7 +58,9 @@
     ;; Filter helm's buffer list with the current tab's buffer list
     (when (fboundp 'my-tab-bar-buffer-name-filter)
       (advice-add 'helm-buffer-list
-                  :filter-return #'my-tab-bar-buffer-name-filter)))
+                  :filter-return #'my-tab-bar-buffer-name-filter))
+    ;; Switch to buffer in its own tab when non nil.
+    (setq helm-buffers-maybe-switch-to-tab nil))
   ;;
 ;;;  helm-for-files.el
   (use-package helm-for-files
