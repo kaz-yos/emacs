@@ -151,9 +151,12 @@ This is similar to `elscreen-clone'."
                                     ;; String
                                     (concat *my-tab-bar-as-string*
                                             "    ||    "
-                                            (if buffer-file-name
-                                                (abbreviate-file-name buffer-file-name)
-                                              "%b"))
+                                            (cond
+                                             (buffer-file-name
+                                              (abbreviate-file-name buffer-file-name))
+                                             ((string-equal major-mode "dired-mode")
+                                              (dired-current-directory))
+                                             (t "%b")))
                                     ;; Properties: a sequence of PROPERTY VALUE pairs
                                     'face '(:foreground "white"))))
   ;;
@@ -163,9 +166,12 @@ This is similar to `elscreen-clone'."
             `((buffer-file-name menu-item
                                 ,(concat
                                   " ||  "
-                                  (if buffer-file-name
-                                      (abbreviate-file-name buffer-file-name)
-                                    (buffer-name)))
+                                  (cond
+                                   (buffer-file-name
+                                    (abbreviate-file-name buffer-file-name))
+                                   ((string-equal major-mode "dired-mode")
+                                    (dired-current-directory))
+                                   (t (buffer-name))))
                                 ignore))))
   ;; Use only in terminal. It is done through frame-title-format in GUI.
   (unless (display-graphic-p)
