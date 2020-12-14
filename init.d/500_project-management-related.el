@@ -39,8 +39,6 @@
   (projectile-load-known-projects)
   ;;
   ;; Enable Projectile globally
-  ;; 2015-01-01 error *** Eval error ***  End of file during parsing
-  ;; 2015-01-11 Solved by deleting .emacs.d/projectile-bookmarks.eld
   (projectile-global-mode)
   ;;
   ;; Indexing
