@@ -3,6 +3,7 @@
 ;;;
 ;;; tab-bar-mode.el
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Tab-Bars.html
+;; https://github.com/link0ff/emacs-init/blob/master/README.org#tabs-with-tab-bar-and-tab-lines
 (use-package tab-bar
   ;; Available in emacs 27 and later.
   :if (not (version< emacs-version "27.0"))
