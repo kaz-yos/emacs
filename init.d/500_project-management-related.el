@@ -8,6 +8,7 @@
 (use-package projectile
   :ensure t
   :demand t
+  :diminish "Prjt"
   :commands (;; These commands are used elsewhere.
              projectile-project-root
              projectile-switch-project

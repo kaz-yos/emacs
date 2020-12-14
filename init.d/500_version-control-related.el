@@ -120,6 +120,7 @@
   ;; https://github.com/petervanderdoes/gitflow-avh
   (use-package magit-gitflow
     :ensure t
+    :diminish ""
     :init
     (setq magit-gitflow-popup-key "C-c f")
     :config
