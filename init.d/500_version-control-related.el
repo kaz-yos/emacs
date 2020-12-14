@@ -139,6 +139,7 @@
 (use-package abridge-diff
   :ensure t
   :after magit
+  :diminish abridge-diff-mode
   :config
   (abridge-diff-mode 1))
 
