@@ -7,11 +7,13 @@
 ;; https://projectile.readthedocs.io/en/latest/usage/
 (use-package projectile
   :ensure t
+  :demand t
   :commands (;; These commands are used elsewhere.
              projectile-project-root
              projectile-switch-project
              projectile-commander
-             projectile-project-p)
+             projectile-project-p
+             projectile-project-name)
   :bind-keymap  ("C-c p" . projectile-command-map)
   :bind (:map projectile-command-map
               ("SPC" . counsel-projectile))
