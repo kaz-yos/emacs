@@ -24,6 +24,7 @@
          ("K" . tab-bar-close-other-tabs)
          ("s" . tab-bar-select-tab-by-name)
          ("r" . tab-bar-rename-tab)
+         ;;
          ("1" . my-tab-bar-select-tab-1)
          ("2" . my-tab-bar-select-tab-2)
          ("3" . my-tab-bar-select-tab-3)
@@ -106,6 +107,8 @@ This is similar to `elscreen-clone'."
   (fset 'my-tab-bar-select-tab-8 (my-create-tab-bar-select-tab 8))
   (fset 'my-tab-bar-select-tab-9 (my-create-tab-bar-select-tab 9))
   ;;
+  ;; This looks like a more sophisticated implementation.
+  ;; https://github.com/ROCKTAKEY/tab-bar-display
   (defun my-tab-bar-string ()
     "Obtain the text version of the tab bar."
     (let ((tab-bar-keymap (tab-bar-make-keymap-1)))
