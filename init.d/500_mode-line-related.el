@@ -1,4 +1,4 @@
-;;; Mode-line-related
+;;; 500_mode-line-related.el ---                     -*- lexical-binding: t; -*-
 
 
 ;;;
@@ -66,3 +66,11 @@
 ;;
 (setq-default mode-line-format
               (cons '(:eval (count-lines-and-chars)) mode-line-format))
+
+
+;;;
+;;; diminish.el
+;; https://github.com/myrjola/diminish.el
+(use-package diminish
+  :ensure t
+  :config)
