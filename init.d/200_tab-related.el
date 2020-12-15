@@ -26,6 +26,7 @@
          ("s" . tab-bar-select-tab-by-name)
          ("r" . tab-bar-rename-tab)
          ("u" . tab-bar-undo-close-tab)
+         ("D" . display-buffer-in-new-tab)
          ;;
          ("1" . my-tab-bar-select-tab-1)
          ("2" . my-tab-bar-select-tab-2)
