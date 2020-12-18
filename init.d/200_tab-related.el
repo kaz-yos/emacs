@@ -3,7 +3,12 @@
 ;;;
 ;;; tab-bar-mode.el
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Tab-Bars.html
+;; Author's configuration
 ;; https://github.com/link0ff/emacs-init/blob/master/README.org#tabs-with-tab-bar-and-tab-lines
+;; tab-bar-mode - no visual tabs? (not implemented in macOS, yet).
+;; https://www.reddit.com/r/emacs/comments/fdbsc8/tabbarmode_no_visual_tabs/
+;; Use example
+;; https://www.youtube.com/watch?v=C7ZlNRbWdVI
 (use-package tab-bar
   ;; Available in emacs 27 and later.
   :if (not (version< emacs-version "27.0"))
@@ -186,16 +191,15 @@ This is similar to `elscreen-clone'."
   ;;
   ;; Use the projectile project name for the tab name.
   ;; https://github.com/toyboot4e/dotfiles/blob/master/editor/emacs/elisp/ide.el#L172-L178
-  (eval-after-load "projectile"
-    '(progn
-       (defun my-tab-bar-tab-name-current-project-or-buffer ()
-         (let ((project-name (projectile-project-name)))
-           (if (string-equal project-name "-")
-               (tab-bar-tab-name-current)
-             project-name)))
-       ;; Function to get a tab name.
-       (setq tab-bar-tab-name-function
-             #'my-tab-bar-tab-name-current-project-or-buffer)))
+  (with-eval-after-load "projectile"
+    (defun my-tab-bar-tab-name-current-project-or-buffer ()
+      (let ((project-name (projectile-project-name)))
+        (if (string-equal project-name "-")
+            (tab-bar-tab-name-current)
+          project-name)))
+    ;; Function to get a tab name.
+    (setq tab-bar-tab-name-function
+          #'my-tab-bar-tab-name-current-project-or-buffer))
   ;;
   ;; Defines when to show the tab bar.
   (setq tab-bar-show t)
