@@ -262,4 +262,9 @@ This is similar to `elscreen-clone'."
   ;; return a list of buffers with the same major mode
   ;; (setq tab-line-tabs-function #'tab-line-tabs-mode-buffers)
   ;;
+  ;; Minimize visual clutters
+  (setq tab-line-separator nil)
+  (setq tab-line-close-button-show nil)
+  (setq tab-line-new-button-show nil)
+  ;;
   (global-tab-line-mode +1))
