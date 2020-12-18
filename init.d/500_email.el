@@ -30,24 +30,27 @@
 
 ;;;
 ;;; mu4e-related
+;; http://www.djcbsoftware.nl/code/mu/
 ;; http://www.djcbsoftware.nl/code/mu/mu4e.html
 ;; https://www.emacswiki.org/emacs/mu4e
 ;;
 ;; Manage your gmail account in emacs with mu4e
 ;; https://gist.github.com/areina/3879626
-;; installing mu and mu4e with homebrew with emacs from emacsforosx
+;; Installing mu and mu4e with homebrew with emacs from emacsforosx
 ;; http://blog.danielgempesaw.com/post/43467552978/installing-mu-and-mu4e-with-homebrew-with-emacs
-;; MU4E TUTORIALS
+;; MU4E Tutorials
 ;; http://pragmaticemacs.com/mu4e-tutorials/
 ;; The Ultimate Emailing Agent with Mu4e and Emacs
 ;; http://tech.memoryimprintstudio.com/the-ultimate-emailing-agent-with-mu4e-and-emacs/
+;; Fastmail setup with Emacs, mu4e and mbsync on macOS
+;; https://rakhim.org/fastmail-setup-with-emacs-mu4e-and-mbsync-on-macos/
 ;;
 ;; Install infrastructure
-;;
 ;; Install HEAD mu along with mu4e following below
-;; make sure which emacs gives the path to a new emacs (23+)
+;; Make sure $ which emacs gives the path to a new emacs (23+)
 ;; https://github.com/Homebrew/homebrew/issues/16504#issuecomment-11394215
-;; EMACS=$(which emacs) brew install mu --with-emacs --HEAD
+;; As of 2020-12-18, use the following:
+;; EMACS=$(which emacs) brew install mu --HEAD
 ;; ./configure --prefix=/usr/local/Cellar/mu/HEAD --with-lispdir=/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu
 ;;
 ;; These unix tools also have to be installed and configured elsewhere.
