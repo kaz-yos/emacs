@@ -258,9 +258,9 @@ This is similar to `elscreen-clone'."
   ;; Function to get a list of tabs to display in the tab line.
   ;; (setq tab-line-tabs-function #'tab-line-tabs-buffer-groups)
   ;; returns a list of buffers associated with the selected window.
-  (setq tab-line-tabs-function #'tab-line-tabs-window-buffers)
+  ;; (setq tab-line-tabs-function #'tab-line-tabs-window-buffers)
   ;; return a list of buffers with the same major mode
-  ;; (setq tab-line-tabs-function #'tab-line-tabs-mode-buffers)
+  (setq tab-line-tabs-function #'tab-line-tabs-mode-buffers)
   ;;
   ;; Minimize visual clutters
   (setq tab-line-separator nil)
