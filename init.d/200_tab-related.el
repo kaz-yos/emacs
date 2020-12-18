@@ -224,3 +224,32 @@ This is similar to `elscreen-clone'."
   ;; Activate
   (tab-bar-mode +1)
   (tab-bar-history-mode +1))
+
+
+;;;
+;;; tab-line-mode.el
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Tab-Line.html
+(use-package tab-line
+  :config
+  ;; Project based organization
+  ;; http://amitp.blogspot.com/2020/06/emacs-prettier-tab-line.html
+  ;; Show only the buffers from the current project, sorted alphabetically.
+  ;; `tab-line-tabs-function' can be set to group mode, which uses
+  ;; `tab-line-tabs-buffer-group-function' to choose the group name and
+  ;; `tab-line-tabs-buffer-group-sort-function' to sort the buffers in the group.
+  (defun my-tab-line-buffer-group (buffer)
+    "Use the project.el name for the buffer group"
+    (with-current-buffer buffer
+      (replace-regexp-in-string "/$" ""
+                                (car (project-roots (project-current))))))
+  ;;
+  (defun my-buffer-name-sort (a b)
+    (string< (buffer-name a)
+             (buffer-name b)))
+  ;;
+  ;; Function to sort buffers in group.
+  (setq tab-line-tabs-buffer-group-sort-function #'my-buffer-name-sort)
+  ;; Function to put a buffer to the group.
+  (setq tab-line-tabs-buffer-group-function #'my-tab-line-buffer-group)
+  ;; Function to get a list of tabs to display in the tab line.
+  (setq tab-line-tabs-function #'tab-line-tabs-buffer-groups))
