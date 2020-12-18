@@ -5,14 +5,27 @@
 ;;; General configuration
 ;; Default in sending e-mail
 (setq user-full-name "Kazuki Yoshida")
+;;
+;;;  message.el
+(use-package message
+  :config
+  (setq message-send-mail-function 'message-send-mail-with-sendmail)
+  ;; tell msmtp to choose the SMTP server according to the from field in the outgoing email
+  (setq message-sendmail-extra-arguments '("--read-envelope-from"))
+  (setq message-sendmail-f-is-evil 't))
+;;
+;;;  sendmail.el
+(use-package sendmail
+  :config
+  ;; Program used to send messages.
+  (setq sendmail-program
+        (or (executable-find "sendmail")
+            (cond
+             ((file-exists-p "/usr/sbin/sendmail") "/usr/sbin/sendmail")
+             ((file-exists-p "/usr/lib/sendmail") "/usr/lib/sendmail")
+             ((file-exists-p "/usr/ucblib/sendmail") "/usr/ucblib/sendmail")
+             (t "sendmail")))))
 
-;;;  SMTP configuration
-;; use msmtp
-(setq message-send-mail-function 'message-send-mail-with-sendmail)
-(setq sendmail-program "msmtp")
-;; tell msmtp to choose the SMTP server according to the from field in the outgoing email
-(setq message-sendmail-extra-arguments '("--read-envelope-from"))
-(setq message-sendmail-f-is-evil 't)
 
 
 ;;;
