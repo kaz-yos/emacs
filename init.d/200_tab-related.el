@@ -247,9 +247,19 @@ This is similar to `elscreen-clone'."
     (string< (buffer-name a)
              (buffer-name b)))
   ;;
+  ;; Function to return a global list of buffers.
+  ;; Used only for `tab-line-tabs-mode-buffers' and `tab-line-tabs-buffer-groups'.
+  (setq tab-line-tabs-buffer-list-function #'tab-line-tabs-buffer-list)
+  ;;
   ;; Function to sort buffers in group.
   (setq tab-line-tabs-buffer-group-sort-function #'my-buffer-name-sort)
   ;; Function to put a buffer to the group.
   (setq tab-line-tabs-buffer-group-function #'my-tab-line-buffer-group)
   ;; Function to get a list of tabs to display in the tab line.
-  (setq tab-line-tabs-function #'tab-line-tabs-buffer-groups))
+  ;; (setq tab-line-tabs-function #'tab-line-tabs-buffer-groups)
+  ;; returns a list of buffers associated with the selected window.
+  (setq tab-line-tabs-function #'tab-line-tabs-window-buffers)
+  ;; return a list of buffers with the same major mode
+  ;; (setq tab-line-tabs-function #'tab-line-tabs-mode-buffers)
+  ;;
+  (global-tab-line-mode +1))
