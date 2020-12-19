@@ -76,7 +76,7 @@
   ;;             ("m" . mu4e))
   :init
   ;; Check for mu4e directory before invoking all the following
-  (let ((mu4e-dir "/usr/local/Cellar/mu/1.0/share/emacs/site-lisp/mu/mu4e/"))
+  (let ((mu4e-dir "/usr/local/Cellar/mu/1.4.13/share/emacs/site-lisp/mu/mu4e/"))
     (when (file-exists-p mu4e-dir)
       (add-to-list 'load-path mu4e-dir)))
   ;; Start mu4e after init.
