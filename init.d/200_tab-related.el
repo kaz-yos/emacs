@@ -232,7 +232,10 @@ This is similar to `elscreen-clone'."
 (use-package tab-line
   ;; To use `my-tab-bar-buffer-name-filter' defined in the tab-bar configuration.
   :after tab-bar
-  :commands (my-tab-line-tab-next
+  ;; Don'd defer
+  :demand t
+  :commands (global-tab-line-mode
+             my-tab-line-tab-next
              my-tab-line-tab-previous)
   :bind (("C-M-o" . my-tab-line-tab-next)
          ;; `tab-prefix-map' is defined in subr.el.
