@@ -271,6 +271,38 @@ The list is also restricted to the current tab-bar."
                                   cur-prj))
                   buff-lst)))
   ;;
+  (defun my-tab-line-tab-next ()
+    "Switch to the next tab in the tab-line"
+    (interactive)
+    (let* ((tabs (funcall tab-line-tabs-function))
+           (tabs-max-index (1- (length tabs)))
+           (cur-buff (current-buffer))
+           (cur-buff-index (cl-position cur-buff tabs))
+           (next-buff-index (1+ cur-buff-index)))
+      (cond
+       ;; If only one tab, don't do anything.
+       ((<= tabs-max-index 0) nil)
+       ;; If going beyond the max, go to index 0.
+       ((> next-buff-index tabs-max-index) (switch-to-buffer (seq-elt tabs 0)))
+       ;; Otherwise, go to the next index.
+       (t (switch-to-buffer (seq-elt tabs next-buff-index))))))
+  ;;
+  (defun my-tab-line-tab-previous ()
+    "Switch to the previous tab in the tab-line"
+    (interactive)
+    (let* ((tabs (funcall tab-line-tabs-function))
+           (tabs-max-index (1- (length tabs)))
+           (cur-buff (current-buffer))
+           (cur-buff-index (cl-position cur-buff tabs))
+           (prev-buff-index (1- cur-buff-index)))
+      (cond
+       ;; If only one tab, don't do anything.
+       ((<= tabs-max-index 0) nil)
+       ;; If going beyond 0, go to the max index.
+       ((< prev-buff-index 0) (switch-to-buffer (seq-elt tabs tabs-max-index)))
+       ;; Otherwise, go to the previous index.
+       (t (switch-to-buffer (seq-elt tabs prev-buff-index))))))
+  ;;
   ;; Function to return a global list of buffers.
   ;; Used only for `tab-line-tabs-mode-buffers' and `tab-line-tabs-buffer-groups'.
   (setq tab-line-tabs-buffer-list-function
