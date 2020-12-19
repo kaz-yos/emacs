@@ -230,6 +230,8 @@ This is similar to `elscreen-clone'."
 ;;; tab-line-mode.el
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Tab-Line.html
 (use-package tab-line
+  ;; To use `my-tab-bar-buffer-name-filter' defined in the tab-bar configuration.
+  :after tab-bar
   :config
   ;; Project based organization
   ;; http://amitp.blogspot.com/2020/06/emacs-prettier-tab-line.html
@@ -240,16 +242,39 @@ This is similar to `elscreen-clone'."
   (defun my-tab-line-buffer-group (buffer)
     "Use the project.el name for the buffer group"
     (with-current-buffer buffer
-      (replace-regexp-in-string "/$" ""
-                                (car (project-roots (project-current))))))
+      (let ((prj (project-current)))
+        (when prj
+          (replace-regexp-in-string "/$" ""
+                                    (car (project-roots prj)))))))
   ;;
   (defun my-buffer-name-sort (a b)
     (string< (buffer-name a)
              (buffer-name b)))
   ;;
+  (defun my-buffer-list-current-tab-bar ()
+    "Obtain a list of buffers in the current tab bar."
+    (let ((buffer-names-to-keep
+           (my-tab-bar-buffer-name-filter
+            (seq-map #'buffer-name (tab-line-tabs-buffer-list)))))
+      (seq-filter (lambda (buffer)
+                    (member (buffer-name buffer) buffer-names-to-keep))
+                  (tab-line-tabs-buffer-list))))
+  ;;
+  (defun my-buffer-list-current-project-current-tab-bar ()
+    "Obtain a list of buffers in the current buffer's project.
+
+The list is also restricted to the current tab-bar."
+    (let ((buff-lst (my-buffer-list-current-tab-bar))
+          (cur-prj (my-tab-line-buffer-group (current-buffer))))
+      (seq-filter (lambda (buffer)
+                    (string-equal (my-tab-line-buffer-group buffer)
+                                  cur-prj))
+                  buff-lst)))
+  ;;
   ;; Function to return a global list of buffers.
   ;; Used only for `tab-line-tabs-mode-buffers' and `tab-line-tabs-buffer-groups'.
-  (setq tab-line-tabs-buffer-list-function #'tab-line-tabs-buffer-list)
+  (setq tab-line-tabs-buffer-list-function
+        #'my-buffer-list-current-project-current-tab-bar)
   ;;
   ;; Function to sort buffers in group.
   (setq tab-line-tabs-buffer-group-sort-function #'my-buffer-name-sort)
