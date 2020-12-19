@@ -106,13 +106,13 @@
   (defun visible-buffer-names ()
     "Return a list of visible buffer names"
     (let* ((all-buffer-names (mapcar (function buffer-name) (buffer-list))))
-      (-filter 'get-buffer-window
-               all-buffer-names)))
+      (seq-filter 'get-buffer-window
+                  all-buffer-names)))
   ;; Function to check mu4e visibility.
   (defun mu4e-buffer-visible-p ()
     "Return non-nil if any buffer with a name containing mu4e has a window"
-    (-filter (lambda (str) (string-match "*mu4e" str))
-             (visible-buffer-names)))
+    (seq-filter (lambda (str) (string-match "*mu4e" str))
+                (visible-buffer-names)))
   ;;
   ;; Define a function to change mbsync behavior when called interactively
   (defun modify-mu4e-get-mail-command (run-in-background)
