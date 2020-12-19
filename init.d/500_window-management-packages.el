@@ -58,6 +58,10 @@
         '((magit-status-mode
            :select t
            :inhibit-window-quit t
+           :same t)
+          (shell-mode
+           :select t
+           :inhibit-window-quit t
            :same t)))
   ;;
   ;; Activate
