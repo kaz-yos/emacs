@@ -855,6 +855,14 @@
    '(tab-bar-tab ((t :background "gray80" :foreground "black")))
    '(tab-bar-tab-inactive ((t :background "gray20" :foreground "gray80")))
    ;;
+;;;  tab-line
+   '(tab-line ((t :background "black" :foreground "gray80")))
+   '(tab-line-tab ((t :background "gray25" :foreground "gray80")))
+   '(tab-line-tab-current ((t :background "gray70" :foreground "black")))
+   '(tab-line-tab-inactive ((t :background "gray15" :foreground "gray80")))
+   '(tab-line-highlight ((t :background "gray60" :foreground "black")))
+   '(tab-line-close-highlight ((t :foreground "red")))
+   ;;
 ;;;  latex
    '(font-latex-subscript-face ((t nil)))
    '(font-latex-superscript-face ((t nil)))
