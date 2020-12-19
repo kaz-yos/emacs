@@ -40,6 +40,8 @@
 ;; http://blog.danielgempesaw.com/post/43467552978/installing-mu-and-mu4e-with-homebrew-with-emacs
 ;; MU4E Tutorials
 ;; http://pragmaticemacs.com/mu4e-tutorials/
+;; Irreal on mu4e
+;; https://irreal.org/blog/?tag=mu4e
 ;; The Ultimate Emailing Agent with Mu4e and Emacs
 ;; http://tech.memoryimprintstudio.com/the-ultimate-emailing-agent-with-mu4e-and-emacs/
 ;; Fastmail setup with Emacs, mu4e and mbsync on macOS
