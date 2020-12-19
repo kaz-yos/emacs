@@ -18,14 +18,14 @@
              tab-bar-switch-to-prev-tab)
   :hook ((after-init . my-tab-bar-setup))
   :bind-keymap (("C-c l" . tab-prefix-map))
-  :bind (("C-M-o" . tab-bar-switch-to-next-tab)
+  :bind (;; ("C-M-o" . tab-bar-switch-to-next-tab)
          ;; `tab-bar-map' is for mouse actions on the tab bar.
          ;; `tab-prefix-map' is defined in subr.el.
          :map tab-prefix-map
          ("c" . my-tab-bar-create)
          ("C" . my-tab-bar-clone)
-         ("n" . tab-bar-switch-to-next-tab)
-         ("p" . tab-bar-switch-to-prev-tab)
+         ("N" . tab-bar-switch-to-next-tab)
+         ("P" . tab-bar-switch-to-prev-tab)
          ("k" . tab-bar-close-tab)
          ("K" . tab-bar-close-other-tabs)
          ("s" . tab-bar-select-tab-by-name)
@@ -232,6 +232,12 @@ This is similar to `elscreen-clone'."
 (use-package tab-line
   ;; To use `my-tab-bar-buffer-name-filter' defined in the tab-bar configuration.
   :after tab-bar
+  :bind (("C-M-o" . my-tab-line-tab-next)
+         ;; `tab-prefix-map' is defined in subr.el.
+         :map tab-prefix-map
+         ("n" . my-tab-line-tab-next)
+         ("p" . my-tab-line-tab-previous))
+  ;;
   :config
   ;; Project based organization
   ;; http://amitp.blogspot.com/2020/06/emacs-prettier-tab-line.html
