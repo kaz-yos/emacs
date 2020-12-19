@@ -312,8 +312,8 @@
   :ensure t
   :diminish ivy-mode
   :demand t
-  :commands (my-ivy-switch-buffer)
-  :bind (("C-x b" . my-ivy-switch-buffer)
+  :commands (my-ivy-switch-buffer-same-mode)
+  :bind (("C-x b" . my-ivy-switch-buffer-same-mode)
          :map ivy-minibuffer-map
          ;; ivy-immediate-done finishes without completion
          ("C-<return>" . ivy-immediate-done)
@@ -340,13 +340,12 @@
         '((t . ivy--regex-ignore-order)))
   ;;
   ;;
-  (defun my-ivy-switch-buffer ()
-    "Switch to another buffer via ivy from a filtered list of buffers."
+  (defun my-ivy-switch-buffer-same-mode ()
+    "Switch to another buffer via ivy from a list of buffers with the same mode."
     (interactive)
-    (ivy-read "Switch to buffer: "
-              ;; Collection string of the separate buffer list.
-              ;; Filtered by the elscreen-separate-buffer-list package.
-              (mapcar 'buffer-name (esbl-get-separate-buffer-list))
+    (ivy-read "Switch to buffer of the same major mode: "
+              ;; `tab-line-tabs-mode-buffers' select buffers of the same mode.
+              (mapcar 'buffer-name (tab-line-tabs-mode-buffers))
               :matcher #'ivy--switch-buffer-matcher
               :preselect (buffer-name (other-buffer (current-buffer)))
               :action #'ivy--switch-buffer-action
