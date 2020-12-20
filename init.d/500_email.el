@@ -291,19 +291,15 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   ;; Displaying rich-text messages
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
   (setq mu4e-view-prefer-html nil)
-  ;; html converters use first one that exists
-  (cond
-   ((executable-find "w3m")
-    (setq mu4e-html2text-command "w3m -T text/html"))
-   ((executable-find "textutil")
-    (setq mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout"))
-   (t (progn (require 'mu4e-contrib)
-             (setq mu4e-html2text-command 'mu4e-shr2text)
-             (add-hook 'mu4e-view-mode-hook
-                       (lambda()
-                         ;; try to emulate some of the eww key-bindings
-                         (local-set-key (kbd "<tab>") 'shr-next-link)
-                         (local-set-key (kbd "<backtab>") 'shr-previous-link))))))
+  ;; mu4e, stop emails setting background/foreground colours etc
+  ;; https://www.reddit.com/r/emacs/comments/9ep5o1/mu4e_stop_emails_setting_backgroundforeground/
+  (require 'mu4e-contrib)
+  (setq mu4e-html2text-command 'mu4e-shr2text)
+  (setq shr-color-visible-luminance-min 60)
+  (setq shr-color-visible-distance-min 5)
+  (setq shr-use-colors nil)
+  (advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&rest ignore)))
+  ;;
   ;; pdf view
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Installation.html
   ;; https://github.com/djcb/mu/issues/443
