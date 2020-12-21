@@ -63,7 +63,19 @@
 ;;;  message.el
 (use-package message
   :config
+  ;; `message-send-mail-function'
   ;; Function to call to send the current buffer as mail.
+  ;; The headers should be delimited by a line whose contents match the
+  ;; variable mail-header-separator.
+  ;; Valid values include message-send-mail-with-sendmail
+  ;; message-send-mail-with-mh, message-send-mail-with-qmail,
+  ;; message-smtpmail-send-it, smtpmail-send-it,
+  ;; feedmail-send-it and message-send-mail-with-mailclient.  The
+  ;; default is system dependent and determined by the function
+  ;; message-send-mail-function.
+  ;; See also send-mail-function.
+  ;; This variable was added, or its default value changed, in Emacs 27.1.
+  ;; `message-send-mail-with-sendmail'
   ;; Send off the prepared buffer with sendmail.
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
   ;; Additional arguments to sendmail-program.
