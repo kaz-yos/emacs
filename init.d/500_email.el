@@ -4,28 +4,50 @@
 ;;;
 ;;; General configuration
 ;; Default in sending e-mail
+;; user-full-name is a variable defined in C source code.
 (setq user-full-name "Kazuki Yoshida")
+
+
+;;;
+;;; Sending-related
+;; These are designed to utilize the `msmtp' SMTP client.
+;; In its default mode of operation, `msmtp' reads a mail from standard input
+;; and sends it to a predefined SMTP server that takes care of proper delivery.
+;; Command line options and exit codes are compatible to sendmail.
+;;
+;; https://marlam.de/msmtp/
+;; https://marlam.de/msmtp/documentation/
+;; https://marlam.de/msmtp/msmtp.html#Examples
+;; https://github.com/marlam/msmtp-mirror
+;;
+;; Emacs user configuration example
+;; https://www.emacswiki.org/emacs/GnusMSMTP
+;; https://tushartyagi.com/blog/configure-mu4e-and-msmtp/
+;; https://www.ict4g.net/adolfo/notes/emacs/reading-imap-mail-with-emacs.html
+;; https://jonathanchu.is/posts/emacs-notmuch-isync-msmtp-setup/
+;;
+;;;  sendmail.el
+;; https://www.gnu.org/software/emacs/manual/html_mono/smtpmail.html
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Mail-Sending.html
+(use-package sendmail
+  :config
+  ;; Program used to send messages. Use `msmtp' instead of sendmail.
+  ;; $ brew install mstmp
+  (setq sendmail-program (executable-find "msmtp")))
 ;;
 ;;;  message.el
 (use-package message
   :config
+  ;; Function to call to send the current buffer as mail.
+  ;; Send off the prepared buffer with sendmail.
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
-  ;; tell msmtp to choose the SMTP server according to the from field in the outgoing email
+  ;; Additional arguments to sendmail-program.
+  ;; Tell `msmtp' to choose the SMTP server according to the from field
+  ;; in the outgoing email
   (setq message-sendmail-extra-arguments '("--read-envelope-from"))
+  ;; Non-nil means don't add "-f username" to the sendmail command line.
+  ;; Required for proper msmtp functioning.
   (setq message-sendmail-f-is-evil 't))
-;;
-;;;  sendmail.el
-(use-package sendmail
-  :config
-  ;; Program used to send messages.
-  (setq sendmail-program
-        (or (executable-find "sendmail")
-            (cond
-             ((file-exists-p "/usr/sbin/sendmail") "/usr/sbin/sendmail")
-             ((file-exists-p "/usr/lib/sendmail") "/usr/lib/sendmail")
-             ((file-exists-p "/usr/ucblib/sendmail") "/usr/ucblib/sendmail")
-             (t "sendmail")))))
-
 
 
 ;;;
@@ -52,12 +74,11 @@
 ;; Make sure $ which emacs gives the path to a new emacs (23+)
 ;; https://github.com/Homebrew/homebrew/issues/16504#issuecomment-11394215
 ;; As of 2020-12-18, use the following:
-;; EMACS=$(which emacs) brew install mu --HEAD
-;; ./configure --prefix=/usr/local/Cellar/mu/HEAD --with-lispdir=/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu
+;; EMACS=$(which emacs) brew install mu
 ;;
 ;; These unix tools also have to be installed and configured elsewhere.
-;; mbsync (isync package) for IMAP-Maildir syncing
-;; msmtp for sending messages
+;; `mbsync' (isync package) for IMAP-Maildir syncing
+;; `msmtp' for sending messages
 ;; pass and gpg for encrypted password handling (instead macOS security command in use)
 ;;
 ;; Put in the shell environment.
@@ -69,8 +90,6 @@
 ;;; mu4e.el
 ;; Reading IMAP Mail in Emacs on OSX
 ;; http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
-;; Execute the following before first invocation
-;; mu index --maildir=~/.maildir
 (use-package mu4e
   :if (executable-find "mu")
   :commands (mu4e)
