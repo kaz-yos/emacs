@@ -42,11 +42,15 @@
   ;; not a valid RFC 822 (or later) header or continuation line,
   ;; that matches the variable mail-header-separator.
   ;; This is used by the default mail-sending commands.  See also
-  ;; message-send-mail-function for use with the Message package.
-  (setq send-mail-function 'sendmail-query-once)
+  ;; `message-send-mail-function' for use with the Message package.
+  ;; `sendmail-send-it'
+  ;; Send the current mail buffer using the Sendmail package.
+  ;; This is a suitable value for `send-mail-function'.  It sends using the
+  ;; external program defined by `sendmail-program'.
+  (setq send-mail-function 'sendmail-send-it)
   ;; If non-nil, specify the envelope-from address when sending mail.
   ;; The value used to specify it is whatever is found in
-  ;; the variable mail-envelope-from, with user-mail-address as fallback.
+  ;; the variable `mail-envelope-from', with user-mail-address as fallback.
   ;; On most systems, specifying the envelope-from address is a
   ;; privileged operation.  This variable affects sendmail and
   ;; smtpmail -- if you use feedmail to send mail, see instead the
