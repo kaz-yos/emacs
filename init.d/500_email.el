@@ -24,6 +24,9 @@
 ;; https://www.emacswiki.org/emacs/GnusMSMTP
 ;; https://tushartyagi.com/blog/configure-mu4e-and-msmtp/
 ;; https://www.ict4g.net/adolfo/notes/emacs/reading-imap-mail-with-emacs.html
+;;
+;; The following variables were configured based on the URL.
+;; `mail-specify-envelope-from' `mail-envelope-from' `message-sendmail-envelope-from'
 ;; https://jonathanchu.is/posts/emacs-notmuch-isync-msmtp-setup/
 ;;
 ;;;  sendmail.el
@@ -33,7 +36,29 @@
   :config
   ;; Program used to send messages. Use `msmtp' instead of sendmail.
   ;; $ brew install mstmp
-  (setq sendmail-program (executable-find "msmtp")))
+  (setq sendmail-program (executable-find "msmtp"))
+  ;; Function to call to send the current buffer as mail.
+  ;; The headers should be delimited by a line which is
+  ;; not a valid RFC 822 (or later) header or continuation line,
+  ;; that matches the variable mail-header-separator.
+  ;; This is used by the default mail-sending commands.  See also
+  ;; message-send-mail-function for use with the Message package.
+  (setq send-mail-function 'sendmail-query-once)
+  ;; If non-nil, specify the envelope-from address when sending mail.
+  ;; The value used to specify it is whatever is found in
+  ;; the variable mail-envelope-from, with user-mail-address as fallback.
+  ;; On most systems, specifying the envelope-from address is a
+  ;; privileged operation.  This variable affects sendmail and
+  ;; smtpmail -- if you use feedmail to send mail, see instead the
+  ;; variable feedmail-deduce-envelope-from.
+  (setq mail-specify-envelope-from t)
+  ;; If non-nil, designate the envelope-from address when sending mail.
+  ;; This only has an effect if mail-specify-envelope-from is non-nil.
+  ;; The value should be either a string, or the symbol header (in
+  ;; which case the contents of the "From" header of the message
+  ;; being sent is used), or nil (in which case the value of
+  ;; user-mail-address is used).
+  (setq mail-envelope-from 'header))
 ;;
 ;;;  message.el
 (use-package message
@@ -47,7 +72,11 @@
   (setq message-sendmail-extra-arguments '("--read-envelope-from"))
   ;; Non-nil means don't add "-f username" to the sendmail command line.
   ;; Required for proper msmtp functioning.
-  (setq message-sendmail-f-is-evil 't))
+  (setq message-sendmail-f-is-evil 't)
+  ;; Envelope-from when sending mail with sendmail.
+  ;; If this is nil, use user-mail-address.  If it is the symbol
+  ;; header, use the From: header of the message.
+  (setq message-sendmail-envelope-from 'header))
 
 
 ;;;
