@@ -346,12 +346,15 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (setq mu4e-view-prefer-html nil)
   ;; mu4e, stop emails setting background/foreground colours etc
   ;; https://www.reddit.com/r/emacs/comments/9ep5o1/mu4e_stop_emails_setting_backgroundforeground/
-  (require 'mu4e-contrib)
-  (setq mu4e-html2text-command 'mu4e-shr2text)
-  (setq shr-color-visible-luminance-min 60)
-  (setq shr-color-visible-distance-min 5)
-  (setq shr-use-colors nil)
-  (advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&rest ignore)))
+  (use-package mu4e-contrib
+    :config
+    (setq mu4e-html2text-command 'mu4e-shr2text)
+    (setq shr-color-visible-luminance-min 60)
+    (setq shr-color-visible-distance-min 5)
+    (setq shr-use-colors nil)
+    (advice-add #'shr-colorize-region
+                :around (defun shr-no-colourise-region
+                            (&rest ignore))))
   ;;
   ;; pdf view
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Installation.html
