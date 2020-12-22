@@ -472,56 +472,23 @@ It restores mu4e window layout after killing the compose-buffer."
   ;;
   ;; A.9 Attaching files with dired
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/Attaching-files-with-dired.html
-  (require 'gnus-dired)
-  ;; make the `gnus-dired-mail-buffers' function also work on
-  ;; message-mode derived modes, such as mu4e-compose-mode
-  (defun gnus-dired-mail-buffers ()
-    "Return a list of active message buffers."
-    (let (buffers)
-      (save-current-buffer
-        (dolist (buffer (buffer-list t))
-          (set-buffer buffer)
-          (when (and (derived-mode-p 'message-mode)
-                     (null message-sent-message-via))
-            (push (buffer-name buffer) buffers))))
-      (nreverse buffers)))
-  (setq gnus-dired-mail-mode 'mu4e-user-agent)
-  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
-  ;;
-;;; mu4e-alert.el
-  ;; Notification for mu4e
-  ;; https://github.com/iqbalansari/mu4e-alert
-  (require 'mu4e-alert)
-  ;;
-  (mu4e-alert-enable-mode-line-display)
-  ;;
-  ;; choose from alert-styles
-  (mu4e-alert-set-default-style 'mode-line)
-  ;; Using macOS notifier (too annoying)
-  ;; (when (executable-find "terminal-notifier")
-  ;;   (setq alert-notifier-command "terminal-notifier")
-  ;;   ;; choose from alert-styles
-  ;;   (mu4e-alert-set-default-style 'notifier)
-  ;;   ;; Immediately enable without waiting
-  ;;   ;; This entire use-package expression waits for M-x mu4e
-  ;;   (mu4e-alert-enable-notifications)
-  ;;   ;; This is equivalent without immediate execution
-  ;;   ;; (add-hook 'mu4e-index-updated-hook #'mu4e-alert-notify-unread-mail-async)
-  ;;   ;; after-init-hook does not work in delayed use-package expression
-  ;;   ;; (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
-  ;;   )
-  ;; Interesting mail only (configured elsewhere)
-  ;; (setq mu4e-alert-interesting-mail-query
-  ;;       (concat
-  ;;        "flag:unread"
-  ;;        " AND NOT flag:trashed"))
-  ;;
-  ;; Handcrafted notifier (use if the one above does not work)
-  ;; http://www.djcbsoftware.nl/code/mu/mu4e/Retrieving-mail.html#Retrieving-mail
-  ;; (add-hook 'mu4e-index-updated-hook
-  ;;           (defun new-mail-notifier ()
-  ;;             (shell-command "/usr/local/bin/terminal-notifier -message 'maildir updated'")))
-  )
+  (use-package gnus-dired
+    :config
+    ;; make the `gnus-dired-mail-buffers' function also work on
+    ;; message-mode derived modes, such as mu4e-compose-mode
+    ;; This overwrites `gnus-dired-mail-buffers'.
+    (defun gnus-dired-mail-buffers ()
+      "Return a list of active message buffers."
+      (let (buffers)
+        (save-current-buffer
+          (dolist (buffer (buffer-list t))
+            (set-buffer buffer)
+            (when (and (derived-mode-p 'message-mode)
+                       (null message-sent-message-via))
+              (push (buffer-name buffer) buffers))))
+        (nreverse buffers)))
+    (setq gnus-dired-mail-mode 'mu4e-user-agent)
+    (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)))
 
 
 
