@@ -470,28 +470,31 @@ It restores mu4e window layout after killing the compose-buffer."
   ;; Replace with C-a
   (add-hook 'mu4e-compose-mode-hook '(lambda ()
                                        (local-unset-key (kbd "C-a"))
-                                       (local-set-key (kbd "C-a") 'message-seq-cmd--home)))
-  ;;
-  ;; A.9 Attaching files with dired
-  ;; http://www.djcbsoftware.nl/code/mu/mu4e/Attaching-files-with-dired.html
-  (use-package gnus-dired
-    :config
-    ;; make the `gnus-dired-mail-buffers' function also work on
-    ;; message-mode derived modes, such as mu4e-compose-mode
-    ;; This overwrites `gnus-dired-mail-buffers'.
-    (defun gnus-dired-mail-buffers ()
-      "Return a list of active message buffers."
-      (let (buffers)
-        (save-current-buffer
-          (dolist (buffer (buffer-list t))
-            (set-buffer buffer)
-            (when (and (derived-mode-p 'message-mode)
-                       (null message-sent-message-via))
-              (push (buffer-name buffer) buffers))))
-        (nreverse buffers)))
-    (setq gnus-dired-mail-mode 'mu4e-user-agent)
-    (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)))
+                                       (local-set-key (kbd "C-a") 'message-seq-cmd--home))))
 
+
+;;;
+;;; gnus-dired.el
+;; A.9 Attaching files with dired
+;; http://www.djcbsoftware.nl/code/mu/mu4e/Attaching-files-with-dired.html
+(use-package gnus-dired
+  :config
+  ;; make the `gnus-dired-mail-buffers' function also work on
+  ;; message-mode derived modes, such as mu4e-compose-mode
+  ;; This overwrites `gnus-dired-mail-buffers'.
+  (defun gnus-dired-mail-buffers ()
+    "Return a list of active message buffers."
+    (let (buffers)
+      (save-current-buffer
+        (dolist (buffer (buffer-list t))
+          (set-buffer buffer)
+          (when (and (derived-mode-p 'message-mode)
+                     (null message-sent-message-via))
+            (push (buffer-name buffer) buffers))))
+      (nreverse buffers)))
+  ;; mu4e dependency!
+  (setq gnus-dired-mail-mode 'mu4e-user-agent)
+  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
 
 
 ;;;
