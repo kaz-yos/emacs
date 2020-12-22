@@ -265,20 +265,10 @@
   ;; Date stamp check only; miss message that are modified outside mu
   (setq mu4e-index-lazy-check nil)
   ;;
-  ;; The dreaded "Waiting for message..." message and what to do about it
-  ;; http://mu-discuss.narkive.com/VpWEtZ7w/the-dreaded-waiting-for-message-message-and-what-to-do-about-it
-  ;; This hook does not exist now.
-  ;; (add-hook 'mu4e~proc-start-hook
-  ;;           '(lambda ()
-  ;;              (message "Now running the 'killall mu' hook!")
-  ;;              (shell-command "killall mu")
-  ;;              (sleep-for 0 250)))
-  ;;
   ;;
 ;;;  Dynamic folder selection (configured elsewhere)
   ;;
-  ;;
-;;;  Main view configuration
+;;;  Main view configuration (configured elsewhere)
   ;;
   ;;
 ;;;  Header view configuration
