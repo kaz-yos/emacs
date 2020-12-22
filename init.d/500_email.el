@@ -531,17 +531,7 @@ It restores mu4e window layout after killing the compose-buffer."
   ;; (add-hook 'mu4e-index-updated-hook
   ;;           (defun new-mail-notifier ()
   ;;             (shell-command "/usr/local/bin/terminal-notifier -message 'maildir updated'")))
-  ;;
-;;; helm-mu.el
-  (require 'helm-mu)
-  ;; https://github.com/emacs-helm/helm-mu
-  ;; brew install gnu-sed --with-default-names
-  ;; Default search string
-  (setq helm-mu-default-search-string "")
-  ;; Only show contacts first recorded after a certain date
-  (setq helm-mu-contacts-after "2010-01-01")
-  ;; Only show contacts who sent you emails directly
-  (setq helm-mu-contacts-personal t))
+  )
 
 
 
