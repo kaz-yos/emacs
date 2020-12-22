@@ -24,8 +24,8 @@
          :map tab-prefix-map
          ("c" . my-tab-bar-create)
          ("C" . my-tab-bar-clone)
-         ("N" . tab-bar-switch-to-next-tab)
-         ("P" . tab-bar-switch-to-prev-tab)
+         ("n" . tab-bar-switch-to-next-tab)
+         ("p" . tab-bar-switch-to-prev-tab)
          ("k" . tab-bar-close-tab)
          ("K" . tab-bar-close-other-tabs)
          ("s" . tab-bar-select-tab-by-name)
@@ -241,8 +241,8 @@ This is similar to `elscreen-clone'."
   :bind (("C-M-o" . my-tab-line-tab-next)
          ;; `tab-prefix-map' is defined in subr.el.
          :map tab-prefix-map
-         ("n" . my-tab-line-tab-next)
-         ("p" . my-tab-line-tab-previous))
+         ("N" . my-tab-line-tab-next)
+         ("P" . my-tab-line-tab-previous))
   ;;
   :config
   ;; Project based organization
