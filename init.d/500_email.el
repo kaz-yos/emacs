@@ -92,26 +92,7 @@
   ;; Envelope-from when sending mail with sendmail.
   ;; If this is nil, use user-mail-address.  If it is the symbol
   ;; header, use the From: header of the message.
-  (setq message-sendmail-envelope-from 'header)
-  ;;
-  ;; Choose the right msmtp account based on the current email's From header.
-  ;; Yet Another Gnus/MSMTP Setting for Easy Multi-SMTP Sending
-  ;;   https://www.emacswiki.org/emacs/GnusMSMTP#toc2
-  ;; mu4e example configuration
-  ;;   https://gist.github.com/adamrt/168dd81f2a1b6b363469#file-gistfile1-el-L99-L111
-  ;; Choose account label to feed msmtp -a option based on From header
-  ;;   https://notanumber.io/2016-10-03/better-email-with-mu4e/
-  ;;
-  ;; Defined elsewhere as it contains email addresses.
-  ;; (defun my-set-msmtp-account () ...)
-  ;;
-  ;; `message-send-mail-hook'
-  ;; Hook run before sending mail messages.
-  ;; This hook is run very late -- just before the message is sent as mail.
-  ;; This is good because mu4e hooks are too early (before composing).
-  ;;   https://www.djcbsoftware.nl/code/mu/mu4e/Compose-hooks.html
-  ;; (add-hook 'message-send-mail-hook 'my-set-msmtp-account)
-  )
+  (setq message-sendmail-envelope-from 'header))
 
 
 ;;;
