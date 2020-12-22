@@ -138,8 +138,6 @@
 (use-package mu4e
   :if (executable-find "mu")
   :commands (mu4e)
-  ;; :bind (:map my-key-map
-  ;;             ("m" . mu4e))
   :init
   ;; Check for mu4e directory before invoking all the following
   (let ((mu4e-dir "/usr/local/Cellar/mu/1.4.13/share/emacs/site-lisp/mu/mu4e/"))
@@ -244,14 +242,6 @@
       (progn
         (run-hooks 'mu4e-update-pre-hook)
         (mu4e~update-mail-and-index-real run-in-background))))
-  ;;
-  (define-key 'mu4e-main-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
-  (define-key 'mu4e-headers-mode-map (kbd "A-u") 'mu4e-update-mail-and-index-all)
-  (define-key 'mu4e-view-mode-map (kbd "A-u")    'mu4e-update-mail-and-index-all)
-  ;; indexing only
-  (define-key 'mu4e-main-mode-map (kbd "A-i")    'mu4e-update-index)
-  (define-key 'mu4e-headers-mode-map (kbd "A-i") 'mu4e-update-index)
-  (define-key 'mu4e-view-mode-map (kbd "A-i")    'mu4e-update-index)
   ;;
   ;; Change file UID when moving (necessary for mbsync, but not for offlineimap)
   ;; https://groups.google.com/forum/m/#!topic/mu-discuss/8c9LrYYpxjQ
