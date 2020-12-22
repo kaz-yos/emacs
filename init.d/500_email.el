@@ -137,17 +137,23 @@
 ;; http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
 (use-package mu4e
   :if (executable-find "mu")
-  :commands (mu4e)
   :init
   ;; Check for mu4e directory before invoking all the following
   (let ((mu4e-dir "/usr/local/Cellar/mu/1.4.13/share/emacs/site-lisp/mu/mu4e/"))
     (when (file-exists-p mu4e-dir)
       (add-to-list 'load-path mu4e-dir)))
-  ;; Start mu4e after init.
-  (defun mu4e-background () (mu4e t))
-  ;; (add-hook 'after-init-hook 'mu4e-background)
+  ;;
+  :commands (mu4e
+             mu4e-background)
+  :hook ((after-init . mu4e-background))
+  :bind (;;
+         :map mu4e-view-mode-map
+         ("G" . mu4e-view-go-to-url)
+         ("g" . 'mu4e-headers-rerun-search))
   ;;
   :config
+  (defun mu4e-background () (mu4e t))
+  ;;
   ;; tell mu4e where my Maildir is
   (setq mu4e-maildir "~/.maildir")
   ;; mu binary (backend)
@@ -336,10 +342,6 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (setq mu4e-view-show-images t)
   (setq mu4e-view-show-addresses t)
   (setq mu4e-view-date-format "%Y-%m-%d %H:%M:%S")
-  ;;
-  ;; Modify keys
-  (define-key mu4e-view-mode-map (kbd "G") 'mu4e-view-go-to-url)
-  (define-key mu4e-view-mode-map (kbd "g") 'mu4e-headers-rerun-search)
   ;;
   ;; Displaying rich-text messages
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
