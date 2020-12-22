@@ -59,10 +59,12 @@
            :select t
            :inhibit-window-quit t
            :same t)
-          (shell-mode
-           :select t
-           :inhibit-window-quit t
-           :same t)))
+          ;; The runner buffer also has this major mode.
+          ;; (shell-mode
+          ;;  :select t
+          ;;  :inhibit-window-quit t
+          ;;  :same t)
+          ))
   ;;
   ;; Activate
   (shackle-mode 1))
