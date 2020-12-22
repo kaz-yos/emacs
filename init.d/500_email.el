@@ -289,13 +289,13 @@
   (setq mu4e-split-view 'vertical)
   ;; number of columns
   (setq mu4e-headers-visible-columns 100)
-  (defun set-header-columns-half-frame ()
+  (defun my-mu4e-set-header-columns-half-frame ()
     "Make header split frame into half in mu4e split view"
     (interactive)
     (setq mu4e-headers-visible-columns
           ;; Set to 1/2 of frame width in default characters
           (/ (/ (frame-text-width) (frame-char-width)) 2)))
-  (add-hook 'mu4e-headers-mode-hook 'set-header-columns-half-frame)
+  (add-hook 'mu4e-headers-mode-hook 'my-mu4e-set-header-columns-half-frame)
   ;; Delete other windows before entering message from header.
   (advice-add 'mu4e-headers-view-message
               :before 'delete-other-windows)
