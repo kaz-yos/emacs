@@ -154,8 +154,6 @@
   :config
   (defun mu4e-background () (mu4e t))
   ;;
-  ;; tell mu4e where my Maildir is
-  (setq mu4e-maildir "~/.maildir")
   ;; mu binary (backend)
   (setq mu4e-mu-binary (executable-find "mu"))
   ;;
