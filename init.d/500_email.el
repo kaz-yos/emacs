@@ -389,7 +389,7 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   ;;
 ;;;  Editor view configuration
   ;; New frame for a new message.
-  (setq mu4e-compose-in-new-frame t)
+  (setq mu4e-compose-in-new-frame nil)
   (unless (version< emacs-version "27.0")
     ;; Create a new tab-bar instead of a frame on opening.
     (defun mu4e~draft-open-file (path)
