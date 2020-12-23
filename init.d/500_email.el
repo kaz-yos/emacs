@@ -416,6 +416,16 @@ It restores mu4e window layout after killing the compose-buffer."
                 ;; if all else fails, back to the main view
                 (when (fboundp 'mu4e) (mu4e)))))))))
   ;;
+  ;; Org-mode use
+  ;; mu4e for Dummies
+  ;;   https://www.reddit.com/r/emacs/comments/bfsck6/mu4e_for_dummies/
+  ;; Sending emails with math and source code
+  ;;   https://vxlabs.com/2015/01/28/sending-emails-with-math-and-source-code/
+  (use-package org-mu4e
+    :config
+    ;; Whether to do automatic org-mode => html conversion when sending messages.
+    (setq org-mu4e-convert-to-html t))
+  ;;
   ;; Do not drop myself from cc list
   (setq mu4e-compose-keep-self-cc t)
   ;; Flyspell
