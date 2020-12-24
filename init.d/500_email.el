@@ -417,7 +417,7 @@ It restores mu4e window layout after killing the compose-buffer."
                 ;; if all else fails, back to the main view
                 (when (fboundp 'mu4e) (mu4e)))))))))
   ;;
-  ;; Org-mode use
+  ;; Org-mode use in composing
   ;; mu4e for Dummies
   ;;   https://www.reddit.com/r/emacs/comments/bfsck6/mu4e_for_dummies/
   ;; Sending emails with math and source code
@@ -479,7 +479,7 @@ It restores mu4e window layout after killing the compose-buffer."
                  (local-unset-key (kbd "C-a"))
                  (local-set-key (kbd "C-a") 'message-seq-cmd--home))))
   ;;
-  ;; Context
+;;;  Context
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Contexts.html
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Contexts-example.html
   ;; `mu4e-context-policy'
