@@ -144,7 +144,8 @@
       (add-to-list 'load-path mu4e-dir)))
   ;;
   :commands (mu4e
-             mu4e-background)
+             mu4e-background
+             make-mu4e-context)
   :hook ((after-init . mu4e-background))
   :bind (:map mu4e-view-mode-map
          ("G" . mu4e-view-go-to-url)
@@ -472,9 +473,21 @@ It restores mu4e window layout after killing the compose-buffer."
   (define-sequential-command message-seq-cmd--home
     message-beginning-of-line message-goto-body beginning-of-buffer seq-cmd--return)
   ;; Replace with C-a
-  (add-hook 'mu4e-compose-mode-hook '(lambda ()
-                                       (local-unset-key (kbd "C-a"))
-                                       (local-set-key (kbd "C-a") 'message-seq-cmd--home))))
+  (add-hook 'mu4e-compose-mode-hook
+            '(lambda ()
+               (local-unset-key (kbd "C-a"))
+               (local-set-key (kbd "C-a") 'message-seq-cmd--home)))
+  ;;
+  ;; Context
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Contexts.html
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Contexts-example.html
+  ;; `mu4e-context-policy'
+  ;; The policy to determine the context when entering the mu4e main view.
+  (setq mu4e-context-policy nil)
+  ;;
+  ;; `mu4e-compose-context-policy'
+  ;; Policy for determining the context when composing a new message.
+  (setq mu4e-compose-context-policy 'ask))
 
 
 ;;;
