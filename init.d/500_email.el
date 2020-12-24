@@ -493,7 +493,21 @@ It restores mu4e window layout after killing the compose-buffer."
   ;;
   ;; `mu4e-compose-context-policy'
   ;; Policy for determining the context when composing a new message.
-  (setq mu4e-compose-context-policy 'ask))
+  (setq mu4e-compose-context-policy 'ask)
+  ;;
+;;;  Conversation view
+  ;; https://gitlab.com/ambrevar/mu4e-conversation/
+  (use-package mu4e-conversation
+    :ensure t
+    :commands (global-mu4e-conversation-mode
+               mu4e-conversation-toggle-view
+               mu4e-conversation-send
+               mu4e-conversation-cite)
+    :config
+    ;; View linear or tree
+    (setq mu4e-conversation-print-function 'mu4e-conversation-print-linear)
+    ;; Settings for the mu4e conversation view.
+    (setq mu4e-conversation-own-name "Me")))
 
 
 ;;;
