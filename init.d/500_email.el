@@ -92,7 +92,41 @@
   ;; Envelope-from when sending mail with sendmail.
   ;; If this is nil, use user-mail-address.  If it is the symbol
   ;; header, use the From: header of the message.
-  (setq message-sendmail-envelope-from 'header))
+  (setq message-sendmail-envelope-from 'header)
+  ;;
+  ;; Drop the date header before sending.
+  ;; This avoids the message's date remaining the first time the draft
+  ;; message was made.
+  (defun my-mail-date ()
+    "Move point to end of Date field, creating it if necessary."
+    (interactive)
+    (expand-abbrev)
+    (mail-position-on-field "Date"))
+  ;;
+  (defun my-mail-drop-date ()
+    "Drop Date field."
+    (interactive)
+    ;; Move to the end of Date field
+    (my-mail-date)
+    ;; Delete whole line
+    ;; https://www.emacswiki.org/emacs/ElispCookbook#toc16
+    (let ((beg
+           ;; Obtain the point of the beginning of the CURRENT line.
+           (progn (forward-line 0) (point)))
+          (end
+           ;; Obtain the point of the beginning of the NEXT line.
+           (progn (forward-line 1)
+                  (point))))
+      ;; This deletes the entire line including the newline character.
+      (delete-region beg end)))
+  ;;
+  ;; Drop date field right before sending.
+  (advice-add 'message-send-and-exit
+              :before
+              #'my-mail-drop-date)
+  ;;
+  ;; When non-nil, ask for confirmation when sending a message.
+  (setq message-confirm-send t))
 
 
 ;;;
@@ -434,35 +468,6 @@ It restores mu4e window layout after killing the compose-buffer."
   ;;
   ;; Whether to include a date header when starting to draft
   (setq mu4e-compose-auto-include-date t)
-  ;;
-  ;; Drop the date header before sending.
-  (defun my-mail-date ()
-    "Move point to end of Date field, creating it if necessary."
-    (interactive)
-    (expand-abbrev)
-    (mail-position-on-field "Date"))
-  ;;
-  (defun my-mail-drop-date ()
-    "Drop Date field."
-    (interactive)
-    ;; Move to the end of Date field
-    (my-mail-date)
-    ;; Delete whole line
-    ;; https://www.emacswiki.org/emacs/ElispCookbook#toc16
-    (let ((beg
-           ;; Obtain the point of the beginning of the CURRENT line.
-           (progn (forward-line 0) (point)))
-          (end
-           ;; Obtain the point of the beginning of the NEXT line.
-           (progn (forward-line 1)
-                  (point))))
-      ;; This deletes the entire line including the newline character.
-      (delete-region beg end)))
-  ;;
-  ;; Drop date field right before sending.
-  (advice-add 'message-send-and-exit
-              :before
-              #'my-mail-drop-date)
   ;;
   ;; org-mode's table editor minor mode
   ;; This hijack RET binding. It makes RET in flyspell popup correction unresponsive.
