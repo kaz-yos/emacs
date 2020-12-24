@@ -306,6 +306,11 @@
   ;;
   ;;
 ;;;  Header view configuration
+  (setq mu4e-headers-fields
+        '((:human-date . 10)
+          (:flags . 4)
+          (:from . 22)
+          (:subject)))
   (setq mu4e-split-view 'vertical)
   ;; number of columns
   (setq mu4e-headers-visible-columns 100)
@@ -322,7 +327,10 @@
   ;; X-Keywords is the gmail compatible tag name.
   (setq mu4e-action-tags-header "X-Keywords")
   ;; The header date format for messages received yesterday and before.
+  ;; See `format-time-string' for the format
   (setq mu4e-headers-date-format "%Y-%m-%d")
+  (setq mu4e-headers-time-format "%X")
+  (setq mu4e-headers-long-date-format "%c")
   ;; Show related messages in addition to search results
   (setq mu4e-headers-include-related nil)
   ;; Maximum number of results to show
