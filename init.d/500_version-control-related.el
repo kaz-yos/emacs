@@ -65,7 +65,9 @@
   :commands (magit-status
              magit-init)
   :bind (("s-g" . my-magit-status)
-         ("C-c g". my-magit-status)
+         ;; Keymap for characters following C-c.
+         :map mode-specific-map
+         ("g". my-magit-status)
          :map my-key-map
          ("g" . my-magit-status)
          :map magit-section-mode-map
