@@ -390,6 +390,8 @@ searched. If there is no symbol, empty search box is started."
   :ensure t
   :bind* (("C-," . er/expand-region)
           ("C-M-," . er/contract-region)
+          :map mode-specific-map
+          ("," . er/expand-region)
           :map my-key-map
           ("," . er/expand-region)
           ("M-," . er/contract-region)))
