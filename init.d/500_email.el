@@ -470,13 +470,14 @@ It restores mu4e window layout after killing the compose-buffer."
   ;; (add-hook 'mu4e-compose-mode-hook 'turn-on-orgtbl)
   ;;
   ;;  Sequential command for message mode
-  (define-sequential-command message-seq-cmd--home
-    message-beginning-of-line message-goto-body beginning-of-buffer seq-cmd--return)
-  ;; Replace with C-a
-  (add-hook 'mu4e-compose-mode-hook
-            '(lambda ()
-               (local-unset-key (kbd "C-a"))
-               (local-set-key (kbd "C-a") 'message-seq-cmd--home)))
+  (with-eval-after-load "sequential-command"
+    (define-sequential-command message-seq-cmd--home
+      message-beginning-of-line message-goto-body beginning-of-buffer seq-cmd--return)
+    ;; Replace with C-a
+    (add-hook 'mu4e-compose-mode-hook
+              '(lambda ()
+                 (local-unset-key (kbd "C-a"))
+                 (local-set-key (kbd "C-a") 'message-seq-cmd--home))))
   ;;
   ;; Context
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Contexts.html
