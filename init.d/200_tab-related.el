@@ -18,7 +18,8 @@
              tab-bar-switch-to-prev-tab)
   :hook ((after-init . my-tab-bar-setup))
   :bind-keymap (("C-c l" . tab-prefix-map))
-  :bind (;; ("C-M-o" . tab-bar-switch-to-next-tab)
+  :bind (("M-`" . tab-bar-switch-to-next-tab)
+         ("M-\\" . tab-bar-switch-to-prev-tab)
          ;; `tab-bar-map' is for mouse actions on the tab bar.
          ;; `tab-prefix-map' is defined in subr.el.
          :map tab-prefix-map
