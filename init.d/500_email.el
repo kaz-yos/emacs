@@ -232,8 +232,8 @@
       (setq mu4e-index-lazy-check t)
       ;; Inbox-only
       (if (executable-find "timelimit")
-          (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
-        (setq mu4e-get-mail-command "mbsync inbox-only")))
+          (setq mu4e-get-mail-command "timelimit -t 60 mbsync main")
+        (setq mu4e-get-mail-command "mbsync main")))
      ;;
      ;; If any mu4e windows are active, abbreviate operations.
      ;; This happens even if update is running non-interactively.
@@ -245,8 +245,8 @@
       (setq mu4e-index-lazy-check t)
       ;; Inbox-only
       (if (executable-find "timelimit")
-          (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
-        (setq mu4e-get-mail-command "mbsync inbox-only")))
+          (setq mu4e-get-mail-command "timelimit -t 60 mbsync main")
+        (setq mu4e-get-mail-command "mbsync main")))
      ;;
      ;; Otherwise,
      (t
