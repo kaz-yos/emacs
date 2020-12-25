@@ -231,8 +231,8 @@
       (setq mu4e-index-cleanup nil)
       (setq mu4e-index-lazy-check t)
       ;; Inbox-only
-      (if (executable-find "timelimit")
-          (setq mu4e-get-mail-command "timelimit -t 60 mbsync main")
+      (if (executable-find "parallel")
+          (setq mu4e-get-mail-command "parallel mbsync -V {1}-{2} ::: icloud harvard channing mgb ::: inbox sent drafts trash")
         (setq mu4e-get-mail-command "mbsync main")))
      ;;
      ;; If any mu4e windows are active, abbreviate operations.
@@ -244,8 +244,8 @@
       (setq mu4e-index-cleanup nil)
       (setq mu4e-index-lazy-check t)
       ;; Inbox-only
-      (if (executable-find "timelimit")
-          (setq mu4e-get-mail-command "timelimit -t 60 mbsync main")
+      (if (executable-find "parallel")
+          (setq mu4e-get-mail-command "parallel mbsync -V {1}-{2} ::: icloud harvard channing mgb ::: inbox sent drafts trash")
         (setq mu4e-get-mail-command "mbsync main")))
      ;;
      ;; Otherwise,
@@ -261,6 +261,7 @@
         (setq mu4e-get-mail-command "mbsync all")))))
   ;; :before advice to mainpulate mu4e-get-mail-command variable
   (advice-add 'mu4e-update-mail-and-index :before #'modify-mu4e-get-mail-command)
+  (setq mu4e~update-buffer-height 4)
   ;; (advice-remove 'mu4e-update-mail-and-index #'modify-mu4e-get-mail-command)
   ;;
   ;; Function to force-sync main folders
