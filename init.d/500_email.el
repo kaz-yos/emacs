@@ -331,7 +331,8 @@
           (:flags . 4)
           (:from . 22)
           (:subject)))
-  (setq mu4e-split-view 'vertical)
+  ;; How to show messages / headers.
+  (setq mu4e-split-view 'horizontal)
   ;; number of columns
   (setq mu4e-headers-visible-columns 100)
   (defun my-mu4e-set-header-columns-half-frame ()
