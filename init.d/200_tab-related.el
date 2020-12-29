@@ -284,6 +284,9 @@ The list is also restricted to the current tab-bar."
                                   cur-prj))
                   buff-lst)))
   ;;
+  ;; 28.1 option for tab-line-switch-to-next/prev-tab
+  (setq tab-line-switch-cycling t)
+  ;;
   (defun my-tab-line-tab-next ()
     "Switch to the next tab in the tab-line"
     (interactive)
