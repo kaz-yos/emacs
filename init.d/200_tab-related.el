@@ -336,5 +336,8 @@ The list is also restricted to the current tab-bar."
   (setq tab-line-separator nil)
   (setq tab-line-close-button-show nil)
   (setq tab-line-new-button-show nil)
+  ;; List of major modes in which the tab line is not enabled.
+  (setq tab-line-exclude-modes
+        '(completion-list-mode))
   ;;
   (global-tab-line-mode +1))
