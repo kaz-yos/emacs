@@ -338,6 +338,9 @@ The list is also restricted to the current tab-bar."
   (setq tab-line-new-button-show nil)
   ;; List of major modes in which the tab line is not enabled.
   (setq tab-line-exclude-modes
-        '(completion-list-mode))
+        '(completion-list-mode
+          help-mode
+          helm-major-mode
+          ibuffer-mode))
   ;;
   (global-tab-line-mode +1))
