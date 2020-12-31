@@ -1,12 +1,6 @@
 ;;; e-mail related                                 -*- lexical-binding: t; -*-
 ;; This file is public on github. Do not put sensitive information here.
 
-;;;
-;;; General configuration
-;; Default in sending e-mail
-;; user-full-name is a variable defined in C source code.
-(setq user-full-name "Kazuki Yoshida")
-
 
 ;;;
 ;;; Sending-related
