@@ -142,9 +142,9 @@
 (use-package abridge-diff
   :ensure t
   :after magit
-  :diminish abridge-diff-mode
-  :config
-  (abridge-diff-mode 1))
+  ;; :diminish abridge-diff-mode
+  :commands (abridge-diff-mode
+             abridge-diff-toggle-hiding))
 
 
 ;;;  git-timemachine.el
