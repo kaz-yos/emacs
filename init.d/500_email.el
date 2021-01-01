@@ -174,7 +174,7 @@
   :commands (mu4e
              mu4e-background
              make-mu4e-context)
-  :hook ((after-init . mu4e-background))
+  ;; :hook ((after-init . mu4e-background))
   :bind (:map mu4e-view-mode-map
          ("G" . mu4e-view-go-to-url)
          ("g" . 'mu4e-headers-rerun-search)
