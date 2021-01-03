@@ -174,7 +174,8 @@
   :commands (mu4e
              mu4e-background
              make-mu4e-context)
-  ;; :hook ((after-init . mu4e-background))
+  :hook (;; (after-init . mu4e-background)
+         (mu4e-headers-mode . my-mu4e-set-header-columns-half-frame))
   ;; C-i appears as TAB
   ;; https://emacs.stackexchange.com/questions/17509/how-to-distinguish-c-i-from-tab/17510
   :bind (:map mu4e-main-mode-map
@@ -352,7 +353,6 @@
     (setq mu4e-headers-visible-columns
           ;; Set to 1/2 of frame width in default characters
           (/ (/ (frame-text-width) (frame-char-width)) 2)))
-  (add-hook 'mu4e-headers-mode-hook 'my-mu4e-set-header-columns-half-frame)
   ;; Delete other windows before entering message from header.
   (advice-add 'mu4e-headers-view-message
               :before 'delete-other-windows)
