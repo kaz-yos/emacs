@@ -362,9 +362,6 @@
             (* my-mu4e-headers-visible-columns-ratio)
             (truncate))))
   ;;
-  ;; Delete other windows before entering message from header.
-  (advice-add 'mu4e-headers-view-message
-              :before 'delete-other-windows)
   ;; X-Keywords is the gmail compatible tag name.
   (setq mu4e-action-tags-header "X-Keywords")
   ;; The header date format for messages received yesterday and before.
