@@ -348,6 +348,8 @@
   ;; Number of columns to display for the header view when using the
   ;; vertical split-view.
   (setq mu4e-headers-visible-columns 100)
+  ;; We want to leave at least 125 for the message window's (window-width).
+  ;; PubMed email messages has a width of 125.
   ;; Ratio to the entire frame width [0,1]
   (setq my-mu4e-headers-visible-columns-ratio 0.3)
   (defun my-mu4e-set-header-columns-width ()
