@@ -20,6 +20,8 @@
   :if (or (file-exists-p "~/junk/")
           (file-exists-p "~/Dropbox/junk/"))
   ;; Use the version with counsel.
+  :commands (open-junk-file
+             my-open-junk-file)
   :bind (("C-x C-z" . my-open-junk-file))
   :config
   ;; This work around is necessary when ivy is used.
