@@ -249,24 +249,24 @@
       (setq mu4e-index-lazy-check t)
       ;; Inbox-only
       (if (executable-find "parallel")
-          (setq mu4e-get-mail-command "parallel mbsync -V {1}-{2} ::: icloud harvard channing mgb ::: inbox sent drafts trash")
-        (setq mu4e-get-mail-command "mbsync main")))
+          (setq mu4e-get-mail-command "parallel mbsync -V {1}-inbox ::: icloud harvard channing mgb")
+        (setq mu4e-get-mail-command "mbsync inbox")))
      ;;
-     ;; If any mu4e windows are active, abbreviate operations.
+     ;; If any mu4e windows are active, main boxes only.
      ;; This happens even if update is running non-interactively.
+     ;; Currently, this is avoided with `my-mu4e-update-mail-and-index-if-mu4e-invisible',
+     ;; which is used in the timer.
      ((my-mu4e-buffer-visible-p)
-      ;; Conduct abbreviated operations.
       (setq mu4e-cache-maildir-list t)
       (setq mu4e-index-cleanup nil)
       (setq mu4e-index-lazy-check t)
-      ;; Inbox-only
+      ;; Main boxes
       (if (executable-find "parallel")
           (setq mu4e-get-mail-command "parallel mbsync -V {1}-{2} ::: icloud harvard channing mgb ::: inbox sent drafts trash")
         (setq mu4e-get-mail-command "mbsync main")))
      ;;
-     ;; Otherwise,
+     ;; Otherwise, conduct an all-boxes, thorough operation.
      (t
-      ;; Conduct thorough operations without messages
       (setq mu4e-cache-maildir-list nil)
       (setq mu4e-index-cleanup t)
       (setq mu4e-index-lazy-check nil)
