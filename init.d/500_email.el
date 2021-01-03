@@ -505,11 +505,6 @@ It restores mu4e window layout after killing the compose-buffer."
   ;;
   ;; Do not drop myself from cc list
   (setq mu4e-compose-keep-self-cc t)
-  ;; Flyspell
-  (add-hook 'mu4e-compose-mode-hook 'turn-on-flyspell)
-  ;;
-  ;; Whether to include a date header when starting to draft
-  (setq mu4e-compose-auto-include-date t)
   ;;
   ;; org-mode's table editor minor mode
   ;; This hijack RET binding. It makes RET in flyspell popup correction unresponsive.
