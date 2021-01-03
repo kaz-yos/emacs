@@ -215,13 +215,11 @@
   ;;
   ;;
 ;;;  Syncing
-  ;; tell mu4e how to sync email
+  ;; Shell command to run to retrieve new mail.
   ;; Defined by defcustom, thus, a dynamic variable.
-  ;; Using timelimit for mbsync to limit execution time
-  ;; https://groups.google.com/forum/#!topic/mu-discuss/FLz4FcECo3U
   ;; inbox-only is a group of inbox channels and does not sync other boxes
-  (if (executable-find "timelimit")
-      (setq mu4e-get-mail-command "timelimit -t 60 mbsync inbox-only")
+  (if (executable-find "parallel")
+      (setq mu4e-get-mail-command "parallel mbsync -V {1}-inbox ::: icloud harvard channing mgb")
     (setq mu4e-get-mail-command "mbsync inbox-only"))
   ;;
   ;; Define a function to list visible buffer names.
@@ -273,8 +271,8 @@
       (setq mu4e-index-cleanup t)
       (setq mu4e-index-lazy-check nil)
       ;; All boxes
-      (if (executable-find "timelimit")
-          (setq mu4e-get-mail-command "timelimit -t 300 mbsync all")
+      (if (executable-find "parallel")
+          (setq mu4e-get-mail-command "parallel mbsync -V {1} ::: icloud harvard channing mgb")
         (setq mu4e-get-mail-command "mbsync all")))))
   ;; :before advice to mainpulate mu4e-get-mail-command variable
   (advice-add 'mu4e-update-mail-and-index :before #'my-modify-mu4e-get-mail-command)
@@ -288,9 +286,9 @@
     (setq mu4e-cache-maildir-list nil)
     (setq mu4e-index-cleanup t)
     (setq mu4e-index-lazy-check nil)
-    ;; All boxes
-    (if (executable-find "timelimit")
-        (setq mu4e-get-mail-command "timelimit -t 300 mbsync main")
+    ;; Main boxes
+    (if (executable-find "parallel")
+        (setq mu4e-get-mail-command "parallel mbsync -V {1}-{2} ::: icloud harvard channing mgb ::: inbox sent drafts trash")
       (setq mu4e-get-mail-command "mbsync main"))
     ;; This is the body of mu4e-update-mail-and-index to avoid advice.
     (if (and (buffer-live-p mu4e~update-buffer)
@@ -299,6 +297,7 @@
       (progn
         (run-hooks 'mu4e-update-pre-hook)
         (mu4e~update-mail-and-index-real run-in-background))))
+  ;;
   ;; Function to force-sync all folders
   (defun my-mu4e-update-mail-and-index-all (run-in-background)
     "Update email with more extensive folder syncing"
@@ -307,8 +306,8 @@
     (setq mu4e-index-cleanup t)
     (setq mu4e-index-lazy-check nil)
     ;; All boxes
-    (if (executable-find "timelimit")
-        (setq mu4e-get-mail-command "timelimit -t 300 mbsync all")
+    (if (executable-find "parallel")
+        (setq mu4e-get-mail-command "parallel mbsync -V {1} ::: icloud harvard channing mgb")
       (setq mu4e-get-mail-command "mbsync all"))
     ;; This is the body of mu4e-update-mail-and-index to avoid advice.
     (if (and (buffer-live-p mu4e~update-buffer)
