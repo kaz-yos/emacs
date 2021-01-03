@@ -175,9 +175,24 @@
              mu4e-background
              make-mu4e-context)
   ;; :hook ((after-init . mu4e-background))
-  :bind (:map mu4e-view-mode-map
+  :bind (:map mu4e-main-mode-map
+         ("C-c C-u" . mu4e-update-mail-and-index)
+         ("C-c C-i" . mu4e-update-index)
+         ;;
+         :map mu4e-headers-mode-map
+         ("C-c C-u" . mu4e-update-mail-and-index)
+         ("C-c C-i" . mu4e-update-index)
+         ;;
+         :map mu4e-view-mode-map
+         ("C-c C-u" . mu4e-update-mail-and-index)
+         ("C-c C-i" . mu4e-update-index)
          ("G" . mu4e-view-go-to-url)
          ("g" . 'mu4e-headers-rerun-search)
+         ;;
+         :map mu4e-compose-mode-map
+         ("C-c C-u" . mu4e-update-mail-and-index)
+         ("C-c C-i" . mu4e-update-index)
+         ;;
          :map my-key-map
          (";" . mu4e))
   ;;
