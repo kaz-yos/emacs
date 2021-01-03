@@ -175,7 +175,7 @@
              mu4e-background
              make-mu4e-context)
   :hook (;; (after-init . mu4e-background)
-         (mu4e-headers-mode . my-mu4e-set-header-columns-half-frame))
+         (mu4e-headers-mode . my-mu4e-set-header-columns-width))
   ;; C-i appears as TAB
   ;; https://emacs.stackexchange.com/questions/17509/how-to-distinguish-c-i-from-tab/17510
   :bind (:map mu4e-main-mode-map
@@ -345,14 +345,23 @@
           (:subject)))
   ;; How to show messages / headers.
   (setq mu4e-split-view 'vertical)
-  ;; number of columns
+  ;; Number of columns to display for the header view when using the
+  ;; vertical split-view.
   (setq mu4e-headers-visible-columns 100)
-  (defun my-mu4e-set-header-columns-half-frame ()
+  ;; Ratio to the entire frame width [0,1]
+  (setq my-mu4e-headers-visible-columns-ratio 0.3)
+  (defun my-mu4e-set-header-columns-width ()
     "Make header split frame into half in mu4e split view"
     (interactive)
     (setq mu4e-headers-visible-columns
-          ;; Set to 1/2 of frame width in default characters
-          (/ (/ (frame-text-width) (frame-char-width)) 2)))
+          ;; Return text area width of FRAME in pixels.
+          (thread-first (frame-text-width)
+            ;; On a graphical screen, the width is the standard width of the default font.
+            ;; For a terminal screen, the value is always 1.
+            (/ (frame-char-width))
+            (* my-mu4e-headers-visible-columns-ratio)
+            (truncate))))
+  ;;
   ;; Delete other windows before entering message from header.
   (advice-add 'mu4e-headers-view-message
               :before 'delete-other-windows)
