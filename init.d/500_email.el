@@ -180,20 +180,28 @@
   ;; https://emacs.stackexchange.com/questions/17509/how-to-distinguish-c-i-from-tab/17510
   :bind (:map mu4e-main-mode-map
          ("C-c C-u" . mu4e-update-mail-and-index)
+         ("C-c C-m" . my-mu4e-update-mail-and-index-main)
+         ("C-c C-a" . my-mu4e-update-mail-and-index-all)
          ("C-c C-i" . mu4e-update-index)
          ;;
          :map mu4e-headers-mode-map
          ("C-c C-u" . mu4e-update-mail-and-index)
+         ("C-c C-m" . my-mu4e-update-mail-and-index-main)
+         ("C-c C-a" . my-mu4e-update-mail-and-index-all)
          ("C-c C-i" . mu4e-update-index)
          ;;
          :map mu4e-view-mode-map
          ("C-c C-u" . mu4e-update-mail-and-index)
+         ("C-c C-m" . my-mu4e-update-mail-and-index-main)
+         ("C-c C-a" . my-mu4e-update-mail-and-index-all)
          ("C-c C-i" . mu4e-update-index)
          ("G" . mu4e-view-go-to-url)
          ("g" . 'mu4e-headers-rerun-search)
          ;;
          :map mu4e-compose-mode-map
          ("C-c C-u" . mu4e-update-mail-and-index)
+         ("C-c C-m" . my-mu4e-update-mail-and-index-main)
+         ("C-c C-a" . my-mu4e-update-mail-and-index-all)
          ("C-c C-i" . mu4e-update-index)
          ;;
          :map my-key-map
