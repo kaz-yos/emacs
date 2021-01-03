@@ -340,9 +340,18 @@
   (setq mu4e-hide-index-messages nil)
   ;; Whether to cache the list of maildirs
   (setq mu4e-cache-maildir-list t)
-  ;; Whether to run a cleanup phase after indexing (avoids ghost messages)
+  ;; Whether to run a cleanup phase after indexing.
+  ;; That is, validate that each message in the message store has a
+  ;; corresponding message file in the filesystem.
+  ;; Having this option as t ensures that no non-existing messages are
+  ;; shown but can slow with large message stores on slow file-systems.
   (setq mu4e-index-cleanup t)
-  ;; Date stamp check only; miss message that are modified outside mu
+  ;; Whether to only use a 'lazy check' during reindexing.
+  ;; This influences how we decide whether a message
+  ;; needs (re)indexing or not. When this is set to t, mu only uses
+  ;; the directory timestamps to decide whether it needs to check the
+  ;; messages beneath it, which would miss messages that are modified
+  ;; outside mu. On the other hand, it's significantly faster.
   (setq mu4e-index-lazy-check nil)
   ;;
   ;;
