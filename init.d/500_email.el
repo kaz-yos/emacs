@@ -256,7 +256,7 @@
      ;;
      ;; If any mu4e windows are active, abbreviate operations.
      ;; This happens even if update is running non-interactively.
-     ((mu4e-buffer-visible-p)
+     ((my-mu4e-buffer-visible-p)
       ;; Conduct abbreviated operations.
       (setq mu4e-cache-maildir-list t)
       (setq mu4e-index-cleanup nil)
