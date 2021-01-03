@@ -217,19 +217,19 @@
     (setq mu4e-get-mail-command "mbsync inbox-only"))
   ;;
   ;; Define a function to list visible buffer names.
-  (defun visible-buffer-names ()
+  (defun my-visible-buffer-names ()
     "Return a list of visible buffer names"
     (let* ((all-buffer-names (mapcar (function buffer-name) (buffer-list))))
       (seq-filter 'get-buffer-window
                   all-buffer-names)))
   ;; Function to check mu4e visibility.
-  (defun mu4e-buffer-visible-p ()
+  (defun my-mu4e-buffer-visible-p ()
     "Return non-nil if any buffer with a name containing mu4e has a window"
     (seq-filter (lambda (str) (string-match "*mu4e" str))
-                (visible-buffer-names)))
+                (my-visible-buffer-names)))
   ;;
   ;; Define a function to change mbsync behavior when called interactively
-  (defun modify-mu4e-get-mail-command (run-in-background)
+  (defun my-modify-mu4e-get-mail-command (run-in-background)
     "Manipulate mu4e-get-mail-command depending on interactive status"
     ;; "P" is for universal argument
     ;; http://ergoemacs.org/emacs/elisp_universal_argument.html
@@ -272,12 +272,12 @@
           (setq mu4e-get-mail-command "timelimit -t 300 mbsync all")
         (setq mu4e-get-mail-command "mbsync all")))))
   ;; :before advice to mainpulate mu4e-get-mail-command variable
-  (advice-add 'mu4e-update-mail-and-index :before #'modify-mu4e-get-mail-command)
+  (advice-add 'mu4e-update-mail-and-index :before #'my-modify-mu4e-get-mail-command)
   (setq mu4e~update-buffer-height 4)
-  ;; (advice-remove 'mu4e-update-mail-and-index #'modify-mu4e-get-mail-command)
+  ;; (advice-remove 'mu4e-update-mail-and-index #'my-modify-mu4e-get-mail-command)
   ;;
   ;; Function to force-sync main folders
-  (defun mu4e-update-mail-and-index-main (run-in-background)
+  (defun my-mu4e-update-mail-and-index-main (run-in-background)
     "Update email with main folder syncing"
     (interactive "P")
     (setq mu4e-hide-index-messages t)
@@ -296,7 +296,7 @@
         (run-hooks 'mu4e-update-pre-hook)
         (mu4e~update-mail-and-index-real run-in-background))))
   ;; Function to force-sync all folders
-  (defun mu4e-update-mail-and-index-all (run-in-background)
+  (defun my-mu4e-update-mail-and-index-all (run-in-background)
     "Update email with more extensive folder syncing"
     (interactive "P")
     (setq mu4e-hide-index-messages t)
@@ -319,8 +319,20 @@
   ;; https://groups.google.com/forum/m/#!topic/mu-discuss/8c9LrYYpxjQ
   ;; http://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-change-filenames-when-moving t)
+  ;;
+  ;; Do not use mu4e's regular interval update.
   ;; Update interval. If nil, don't update automatically.
-  (setq mu4e-update-interval 600)
+  (setq mu4e-update-interval nil)
+  ;; Only run `mu4e-update-mail-and-index' if mu4e windows are invisible.
+  ;; http://stackoverflow.com/questions/3841459/how-to-periodically-run-a-task-within-emacs
+  ;; (run-with-timer SECS REPEAT FUNCTION &rest ARGS)
+  ;; SECS initial delay
+  ;; REPEAT repletion interval
+  (defun my-mu4e-update-mail-and-index-if-mu4e-invisible ()
+    (unless (my-mu4e-buffer-visible-p)
+      (mu4e-update-mail-and-index t)))
+  (run-with-timer (* 5 60) (* 5 60) 'my-mu4e-update-mail-and-index-if-mu4e-invisible)
+  ;;
   ;; Do not occupy the minibuffer with "Indexing..."
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-hide-index-messages nil)
