@@ -175,6 +175,8 @@
              mu4e-background
              make-mu4e-context)
   ;; :hook ((after-init . mu4e-background))
+  ;; C-i appears as TAB
+  ;; https://emacs.stackexchange.com/questions/17509/how-to-distinguish-c-i-from-tab/17510
   :bind (:map mu4e-main-mode-map
          ("C-c C-u" . mu4e-update-mail-and-index)
          ("C-c C-i" . mu4e-update-index)
