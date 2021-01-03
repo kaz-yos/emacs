@@ -552,6 +552,8 @@ It restores mu4e window layout after killing the compose-buffer."
 ;; A.9 Attaching files with dired
 ;; http://www.djcbsoftware.nl/code/mu/mu4e/Attaching-files-with-dired.html
 (use-package gnus-dired
+  :demand t
+  :hook ((dired-mode . turn-on-gnus-dired-mode))
   :config
   ;; make the `gnus-dired-mail-buffers' function also work on
   ;; message-mode derived modes, such as mu4e-compose-mode
@@ -567,8 +569,7 @@ It restores mu4e window layout after killing the compose-buffer."
             (push (buffer-name buffer) buffers))))
       (nreverse buffers)))
   ;; mu4e dependency!
-  (setq gnus-dired-mail-mode 'mu4e-user-agent)
-  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
+  (setq gnus-dired-mail-mode 'mu4e-user-agent))
 
 
 ;;;
