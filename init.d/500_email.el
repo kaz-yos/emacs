@@ -246,7 +246,6 @@
      ;; If interactive,
      ((called-interactively-p 'interactive)
       ;; Conduct abbreviated operations.
-      (setq mu4e-hide-index-messages t)
       (setq mu4e-cache-maildir-list t)
       (setq mu4e-index-cleanup nil)
       (setq mu4e-index-lazy-check t)
@@ -259,7 +258,6 @@
      ;; This happens even if update is running non-interactively.
      ((mu4e-buffer-visible-p)
       ;; Conduct abbreviated operations.
-      (setq mu4e-hide-index-messages t)
       (setq mu4e-cache-maildir-list t)
       (setq mu4e-index-cleanup nil)
       (setq mu4e-index-lazy-check t)
@@ -271,7 +269,6 @@
      ;; Otherwise,
      (t
       ;; Conduct thorough operations without messages
-      (setq mu4e-hide-index-messages t)
       (setq mu4e-cache-maildir-list nil)
       (setq mu4e-index-cleanup t)
       (setq mu4e-index-lazy-check nil)
@@ -288,7 +285,6 @@
   (defun my-mu4e-update-mail-and-index-main (run-in-background)
     "Update email with main folder syncing"
     (interactive "P")
-    (setq mu4e-hide-index-messages t)
     (setq mu4e-cache-maildir-list nil)
     (setq mu4e-index-cleanup t)
     (setq mu4e-index-lazy-check nil)
@@ -307,7 +303,6 @@
   (defun my-mu4e-update-mail-and-index-all (run-in-background)
     "Update email with more extensive folder syncing"
     (interactive "P")
-    (setq mu4e-hide-index-messages t)
     (setq mu4e-cache-maildir-list nil)
     (setq mu4e-index-cleanup t)
     (setq mu4e-index-lazy-check nil)
@@ -341,7 +336,7 @@
       (mu4e-update-mail-and-index t)))
   (run-with-timer (* 5 60) (* 5 60) 'my-mu4e-update-mail-and-index-if-mu4e-invisible)
   ;;
-  ;; Do not occupy the minibuffer with "Indexing..."
+  ;; Whether to hide the "Indexing..." and contacts messages.
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-hide-index-messages nil)
   ;; Whether to cache the list of maildirs
