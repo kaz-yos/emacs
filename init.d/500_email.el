@@ -283,9 +283,9 @@
   (defun my-mu4e-update-mail-and-index-main (run-in-background)
     "Update email with main folder syncing"
     (interactive "P")
-    (setq mu4e-cache-maildir-list nil)
-    (setq mu4e-index-cleanup t)
-    (setq mu4e-index-lazy-check nil)
+    (setq mu4e-cache-maildir-list t)
+    (setq mu4e-index-cleanup nil)
+    (setq mu4e-index-lazy-check t)
     ;; Main boxes
     (if (executable-find "parallel")
         (setq mu4e-get-mail-command "parallel mbsync -V {1}-{2} ::: icloud harvard channing mgb ::: inbox sent drafts trash")
