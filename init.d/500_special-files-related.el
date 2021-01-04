@@ -22,7 +22,7 @@
   ;; Use the version with counsel.
   :commands (open-junk-file
              my-open-junk-file)
-  :bind (("C-x C-z" . my-open-junk-file))
+  :bind (("C-x C-z" . open-junk-file))
   :config
   ;; This work around is necessary when ivy is used.
   ;; Taken from spacemacs.
