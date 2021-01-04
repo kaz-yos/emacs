@@ -339,7 +339,7 @@ Run when mu4e buffers are invisible."
               ;; (current-idle-time)
               )
       (mu4e-update-mail-and-index t)))
-  (run-with-timer (* 5 60) (* 5 60) 'my-mu4e-update-mail-and-index-if-mu4e-invisible)
+  ;; (run-with-timer (* 5 60) (* 5 60) 'my-mu4e-update-mail-and-index-if-mu4e-invisible)
   ;;
   ;; Whether to hide the "Indexing..." and contacts messages.
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
