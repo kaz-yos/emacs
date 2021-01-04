@@ -531,6 +531,24 @@ It restores mu4e window layout after killing the compose-buffer."
                 ;; if all else fails, back to the main view
                 (when (fboundp 'mu4e) (mu4e)))))))))
   ;;
+  ;; Include the date of the original message
+  ;; https://emacs.stackexchange.com/questions/52928/add-date-to-mu4e-email-when-forwarding-or-replying
+  ;; `message-citation-line-function' Function called to insert the "Whomever writes:" line.
+  ;; `message-insert-formatted-citation-line' Function that inserts a formatted citation line.
+  (setq message-citation-line-function 'message-insert-formatted-citation-line)
+  ;; C.4.20 How can I avoid Outlook display issues?
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Writing-messages.html#Writing-messages
+  ;; The string is formatted using format-spec.  The following constructs
+  ;; are replaced:
+  ;; %f   The full From, e.g. "John Doe <john.doe@example.invalid>".
+  ;; %n   The mail address, e.g. "john.doe@example.invalid".
+  ;; %N   The real name if present, e.g.: "John Doe", else fall
+  ;; back to the mail address.
+  ;; %F   The first name if present, e.g.: "John", else fall
+  ;; back to the mail address.
+  ;; %L   The last name if present, e.g.: "Doe".
+  (setq message-citation-line-format "On %Y-%m-%d at %R %Z, %f wrote...")
+  ;;
   ;; Org-mode use in composing
   ;; mu4e for Dummies
   ;;   https://www.reddit.com/r/emacs/comments/bfsck6/mu4e_for_dummies/
