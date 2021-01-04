@@ -333,10 +333,11 @@
   (defun my-mu4e-update-mail-and-index-if-mu4e-invisible ()
     "Run mu4e-update-mail-and-index when appropriate.
 
-Run when mu4e buffers are invisible or visible but idle."
+Run when mu4e buffers are invisible."
     (when (or (not (my-mu4e-buffer-visible-p))
               ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Idle-Timers.html
-              (current-idle-time))
+              ;; (current-idle-time)
+              )
       (mu4e-update-mail-and-index t)))
   (run-with-timer (* 5 60) (* 5 60) 'my-mu4e-update-mail-and-index-if-mu4e-invisible)
   ;;
