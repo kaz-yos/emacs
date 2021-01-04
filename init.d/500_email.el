@@ -345,6 +345,7 @@ Run when mu4e buffers are invisible or visible but idle."
   (setq mu4e-hide-index-messages nil)
   ;; Whether to cache the list of maildirs
   (setq mu4e-cache-maildir-list t)
+  ;; https://www.djcbsoftware.nl/code/mu/mu4e/Retrieval-and-indexing.Html
   ;; Whether to run a cleanup phase after indexing.
   ;; That is, validate that each message in the message store has a
   ;; corresponding message file in the filesystem.
