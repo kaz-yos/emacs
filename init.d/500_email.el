@@ -474,7 +474,7 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (defun my-mu4e-action-find-messages-from-same-sender (msg)
     "Extract sender from From: field and find messages from same sender
 
-The optional and unused msg argument is to fit into mu4e's action framework."
+The optional and unused MSG argument is to fit into mu4e's action framework."
     (interactive)
     (let* ((from (mu4e-message-field msg :from))
            (sender-address (cdar from)))
@@ -483,7 +483,7 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (defun my-mu4e-action-narrow-messages-to-same-sender (msg)
     "Extract sender from From: field and narrow messages to same sender
 
-The optional and unused msg argument is to fit into mu4e's action framework."
+The optional and unused MSG argument is to fit into mu4e's action framework."
     (interactive)
     (let* ((from (mu4e-message-field msg :from))
            (sender-address (cdar from)))
