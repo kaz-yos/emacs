@@ -494,10 +494,13 @@ The optional and unused MSG argument is to fit into mu4e's action framework."
     "Extract information from the message and conduct Mail.app search.
 
 The optional and unused MSG argument is to fit into mu4e's action framework.
-The search uses the From:, Subject:, and Date: fields."
+The search uses the following fields: from, to, date, and subject."
     (interactive)
+    ;; Use (mu4e-message-at-point) to experiment
     (let* ((from (mu4e-message-field msg :from))
            (sender-address (cdar from))
+           (to-list (mu4e-message-field msg :to))
+           (first-to-address (cdar to-list))
            (date (mu4e-message-field msg :date))
            ;; In 01/05/2021 format.
            (date-string (format-time-string "%m/%d/%Y" date))
@@ -507,16 +510,19 @@ The search uses the From:, Subject:, and Date: fields."
            (search-string (concat "kind:mail "
                                   "from:" sender-address
                                   " and "
-                                  "date:" date-string)))
+                                  "to:" first-to-address
+                                  " and "
+                                  "date:" date-string
+                                  " and "
+                                  "subject:" subject)))
       ;; Calling Applescript from Emacs
-      ;; https://irreal.org/blog/?p=4865
+      ;;  https://irreal.org/blog/?p=4865
       ;; How to Launch Spotlight from the Terminal
-      ;; https://superuser.com/questions/225581/how-to-launch-spotlight-from-the-terminal
+      ;;  https://superuser.com/questions/225581/how-to-launch-spotlight-from-the-terminal
       ;; AppleScript for searching Applemail
-      ;; https://discussions.apple.com/thread/8419724
+      ;;  https://discussions.apple.com/thread/8419724
       ;; How do I automate a key press in AppleScript?
-      ;; https://apple.stackexchange.com/questions/36943/how-do-i-automate-a-key-press-in-applescript
-      ;; Search for mail messages in Spotlight.
+      ;;  https://apple.stackexchange.com/questions/36943/how-do-i-automate-a-key-press-in-applescript
       (shell-command-to-string
        (concat "osascript -e '
 tell application \"Finder\"
