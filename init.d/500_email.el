@@ -436,6 +436,7 @@ The optional and unused msg argument is to fit into mu4e's action framework."
           ("unread among these" . my-mu4e-action-narrow-messages-to-unread)
           ("find same sender"   . my-mu4e-action-find-messages-from-same-sender)
           ("narrow same sender" . my-mu4e-action-narrow-messages-to-same-sender)
+          ("apple mail"         . my-mu4e-action-search-message-in-apple-mail)
           ("tag"                . mu4e-action-retag-message)))
   ;;
   ;;
@@ -489,6 +490,44 @@ The optional and unused MSG argument is to fit into mu4e's action framework."
            (sender-address (cdar from)))
       (mu4e-headers-search-narrow (concat "from:" sender-address))))
   ;;
+  (defun my-mu4e-action-search-message-in-apple-mail (msg)
+    "Extract information from the message and conduct Mail.app search.
+
+The optional and unused MSG argument is to fit into mu4e's action framework.
+The search uses the From:, Subject:, and Date: fields."
+    (interactive)
+    (let* ((from (mu4e-message-field msg :from))
+           (sender-address (cdar from))
+           (date (mu4e-message-field msg :date))
+           ;; In 01/05/2021 format.
+           (date-string (format-time-string "%m/%d/%Y" date))
+           (subject (mu4e-message-field msg :subject))
+           ;; Mac: How to use Spotlight’s Boolean talents to find email fast
+           ;; https://www.applemust.com/mac-how-to-use-spotlights-boolean-talents-to-find-email-fast/
+           (search-string (concat "kind:mail "
+                                  "from:" sender-address
+                                  " and "
+                                  "date:" date-string)))
+      ;; Calling Applescript from Emacs
+      ;; https://irreal.org/blog/?p=4865
+      ;; How to Launch Spotlight from the Terminal
+      ;; https://superuser.com/questions/225581/how-to-launch-spotlight-from-the-terminal
+      ;; AppleScript for searching Applemail
+      ;; https://discussions.apple.com/thread/8419724
+      ;; How do I automate a key press in AppleScript?
+      ;; https://apple.stackexchange.com/questions/36943/how-do-i-automate-a-key-press-in-applescript
+      ;; Search for mail messages in Spotlight.
+      (shell-command-to-string
+       (concat "osascript -e '
+tell application \"Finder\"
+    activate # focus Finder
+    tell application \"System Events\"
+        keystroke \" \" using {command down} # Shortcut for Spotlight
+        keystroke \""
+               search-string
+               "\" # enter into search box
+    end tell
+end tell'"))))
   ;; Actions
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/Actions.html
   (setq mu4e-view-actions
@@ -498,6 +537,7 @@ The optional and unused MSG argument is to fit into mu4e's action framework."
           ("browser"            . mu4e-action-view-in-browser)
           ("find same sender"   . my-mu4e-action-find-messages-from-same-sender)
           ("narrow same sender" . my-mu4e-action-narrow-messages-to-same-sender)
+          ("apple mail"         . my-mu4e-action-search-message-in-apple-mail)
           ;; Example: +tag,+long tag,-oldtag
           ("tag"                . mu4e-action-retag-message)))
   ;;
