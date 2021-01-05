@@ -668,7 +668,7 @@ It restores mu4e window layout after killing the compose-buffer."
   (setq gnus-dired-mail-mode 'mu4e-user-agent)
   ;; Alias
   ;; Attach dired's marked files to a gnus message composition.
-  (defalias my-mu4e-dired-attach 'gnus-dired-attach))
+  (defalias 'my-mu4e-dired-attach 'gnus-dired-attach))
 
 
 ;;;
