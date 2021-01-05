@@ -523,6 +523,7 @@ tell application \"Finder\"
     activate # focus Finder
     tell application \"System Events\"
         keystroke \" \" using {command down} # Shortcut for Spotlight
+        delay 1
         keystroke \""
                search-string
                "\" # enter into search box
