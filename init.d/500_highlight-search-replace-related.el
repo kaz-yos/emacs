@@ -534,3 +534,13 @@ searched. If there is no symbol, empty search box is started."
   :ensure t
   :commands (git-grep
              git-grep-repo))
+
+
+;;;
+;;; spotlight.el
+;; https://github.com/benmaughan/spotlight.el
+(use-package spotlight
+  :ensure t
+  :if (eq system-type 'darwin)
+  :config
+  )
