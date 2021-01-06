@@ -471,6 +471,32 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   ;; Default directory for saving attachments.
   (setq mu4e-attachment-dir (expand-file-name "~/Downloads"))
   ;;
+  ;; mu4e-views.el
+  ;; https://github.com/lordpretzel/mu4e-views
+  (use-package mu4e-views
+    :ensure t
+    :demand t
+    :bind (:map mu4e-headers-mode-map
+           ;; select viewing method
+           ("v" . mu4e-views-mu4e-select-view-msg-method)
+           ;; from headers window scroll the email view
+           ("M-n" . mu4e-views-cursor-msg-view-window-down)
+           ;; from headers window scroll the email view
+           ("M-p" . mu4e-views-cursor-msg-view-window-up)
+           ;; toggle opening messages automatically when moving in the headers view
+           ("f" . mu4e-views-toggle-auto-view-selected-message))
+    :config
+    ;; use ivy for completion
+    (setq mu4e-views-completion-method 'ivy)
+    ;; make xwidgets default
+    (setq mu4e-views-default-view-method "html")
+    ;; select the default
+    (mu4e-views-mu4e-use-view-msg-method "html")
+    ;; when pressing n and p stay in the current window
+    (setq mu4e-views-next-previous-message-behaviour 'stick-to-current-window)
+    ;; automatically open messages when moving in the headers view
+    (setq mu4e-views-auto-view-selected-message t))
+  ;;
   ;; Find messages from the same sender.
   (defun my-mu4e-action-find-messages-from-same-sender (msg)
     "Extract sender from From: field and find messages from same sender
