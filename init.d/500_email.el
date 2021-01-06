@@ -341,6 +341,16 @@ Run when mu4e buffers are invisible."
       (mu4e-update-mail-and-index t)))
   ;; (run-with-timer (* 5 60) (* 5 60) 'my-mu4e-update-mail-and-index-if-mu4e-invisible)
   ;;
+  (defun my-mu4e-update-index ()
+    "Minimally update mu4e index."
+    (interactive "P")
+    (let ((mu4e-cache-maildir-list t)
+          (mu4e-index-cleanup nil)
+          (mu4e-index-lazy-check t))
+      (mu4e-update-index)))
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Idle-Timers.html
+  (run-with-idle-timer 60 t 'my-mu4e-update-index)
+  ;;
   ;; Whether to hide the "Indexing..." and contacts messages.
   ;; https://www.djcbsoftware.nl/code/mu/mu4e/General.html
   (setq mu4e-hide-index-messages nil)
