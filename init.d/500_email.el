@@ -476,6 +476,8 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (use-package mu4e-views
     :ensure t
     :demand t
+    ;; Use in GUI only.
+    :if (display-graphic-p)
     :bind (:map mu4e-headers-mode-map
            ;; select viewing method
            ("v" . mu4e-views-mu4e-select-view-msg-method)
