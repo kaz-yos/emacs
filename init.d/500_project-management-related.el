@@ -17,7 +17,7 @@
              projectile-project-name)
   :bind-keymap  ("C-c p" . projectile-command-map)
   :bind (:map projectile-command-map
-              ("SPC" . counsel-projectile))
+         ("SPC" . counsel-projectile))
   ;;
   :config
   (setq projectile-keymap-prefix (kbd "C-c p"))
@@ -38,6 +38,17 @@
   ;; Load saved projects from `projectile-known-projects-file'.
   ;; Also set `projectile-known-projects'.
   (projectile-load-known-projects)
+  ;;
+  ;;
+  ;; M-x profiler-start, M-x profiler-report if opening a file is slow.
+  ;; https://www.murilopereira.com/how-to-open-a-file-in-emacs/#opening-a-file
+  ;;
+  ;; https://github.com/jonEbird/dotfiles/blob/master/.emacs.d/my_configs/email_config.el#L113
+  ;; `projectile-globally-ignored-modes'
+  ;; A list of regular expressions for major modes ignored by projectile.
+  ;; If a buffer is using a given major mode, projectile will ignore
+  ;; it for functions working with buffers.
+  (add-to-list 'projectile-globally-ignored-modes "mu4e.*")
   ;;
   ;; Enable Projectile globally
   (projectile-global-mode)
