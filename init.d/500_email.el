@@ -330,16 +330,15 @@
   ;; (run-with-timer SECS REPEAT FUNCTION &rest ARGS)
   ;; SECS initial delay
   ;; REPEAT repletion interval
-  (defun my-mu4e-update-mail-and-index-if-mu4e-invisible ()
+  (defun my-mu4e-update-mail-and-index-main-if-mu4e-invisible-or-idle ()
     "Run mu4e-update-mail-and-index when appropriate.
 
 Run when mu4e buffers are invisible."
     (when (or (not (my-mu4e-buffer-visible-p))
               ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Idle-Timers.html
-              ;; (current-idle-time)
-              )
-      (mu4e-update-mail-and-index t)))
-  ;; (run-with-timer (* 5 60) (* 5 60) 'my-mu4e-update-mail-and-index-if-mu4e-invisible)
+              (current-idle-time))
+      (my-mu4e-update-mail-and-index-main t)))
+  (run-with-timer (* 5 60) (* 5 60) 'my-mu4e-update-mail-and-index-main-if-mu4e-invisible-or-idle)
   ;;
   (defun my-mu4e-update-index ()
     "Minimally update mu4e index."
