@@ -279,6 +279,25 @@
   (setq mu4e~update-buffer-height 4)
   ;; (advice-remove 'mu4e-update-mail-and-index #'my-modify-mu4e-get-mail-command)
   ;;
+  ;; Function to force-sync inbox folders
+  (defun my-mu4e-update-mail-and-index-inbox (run-in-background)
+    "Update email with main folder syncing"
+    (interactive "P")
+    (setq mu4e-cache-maildir-list t)
+    (setq mu4e-index-cleanup nil)
+    (setq mu4e-index-lazy-check t)
+    ;; Main boxes
+    (if (executable-find "parallel")
+        (setq mu4e-get-mail-command "parallel mbsync -V {1}-inbox ::: icloud harvard channing mgb")
+      (setq mu4e-get-mail-command "mbsync inbox"))
+    ;; This is the body of mu4e-update-mail-and-index to avoid advice.
+    (if (and (buffer-live-p mu4e~update-buffer)
+             (process-live-p (get-buffer-process mu4e~update-buffer)))
+        (mu4e-message "Update process is already running")
+      (progn
+        (run-hooks 'mu4e-update-pre-hook)
+        (mu4e~update-mail-and-index-real run-in-background))))
+  ;;
   ;; Function to force-sync main folders
   (defun my-mu4e-update-mail-and-index-main (run-in-background)
     "Update email with main folder syncing"
