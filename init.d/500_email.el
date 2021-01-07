@@ -551,8 +551,10 @@ The search uses the following fields: from, to, date, and subject."
                                   "to:" first-to-address
                                   " and "
                                   "date:" date-string
-                                  " and "
-                                  "subject:" subject)))
+                                  ;; The subject tends to make the search yield zero results.
+                                  ;; " and "
+                                  ;; "subject:" subject
+                                  )))
       ;; Calling Applescript from Emacs
       ;;  https://irreal.org/blog/?p=4865
       ;; How to Launch Spotlight from the Terminal
