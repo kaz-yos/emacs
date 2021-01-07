@@ -357,7 +357,7 @@ Run when mu4e buffers are invisible."
               ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Idle-Timers.html
               (current-idle-time))
       (my-mu4e-update-mail-and-index-main t)))
-  (run-with-timer (* 5 60) (* 5 60) 'my-mu4e-update-mail-and-index-main-if-mu4e-invisible-or-idle)
+  (run-with-timer (* 60 60) (* 60 60) 'my-mu4e-update-mail-and-index-main-if-mu4e-invisible-or-idle)
   ;;
   (defun my-mu4e-update-index ()
     "Minimally update mu4e index."
