@@ -506,8 +506,6 @@ The optional and unused msg argument is to fit into mu4e's action framework."
   (use-package mu4e-views
     :ensure t
     :demand t
-    ;; Use in GUI only.
-    :if (display-graphic-p)
     :bind (:map mu4e-headers-mode-map
            ;; select viewing method
            ("v" . mu4e-views-mu4e-select-view-msg-method)
@@ -520,10 +518,15 @@ The optional and unused msg argument is to fit into mu4e's action framework."
     :config
     ;; use ivy for completion
     (setq mu4e-views-completion-method 'ivy)
+    ;; The method is set based on the frame mu4e-views was first loaded.
     ;; make xwidgets default
-    (setq mu4e-views-default-view-method "html")
+    (setq mu4e-views-default-view-method (if (display-graphic-p)
+                                             "html"
+                                           "text"))
     ;; select the default
-    (mu4e-views-mu4e-use-view-msg-method "html")
+    (mu4e-views-mu4e-use-view-msg-method (if (display-graphic-p)
+                                             "html"
+                                           "text"))
     ;; when pressing n and p stay in the current window
     (setq mu4e-views-next-previous-message-behaviour 'stick-to-current-window)
     ;; automatically open messages when moving in the headers view
