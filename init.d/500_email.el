@@ -360,12 +360,13 @@ Run when mu4e buffers are invisible."
   (run-with-timer (* 60 60) (* 60 60) 'my-mu4e-update-mail-and-index-main-if-mu4e-invisible-or-idle)
   ;;
   (defun my-mu4e-update-index ()
-    "Minimally update mu4e index."
+    "Minimally update mu4e index when there is a mu4e process."
     (interactive "P")
-    (let ((mu4e-cache-maildir-list t)
-          (mu4e-index-cleanup nil)
-          (mu4e-index-lazy-check t))
-      (mu4e-update-index)))
+    (when mu4e~proc-process
+      (let ((mu4e-cache-maildir-list t)
+            (mu4e-index-cleanup nil)
+            (mu4e-index-lazy-check t))
+        (mu4e-update-index))))
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Idle-Timers.html
   ;; https://stackoverflow.com/questions/15272841/how-to-remove-a-function-from-run-with-idle-timer
   (run-with-idle-timer 5 t 'my-mu4e-update-index)
