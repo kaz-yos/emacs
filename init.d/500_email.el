@@ -516,6 +516,10 @@ The optional and unused msg argument is to fit into mu4e's action framework."
            ;; toggle opening messages automatically when moving in the headers view
            ("f" . mu4e-views-toggle-auto-view-selected-message))
     :config
+    ;; This variable is required by mu4e-views to function.
+    ;; But this is not set if emacs does not start in GUI. A GUI frame
+    ;; started from a tty emacs does not have this set.
+    (defvar xwidget-webkit-enable-plugins nil)
     ;; use ivy for completion
     (setq mu4e-views-completion-method 'ivy)
     ;; The method is set based on the frame mu4e-views was first loaded.
