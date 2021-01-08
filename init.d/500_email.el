@@ -367,6 +367,7 @@ Run when mu4e buffers are invisible."
           (mu4e-index-lazy-check t))
       (mu4e-update-index)))
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Idle-Timers.html
+  ;; https://stackoverflow.com/questions/15272841/how-to-remove-a-function-from-run-with-idle-timer
   (run-with-idle-timer 5 t 'my-mu4e-update-index)
   ;;
   ;; Whether to hide the "Indexing..." and contacts messages.
