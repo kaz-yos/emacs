@@ -1,3 +1,6 @@
+;;; 200_language-and-font-related.el ---             -*- lexical-binding: t; -*-
+
+;;;
 ;;; Language and font settings
 ;;
 ;; EmacsWiki SetFonts (including Testing if fonts are available?)
@@ -93,8 +96,7 @@
 
 ;;;
 ;;; macOS font settings
-(when (and (eq system-type 'darwin)
-           (display-graphic-p))
+(when (eq system-type 'darwin)
   ;; Best one so far. Good rescaling, and working with Greek letters φ phi
   ;; http://d.hatena.ne.jp/setoryohei/20110117
   ;; Good overview of how to configure a multi-language environment
@@ -109,71 +111,100 @@
   ;;
   ;; Strategy
   ;; 1. Create a fontset specifying Latin and Japanese letter separately
-  ;; 2. Set default-frame fontset via default-frame-alist
+  ;; ;; 2. Set default-frame fontset via default-frame-alist
+  ;; 2. Set a GUI frame's font set via `after-make-frame-functions' to handle a GUI
+  ;;    frame made from a tty emacs.
   ;; 3. Set face-font-rescale-alist to match width of different fonts
   ;;
 ;;;  Step 1. Create a fontset specifying different fonts for Latin and Japanese letters
   ;; This creates a new fontset rather than overwriting the default fontset.
-  (let* ((my-fontset-name "myfonts")
-         ;; Font size one of [9/10/12/14/15/17/19/20/...]
-         (my-default-font-size 15)
-         ;;
-         ;; Ascii font name (pick from (font-family-list))
-         (my-ascii-font "Menlo")
-         ;; Japanese font name (pick from (font-family-list))
-         (my-jp-font    "Hiragino Maru Gothic ProN")
-         ;;
-         ;; Create a FONT string for create-fontset-from-ascii-font
-         ;; "Menlo-14:weight=normal:slant=normal"
-         (my-default-font-string (format "%s-%d:weight=normal:slant=normal" my-ascii-font my-default-font-size))
-         ;;
-         ;; Create a fontset from an ASCII font FONT.
-         ;; Name as "fontset-" added to my-fontset-name
-         ;; "-*-menlo-normal-normal-normal-*-*-140-*-*-m-0-fontset-myfonts"
-         (my-font-set (create-fontset-from-ascii-font my-default-font-string nil my-fontset-name))
-         ;;
-         ;; Create :family-only font specifications (use later)
-         ;; #<font-spec nil nil Menlo nil nil nil nil nil nil nil nil nil nil>
-         (my-ascii-fontspec (font-spec :family my-ascii-font))
-         ;; #<font-spec nil nil Hiragino\ Maru\ Gothic\ ProN nil nil nil nil nil nil nil nil nil nil>
-         (my-jp-fontspec    (font-spec :family my-jp-font)))
-    ;;
-    ;; set-fontset-font function
-    ;; Modify fontset NAME to use FONT-SPEC for TARGET characters.
-    ;; (set-fontset-font NAME TARGET FONT-SPEC &optional FRAME ADD)
-    ;; NAME is a fontset name string, nil for the fontset of FRAME, or t for the default fontset.
-    ;; TARGET may be a cons (FROM . TO) or a charset or others.
-    ;;  To list all possible choices, use M-x list-character-sets
-    ;; FONT-SPEC may one of these:
-    ;; * A font-spec object made by the function ‘font-spec’ (which see).
-    ;; * A cons (FAMILY . REGISTRY), where FAMILY is a font family name and
-    ;;   REGISTRY is a font registry name.  FAMILY may contain foundry
-    ;;   name, and REGISTRY may contain encoding name.
-    ;; * A font name string.
-    ;; * nil, which explicitly specifies that there’s no font for TARGET.
-    ;; FRAME is a frame or nil for the selected frame
-    ;; ADD, if non-nil, specifies how to add FONT-SPEC to the font specifications for TARGET previously set
-    ;; Use 'append if specifying overlapping
-    ;;
-    ;; For these Japanese character sets, use my-jp-fontspec
-    (set-fontset-font my-font-set 'japanese-jisx0213.2004-1 my-jp-fontspec    nil 'append)
-    (set-fontset-font my-font-set 'japanese-jisx0213-2      my-jp-fontspec    nil 'append)
-    ;; For Half-sized katakana characters, use my-jp-fontspec
-    (set-fontset-font my-font-set 'katakana-jisx0201        my-jp-fontspec    nil 'append)
-    ;;
-    ;; For the characters in the range #x0080 - #x024F, use my-ascii-fontspec
-    ;; Latin with pronounciation annotations
-    (set-fontset-font my-font-set '(#x0080 . #x024F)        my-ascii-fontspec nil 'append)
-    ;; For the characters in the range #x0370 - #x03FF, use my-ascii-fontspec
-    ;; Greek characters
-    (set-fontset-font my-font-set '(#x0370 . #x03FF)        my-ascii-fontspec nil 'append))
+  (defun my-create-my-font-set ()
+    "Create a font set named fontset-myfonts for macOS GUI emacs."
+    (let* ((my-fontset-name "myfonts")
+           ;; Font size one of [9/10/12/14/15/17/19/20/...]
+           (my-default-font-size 15)
+           ;;
+           ;; Ascii font name (pick from (font-family-list))
+           (my-ascii-font "Menlo")
+           ;; Japanese font name (pick from (font-family-list))
+           (my-jp-font    "Hiragino Maru Gothic ProN")
+           ;;
+           ;; Create a FONT string for create-fontset-from-ascii-font
+           ;; "Menlo-14:weight=normal:slant=normal"
+           (my-default-font-string (format "%s-%d:weight=normal:slant=normal" my-ascii-font my-default-font-size))
+           ;;
+           ;; Create a fontset from an ASCII font FONT.
+           ;; Name as "fontset-" added to my-fontset-name
+           ;; "-*-menlo-normal-normal-normal-*-*-140-*-*-m-0-fontset-myfonts"
+           ;; `create-fontset-from-ascii-font' cannot run in a tty emacs.
+           (my-font-set (create-fontset-from-ascii-font my-default-font-string nil my-fontset-name))
+           ;;
+           ;; Create :family-only font specifications (use later)
+           ;; #<font-spec nil nil Menlo nil nil nil nil nil nil nil nil nil nil>
+           (my-ascii-fontspec (font-spec :family my-ascii-font))
+           ;; #<font-spec nil nil Hiragino\ Maru\ Gothic\ ProN nil nil nil nil nil nil nil nil nil nil>
+           (my-jp-fontspec    (font-spec :family my-jp-font)))
+      ;;
+      ;; `set-fontset-font' function
+      ;; Modify fontset NAME to use FONT-SPEC for TARGET characters.
+      ;; (set-fontset-font NAME TARGET FONT-SPEC &optional FRAME ADD)
+      ;; NAME is a fontset name string, nil for the fontset of FRAME, or t for the default fontset.
+      ;; TARGET may be a cons (FROM . TO) or a charset or others.
+      ;;  To list all possible choices, use M-x list-character-sets
+      ;; FONT-SPEC may one of these:
+      ;; * A font-spec object made by the function ‘font-spec’ (which see).
+      ;; * A cons (FAMILY . REGISTRY), where FAMILY is a font family name and
+      ;;   REGISTRY is a font registry name.  FAMILY may contain foundry
+      ;;   name, and REGISTRY may contain encoding name.
+      ;; * A font name string.
+      ;; * nil, which explicitly specifies that there’s no font for TARGET.
+      ;; FRAME is a frame or nil for the selected frame
+      ;; ADD, if non-nil, specifies how to add FONT-SPEC to the font specifications for TARGET previously set
+      ;; Use 'append if specifying overlapping
+      ;;
+      ;; For these Japanese character sets, use my-jp-fontspec
+      (set-fontset-font my-font-set 'japanese-jisx0213.2004-1 my-jp-fontspec    nil 'append)
+      (set-fontset-font my-font-set 'japanese-jisx0213-2      my-jp-fontspec    nil 'append)
+      ;; For Half-sized katakana characters, use my-jp-fontspec
+      (set-fontset-font my-font-set 'katakana-jisx0201        my-jp-fontspec    nil 'append)
+      ;;
+      ;; For the characters in the range #x0080 - #x024F, use my-ascii-fontspec
+      ;; Latin with pronounciation annotations
+      (set-fontset-font my-font-set '(#x0080 . #x024F)        my-ascii-fontspec nil 'append)
+      ;; For the characters in the range #x0370 - #x03FF, use my-ascii-fontspec
+      ;; Greek characters
+      (set-fontset-font my-font-set '(#x0370 . #x03FF)        my-ascii-fontspec nil 'append)))
   ;;
-;;;  Step 2. Set default-frame fontset via default-frame-alist
+;;;  Step 2. Set default-frame fontset via `default-frame-alist'
   ;; Set the font set for the default frame (Used at frame creation)
   ;; Alist of default values for frame creation.
-  ;; To check for the current frame, use M-x describe-fontset
+  ;; To check for the current frame, use M-x `describe-fontset'
   ;; To examine a specific character under cursor, use M-x describe-font
-  (add-to-list 'default-frame-alist '(font . "fontset-myfonts"))
+  (when (display-graphic-p)
+    ;; This only runs when starting up enacs in a GUI frame.
+    ;; Create a font set named "fontset-myfonts".
+    (my-create-my-font-set)
+    (add-to-list 'default-frame-alist '(font . "fontset-myfonts")))
+  ;;
+  ;; Creating frames and setting frame parameters
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Frames.html
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Frame-Parameters.html
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Parameter-Access.html
+  (defun my-set-font-fontset-myfonts (frame)
+    "Set the FRAME's font frame-parameter to fontset-myfonts in GUI."
+    ;; Invoke `display-graphic-p' on the newly created frame.
+    ;; https://emacs.stackexchange.com/questions/24609/determine-graphical-display-on-startup-for-emacs-server-client
+    (when (display-graphic-p frame)
+      ;; First select the newly created frame.
+      (select-frame frame)
+      ;; This needs to be run in a newly created graphical frame.
+      (my-create-my-font-set)
+      ;; (set-frame-parameter FRAME PARAMETER VALUE)
+      (set-frame-parameter frame 'font "fontset-myfonts")))
+  ;; Functions to run after `make-frame' created a new frame.
+  ;; The functions are run with one argument, the newly created frame.
+  ;; This one only works for the second GUI frame on.
+  (add-hook 'after-make-frame-functions 'my-set-font-fontset-myfonts)
   ;;
 ;;;  Step 3. Set face-font-rescale-alist to match width of different fonts
   ;; Rescaling parameters to adjust font sizes to match each other
