@@ -43,6 +43,7 @@
   ;; M-x profiler-start, M-x profiler-report if opening a file is slow.
   ;; https://www.murilopereira.com/how-to-open-a-file-in-emacs/#opening-a-file
   ;;
+  ;; https://emacs.stackexchange.com/questions/16497/how-to-exclude-files-from-projectile
   ;; https://github.com/jonEbird/dotfiles/blob/master/.emacs.d/my_configs/email_config.el#L113
   ;; `projectile-globally-ignored-modes'
   ;; A list of regular expressions for major modes ignored by projectile.
