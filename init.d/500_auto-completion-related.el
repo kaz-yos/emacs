@@ -215,6 +215,7 @@
   ;; https://github.com/company-mode/company-mode/wiki/Writing-backends
   ;; Best company-backends lists
   ;; http://emacs.stackexchange.com/questions/17537/best-company-backends-lists
+  ;; https://tychoish.com/post/better-company/
   ;;
   ;; Default list of symbols for backends commented.
   (defcustom company-backends-commented
