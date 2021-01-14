@@ -13,8 +13,7 @@
                                   (system-name-sans-domain)))
   (setq recentf-max-saved-items 3000)
   (setq recentf-exclude '("recentf_.*$"
-                          ;; ".*/elpa/.*"
-                          ".*\\.maildir.*"
+                          ".*\\.maildir/.*"
                           "/var/folders/.*"
                           ".*company-statistics.*"))
   ;; Define when to automatically cleanup the recent list.
