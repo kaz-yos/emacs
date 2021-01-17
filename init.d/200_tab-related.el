@@ -79,18 +79,35 @@ other functions, such as `helm-buffer-list'."
                     (member elt buffer-names-to-keep))
                   buffer-names)))
   ;;
+  (defvar my-tab-bar-create-permitted-buffer-names
+    '("*scratch*" "*Messages*")
+    ;; The first tab does not have *Messages* in
+    ;; (frame-parameter nil 'buffer-list). So it's not
+    ;; fully functional, yet.
+    "List of buffer names kept by `my-tab-bar-create'.")
+  ;;
   (defun my-tab-bar-create (&optional arg)
     "Create a new tab with cleaned buffer lists.
 
 ARG is directly passed to `tab-bar-new-tab'.
-Only the current buffer is kept in the `buffer-list'.
-`buried-buffer-list' is cleared.
+Only buffers in `my-tab-bar-create-permitted-buffer-names'
+are kept kept in the `buffer-list' and `buried-buffer-list'.
 This is similar to `elscreen-create'."
     (interactive)
     (tab-bar-new-tab arg)
     ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Current-Buffer.html
-    (set-frame-parameter nil 'buffer-list (list (current-buffer)))
-    (set-frame-parameter nil 'buried-buffer-list nil))
+    (set-frame-parameter nil
+                         'buffer-list
+                         (seq-filter (lambda (buffer)
+                                       (member (buffer-name buffer)
+                                               my-tab-bar-create-permitted-buffer-names))
+                                     (frame-parameter nil 'buffer-list)))
+    (set-frame-parameter nil
+                         'buried-buffer-list
+                         (seq-filter (lambda (buffer)
+                                       (member (buffer-name buffer)
+                                               my-tab-bar-create-permitted-buffer-names))
+                                     (frame-parameter nil 'buried-buffer-list))))
   ;;
   (defun my-tab-bar-clone (&optional arg)
     "Create a new tab by cloning the current tab.
