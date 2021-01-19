@@ -48,14 +48,21 @@
   ;; Define functions
   (defun my-tab-bar-setup ()
     "Set up several tabs at startup."
-    ;; Create Tab 2
+    ;; Add *Messages* to Tab 1 to keep it in all tab
+    ;; through `my-tab-bar-create-permitted-buffer-names'.
+    (when (get-buffer "*Messages*")
+      (set-frame-parameter nil
+                           'buffer-list
+                           (cons (get-buffer "*Messages*")
+                                 (frame-parameter nil 'buffer-list))))
+    ;; Create Tab 2.
     (progn (my-tab-bar-create)
            (tab-bar-rename-tab "init.d")
            (find-file (concat user-emacs-directory "init.d"))
            (split-window nil nil 'left)
            (when (file-exists-p (concat user-emacs-directory "private"))
              (find-file (concat user-emacs-directory "private"))))
-    ;; Create Tab 3
+    ;; Create Tab 3.
     (progn (my-tab-bar-create)
            (find-file (if (file-exists-p "~/Dropbox/documents")
                           "~/Dropbox/documents"
