@@ -96,6 +96,8 @@ This is similar to `elscreen-create'."
     (interactive)
     (tab-bar-new-tab arg)
     ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Current-Buffer.html
+    ;; The current-tab uses `buffer-list' and `buried-buffer-list'.
+    ;; A hidden tab keeps these as `wc-bl' and `wc-bbl'.
     (set-frame-parameter nil
                          'buffer-list
                          (seq-filter (lambda (buffer)
