@@ -409,4 +409,9 @@
 ;;;
 ;;; Add *Messages* to (frame-parameter nil 'buffer-list) for the first frame.
 ;; To have *Messages* in `my-tab-bar-buffer-name-filter'.
-(add-to-list 'default-frame-alist `(buffer-list . ,(list (get-buffer "*Messages*"))))
+;; This does not seem to matter.
+;; (add-to-list 'initial-frame-alist `(buffer-list . ,(list (get-buffer "*Messages*"))))
+;; This does not affect the second tab-bar on.
+;; (add-to-list 'default-frame-alist `(buffer-list . ,(list (get-buffer "*Messages*"))))
+;; Check
+;; (frame-parameter nil 'buffer-list)
