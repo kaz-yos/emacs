@@ -395,7 +395,9 @@
 ;;; seq.el
 (use-package seq
   :commands (;;
-             seq-filter))
+             seq-filter
+             seq-map
+             seq-elt))
 
 ;;;
 ;;; No frame size rounding with GUI.
