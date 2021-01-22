@@ -260,7 +260,8 @@ This should be run after running multiple-cursors"
          ("." . hydra-symbol-overlay/body)
          :map mode-specific-map
          ("o" . hydra-window/body)
-         ("." . hydra-symbol-overlay/body))
+         ("." . hydra-symbol-overlay/body)
+         ("g" . hydra-magit/body))
   :config
   ;;
   ;; Binding styles
@@ -427,6 +428,19 @@ This should be run after running multiple-cursors"
     ;;
     ("u" winner-undo "Undo" :column "Winner")
     ("r" winner-redo "Redo" :column "Winner")
+    ;;
+    ("q" nil "Quit" :column "Misc")
+    ("C-g" nil "Quit" :column "Misc"))
+  ;;
+  (defhydra hydra-magit (;; map key
+                         ;; Bind the body
+                         ;; mode-specific-map "g"
+                         :exit t)
+    "magit-related"
+    ("g" my-magit-status "Status" :column "Magit")
+    ("s" my-magit-status "Status" :column "Magit")
+    ("d" magit-dispatch "Dispatch" :column "Magit")
+    ("f" magit-file-dispatch "File Dispatch" :column "Magit")
     ;;
     ("q" nil "Quit" :column "Misc")
     ("C-g" nil "Quit" :column "Misc"))

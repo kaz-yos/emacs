@@ -63,11 +63,15 @@
 (use-package magit
   :ensure t
   :commands (magit-status
-             magit-init)
+             magit-init
+             my-magit-status
+             magit-dispatch
+             magit-file-dispatch)
   :bind (("s-g" . my-magit-status)
          ;; Keymap for characters following C-c.
-         :map mode-specific-map
-         ("g". my-magit-status)
+         ;; This is now assigned to `hydra-magit/body'
+         ;; :map mode-specific-map
+         ;; ("g". my-magit-status)
          :map my-key-map
          ("g" . my-magit-status)
          :map magit-section-mode-map
