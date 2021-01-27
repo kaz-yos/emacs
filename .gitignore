@@ -18,10 +18,13 @@ recentf_*
 anaconda-mode/
 irony/
 misc/zotero.bib
+misc/zoterobiblatex.bib
 request/
 tramp
 transient/
 url/
+eln-cache/
+games/
 
 # https://stackoverflow.com/questions/16267830/how-to-move-cedet-auto-generated-ede-projects-el-and-srecode-map-el
 srecode-map.el
@@ -35,4 +38,3 @@ misc/en_US.dic
 # Directories tracked elsewhere
 private/
 skk/
-/misc/zoterobiblatex.bib
