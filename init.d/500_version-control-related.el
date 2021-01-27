@@ -138,7 +138,13 @@
     :ensure t
     ;; Do not hook. Just load once.
     ;; https://github.com/alphapapa/magit-todos/issues/28
-    ))
+    )
+  ;;
+;;;   multi-magit.el
+  ;; https://github.com/luismbo/multi-magit
+  ;; (use-package multi-magit
+  ;;   :config)
+  )
 
 
 ;;;  abridge-diff.el
