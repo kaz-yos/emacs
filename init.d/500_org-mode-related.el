@@ -342,7 +342,9 @@ to conform the org-mode convention."
     ;; https://github.com/jwiegley/use-package#hooks
     :hook (org-mode . (lambda () (require 'org-ref)))
     :bind (:map org-mode-map
-                ("C-A-a" . org-ref-helm-insert-cite-link))
+           ("C-A-a" . org-ref-helm-insert-cite-link))
+    :commands (plist-get-keys)
+    ;;
     :config
     ;; To track when loading is occurring.
     (message "org-ref has just been loaded.")
