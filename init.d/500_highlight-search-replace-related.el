@@ -132,21 +132,6 @@
 
 
 ;;;
-;;; anzu.el
-;; http://shibayu36.hatenablog.com/entry/2013/12/30/190354
-;; http://qiita.com/syohex/items/56cf3b7f7d9943f7a7ba
-(use-package anzu
-  :ensure t
-  :defer 2
-  :config
-  (setq anzu-mode-lighter "")
-  (setq anzu-use-migemo (executable-find "cmigemo"))
-  (setq anzu-search-threshold 1000)
-  (setq anzu-minimum-input-length 1)
-  (global-anzu-mode +1))
-
-
-;;;
 ;;; multiple-cursors.el
 ;; https://github.com/magnars/multiple-cursors.el
 ;; http://ongaeshi.hatenablog.com/entry/20121205/1354672102 (for a similar package)
@@ -409,33 +394,6 @@ searched. If there is no symbol, empty search box is started."
   :ensure t
   :commands (plur-replace
              plur-query-replace))
-
-
-;;;
-;;; cmigemo (installed from Homebrew)
-;; Used brew to install cmigemo
-;; Used M-x list-package to install migemo.el (github)
-;; Configured refering to: http://d.hatena.ne.jp/ground256/20111008/1318063872
-;; Works by advising isearch-mode
-;;
-;; Mac-only configuration
-(use-package migemo
-  :ensure t
-  :if (executable-find "cmigemo")
-  :commands (migemo-init)
-  ;;
-  :init
-  (add-hook 'after-init-hook 'migemo-init)
-  ;;
-  :config
-  (setq migemo-command (executable-find "cmigemo"))
-  (setq migemo-options '("-q" "--emacs"))
-  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
-  (setq migemo-user-dictionary nil)
-  (setq migemo-coding-system 'utf-8-unix)
-  (setq migemo-regex-dictionary nil)
-  ;; Advising
-  (migemo-init))
 
 
 ;;;
