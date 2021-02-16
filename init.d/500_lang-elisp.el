@@ -102,6 +102,14 @@ This will globally bind these variables for crude interactive testing."
         body)))
 
 
+;;;  edebug-inline-result.el
+(use-package edebug-inline-result
+  :ensure t
+  :hook (edebug-mode . edebug-inline-result-mode)
+  :config
+  (setq edebug-inline-result-backend 'popup))
+
+
 ;;;
 ;;; Good practice related
 ;;;
