@@ -103,7 +103,7 @@ Dependency: ace-swap-window"
   ;; use the end of the string.  The optional element ALIGN describes the
   ;; alignment of the column; it can be :left, :center or :right.  The
   ;; optional element ELIDE describes whether or not to elide the column
-  ;; if it is too long; valid values are :elide and nil.  The default is
+  ;; if it is too long; valid values are `:elide' and nil.  The default is
   ;; nil (don't elide).
   ;;
   (setq ibuffer-formats
@@ -111,13 +111,13 @@ Dependency: ace-swap-window"
                 " "
                 ;; Buffer name
                 ;; (SYMBOL MIN-SIZE MAX-SIZE &optional ALIGN ELIDE)
-                (name 18 18 :left :elide)
+                (name 36 36 :left :elide)
                 " "
                 ;; Human-readable buffer size (size-h) instead of size.
                 (size-h 9 -1 :right)
                 " "
                 ;; Mode
-                (mode 10 10 :left :elide)
+                (mode 16 16 :left :elide)
                 " "
                 ;; vc-status is defined in ibuffer-vc.el
                 (vc-status 16 16 :left)
