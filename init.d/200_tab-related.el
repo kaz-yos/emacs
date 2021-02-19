@@ -218,18 +218,6 @@ This is similar to `elscreen-clone'."
     (advice-add 'tab-bar-make-keymap-1
                 :filter-return #'my-add-buffer-info))
   ;;
-  ;; Use the projectile project name for the tab name.
-  ;; https://github.com/toyboot4e/dotfiles/blob/master/editor/emacs/elisp/ide.el#L172-L178
-  (with-eval-after-load "projectile"
-    (defun my-tab-bar-tab-name-current-project-or-buffer ()
-      (let ((project-name (projectile-project-name)))
-        (if (string-equal project-name "-")
-            (tab-bar-tab-name-current)
-          project-name)))
-    ;; Function to get a tab name.
-    (setq tab-bar-tab-name-function
-          #'my-tab-bar-tab-name-current-project-or-buffer))
-  ;;
   ;; Defines when to show the tab bar.
   (setq tab-bar-show t)
   ;; Do not show buttons.
