@@ -247,6 +247,7 @@ This is similar to `elscreen-clone'."
 ;;; tab-line-mode.el
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Tab-Line.html
 (use-package tab-line
+  :disabled t
   :if (not (version< emacs-version "27.0"))
   ;; To use `my-tab-bar-buffer-name-filter' defined in the tab-bar configuration.
   :after tab-bar
