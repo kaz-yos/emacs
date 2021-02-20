@@ -18,31 +18,32 @@
              tab-bar-switch-to-prev-tab)
   :hook ((after-init . my-tab-bar-setup))
   :bind-keymap (("C-c l" . tab-prefix-map))
-  :bind (("M-`" . tab-bar-switch-to-next-tab)
-         ("M-\\" . tab-bar-switch-to-prev-tab)
-         ;; `tab-bar-map' is for mouse actions on the tab bar.
-         ;; `tab-prefix-map' is defined in `subr.el'.
-         :map tab-prefix-map
-         ("c" . my-tab-bar-create)
-         ("C" . my-tab-bar-clone)
-         ("n" . tab-bar-switch-to-next-tab)
-         ("p" . tab-bar-switch-to-prev-tab)
-         ("k" . tab-bar-close-tab)
-         ("K" . tab-bar-close-other-tabs)
-         ("s" . tab-bar-select-tab-by-name)
-         ("r" . tab-bar-rename-tab)
-         ("u" . tab-bar-undo-close-tab)
-         ;; ("D" . display-buffer-in-new-tab) ; not a user command
-         ;;
-         ("1" . my-tab-bar-select-tab-1)
-         ("2" . my-tab-bar-select-tab-2)
-         ("3" . my-tab-bar-select-tab-3)
-         ("4" . my-tab-bar-select-tab-4)
-         ("5" . my-tab-bar-select-tab-5)
-         ("6" . my-tab-bar-select-tab-6)
-         ("7" . my-tab-bar-select-tab-7)
-         ("8" . my-tab-bar-select-tab-8)
-         ("9" . my-tab-bar-select-tab-9))
+  ;; bind* overrides all minor mode bindings.
+  :bind* (("M-`" . tab-bar-switch-to-next-tab)
+          ("M-\\" . tab-bar-switch-to-prev-tab)
+          ;; `tab-bar-map' is for mouse actions on the tab bar.
+          ;; `tab-prefix-map' is defined in `subr.el'.
+          :map tab-prefix-map
+          ("c" . my-tab-bar-create)
+          ("C" . my-tab-bar-clone)
+          ("n" . tab-bar-switch-to-next-tab)
+          ("p" . tab-bar-switch-to-prev-tab)
+          ("k" . tab-bar-close-tab)
+          ("K" . tab-bar-close-other-tabs)
+          ("s" . tab-bar-select-tab-by-name)
+          ("r" . tab-bar-rename-tab)
+          ("u" . tab-bar-undo-close-tab)
+          ;; ("D" . display-buffer-in-new-tab) ; not a user command
+          ;;
+          ("1" . my-tab-bar-select-tab-1)
+          ("2" . my-tab-bar-select-tab-2)
+          ("3" . my-tab-bar-select-tab-3)
+          ("4" . my-tab-bar-select-tab-4)
+          ("5" . my-tab-bar-select-tab-5)
+          ("6" . my-tab-bar-select-tab-6)
+          ("7" . my-tab-bar-select-tab-7)
+          ("8" . my-tab-bar-select-tab-8)
+          ("9" . my-tab-bar-select-tab-9))
   ;;
   :config
   ;; Define functions
