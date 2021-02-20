@@ -1,7 +1,15 @@
-;;;
-;;; PROJECTILE-RELATED
+;;; 500_project-management-related.el ---            -*- lexical-binding: t; -*-
 
-;;;; projectile.el
+;;;
+;;; project.el
+(use-package project
+  :ensure t
+  :commands (project-switch-project)
+  :config)
+
+
+;;;
+;;; projectile.el
 ;; https://github.com/bbatsov/projectile
 ;; https://github.com/bbatsov/projectile#interactive-commands
 ;; https://projectile.readthedocs.io/en/latest/usage/
