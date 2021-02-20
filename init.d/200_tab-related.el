@@ -21,7 +21,7 @@
   :bind (("M-`" . tab-bar-switch-to-next-tab)
          ("M-\\" . tab-bar-switch-to-prev-tab)
          ;; `tab-bar-map' is for mouse actions on the tab bar.
-         ;; `tab-prefix-map' is defined in subr.el.
+         ;; `tab-prefix-map' is defined in `subr.el'.
          :map tab-prefix-map
          ("c" . my-tab-bar-create)
          ("C" . my-tab-bar-clone)
