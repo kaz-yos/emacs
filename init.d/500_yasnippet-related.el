@@ -19,6 +19,14 @@
          ;; Display snippets for each table.
          ("C-x i d" . yas-describe-tables))
   :config
+  ;; List of top-level snippet directories.
+  ;; https://joaotavora.github.io/yasnippet/snippet-organization.html#org10ee311
+  (let ((private-snippets-dir (concat (expand-file-name user-emacs-directory)
+                                      "private/snippets")))
+    (when (file-exists-p private-snippets-dir)
+      (add-to-list 'yas-snippet-dirs
+                   private-snippets-dir)))
+  ;;
   ;; Use Popup isearch for Yasnippet Prompt.
   ;; http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
   (defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
