@@ -25,9 +25,7 @@
                                       "private/snippets")))
     (when (file-exists-p private-snippets-dir)
       (add-to-list 'yas-snippet-dirs
-                   private-snippets-dir)
-      ;; To make the private snippet the second one.
-      (nreverse yas-snippet-dirs)))
+                   private-snippets-dir)))
   ;;
   ;; Use Popup isearch for Yasnippet Prompt.
   ;; http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
