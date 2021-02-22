@@ -34,7 +34,9 @@
        :prompt prompt
        ;; start isearch mode immediately
        :isearch t)))
-  (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
+  ;; Functions to prompt for keys, templates, etc interactively.
+  (add-to-list 'yas-prompt-functions
+               'yas-popup-isearch-prompt)
   ;;
   ;; Activate globally.
   (yas-global-mode 1))
