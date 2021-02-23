@@ -126,7 +126,8 @@ This is similar to `elscreen-create'."
 
 ARG is directly passed to `tab-bar-new-tab'.
 This does not touch the `buffer-list' and `buried-buffer-list'.
-This is similar to `elscreen-clone'."
+This is similar to `elscreen-clone'.
+To be superseded with `tab-bar-duplicate-tab' in emacs 28."
     (interactive)
     ;; If nil, duplicate the contents of the tab that was active
     ;; before calling the command that adds a new tab.
