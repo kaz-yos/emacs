@@ -15,10 +15,8 @@
   :ensure ddskk
   :if (file-exists-p (concat user-emacs-directory "skk"))
   :commands (skk-mode)
-  :bind (("C-x j" . skk-mode)
+  :bind (("C-c j" . skk-mode)
          ("A-j" . skk-mode)
-         ("A-SPC" . skk-mode)
-         ("M-SPC" . skk-mode)
          ("s-j" . skk-mode)
          :map my-key-map
          ("j" . skk-mode))
