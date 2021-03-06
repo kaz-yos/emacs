@@ -490,6 +490,25 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; 12.7.5 LaTeX specific attributes
   ;; http://orgmode.org/manual/LaTeX-specific-attributes.html
   ;;
+  (defun my-org-latex-export-to-pdf (&optional async subtreep visible-only body-only ext-plist)
+    "Export current buffer to LaTeX then process through to PDF.
+
+This version avoids the unreadable anonymous lambda issue."
+    (interactive)
+    (let ((outfile (org-export-output-file-name ".tex" subtreep)))
+      (org-export-to-file 'latex outfile
+        async subtreep visible-only body-only ext-plist
+        ;; The following lambda
+        ;;  (lambda (file) (org-latex-compile file))
+        ;; is converted to something like the following
+        ;;  '#<subr F616e6f6e796d6f75732d6c616d626461_anonymous_lambda_77>
+        ;; when written to a temporary file for the async org process to read.
+        ;; Upon reading, the async org process gives the following error.
+        ;;  Debugger entered--Lisp error: (invalid-read-syntax "#" 1 0)
+        #'org-latex-compile)))
+  (advice-add #'org-latex-export-to-pdf
+              :override #'my-org-latex-export-to-pdf)
+  ;;
   ;; PDF processing with correct bibtex handling
   ;; http://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html
   ;; %f: full file name
