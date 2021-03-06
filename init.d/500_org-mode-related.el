@@ -490,6 +490,18 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;; 12.7.5 LaTeX specific attributes
   ;; http://orgmode.org/manual/LaTeX-specific-attributes.html
   ;;
+  ;; The following lambda
+  ;;  (lambda (file) (org-latex-compile file))
+  ;; is converted to something like the following
+  ;;  '#<subr F616e6f6e796d6f75732d6c616d626461_anonymous_lambda_77>
+  ;; when written to a temporary file for the async org process to read.
+  ;; Upon reading, the async org process gives the following error
+  ;; when it hits this '#<subr part.
+  ;;  Debugger entered--Lisp error: (invalid-read-syntax "#" 1 0)
+  ;;
+  ;; This issue comes from native compilation.
+  ;; (native-compile '(lambda (x) (1+ x))) => #<subr --anonymous-lambda>
+  ;; https://www.reddit.com/r/emacs/comments/j100w0/nativecomp_disassembling_native_functions/g8s6xww/?context=3
   (defun my-org-latex-export-to-pdf (&optional async subtreep visible-only body-only ext-plist)
     "Export current buffer to LaTeX then process through to PDF.
 
@@ -498,21 +510,22 @@ This version avoids the unreadable anonymous lambda issue."
     (let ((outfile (org-export-output-file-name ".tex" subtreep)))
       (org-export-to-file 'latex outfile
         async subtreep visible-only body-only ext-plist
-        ;; The following lambda
-        ;;  (lambda (file) (org-latex-compile file))
-        ;; is converted to something like the following
-        ;;  '#<subr F616e6f6e796d6f75732d6c616d626461_anonymous_lambda_77>
-        ;; when written to a temporary file for the async org process to read.
-        ;; Upon reading, the async org process gives the following error
-        ;; when it hits this part.
-        ;;  Debugger entered--Lisp error: (invalid-read-syntax "#" 1 0)
-        ;;
-        ;; This issue comes from native compilation.
-        ;; (native-compile '(lambda (x) (1+ x))) => #<subr --anonymous-lambda>
-        ;; https://www.reddit.com/r/emacs/comments/j100w0/nativecomp_disassembling_native_functions/g8s6xww/?context=3
         #'org-latex-compile)))
   (advice-add #'org-latex-export-to-pdf
               :override #'my-org-latex-export-to-pdf)
+  ;;
+  (defun my-org-beamer-export-to-pdf
+      (&optional async subtreep visible-only body-only ext-plist)
+    "Export current buffer as a Beamer presentation (PDF).
+
+This version avoids the unreadable anonymous lambda issue."
+    (interactive)
+    (let ((file (org-export-output-file-name ".tex" subtreep)))
+      (org-export-to-file 'beamer file
+        async subtreep visible-only body-only ext-plist
+        #'org-latex-compile)))
+  (advice-add #'org-beamer-export-to-pdf
+              :override #'my-org-beamer-export-to-pdf)
   ;;
   ;; PDF processing with correct bibtex handling
   ;; http://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html
