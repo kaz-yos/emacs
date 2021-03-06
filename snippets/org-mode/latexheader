@@ -73,8 +73,8 @@
 #+LATEX_HEADER: \usepackage{float}
 #+LATEX_HEADER: %% Allow URL embedding
 #+LATEX_HEADER: \usepackage{url}
-#+LATEX_HEADER: % Required for XeLaTeX. Also install FontAwesome.otf system-wide.
-#+LATEX_HEADER: \usepackage{fontspec}
-#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: %% Required for XeLaTeX. Also install FontAwesome.otf system-wide.
+#+LATEX_HEADER: %% \usepackage{fontspec}
+#+LATEX_HEADER: %% \usepackage{fontawesome}
 #+LATEX_HEADER: %% https://github.com/kaz-yos/emacs/blob/master/misc/GrandMacros.tex
 #+LATEX_HEADER: \input{\string~/.emacs.d/misc/GrandMacros}
