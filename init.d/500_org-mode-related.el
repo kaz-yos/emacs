@@ -494,10 +494,15 @@ This is a custom version of org-latex-export-to-pdf with an async flag."
   ;;  (lambda (file) (org-latex-compile file))
   ;; is converted to something like the following
   ;;  '#<subr F616e6f6e796d6f75732d6c616d626461_anonymous_lambda_77>
-  ;; when written to a temporary file for the async org process to read.
-  ;; Upon reading, the async org process gives the following error
-  ;; when it hits this '#<subr part.
+  ;; when written to a temporary file for the async org process to read
+  ;; by `org-export-to-file', which calls the `org-export-async-start' macro.
+  ;; In the macro, the following part creates the problematic code.
+  ;; Sexp to evaluate in the buffer.
+  ;; (print (progn ,,@body))
+  ;;
+  ;; Upon reading this file, the async org process gives the following error
   ;;  Debugger entered--Lisp error: (invalid-read-syntax "#" 1 0)
+  ;; when it hits this '#<subr part.
   ;;
   ;; This issue comes from native compilation.
   ;; (native-compile '(lambda (x) (1+ x))) => #<subr --anonymous-lambda>
