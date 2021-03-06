@@ -103,10 +103,12 @@ This will globally bind these variables for crude interactive testing."
 
 
 ;;;  edebug-inline-result.el
+;; https://github.com/stardiviner/edebug-inline-result
 (use-package edebug-inline-result
   :ensure t
   :hook (edebug-mode . edebug-inline-result-mode)
   :config
+  (use-package popup)
   (setq edebug-inline-result-backend 'popup))
 
 
