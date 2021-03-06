@@ -503,8 +503,13 @@ This version avoids the unreadable anonymous lambda issue."
         ;; is converted to something like the following
         ;;  '#<subr F616e6f6e796d6f75732d6c616d626461_anonymous_lambda_77>
         ;; when written to a temporary file for the async org process to read.
-        ;; Upon reading, the async org process gives the following error.
+        ;; Upon reading, the async org process gives the following error
+        ;; when it hits this part.
         ;;  Debugger entered--Lisp error: (invalid-read-syntax "#" 1 0)
+        ;;
+        ;; This issue comes from native compilation.
+        ;; (native-compile '(lambda (x) (1+ x))) => #<subr --anonymous-lambda>
+        ;; https://www.reddit.com/r/emacs/comments/j100w0/nativecomp_disassembling_native_functions/g8s6xww/?context=3
         #'org-latex-compile)))
   (advice-add #'org-latex-export-to-pdf
               :override #'my-org-latex-export-to-pdf)
