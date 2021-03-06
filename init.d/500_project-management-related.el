@@ -2,8 +2,8 @@
 
 ;;;
 ;;; project.el
+;; Part of emacs
 (use-package project
-  :ensure t
   :commands (project-switch-project)
   :config)
 
