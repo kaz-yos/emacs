@@ -64,6 +64,19 @@
 (use-package eros
   :ensure t
   :config
+  ;; edebug version
+  (defun my-eros-edebug-eval-last-sexp (&optional _no-truncate)
+    "Replacement for `edebug-eval-last-sexp' that overlays results."
+    (interactive "P")
+    (eros--eval-overlay
+     (let ((edebug-print-length nil)
+           (edebug-print-level nil))
+       (edebug-eval-expression (edebug-last-sexp)))
+     (point)))
+  (advice-add #'edebug-eval-last-sexp
+              :override #'my-eros-edebug-eval-last-sexp)
+  ;;
+  ;; Activate
   (eros-mode 1))
 
 ;;;  macrostep.el
