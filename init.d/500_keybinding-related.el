@@ -252,8 +252,7 @@ This should be run after running multiple-cursors"
   ;; This package should be loaded without deferring
   ;; as the `eval-after-load' in the body must be set.
   :demand t
-  :bind (;;
-         :map my-key-map
+  :bind (:map my-key-map
          ("o" . hydra-outline/body)
          ("m" . hydra-multiple-cursors/body)
          ("," . hydra-expand-region/body)
