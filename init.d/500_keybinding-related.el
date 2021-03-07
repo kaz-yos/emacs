@@ -560,9 +560,10 @@ This should be run after running multiple-cursors"
     (hercules-def :toggle-funs #'macrostep-mode
                   :keymap 'macrostep-keymap))
   ;;
-  (eval-after-load "edebug"
-    (hercules-def :toggle-funs #'edebug-mode
-                  :keymap 'edebug-mode-map))
+  ;; This limits the evaluation ability.
+  ;; (eval-after-load "edebug"
+  ;;   (hercules-def :toggle-funs #'edebug-mode
+  ;;                 :keymap 'edebug-mode-map))
   ;;
   ;; 2020-05-11 Not useful unless, configuring the exit key.
   ;; (eval-after-load "debug"
