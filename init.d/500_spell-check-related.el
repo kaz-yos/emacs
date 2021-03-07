@@ -213,10 +213,14 @@ which has no argument of its own."
 
 ;;;
 ;;; flycheck-grammarly.el
-;; https://github.com/jcs-elpa/flycheck-grammarly/tree/master
+;; https://github.com/jcs-elpa/flycheck-grammarly/
 (use-package flycheck-grammarly
   :ensure t
   :config
+  ;; How long do we call request after we done typing.
+  (setq flycheck-grammarly-check-time 0.8)
+  ;; Show the debug message from this package.
+  (setq flycheck-grammarly--show-debug-message nil)
   ;; The following is done in the file
   ;; (add-to-list 'flycheck-checkers 'grammarly-checker)
   )
