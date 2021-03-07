@@ -101,6 +101,25 @@ This will globally bind these variables for crude interactive testing."
           (cons 'setq let-pair))
         body)))
 
+;;;
+;;; Debugging
+
+;;;  debug.el
+;; Part of emacs
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Debugger.html
+(use-package debug
+  :commands (debug-on-entry
+             cancel-debug-on-entry
+             debug-on-variable-change
+             cancel-debug-on-variable-change))
+
+;;;  edebug.el
+;; Part of emacs
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug.html
+(use-package edebug
+  :commands (edebug-eval-top-level-form
+             edebug-on-entry
+             cancel-edebug-on-entry))
 
 ;;;  edebug-inline-result.el
 ;; https://github.com/stardiviner/edebug-inline-result
@@ -114,7 +133,6 @@ This will globally bind these variables for crude interactive testing."
 
 ;;;
 ;;; Good practice related
-;;;
 
 ;;;  buttercup.el
 ;; Behavior-Driven Emacs Lisp Testing
