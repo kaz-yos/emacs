@@ -70,8 +70,18 @@
     (interactive "P")
     (eros--eval-overlay
      (let ((edebug-print-length nil)
-           (edebug-print-level nil))
-       (edebug-eval-expression (edebug-last-sexp)))
+           (edebug-print-level nil)
+           (expr (edebug-last-sexp)))
+       ;; Recontructed from the body of `edebug-eval-expression'
+       ;; to obtain the result for eros to use.
+       (edebug-outside-excursion
+        (let ((result (edebug-eval expr)))
+          (values--store-value result)
+          (princ
+           (concat (edebug-safe-prin1-to-string result)
+                   (eval-expression-print-format result)))
+          ;; Return the value for `eros--eval-overlay'.
+          result)))
      (point)))
   (advice-add #'edebug-eval-last-sexp
               :override #'my-eros-edebug-eval-last-sexp)
