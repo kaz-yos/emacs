@@ -60,7 +60,7 @@
     (add-hook hook 'turn-on-elisp-slime-nav-mode)))
 
 ;;;  eros.el
-;; https://github.com/xiongtx/eros/tree/dd8910279226259e100dab798b073a52f9b4233a
+;; https://github.com/xiongtx/eros/
 (use-package eros
   :ensure t
   :config
