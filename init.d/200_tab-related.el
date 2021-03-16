@@ -138,15 +138,19 @@ To be superseded with `tab-bar-duplicate-tab' in emacs 28."
     `(lambda ()
        (interactive)
        (tab-bar-select-tab ,num)))
-  (fset 'my-tab-bar-select-tab-1 (my-create-tab-bar-select-tab 1))
-  (fset 'my-tab-bar-select-tab-2 (my-create-tab-bar-select-tab 2))
-  (fset 'my-tab-bar-select-tab-3 (my-create-tab-bar-select-tab 3))
-  (fset 'my-tab-bar-select-tab-4 (my-create-tab-bar-select-tab 4))
-  (fset 'my-tab-bar-select-tab-5 (my-create-tab-bar-select-tab 5))
-  (fset 'my-tab-bar-select-tab-6 (my-create-tab-bar-select-tab 6))
-  (fset 'my-tab-bar-select-tab-7 (my-create-tab-bar-select-tab 7))
-  (fset 'my-tab-bar-select-tab-8 (my-create-tab-bar-select-tab 8))
-  (fset 'my-tab-bar-select-tab-9 (my-create-tab-bar-select-tab 9))
+  ;; Use the generalized variable approach with `setf'.
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Setting-Generalized-Variables.html
+  ;; The setf form is like setq, except that it accepts arbitrary place forms on the left side
+  ;; rather than just symbols.
+  (setf (symbol-function 'my-tab-bar-select-tab-1) (my-create-tab-bar-select-tab 1))
+  (setf (symbol-function 'my-tab-bar-select-tab-2) (my-create-tab-bar-select-tab 2))
+  (setf (symbol-function 'my-tab-bar-select-tab-3) (my-create-tab-bar-select-tab 3))
+  (setf (symbol-function 'my-tab-bar-select-tab-4) (my-create-tab-bar-select-tab 4))
+  (setf (symbol-function 'my-tab-bar-select-tab-5) (my-create-tab-bar-select-tab 5))
+  (setf (symbol-function 'my-tab-bar-select-tab-6) (my-create-tab-bar-select-tab 6))
+  (setf (symbol-function 'my-tab-bar-select-tab-7) (my-create-tab-bar-select-tab 7))
+  (setf (symbol-function 'my-tab-bar-select-tab-8) (my-create-tab-bar-select-tab 8))
+  (setf (symbol-function 'my-tab-bar-select-tab-9) (my-create-tab-bar-select-tab 9))
   ;;
   ;; This looks like a more sophisticated implementation.
   ;; https://github.com/ROCKTAKEY/tab-bar-display
