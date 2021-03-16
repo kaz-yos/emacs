@@ -95,9 +95,10 @@
                              ;; `make-symbol' (not good)
                              ;; Return a newly allocated uninterned symbol whose name is NAME.
                              (intern))))
-      ;; `fset' Set SYMBOL's function definition to DEFINITION, and return DEFINITION.
+      ;; This is equivalent to `fset':
+      ;; Set SYMBOL's function definition to DEFINITION, and return DEFINITION.
       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html
-      `(fset ',unsetter-symbol ,unsetter-body)))
+      `(setf (symbol-function ',unsetter-symbol) ,unsetter-body)))
   ;;
   ;; Assignment to the function-cell require (fset 'symbol (lambda ...))
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
