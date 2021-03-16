@@ -83,15 +83,17 @@
   (defmacro smartchar-fset-unsetter (smartchar-set-function)
     "Define the corresponding unsetter."
     ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Surprising-Local-Vars.html
+    ;; String manipulate the setter symbol into the unsetter symbol (it must be interned).
+    ;; https://stackoverflow.com/questions/660555/can-you-create-interactive-functions-in-an-emacs-lisp-macro
     (let ((unsetter-body (smartchr-construct-unsetter smartchar-set-function))
-          ;; String manipulate the setter symbol into the unsetter symbol (it must be interned).
-          ;; https://stackoverflow.com/questions/660555/can-you-create-interactive-functions-in-an-emacs-lisp-macro
           (unsetter-symbol (thread-last smartchar-set-function
                              (symbol-name)
                              (replace-regexp-in-string "-set$" "-unset")
                              ;; Use `intern' not `make-symbol'.
-                             ;; `intern' Return the canonical symbol whose name is STRING.
-                             ;; `make-symbol' Return a newly allocated uninterned symbol whose name is NAME.
+                             ;; `intern' (good)
+                             ;; Return the canonical symbol whose name is STRING.
+                             ;; `make-symbol' (not good)
+                             ;; Return a newly allocated uninterned symbol whose name is NAME.
                              (intern))))
       `(fset ',unsetter-symbol ,unsetter-body)))
   ;;
