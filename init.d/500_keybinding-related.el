@@ -89,7 +89,7 @@
                              (symbol-name)
                              (replace-regexp-in-string "-set$" "-unset")
                              (make-symbol))))
-      ;;
+      ;; This is not done globally.
       `(fset ',unsetter-symbol ,unsetter-body)))
   ;;
   ;; Assignment to the function-cell require (fset 'symbol (lambda ...))
