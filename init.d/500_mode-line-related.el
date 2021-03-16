@@ -32,7 +32,7 @@
            do
            (let ((old-mode-str (cdr (assq mode minor-mode-alist))))
              (when old-mode-str
-               (setcar old-mode-str mode-str))
+               (setf (car old-mode-str) mode-str))
              ;; major mode
              (when (eq mode major-mode)
                (setq mode-name mode-str)))))
