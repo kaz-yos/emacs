@@ -95,6 +95,8 @@
                              ;; `make-symbol' (not good)
                              ;; Return a newly allocated uninterned symbol whose name is NAME.
                              (intern))))
+      ;; `fset' Set SYMBOL's function definition to DEFINITION, and return DEFINITION.
+      ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html
       `(fset ',unsetter-symbol ,unsetter-body)))
   ;;
   ;; Assignment to the function-cell require (fset 'symbol (lambda ...))
@@ -153,8 +155,6 @@ This should be run after running multiple-cursors"
       ('ruby-mode                   (smartchr-ruby-mode-set))))
   ;;
 ;;;  Define major-mode specific setters and unsetters
-  ;; fset: This function stores definition in the function cell of symbol.
-  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Function-Cells.html#Function-Cells
 ;;;   ESS
   (defun smartchr-ess-r-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == ")))
