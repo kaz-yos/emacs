@@ -167,7 +167,7 @@ This should be run after running multiple-cursors"
     (local-set-key (kbd "%") (smartchr '("%" " %`!!'% "))))
   (add-hook 'ess-mode-hook          'smartchr-ess-r-mode-set)
   (add-hook 'inferior-ess-mode-hook 'smartchr-ess-r-mode-set)
-  (fset 'smartchr-ess-r-mode-unset (smartchr-construct-unsetter 'smartchr-ess-r-mode-set))
+  (smartchar-fset-unsetter smartchr-ess-r-mode-set)
   ;;
 ;;;   Python
   (defun smartchr-python-mode-set ()
@@ -178,14 +178,14 @@ This should be run after running multiple-cursors"
   (add-hook 'ein:notebook-multilang-mode-hook 'smartchr-python-mode-set)
   (add-hook 'python-mode-hook                 'smartchr-python-mode-set)
   (add-hook 'inferior-python-mode-hook        'smartchr-python-mode-set)
-  (fset 'smartchr-python-mode-unset (smartchr-construct-unsetter 'smartchr-python-mode-set))
+  (smartchar-fset-unsetter smartchr-python-mode-set)
   ;;
 ;;;   SML
   (defun smartchr-sml-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " => ")))
     (local-set-key (kbd ":") (smartchr '(" : " "::"))))
   (add-hook 'sml-mode-hook 'smartchr-sml-mode-set)
-  (fset 'smartchr-sml-mode-unset (smartchr-construct-unsetter 'smartchr-sml-mode-set))
+  (smartchar-fset-unsetter smartchr-sml-mode-set)
   ;;
 ;;;   LaTeX
   (defun smartchr-LaTeX-mode-set ()
@@ -194,7 +194,7 @@ This should be run after running multiple-cursors"
     ;; (local-set-key (kbd "%") (smartchr '("% " "%% " "%%% " "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")))
     )
   (add-hook 'LaTeX-mode-hook 'smartchr-LaTeX-mode-set)
-  (fset 'smartchr-LaTeX-mode-unset (smartchr-construct-unsetter 'smartchr-LaTeX-mode-set))
+  (smartchar-fset-unsetter smartchr-LaTeX-mode-set)
   ;;
 ;;;   Org
   (defun smartchr-org-mode-set ()
@@ -207,13 +207,13 @@ This should be run after running multiple-cursors"
     (local-set-key (kbd "$") (smartchr '("$`!!'$" "$")))
     (local-set-key (kbd "#") (smartchr '("# " "#+" "# ############################################################################ #"))))
   (add-hook 'org-mode-hook 'smartchr-org-mode-set)
-  (fset 'smartchr-org-mode-unset (smartchr-construct-unsetter 'smartchr-org-mode-set))
+  (smartchar-fset-unsetter smartchr-org-mode-set)
   ;;
 ;;;   Emacs Lisp
   (defun smartchr-emacs-lisp-mode-set ()
     (local-set-key (kbd ";") (smartchr '("; " ";; " ";;; " ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"))))
   (add-hook 'emacs-lisp-mode-hook 'smartchr-emacs-lisp-mode-set)
-  (fset 'smartchr-emacs-lisp-mode-unset (smartchr-construct-unsetter 'smartchr-emacs-lisp-mode-set))
+  (smartchar-fset-unsetter smartchr-emacs-lisp-mode-set)
   ;;
 ;;;   Haskell
   (defun smartchr-haskell-mode-set ()
@@ -222,25 +222,25 @@ This should be run after running multiple-cursors"
     (local-set-key (kbd "-") (smartchr '(" - " " -> " "-")))
     (local-set-key (kbd ":") (smartchr '(" : " " :: " ":"))))
   (add-hook 'haskell-mode-hook 'smartchr-haskell-mode-set)
-  (fset 'smartchr-haskell-mode-unset (smartchr-construct-unsetter 'smartchr-haskell-mode-set))
+  (smartchar-fset-unsetter smartchr-haskell-mode-set)
   ;;
 ;;;   Ruby
   (defun smartchr-ruby-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == "))))
   (add-hook 'ruby-mode-hook 'smartchr-ruby-mode-set)
-  (fset 'smartchr-ruby-mode-unset (smartchr-construct-unsetter 'smartchr-ruby-mode-set))
+  (smartchar-fset-unsetter smartchr-ruby-mode-set)
   ;;
 ;;;   C++
   (defun smartchr-c++-mode-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == "))))
   (add-hook 'c++-mode-hook 'smartchr-c++-mode-set)
-  (fset 'smartchr-c++-mode-unset (smartchr-construct-unsetter 'smartchr-c++-mode-set))
+  (smartchar-fset-unsetter smartchr-c++-mode-set)
   ;;
 ;;;   octave
   (defun smartchr-ocvate-set ()
     (local-set-key (kbd "=") (smartchr '("=" " = " " == "))))
   (add-hook 'ocvate-mode-hook 'smartchr-ocvate-set)
-  (fset 'smartchr-ocvate-unset (smartchr-construct-unsetter 'smartchr-ocvate-set))
+  (smartchar-fset-unsetter smartchr-ocvate-set)
   ;;
   ;;
   )
