@@ -3,6 +3,29 @@
 ;; Non-nil means enter debugger if an error is signaled.
 ;; (setq debug-on-error t)
 
+
+;;;
+;;; Default programming utilities
+;;;  cl-lib.el
+;; GNU Emacs Common Lisp Emulation
+;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html
+;; A part of emacs. Auto-loaded. Here for documentation.
+;; setf extension is defined here.
+;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Generalized-Variables
+(use-package cl-lib
+  :defer t)
+
+;;;  gv.el
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Generalized-Variables.html
+(use-package gv
+  :defer t
+  ;; The `setf' macro is the most basic way to operate on generalized variables.
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Setting-Generalized-Variables.html
+  ;; Defining new setf forms
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Adding-Generalized-Variables.html
+  )
+
+
 ;;;
 ;;; Contributing a new recipe to MELPA
 ;; https://github.com/melpa/melpa/blob/master/CONTRIBUTING.org
