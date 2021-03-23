@@ -13,12 +13,18 @@
 (use-package cl-lib
   :defer t
   ;;
-  ;; `setf' extensions are defined in `cl-lib'.
+  ;; `setf' extensions
   ;; `gv-define-simple-setter', `gv-define-setter', and `gv-define-expander' are used.
+  ;; e.g., `setf' for `buffer-name'
   ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Generalized-Variables
   ;;
-  ;; cl- sequence extensions are defined in `cl-lib' .
+  ;; cl- sequence extensions
+  ;; e.g., `cl-remove-if-not'
   ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Sequences
+  ;;
+  ;; cl- conditional extensions
+  ;; e.g., `cl-case'
+  ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Conditionals
   )
 
 ;;;  gv.el
