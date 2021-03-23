@@ -142,6 +142,9 @@ To be superseded with `tab-bar-duplicate-tab' in emacs 28."
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Setting-Generalized-Variables.html
   ;; The setf form is like setq, except that it accepts arbitrary place forms on the left side
   ;; rather than just symbols.
+  ;; https://emacs.stackexchange.com/questions/62114/how-to-find-if-an-emacs-lisp-function-is-setf-able
+  ;; Check if a function is setf-able by:
+  ;; (get 'symbol-function 'gv-expander)
   (setf (symbol-function 'my-tab-bar-select-tab-1) (my-create-tab-bar-select-tab 1))
   (setf (symbol-function 'my-tab-bar-select-tab-2) (my-create-tab-bar-select-tab 2))
   (setf (symbol-function 'my-tab-bar-select-tab-3) (my-create-tab-bar-select-tab 3))

@@ -201,6 +201,9 @@
       (my-create-my-font-set)
       ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Setting-Generalized-Variables.html
       ;; (set-frame-parameter FRAME PARAMETER VALUE)
+      ;; https://emacs.stackexchange.com/questions/62114/how-to-find-if-an-emacs-lisp-function-is-setf-able
+      ;; Check if a function is setf-able by:
+      ;; (get 'frame-parameter 'gv-expander)
       (setf (frame-parameter frame 'font) "fontset-myfonts")))
   ;; Functions to run after `make-frame' created a new frame.
   ;; The functions are run with one argument, the newly created frame.
