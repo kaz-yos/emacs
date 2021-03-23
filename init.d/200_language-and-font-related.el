@@ -199,8 +199,9 @@
       (select-frame frame)
       ;; This needs to be run in a newly created graphical frame.
       (my-create-my-font-set)
+      ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Setting-Generalized-Variables.html
       ;; (set-frame-parameter FRAME PARAMETER VALUE)
-      (set-frame-parameter frame 'font "fontset-myfonts")))
+      (setf (frame-parameter frame 'font) "fontset-myfonts")))
   ;; Functions to run after `make-frame' created a new frame.
   ;; The functions are run with one argument, the newly created frame.
   ;; This one only works for the second GUI frame on.
