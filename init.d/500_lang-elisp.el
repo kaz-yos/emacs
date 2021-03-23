@@ -19,12 +19,20 @@
   ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Generalized-Variables
   ;;
   ;; cl- sequence extensions
-  ;; e.g., `cl-remove-if-not'
+  ;; e.g., `cl-remove-if-not', `cl-subsetp', `cl-position'
   ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Sequences
   ;;
   ;; cl- conditional extensions
   ;; e.g., `cl-case'
   ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Conditionals
+  ;;
+  ;; cl- iteration extensions
+  ;; e.g., `cl-loop'
+  ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Iteration
+  ;;
+  ;; Creating symbols
+  ;; e.g., `cl-gensym'
+  ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Creating-Symbols
   )
 
 ;;;  gv.el
