@@ -10,10 +10,16 @@
 ;; GNU Emacs Common Lisp Emulation
 ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html
 ;; A part of emacs. Auto-loaded. Here for documentation.
-;; setf extension is defined here.
-;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Generalized-Variables
 (use-package cl-lib
-  :defer t)
+  :defer t
+  ;;
+  ;; `setf' extensions are defined in `cl-lib'.
+  ;; `gv-define-simple-setter', `gv-define-setter', and `gv-define-expander' are used.
+  ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Generalized-Variables
+  ;;
+  ;; cl- sequence extensions are defined in `cl-lib' .
+  ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Sequences
+  )
 
 ;;;  gv.el
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Generalized-Variables.html
