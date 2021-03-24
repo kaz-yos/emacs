@@ -59,6 +59,9 @@
            :select t
            :inhibit-window-quit t
            :same t)
+          (inferior-ess-r-mode
+           :select nil
+           :same nil)
           ;; The runner buffer also has this major mode.
           ;; (shell-mode
           ;;  :select t
