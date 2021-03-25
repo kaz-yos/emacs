@@ -10,6 +10,12 @@
 ;; GNU Emacs Common Lisp Emulation
 ;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html
 ;; A part of emacs. Auto-loaded. Here for documentation.
+;;
+;; https://www.gnu.org/software/emacs/manual/html_mono/cl.html#Organization
+;; cl-lib.el This is the main file, which contains basic functions and information.
+;; cl-extra.el This file contains the larger, more complex or unusual functions.
+;; cl-seq.el This file contains most of the advanced functions for operating on sequences or lists.
+;; cl-macs.el This file contains the features that are macros instead of functions.
 (use-package cl-lib
   :defer t
   ;;
