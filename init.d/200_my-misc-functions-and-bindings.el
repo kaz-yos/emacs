@@ -49,6 +49,10 @@ The format is yyyymmdd if a universal argument is given."
                  (days-to-time inc-day)))
       (seq-map (lambda (inc-time)
                  (time-add cur-time inc-time)))
+      ;; Keep except Sun
+      (seq-filter (lambda (time)
+                    (not (member (format-time-string "%a" time)
+                                 '("Sun")))))
       (seq-map #'my-convert-to-availability-date))))
 ;;
 (defun my-insert-available-dates (weeks)
