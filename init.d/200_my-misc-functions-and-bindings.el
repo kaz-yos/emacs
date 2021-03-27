@@ -30,7 +30,11 @@ The format is yyyymmdd if a universal argument is given."
 ;;; my-insert-available-dates
 ;;
 (defun my-convert-to-availability-date (time)
-  (format-time-string "%b %d (%a)" time))
+  "Create a date string for Mon-Fri. Blank for Sat/Sun."
+  (if (member (format-time-string "%a" time)
+              '("Sat" "Sun"))
+      ""
+    (format-time-string "%b %d (%a)" time)))
 ;;
 (defun my-create-available-dates (weeks)
   "Create date strings for next WEEKS weeks."
@@ -53,6 +57,7 @@ The format is yyyymmdd if a universal argument is given."
   (mapc (lambda (str)
           (insert (concat str " \n")))
         (my-create-available-dates weeks)))
+
 
 ;;;
 ;;; replace (kbd "C-c r")
