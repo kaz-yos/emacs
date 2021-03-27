@@ -69,12 +69,9 @@
   ;; Optimized file for faster access (unused by default)
   (setq skk-cdb-large-jisyo nil)
   ;; Non-optimized raw dictionary file
-  (let ((aquaskk-dict "~/Library/Application Support/AquaSKK/SKK-JISYO.L")
-        (ddskk-dict (concat user-emacs-directory
+  (let ((ddskk-dict (concat user-emacs-directory
                             "skk/SKK-JISYO.L")))
     (cond
-     ;; Use AquaSKK's dictionary if available.
-     ((file-exists-p aquaskk-dict) (setq skk-large-jisyo aquaskk-dict))
      ((file-exists-p ddskk-dict) (setq skk-large-jisyo ddskk-dict))
      (t (setq skk-large-jisyo nil))))
   ;; Fall back dictionary when the dictionary server cannot be reached.
