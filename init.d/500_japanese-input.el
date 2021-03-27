@@ -16,12 +16,22 @@
   :if (file-exists-p (concat user-emacs-directory "skk"))
   :commands (skk-mode)
   :bind (("C-c j" . skk-mode)
+         ("C-x j" . skk-mode)
          ("A-j" . skk-mode)
          ("s-j" . skk-mode)
          :map my-key-map
          ("j" . skk-mode))
   ;;
   :config
+  ;; Upon activation set local bindings
+  (defun my-skk-mode-add-keys (&optional arg)
+    "Add local key bindings upon skk activation."
+    (local-set-key (kbd "C-c j") #'skk-mode)
+    (local-set-key (kbd "C-x j") #'skk-mode)
+    (local-set-key (kbd "A-j") #'skk-mode)
+    (local-set-key (kbd "s-j") #'skk-mode))
+  (advice-add #'skk-mode
+              :after #'my-skk-mode-add-keys)
   ;; Define autoloads necessary when using (package-initialize t) (no activation)
   ;; Taken from the body of `package-initialize'
   (package-activate 'ddskk)
