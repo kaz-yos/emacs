@@ -27,6 +27,34 @@ The format is yyyymmdd if a universal argument is given."
 
 
 ;;;
+;;; my-insert-available-dates
+;;
+(defun my-convert-to-availability-date (time)
+  (format-time-string "%b %d (%a)" time))
+;;
+(defun my-create-available-dates (weeks)
+  "Create date strings for next WEEKS weeks."
+  (let* ((cur-time (current-time)))
+    ;;
+    (thread-last weeks
+      ;; convert to days
+      (* 7)
+      ;; sequence up to days
+      (number-sequence 0)
+      (seq-map (lambda (inc-day)
+                 (days-to-time inc-day)))
+      (seq-map (lambda (inc-time)
+                 (time-add cur-time inc-time)))
+      (seq-map #'my-convert-to-availability-date))))
+;;
+(defun my-insert-available-dates (weeks)
+  "Insert dates to show available slots."
+  (interactive "nHow many weeks?: ")
+  (mapc (lambda (str)
+          (insert (concat str " \n")))
+        (my-create-available-dates weeks)))
+
+;;;
 ;;; replace (kbd "C-c r")
 (bind-key "s-r" 'replace-string)
 
