@@ -135,18 +135,4 @@
   (setq skk-use-look t)
   ;; Balanced paren isertion
   (setq skk-auto-insert-paren t)
-  (setq skk-henkan-strict-okuri-precedence t)
-  ;;
-  ;;
-;;;  Google IME SKK
-  ;; http://y-mattu.hatenablog.com/entry/2016/09/25/021937
-  ;; Install via $ sudo gem install google-ime-skk
-  (let ((google-ime-skk-file "/usr/local/bin/google-ime-skk"))
-    (when (executable-find google-ime-skk-file)
-      (setq skk-server-prog google-ime-skk-file)
-      ;; Whether to prevent skk server start up from inside emacs
-      ;; Manage this service in prodigy.el.
-      (setq skk-server-inhibit-startup-server t)
-      ;; Host and port
-      (setq skk-server-host "localhost")
-      (setq skk-server-portnum 55100))))
+  (setq skk-henkan-strict-okuri-precedence t))
