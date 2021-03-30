@@ -19,6 +19,11 @@ file corresponding to the current buffer file, then recompile the file."
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (add-hook 'after-save-hook 'my-auto-byte-recompile)))
+;;
+(defun my-compile-this-file ()
+  "Byte-compile this file"
+  (interactive)
+  (byte-compile-file buffer-file-name))
 
 
 ;;;
