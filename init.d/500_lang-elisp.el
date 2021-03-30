@@ -7,6 +7,7 @@
 ;;; Automatic byte-compilation of emacs lisp files
 ;; http://tsengf.blogspot.com/2011/07/auto-byte-compile-your-emacs.html
 ;; https://gist.github.com/anonymous/1061884
+;; https://emacsredux.com/blog/2013/06/25/boost-performance-by-leveraging-byte-compilation/
 (defun my-auto-byte-recompile ()
   "If the current buffer is in emacs-lisp-mode and there already exists an `.elc'
 file corresponding to the current buffer file, then recompile the file."
