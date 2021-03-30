@@ -3,6 +3,22 @@
 ;; Non-nil means enter debugger if an error is signaled.
 ;; (setq debug-on-error t)
 
+;;;
+;;; Automatic byte-compilation of emacs lisp files
+;; http://tsengf.blogspot.com/2011/07/auto-byte-compile-your-emacs.html
+;; https://gist.github.com/anonymous/1061884
+(defun my-auto-byte-recompile ()
+  "If the current buffer is in emacs-lisp-mode and there already exists an `.elc'
+file corresponding to the current buffer file, then recompile the file."
+  (interactive)
+  (when (and (eq major-mode 'emacs-lisp-mode)
+             (file-exists-p (byte-compile-dest-file buffer-file-name)))
+    (byte-compile-file buffer-file-name)))
+;;
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook 'my-auto-byte-recompile)))
+
 
 ;;;
 ;;; Default programming utilities
