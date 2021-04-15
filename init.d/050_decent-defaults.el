@@ -215,10 +215,10 @@
 ;;;
 ;;; Define system-name-sans-domain
 ;; https://groups.google.com/forum/#!topic/gnu.emacs.help/pGzHlR2GByY
-(defun system-name-sans-domain ()
-  "name of computer, sans domain name (use system-name for the FQDN)"
-  (let ((n (system-name)))
-    (substring n 0 (string-match "\\." n))))
+;; (defun system-name-sans-domain ()
+;;   "name of computer, sans domain name (use system-name for the FQDN)"
+;;   (let ((n (system-name)))
+;;     (substring n 0 (string-match "\\." n))))
 ;;
 ;; Overwrite with a fixed name.
 ;; I am no longer Dropbox syncing .emacs.d across machines.
