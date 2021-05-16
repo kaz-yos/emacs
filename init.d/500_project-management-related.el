@@ -80,6 +80,7 @@
   (use-package counsel-projectile
     :ensure t
     :demand t
+    :commands (counsel-projectile)
     :config
     ;; Turn on mode
     ;; https://github.com/ericdanan/counsel-projectile#upgrading-from-previous-version
