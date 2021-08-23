@@ -131,7 +131,9 @@
       (shell-command (concat "open -a "
                              pdf-app
                              " "
-                             pdf-file))))
+                             "\""
+                             pdf-file
+                             "\""))))
   ;;
   ;; Swap dimension specification
   (defun my-reverse-org-table-dimension (size)
