@@ -41,7 +41,7 @@ doParallel::registerDoParallel(cores = n_cores)
 ## future: Unified Parallel and Distributed Processing in R for Everyone
 ## https://cran.r-project.org/web/packages/future/vignettes/future-1-overview.html
 library(future)
-future::plan(multiprocess)
+future::plan(multicore)
 ## Report multicore use
 foreach::getDoParName()
 foreach::getDoParWorkers()
