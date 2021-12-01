@@ -28,3 +28,5 @@ auto/
 figure/
 cache/
 *.icloud
+.Rproj.user
+*.Rproj
