@@ -23,8 +23,8 @@
 (("ext-R" 0 "R"
   (("channing-r" "qbR" 7)
    ("Original Rscript" "{run:out} Rscript" 5)
-   ("Global Rscript with tee" "{run:out} Rscriptee" 3)
-   ("Project-specific Rscript with tee" "{run:out} ./Rscriptee" 0)))
+   ("Project-specific Rscript with tee" "{run:out} ./Rscriptee" 3)
+   ("Global Rscript with tee" "{run:out} Rscriptee" 0)))
  ;;
  ("ext-pdf" 0 "pdf"
   (("open command" "open" 0)
