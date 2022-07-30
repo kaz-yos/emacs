@@ -9,7 +9,7 @@
 ;; $ git clone git://orgmode.org/org-mode.git
 ;; $ make autoloads
 (use-package org
-  :ensure org-plus-contrib
+  :ensure org
   :defer t
   :mode ("\\.org" . org-mode)
   :bind (;; Suggested bindings for global
