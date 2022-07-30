@@ -106,15 +106,6 @@
          ;; org-src mode
          :map org-src-mode-map
          ("M-s M-s" . my-latex-math-preview))
-  :init
-  ;; https://github.com/jwiegley/use-package#extending-the-load-path
-  ;; If using manually installed org-mode.
-  (add-to-list 'load-path
-               ;; We need a wild card as a MELPA package keeps changing the folder name.
-               ;; http://emacs.stackexchange.com/questions/9768/elisp-files-in-load-path-are-not-loaded-on-emacs-start
-               ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/List-Elements.html
-               (car (last (file-expand-wildcards (concat user-emacs-directory
-                                                         "elpa/org-plus-contrib*")))))
   ;;
   :config
   ;; sequential-command
