@@ -34,6 +34,8 @@ This function also prevents running remotely."
 (use-package undo-tree
   :ensure t
   :config
+  ;; Do not save undo history
+  (setq undo-tree-auto-save-history nil)
   ;; Do not occupy the mode-line.
   (setq undo-tree-mode-lighter "")
   ;; When active, undoing is within the region.
