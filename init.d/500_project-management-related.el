@@ -75,13 +75,15 @@
   (setq projectile-switch-project-action 'projectile-dired)
   (setq projectile-find-dir-includes-top-level t)
   ;;
+  )
+;;
 ;;;  counsel-projectile.el
-  ;; https://github.com/ericdanan/counsel-projectile
-  (use-package counsel-projectile
-    :ensure t
-    :demand t
-    :commands (counsel-projectile)
-    :config
-    ;; Turn on mode
-    ;; https://github.com/ericdanan/counsel-projectile#upgrading-from-previous-version
-    (counsel-projectile-mode +1)))
+;; https://github.com/ericdanan/counsel-projectile
+(use-package counsel-projectile
+  :ensure t
+  :demand t
+  :commands (counsel-projectile)
+  :config
+  ;; Turn on mode
+  ;; https://github.com/ericdanan/counsel-projectile#upgrading-from-previous-version
+  (counsel-projectile-mode +1))
