@@ -85,17 +85,18 @@ There are two things you can do about this warning:
   ;;
 ;;;  ELPA
   ;; https://elpa.gnu.org/packages/
-  ;; https://www.reddit.com/r/emacs/comments/ccrxk9/elpa_down/
   (setq package-archives (list (cons "gnu" (concat protocol "://elpa.gnu.org/packages/"))))
+  ;;
+;;;  Non-GNU ELPA
+  ;; https://elpa.nongnu.org
+  (add-to-list 'package-archives (cons "nongnu" (concat protocol "://elpa.nongnu.org/nongnu/")))
   ;;
 ;;;  MELPA repository
   ;; http://melpa.milkbox.net/#installing
   ;; http://melpa.milkbox.net/#/getting-started
   (add-to-list 'package-archives (cons "melpa" (concat protocol "://melpa.org/packages/")) t)
   ;;
-;;; orgmode
-  ;; http://orgmode.org/elpa.html
-  (add-to-list 'package-archives (cons "org" (concat protocol "://orgmode.org/elpa/")) t))
+  )
 ;;
 ;; Refresh contents  if no package-archive-contents available
 ;; http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
