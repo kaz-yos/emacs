@@ -269,8 +269,6 @@ to conform the org-mode convention."
      (latex . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html
      (R . t)
-     ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-stan.html
-     (stan . t)
      ;; https://github.com/gjkerns/ob-julia/blob/master/ob-julia-doc.org
      (julia . t)
      ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html
@@ -826,7 +824,7 @@ the plist used as a communication channel."
 			     (format (org-html--translate "Figure %d:" info)
 				     (org-export-get-ordinal
 				      (org-element-map paragraph 'link
-                                        #'identity info t)
+                                                       #'identity info t)
 				      info nil #'org-html-standalone-image-p))
 			     " </span>"
 			     raw))))
