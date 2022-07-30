@@ -410,11 +410,7 @@ to conform the org-mode convention."
   ;; ox.el --- Export Framework for Org Mode
   (use-package ox
     :config
-    (use-package ox-extra
-      :config
-      ;; Activate :ignore: tag
-      ;; https://emacs.stackexchange.com/questions/9492/is-it-possible-to-export-content-of-subtrees-without-their-headings
-      (ox-extras-activate '(ignore-headlines))))
+    )
   ;;
   ;; Asynchronous export is explained in ox.el
   ;; `org-export-in-background'
@@ -824,7 +820,7 @@ the plist used as a communication channel."
 			     (format (org-html--translate "Figure %d:" info)
 				     (org-export-get-ordinal
 				      (org-element-map paragraph 'link
-                                                       #'identity info t)
+                                        #'identity info t)
 				      info nil #'org-html-standalone-image-p))
 			     " </span>"
 			     raw))))
