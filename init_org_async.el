@@ -8,7 +8,6 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 ;;; Initialize packages so that they can be auto-loaded.
-(defalias 'defstruct 'cl-defstruct)
 (package-initialize)
 
 
