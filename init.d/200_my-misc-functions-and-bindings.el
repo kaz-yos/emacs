@@ -230,3 +230,15 @@ end tell")))
   "Put current `buffer-filename' into the kill ring."
   (interactive)
   (my-kill-new-string-variable 'buffer-file-name))
+
+
+
+;;;
+;;; Delete ^M
+;; https://stackoverflow.com/questions/23712076/how-to-remove-m-in-emacs
+(defun my-delete-carrage-returns ()
+  (interactive)
+  (save-excursion
+    (goto-char 0)
+    (while (search-forward "\r" nil :noerror)
+      (replace-match ""))))
