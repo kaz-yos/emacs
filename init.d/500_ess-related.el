@@ -132,6 +132,8 @@
     ;; http://www.emacswiki.org/emacs/CategoryESS
     (setq ess-eval-visibly 'nowait)		; New in 12.09-1
     (setq ess-ask-for-ess-directory nil)	; Don't ask for directory
+    ;; https://emacs.stackexchange.com/questions/73742/ess-starting-directory
+    (setq ess-startup-directory 'default-directory)
     ;;
     ;; Auto-scrolling of R console to bottom and Shift key extension
     ;; http://www.kieranhealy.org/blog/archives/2009/10/12/make-shift-enter-do-a-lot-in-ess/
