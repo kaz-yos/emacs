@@ -259,11 +259,6 @@
 
 
 ;;;
-;;; y or n abbreviations for yes or no
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-
-;;;
 ;;; C-k (kill-line) with no arg at start of line kills the whole line.
 ;; vi dd-like behavior
 (setq kill-whole-line t)
