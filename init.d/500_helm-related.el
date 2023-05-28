@@ -35,11 +35,6 @@
     "Emulate `kill-line' in helm minibuffer"
     (kill-new (buffer-substring (point) (field-end))))
   ;;
-;;;  helm-config.el
-  (use-package helm-config
-    :config
-    ;; helm-command-prefix
-    (setq helm-command-prefix-key "C-x c"))
   ;;
 ;;;  helm-ring.el
   ;; kill-ring, mark-ring, and register browsers for helm.
