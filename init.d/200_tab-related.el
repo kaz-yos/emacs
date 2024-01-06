@@ -246,8 +246,8 @@ To be superseded with `tab-bar-duplicate-tab' in emacs 28."
   (setq tab-bar-new-tab-to 'rightmost)
   ;;
   ;; Buttons for the tab history. Originally < >.
-  (setq tab-bar-back-button nil)
-  (setq tab-bar-forward-button nil)
+  ;; (setq tab-bar-back-button nil)
+  ;; (setq tab-bar-forward-button nil)
   ;;
   ;; Activate
   (tab-bar-mode +1)
