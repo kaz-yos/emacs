@@ -32,7 +32,8 @@
   :hook (reb-mode . flycheck-enhance-rx-buffer-locally)
   :config
   ;; To avoid Symbol’s function definition is void: pkg-info-version-info
-  (use-package pkg-info)
+  (use-package pkg-info
+    :ensure t)
   ;;
   ;;
   ;; Delay in seconds before displaying errors at point.
