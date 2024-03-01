@@ -21,8 +21,7 @@
 ;;     COMMAND   ;; Command string
 ;;     PRIORITY  ;; Priority of processing this command. Default is 5.
 (("ext-R" 0 "R"
-  (("channing-r" "qbR" 7)
-   ("Original Rscript" "{run:out} Rscript" 5)
+  (("Original Rscript" "{run:out} Rscript" 5)
    ("Project-specific Rscript with tee" "{run:out} ./Rscriptee" 3)
    ("Global Rscript with tee" "{run:out} Rscriptee" 0)))
  ;;
