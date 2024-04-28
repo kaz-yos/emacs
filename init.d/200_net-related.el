@@ -7,7 +7,8 @@
   (when (and (display-graphic-p)
              (fboundp 'xwidget-webkit-browse-url)
              (featurep 'xwidget-internal))
-    (setq browse-url-browser-function 'xwidget-webkit-browse-url))
+    ;; (setq browse-url-browser-function 'xwidget-webkit-browse-url)
+    )
   ;;
   (when (eq system-type 'darwin)
     (defun browse-url-macosx-firefox-safari-browser (url &optional _new-window)
@@ -16,6 +17,7 @@ The optional NEW-WINDOW argument is not used."
       (interactive (browse-url-interactive-arg "URL: "))
       (start-process (concat "open-firefox" url) nil "open" "-a" "/Applications/Firefox.app" url)
       (start-process (concat "open-safari" url) nil "open" "-a" "/Applications/Safari.app" url))
-    (advice-add #'browse-url-default-macosx-browser
-                :override
-                #'browse-url-macosx-firefox-safari-browser)))
+    ;; (advice-add #'browse-url-default-macosx-browser
+    ;;             :override
+    ;;             #'browse-url-macosx-firefox-safari-browser)
+    ))
