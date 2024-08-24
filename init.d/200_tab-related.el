@@ -161,27 +161,31 @@ To be superseded with `tab-bar-duplicate-tab' in emacs 28."
     "Obtain the text version of the tab bar."
     (let ((tab-bar-keymap (tab-bar-make-keymap-1)))
       (thread-last tab-bar-keymap
-        ;; Drop keymap
-        (cdr)
-        ;; Keep ones that have tab as the first element
-        ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Simple-Match-Data.html
-        (seq-filter (lambda (elt)
-                      (string-match "^tab-\\|^current-tab$"
-                                    (symbol-name (car elt)))))
-        ;; Extract names with a special emphasis on the current tab.
-        (seq-map (lambda (elt)
-                   (if (not (string-match "^current-tab$"
-                                          (symbol-name (car elt))))
-                       (substring-no-properties (nth 2 elt))
-                     ;; Current tab special handling
-                     (concat
-                      "<<"
-                      (substring-no-properties (nth 2 elt))
-                      ">>"))))
-        ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html
-        ;; Outer () is necessary to ensure correct thread-last'ing
-        ((lambda (seq)
-           (mapconcat #'identity seq tab-bar-separator))))))
+                   ;; Drop keymap
+                   (cdr)
+                   ;; Keep ones that have tab as the first element
+                   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Simple-Match-Data.html
+                   (seq-filter (lambda (elt)
+                                 (string-match "^tab-\\|^current-tab$"
+                                               (symbol-name (car elt)))))
+                   ;; Extract names with a special emphasis on the current tab.
+                   (seq-map (lambda (elt)
+                              (if (not (string-match "^current-tab$"
+                                                     (symbol-name (car elt))))
+                                  ;; Use "[ \t]+$" to also match tabs
+                                  (replace-regexp-in-string " +$" ""
+                                                            (substring-no-properties (nth 2 elt)))
+                                ;; Current tab special handling
+                                (concat
+                                 "<< "
+                                 ;; Use "[ \t]+$" to also match tabs
+                                 (replace-regexp-in-string " +$" ""
+                                                           (substring-no-properties (nth 2 elt)))
+                                 " >>"))))
+                   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html
+                   ;; Outer () is necessary to ensure correct thread-last'ing
+                   ((lambda (seq)
+                      (mapconcat #'identity seq tab-bar-separator))))))
   ;;
   (defvar *my-tab-bar-as-string*
     ""
