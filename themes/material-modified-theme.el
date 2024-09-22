@@ -137,23 +137,23 @@
    `(flymake-errline ((,class (:underline (:style wave :color ,red) :background ,background))))
 
    ;; Clojure errors
-   `(clojure-test-failure-face ((,class (:background nil :inherit flymake-warnline))))
-   `(clojure-test-error-face ((,class (:background nil :inherit flymake-errline))))
-   `(clojure-test-success-face ((,class (:background nil :foreground nil :underline ,green))))
+   `(clojure-test-failure-face ((,class (:background unspecified :inherit flymake-warnline))))
+   `(clojure-test-error-face ((,class (:background unspecified :inherit flymake-errline))))
+   `(clojure-test-success-face ((,class (:background unspecified :foreground unspecified :underline ,green))))
    `(clojure-keyword-face ((,class (:inherit font-lock-builtin-face))))
 
    ;; EDTS errors
-   `(edts-face-warning-line ((t (:background nil :inherit flymake-warnline))))
-   `(edts-face-warning-mode-line ((,class (:background nil :foreground ,orange :weight bold))))
-   `(edts-face-error-line ((t (:background nil :inherit flymake-errline))))
-   `(edts-face-error-mode-line ((,class (:background nil :foreground ,red :weight bold))))
+   `(edts-face-warning-line ((t (:background unspecified :inherit flymake-warnline))))
+   `(edts-face-warning-mode-line ((,class (:background unspecified :foreground ,orange :weight bold))))
+   `(edts-face-error-line ((t (:background unspecified :inherit flymake-errline))))
+   `(edts-face-error-mode-line ((,class (:background unspecified :foreground ,red :weight bold))))
 
    ;; For Brian Carper's extended clojure syntax table
    `(clojure-keyword ((,class (:foreground ,yellow))))
    `(clojure-parens ((,class (:foreground ,foreground))))
    `(clojure-braces ((,class (:foreground ,green))))
    `(clojure-brackets ((,class (:foreground ,yellow))))
-   `(clojure-double-quote ((,class (:foreground ,aqua :background nil))))
+   `(clojure-double-quote ((,class (:foreground ,aqua :background unspecified))))
    `(clojure-special ((,class (:foreground ,blue))))
    `(clojure-java-call ((,class (:foreground ,purple))))
 
@@ -207,7 +207,7 @@
    `(flx-highlight-face ((,class (:inherit nil :foreground ,yellow :weight bold :underline nil))))
 
    ;; which-function
-   `(which-func ((,class (:foreground ,blue :background nil))))
+   `(which-func ((,class (:foreground ,blue :background unspecified))))
 
    ;; Emacs interface
    `(cursor ((,class (:background ,orange))))
@@ -222,7 +222,7 @@
    `(hl-line ((,class (:inverse-video nil :background ,current-line))))
    `(gui-element ((,class (:background ,current-line :foreground ,foreground))))
    `(mode-line ((,class (:foreground ,foreground :background "#64873c"))))
-   `(mode-line-buffer-id ((,class (:foreground ,foreground :background nil :weight bold))))
+   `(mode-line-buffer-id ((,class (:foreground ,foreground :background unspecified :weight bold))))
    `(mode-line-inactive ((,class (:inherit mode-line
                                            :foreground ,subtle
                                            :background "#455e29"
@@ -234,19 +234,19 @@
    `(region ((,class (:background ,selection))))
    `(secondary-selection ((,class (:background ,secondary-selection))))
 
-   `(header-line ((,class (:inherit mode-line :foreground ,purple :background nil))))
+   `(header-line ((,class (:inherit mode-line :foreground ,purple :background unspecified))))
 
    `(trailing-whitespace ((,class (:foreground ,red :inverse-video t :underline nil))))
    `(whitespace-trailing ((,class (:foreground ,red :inverse-video t :underline nil))))
    `(whitespace-space-after-tab ((,class (:foreground ,red :inverse-video t :underline nil))))
    `(whitespace-space-before-tab ((,class (:foreground ,red :inverse-video t :underline nil))))
    `(whitespace-empty ((,class (:foreground ,red :inverse-video t :underline nil))))
-   `(whitespace-line ((,class (:background nil :foreground ,red))))
-   `(whitespace-indentation ((,class (:background nil :foreground ,aqua))))
-   `(whitespace-space ((,class (:background nil :foreground ,selection))))
-   `(whitespace-newline ((,class (:background nil :foreground ,selection))))
-   `(whitespace-tab ((,class (:background nil :foreground ,selection))))
-   `(whitespace-hspace ((,class (:background nil :foreground ,selection))))
+   `(whitespace-line ((,class (:background unspecified :foreground ,red))))
+   `(whitespace-indentation ((,class (:background unspecified :foreground ,aqua))))
+   `(whitespace-space ((,class (:background unspecified :foreground ,selection))))
+   `(whitespace-newline ((,class (:background unspecified :foreground ,selection))))
+   `(whitespace-tab ((,class (:background unspecified :foreground ,selection))))
+   `(whitespace-hspace ((,class (:background unspecified :foreground ,selection))))
 
    ;; Parenthesis matching (built-in)
    `(show-paren-match-face ((,class (:background ,aqua :foreground "black"))))
@@ -254,18 +254,18 @@
 
    ;; Smartparens paren matching
    `(sp-show-pair-match-face ((,class (:foreground "black" :background ,aqua :inherit show-paren-match))))
-   `(sp-show-pair-mismatch-face ((,class (:foreground nil :background nil :inherit show-paren-mismatch))))
+   `(sp-show-pair-mismatch-face ((,class (:foreground unspecified :background unspecified :inherit show-paren-mismatch))))
 
    ;; Parenthesis matching (mic-paren)
-   `(paren-face-match ((,class (:foreground nil :background nil :inherit show-paren-match))))
-   `(paren-face-mismatch ((,class (:foreground nil :background nil :inherit show-paren-mismatch))))
-   `(paren-face-no-match ((,class (:foreground nil :background nil :inherit show-paren-mismatch))))
+   `(paren-face-match ((,class (:foreground unspecified :background unspecified :inherit show-paren-match))))
+   `(paren-face-mismatch ((,class (:foreground unspecified :background unspecified :inherit show-paren-mismatch))))
+   `(paren-face-no-match ((,class (:foreground unspecified :background unspecified :inherit show-paren-mismatch))))
 
    ;; Parenthesis dimming (parenface)
-   `(paren-face ((,class (:foreground ,comment :background nil))))
+   `(paren-face ((,class (:foreground ,comment :background unspecified))))
 
-   `(sh-heredoc ((,class (:foreground nil :inherit font-lock-string-face :weight normal))))
-   `(sh-quoted-exec ((,class (:foreground nil :inherit font-lock-preprocessor-face))))
+   `(sh-heredoc ((,class (:foreground unspecified :inherit font-lock-string-face :weight normal))))
+   `(sh-quoted-exec ((,class (:foreground unspecified :inherit font-lock-preprocessor-face))))
    `(slime-highlight-edits-face ((,class (:weight bold))))
    `(slime-repl-input-face ((,class (:weight normal :underline nil))))
    `(slime-repl-prompt-face ((,class (:underline nil :weight bold :foreground ,purple))))
@@ -281,21 +281,21 @@
    `(diff-added ((,class (:foreground ,green))))
    `(diff-changed ((,class (:foreground ,aqua))))
    `(diff-removed ((,class (:foreground ,orange))))
-   `(diff-header ((,class (:foreground ,aqua :background nil))))
-   `(diff-file-header ((,class (:foreground ,blue :background nil))))
+   `(diff-header ((,class (:foreground ,aqua :background unspecified))))
+   `(diff-file-header ((,class (:foreground ,blue :background unspecified))))
    `(diff-hunk-header ((,class (:foreground ,purple))))
    `(diff-refine-added ((,class (:inherit diff-added :inverse-video t))))
    `(diff-refine-removed ((,class (:inherit diff-removed :inverse-video t))))
 
-   `(ediff-even-diff-A ((,class (:foreground nil :background nil :inverse-video t))))
-   `(ediff-even-diff-B ((,class (:foreground nil :background nil :inverse-video t))))
-   `(ediff-odd-diff-A  ((,class (:foreground ,comment :background nil :inverse-video t))))
-   `(ediff-odd-diff-B  ((,class (:foreground ,comment :background nil :inverse-video t))))
+   `(ediff-even-diff-A ((,class (:foreground unspecified :background unspecified :inverse-video t))))
+   `(ediff-even-diff-B ((,class (:foreground unspecified :background unspecified :inverse-video t))))
+   `(ediff-odd-diff-A  ((,class (:foreground ,comment :background unspecified :inverse-video t))))
+   `(ediff-odd-diff-B  ((,class (:foreground ,comment :background unspecified :inverse-video t))))
 
    `(eldoc-highlight-function-argument ((,class (:foreground ,green :weight bold))))
 
    ;; macrostep
-   `(macrostep-expansion-highlight-face ((,class (:inherit highlight :foreground nil))))
+   `(macrostep-expansion-highlight-face ((,class (:inherit highlight :foreground unspecified))))
 
    ;; undo-tree
    `(undo-tree-visualizer-default-face ((,class (:foreground ,foreground))))
@@ -308,24 +308,24 @@
    `(diredp-deletion ((,class (:inherit error :inverse-video t))))
    `(diredp-deletion-file-name ((,class (:inherit error))))
    `(diredp-dir-heading ((,class (:foreground ,green :weight bold))))
-   `(diredp-dir-priv ((,class (:foreground ,aqua :background nil))))
-   `(diredp-exec-priv ((,class (:foreground ,blue :background nil))))
-   `(diredp-executable-tag ((,class (:foreground ,red :background nil))))
+   `(diredp-dir-priv ((,class (:foreground ,aqua :background unspecified))))
+   `(diredp-exec-priv ((,class (:foreground ,blue :background unspecified))))
+   `(diredp-executable-tag ((,class (:foreground ,red :background unspecified))))
    `(diredp-file-name ((,class (:foreground ,yellow))))
    `(diredp-file-suffix ((,class (:foreground ,green))))
    `(diredp-flag-mark ((,class (:foreground ,green :inverse-video t))))
-   `(diredp-flag-mark-line ((,class (:background nil :inherit highlight))))
+   `(diredp-flag-mark-line ((,class (:background unspecified :inherit highlight))))
    `(diredp-ignored-file-name ((,class (:foreground ,comment))))
-   `(diredp-link-priv ((,class (:background nil :foreground ,purple))))
+   `(diredp-link-priv ((,class (:background unspecified :foreground ,purple))))
    `(diredp-mode-line-flagged ((,class (:foreground ,red))))
    `(diredp-mode-line-marked ((,class (:foreground ,green))))
-   `(diredp-no-priv ((,class (:background nil))))
+   `(diredp-no-priv ((,class (:background unspecified))))
    `(diredp-number ((,class (:foreground ,yellow))))
-   `(diredp-other-priv ((,class (:background nil :foreground ,purple))))
-   `(diredp-rare-priv ((,class (:foreground ,red :background nil))))
-   `(diredp-read-priv ((,class (:foreground ,green :background nil))))
+   `(diredp-other-priv ((,class (:background unspecified :foreground ,purple))))
+   `(diredp-rare-priv ((,class (:foreground ,red :background unspecified))))
+   `(diredp-read-priv ((,class (:foreground ,green :background unspecified))))
    `(diredp-symlink ((,class (:foreground ,purple))))
-   `(diredp-write-priv ((,class (:foreground ,yellow :background nil))))
+   `(diredp-write-priv ((,class (:foreground ,yellow :background unspecified))))
 
    ;; Magit
    `(magit-branch ((,class (:foreground ,green))))
@@ -336,7 +336,7 @@
    `(magit-diff-removed-highlight ((,class (:inherit magit-diff-removed
                                                      :background ,far-background))))
    `(magit-header ((,class (:inherit nil :weight bold))))
-   `(magit-item-highlight ((,class (:inherit highlight :background nil))))
+   `(magit-item-highlight ((,class (:inherit highlight :background unspecified))))
    `(magit-log-author ((,class (:foreground ,aqua))))
    `(magit-log-graph ((,class (:foreground ,comment))))
    `(magit-log-date ((,class (:foreground ,yellow))))
@@ -384,7 +384,7 @@
    `(git-gutter-fr:added ((,class (:foreground ,green :weight bold))))
    `(git-gutter-fr:deleted ((,class (:foreground ,red :weight bold))))
 
-   `(link ((,class (:foreground nil :underline t))))
+   `(link ((,class (:foreground unspecified :underline t))))
    `(widget-button ((,class (:underline t :weight bold))))
    `(widget-field ((,class (:background ,current-line :box (:line-width 1 :color ,foreground)))))
 
@@ -400,9 +400,9 @@
    `(grep-context-face ((,class (:foreground ,comment))))
    `(grep-error-face ((,class (:foreground ,red :weight bold :underline t))))
    `(grep-hit-face ((,class (:foreground ,blue))))
-   `(grep-match-face ((,class (:foreground nil :background nil :inherit match))))
+   `(grep-match-face ((,class (:foreground unspecified :background unspecified :inherit match))))
 
-   `(regex-tool-matched-face ((,class (:foreground nil :background nil :inherit match))))
+   `(regex-tool-matched-face ((,class (:foreground unspecified :background unspecified :inherit match))))
 
    ;; Helm
    `(helm-header ((,class (:foreground ,foreground :background ,background))))
@@ -432,8 +432,8 @@
    `(which-key-separator-face ((,class (:foreground ,comment ))))
 
    ;; mark-multiple
-   `(mm/master-face ((,class (:inherit region :foreground nil :background nil))))
-   `(mm/mirror-face ((,class (:inherit region :foreground nil :background nil))))
+   `(mm/master-face ((,class (:inherit region :foreground unspecified :background unspecified))))
+   `(mm/mirror-face ((,class (:inherit region :foreground unspecified :background unspecified))))
 
    `(org-agenda-structure ((,class (:foreground ,aqua :bold t))))
    `(org-agenda-date ((,class (:foreground ,blue :underline nil))))
@@ -514,7 +514,7 @@
 
    ;; js2-mode
    `(js2-warning ((,class (:underline ,orange))))
-   `(js2-error ((,class (:foreground nil :underline ,red))))
+   `(js2-error ((,class (:foreground unspecified :underline ,red))))
    `(js2-external-variable ((,class (:foreground ,purple))))
    `(js2-function-param ((,class (:foreground ,blue))))
    `(js2-instance-member ((,class (:foreground ,blue))))
@@ -522,7 +522,7 @@
 
    ;; js3-mode
    `(js3-warning-face ((,class (:underline ,orange))))
-   `(js3-error-face ((,class (:foreground nil :underline ,red))))
+   `(js3-error-face ((,class (:foreground unspecified :underline ,red))))
    `(js3-external-variable-face ((,class (:foreground ,purple))))
    `(js3-function-param-face ((,class (:foreground ,blue))))
    `(js3-jsdoc-tag-face ((,class (:foreground ,orange))))
@@ -561,12 +561,12 @@
    `(erb-comment-delim-face ((,class (:background ,current-line))))
 
    ;; Message-mode
-   `(message-header-other ((,class (:foreground nil :background nil :weight normal))))
+   `(message-header-other ((,class (:foreground unspecified :background unspecified :weight normal))))
    `(message-header-subject ((,class (:inherit message-header-other :weight bold :foreground ,yellow))))
    `(message-header-to ((,class (:inherit message-header-other :weight bold :foreground ,orange))))
-   `(message-header-cc ((,class (:inherit message-header-to :foreground nil))))
-   `(message-header-name ((,class (:foreground ,blue :background nil))))
-   `(message-header-newsgroups ((,class (:foreground ,aqua :background nil :slant normal))))
+   `(message-header-cc ((,class (:inherit message-header-to :foreground unspecified))))
+   `(message-header-name ((,class (:foreground ,blue :background unspecified))))
+   `(message-header-newsgroups ((,class (:foreground ,aqua :background unspecified :slant normal))))
    `(message-separator ((,class (:foreground ,purple))))
 
    ;; cfw emacs calendar
@@ -707,20 +707,20 @@
    `(mu4e-title-face ((,class (:inherit nil :foreground ,green))))
 
    ;; Gnus
-   `(gnus-cite-1 ((,class (:inherit outline-1 :foreground nil))))
-   `(gnus-cite-2 ((,class (:inherit outline-2 :foreground nil))))
-   `(gnus-cite-3 ((,class (:inherit outline-3 :foreground nil))))
-   `(gnus-cite-4 ((,class (:inherit outline-4 :foreground nil))))
-   `(gnus-cite-5 ((,class (:inherit outline-5 :foreground nil))))
-   `(gnus-cite-6 ((,class (:inherit outline-6 :foreground nil))))
-   `(gnus-cite-7 ((,class (:inherit outline-7 :foreground nil))))
-   `(gnus-cite-8 ((,class (:inherit outline-8 :foreground nil))))
+   `(gnus-cite-1 ((,class (:inherit outline-1 :foreground unspecified))))
+   `(gnus-cite-2 ((,class (:inherit outline-2 :foreground unspecified))))
+   `(gnus-cite-3 ((,class (:inherit outline-3 :foreground unspecified))))
+   `(gnus-cite-4 ((,class (:inherit outline-4 :foreground unspecified))))
+   `(gnus-cite-5 ((,class (:inherit outline-5 :foreground unspecified))))
+   `(gnus-cite-6 ((,class (:inherit outline-6 :foreground unspecified))))
+   `(gnus-cite-7 ((,class (:inherit outline-7 :foreground unspecified))))
+   `(gnus-cite-8 ((,class (:inherit outline-8 :foreground unspecified))))
    ;; there are several more -cite- faces...
    `(gnus-header-content ((,class (:inherit message-header-other))))
    `(gnus-header-subject ((,class (:inherit message-header-subject))))
    `(gnus-header-from ((,class (:inherit message-header-other-face :weight bold :foreground ,orange))))
    `(gnus-header-name ((,class (:inherit message-header-name))))
-   `(gnus-button ((,class (:inherit link :foreground nil))))
+   `(gnus-button ((,class (:inherit link :foreground unspecified))))
    `(gnus-signature ((,class (:inherit font-lock-comment-face))))
 
    `(gnus-summary-normal-unread ((,class (:foreground ,foreground :weight bold))))
@@ -734,28 +734,28 @@
    `(gnus-summary-high-read ((,class (:foreground ,green :weight normal))))
    `(gnus-summary-high-ancient ((,class (:foreground ,green :weight normal))))
    `(gnus-summary-high-ticked ((,class (:foreground ,orange :weight normal))))
-   `(gnus-summary-cancelled ((,class (:foreground ,red :background nil :weight normal))))
+   `(gnus-summary-cancelled ((,class (:foreground ,red :background unspecified :weight normal))))
 
    `(gnus-group-mail-low ((,class (:foreground ,comment))))
    `(gnus-group-mail-low-empty ((,class (:foreground ,comment))))
-   `(gnus-group-mail-1 ((,class (:foreground nil :weight normal :inherit outline-1))))
-   `(gnus-group-mail-2 ((,class (:foreground nil :weight normal :inherit outline-2))))
-   `(gnus-group-mail-3 ((,class (:foreground nil :weight normal :inherit outline-3))))
-   `(gnus-group-mail-4 ((,class (:foreground nil :weight normal :inherit outline-4))))
-   `(gnus-group-mail-5 ((,class (:foreground nil :weight normal :inherit outline-5))))
-   `(gnus-group-mail-6 ((,class (:foreground nil :weight normal :inherit outline-6))))
+   `(gnus-group-mail-1 ((,class (:foreground unspecified :weight normal :inherit outline-1))))
+   `(gnus-group-mail-2 ((,class (:foreground unspecified :weight normal :inherit outline-2))))
+   `(gnus-group-mail-3 ((,class (:foreground unspecified :weight normal :inherit outline-3))))
+   `(gnus-group-mail-4 ((,class (:foreground unspecified :weight normal :inherit outline-4))))
+   `(gnus-group-mail-5 ((,class (:foreground unspecified :weight normal :inherit outline-5))))
+   `(gnus-group-mail-6 ((,class (:foreground unspecified :weight normal :inherit outline-6))))
    `(gnus-group-mail-1-empty ((,class (:inherit gnus-group-mail-1 :foreground ,comment))))
    `(gnus-group-mail-2-empty ((,class (:inherit gnus-group-mail-2 :foreground ,comment))))
    `(gnus-group-mail-3-empty ((,class (:inherit gnus-group-mail-3 :foreground ,comment))))
    `(gnus-group-mail-4-empty ((,class (:inherit gnus-group-mail-4 :foreground ,comment))))
    `(gnus-group-mail-5-empty ((,class (:inherit gnus-group-mail-5 :foreground ,comment))))
    `(gnus-group-mail-6-empty ((,class (:inherit gnus-group-mail-6 :foreground ,comment))))
-   `(gnus-group-news-1 ((,class (:foreground nil :weight normal :inherit outline-5))))
-   `(gnus-group-news-2 ((,class (:foreground nil :weight normal :inherit outline-6))))
-   `(gnus-group-news-3 ((,class (:foreground nil :weight normal :inherit outline-7))))
-   `(gnus-group-news-4 ((,class (:foreground nil :weight normal :inherit outline-8))))
-   `(gnus-group-news-5 ((,class (:foreground nil :weight normal :inherit outline-1))))
-   `(gnus-group-news-6 ((,class (:foreground nil :weight normal :inherit outline-2))))
+   `(gnus-group-news-1 ((,class (:foreground unspecified :weight normal :inherit outline-5))))
+   `(gnus-group-news-2 ((,class (:foreground unspecified :weight normal :inherit outline-6))))
+   `(gnus-group-news-3 ((,class (:foreground unspecified :weight normal :inherit outline-7))))
+   `(gnus-group-news-4 ((,class (:foreground unspecified :weight normal :inherit outline-8))))
+   `(gnus-group-news-5 ((,class (:foreground unspecified :weight normal :inherit outline-1))))
+   `(gnus-group-news-6 ((,class (:foreground unspecified :weight normal :inherit outline-2))))
    `(gnus-group-news-1-empty ((,class (:inherit gnus-group-news-1 :foreground ,comment))))
    `(gnus-group-news-2-empty ((,class (:inherit gnus-group-news-2 :foreground ,comment))))
    `(gnus-group-news-3-empty ((,class (:inherit gnus-group-news-3 :foreground ,comment))))
@@ -812,7 +812,7 @@
    `(custom-state ((,class (:foreground ,green))))
 
    ;; ansi-term
-   `(term ((,class (:foreground nil :background nil :inherit default))))
+   `(term ((,class (:foreground unspecified :background unspecified :inherit default))))
    `(term-color-black   ((,class (:foreground ,foreground :background ,foreground))))
    `(term-color-red     ((,class (:foreground ,red :background ,red))))
    `(term-color-green   ((,class (:foreground ,green :background ,green))))
