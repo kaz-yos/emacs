@@ -21,9 +21,6 @@
          ;; Original M-x
          ("x" . execute-extended-command))
   :config
-  ;; Error: Symbol’s value as variable is void: helm-ff-edit-marked-files-fn #2683
-  ;; https://github.com/emacs-helm/helm/issues/2683
-  (defvar helm-ff-edit-marked-files-fn #'helm-ff-wfnames)
   ;; Global limit for number of candidates displayed.
   (setq helm-candidate-number-limit 200)
   ;; Use current the entire current frame for helm.
