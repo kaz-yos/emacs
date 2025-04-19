@@ -13,7 +13,7 @@
   :defines (latex-help-cmd-alist latex-help-file)
   :commands (my-tex-insert-backslash
              my-tex-insert-semicolon)
-  :mode ("\\.tex\\'" . TeX-latex-mode)
+  :mode ("\\.tex\\'" . latex-mode)
   ;;
   ;; This does not work.
   ;; :bind (:map latex-mode-map
