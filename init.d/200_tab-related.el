@@ -184,6 +184,7 @@ To be superseded with `tab-bar-duplicate-tab' in emacs 28."
                                  " >>"))))
                    ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html
                    ;; Outer () is necessary to ensure correct thread-last'ing
+                   ;; Warning (bytecomp): Use of deprecated ((lambda (seq) ...) ...) form
                    ((lambda (seq)
                       (mapconcat #'identity seq tab-bar-separator))))))
   ;;
