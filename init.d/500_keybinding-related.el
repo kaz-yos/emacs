@@ -421,6 +421,7 @@ This should be run after running multiple-cursors"
     ("s" shrink-window-horizontally "<Shrink>" :column "Resize")
     ("C-s" shrink-window "Shrink" :column "Resize")
     ;;
+    ("x" delete-window "Close" :column "Split")
     ("0" delete-window "Close" :column "Split")
     ("1" delete-other-windows "Only 1" :column "Split")
     ("2" split-window-below "/New" :column "Split")
