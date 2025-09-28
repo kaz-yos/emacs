@@ -5,8 +5,10 @@
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (use-package highlight-symbol
-  :disabled t
+  ;; highlight-symbol avoids temporary highlighting my-symbol-overlay-face-* better.
+  ;; :disabled t
   :ensure t
+  :hook ((prog-mode) . highlight-symbol-mode)
   ;; Invoke this command to turn on temporary highlighting.
   :commands (highlight-symbol-mode)
   :bind (("s-]" . highlight-symbol-next)
@@ -21,6 +23,8 @@
 ;;; emacs-idle-highlight-mode.el
 ;;; https://codeberg.org/ideasman42/emacs-idle-highlight-mode
 (use-package idle-highlight-mode
+  ;; idle-highlight-mode tends to temporary highlight my-symbol-overlay-face-* better.
+  :disabled t
   :ensure t
   :hook ((prog-mode) . idle-highlight-mode)
   ;;
