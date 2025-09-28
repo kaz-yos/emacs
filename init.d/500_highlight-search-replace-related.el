@@ -6,11 +6,14 @@
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (use-package highlight-symbol
   :ensure t
-  ;; No :commands or :bind to avoid deferral
+  ;; Invoke this command to turn on temporary highlighting.
+  :commands (highlight-symbol-mode)
+  :bind (("s-]" . highlight-symbol-next)
+         ("s-[" . highlight-symbol-prev))
+  ;;
   :config
   (setq highlight-symbol-idle-delay 0)
-  (setq highlight-symbol-highlight-single-occurrence nil)
-  (highlight-symbol-mode 1))
+  (setq highlight-symbol-highlight-single-occurrence nil))
 
 
 ;;;
@@ -23,8 +26,6 @@
              symbol-overlay-jump-next
              symbol-overlay-jump-prev)
   :bind (("C-." . symbol-overlay-put)
-         ("A-]" . symbol-overlay-jump-next)
-         ("A-[" . symbol-overlay-jump-prev)
          :map my-key-map
          ("." . symbol-overlay-put))
   :config
