@@ -22,8 +22,30 @@
 ;;; https://codeberg.org/ideasman42/emacs-idle-highlight-mode
 (use-package idle-highlight-mode
   :ensure t
-  :config (setq idle-highlight-idle-time 0)
-  :hook ((prog-mode) . idle-highlight-mode))
+  :hook ((prog-mode) . idle-highlight-mode)
+  ;;
+  :config
+  (setq idle-highlight-idle-time 0.1)
+  (setq idle-highlight-exceptions-face
+        '(font-lock-keyword-face
+          font-lock-string-face
+          my-symbol-overlay-face-1
+          my-symbol-overlay-face-2
+          my-symbol-overlay-face-3
+          my-symbol-overlay-face-4
+          my-symbol-overlay-face-5
+          my-symbol-overlay-face-6
+          my-symbol-overlay-face-7
+          my-symbol-overlay-face-8
+          my-symbol-overlay-face-9
+          my-symbol-overlay-face-10
+          my-symbol-overlay-face-11
+          my-symbol-overlay-face-12
+          my-symbol-overlay-face-13
+          my-symbol-overlay-face-14
+          my-symbol-overlay-face-15
+          my-symbol-overlay-face-16))
+  )
 
 
 ;;;
