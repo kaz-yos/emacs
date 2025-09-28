@@ -5,40 +5,12 @@
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (use-package highlight-symbol
-  :disabled t
   :ensure t
-  :commands (highlight-symbol
-             highlight-symbol-remove-all
-             my-highlight-symbol-next
-             my-highlight-symbol-prev)
-  :bind (("C-." . highlight-symbol)
-         ("A-]" . my-highlight-symbol-next)
-         ("A-[" . my-highlight-symbol-prev)
-         ("A-M-n" . my-highlight-symbol-next)
-         ("A-M-p" . my-highlight-symbol-prev)
-         ("A-M-]" . my-highlight-symbol-next)
-         ("A-M-[" . my-highlight-symbol-prev)
-         :map my-key-map
-         ("." . highlight-symbol))
-  ;;
+  ;; No :commands or :bind to avoid deferral
   :config
-  (setq highlight-symbol-idle-delay 1.5)
-  ;; (highlight-symbol-mode 1)
-  ;;
-  (setq highlight-symbol-highlight-single-occurrence t)
-  (setq highlight-symbol-colors
-        '("yellow" "DeepPink" "cyan" "MediumPurple1" "SpringGreen1"
-          "DarkOrange" "HotPink1" "RoyalBlue1" "OliveDrab"))
-  ;;
-  ;; Define highlight-symbol-prev/next and recenter
-  (defun my-highlight-symbol-prev ()
-    (interactive)
-    (highlight-symbol-prev)
-    (recenter))
-  (defun my-highlight-symbol-next ()
-    (interactive)
-    (highlight-symbol-next)
-    (recenter)))
+  (setq highlight-symbol-idle-delay 0)
+  (setq highlight-symbol-highlight-single-occurrence nil)
+  (highlight-symbol-mode 1))
 
 
 ;;;
@@ -46,8 +18,6 @@
 ;;; https://github.com/wolray/symbol-overlay
 (use-package symbol-overlay
   :ensure t
-  ;; Do not defer until called to activate symbol-overlay-mode.
-  :defer 2
   :commands (symbol-overlay-put
              symbol-overlay-remove-all
              symbol-overlay-jump-next
@@ -58,7 +28,10 @@
          :map my-key-map
          ("." . symbol-overlay-put))
   :config
-  (setq symbol-overlay-idle-time 0.5)
+  ;; Use highligh-symbol.el for temporary highlighting.
+  ;; It's faster and easier to activate system-wide.
+  ;; (setq symbol-overlay-idle-time 0)
+  ;; (setq symbol-overlay-temp-highlight-single nil)
   ;;
   (defface my-symbol-overlay-face-1
     '((t (:background "dodger blue" :foreground "black")))
@@ -128,7 +101,8 @@
           my-symbol-overlay-face-16))
   ;;
   ;; auto-highlighting
-  (symbol-overlay-mode +1))
+  ;; (symbol-overlay-mode +1)
+  )
 
 
 ;;;
