@@ -155,8 +155,10 @@ To be superseded with `tab-bar-duplicate-tab' in emacs 28."
   (setf (symbol-function 'my-tab-bar-select-tab-8) (my-create-tab-bar-select-tab 8))
   (setf (symbol-function 'my-tab-bar-select-tab-9) (my-create-tab-bar-select-tab 9))
   ;;
-  ;; This looks like a more sophisticated implementation.
+  ;; This looks like a more sophisticated implementation than the following.
   ;; https://github.com/ROCKTAKEY/tab-bar-display
+  (defun my-tab-bar-string-helper (seq)
+    (mapconcat #'identity seq tab-bar-separator))
   (defun my-tab-bar-string ()
     "Obtain the text version of the tab bar."
     (let ((tab-bar-keymap (tab-bar-make-keymap-1)))
@@ -185,8 +187,7 @@ To be superseded with `tab-bar-duplicate-tab' in emacs 28."
                    ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html
                    ;; Outer () is necessary to ensure correct thread-last'ing
                    ;; Warning (bytecomp): Use of deprecated ((lambda (seq) ...) ...) form
-                   ((lambda (seq)
-                      (mapconcat #'identity seq tab-bar-separator))))))
+                   (my-tab-bar-string-helper))))
   ;;
   (defvar *my-tab-bar-as-string*
     ""
