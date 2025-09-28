@@ -31,9 +31,11 @@
   ;; Emulate `kill-line' in helm minibuffer
   ;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688
   (setq helm-delete-minibuffer-contents-from-point t)
-  (defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
-    "Emulate `kill-line' in helm minibuffer"
+  (defun my-helm-emulate-kill-line (&rest _args)
+    "Emulate `kill-line' in Helm minibuffer."
     (kill-new (buffer-substring (point) (field-end))))
+  (advice-add 'helm-delete-minibuffer-contents
+              :before #'my-helm-emulate-kill-line)
   ;;
   ;;
 ;;;  helm-ring.el
