@@ -5,6 +5,7 @@
 ;; http://nschum.de/src/emacs/highlight-symbol/
 ;; http://stackoverflow.com/questions/385661/emacs-highlight-all-occurences-of-a-word
 (use-package highlight-symbol
+  :disabled t
   :ensure t
   ;; Invoke this command to turn on temporary highlighting.
   :commands (highlight-symbol-mode)
@@ -14,6 +15,15 @@
   :config
   (setq highlight-symbol-idle-delay 0)
   (setq highlight-symbol-highlight-single-occurrence nil))
+
+
+;;;
+;;; emacs-idle-highlight-mode.el
+;;; https://codeberg.org/ideasman42/emacs-idle-highlight-mode
+(use-package idle-highlight-mode
+  :ensure t
+  :config (setq idle-highlight-idle-time 0)
+  :hook ((prog-mode) . idle-highlight-mode))
 
 
 ;;;
