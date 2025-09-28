@@ -11,7 +11,9 @@
 ;;; Improve coding experience within mini-buffer
 ;; http://emacsredux.com/blog/2016/03/02/pimp-my-minibuffer/
 (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode)
+;; This makes [RET] to invoke paredit-return. Do not use.
+;; https://www.reddit.com/r/emacs/comments/101uwgd/enable_paredit_mode_for_evalexpression_mini/
+;; (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode)
 
 
 ;;; Show last several messages in the mini-buffer.
