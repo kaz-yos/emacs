@@ -28,6 +28,9 @@
   (setq helm-full-frame t)
   ;; Always use the other window for helm (below if no other window exists)
   (setq helm-split-window-default-side 'below)
+  ;; Scroll across sources with C-n/p instead of using C-o (other)
+  ;; https://emacs.stackexchange.com/questions/52356/how-to-navigate-inside-helm-buffer
+  (setq helm-move-to-line-cycle-in-source nil)
   ;; Emulate `kill-line' in helm minibuffer
   ;; http://d.hatena.ne.jp/a_bicky/20140104/1388822688
   (setq helm-delete-minibuffer-contents-from-point t)
