@@ -15,7 +15,7 @@
 (use-package autorevert
   :commands (auto-revert-mode)
   :bind (:map my-key-map
-              ("a" . auto-revert-mode))
+         ("a" . auto-revert-mode))
   ;;
   :config
   ;; Active in all buffers
@@ -25,11 +25,10 @@
   ;; VC status change is also captured
   (setq auto-revert-check-vc-info t)
   ;; No ARev in mode-line
-  ;; (setq auto-revert-mode-text "")
+  (setq auto-revert-mode-text "")
   ;; http://pragmaticemacs.com/emacs/make-emacs-a-bit-quieter/
   ;; When nil, Auto-Revert Mode does not generate any messages.
-  (setq auto-revert-verbose nil)
-  )
+  (setq auto-revert-verbose nil))
 
 
 ;;;
