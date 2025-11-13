@@ -8,15 +8,23 @@
 library(doParallel)
 ## Reproducible parallelization
 library(doRNG)
-## Detect core count (Do not use on clusters)
-n_cores <- parallel::detectCores()
+## Detect core count. This supports LSF and SLURM.
+n_cores <- future::availableCores()
 ## Used by parallel::mclapply() as default
 options(mc.cores = n_cores)
 ## Used by doParallel as default
 options(cores = n_cores)
-## Register doParallel as the parallel backend with foreach
+## Register doParallel as the parallel backend for foreach
 ## http://stackoverflow.com/questions/28989855/the-difference-between-domc-and-doparallel-in-r
 doParallel::registerDoParallel(cores = n_cores)
+## future: Unified Parallel and Distributed Processing in R for Everyone
+## https://cran.r-project.org/web/packages/future/vignettes/future-1-overview.html
+library(future)
+future::plan(multicore)
+## Report multicore use
+foreach::getDoParName()
+foreach::getDoParWorkers()
+future::availableCores()
 ## Report multicore use
 cat("### Using", foreach::getDoParWorkers(), "cores\n")
 cat("### Using", foreach::getDoParName(), "as backend\n")
