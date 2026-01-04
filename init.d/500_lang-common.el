@@ -202,3 +202,25 @@ See the help for `company-backends'."
   ;; http://ergoemacs.org/misc/emacs_rainbow-delimiters-mode.html
   ;; Just as an example
   (setq delim-test (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1 (+ 1))))))))))))))))
+
+
+;;;
+;;; AI coding tools
+;;;  gptel.el
+;; gptel: A simple LLM client for Emacs
+;; https://github.com/karthink/gptel
+(use-package gptel
+  :ensure t
+  :commands (gptel
+             gptel-send)
+  :config
+  (setq gptel-backend
+        (gptel-make-ollama "Ollama"
+          :host "localhost:11434"
+          :stream t
+          ;; Use the following to list available models
+          ;; $ ollama list
+          ;; $ ollama pull deepseek-coder-v2:lite
+          :models '("deepseek-v3.1:671b-cloud"
+                    "qwen3-coder:480b-cloud"
+                    "deepseek-coder-v2:lite"))))
