@@ -23,7 +23,10 @@
 ;; Syntax highlighting everywhere
 (global-font-lock-mode t)
 ;; When enabled, the region is highlighted whenever the mark is active
-(transient-mark-mode t)
+(use-package emacs
+  ;; https://www.gnu.org/software/emacs/manual/html_node/use-package/The-emacs-package.html
+  :config
+  (transient-mark-mode t))
 ;; Typed text replaces the selection if the selection is active
 (delete-selection-mode t)
 
@@ -398,4 +401,6 @@
 ;;; No frame size rounding with GUI.
 ;; https://www.reddit.com/r/emacs/comments/hsszos/how_to_get_rid_of_black_border_around_emacsmacosx/
 ;; If non-nil, frame sizes can increase/decrease by one pixel.
-(setq frame-resize-pixelwise t)
+(use-package emacs
+  :config
+  (setq frame-resize-pixelwise t))
