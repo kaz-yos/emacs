@@ -338,22 +338,29 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Variables.html
 ;; https://www.gnu.org/software/emacs/manual/html_node/eintr/Mode-Line.html
 ;; http://www.holgerschurig.de/en/emacs-tayloring-the-built-in-mode-line/
-(setq-default mode-line-format
-              '("%e"
-                mode-line-front-space
-                mode-line-mule-info
-                mode-line-client
-                mode-line-modified
-                mode-line-remote
-                mode-line-frame-identification
-                mode-line-buffer-identification
-                " "
-                mode-line-position
-                (vc-mode vc-mode)
-                " "
-                mode-line-modes
-                mode-line-misc-info
-                mode-line-end-spaces))
+(use-package emacs
+  :config
+  (setq-default mode-line-format
+                '("%e"
+                  mode-line-front-space
+                  (:propertize
+                   (""
+                    mode-line-mule-info
+                    mode-line-client
+                    mode-line-modified
+                    mode-line-remote
+                    mode-line-window-dedicated)
+                   display (min-width (6.0)))
+                  mode-line-frame-identification
+                  mode-line-buffer-identification
+                  " "
+                  mode-line-position
+                  (project-mode-line project-mode-line-format)
+                  (vc-mode vc-mode)
+                  " "
+                  mode-line-modes
+                  mode-line-misc-info
+                  mode-line-end-spaces)))
 ;; Check the default value.
 ;; (default-value 'mode-line-format)
 
