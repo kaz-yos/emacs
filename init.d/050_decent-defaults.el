@@ -1,4 +1,4 @@
-;;; Nice options to have On by default
+;;; Nice options to have On by default  -*- lexical-binding: t; -*-
 
 
 ;;;
