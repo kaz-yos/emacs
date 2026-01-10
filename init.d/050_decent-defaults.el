@@ -82,8 +82,10 @@
 ;;; Never use tabs for indentation
 ;; Not working?
 ;; (setq tab-width 4)
-(set-default 'indent-tabs-mode nil)
-(setq indent-tabs-mode nil)
+(use-package simple
+  :config
+  (set-default 'indent-tabs-mode nil)
+  (setq indent-tabs-mode nil))
 
 
 ;;;
