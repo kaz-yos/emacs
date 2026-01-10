@@ -1,4 +1,4 @@
-;; ~/.emacs.d/init.el
+;; ~/.emacs.d/init.el                                -*- lexical-binding: t; -*-
 ;; Managed with init-loader.el: https://github.com/emacs-jp/init-loader
 
 
