@@ -68,14 +68,14 @@
 
 ;;;
 ;;; Visible-bell instead of audible
-;; (setq visible-bell t)
-;;
-;; 2015-10-22 Work around for El Capitan
-;; http://stuff-things.net/2015/10/05/emacs-visible-bell-work-around-on-os-x-el-capitan/
-(setq visible-bell nil)
-;; (setq ring-bell-function 'ignore)
-(setq ring-bell-function '(lambda ()
-                            (message "Bell!")))
+(use-package emacs
+  :config
+  ;; 2015-10-22 Work around for El Capitan
+  ;; http://stuff-things.net/2015/10/05/emacs-visible-bell-work-around-on-os-x-el-capitan/
+  (setq visible-bell nil)
+  ;; (setq ring-bell-function 'ignore)
+  (setq ring-bell-function '(lambda ()
+                              (message "Bell!"))))
 
 
 ;;;
