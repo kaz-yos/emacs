@@ -59,9 +59,6 @@
 ;; Packages added by auto-install (put no subfolders)
 (add-to-list 'load-path (concat user-emacs-directory "auto-install/"))
 ;;
-;; Packages added manually (intentionally not recursive)
-(add-to-list 'load-path (concat user-emacs-directory "plugins/"))
-;;
 ;; Configure the custom theme directory
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Creating-Custom-Themes.html#Creating-Custom-Themes
 (setq custom-theme-directory (concat user-emacs-directory "themes/"))
