@@ -44,24 +44,26 @@
 ;;;
 ;;; Fewer garbage collection
 ;; Number of bytes of consing between garbage collections.
-(setq garbage-collection-messages nil)
-;; Set different gc-cons-threshold values depending on the context.
-;; http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
-(defun set-gc-cons-threshold-max ()
-  "Set gc-cons-threshold to maximum"
-  (setq gc-cons-threshold most-positive-fixnum))
-(set-gc-cons-threshold-max)
+(use-package emacs
+  :config
+  (setq garbage-collection-messages nil)
+  ;; Set different gc-cons-threshold values depending on the context.
+  ;; http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
+  (defun set-gc-cons-threshold-max ()
+    "Set gc-cons-threshold to maximum"
+    (setq gc-cons-threshold most-positive-fixnum))
+  (set-gc-cons-threshold-max)
 ;;;
-(defun set-gc-cons-threshold-normal (mb)
-  "Set gc-cons-threshold in MB"
-  (setq gc-cons-threshold (round (* mb 1000 1000))))
-(add-hook 'after-init-hook #'(lambda () (set-gc-cons-threshold-normal 0.8)))
-;; (add-hook 'minibuffer-setup-hook #'set-gc-cons-threshold-max)
-;; (add-hook 'minibuffer-exit-hook #'(lambda () (set-gc-cons-threshold-normal 8)))
-;;
-;; GC on losing focus
-;; https://www.reddit.com/r/emacs/comments/4j828f/til_setq_gcconsthreshold_100000000/?st=j8t2pj66&sh=efe26f70
-(add-hook 'focus-out-hook #'garbage-collect)
+  (defun set-gc-cons-threshold-normal (mb)
+    "Set gc-cons-threshold in MB"
+    (setq gc-cons-threshold (round (* mb 1000 1000))))
+  (add-hook 'after-init-hook #'(lambda () (set-gc-cons-threshold-normal 0.8)))
+  ;; (add-hook 'minibuffer-setup-hook #'set-gc-cons-threshold-max)
+  ;; (add-hook 'minibuffer-exit-hook #'(lambda () (set-gc-cons-threshold-normal 8)))
+  ;;
+  ;; GC on losing focus
+  ;; https://www.reddit.com/r/emacs/comments/4j828f/til_setq_gcconsthreshold_100000000/?st=j8t2pj66&sh=efe26f70
+  (add-hook 'focus-out-hook #'garbage-collect))
 
 
 ;;;
