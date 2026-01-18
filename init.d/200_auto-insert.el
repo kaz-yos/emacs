@@ -25,5 +25,6 @@
   (define-auto-insert "\\.hy$"        "hy.hy")
   (define-auto-insert "\\.stan$"      "stan.stan")
   (define-auto-insert "\\.org$"       "org.org")
+  (define-auto-insert "\\.ino$"       "arduino.ino")
   ;; Activate
   (auto-insert-mode))
