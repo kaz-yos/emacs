@@ -13,4 +13,12 @@
 (use-package arduino-mode
   :ensure t
   :mode "\\.ino\\'"
-  :config)
+  :config
+  ;;
+  (defun my-arduino-compile ()
+    (interactive)
+    (compile "arduino-cli compile --fqbn arduino:avr:uno"))
+  ;;
+  (defun my-arduino-upload ()
+    (interactive)
+    (compile "arduino-cli upload -p /dev/tty.usbmodemXXXX --fqbn arduino:avr:uno")))
