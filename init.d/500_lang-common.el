@@ -9,9 +9,8 @@
 (use-package lsp-mode
   :ensure t
   :commands (lsp)
-  :hook (;; (ess-r-mode . lsp)
-         ;; (inferior-ess-r-mode . lsp)
-         ;;
+  :hook ((c++-mode . lsp)
+         (arduino-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq lsp-keymap-prefix "s-l")
