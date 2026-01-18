@@ -12,9 +12,6 @@
   :hook ((c++-mode . lsp)
          (arduino-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
-  :init
-  ;; Prefer plist-based JSON for performance (recommended)
-  (setq lsp-use-plists t)
   ;;
   :config
   (setq lsp-keymap-prefix "s-l")
