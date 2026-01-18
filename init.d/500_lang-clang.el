@@ -31,6 +31,16 @@
 
 
 ;;;
+;;; clang-format.el
+;; https://clang.llvm.org/docs/ClangFormat.html
+(use-package clang-format
+  :ensure t
+  :bind (:map c++-mode-map
+         ("C-c f" . clang-format-buffer))
+  :config)
+
+
+;;;
 ;;; c-eldoc.el
 ;; MELPA version
 ;; https://github.com/nflath/c-eldoc
