@@ -12,12 +12,31 @@
   :hook ((c++-mode . lsp)
          (arduino-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
+  :init
+  ;; Prefer plist-based JSON for performance (recommended)
+  (setq lsp-use-plists t)
+  ;;
   :config
   (setq lsp-keymap-prefix "s-l")
-  ;; optionally
+  ;; Language id configuration for arduino-mode
+  (add-to-list 'lsp-language-id-configuration
+               '(arduino-mode . "cpp"))
+  ;; clangd is the only fully supported LSP server for Arduino-style C++
+  ;; and is the same backend used by Arduino IDE 2.x.
+  (setq lsp-clients-clangd-executable "clangd")
+  ;;
+  ;;
+;;;  lsp-ui.el
+  ;; https://emacs-lsp.github.io/lsp-ui/
+  ;; higher level UI modules of lsp-mode, like flycheck support and code lenses.
   (use-package lsp-ui
     :ensure t
-    :commands (lsp-ui-mode))
+    :after lsp-mode
+    :hook (lsp-mode . lsp-ui-mode)
+    :config
+    (setq lsp-ui-doc-enable t)
+    (setq lsp-ui-sideline-enable t))
+  ;;
   ;; if you are helm user
   (use-package helm-lsp
     :ensure t
