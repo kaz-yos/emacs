@@ -21,7 +21,7 @@
   ;;
   (defun my-arduino-compile ()
     (interactive)
-    (compile "arduino-cli compile --fqbn arduino:avr:uno"))
+    (compile "arduino-cli compile --fqbn arduino:avr:uno --build-path build"))
   ;;
   (defun my-arduino-upload ()
     (interactive)
@@ -29,4 +29,4 @@
   ;;
   (defun my-arduino-compile-and-upload ()
     (interactive)
-    (compile "arduino-cli compile --fqbn arduino:avr:uno && arduino-cli upload -p /dev/tty.usbmodem14301 --fqbn arduino:avr:uno")))
+    (compile "arduino-cli compile --fqbn arduino:avr:uno --build-path build && arduino-cli upload -p /dev/tty.usbmodem14301 --fqbn arduino:avr:uno")))
