@@ -29,5 +29,4 @@
   ;;
   (defun my-arduino-compile-and-upload ()
     (interactive)
-    (my-arduino-compile)
-    (my-arduino-upload)))
+    (compile "arduino-cli compile --fqbn arduino:avr:uno && arduino-cli upload -p /dev/tty.usbmodem14301 --fqbn arduino:avr:uno")))
