@@ -13,6 +13,10 @@
 (use-package arduino-mode
   :ensure t
   :mode "\\.ino\\'"
+  :bind (;;
+         :map arduino-mode-map
+         ("M-s M-s" . my-arduino-compile-and-upload))
+  ;;
   :config
   ;;
   (defun my-arduino-compile ()
@@ -21,4 +25,9 @@
   ;;
   (defun my-arduino-upload ()
     (interactive)
-    (compile "arduino-cli upload -p /dev/tty.usbmodem14301 --fqbn arduino:avr:uno")))
+    (compile "arduino-cli upload -p /dev/tty.usbmodem14301 --fqbn arduino:avr:uno"))
+  ;;
+  (defun my-arduino-compile-and-upload ()
+    (interactive)
+    (my-arduino-compile)
+    (my-arduino-upload)))
