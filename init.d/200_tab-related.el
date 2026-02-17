@@ -26,6 +26,7 @@
          ("c" . my-tab-bar-create)
          ("C" . my-tab-bar-clone)
          ("n" . tab-bar-switch-to-next-tab)
+         ("l" . tab-bar-switch-to-next-tab)
          ("p" . tab-bar-switch-to-prev-tab)
          ("k" . tab-bar-close-tab)
          ("K" . tab-bar-close-other-tabs)
