@@ -27,7 +27,7 @@
              ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/List-Elements.html
              (car (last (file-expand-wildcards "~/.emacs.d/elpa/org-plus-contrib*"))))
 (require 'org)
-(require 'org-ref)
+;; (require 'org-ref)
 ;;; Load exporters
 (require 'ox-beamer)
 ;; bold is bold not \alert{} (can appear as red text)
