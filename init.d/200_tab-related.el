@@ -46,6 +46,10 @@
          ("9" . my-tab-bar-select-tab-9))
   ;;
   :config
+  ;; Deassign unwanted keys in Emacs 31.1
+  (keymap-unset tab-bar-mode-map "C-<tab>" t)
+  (keymap-unset tab-bar-mode-map "C-S-<tab>" t)
+  ;;
   ;; `project.el' steals p binding in `tab-prefix-map'. Steal back.
   (eval-after-load "project"
     (bind-key "p" #'tab-bar-switch-to-prev-tab 'tab-prefix-map))
