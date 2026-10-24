@@ -1,4 +1,4 @@
-;;; spell check related
+;;; spell check related  -*- lexical-binding: t; -*-
 
 ;;;
 ;;; ispell.el

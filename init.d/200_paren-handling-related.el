@@ -1,4 +1,4 @@
-;;; Automatically close brackets and parentheses
+;;; Automatically close brackets and parentheses  -*- lexical-binding: t; -*-
 ;; http://www.emacswiki.org/emacs/ESSAutoParens
 ;; http://www.emacswiki.org/emacs/SkeletonPair
 

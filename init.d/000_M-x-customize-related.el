@@ -1,4 +1,4 @@
-;;; M-x customize seperation
+;;; M-x customize seperation  -*- lexical-binding: t; -*-
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
 ;; The actual file resides here.
 (setq custom-file (concat user-emacs-directory

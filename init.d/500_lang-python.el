@@ -1,4 +1,4 @@
-;;;
+;;;  -*- lexical-binding: t; -*-
 ;;; PYTHON SUPPORT-RELATED
 
 ;;;  python.el

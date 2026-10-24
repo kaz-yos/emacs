@@ -1,4 +1,4 @@
-;;; auto-install.el
+;;; auto-install.el  -*- lexical-binding: t; -*-
 
 ;;; Auto-intall
 ;; http://www.emacswiki.org/AutoInstall

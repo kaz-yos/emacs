@@ -1,4 +1,4 @@
-;;; Keyboard modification
+;;; Keyboard modification  -*- lexical-binding: t; -*-
 ;; http://www.masteringemacs.org/articles/2011/02/08/mastering-key-bindings-emacs/
 
 ;;;

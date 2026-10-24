@@ -1,5 +1,4 @@
-;;;
-;;; polymode.el
+;;; polymode.el  -*- lexical-binding: t; -*-
 ;; Polymode is a framework for multiple major modes (MMM) inside a single Emacs buffer.
 ;; https://polymode.github.io
 ;; https://github.com/vitoshka/polymode

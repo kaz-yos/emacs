@@ -1,4 +1,4 @@
-;;; bm.el Within-file bookmarking
+;;; bm.el Within-file bookmarking  -*- lexical-binding: t; -*-
 ;; https://github.com/joodland/bm
 ;;
 ;;

@@ -1,4 +1,4 @@
-;;; LaTeX environments
+;;; LaTeX environments  -*- lexical-binding: t; -*-
 ;;
 ;;;
 ;;; AUCtex

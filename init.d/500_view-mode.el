@@ -1,4 +1,5 @@
-;;; view-mode			; C-x C-r to open in view-mode. Requires viewer.el
+;;; view-mode  -*- lexical-binding: t; -*-
+;; C-x C-r to open in view-mode. Requires viewer.el
 ;; http://www.emacswiki.org/emacs/ViewMode
 (global-set-key (kbd "A-o") 'read-only-mode)
 

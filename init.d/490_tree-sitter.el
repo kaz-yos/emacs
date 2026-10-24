@@ -1,5 +1,4 @@
-;;;
-;;; tree-sitter
+;;; tree-sitter  -*- lexical-binding: t; -*-
 ;; https://tree-sitter.github.io/tree-sitter/
 ;; https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
 

@@ -1,4 +1,4 @@
-;;; Org-mode related
+;;; Org-mode related  -*- lexical-binding: t; -*-
 ;;
 ;; Installation:
 ;; http://orgmode.org/manual/Installation.html

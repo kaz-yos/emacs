@@ -1,4 +1,4 @@
-;;;
+;;;  -*- lexical-binding: t; -*-
 ;;; manage-minor-mode.el
 ;; http://fukuyama.co/manage-minor-mode
 (use-package manage-minor-mode

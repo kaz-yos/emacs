@@ -1,4 +1,4 @@
-;;;
+;;;  -*- lexical-binding: t; -*-
 ;;; MARKDOWN-RELATED
 ;;;  markdown-mode.el
 ;; http://jblevins.org/projects/markdown-mode/
